@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 public final class GetVehicleIdlingReportsRequest {
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final String startTime;
 
@@ -37,20 +37,20 @@ public final class GetVehicleIdlingReportsRequest {
 
     private final Optional<Boolean> isPtoActive;
 
-    private final Optional<Integer> minIdlingDurationMinutes;
+    private final Optional<Long> minIdlingDurationMinutes;
 
     private final Map<String, Object> additionalProperties;
 
     private GetVehicleIdlingReportsRequest(
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             String startTime,
             String endTime,
             Optional<String> vehicleIds,
             Optional<String> tagIds,
             Optional<String> parentTagIds,
             Optional<Boolean> isPtoActive,
-            Optional<Integer> minIdlingDurationMinutes,
+            Optional<Long> minIdlingDurationMinutes,
             Map<String, Object> additionalProperties) {
         this.after = after;
         this.limit = limit;
@@ -76,7 +76,7 @@ public final class GetVehicleIdlingReportsRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 512 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -132,7 +132,7 @@ public final class GetVehicleIdlingReportsRequest {
      * @return A filter on the data based on a minimum idling duration.
      */
     @JsonProperty("minIdlingDurationMinutes")
-    public Optional<Integer> getMinIdlingDurationMinutes() {
+    public Optional<Long> getMinIdlingDurationMinutes() {
         return minIdlingDurationMinutes;
     }
 
@@ -211,9 +211,9 @@ public final class GetVehicleIdlingReportsRequest {
         /**
          * <p>The limit for how many objects will be in the response. Default and max for this value is 512 objects.</p>
          */
-        _FinalStage limit(Optional<Integer> limit);
+        _FinalStage limit(Optional<Long> limit);
 
-        _FinalStage limit(Integer limit);
+        _FinalStage limit(Long limit);
 
         /**
          * <p>A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: <code>vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186</code></p>
@@ -246,9 +246,9 @@ public final class GetVehicleIdlingReportsRequest {
         /**
          * <p>A filter on the data based on a minimum idling duration.</p>
          */
-        _FinalStage minIdlingDurationMinutes(Optional<Integer> minIdlingDurationMinutes);
+        _FinalStage minIdlingDurationMinutes(Optional<Long> minIdlingDurationMinutes);
 
-        _FinalStage minIdlingDurationMinutes(Integer minIdlingDurationMinutes);
+        _FinalStage minIdlingDurationMinutes(Long minIdlingDurationMinutes);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -257,7 +257,7 @@ public final class GetVehicleIdlingReportsRequest {
 
         private String endTime;
 
-        private Optional<Integer> minIdlingDurationMinutes = Optional.empty();
+        private Optional<Long> minIdlingDurationMinutes = Optional.empty();
 
         private Optional<Boolean> isPtoActive = Optional.empty();
 
@@ -267,7 +267,7 @@ public final class GetVehicleIdlingReportsRequest {
 
         private Optional<String> vehicleIds = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -319,7 +319,7 @@ public final class GetVehicleIdlingReportsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage minIdlingDurationMinutes(Integer minIdlingDurationMinutes) {
+        public _FinalStage minIdlingDurationMinutes(Long minIdlingDurationMinutes) {
             this.minIdlingDurationMinutes = Optional.ofNullable(minIdlingDurationMinutes);
             return this;
         }
@@ -329,7 +329,7 @@ public final class GetVehicleIdlingReportsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "minIdlingDurationMinutes", nulls = Nulls.SKIP)
-        public _FinalStage minIdlingDurationMinutes(Optional<Integer> minIdlingDurationMinutes) {
+        public _FinalStage minIdlingDurationMinutes(Optional<Long> minIdlingDurationMinutes) {
             this.minIdlingDurationMinutes = minIdlingDurationMinutes;
             return this;
         }
@@ -419,7 +419,7 @@ public final class GetVehicleIdlingReportsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage limit(Integer limit) {
+        public _FinalStage limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -429,7 +429,7 @@ public final class GetVehicleIdlingReportsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public _FinalStage limit(Optional<Integer> limit) {
+        public _FinalStage limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }

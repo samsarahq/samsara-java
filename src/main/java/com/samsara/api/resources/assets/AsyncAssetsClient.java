@@ -59,6 +59,16 @@ public class AsyncAssetsClient {
      * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public CompletableFuture<SyncPagingIterable<AssetResponseBody>> list(RequestOptions requestOptions) {
+        return this.rawClient.list(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all assets. Up to 300 assets will be returned per page.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public CompletableFuture<SyncPagingIterable<AssetResponseBody>> list(ListAssetsRequest request) {
         return this.rawClient.list(request).thenApply(response -> response.body());
     }
@@ -82,6 +92,16 @@ public class AsyncAssetsClient {
      */
     public CompletableFuture<AssetsCreateAssetResponseBody> createAsset() {
         return this.rawClient.createAsset().thenApply(response -> response.body());
+    }
+
+    /**
+     * Create a new asset.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<AssetsCreateAssetResponseBody> createAsset(RequestOptions requestOptions) {
+        return this.rawClient.createAsset(requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -159,6 +179,21 @@ public class AsyncAssetsClient {
      */
     public CompletableFuture<InlineResponse2002> v1GetAllAssetCurrentLocations() {
         return this.rawClient.v1GetAllAssetCurrentLocations().thenApply(response -> response.body());
+    }
+
+    /**
+     * <p>&lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;</p>
+     * Fetch current locations of all assets.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<InlineResponse2002> v1GetAllAssetCurrentLocations(RequestOptions requestOptions) {
+        return this.rawClient.v1GetAllAssetCurrentLocations(requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -295,6 +330,10 @@ public class AsyncAssetsClient {
         return this.rawClient.get(id).thenApply(response -> response.body());
     }
 
+    public CompletableFuture<Void> get(String id, RequestOptions requestOptions) {
+        return this.rawClient.get(id, requestOptions).thenApply(response -> response.body());
+    }
+
     public CompletableFuture<Void> get(String id, GetAssetsRequest request) {
         return this.rawClient.get(id, request).thenApply(response -> response.body());
     }
@@ -305,6 +344,10 @@ public class AsyncAssetsClient {
 
     public CompletableFuture<Void> update(String id) {
         return this.rawClient.update(id).thenApply(response -> response.body());
+    }
+
+    public CompletableFuture<Void> update(String id, RequestOptions requestOptions) {
+        return this.rawClient.update(id, requestOptions).thenApply(response -> response.body());
     }
 
     public CompletableFuture<Void> update(String id, UpdateAssetsRequest request) {

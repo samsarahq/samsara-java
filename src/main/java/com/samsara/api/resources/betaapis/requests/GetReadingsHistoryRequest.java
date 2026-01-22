@@ -97,7 +97,7 @@ public final class GetReadingsHistoryRequest {
     }
 
     /**
-     * @return A filter on the data based on this comma-separated list of external IDs.
+     * @return A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)
      */
     @JsonProperty("externalIds")
     public Optional<String> getExternalIds() {
@@ -216,7 +216,7 @@ public final class GetReadingsHistoryRequest {
         _FinalStage entityIds(String entityIds);
 
         /**
-         * <p>A filter on the data based on this comma-separated list of external IDs.</p>
+         * <p>A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)</p>
          */
         _FinalStage externalIds(Optional<String> externalIds);
 
@@ -395,7 +395,7 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of external IDs.</p>
+         * <p>A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -405,7 +405,7 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of external IDs.</p>
+         * <p>A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)

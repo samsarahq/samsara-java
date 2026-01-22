@@ -181,6 +181,18 @@ public class AsyncRawSettingsClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<SettingsPatchComplianceSettingsResponseBody>>
+            patchComplianceSettings(RequestOptions requestOptions) {
+        return patchComplianceSettings(
+                SettingsPatchComplianceSettingsRequestBody.builder().build(), requestOptions);
+    }
+
+    /**
+     * Update organization's compliance settings, including carrier name, office address, and DOT number
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<SettingsPatchComplianceSettingsResponseBody>>
             patchComplianceSettings(SettingsPatchComplianceSettingsRequestBody request) {
         return patchComplianceSettings(request, null);
     }
@@ -421,6 +433,18 @@ public class AsyncRawSettingsClient {
             patchDriverAppSettings() {
         return patchDriverAppSettings(
                 SettingsPatchDriverAppSettingsRequestBody.builder().build());
+    }
+
+    /**
+     * Update driver app settings.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Driver App Settings</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<SettingsPatchDriverAppSettingsResponseBody>> patchDriverAppSettings(
+            RequestOptions requestOptions) {
+        return patchDriverAppSettings(
+                SettingsPatchDriverAppSettingsRequestBody.builder().build(), requestOptions);
     }
 
     /**

@@ -79,7 +79,7 @@ public final class Address {
     }
 
     /**
-     * @return Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>.
+     * @return Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>, <code>authorizedZone</code>, <code>unauthorizedZone</code>.
      */
     @JsonProperty("addressTypes")
     public Optional<List<AddressAddressTypesItem>> getAddressTypes() {
@@ -254,7 +254,7 @@ public final class Address {
         Address build();
 
         /**
-         * <p>Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>.</p>
+         * <p>Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>, <code>authorizedZone</code>, <code>unauthorizedZone</code>.</p>
          */
         _FinalStage addressTypes(Optional<List<AddressAddressTypesItem>> addressTypes);
 
@@ -542,7 +542,7 @@ public final class Address {
         }
 
         /**
-         * <p>Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>.</p>
+         * <p>Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>, <code>authorizedZone</code>, <code>unauthorizedZone</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -552,7 +552,7 @@ public final class Address {
         }
 
         /**
-         * <p>Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>.</p>
+         * <p>Reporting location type associated with the address (used for ELD reporting purposes). Valid values: <code>yard</code>, <code>shortHaul</code>, <code>workforceSite</code>, <code>riskZone</code>, <code>industrialSite</code>, <code>alertsOnly</code>, <code>agricultureSource</code>, <code>avoidanceZone</code>, <code>knownGPSJammingZone</code>, <code>authorizedZone</code>, <code>unauthorizedZone</code>.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "addressTypes", nulls = Nulls.SKIP)

@@ -34,7 +34,7 @@ public final class Dvir {
 
     private final Optional<String> mechanicNotes;
 
-    private final Optional<Integer> odometerMeters;
+    private final Optional<Long> odometerMeters;
 
     private final Optional<DvirSafetyStatus> safetyStatus;
 
@@ -65,7 +65,7 @@ public final class Dvir {
             Optional<String> licensePlate,
             Optional<String> location,
             Optional<String> mechanicNotes,
-            Optional<Integer> odometerMeters,
+            Optional<Long> odometerMeters,
             Optional<DvirSafetyStatus> safetyStatus,
             Optional<DvirSecondSignature> secondSignature,
             Optional<String> startTime,
@@ -134,7 +134,7 @@ public final class Dvir {
     }
 
     @JsonProperty("odometerMeters")
-    public Optional<Integer> getOdometerMeters() {
+    public Optional<Long> getOdometerMeters() {
         return odometerMeters;
     }
 
@@ -297,9 +297,9 @@ public final class Dvir {
 
         _FinalStage mechanicNotes(String mechanicNotes);
 
-        _FinalStage odometerMeters(Optional<Integer> odometerMeters);
+        _FinalStage odometerMeters(Optional<Long> odometerMeters);
 
-        _FinalStage odometerMeters(Integer odometerMeters);
+        _FinalStage odometerMeters(Long odometerMeters);
 
         /**
          * <p>The condition of vehicle on which DVIR was done. Valid values: <code>safe</code>, <code>unsafe</code>, <code>resolved</code>.</p>
@@ -378,7 +378,7 @@ public final class Dvir {
 
         private Optional<DvirSafetyStatus> safetyStatus = Optional.empty();
 
-        private Optional<Integer> odometerMeters = Optional.empty();
+        private Optional<Long> odometerMeters = Optional.empty();
 
         private Optional<String> mechanicNotes = Optional.empty();
 
@@ -588,14 +588,14 @@ public final class Dvir {
         }
 
         @java.lang.Override
-        public _FinalStage odometerMeters(Integer odometerMeters) {
+        public _FinalStage odometerMeters(Long odometerMeters) {
             this.odometerMeters = Optional.ofNullable(odometerMeters);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "odometerMeters", nulls = Nulls.SKIP)
-        public _FinalStage odometerMeters(Optional<Integer> odometerMeters) {
+        public _FinalStage odometerMeters(Optional<Long> odometerMeters) {
             this.odometerMeters = odometerMeters;
             return this;
         }

@@ -24,14 +24,18 @@ public final class RouteSettingsRequestBody {
 
     private final Optional<RouteSettingsRequestBodyRouteStartingCondition> routeStartingCondition;
 
+    private final Optional<RouteSettingsRequestBodySequencingMethod> sequencingMethod;
+
     private final Map<String, Object> additionalProperties;
 
     private RouteSettingsRequestBody(
             Optional<RouteSettingsRequestBodyRouteCompletionCondition> routeCompletionCondition,
             Optional<RouteSettingsRequestBodyRouteStartingCondition> routeStartingCondition,
+            Optional<RouteSettingsRequestBodySequencingMethod> sequencingMethod,
             Map<String, Object> additionalProperties) {
         this.routeCompletionCondition = routeCompletionCondition;
         this.routeStartingCondition = routeStartingCondition;
+        this.sequencingMethod = sequencingMethod;
         this.additionalProperties = additionalProperties;
     }
 
@@ -54,6 +58,14 @@ public final class RouteSettingsRequestBody {
         return routeStartingCondition;
     }
 
+    /**
+     * @return Determines how stops are sequenced on the route. 'scheduledArrivalTime' sequences stops by their scheduled arrival times (default). 'manual' allows custom sequencing via stop.sequenceNumber. 'unknown' indicates the method is not specified.  Valid values: <code>unknown</code>, <code>scheduledArrivalTime</code>, <code>manual</code>
+     */
+    @JsonProperty("sequencingMethod")
+    public Optional<RouteSettingsRequestBodySequencingMethod> getSequencingMethod() {
+        return sequencingMethod;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -67,12 +79,13 @@ public final class RouteSettingsRequestBody {
 
     private boolean equalTo(RouteSettingsRequestBody other) {
         return routeCompletionCondition.equals(other.routeCompletionCondition)
-                && routeStartingCondition.equals(other.routeStartingCondition);
+                && routeStartingCondition.equals(other.routeStartingCondition)
+                && sequencingMethod.equals(other.sequencingMethod);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.routeCompletionCondition, this.routeStartingCondition);
+        return Objects.hash(this.routeCompletionCondition, this.routeStartingCondition, this.sequencingMethod);
     }
 
     @java.lang.Override
@@ -90,6 +103,8 @@ public final class RouteSettingsRequestBody {
 
         private Optional<RouteSettingsRequestBodyRouteStartingCondition> routeStartingCondition = Optional.empty();
 
+        private Optional<RouteSettingsRequestBodySequencingMethod> sequencingMethod = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -98,6 +113,7 @@ public final class RouteSettingsRequestBody {
         public Builder from(RouteSettingsRequestBody other) {
             routeCompletionCondition(other.getRouteCompletionCondition());
             routeStartingCondition(other.getRouteStartingCondition());
+            sequencingMethod(other.getSequencingMethod());
             return this;
         }
 
@@ -135,8 +151,23 @@ public final class RouteSettingsRequestBody {
             return this;
         }
 
+        /**
+         * <p>Determines how stops are sequenced on the route. 'scheduledArrivalTime' sequences stops by their scheduled arrival times (default). 'manual' allows custom sequencing via stop.sequenceNumber. 'unknown' indicates the method is not specified.  Valid values: <code>unknown</code>, <code>scheduledArrivalTime</code>, <code>manual</code></p>
+         */
+        @JsonSetter(value = "sequencingMethod", nulls = Nulls.SKIP)
+        public Builder sequencingMethod(Optional<RouteSettingsRequestBodySequencingMethod> sequencingMethod) {
+            this.sequencingMethod = sequencingMethod;
+            return this;
+        }
+
+        public Builder sequencingMethod(RouteSettingsRequestBodySequencingMethod sequencingMethod) {
+            this.sequencingMethod = Optional.ofNullable(sequencingMethod);
+            return this;
+        }
+
         public RouteSettingsRequestBody build() {
-            return new RouteSettingsRequestBody(routeCompletionCondition, routeStartingCondition, additionalProperties);
+            return new RouteSettingsRequestBody(
+                    routeCompletionCondition, routeStartingCondition, sequencingMethod, additionalProperties);
         }
     }
 }

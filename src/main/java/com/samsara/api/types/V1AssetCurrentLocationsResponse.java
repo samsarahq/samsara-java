@@ -25,7 +25,7 @@ public final class V1AssetCurrentLocationsResponse {
 
     private final Optional<V1AssetCable> cable;
 
-    private final Optional<Integer> engineHours;
+    private final Optional<Long> engineHours;
 
     private final long id;
 
@@ -38,7 +38,7 @@ public final class V1AssetCurrentLocationsResponse {
     private V1AssetCurrentLocationsResponse(
             Optional<String> assetSerialNumber,
             Optional<V1AssetCable> cable,
-            Optional<Integer> engineHours,
+            Optional<Long> engineHours,
             long id,
             Optional<List<V1AssetCurrentLocation>> location,
             Optional<String> name,
@@ -69,7 +69,7 @@ public final class V1AssetCurrentLocationsResponse {
      * @return Engine hours
      */
     @JsonProperty("engineHours")
-    public Optional<Integer> getEngineHours() {
+    public Optional<Long> getEngineHours() {
         return engineHours;
     }
 
@@ -157,9 +157,9 @@ public final class V1AssetCurrentLocationsResponse {
         /**
          * <p>Engine hours</p>
          */
-        _FinalStage engineHours(Optional<Integer> engineHours);
+        _FinalStage engineHours(Optional<Long> engineHours);
 
-        _FinalStage engineHours(Integer engineHours);
+        _FinalStage engineHours(Long engineHours);
 
         /**
          * <p>Current location of an asset</p>
@@ -184,7 +184,7 @@ public final class V1AssetCurrentLocationsResponse {
 
         private Optional<List<V1AssetCurrentLocation>> location = Optional.empty();
 
-        private Optional<Integer> engineHours = Optional.empty();
+        private Optional<Long> engineHours = Optional.empty();
 
         private Optional<V1AssetCable> cable = Optional.empty();
 
@@ -263,7 +263,7 @@ public final class V1AssetCurrentLocationsResponse {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage engineHours(Integer engineHours) {
+        public _FinalStage engineHours(Long engineHours) {
             this.engineHours = Optional.ofNullable(engineHours);
             return this;
         }
@@ -273,7 +273,7 @@ public final class V1AssetCurrentLocationsResponse {
          */
         @java.lang.Override
         @JsonSetter(value = "engineHours", nulls = Nulls.SKIP)
-        public _FinalStage engineHours(Optional<Integer> engineHours) {
+        public _FinalStage engineHours(Optional<Long> engineHours) {
             this.engineHours = engineHours;
             return this;
         }

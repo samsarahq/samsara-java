@@ -21,6 +21,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreateAttributeRequestEntities.Builder.class)
 public final class CreateAttributeRequestEntities {
+    private final Optional<List<String>> dateValues;
+
     private final Optional<String> entityId;
 
     private final Optional<Map<String, String>> externalIds;
@@ -32,16 +34,26 @@ public final class CreateAttributeRequestEntities {
     private final Map<String, Object> additionalProperties;
 
     private CreateAttributeRequestEntities(
+            Optional<List<String>> dateValues,
             Optional<String> entityId,
             Optional<Map<String, String>> externalIds,
             Optional<List<Double>> numberValues,
             Optional<List<String>> stringValues,
             Map<String, Object> additionalProperties) {
+        this.dateValues = dateValues;
         this.entityId = entityId;
         this.externalIds = externalIds;
         this.numberValues = numberValues;
         this.stringValues = stringValues;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Date values that can be associated with this attribute in RFC 3339 full-date format (YYYY-MM-DD)
+     */
+    @JsonProperty("dateValues")
+    public Optional<List<String>> getDateValues() {
+        return dateValues;
     }
 
     /**
@@ -88,7 +100,8 @@ public final class CreateAttributeRequestEntities {
     }
 
     private boolean equalTo(CreateAttributeRequestEntities other) {
-        return entityId.equals(other.entityId)
+        return dateValues.equals(other.dateValues)
+                && entityId.equals(other.entityId)
                 && externalIds.equals(other.externalIds)
                 && numberValues.equals(other.numberValues)
                 && stringValues.equals(other.stringValues);
@@ -96,7 +109,7 @@ public final class CreateAttributeRequestEntities {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.entityId, this.externalIds, this.numberValues, this.stringValues);
+        return Objects.hash(this.dateValues, this.entityId, this.externalIds, this.numberValues, this.stringValues);
     }
 
     @java.lang.Override
@@ -110,6 +123,8 @@ public final class CreateAttributeRequestEntities {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> dateValues = Optional.empty();
+
         private Optional<String> entityId = Optional.empty();
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
@@ -124,10 +139,25 @@ public final class CreateAttributeRequestEntities {
         private Builder() {}
 
         public Builder from(CreateAttributeRequestEntities other) {
+            dateValues(other.getDateValues());
             entityId(other.getEntityId());
             externalIds(other.getExternalIds());
             numberValues(other.getNumberValues());
             stringValues(other.getStringValues());
+            return this;
+        }
+
+        /**
+         * <p>Date values that can be associated with this attribute in RFC 3339 full-date format (YYYY-MM-DD)</p>
+         */
+        @JsonSetter(value = "dateValues", nulls = Nulls.SKIP)
+        public Builder dateValues(Optional<List<String>> dateValues) {
+            this.dateValues = dateValues;
+            return this;
+        }
+
+        public Builder dateValues(List<String> dateValues) {
+            this.dateValues = Optional.ofNullable(dateValues);
             return this;
         }
 
@@ -189,7 +219,7 @@ public final class CreateAttributeRequestEntities {
 
         public CreateAttributeRequestEntities build() {
             return new CreateAttributeRequestEntities(
-                    entityId, externalIds, numberValues, stringValues, additionalProperties);
+                    dateValues, entityId, externalIds, numberValues, stringValues, additionalProperties);
         }
     }
 }

@@ -27,7 +27,7 @@ public final class GetDvirsRequest {
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Optional<Boolean> includeExternalIds;
 
@@ -40,7 +40,7 @@ public final class GetDvirsRequest {
     private GetDvirsRequest(
             Optional<List<String>> safetyStatus,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Optional<Boolean> includeExternalIds,
             String startTime,
             Optional<String> endTime,
@@ -74,7 +74,7 @@ public final class GetDvirsRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 200 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -168,9 +168,9 @@ public final class GetDvirsRequest {
         /**
          * <p>The limit for how many objects will be in the response. Default and max for this value is 200 objects.</p>
          */
-        _FinalStage limit(Optional<Integer> limit);
+        _FinalStage limit(Optional<Long> limit);
 
-        _FinalStage limit(Integer limit);
+        _FinalStage limit(Long limit);
 
         /**
          * <p>Optional boolean indicating whether to return external IDs on supported entities</p>
@@ -195,7 +195,7 @@ public final class GetDvirsRequest {
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -274,7 +274,7 @@ public final class GetDvirsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage limit(Integer limit) {
+        public _FinalStage limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -284,7 +284,7 @@ public final class GetDvirsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public _FinalStage limit(Optional<Integer> limit) {
+        public _FinalStage limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }

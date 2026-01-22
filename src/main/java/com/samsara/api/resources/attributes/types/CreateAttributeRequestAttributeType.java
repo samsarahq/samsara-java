@@ -16,6 +16,9 @@ public final class CreateAttributeRequestAttributeType {
     public static final CreateAttributeRequestAttributeType FREEFORM_MULTI_SELECT =
             new CreateAttributeRequestAttributeType(Value.FREEFORM_MULTI_SELECT, "freeform-multi-select");
 
+    public static final CreateAttributeRequestAttributeType DATE =
+            new CreateAttributeRequestAttributeType(Value.DATE, "date");
+
     public static final CreateAttributeRequestAttributeType MULTI_SELECT =
             new CreateAttributeRequestAttributeType(Value.MULTI_SELECT, "multi-select");
 
@@ -61,6 +64,8 @@ public final class CreateAttributeRequestAttributeType {
                 return visitor.visitText();
             case FREEFORM_MULTI_SELECT:
                 return visitor.visitFreeformMultiSelect();
+            case DATE:
+                return visitor.visitDate();
             case MULTI_SELECT:
                 return visitor.visitMultiSelect();
             case SINGLE_SELECT:
@@ -80,6 +85,8 @@ public final class CreateAttributeRequestAttributeType {
                 return TEXT;
             case "freeform-multi-select":
                 return FREEFORM_MULTI_SELECT;
+            case "date":
+                return DATE;
             case "multi-select":
                 return MULTI_SELECT;
             case "single-select":
@@ -100,6 +107,8 @@ public final class CreateAttributeRequestAttributeType {
 
         NUMBER,
 
+        DATE,
+
         UNKNOWN
     }
 
@@ -113,6 +122,8 @@ public final class CreateAttributeRequestAttributeType {
         T visitFreeformMultiSelect();
 
         T visitNumber();
+
+        T visitDate();
 
         T visitUnknown(String unknownType);
     }

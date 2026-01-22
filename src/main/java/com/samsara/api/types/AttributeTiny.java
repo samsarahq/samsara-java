@@ -21,6 +21,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AttributeTiny.Builder.class)
 public final class AttributeTiny {
+    private final Optional<List<String>> dateValues;
+
     private final Optional<String> id;
 
     private final Optional<String> name;
@@ -32,16 +34,26 @@ public final class AttributeTiny {
     private final Map<String, Object> additionalProperties;
 
     private AttributeTiny(
+            Optional<List<String>> dateValues,
             Optional<String> id,
             Optional<String> name,
             Optional<List<Double>> numberValues,
             Optional<List<String>> stringValues,
             Map<String, Object> additionalProperties) {
+        this.dateValues = dateValues;
         this.id = id;
         this.name = name;
         this.numberValues = numberValues;
         this.stringValues = stringValues;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Date values that are associated with this attribute (RFC 3339 date format: YYYY-MM-DD).
+     */
+    @JsonProperty("dateValues")
+    public Optional<List<String>> getDateValues() {
+        return dateValues;
     }
 
     /**
@@ -88,7 +100,8 @@ public final class AttributeTiny {
     }
 
     private boolean equalTo(AttributeTiny other) {
-        return id.equals(other.id)
+        return dateValues.equals(other.dateValues)
+                && id.equals(other.id)
                 && name.equals(other.name)
                 && numberValues.equals(other.numberValues)
                 && stringValues.equals(other.stringValues);
@@ -96,7 +109,7 @@ public final class AttributeTiny {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.numberValues, this.stringValues);
+        return Objects.hash(this.dateValues, this.id, this.name, this.numberValues, this.stringValues);
     }
 
     @java.lang.Override
@@ -110,6 +123,8 @@ public final class AttributeTiny {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> dateValues = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> name = Optional.empty();
@@ -124,10 +139,25 @@ public final class AttributeTiny {
         private Builder() {}
 
         public Builder from(AttributeTiny other) {
+            dateValues(other.getDateValues());
             id(other.getId());
             name(other.getName());
             numberValues(other.getNumberValues());
             stringValues(other.getStringValues());
+            return this;
+        }
+
+        /**
+         * <p>Date values that are associated with this attribute (RFC 3339 date format: YYYY-MM-DD).</p>
+         */
+        @JsonSetter(value = "dateValues", nulls = Nulls.SKIP)
+        public Builder dateValues(Optional<List<String>> dateValues) {
+            this.dateValues = dateValues;
+            return this;
+        }
+
+        public Builder dateValues(List<String> dateValues) {
+            this.dateValues = Optional.ofNullable(dateValues);
             return this;
         }
 
@@ -188,7 +218,7 @@ public final class AttributeTiny {
         }
 
         public AttributeTiny build() {
-            return new AttributeTiny(id, name, numberValues, stringValues, additionalProperties);
+            return new AttributeTiny(dateValues, id, name, numberValues, stringValues, additionalProperties);
         }
     }
 }

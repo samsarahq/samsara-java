@@ -32,7 +32,7 @@ public final class CreateDvirRequest {
 
     private final Optional<String> mechanicNotes;
 
-    private final Optional<Integer> odometerMeters;
+    private final Optional<Long> odometerMeters;
 
     private final Optional<List<String>> resolvedDefectIds;
 
@@ -51,7 +51,7 @@ public final class CreateDvirRequest {
             Optional<String> licensePlate,
             Optional<String> location,
             Optional<String> mechanicNotes,
-            Optional<Integer> odometerMeters,
+            Optional<Long> odometerMeters,
             Optional<List<String>> resolvedDefectIds,
             CreateDvirRequestSafetyStatus safetyStatus,
             Optional<String> trailerId,
@@ -107,7 +107,7 @@ public final class CreateDvirRequest {
      * @return The odometer reading in meters.
      */
     @JsonProperty("odometerMeters")
-    public Optional<Integer> getOdometerMeters() {
+    public Optional<Long> getOdometerMeters() {
         return odometerMeters;
     }
 
@@ -249,9 +249,9 @@ public final class CreateDvirRequest {
         /**
          * <p>The odometer reading in meters.</p>
          */
-        _FinalStage odometerMeters(Optional<Integer> odometerMeters);
+        _FinalStage odometerMeters(Optional<Long> odometerMeters);
 
-        _FinalStage odometerMeters(Integer odometerMeters);
+        _FinalStage odometerMeters(Long odometerMeters);
 
         /**
          * <p>Array of ids for defects being resolved with this DVIR.</p>
@@ -289,7 +289,7 @@ public final class CreateDvirRequest {
 
         private Optional<List<String>> resolvedDefectIds = Optional.empty();
 
-        private Optional<Integer> odometerMeters = Optional.empty();
+        private Optional<Long> odometerMeters = Optional.empty();
 
         private Optional<String> mechanicNotes = Optional.empty();
 
@@ -418,7 +418,7 @@ public final class CreateDvirRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage odometerMeters(Integer odometerMeters) {
+        public _FinalStage odometerMeters(Long odometerMeters) {
             this.odometerMeters = Optional.ofNullable(odometerMeters);
             return this;
         }
@@ -428,7 +428,7 @@ public final class CreateDvirRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "odometerMeters", nulls = Nulls.SKIP)
-        public _FinalStage odometerMeters(Optional<Integer> odometerMeters) {
+        public _FinalStage odometerMeters(Optional<Long> odometerMeters) {
             this.odometerMeters = odometerMeters;
             return this;
         }

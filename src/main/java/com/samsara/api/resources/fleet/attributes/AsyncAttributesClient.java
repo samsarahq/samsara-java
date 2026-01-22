@@ -29,6 +29,10 @@ public class AsyncAttributesClient {
         return this.rawClient.update(id).thenApply(response -> response.body());
     }
 
+    public CompletableFuture<Void> update(String id, RequestOptions requestOptions) {
+        return this.rawClient.update(id, requestOptions).thenApply(response -> response.body());
+    }
+
     public CompletableFuture<Void> update(String id, UpdateAttributesRequest request) {
         return this.rawClient.update(id, request).thenApply(response -> response.body());
     }

@@ -21,11 +21,11 @@ import org.jetbrains.annotations.NotNull;
 public final class EquipmentFuelPercent {
     private final String time;
 
-    private final int value;
+    private final long value;
 
     private final Map<String, Object> additionalProperties;
 
-    private EquipmentFuelPercent(String time, int value, Map<String, Object> additionalProperties) {
+    private EquipmentFuelPercent(String time, long value, Map<String, Object> additionalProperties) {
         this.time = time;
         this.value = value;
         this.additionalProperties = additionalProperties;
@@ -40,7 +40,7 @@ public final class EquipmentFuelPercent {
      * @return The percent of fuel in the unit of equipment.
      */
     @JsonProperty("value")
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
@@ -83,7 +83,7 @@ public final class EquipmentFuelPercent {
         /**
          * <p>The percent of fuel in the unit of equipment.</p>
          */
-        _FinalStage value(int value);
+        _FinalStage value(long value);
     }
 
     public interface _FinalStage {
@@ -94,7 +94,7 @@ public final class EquipmentFuelPercent {
     public static final class Builder implements TimeStage, ValueStage, _FinalStage {
         private String time;
 
-        private int value;
+        private long value;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -122,7 +122,7 @@ public final class EquipmentFuelPercent {
          */
         @java.lang.Override
         @JsonSetter("value")
-        public _FinalStage value(int value) {
+        public _FinalStage value(long value) {
             this.value = value;
             return this;
         }

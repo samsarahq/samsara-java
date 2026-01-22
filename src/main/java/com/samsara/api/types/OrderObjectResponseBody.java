@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public final class OrderObjectResponseBody {
     private final OffsetDateTime createdAt;
 
+    private final List<OrderCustomPropertyResponseBody> customProperties;
+
     private final String customerOrderId;
 
     private final Optional<OrderTaskResponseBody> delivery;
@@ -50,6 +52,7 @@ public final class OrderObjectResponseBody {
 
     private OrderObjectResponseBody(
             OffsetDateTime createdAt,
+            List<OrderCustomPropertyResponseBody> customProperties,
             String customerOrderId,
             Optional<OrderTaskResponseBody> delivery,
             String hubId,
@@ -62,6 +65,7 @@ public final class OrderObjectResponseBody {
             OffsetDateTime updatedAt,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
+        this.customProperties = customProperties;
         this.customerOrderId = customerOrderId;
         this.delivery = delivery;
         this.hubId = hubId;
@@ -81,6 +85,14 @@ public final class OrderObjectResponseBody {
     @JsonProperty("createdAt")
     public OffsetDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    /**
+     * @return An array of custom property values for the order
+     */
+    @JsonProperty("customProperties")
+    public List<OrderCustomPropertyResponseBody> getCustomProperties() {
+        return customProperties;
     }
 
     /**
@@ -170,6 +182,7 @@ public final class OrderObjectResponseBody {
 
     private boolean equalTo(OrderObjectResponseBody other) {
         return createdAt.equals(other.createdAt)
+                && customProperties.equals(other.customProperties)
                 && customerOrderId.equals(other.customerOrderId)
                 && delivery.equals(other.delivery)
                 && hubId.equals(other.hubId)
@@ -186,6 +199,7 @@ public final class OrderObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.createdAt,
+                this.customProperties,
                 this.customerOrderId,
                 this.delivery,
                 this.hubId,
@@ -261,6 +275,15 @@ public final class OrderObjectResponseBody {
     public interface _FinalStage {
         OrderObjectResponseBody build();
 
+        /**
+         * <p>An array of custom property values for the order</p>
+         */
+        _FinalStage customProperties(List<OrderCustomPropertyResponseBody> customProperties);
+
+        _FinalStage addCustomProperties(OrderCustomPropertyResponseBody customProperties);
+
+        _FinalStage addAllCustomProperties(List<OrderCustomPropertyResponseBody> customProperties);
+
         _FinalStage delivery(Optional<OrderTaskResponseBody> delivery);
 
         _FinalStage delivery(OrderTaskResponseBody delivery);
@@ -320,6 +343,8 @@ public final class OrderObjectResponseBody {
 
         private Optional<OrderTaskResponseBody> delivery = Optional.empty();
 
+        private List<OrderCustomPropertyResponseBody> customProperties = new ArrayList<>();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -328,6 +353,7 @@ public final class OrderObjectResponseBody {
         @java.lang.Override
         public Builder from(OrderObjectResponseBody other) {
             createdAt(other.getCreatedAt());
+            customProperties(other.getCustomProperties());
             customerOrderId(other.getCustomerOrderId());
             delivery(other.getDelivery());
             hubId(other.getHubId());
@@ -521,10 +547,46 @@ public final class OrderObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>An array of custom property values for the order</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addAllCustomProperties(List<OrderCustomPropertyResponseBody> customProperties) {
+            if (customProperties != null) {
+                this.customProperties.addAll(customProperties);
+            }
+            return this;
+        }
+
+        /**
+         * <p>An array of custom property values for the order</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addCustomProperties(OrderCustomPropertyResponseBody customProperties) {
+            this.customProperties.add(customProperties);
+            return this;
+        }
+
+        /**
+         * <p>An array of custom property values for the order</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "customProperties", nulls = Nulls.SKIP)
+        public _FinalStage customProperties(List<OrderCustomPropertyResponseBody> customProperties) {
+            this.customProperties.clear();
+            if (customProperties != null) {
+                this.customProperties.addAll(customProperties);
+            }
+            return this;
+        }
+
         @java.lang.Override
         public OrderObjectResponseBody build() {
             return new OrderObjectResponseBody(
                     createdAt,
+                    customProperties,
                     customerOrderId,
                     delivery,
                     hubId,

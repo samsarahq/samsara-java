@@ -68,6 +68,15 @@ public class AsyncIndustrialClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<ListIndustrialAssetsResponse> getIndustrialAssets(RequestOptions requestOptions) {
+        return this.rawClient.getIndustrialAssets(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all assets in the organization.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<ListIndustrialAssetsResponse> getIndustrialAssets(GetIndustrialAssetsRequest request) {
         return this.rawClient.getIndustrialAssets(request).thenApply(response -> response.body());
     }
@@ -115,6 +124,15 @@ public class AsyncIndustrialClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<String> deleteIndustrialAsset(String id, RequestOptions requestOptions) {
+        return this.rawClient.deleteIndustrialAsset(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete asset.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<String> deleteIndustrialAsset(String id, DeleteIndustrialAssetRequest request) {
         return this.rawClient.deleteIndustrialAsset(id, request).thenApply(response -> response.body());
     }
@@ -136,6 +154,15 @@ public class AsyncIndustrialClient {
      */
     public CompletableFuture<InlineResponse200> patchIndustrialAsset(String id) {
         return this.rawClient.patchIndustrialAsset(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update an existing asset. Only the provided fields will be updated.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<InlineResponse200> patchIndustrialAsset(String id, RequestOptions requestOptions) {
+        return this.rawClient.patchIndustrialAsset(id, requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -193,6 +220,15 @@ public class AsyncIndustrialClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<DataInputsTinyResponse> getDataInputs(RequestOptions requestOptions) {
+        return this.rawClient.getDataInputs(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns all data inputs, optionally filtered by tags or asset ids.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<DataInputsTinyResponse> getDataInputs(GetDataInputsRequest request) {
         return this.rawClient.getDataInputs(request).thenApply(response -> response.body());
     }
@@ -214,6 +250,15 @@ public class AsyncIndustrialClient {
      */
     public CompletableFuture<DataInputSnapshotResponse> getDataInputDataSnapshot() {
         return this.rawClient.getDataInputDataSnapshot().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<DataInputSnapshotResponse> getDataInputDataSnapshot(RequestOptions requestOptions) {
+        return this.rawClient.getDataInputDataSnapshot(requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -246,6 +291,18 @@ public class AsyncIndustrialClient {
      */
     public CompletableFuture<DataInputListResponse> getDataInputDataFeed() {
         return this.rawClient.getDataInputDataFeed().thenApply(response -> response.body());
+    }
+
+    /**
+     * Follow a continuous feed of all data input data points.
+     * <p>Your first call to this endpoint will provide you with the most recent data points for each data input and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
+     * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get data point updates since that <code>endCursor</code>.</p>
+     * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<DataInputListResponse> getDataInputDataFeed(RequestOptions requestOptions) {
+        return this.rawClient.getDataInputDataFeed(requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -349,6 +406,24 @@ public class AsyncIndustrialClient {
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public CompletableFuture<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
+            long cameraId, RequestOptions requestOptions) {
+        return this.rawClient
+                .v1GetVisionProgramsByCamera(cameraId, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * <p>&lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;</p>
+     * Fetch configured programs on the camera.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
             long cameraId, V1GetVisionProgramsByCameraRequest request) {
         return this.rawClient.v1GetVisionProgramsByCamera(cameraId, request).thenApply(response -> response.body());
     }
@@ -378,6 +453,18 @@ public class AsyncIndustrialClient {
      */
     public CompletableFuture<V1VisionRunByCameraResponse> v1GetVisionLatestRunCamera(long cameraId) {
         return this.rawClient.v1GetVisionLatestRunCamera(cameraId).thenApply(response -> response.body());
+    }
+
+    /**
+     * Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<V1VisionRunByCameraResponse> v1GetVisionLatestRunCamera(
+            long cameraId, RequestOptions requestOptions) {
+        return this.rawClient
+                .v1GetVisionLatestRunCamera(cameraId, requestOptions)
+                .thenApply(response -> response.body());
     }
 
     /**
@@ -482,6 +569,24 @@ public class AsyncIndustrialClient {
             long cameraId, long programId, long startedAtMs) {
         return this.rawClient
                 .v1GetVisionRunsByCameraAndProgram(cameraId, programId, startedAtMs)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * <p>&lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;</p>
+     * Fetch runs by camera and program.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<V1VisionRunsByCameraAndProgramResponse> v1GetVisionRunsByCameraAndProgram(
+            long cameraId, long programId, long startedAtMs, RequestOptions requestOptions) {
+        return this.rawClient
+                .v1GetVisionRunsByCameraAndProgram(cameraId, programId, startedAtMs, requestOptions)
                 .thenApply(response -> response.body());
     }
 

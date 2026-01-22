@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,6 +35,8 @@ public final class DeviceResponseResponseBody {
 
     private final String serial;
 
+    private final Optional<List<GoaTagTinyResponseResponseBody>> tags;
+
     private final Map<String, Object> additionalProperties;
 
     private DeviceResponseResponseBody(
@@ -43,6 +46,7 @@ public final class DeviceResponseResponseBody {
             Optional<LastKnownLocationResponseResponseBody> lastKnownLocation,
             DeviceResponseResponseBodyModel model,
             String serial,
+            Optional<List<GoaTagTinyResponseResponseBody>> tags,
             Map<String, Object> additionalProperties) {
         this.asset = asset;
         this.health = health;
@@ -50,6 +54,7 @@ public final class DeviceResponseResponseBody {
         this.lastKnownLocation = lastKnownLocation;
         this.model = model;
         this.serial = serial;
+        this.tags = tags;
         this.additionalProperties = additionalProperties;
     }
 
@@ -92,6 +97,14 @@ public final class DeviceResponseResponseBody {
         return serial;
     }
 
+    /**
+     * @return The list of <a href="https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting">tags</a> associated with the Device.
+     */
+    @JsonProperty("tags")
+    public Optional<List<GoaTagTinyResponseResponseBody>> getTags() {
+        return tags;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -109,13 +122,20 @@ public final class DeviceResponseResponseBody {
                 && lastConnectedTime.equals(other.lastConnectedTime)
                 && lastKnownLocation.equals(other.lastKnownLocation)
                 && model.equals(other.model)
-                && serial.equals(other.serial);
+                && serial.equals(other.serial)
+                && tags.equals(other.tags);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.asset, this.health, this.lastConnectedTime, this.lastKnownLocation, this.model, this.serial);
+                this.asset,
+                this.health,
+                this.lastConnectedTime,
+                this.lastKnownLocation,
+                this.model,
+                this.serial,
+                this.tags);
     }
 
     @java.lang.Override
@@ -164,6 +184,13 @@ public final class DeviceResponseResponseBody {
         _FinalStage lastKnownLocation(Optional<LastKnownLocationResponseResponseBody> lastKnownLocation);
 
         _FinalStage lastKnownLocation(LastKnownLocationResponseResponseBody lastKnownLocation);
+
+        /**
+         * <p>The list of <a href="https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting">tags</a> associated with the Device.</p>
+         */
+        _FinalStage tags(Optional<List<GoaTagTinyResponseResponseBody>> tags);
+
+        _FinalStage tags(List<GoaTagTinyResponseResponseBody> tags);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -173,6 +200,8 @@ public final class DeviceResponseResponseBody {
         private DeviceResponseResponseBodyModel model;
 
         private String serial;
+
+        private Optional<List<GoaTagTinyResponseResponseBody>> tags = Optional.empty();
 
         private Optional<LastKnownLocationResponseResponseBody> lastKnownLocation = Optional.empty();
 
@@ -193,6 +222,7 @@ public final class DeviceResponseResponseBody {
             lastKnownLocation(other.getLastKnownLocation());
             model(other.getModel());
             serial(other.getSerial());
+            tags(other.getTags());
             return this;
         }
 
@@ -224,6 +254,26 @@ public final class DeviceResponseResponseBody {
         @JsonSetter("serial")
         public _FinalStage serial(@NotNull String serial) {
             this.serial = Objects.requireNonNull(serial, "serial must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The list of <a href="https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting">tags</a> associated with the Device.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tags(List<GoaTagTinyResponseResponseBody> tags) {
+            this.tags = Optional.ofNullable(tags);
+            return this;
+        }
+
+        /**
+         * <p>The list of <a href="https://kb.samsara.com/hc/en-us/articles/360026674631-Using-Tags-and-Tag-Nesting">tags</a> associated with the Device.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tags", nulls = Nulls.SKIP)
+        public _FinalStage tags(Optional<List<GoaTagTinyResponseResponseBody>> tags) {
+            this.tags = tags;
             return this;
         }
 
@@ -276,7 +326,7 @@ public final class DeviceResponseResponseBody {
         @java.lang.Override
         public DeviceResponseResponseBody build() {
             return new DeviceResponseResponseBody(
-                    asset, health, lastConnectedTime, lastKnownLocation, model, serial, additionalProperties);
+                    asset, health, lastConnectedTime, lastKnownLocation, model, serial, tags, additionalProperties);
         }
     }
 }

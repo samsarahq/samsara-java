@@ -21,11 +21,11 @@ import org.jetbrains.annotations.NotNull;
 public final class EquipmentEngineSeconds {
     private final String time;
 
-    private final int value;
+    private final long value;
 
     private final Map<String, Object> additionalProperties;
 
-    private EquipmentEngineSeconds(String time, int value, Map<String, Object> additionalProperties) {
+    private EquipmentEngineSeconds(String time, long value, Map<String, Object> additionalProperties) {
         this.time = time;
         this.value = value;
         this.additionalProperties = additionalProperties;
@@ -40,7 +40,7 @@ public final class EquipmentEngineSeconds {
      * @return An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG26 device is receiving power and an offset provided manually through the Samsara cloud dashboard.
      */
     @JsonProperty("value")
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
@@ -83,7 +83,7 @@ public final class EquipmentEngineSeconds {
         /**
          * <p>An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG26 device is receiving power and an offset provided manually through the Samsara cloud dashboard.</p>
          */
-        _FinalStage value(int value);
+        _FinalStage value(long value);
     }
 
     public interface _FinalStage {
@@ -94,7 +94,7 @@ public final class EquipmentEngineSeconds {
     public static final class Builder implements TimeStage, ValueStage, _FinalStage {
         private String time;
 
-        private int value;
+        private long value;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -122,7 +122,7 @@ public final class EquipmentEngineSeconds {
          */
         @java.lang.Override
         @JsonSetter("value")
-        public _FinalStage value(int value) {
+        public _FinalStage value(long value) {
             this.value = value;
             return this;
         }

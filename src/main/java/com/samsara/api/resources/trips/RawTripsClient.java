@@ -3,6 +3,7 @@
  */
 package com.samsara.api.resources.trips;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.core.QueryStringMapper;
@@ -10,7 +11,18 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.core.SamsaraApiApiException;
 import com.samsara.api.core.SamsaraApiException;
 import com.samsara.api.core.SamsaraApiHttpResponse;
+import com.samsara.api.errors.BadGatewayError;
+import com.samsara.api.errors.GatewayTimeoutError;
+import com.samsara.api.errors.InternalServerError;
+import com.samsara.api.errors.MethodNotAllowedError;
+import com.samsara.api.errors.NotFoundError;
+import com.samsara.api.errors.NotImplementedError;
+import com.samsara.api.errors.ServiceUnavailableError;
+import com.samsara.api.errors.TooManyRequestsError;
+import com.samsara.api.errors.UnauthorizedError;
+import com.samsara.api.resources.trips.requests.GetTripsRequest;
 import com.samsara.api.resources.trips.requests.V1GetFleetTripsRequest;
+import com.samsara.api.types.TripsGetTripsResponseBody;
 import com.samsara.api.types.V1TripResponse;
 import java.io.IOException;
 import okhttp3.Headers;
@@ -25,6 +37,110 @@ public class RawTripsClient {
 
     public RawTripsClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+    }
+
+    /**
+     * This endpoint will return trips that have been collected for your organization based on the time parameters passed in. Results are paginated.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Trips</strong> under the Trips category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<TripsGetTripsResponseBody> getTrips(GetTripsRequest request) {
+        return getTrips(request, null);
+    }
+
+    /**
+     * This endpoint will return trips that have been collected for your organization based on the time parameters passed in. Results are paginated.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Trips</strong> under the Trips category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<TripsGetTripsResponseBody> getTrips(
+            GetTripsRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("trips/stream");
+        if (request.getIncludeAsset().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "includeAsset", request.getIncludeAsset().get(), false);
+        }
+        if (request.getCompletionStatus().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "completionStatus", request.getCompletionStatus().get(), false);
+        }
+        QueryStringMapper.addQueryParameter(httpUrl, "startTime", request.getStartTime(), false);
+        if (request.getEndTime().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "endTime", request.getEndTime().get(), false);
+        }
+        if (request.getQueryBy().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "queryBy", request.getQueryBy().get(), false);
+        }
+        if (request.getAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "after", request.getAfter().get(), false);
+        }
+        if (request.getIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TripsGetTripsResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
     }
 
     /**

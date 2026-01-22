@@ -37,7 +37,7 @@ public final class CreateDriverRequest {
 
     private final Optional<Boolean> eldBigDayExemptionEnabled;
 
-    private final Optional<Integer> eldDayStartHour;
+    private final Optional<Long> eldDayStartHour;
 
     private final Optional<Boolean> eldExempt;
 
@@ -99,7 +99,7 @@ public final class CreateDriverRequest {
             Optional<String> currentIdCardCode,
             Optional<Boolean> eldAdverseWeatherExemptionEnabled,
             Optional<Boolean> eldBigDayExemptionEnabled,
-            Optional<Integer> eldDayStartHour,
+            Optional<Long> eldDayStartHour,
             Optional<Boolean> eldExempt,
             Optional<String> eldExemptReason,
             Optional<Boolean> eldPcEnabled,
@@ -200,7 +200,7 @@ public final class CreateDriverRequest {
      * @return <code>0</code> indicating midnight-to-midnight ELD driving hours, <code>12</code> to indicate noon-to-noon driving hours.
      */
     @JsonProperty("eldDayStartHour")
-    public Optional<Integer> getEldDayStartHour() {
+    public Optional<Long> getEldDayStartHour() {
         return eldDayStartHour;
     }
 
@@ -544,9 +544,9 @@ public final class CreateDriverRequest {
         /**
          * <p><code>0</code> indicating midnight-to-midnight ELD driving hours, <code>12</code> to indicate noon-to-noon driving hours.</p>
          */
-        _FinalStage eldDayStartHour(Optional<Integer> eldDayStartHour);
+        _FinalStage eldDayStartHour(Optional<Long> eldDayStartHour);
 
-        _FinalStage eldDayStartHour(Integer eldDayStartHour);
+        _FinalStage eldDayStartHour(Long eldDayStartHour);
 
         /**
          * <p>Flag indicating this driver is exempt from the Electronic Logging Mandate.</p>
@@ -746,7 +746,7 @@ public final class CreateDriverRequest {
 
         private Optional<Boolean> eldExempt = Optional.empty();
 
-        private Optional<Integer> eldDayStartHour = Optional.empty();
+        private Optional<Long> eldDayStartHour = Optional.empty();
 
         private Optional<Boolean> eldBigDayExemptionEnabled = Optional.empty();
 
@@ -1259,7 +1259,7 @@ public final class CreateDriverRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage eldDayStartHour(Integer eldDayStartHour) {
+        public _FinalStage eldDayStartHour(Long eldDayStartHour) {
             this.eldDayStartHour = Optional.ofNullable(eldDayStartHour);
             return this;
         }
@@ -1269,7 +1269,7 @@ public final class CreateDriverRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "eldDayStartHour", nulls = Nulls.SKIP)
-        public _FinalStage eldDayStartHour(Optional<Integer> eldDayStartHour) {
+        public _FinalStage eldDayStartHour(Optional<Long> eldDayStartHour) {
             this.eldDayStartHour = eldDayStartHour;
             return this;
         }

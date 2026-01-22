@@ -37,7 +37,7 @@ public final class HealthReasonResponseResponseBody {
     }
 
     /**
-     * @return The type of health reason detected.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code>
+     * @return The type of health reason detected.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code>
      */
     @JsonProperty("healthReasonCode")
     public Optional<HealthReasonResponseResponseBodyHealthReasonCode> getHealthReasonCode() {
@@ -99,7 +99,7 @@ public final class HealthReasonResponseResponseBody {
         }
 
         /**
-         * <p>The type of health reason detected.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code></p>
+         * <p>The type of health reason detected.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code></p>
          */
         @JsonSetter(value = "healthReasonCode", nulls = Nulls.SKIP)
         public Builder healthReasonCode(Optional<HealthReasonResponseResponseBodyHealthReasonCode> healthReasonCode) {

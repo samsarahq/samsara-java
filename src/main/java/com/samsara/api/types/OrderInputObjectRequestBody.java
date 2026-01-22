@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = OrderInputObjectRequestBody.Builder.class)
 public final class OrderInputObjectRequestBody {
+    private final Optional<List<OrderCustomPropertyInputRequestBody>> customProperties;
+
     private final String customerOrderId;
 
     private final Optional<OrderTaskRequestBody> delivery;
@@ -41,6 +43,7 @@ public final class OrderInputObjectRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private OrderInputObjectRequestBody(
+            Optional<List<OrderCustomPropertyInputRequestBody>> customProperties,
             String customerOrderId,
             Optional<OrderTaskRequestBody> delivery,
             String hubId,
@@ -50,6 +53,7 @@ public final class OrderInputObjectRequestBody {
             Optional<List<OrderQuantityInputRequestBody>> quantities,
             Optional<List<String>> skillsRequired,
             Map<String, Object> additionalProperties) {
+        this.customProperties = customProperties;
         this.customerOrderId = customerOrderId;
         this.delivery = delivery;
         this.hubId = hubId;
@@ -59,6 +63,14 @@ public final class OrderInputObjectRequestBody {
         this.quantities = quantities;
         this.skillsRequired = skillsRequired;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return An array of custom property values for the order
+     */
+    @JsonProperty("customProperties")
+    public Optional<List<OrderCustomPropertyInputRequestBody>> getCustomProperties() {
+        return customProperties;
     }
 
     /**
@@ -131,7 +143,8 @@ public final class OrderInputObjectRequestBody {
     }
 
     private boolean equalTo(OrderInputObjectRequestBody other) {
-        return customerOrderId.equals(other.customerOrderId)
+        return customProperties.equals(other.customProperties)
+                && customerOrderId.equals(other.customerOrderId)
                 && delivery.equals(other.delivery)
                 && hubId.equals(other.hubId)
                 && pickup.equals(other.pickup)
@@ -144,6 +157,7 @@ public final class OrderInputObjectRequestBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.customProperties,
                 this.customerOrderId,
                 this.delivery,
                 this.hubId,
@@ -188,6 +202,13 @@ public final class OrderInputObjectRequestBody {
 
     public interface _FinalStage {
         OrderInputObjectRequestBody build();
+
+        /**
+         * <p>An array of custom property values for the order</p>
+         */
+        _FinalStage customProperties(Optional<List<OrderCustomPropertyInputRequestBody>> customProperties);
+
+        _FinalStage customProperties(List<OrderCustomPropertyInputRequestBody> customProperties);
 
         _FinalStage delivery(Optional<OrderTaskRequestBody> delivery);
 
@@ -237,6 +258,8 @@ public final class OrderInputObjectRequestBody {
 
         private Optional<OrderTaskRequestBody> delivery = Optional.empty();
 
+        private Optional<List<OrderCustomPropertyInputRequestBody>> customProperties = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -244,6 +267,7 @@ public final class OrderInputObjectRequestBody {
 
         @java.lang.Override
         public Builder from(OrderInputObjectRequestBody other) {
+            customProperties(other.getCustomProperties());
             customerOrderId(other.getCustomerOrderId());
             delivery(other.getDelivery());
             hubId(other.getHubId());
@@ -377,9 +401,30 @@ public final class OrderInputObjectRequestBody {
             return this;
         }
 
+        /**
+         * <p>An array of custom property values for the order</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage customProperties(List<OrderCustomPropertyInputRequestBody> customProperties) {
+            this.customProperties = Optional.ofNullable(customProperties);
+            return this;
+        }
+
+        /**
+         * <p>An array of custom property values for the order</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "customProperties", nulls = Nulls.SKIP)
+        public _FinalStage customProperties(Optional<List<OrderCustomPropertyInputRequestBody>> customProperties) {
+            this.customProperties = customProperties;
+            return this;
+        }
+
         @java.lang.Override
         public OrderInputObjectRequestBody build() {
             return new OrderInputObjectRequestBody(
+                    customProperties,
                     customerOrderId,
                     delivery,
                     hubId,

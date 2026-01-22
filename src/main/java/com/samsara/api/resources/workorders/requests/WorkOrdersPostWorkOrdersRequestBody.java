@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.workorders.types.WorkOrdersPostWorkOrdersRequestBodyCategory;
 import com.samsara.api.resources.workorders.types.WorkOrdersPostWorkOrdersRequestBodyPriority;
 import com.samsara.api.types.ServiceTaskInstanceInputObjectRequestBody;
 import com.samsara.api.types.WorkOrderDiscountObjectRequestBody;
@@ -33,7 +32,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
     private final Optional<String> assignedUserId;
 
-    private final Optional<WorkOrdersPostWorkOrdersRequestBodyCategory> category;
+    private final Optional<String> category;
 
     private final Optional<String> description;
 
@@ -64,7 +63,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     private WorkOrdersPostWorkOrdersRequestBody(
             String assetId,
             Optional<String> assignedUserId,
-            Optional<WorkOrdersPostWorkOrdersRequestBodyCategory> category,
+            Optional<String> category,
             Optional<String> description,
             Optional<WorkOrderDiscountObjectRequestBody> discount,
             Optional<OffsetDateTime> dueAtTime,
@@ -113,10 +112,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
-     * @return The category of the work order  Valid values: <code>Annual</code>, <code>Corrective</code>, <code>Damage Repair</code>, <code>Preventive</code>, <code>Recall</code>, <code>Unspecified</code>
+     * @return The category of the work order
      */
     @JsonProperty("category")
-    public Optional<WorkOrdersPostWorkOrdersRequestBodyCategory> getCategory() {
+    public Optional<String> getCategory() {
         return category;
     }
 
@@ -289,11 +288,11 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage assignedUserId(String assignedUserId);
 
         /**
-         * <p>The category of the work order  Valid values: <code>Annual</code>, <code>Corrective</code>, <code>Damage Repair</code>, <code>Preventive</code>, <code>Recall</code>, <code>Unspecified</code></p>
+         * <p>The category of the work order</p>
          */
-        _FinalStage category(Optional<WorkOrdersPostWorkOrdersRequestBodyCategory> category);
+        _FinalStage category(Optional<String> category);
 
-        _FinalStage category(WorkOrdersPostWorkOrdersRequestBodyCategory category);
+        _FinalStage category(String category);
 
         /**
          * <p>A description of what needs to be fixed.</p>
@@ -403,7 +402,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<WorkOrdersPostWorkOrdersRequestBodyCategory> category = Optional.empty();
+        private Optional<String> category = Optional.empty();
 
         private Optional<String> assignedUserId = Optional.empty();
 
@@ -672,21 +671,21 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The category of the work order  Valid values: <code>Annual</code>, <code>Corrective</code>, <code>Damage Repair</code>, <code>Preventive</code>, <code>Recall</code>, <code>Unspecified</code></p>
+         * <p>The category of the work order</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage category(WorkOrdersPostWorkOrdersRequestBodyCategory category) {
+        public _FinalStage category(String category) {
             this.category = Optional.ofNullable(category);
             return this;
         }
 
         /**
-         * <p>The category of the work order  Valid values: <code>Annual</code>, <code>Corrective</code>, <code>Damage Repair</code>, <code>Preventive</code>, <code>Recall</code>, <code>Unspecified</code></p>
+         * <p>The category of the work order</p>
          */
         @java.lang.Override
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
-        public _FinalStage category(Optional<WorkOrdersPostWorkOrdersRequestBodyCategory> category) {
+        public _FinalStage category(Optional<String> category) {
             this.category = category;
             return this;
         }

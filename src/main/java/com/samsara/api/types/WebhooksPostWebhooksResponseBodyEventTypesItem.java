@@ -53,6 +53,9 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
     public static final WebhooksPostWebhooksResponseBodyEventTypesItem SUDDEN_FUEL_LEVEL_DROP =
             new WebhooksPostWebhooksResponseBodyEventTypesItem(Value.SUDDEN_FUEL_LEVEL_DROP, "SuddenFuelLevelDrop");
 
+    public static final WebhooksPostWebhooksResponseBodyEventTypesItem SPEEDING_EVENT_ENDED =
+            new WebhooksPostWebhooksResponseBodyEventTypesItem(Value.SPEEDING_EVENT_ENDED, "SpeedingEventEnded");
+
     public static final WebhooksPostWebhooksResponseBodyEventTypesItem ISSUE_CREATED =
             new WebhooksPostWebhooksResponseBodyEventTypesItem(Value.ISSUE_CREATED, "IssueCreated");
 
@@ -95,6 +98,9 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
 
     public static final WebhooksPostWebhooksResponseBodyEventTypesItem ROUTE_STOP_ETA_UPDATED =
             new WebhooksPostWebhooksResponseBodyEventTypesItem(Value.ROUTE_STOP_ETA_UPDATED, "RouteStopEtaUpdated");
+
+    public static final WebhooksPostWebhooksResponseBodyEventTypesItem SPEEDING_EVENT_STARTED =
+            new WebhooksPostWebhooksResponseBodyEventTypesItem(Value.SPEEDING_EVENT_STARTED, "SpeedingEventStarted");
 
     private final Value value;
 
@@ -159,6 +165,8 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
                 return visitor.visitGeofenceExit();
             case SUDDEN_FUEL_LEVEL_DROP:
                 return visitor.visitSuddenFuelLevelDrop();
+            case SPEEDING_EVENT_ENDED:
+                return visitor.visitSpeedingEventEnded();
             case ISSUE_CREATED:
                 return visitor.visitIssueCreated();
             case DRIVER_CREATED:
@@ -187,6 +195,8 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
                 return visitor.visitAlertIncident();
             case ROUTE_STOP_ETA_UPDATED:
                 return visitor.visitRouteStopEtaUpdated();
+            case SPEEDING_EVENT_STARTED:
+                return visitor.visitSpeedingEventStarted();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -226,6 +236,8 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
                 return GEOFENCE_EXIT;
             case "SuddenFuelLevelDrop":
                 return SUDDEN_FUEL_LEVEL_DROP;
+            case "SpeedingEventEnded":
+                return SPEEDING_EVENT_ENDED;
             case "IssueCreated":
                 return ISSUE_CREATED;
             case "DriverCreated":
@@ -254,6 +266,8 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
                 return ALERT_INCIDENT;
             case "RouteStopEtaUpdated":
                 return ROUTE_STOP_ETA_UPDATED;
+            case "SpeedingEventStarted":
+                return SPEEDING_EVENT_STARTED;
             default:
                 return new WebhooksPostWebhooksResponseBodyEventTypesItem(Value.UNKNOWN, value);
         }
@@ -309,6 +323,10 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
         SEVERE_SPEEDING_ENDED,
 
         SEVERE_SPEEDING_STARTED,
+
+        SPEEDING_EVENT_ENDED,
+
+        SPEEDING_EVENT_STARTED,
 
         SUDDEN_FUEL_LEVEL_DROP,
 
@@ -371,6 +389,10 @@ public final class WebhooksPostWebhooksResponseBodyEventTypesItem {
         T visitSevereSpeedingEnded();
 
         T visitSevereSpeedingStarted();
+
+        T visitSpeedingEventEnded();
+
+        T visitSpeedingEventStarted();
 
         T visitSuddenFuelLevelDrop();
 

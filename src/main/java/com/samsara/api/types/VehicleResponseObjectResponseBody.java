@@ -65,6 +65,8 @@ public final class VehicleResponseObjectResponseBody {
 
     private final String id;
 
+    private final Optional<Boolean> isRemotePrivacyButtonEnabled;
+
     private final Optional<String> licensePlate;
 
     private final Optional<String> make;
@@ -123,6 +125,7 @@ public final class VehicleResponseObjectResponseBody {
             Optional<GoaGatewayTinyResponseResponseBody> gateway,
             Optional<String> harshAccelerationSettingType,
             String id,
+            Optional<Boolean> isRemotePrivacyButtonEnabled,
             Optional<String> licensePlate,
             Optional<String> make,
             Optional<String> model,
@@ -162,6 +165,7 @@ public final class VehicleResponseObjectResponseBody {
         this.gateway = gateway;
         this.harshAccelerationSettingType = harshAccelerationSettingType;
         this.id = id;
+        this.isRemotePrivacyButtonEnabled = isRemotePrivacyButtonEnabled;
         this.licensePlate = licensePlate;
         this.make = make;
         this.model = model;
@@ -348,6 +352,14 @@ public final class VehicleResponseObjectResponseBody {
     }
 
     /**
+     * @return Whether the remote privacy button is enabled for the vehicle. If omitted, the organization does not have the remote privacy button feature enabled.
+     */
+    @JsonProperty("isRemotePrivacyButtonEnabled")
+    public Optional<Boolean> getIsRemotePrivacyButtonEnabled() {
+        return isRemotePrivacyButtonEnabled;
+    }
+
+    /**
      * @return The license plate of the vehicle.
      */
     @JsonProperty("licensePlate")
@@ -507,6 +519,7 @@ public final class VehicleResponseObjectResponseBody {
                 && gateway.equals(other.gateway)
                 && harshAccelerationSettingType.equals(other.harshAccelerationSettingType)
                 && id.equals(other.id)
+                && isRemotePrivacyButtonEnabled.equals(other.isRemotePrivacyButtonEnabled)
                 && licensePlate.equals(other.licensePlate)
                 && make.equals(other.make)
                 && model.equals(other.model)
@@ -550,6 +563,7 @@ public final class VehicleResponseObjectResponseBody {
                 this.gateway,
                 this.harshAccelerationSettingType,
                 this.id,
+                this.isRemotePrivacyButtonEnabled,
                 this.licensePlate,
                 this.make,
                 this.model,
@@ -728,6 +742,13 @@ public final class VehicleResponseObjectResponseBody {
         _FinalStage harshAccelerationSettingType(String harshAccelerationSettingType);
 
         /**
+         * <p>Whether the remote privacy button is enabled for the vehicle. If omitted, the organization does not have the remote privacy button feature enabled.</p>
+         */
+        _FinalStage isRemotePrivacyButtonEnabled(Optional<Boolean> isRemotePrivacyButtonEnabled);
+
+        _FinalStage isRemotePrivacyButtonEnabled(Boolean isRemotePrivacyButtonEnabled);
+
+        /**
          * <p>The license plate of the vehicle.</p>
          */
         _FinalStage licensePlate(Optional<String> licensePlate);
@@ -880,6 +901,8 @@ public final class VehicleResponseObjectResponseBody {
 
         private Optional<String> licensePlate = Optional.empty();
 
+        private Optional<Boolean> isRemotePrivacyButtonEnabled = Optional.empty();
+
         private Optional<String> harshAccelerationSettingType = Optional.empty();
 
         private Optional<GoaGatewayTinyResponseResponseBody> gateway = Optional.empty();
@@ -946,6 +969,7 @@ public final class VehicleResponseObjectResponseBody {
             gateway(other.getGateway());
             harshAccelerationSettingType(other.getHarshAccelerationSettingType());
             id(other.getId());
+            isRemotePrivacyButtonEnabled(other.getIsRemotePrivacyButtonEnabled());
             licensePlate(other.getLicensePlate());
             make(other.getMake());
             model(other.getModel());
@@ -1308,6 +1332,26 @@ public final class VehicleResponseObjectResponseBody {
         @JsonSetter(value = "licensePlate", nulls = Nulls.SKIP)
         public _FinalStage licensePlate(Optional<String> licensePlate) {
             this.licensePlate = licensePlate;
+            return this;
+        }
+
+        /**
+         * <p>Whether the remote privacy button is enabled for the vehicle. If omitted, the organization does not have the remote privacy button feature enabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isRemotePrivacyButtonEnabled(Boolean isRemotePrivacyButtonEnabled) {
+            this.isRemotePrivacyButtonEnabled = Optional.ofNullable(isRemotePrivacyButtonEnabled);
+            return this;
+        }
+
+        /**
+         * <p>Whether the remote privacy button is enabled for the vehicle. If omitted, the organization does not have the remote privacy button feature enabled.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "isRemotePrivacyButtonEnabled", nulls = Nulls.SKIP)
+        public _FinalStage isRemotePrivacyButtonEnabled(Optional<Boolean> isRemotePrivacyButtonEnabled) {
+            this.isRemotePrivacyButtonEnabled = isRemotePrivacyButtonEnabled;
             return this;
         }
 
@@ -1708,6 +1752,7 @@ public final class VehicleResponseObjectResponseBody {
                     gateway,
                     harshAccelerationSettingType,
                     id,
+                    isRemotePrivacyButtonEnabled,
                     licensePlate,
                     make,
                     model,

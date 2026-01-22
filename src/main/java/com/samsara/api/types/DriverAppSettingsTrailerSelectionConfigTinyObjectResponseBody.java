@@ -22,7 +22,7 @@ import java.util.Optional;
 public final class DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody {
     private final Optional<Boolean> driverTrailerCreationEnabled;
 
-    private final Optional<Integer> maxNumOfTrailersSelected;
+    private final Optional<Long> maxNumOfTrailersSelected;
 
     private final Optional<Boolean> orgTrailerSearch;
 
@@ -30,7 +30,7 @@ public final class DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody
 
     private DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody(
             Optional<Boolean> driverTrailerCreationEnabled,
-            Optional<Integer> maxNumOfTrailersSelected,
+            Optional<Long> maxNumOfTrailersSelected,
             Optional<Boolean> orgTrailerSearch,
             Map<String, Object> additionalProperties) {
         this.driverTrailerCreationEnabled = driverTrailerCreationEnabled;
@@ -51,7 +51,7 @@ public final class DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody
      * @return Trailer selection limit.
      */
     @JsonProperty("maxNumOfTrailersSelected")
-    public Optional<Integer> getMaxNumOfTrailersSelected() {
+    public Optional<Long> getMaxNumOfTrailersSelected() {
         return maxNumOfTrailersSelected;
     }
 
@@ -99,7 +99,7 @@ public final class DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody
     public static final class Builder {
         private Optional<Boolean> driverTrailerCreationEnabled = Optional.empty();
 
-        private Optional<Integer> maxNumOfTrailersSelected = Optional.empty();
+        private Optional<Long> maxNumOfTrailersSelected = Optional.empty();
 
         private Optional<Boolean> orgTrailerSearch = Optional.empty();
 
@@ -133,12 +133,12 @@ public final class DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody
          * <p>Trailer selection limit.</p>
          */
         @JsonSetter(value = "maxNumOfTrailersSelected", nulls = Nulls.SKIP)
-        public Builder maxNumOfTrailersSelected(Optional<Integer> maxNumOfTrailersSelected) {
+        public Builder maxNumOfTrailersSelected(Optional<Long> maxNumOfTrailersSelected) {
             this.maxNumOfTrailersSelected = maxNumOfTrailersSelected;
             return this;
         }
 
-        public Builder maxNumOfTrailersSelected(Integer maxNumOfTrailersSelected) {
+        public Builder maxNumOfTrailersSelected(Long maxNumOfTrailersSelected) {
             this.maxNumOfTrailersSelected = Optional.ofNullable(maxNumOfTrailersSelected);
             return this;
         }

@@ -26,14 +26,14 @@ public final class GetDefectTypesRequest {
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Map<String, Object> additionalProperties;
 
     private GetDefectTypesRequest(
             Optional<List<String>> ids,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
         this.after = after;
@@ -61,7 +61,7 @@ public final class GetDefectTypesRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 512 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -100,7 +100,7 @@ public final class GetDefectTypesRequest {
 
         private Optional<String> after = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -151,12 +151,12 @@ public final class GetDefectTypesRequest {
          * <p>The limit for how many objects will be in the response. Default and max for this value is 512 objects.</p>
          */
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public Builder limit(Optional<Integer> limit) {
+        public Builder limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
-        public Builder limit(Integer limit) {
+        public Builder limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }

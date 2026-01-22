@@ -29,11 +29,15 @@ public final class GetTrainingAssignmentsStreamRequest {
 
     private final Optional<List<String>> status;
 
+    private final Optional<List<String>> categoryIds;
+
     private final Optional<String> after;
 
     private final String startTime;
 
     private final Optional<String> endTime;
+
+    private final Optional<Boolean> isOverdue;
 
     private final Map<String, Object> additionalProperties;
 
@@ -41,16 +45,20 @@ public final class GetTrainingAssignmentsStreamRequest {
             Optional<List<String>> learnerIds,
             Optional<List<String>> courseIds,
             Optional<List<String>> status,
+            Optional<List<String>> categoryIds,
             Optional<String> after,
             String startTime,
             Optional<String> endTime,
+            Optional<Boolean> isOverdue,
             Map<String, Object> additionalProperties) {
         this.learnerIds = learnerIds;
         this.courseIds = courseIds;
         this.status = status;
+        this.categoryIds = categoryIds;
         this.after = after;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.isOverdue = isOverdue;
         this.additionalProperties = additionalProperties;
     }
 
@@ -79,6 +87,14 @@ public final class GetTrainingAssignmentsStreamRequest {
     }
 
     /**
+     * @return Optional string of comma separated category IDs. If category ID is present, training assignments for the specified category ID(s) will be returned. Max value for this value is 100 objects. Example: <code>categoryIds=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code>
+     */
+    @JsonProperty("categoryIds")
+    public Optional<List<String>> getCategoryIds() {
+        return categoryIds;
+    }
+
+    /**
      * @return If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
      */
     @JsonProperty("after")
@@ -102,6 +118,14 @@ public final class GetTrainingAssignmentsStreamRequest {
         return endTime;
     }
 
+    /**
+     * @return Optional boolean value. If present, training assignments for the specified overdue status will be returned. Valid values: true, false. Defaults to returning all assignments.
+     */
+    @JsonProperty("isOverdue")
+    public Optional<Boolean> getIsOverdue() {
+        return isOverdue;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -118,14 +142,24 @@ public final class GetTrainingAssignmentsStreamRequest {
         return learnerIds.equals(other.learnerIds)
                 && courseIds.equals(other.courseIds)
                 && status.equals(other.status)
+                && categoryIds.equals(other.categoryIds)
                 && after.equals(other.after)
                 && startTime.equals(other.startTime)
-                && endTime.equals(other.endTime);
+                && endTime.equals(other.endTime)
+                && isOverdue.equals(other.isOverdue);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.learnerIds, this.courseIds, this.status, this.after, this.startTime, this.endTime);
+        return Objects.hash(
+                this.learnerIds,
+                this.courseIds,
+                this.status,
+                this.categoryIds,
+                this.after,
+                this.startTime,
+                this.endTime,
+                this.isOverdue);
     }
 
     @java.lang.Override
@@ -177,6 +211,15 @@ public final class GetTrainingAssignmentsStreamRequest {
         _FinalStage status(String status);
 
         /**
+         * <p>Optional string of comma separated category IDs. If category ID is present, training assignments for the specified category ID(s) will be returned. Max value for this value is 100 objects. Example: <code>categoryIds=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
+         */
+        _FinalStage categoryIds(Optional<List<String>> categoryIds);
+
+        _FinalStage categoryIds(List<String> categoryIds);
+
+        _FinalStage categoryIds(String categoryIds);
+
+        /**
          * <p>If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.</p>
          */
         _FinalStage after(Optional<String> after);
@@ -189,15 +232,26 @@ public final class GetTrainingAssignmentsStreamRequest {
         _FinalStage endTime(Optional<String> endTime);
 
         _FinalStage endTime(String endTime);
+
+        /**
+         * <p>Optional boolean value. If present, training assignments for the specified overdue status will be returned. Valid values: true, false. Defaults to returning all assignments.</p>
+         */
+        _FinalStage isOverdue(Optional<Boolean> isOverdue);
+
+        _FinalStage isOverdue(Boolean isOverdue);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements StartTimeStage, _FinalStage {
         private String startTime;
 
+        private Optional<Boolean> isOverdue = Optional.empty();
+
         private Optional<String> endTime = Optional.empty();
 
         private Optional<String> after = Optional.empty();
+
+        private Optional<List<String>> categoryIds = Optional.empty();
 
         private Optional<List<String>> status = Optional.empty();
 
@@ -215,9 +269,11 @@ public final class GetTrainingAssignmentsStreamRequest {
             learnerIds(other.getLearnerIds());
             courseIds(other.getCourseIds());
             status(other.getStatus());
+            categoryIds(other.getCategoryIds());
             after(other.getAfter());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
+            isOverdue(other.getIsOverdue());
             return this;
         }
 
@@ -230,6 +286,26 @@ public final class GetTrainingAssignmentsStreamRequest {
         @JsonSetter("startTime")
         public _FinalStage startTime(@NotNull String startTime) {
             this.startTime = Objects.requireNonNull(startTime, "startTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Optional boolean value. If present, training assignments for the specified overdue status will be returned. Valid values: true, false. Defaults to returning all assignments.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isOverdue(Boolean isOverdue) {
+            this.isOverdue = Optional.ofNullable(isOverdue);
+            return this;
+        }
+
+        /**
+         * <p>Optional boolean value. If present, training assignments for the specified overdue status will be returned. Valid values: true, false. Defaults to returning all assignments.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "isOverdue", nulls = Nulls.SKIP)
+        public _FinalStage isOverdue(Optional<Boolean> isOverdue) {
+            this.isOverdue = isOverdue;
             return this;
         }
 
@@ -270,6 +346,32 @@ public final class GetTrainingAssignmentsStreamRequest {
         @JsonSetter(value = "after", nulls = Nulls.SKIP)
         public _FinalStage after(Optional<String> after) {
             this.after = after;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage categoryIds(String categoryIds) {
+            this.categoryIds = Optional.of(Collections.singletonList(categoryIds));
+            return this;
+        }
+
+        /**
+         * <p>Optional string of comma separated category IDs. If category ID is present, training assignments for the specified category ID(s) will be returned. Max value for this value is 100 objects. Example: <code>categoryIds=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage categoryIds(List<String> categoryIds) {
+            this.categoryIds = Optional.ofNullable(categoryIds);
+            return this;
+        }
+
+        /**
+         * <p>Optional string of comma separated category IDs. If category ID is present, training assignments for the specified category ID(s) will be returned. Max value for this value is 100 objects. Example: <code>categoryIds=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "categoryIds", nulls = Nulls.SKIP)
+        public _FinalStage categoryIds(Optional<List<String>> categoryIds) {
+            this.categoryIds = categoryIds;
             return this;
         }
 
@@ -354,7 +456,15 @@ public final class GetTrainingAssignmentsStreamRequest {
         @java.lang.Override
         public GetTrainingAssignmentsStreamRequest build() {
             return new GetTrainingAssignmentsStreamRequest(
-                    learnerIds, courseIds, status, after, startTime, endTime, additionalProperties);
+                    learnerIds,
+                    courseIds,
+                    status,
+                    categoryIds,
+                    after,
+                    startTime,
+                    endTime,
+                    isOverdue,
+                    additionalProperties);
         }
     }
 }
