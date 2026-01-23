@@ -74,6 +74,17 @@ public class AsyncRawMaintenanceClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<DvirDefectTypeGetDefectTypesResponseBody>> getDefectTypes(
+            RequestOptions requestOptions) {
+        return getDefectTypes(GetDefectTypesRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Get DVIR defect types.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Defect Types</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<DvirDefectTypeGetDefectTypesResponseBody>> getDefectTypes(
             GetDefectTypesRequest request) {
         return getDefectTypes(request, null);
     }
@@ -338,6 +349,17 @@ public class AsyncRawMaintenanceClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<DvirDefectGetDefectResponseBody>> getDefect(String id) {
         return getDefect(id, GetDefectRequest.builder().build());
+    }
+
+    /**
+     * Get a single DVIR defect by ID.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Defects</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<DvirDefectGetDefectResponseBody>> getDefect(
+            String id, RequestOptions requestOptions) {
+        return getDefect(id, GetDefectRequest.builder().build(), requestOptions);
     }
 
     /**
@@ -613,6 +635,17 @@ public class AsyncRawMaintenanceClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<DvirGetDvirResponseBody>> getDvir(
+            String id, RequestOptions requestOptions) {
+        return getDvir(id, GetDvirRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Get a single DVIR by ID.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<DvirGetDvirResponseBody>> getDvir(
             String id, GetDvirRequest request) {
         return getDvir(id, request, null);
     }
@@ -733,6 +766,16 @@ public class AsyncRawMaintenanceClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<DefectResponse>> updateDvirDefect(String id) {
         return updateDvirDefect(id, DefectPatch.builder().build());
+    }
+
+    /**
+     * Updates a given defect. Can be used to resolve a defect by marking its <code>isResolved</code> field to <code>true</code>.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Defects</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<DefectResponse>> updateDvirDefect(
+            String id, RequestOptions requestOptions) {
+        return updateDvirDefect(id, DefectPatch.builder().build(), requestOptions);
     }
 
     /**

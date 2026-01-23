@@ -32,7 +32,7 @@ public final class InlineObject6 {
 
     private final long startMs;
 
-    private final int stepMs;
+    private final long stepMs;
 
     private final Map<String, Object> additionalProperties;
 
@@ -41,7 +41,7 @@ public final class InlineObject6 {
             Optional<InlineObject6FillMissing> fillMissing,
             List<V1SensorsHistorySeries> series,
             long startMs,
-            int stepMs,
+            long stepMs,
             Map<String, Object> additionalProperties) {
         this.endMs = endMs;
         this.fillMissing = fillMissing;
@@ -81,7 +81,7 @@ public final class InlineObject6 {
      * @return Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.
      */
     @JsonProperty("stepMs")
-    public int getStepMs() {
+    public long getStepMs() {
         return stepMs;
     }
 
@@ -138,7 +138,7 @@ public final class InlineObject6 {
         /**
          * <p>Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.</p>
          */
-        _FinalStage stepMs(int stepMs);
+        _FinalStage stepMs(long stepMs);
     }
 
     public interface _FinalStage {
@@ -161,7 +161,7 @@ public final class InlineObject6 {
 
         private long startMs;
 
-        private int stepMs;
+        private long stepMs;
 
         private List<V1SensorsHistorySeries> series = new ArrayList<>();
 
@@ -213,7 +213,7 @@ public final class InlineObject6 {
          */
         @java.lang.Override
         @JsonSetter("stepMs")
-        public _FinalStage stepMs(int stepMs) {
+        public _FinalStage stepMs(long stepMs) {
             this.stepMs = stepMs;
             return this;
         }

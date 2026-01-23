@@ -14,8 +14,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.drivers.types.UpdateDriverRequestDriverActivationStatus;
 import com.samsara.api.resources.drivers.types.UpdateDriverRequestLocale;
-import com.samsara.api.types.CreateDriverRequestAttributes;
 import com.samsara.api.types.DriverCarrierSettings;
+import com.samsara.api.types.UpdateDriverRequestAttributes;
 import com.samsara.api.types.UpdateDriverRequestHosSetting;
 import com.samsara.api.types.UsDriverRulesetOverride;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = UpdateDriverRequest.Builder.class)
 public final class UpdateDriverRequest {
-    private final Optional<List<CreateDriverRequestAttributes>> attributes;
+    private final Optional<List<UpdateDriverRequestAttributes>> attributes;
 
     private final Optional<DriverCarrierSettings> carrierSettings;
 
@@ -41,7 +41,7 @@ public final class UpdateDriverRequest {
 
     private final Optional<Boolean> eldBigDayExemptionEnabled;
 
-    private final Optional<Integer> eldDayStartHour;
+    private final Optional<Long> eldDayStartHour;
 
     private final Optional<Boolean> eldExempt;
 
@@ -98,14 +98,14 @@ public final class UpdateDriverRequest {
     private final Map<String, Object> additionalProperties;
 
     private UpdateDriverRequest(
-            Optional<List<CreateDriverRequestAttributes>> attributes,
+            Optional<List<UpdateDriverRequestAttributes>> attributes,
             Optional<DriverCarrierSettings> carrierSettings,
             Optional<String> currentIdCardCode,
             Optional<String> deactivatedAtTime,
             Optional<UpdateDriverRequestDriverActivationStatus> driverActivationStatus,
             Optional<Boolean> eldAdverseWeatherExemptionEnabled,
             Optional<Boolean> eldBigDayExemptionEnabled,
-            Optional<Integer> eldDayStartHour,
+            Optional<Long> eldDayStartHour,
             Optional<Boolean> eldExempt,
             Optional<String> eldExemptReason,
             Optional<Boolean> eldPcEnabled,
@@ -171,7 +171,7 @@ public final class UpdateDriverRequest {
     }
 
     @JsonProperty("attributes")
-    public Optional<List<CreateDriverRequestAttributes>> getAttributes() {
+    public Optional<List<UpdateDriverRequestAttributes>> getAttributes() {
         return attributes;
     }
 
@@ -224,7 +224,7 @@ public final class UpdateDriverRequest {
      * @return <code>0</code> indicating midnight-to-midnight ELD driving hours, <code>12</code> to indicate noon-to-noon driving hours.
      */
     @JsonProperty("eldDayStartHour")
-    public Optional<Integer> getEldDayStartHour() {
+    public Optional<Long> getEldDayStartHour() {
         return eldDayStartHour;
     }
 
@@ -516,7 +516,7 @@ public final class UpdateDriverRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<CreateDriverRequestAttributes>> attributes = Optional.empty();
+        private Optional<List<UpdateDriverRequestAttributes>> attributes = Optional.empty();
 
         private Optional<DriverCarrierSettings> carrierSettings = Optional.empty();
 
@@ -530,7 +530,7 @@ public final class UpdateDriverRequest {
 
         private Optional<Boolean> eldBigDayExemptionEnabled = Optional.empty();
 
-        private Optional<Integer> eldDayStartHour = Optional.empty();
+        private Optional<Long> eldDayStartHour = Optional.empty();
 
         private Optional<Boolean> eldExempt = Optional.empty();
 
@@ -628,12 +628,12 @@ public final class UpdateDriverRequest {
         }
 
         @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
-        public Builder attributes(Optional<List<CreateDriverRequestAttributes>> attributes) {
+        public Builder attributes(Optional<List<UpdateDriverRequestAttributes>> attributes) {
             this.attributes = attributes;
             return this;
         }
 
-        public Builder attributes(List<CreateDriverRequestAttributes> attributes) {
+        public Builder attributes(List<UpdateDriverRequestAttributes> attributes) {
             this.attributes = Optional.ofNullable(attributes);
             return this;
         }
@@ -724,12 +724,12 @@ public final class UpdateDriverRequest {
          * <p><code>0</code> indicating midnight-to-midnight ELD driving hours, <code>12</code> to indicate noon-to-noon driving hours.</p>
          */
         @JsonSetter(value = "eldDayStartHour", nulls = Nulls.SKIP)
-        public Builder eldDayStartHour(Optional<Integer> eldDayStartHour) {
+        public Builder eldDayStartHour(Optional<Long> eldDayStartHour) {
             this.eldDayStartHour = eldDayStartHour;
             return this;
         }
 
-        public Builder eldDayStartHour(Integer eldDayStartHour) {
+        public Builder eldDayStartHour(Long eldDayStartHour) {
             this.eldDayStartHour = Optional.ofNullable(eldDayStartHour);
             return this;
         }

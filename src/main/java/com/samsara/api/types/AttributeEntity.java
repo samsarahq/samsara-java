@@ -21,6 +21,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AttributeEntity.Builder.class)
 public final class AttributeEntity {
+    private final Optional<List<String>> dateValues;
+
     private final Optional<Long> entityId;
 
     private final Optional<AttributeEntityExternalIds> externalIds;
@@ -36,6 +38,7 @@ public final class AttributeEntity {
     private final Map<String, Object> additionalProperties;
 
     private AttributeEntity(
+            Optional<List<String>> dateValues,
             Optional<Long> entityId,
             Optional<AttributeEntityExternalIds> externalIds,
             Optional<String> name,
@@ -43,6 +46,7 @@ public final class AttributeEntity {
             Optional<List<String>> stringValues,
             Optional<List<AttributeValueTiny>> values,
             Map<String, Object> additionalProperties) {
+        this.dateValues = dateValues;
         this.entityId = entityId;
         this.externalIds = externalIds;
         this.name = name;
@@ -50,6 +54,14 @@ public final class AttributeEntity {
         this.stringValues = stringValues;
         this.values = values;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Date values that are associated with this attribute (RFC 3339 date format: YYYY-MM-DD).
+     */
+    @JsonProperty("dateValues")
+    public Optional<List<String>> getDateValues() {
+        return dateValues;
     }
 
     @JsonProperty("entityId")
@@ -106,7 +118,8 @@ public final class AttributeEntity {
     }
 
     private boolean equalTo(AttributeEntity other) {
-        return entityId.equals(other.entityId)
+        return dateValues.equals(other.dateValues)
+                && entityId.equals(other.entityId)
                 && externalIds.equals(other.externalIds)
                 && name.equals(other.name)
                 && numberValues.equals(other.numberValues)
@@ -117,7 +130,13 @@ public final class AttributeEntity {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.entityId, this.externalIds, this.name, this.numberValues, this.stringValues, this.values);
+                this.dateValues,
+                this.entityId,
+                this.externalIds,
+                this.name,
+                this.numberValues,
+                this.stringValues,
+                this.values);
     }
 
     @java.lang.Override
@@ -131,6 +150,8 @@ public final class AttributeEntity {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> dateValues = Optional.empty();
+
         private Optional<Long> entityId = Optional.empty();
 
         private Optional<AttributeEntityExternalIds> externalIds = Optional.empty();
@@ -149,12 +170,27 @@ public final class AttributeEntity {
         private Builder() {}
 
         public Builder from(AttributeEntity other) {
+            dateValues(other.getDateValues());
             entityId(other.getEntityId());
             externalIds(other.getExternalIds());
             name(other.getName());
             numberValues(other.getNumberValues());
             stringValues(other.getStringValues());
             values(other.getValues());
+            return this;
+        }
+
+        /**
+         * <p>Date values that are associated with this attribute (RFC 3339 date format: YYYY-MM-DD).</p>
+         */
+        @JsonSetter(value = "dateValues", nulls = Nulls.SKIP)
+        public Builder dateValues(Optional<List<String>> dateValues) {
+            this.dateValues = dateValues;
+            return this;
+        }
+
+        public Builder dateValues(List<String> dateValues) {
+            this.dateValues = Optional.ofNullable(dateValues);
             return this;
         }
 
@@ -238,7 +274,7 @@ public final class AttributeEntity {
 
         public AttributeEntity build() {
             return new AttributeEntity(
-                    entityId, externalIds, name, numberValues, stringValues, values, additionalProperties);
+                    dateValues, entityId, externalIds, name, numberValues, stringValues, values, additionalProperties);
         }
     }
 }

@@ -27,6 +27,8 @@ public final class RoutesStopResponseObjectResponseBody {
 
     private final Optional<OffsetDateTime> actualDepartureTime;
 
+    private final Optional<Long> actualDistanceMeters;
+
     private final Optional<GoaAddressTinyResponseResponseBody> address;
 
     private final Optional<List<GoaDocumentTinyResponseResponseBody>> documents;
@@ -55,9 +57,13 @@ public final class RoutesStopResponseObjectResponseBody {
 
     private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
+    private final Optional<Long> plannedDistanceMeters;
+
     private final Optional<OffsetDateTime> scheduledArrivalTime;
 
     private final Optional<OffsetDateTime> scheduledDepartureTime;
+
+    private final Optional<Long> sequenceNumber;
 
     private final Optional<RoutesSingleUseAddressObjectResponseBody> singleUseLocation;
 
@@ -70,6 +76,7 @@ public final class RoutesStopResponseObjectResponseBody {
     private RoutesStopResponseObjectResponseBody(
             Optional<OffsetDateTime> actualArrivalTime,
             Optional<OffsetDateTime> actualDepartureTime,
+            Optional<Long> actualDistanceMeters,
             Optional<GoaAddressTinyResponseResponseBody> address,
             Optional<List<GoaDocumentTinyResponseResponseBody>> documents,
             Optional<OffsetDateTime> enRouteTime,
@@ -84,14 +91,17 @@ public final class RoutesStopResponseObjectResponseBody {
             Optional<String> notes,
             Optional<Long> ontimeWindowAfterArrivalMs,
             Optional<Long> ontimeWindowBeforeArrivalMs,
+            Optional<Long> plannedDistanceMeters,
             Optional<OffsetDateTime> scheduledArrivalTime,
             Optional<OffsetDateTime> scheduledDepartureTime,
+            Optional<Long> sequenceNumber,
             Optional<RoutesSingleUseAddressObjectResponseBody> singleUseLocation,
             Optional<OffsetDateTime> skippedTime,
             RoutesStopResponseObjectResponseBodyState state,
             Map<String, Object> additionalProperties) {
         this.actualArrivalTime = actualArrivalTime;
         this.actualDepartureTime = actualDepartureTime;
+        this.actualDistanceMeters = actualDistanceMeters;
         this.address = address;
         this.documents = documents;
         this.enRouteTime = enRouteTime;
@@ -106,8 +116,10 @@ public final class RoutesStopResponseObjectResponseBody {
         this.notes = notes;
         this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
         this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
+        this.plannedDistanceMeters = plannedDistanceMeters;
         this.scheduledArrivalTime = scheduledArrivalTime;
         this.scheduledDepartureTime = scheduledDepartureTime;
+        this.sequenceNumber = sequenceNumber;
         this.singleUseLocation = singleUseLocation;
         this.skippedTime = skippedTime;
         this.state = state;
@@ -128,6 +140,14 @@ public final class RoutesStopResponseObjectResponseBody {
     @JsonProperty("actualDepartureTime")
     public Optional<OffsetDateTime> getActualDepartureTime() {
         return actualDepartureTime;
+    }
+
+    /**
+     * @return Actual GPS-measured distance traveled from the previous stop's departure to this stop's arrival, in meters. Null for the first stop, skipped stops, or if GPS data is unavailable.
+     */
+    @JsonProperty("actualDistanceMeters")
+    public Optional<Long> getActualDistanceMeters() {
+        return actualDistanceMeters;
     }
 
     @JsonProperty("address")
@@ -240,6 +260,14 @@ public final class RoutesStopResponseObjectResponseBody {
     }
 
     /**
+     * @return Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.
+     */
+    @JsonProperty("plannedDistanceMeters")
+    public Optional<Long> getPlannedDistanceMeters() {
+        return plannedDistanceMeters;
+    }
+
+    /**
      * @return Scheduled arrival time, if it exists, for the stop in RFC 3339 format.
      */
     @JsonProperty("scheduledArrivalTime")
@@ -253,6 +281,14 @@ public final class RoutesStopResponseObjectResponseBody {
     @JsonProperty("scheduledDepartureTime")
     public Optional<OffsetDateTime> getScheduledDepartureTime() {
         return scheduledDepartureTime;
+    }
+
+    /**
+     * @return Manual sequence position of this stop. Only used when route.settings.sequencingMethod=manual.
+     */
+    @JsonProperty("sequenceNumber")
+    public Optional<Long> getSequenceNumber() {
+        return sequenceNumber;
     }
 
     @JsonProperty("singleUseLocation")
@@ -291,6 +327,7 @@ public final class RoutesStopResponseObjectResponseBody {
     private boolean equalTo(RoutesStopResponseObjectResponseBody other) {
         return actualArrivalTime.equals(other.actualArrivalTime)
                 && actualDepartureTime.equals(other.actualDepartureTime)
+                && actualDistanceMeters.equals(other.actualDistanceMeters)
                 && address.equals(other.address)
                 && documents.equals(other.documents)
                 && enRouteTime.equals(other.enRouteTime)
@@ -305,8 +342,10 @@ public final class RoutesStopResponseObjectResponseBody {
                 && notes.equals(other.notes)
                 && ontimeWindowAfterArrivalMs.equals(other.ontimeWindowAfterArrivalMs)
                 && ontimeWindowBeforeArrivalMs.equals(other.ontimeWindowBeforeArrivalMs)
+                && plannedDistanceMeters.equals(other.plannedDistanceMeters)
                 && scheduledArrivalTime.equals(other.scheduledArrivalTime)
                 && scheduledDepartureTime.equals(other.scheduledDepartureTime)
+                && sequenceNumber.equals(other.sequenceNumber)
                 && singleUseLocation.equals(other.singleUseLocation)
                 && skippedTime.equals(other.skippedTime)
                 && state.equals(other.state);
@@ -317,6 +356,7 @@ public final class RoutesStopResponseObjectResponseBody {
         return Objects.hash(
                 this.actualArrivalTime,
                 this.actualDepartureTime,
+                this.actualDistanceMeters,
                 this.address,
                 this.documents,
                 this.enRouteTime,
@@ -331,8 +371,10 @@ public final class RoutesStopResponseObjectResponseBody {
                 this.notes,
                 this.ontimeWindowAfterArrivalMs,
                 this.ontimeWindowBeforeArrivalMs,
+                this.plannedDistanceMeters,
                 this.scheduledArrivalTime,
                 this.scheduledDepartureTime,
+                this.sequenceNumber,
                 this.singleUseLocation,
                 this.skippedTime,
                 this.state);
@@ -386,6 +428,13 @@ public final class RoutesStopResponseObjectResponseBody {
         _FinalStage actualDepartureTime(Optional<OffsetDateTime> actualDepartureTime);
 
         _FinalStage actualDepartureTime(OffsetDateTime actualDepartureTime);
+
+        /**
+         * <p>Actual GPS-measured distance traveled from the previous stop's departure to this stop's arrival, in meters. Null for the first stop, skipped stops, or if GPS data is unavailable.</p>
+         */
+        _FinalStage actualDistanceMeters(Optional<Long> actualDistanceMeters);
+
+        _FinalStage actualDistanceMeters(Long actualDistanceMeters);
 
         _FinalStage address(Optional<GoaAddressTinyResponseResponseBody> address);
 
@@ -470,6 +519,13 @@ public final class RoutesStopResponseObjectResponseBody {
         _FinalStage ontimeWindowBeforeArrivalMs(Long ontimeWindowBeforeArrivalMs);
 
         /**
+         * <p>Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.</p>
+         */
+        _FinalStage plannedDistanceMeters(Optional<Long> plannedDistanceMeters);
+
+        _FinalStage plannedDistanceMeters(Long plannedDistanceMeters);
+
+        /**
          * <p>Scheduled arrival time, if it exists, for the stop in RFC 3339 format.</p>
          */
         _FinalStage scheduledArrivalTime(Optional<OffsetDateTime> scheduledArrivalTime);
@@ -482,6 +538,13 @@ public final class RoutesStopResponseObjectResponseBody {
         _FinalStage scheduledDepartureTime(Optional<OffsetDateTime> scheduledDepartureTime);
 
         _FinalStage scheduledDepartureTime(OffsetDateTime scheduledDepartureTime);
+
+        /**
+         * <p>Manual sequence position of this stop. Only used when route.settings.sequencingMethod=manual.</p>
+         */
+        _FinalStage sequenceNumber(Optional<Long> sequenceNumber);
+
+        _FinalStage sequenceNumber(Long sequenceNumber);
 
         _FinalStage singleUseLocation(Optional<RoutesSingleUseAddressObjectResponseBody> singleUseLocation);
 
@@ -507,9 +570,13 @@ public final class RoutesStopResponseObjectResponseBody {
 
         private Optional<RoutesSingleUseAddressObjectResponseBody> singleUseLocation = Optional.empty();
 
+        private Optional<Long> sequenceNumber = Optional.empty();
+
         private Optional<OffsetDateTime> scheduledDepartureTime = Optional.empty();
 
         private Optional<OffsetDateTime> scheduledArrivalTime = Optional.empty();
+
+        private Optional<Long> plannedDistanceMeters = Optional.empty();
 
         private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
@@ -535,6 +602,8 @@ public final class RoutesStopResponseObjectResponseBody {
 
         private Optional<GoaAddressTinyResponseResponseBody> address = Optional.empty();
 
+        private Optional<Long> actualDistanceMeters = Optional.empty();
+
         private Optional<OffsetDateTime> actualDepartureTime = Optional.empty();
 
         private Optional<OffsetDateTime> actualArrivalTime = Optional.empty();
@@ -548,6 +617,7 @@ public final class RoutesStopResponseObjectResponseBody {
         public Builder from(RoutesStopResponseObjectResponseBody other) {
             actualArrivalTime(other.getActualArrivalTime());
             actualDepartureTime(other.getActualDepartureTime());
+            actualDistanceMeters(other.getActualDistanceMeters());
             address(other.getAddress());
             documents(other.getDocuments());
             enRouteTime(other.getEnRouteTime());
@@ -562,8 +632,10 @@ public final class RoutesStopResponseObjectResponseBody {
             notes(other.getNotes());
             ontimeWindowAfterArrivalMs(other.getOntimeWindowAfterArrivalMs());
             ontimeWindowBeforeArrivalMs(other.getOntimeWindowBeforeArrivalMs());
+            plannedDistanceMeters(other.getPlannedDistanceMeters());
             scheduledArrivalTime(other.getScheduledArrivalTime());
             scheduledDepartureTime(other.getScheduledDepartureTime());
+            sequenceNumber(other.getSequenceNumber());
             singleUseLocation(other.getSingleUseLocation());
             skippedTime(other.getSkippedTime());
             state(other.getState());
@@ -640,6 +712,26 @@ public final class RoutesStopResponseObjectResponseBody {
         }
 
         /**
+         * <p>Manual sequence position of this stop. Only used when route.settings.sequencingMethod=manual.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage sequenceNumber(Long sequenceNumber) {
+            this.sequenceNumber = Optional.ofNullable(sequenceNumber);
+            return this;
+        }
+
+        /**
+         * <p>Manual sequence position of this stop. Only used when route.settings.sequencingMethod=manual.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "sequenceNumber", nulls = Nulls.SKIP)
+        public _FinalStage sequenceNumber(Optional<Long> sequenceNumber) {
+            this.sequenceNumber = sequenceNumber;
+            return this;
+        }
+
+        /**
          * <p>Scheduled departure time, if it exists, for the stop in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -676,6 +768,26 @@ public final class RoutesStopResponseObjectResponseBody {
         @JsonSetter(value = "scheduledArrivalTime", nulls = Nulls.SKIP)
         public _FinalStage scheduledArrivalTime(Optional<OffsetDateTime> scheduledArrivalTime) {
             this.scheduledArrivalTime = scheduledArrivalTime;
+            return this;
+        }
+
+        /**
+         * <p>Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage plannedDistanceMeters(Long plannedDistanceMeters) {
+            this.plannedDistanceMeters = Optional.ofNullable(plannedDistanceMeters);
+            return this;
+        }
+
+        /**
+         * <p>Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "plannedDistanceMeters", nulls = Nulls.SKIP)
+        public _FinalStage plannedDistanceMeters(Optional<Long> plannedDistanceMeters) {
+            this.plannedDistanceMeters = plannedDistanceMeters;
             return this;
         }
 
@@ -915,6 +1027,26 @@ public final class RoutesStopResponseObjectResponseBody {
         }
 
         /**
+         * <p>Actual GPS-measured distance traveled from the previous stop's departure to this stop's arrival, in meters. Null for the first stop, skipped stops, or if GPS data is unavailable.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage actualDistanceMeters(Long actualDistanceMeters) {
+            this.actualDistanceMeters = Optional.ofNullable(actualDistanceMeters);
+            return this;
+        }
+
+        /**
+         * <p>Actual GPS-measured distance traveled from the previous stop's departure to this stop's arrival, in meters. Null for the first stop, skipped stops, or if GPS data is unavailable.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "actualDistanceMeters", nulls = Nulls.SKIP)
+        public _FinalStage actualDistanceMeters(Optional<Long> actualDistanceMeters) {
+            this.actualDistanceMeters = actualDistanceMeters;
+            return this;
+        }
+
+        /**
          * <p>Actual departure time, if it exists, for the route stop in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -959,6 +1091,7 @@ public final class RoutesStopResponseObjectResponseBody {
             return new RoutesStopResponseObjectResponseBody(
                     actualArrivalTime,
                     actualDepartureTime,
+                    actualDistanceMeters,
                     address,
                     documents,
                     enRouteTime,
@@ -973,8 +1106,10 @@ public final class RoutesStopResponseObjectResponseBody {
                     notes,
                     ontimeWindowAfterArrivalMs,
                     ontimeWindowBeforeArrivalMs,
+                    plannedDistanceMeters,
                     scheduledArrivalTime,
                     scheduledDepartureTime,
+                    sequenceNumber,
                     singleUseLocation,
                     skippedTime,
                     state,

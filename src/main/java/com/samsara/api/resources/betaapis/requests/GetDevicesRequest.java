@@ -30,7 +30,13 @@ public final class GetDevicesRequest {
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
+
+    private final Optional<Boolean> includeTags;
+
+    private final Optional<String> tagIds;
+
+    private final Optional<String> parentTagIds;
 
     private final Map<String, Object> additionalProperties;
 
@@ -39,13 +45,19 @@ public final class GetDevicesRequest {
             Optional<List<String>> healthStatuses,
             Optional<Boolean> includeHealth,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
+            Optional<Boolean> includeTags,
+            Optional<String> tagIds,
+            Optional<String> parentTagIds,
             Map<String, Object> additionalProperties) {
         this.models = models;
         this.healthStatuses = healthStatuses;
         this.includeHealth = includeHealth;
         this.after = after;
         this.limit = limit;
+        this.includeTags = includeTags;
+        this.tagIds = tagIds;
+        this.parentTagIds = parentTagIds;
         this.additionalProperties = additionalProperties;
     }
 
@@ -85,8 +97,32 @@ public final class GetDevicesRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 100 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
+    }
+
+    /**
+     * @return Optional boolean to control whether tags are returned in the response. Defaults to false.
+     */
+    @JsonProperty("includeTags")
+    public Optional<Boolean> getIncludeTags() {
+        return includeTags;
+    }
+
+    /**
+     * @return A filter on the data based on this comma-separated list of tag IDs. Example: <code>tagIds=1234,5678</code>
+     */
+    @JsonProperty("tagIds")
+    public Optional<String> getTagIds() {
+        return tagIds;
+    }
+
+    /**
+     * @return A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: <code>parentTagIds=345,678</code>
+     */
+    @JsonProperty("parentTagIds")
+    public Optional<String> getParentTagIds() {
+        return parentTagIds;
     }
 
     @java.lang.Override
@@ -105,12 +141,23 @@ public final class GetDevicesRequest {
                 && healthStatuses.equals(other.healthStatuses)
                 && includeHealth.equals(other.includeHealth)
                 && after.equals(other.after)
-                && limit.equals(other.limit);
+                && limit.equals(other.limit)
+                && includeTags.equals(other.includeTags)
+                && tagIds.equals(other.tagIds)
+                && parentTagIds.equals(other.parentTagIds);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.models, this.healthStatuses, this.includeHealth, this.after, this.limit);
+        return Objects.hash(
+                this.models,
+                this.healthStatuses,
+                this.includeHealth,
+                this.after,
+                this.limit,
+                this.includeTags,
+                this.tagIds,
+                this.parentTagIds);
     }
 
     @java.lang.Override
@@ -132,7 +179,13 @@ public final class GetDevicesRequest {
 
         private Optional<String> after = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
+
+        private Optional<Boolean> includeTags = Optional.empty();
+
+        private Optional<String> tagIds = Optional.empty();
+
+        private Optional<String> parentTagIds = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -145,6 +198,9 @@ public final class GetDevicesRequest {
             includeHealth(other.getIncludeHealth());
             after(other.getAfter());
             limit(other.getLimit());
+            includeTags(other.getIncludeTags());
+            tagIds(other.getTagIds());
+            parentTagIds(other.getParentTagIds());
             return this;
         }
 
@@ -218,18 +274,69 @@ public final class GetDevicesRequest {
          * <p>The limit for how many objects will be in the response. Default and max for this value is 100 objects.</p>
          */
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public Builder limit(Optional<Integer> limit) {
+        public Builder limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
-        public Builder limit(Integer limit) {
+        public Builder limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
 
+        /**
+         * <p>Optional boolean to control whether tags are returned in the response. Defaults to false.</p>
+         */
+        @JsonSetter(value = "includeTags", nulls = Nulls.SKIP)
+        public Builder includeTags(Optional<Boolean> includeTags) {
+            this.includeTags = includeTags;
+            return this;
+        }
+
+        public Builder includeTags(Boolean includeTags) {
+            this.includeTags = Optional.ofNullable(includeTags);
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of tag IDs. Example: <code>tagIds=1234,5678</code></p>
+         */
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public Builder tagIds(Optional<String> tagIds) {
+            this.tagIds = tagIds;
+            return this;
+        }
+
+        public Builder tagIds(String tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: <code>parentTagIds=345,678</code></p>
+         */
+        @JsonSetter(value = "parentTagIds", nulls = Nulls.SKIP)
+        public Builder parentTagIds(Optional<String> parentTagIds) {
+            this.parentTagIds = parentTagIds;
+            return this;
+        }
+
+        public Builder parentTagIds(String parentTagIds) {
+            this.parentTagIds = Optional.ofNullable(parentTagIds);
+            return this;
+        }
+
         public GetDevicesRequest build() {
-            return new GetDevicesRequest(models, healthStatuses, includeHealth, after, limit, additionalProperties);
+            return new GetDevicesRequest(
+                    models,
+                    healthStatuses,
+                    includeHealth,
+                    after,
+                    limit,
+                    includeTags,
+                    tagIds,
+                    parentTagIds,
+                    additionalProperties);
         }
     }
 }

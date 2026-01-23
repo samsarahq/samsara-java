@@ -28,11 +28,17 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit LPERKM =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.LPERKM, "lperkm");
 
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit GBP =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.GBP, "gbp");
+
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit FOOT =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.FOOT, "foot");
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit MILLIVOLT =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.MILLIVOLT, "millivolt");
+
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit EUR =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.EUR, "eur");
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit HOUR =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.HOUR, "hour");
@@ -49,6 +55,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit INCH =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.INCH, "inch");
 
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit WATT =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.WATT, "watt");
+
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit MPKGGASEOUSFUEL =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.MPKGGASEOUSFUEL, "mpkggaseousfuel");
 
@@ -60,6 +69,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit GALLON =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.GALLON, "gallon");
+
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit VOLT_AMPERE_REACTIVE =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.VOLT_AMPERE_REACTIVE, "voltAmpereReactive");
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit GPERLITER =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.GPERLITER, "gperliter");
@@ -75,6 +87,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit MPGUSGALGASEOUSFUEL =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.MPGUSGALGASEOUSFUEL, "mpgusgalgaseousfuel");
+
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit MXN =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.MXN, "mxn");
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit POUNDS_PER_SQUARE_INCH =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(
@@ -104,6 +119,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit VOLT =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.VOLT, "volt");
 
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit CHF =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.CHF, "chf");
+
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit GALPERMI =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.GALPERMI, "galpermi");
 
@@ -125,6 +143,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit KILOGRAMGASEOUSFUEL =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.KILOGRAMGASEOUSFUEL, "kilogramgaseousfuel");
 
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit CAD =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.CAD, "cad");
+
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit KMPERHR =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.KMPERHR, "kmperhr");
 
@@ -141,6 +162,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(
                     Value.KGPER100KMGASEOUSFUEL, "kgper100kmgaseousfuel");
 
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit VOLT_AMPERE =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.VOLT_AMPERE, "voltAmpere");
+
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit DAY =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.DAY, "day");
 
@@ -153,6 +177,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit KELVIN =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.KELVIN, "kelvin");
 
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit AMPERE =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.AMPERE, "ampere");
+
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit RPM =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.RPM, "rpm");
 
@@ -161,6 +188,9 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit MIPERGAL =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.MIPERGAL, "mipergal");
+
+    public static final ReadingTriggerContinuousValueObjectResponseBodyUnit HERTZ =
+            new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.HERTZ, "hertz");
 
     public static final ReadingTriggerContinuousValueObjectResponseBodyUnit GFORCE =
             new ReadingTriggerContinuousValueObjectResponseBodyUnit(Value.GFORCE, "gforce");
@@ -261,10 +291,14 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitGallonperkilogram();
             case LPERKM:
                 return visitor.visitLperkm();
+            case GBP:
+                return visitor.visitGbp();
             case FOOT:
                 return visitor.visitFoot();
             case MILLIVOLT:
                 return visitor.visitMillivolt();
+            case EUR:
+                return visitor.visitEur();
             case HOUR:
                 return visitor.visitHour();
             case MIPERHR:
@@ -275,6 +309,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitKilogram();
             case INCH:
                 return visitor.visitInch();
+            case WATT:
+                return visitor.visitWatt();
             case MPKGGASEOUSFUEL:
                 return visitor.visitMpkggaseousfuel();
             case GALLONSPERHOUR:
@@ -283,6 +319,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitKilopascal();
             case GALLON:
                 return visitor.visitGallon();
+            case VOLT_AMPERE_REACTIVE:
+                return visitor.visitVoltAmpereReactive();
             case GPERLITER:
                 return visitor.visitGperliter();
             case MILLISECOND:
@@ -293,6 +331,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitKilometer();
             case MPGUSGALGASEOUSFUEL:
                 return visitor.visitMpgusgalgaseousfuel();
+            case MXN:
+                return visitor.visitMxn();
             case POUNDS_PER_SQUARE_INCH:
                 return visitor.visitPoundsPerSquareInch();
             case KGPERLITER:
@@ -311,6 +351,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitMeterspersec();
             case VOLT:
                 return visitor.visitVolt();
+            case CHF:
+                return visitor.visitChf();
             case GALPERMI:
                 return visitor.visitGalpermi();
             case LBPERMI:
@@ -325,6 +367,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitImpgallonsperhour();
             case KILOGRAMGASEOUSFUEL:
                 return visitor.visitKilogramgaseousfuel();
+            case CAD:
+                return visitor.visitCad();
             case KMPERHR:
                 return visitor.visitKmperhr();
             case FAHRENHEIT:
@@ -335,6 +379,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitSecond();
             case KGPER100KMGASEOUSFUEL:
                 return visitor.visitKgper100Kmgaseousfuel();
+            case VOLT_AMPERE:
+                return visitor.visitVoltAmpere();
             case DAY:
                 return visitor.visitDay();
             case KGPERGALLON:
@@ -343,12 +389,16 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return visitor.visitKgpermi();
             case KELVIN:
                 return visitor.visitKelvin();
+            case AMPERE:
+                return visitor.visitAmpere();
             case RPM:
                 return visitor.visitRpm();
             case WATTHOUR:
                 return visitor.visitWatthour();
             case MIPERGAL:
                 return visitor.visitMipergal();
+            case HERTZ:
+                return visitor.visitHertz();
             case GFORCE:
                 return visitor.visitGforce();
             case LITERPERKILOGRAM:
@@ -406,10 +456,14 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return GALLONPERKILOGRAM;
             case "lperkm":
                 return LPERKM;
+            case "gbp":
+                return GBP;
             case "foot":
                 return FOOT;
             case "millivolt":
                 return MILLIVOLT;
+            case "eur":
+                return EUR;
             case "hour":
                 return HOUR;
             case "miperhr":
@@ -420,6 +474,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return KILOGRAM;
             case "inch":
                 return INCH;
+            case "watt":
+                return WATT;
             case "mpkggaseousfuel":
                 return MPKGGASEOUSFUEL;
             case "gallonsperhour":
@@ -428,6 +484,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return KILOPASCAL;
             case "gallon":
                 return GALLON;
+            case "voltAmpereReactive":
+                return VOLT_AMPERE_REACTIVE;
             case "gperliter":
                 return GPERLITER;
             case "millisecond":
@@ -438,6 +496,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return KILOMETER;
             case "mpgusgalgaseousfuel":
                 return MPGUSGALGASEOUSFUEL;
+            case "mxn":
+                return MXN;
             case "poundsPerSquareInch":
                 return POUNDS_PER_SQUARE_INCH;
             case "kgperliter":
@@ -456,6 +516,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return METERSPERSEC;
             case "volt":
                 return VOLT;
+            case "chf":
+                return CHF;
             case "galpermi":
                 return GALPERMI;
             case "lbpermi":
@@ -470,6 +532,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return IMPGALLONSPERHOUR;
             case "kilogramgaseousfuel":
                 return KILOGRAMGASEOUSFUEL;
+            case "cad":
+                return CAD;
             case "kmperhr":
                 return KMPERHR;
             case "fahrenheit":
@@ -480,6 +544,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return SECOND;
             case "kgper100kmgaseousfuel":
                 return KGPER100KMGASEOUSFUEL;
+            case "voltAmpere":
+                return VOLT_AMPERE;
             case "day":
                 return DAY;
             case "kgpergallon":
@@ -488,12 +554,16 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
                 return KGPERMI;
             case "kelvin":
                 return KELVIN;
+            case "ampere":
+                return AMPERE;
             case "rpm":
                 return RPM;
             case "watthour":
                 return WATTHOUR;
             case "mipergal":
                 return MIPERGAL;
+            case "hertz":
+                return HERTZ;
             case "gforce":
                 return GFORCE;
             case "literperkilogram":
@@ -534,13 +604,21 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     }
 
     public enum Value {
+        AMPERE,
+
         BAR,
 
+        CAD,
+
         CELSIUS,
+
+        CHF,
 
         DAY,
 
         DECIMALDEGREES,
+
+        EUR,
 
         FAHRENHEIT,
 
@@ -554,11 +632,15 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
         GALPERMI,
 
+        GBP,
+
         GFORCE,
 
         GPERLITER,
 
         GPERM,
+
+        HERTZ,
 
         HOUR,
 
@@ -646,6 +728,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
         MPKGGASEOUSFUEL,
 
+        MXN,
+
         PERCENT,
 
         POUND,
@@ -666,6 +750,12 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
         VOLT,
 
+        VOLT_AMPERE,
+
+        VOLT_AMPERE_REACTIVE,
+
+        WATT,
+
         WATTHOUR,
 
         WEEK,
@@ -674,13 +764,21 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
     }
 
     public interface Visitor<T> {
+        T visitAmpere();
+
         T visitBar();
 
+        T visitCad();
+
         T visitCelsius();
+
+        T visitChf();
 
         T visitDay();
 
         T visitDecimaldegrees();
+
+        T visitEur();
 
         T visitFahrenheit();
 
@@ -694,11 +792,15 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
         T visitGalpermi();
 
+        T visitGbp();
+
         T visitGforce();
 
         T visitGperliter();
 
         T visitGperm();
+
+        T visitHertz();
 
         T visitHour();
 
@@ -786,6 +888,8 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
 
         T visitMpkggaseousfuel();
 
+        T visitMxn();
+
         T visitPercent();
 
         T visitPound();
@@ -805,6 +909,12 @@ public final class ReadingTriggerContinuousValueObjectResponseBodyUnit {
         T visitUsgallongaseousfuel();
 
         T visitVolt();
+
+        T visitVoltAmpere();
+
+        T visitVoltAmpereReactive();
+
+        T visitWatt();
 
         T visitWatthour();
 

@@ -29,6 +29,10 @@ public class RawAttributesClient {
         return update(id, UpdateAttributesRequest.builder().build());
     }
 
+    public SamsaraApiHttpResponse<Void> update(String id, RequestOptions requestOptions) {
+        return update(id, UpdateAttributesRequest.builder().build(), requestOptions);
+    }
+
     public SamsaraApiHttpResponse<Void> update(String id, UpdateAttributesRequest request) {
         return update(id, request, null);
     }

@@ -25,9 +25,9 @@ public final class V1TripResponseTrips {
 
     private final Optional<List<Long>> codriverIds;
 
-    private final Optional<Integer> distanceMeters;
+    private final Optional<Long> distanceMeters;
 
-    private final Optional<Integer> driverId;
+    private final Optional<Long> driverId;
 
     private final Optional<V1TripResponseEndAddress> endAddress;
 
@@ -37,9 +37,9 @@ public final class V1TripResponseTrips {
 
     private final Optional<Long> endMs;
 
-    private final Optional<Integer> endOdometer;
+    private final Optional<Long> endOdometer;
 
-    private final Optional<Integer> fuelConsumedMl;
+    private final Optional<Long> fuelConsumedMl;
 
     private final Optional<V1TripResponseStartAddress> startAddress;
 
@@ -49,29 +49,29 @@ public final class V1TripResponseTrips {
 
     private final Optional<Long> startMs;
 
-    private final Optional<Integer> startOdometer;
+    private final Optional<Long> startOdometer;
 
-    private final Optional<Integer> tollMeters;
+    private final Optional<Long> tollMeters;
 
     private final Map<String, Object> additionalProperties;
 
     private V1TripResponseTrips(
             Optional<List<Long>> assetIds,
             Optional<List<Long>> codriverIds,
-            Optional<Integer> distanceMeters,
-            Optional<Integer> driverId,
+            Optional<Long> distanceMeters,
+            Optional<Long> driverId,
             Optional<V1TripResponseEndAddress> endAddress,
             Optional<V1TripResponseEndCoordinates> endCoordinates,
             Optional<String> endLocation,
             Optional<Long> endMs,
-            Optional<Integer> endOdometer,
-            Optional<Integer> fuelConsumedMl,
+            Optional<Long> endOdometer,
+            Optional<Long> fuelConsumedMl,
             Optional<V1TripResponseStartAddress> startAddress,
             Optional<V1TripResponseStartCoordinates> startCoordinates,
             Optional<String> startLocation,
             Optional<Long> startMs,
-            Optional<Integer> startOdometer,
-            Optional<Integer> tollMeters,
+            Optional<Long> startOdometer,
+            Optional<Long> tollMeters,
             Map<String, Object> additionalProperties) {
         this.assetIds = assetIds;
         this.codriverIds = codriverIds;
@@ -112,7 +112,7 @@ public final class V1TripResponseTrips {
      * @return Length of the trip in meters. This value is calculated from the GPS data collected by the Samsara Vehicle Gateway.
      */
     @JsonProperty("distanceMeters")
-    public Optional<Integer> getDistanceMeters() {
+    public Optional<Long> getDistanceMeters() {
         return distanceMeters;
     }
 
@@ -120,7 +120,7 @@ public final class V1TripResponseTrips {
      * @return ID of the driver.
      */
     @JsonProperty("driverId")
-    public Optional<Integer> getDriverId() {
+    public Optional<Long> getDriverId() {
         return driverId;
     }
 
@@ -154,7 +154,7 @@ public final class V1TripResponseTrips {
      * @return Odometer reading (in meters) at the end of the trip. This is read from the vehicle's on-board diagnostics. If Samsara cannot read the vehicle's odometer values from on-board diagnostics, this value will be 0.
      */
     @JsonProperty("endOdometer")
-    public Optional<Integer> getEndOdometer() {
+    public Optional<Long> getEndOdometer() {
         return endOdometer;
     }
 
@@ -162,7 +162,7 @@ public final class V1TripResponseTrips {
      * @return Amount in milliliters of fuel consumed on this trip.
      */
     @JsonProperty("fuelConsumedMl")
-    public Optional<Integer> getFuelConsumedMl() {
+    public Optional<Long> getFuelConsumedMl() {
         return fuelConsumedMl;
     }
 
@@ -196,7 +196,7 @@ public final class V1TripResponseTrips {
      * @return Odometer reading (in meters) at the beginning of the trip. This is read from the vehicle's on-board diagnostics. If Samsara cannot read the vehicle's odometer values from on-board diagnostics, this value will be 0.
      */
     @JsonProperty("startOdometer")
-    public Optional<Integer> getStartOdometer() {
+    public Optional<Long> getStartOdometer() {
         return startOdometer;
     }
 
@@ -204,7 +204,7 @@ public final class V1TripResponseTrips {
      * @return Length in meters trip spent on toll roads.
      */
     @JsonProperty("tollMeters")
-    public Optional<Integer> getTollMeters() {
+    public Optional<Long> getTollMeters() {
         return tollMeters;
     }
 
@@ -274,9 +274,9 @@ public final class V1TripResponseTrips {
 
         private Optional<List<Long>> codriverIds = Optional.empty();
 
-        private Optional<Integer> distanceMeters = Optional.empty();
+        private Optional<Long> distanceMeters = Optional.empty();
 
-        private Optional<Integer> driverId = Optional.empty();
+        private Optional<Long> driverId = Optional.empty();
 
         private Optional<V1TripResponseEndAddress> endAddress = Optional.empty();
 
@@ -286,9 +286,9 @@ public final class V1TripResponseTrips {
 
         private Optional<Long> endMs = Optional.empty();
 
-        private Optional<Integer> endOdometer = Optional.empty();
+        private Optional<Long> endOdometer = Optional.empty();
 
-        private Optional<Integer> fuelConsumedMl = Optional.empty();
+        private Optional<Long> fuelConsumedMl = Optional.empty();
 
         private Optional<V1TripResponseStartAddress> startAddress = Optional.empty();
 
@@ -298,9 +298,9 @@ public final class V1TripResponseTrips {
 
         private Optional<Long> startMs = Optional.empty();
 
-        private Optional<Integer> startOdometer = Optional.empty();
+        private Optional<Long> startOdometer = Optional.empty();
 
-        private Optional<Integer> tollMeters = Optional.empty();
+        private Optional<Long> tollMeters = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -359,12 +359,12 @@ public final class V1TripResponseTrips {
          * <p>Length of the trip in meters. This value is calculated from the GPS data collected by the Samsara Vehicle Gateway.</p>
          */
         @JsonSetter(value = "distanceMeters", nulls = Nulls.SKIP)
-        public Builder distanceMeters(Optional<Integer> distanceMeters) {
+        public Builder distanceMeters(Optional<Long> distanceMeters) {
             this.distanceMeters = distanceMeters;
             return this;
         }
 
-        public Builder distanceMeters(Integer distanceMeters) {
+        public Builder distanceMeters(Long distanceMeters) {
             this.distanceMeters = Optional.ofNullable(distanceMeters);
             return this;
         }
@@ -373,12 +373,12 @@ public final class V1TripResponseTrips {
          * <p>ID of the driver.</p>
          */
         @JsonSetter(value = "driverId", nulls = Nulls.SKIP)
-        public Builder driverId(Optional<Integer> driverId) {
+        public Builder driverId(Optional<Long> driverId) {
             this.driverId = driverId;
             return this;
         }
 
-        public Builder driverId(Integer driverId) {
+        public Builder driverId(Long driverId) {
             this.driverId = Optional.ofNullable(driverId);
             return this;
         }
@@ -437,12 +437,12 @@ public final class V1TripResponseTrips {
          * <p>Odometer reading (in meters) at the end of the trip. This is read from the vehicle's on-board diagnostics. If Samsara cannot read the vehicle's odometer values from on-board diagnostics, this value will be 0.</p>
          */
         @JsonSetter(value = "endOdometer", nulls = Nulls.SKIP)
-        public Builder endOdometer(Optional<Integer> endOdometer) {
+        public Builder endOdometer(Optional<Long> endOdometer) {
             this.endOdometer = endOdometer;
             return this;
         }
 
-        public Builder endOdometer(Integer endOdometer) {
+        public Builder endOdometer(Long endOdometer) {
             this.endOdometer = Optional.ofNullable(endOdometer);
             return this;
         }
@@ -451,12 +451,12 @@ public final class V1TripResponseTrips {
          * <p>Amount in milliliters of fuel consumed on this trip.</p>
          */
         @JsonSetter(value = "fuelConsumedMl", nulls = Nulls.SKIP)
-        public Builder fuelConsumedMl(Optional<Integer> fuelConsumedMl) {
+        public Builder fuelConsumedMl(Optional<Long> fuelConsumedMl) {
             this.fuelConsumedMl = fuelConsumedMl;
             return this;
         }
 
-        public Builder fuelConsumedMl(Integer fuelConsumedMl) {
+        public Builder fuelConsumedMl(Long fuelConsumedMl) {
             this.fuelConsumedMl = Optional.ofNullable(fuelConsumedMl);
             return this;
         }
@@ -515,12 +515,12 @@ public final class V1TripResponseTrips {
          * <p>Odometer reading (in meters) at the beginning of the trip. This is read from the vehicle's on-board diagnostics. If Samsara cannot read the vehicle's odometer values from on-board diagnostics, this value will be 0.</p>
          */
         @JsonSetter(value = "startOdometer", nulls = Nulls.SKIP)
-        public Builder startOdometer(Optional<Integer> startOdometer) {
+        public Builder startOdometer(Optional<Long> startOdometer) {
             this.startOdometer = startOdometer;
             return this;
         }
 
-        public Builder startOdometer(Integer startOdometer) {
+        public Builder startOdometer(Long startOdometer) {
             this.startOdometer = Optional.ofNullable(startOdometer);
             return this;
         }
@@ -529,12 +529,12 @@ public final class V1TripResponseTrips {
          * <p>Length in meters trip spent on toll roads.</p>
          */
         @JsonSetter(value = "tollMeters", nulls = Nulls.SKIP)
-        public Builder tollMeters(Optional<Integer> tollMeters) {
+        public Builder tollMeters(Optional<Long> tollMeters) {
             this.tollMeters = tollMeters;
             return this;
         }
 
-        public Builder tollMeters(Integer tollMeters) {
+        public Builder tollMeters(Long tollMeters) {
             this.tollMeters = Optional.ofNullable(tollMeters);
             return this;
         }

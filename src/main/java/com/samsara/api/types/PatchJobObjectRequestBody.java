@@ -37,9 +37,9 @@ public final class PatchJobObjectRequestBody {
 
     private final Optional<String> notes;
 
-    private final Optional<Integer> ontimeWindowAfterArrivalMs;
+    private final Optional<Long> ontimeWindowAfterArrivalMs;
 
-    private final Optional<Integer> ontimeWindowBeforeArrivalMs;
+    private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
     private final Optional<String> startDate;
 
@@ -54,8 +54,8 @@ public final class PatchJobObjectRequestBody {
             Optional<List<String>> industrialAssetIds,
             Optional<String> name,
             Optional<String> notes,
-            Optional<Integer> ontimeWindowAfterArrivalMs,
-            Optional<Integer> ontimeWindowBeforeArrivalMs,
+            Optional<Long> ontimeWindowAfterArrivalMs,
+            Optional<Long> ontimeWindowBeforeArrivalMs,
             Optional<String> startDate,
             Map<String, Object> additionalProperties) {
         this.address = address;
@@ -137,7 +137,7 @@ public final class PatchJobObjectRequestBody {
      * @return Specifies the time window (in milliseconds) after a stop's scheduled arrival time during which the stop is considered 'on-time'.
      */
     @JsonProperty("ontimeWindowAfterArrivalMs")
-    public Optional<Integer> getOntimeWindowAfterArrivalMs() {
+    public Optional<Long> getOntimeWindowAfterArrivalMs() {
         return ontimeWindowAfterArrivalMs;
     }
 
@@ -145,7 +145,7 @@ public final class PatchJobObjectRequestBody {
      * @return Specifies the time window (in milliseconds) before a stop's scheduled arrival time during which the stop is considered 'on-time'.
      */
     @JsonProperty("ontimeWindowBeforeArrivalMs")
-    public Optional<Integer> getOntimeWindowBeforeArrivalMs() {
+    public Optional<Long> getOntimeWindowBeforeArrivalMs() {
         return ontimeWindowBeforeArrivalMs;
     }
 
@@ -225,9 +225,9 @@ public final class PatchJobObjectRequestBody {
 
         private Optional<String> notes = Optional.empty();
 
-        private Optional<Integer> ontimeWindowAfterArrivalMs = Optional.empty();
+        private Optional<Long> ontimeWindowAfterArrivalMs = Optional.empty();
 
-        private Optional<Integer> ontimeWindowBeforeArrivalMs = Optional.empty();
+        private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
 
@@ -364,12 +364,12 @@ public final class PatchJobObjectRequestBody {
          * <p>Specifies the time window (in milliseconds) after a stop's scheduled arrival time during which the stop is considered 'on-time'.</p>
          */
         @JsonSetter(value = "ontimeWindowAfterArrivalMs", nulls = Nulls.SKIP)
-        public Builder ontimeWindowAfterArrivalMs(Optional<Integer> ontimeWindowAfterArrivalMs) {
+        public Builder ontimeWindowAfterArrivalMs(Optional<Long> ontimeWindowAfterArrivalMs) {
             this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
             return this;
         }
 
-        public Builder ontimeWindowAfterArrivalMs(Integer ontimeWindowAfterArrivalMs) {
+        public Builder ontimeWindowAfterArrivalMs(Long ontimeWindowAfterArrivalMs) {
             this.ontimeWindowAfterArrivalMs = Optional.ofNullable(ontimeWindowAfterArrivalMs);
             return this;
         }
@@ -378,12 +378,12 @@ public final class PatchJobObjectRequestBody {
          * <p>Specifies the time window (in milliseconds) before a stop's scheduled arrival time during which the stop is considered 'on-time'.</p>
          */
         @JsonSetter(value = "ontimeWindowBeforeArrivalMs", nulls = Nulls.SKIP)
-        public Builder ontimeWindowBeforeArrivalMs(Optional<Integer> ontimeWindowBeforeArrivalMs) {
+        public Builder ontimeWindowBeforeArrivalMs(Optional<Long> ontimeWindowBeforeArrivalMs) {
             this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
             return this;
         }
 
-        public Builder ontimeWindowBeforeArrivalMs(Integer ontimeWindowBeforeArrivalMs) {
+        public Builder ontimeWindowBeforeArrivalMs(Long ontimeWindowBeforeArrivalMs) {
             this.ontimeWindowBeforeArrivalMs = Optional.ofNullable(ontimeWindowBeforeArrivalMs);
             return this;
         }

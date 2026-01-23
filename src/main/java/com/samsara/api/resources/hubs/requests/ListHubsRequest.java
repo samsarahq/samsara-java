@@ -29,7 +29,7 @@ public final class ListHubsRequest {
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Map<String, Object> additionalProperties;
 
@@ -38,7 +38,7 @@ public final class ListHubsRequest {
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Map<String, Object> additionalProperties) {
         this.hubIds = hubIds;
         this.startTime = startTime;
@@ -84,7 +84,7 @@ public final class ListHubsRequest {
      * @return Maximum number of objects to return. Default and maximum is 100
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -131,7 +131,7 @@ public final class ListHubsRequest {
 
         private Optional<String> after = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -207,12 +207,12 @@ public final class ListHubsRequest {
          * <p>Maximum number of objects to return. Default and maximum is 100</p>
          */
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public Builder limit(Optional<Integer> limit) {
+        public Builder limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
-        public Builder limit(Integer limit) {
+        public Builder limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }

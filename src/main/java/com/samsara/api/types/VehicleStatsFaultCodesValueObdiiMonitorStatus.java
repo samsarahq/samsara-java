@@ -38,7 +38,7 @@ public final class VehicleStatsFaultCodesValueObdiiMonitorStatus {
 
     private final Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusMisfire> misfire;
 
-    private final Optional<Integer> notReadyCount;
+    private final Optional<Long> notReadyCount;
 
     private final Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusO2Sensor> o2Sensor;
 
@@ -56,7 +56,7 @@ public final class VehicleStatsFaultCodesValueObdiiMonitorStatus {
             Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusHeatedO2Sensor> heatedO2Sensor,
             Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusIsoSaeReserved> isoSaeReserved,
             Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusMisfire> misfire,
-            Optional<Integer> notReadyCount,
+            Optional<Long> notReadyCount,
             Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusO2Sensor> o2Sensor,
             Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusSecondaryAir> secondaryAir,
             Map<String, Object> additionalProperties) {
@@ -178,7 +178,7 @@ public final class VehicleStatsFaultCodesValueObdiiMonitorStatus {
      * @return Count of the number of sensors reporting N: Not Complete
      */
     @JsonProperty("notReadyCount")
-    public Optional<Integer> getNotReadyCount() {
+    public Optional<Long> getNotReadyCount() {
         return notReadyCount;
     }
 
@@ -277,7 +277,7 @@ public final class VehicleStatsFaultCodesValueObdiiMonitorStatus {
 
         private Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusMisfire> misfire = Optional.empty();
 
-        private Optional<Integer> notReadyCount = Optional.empty();
+        private Optional<Long> notReadyCount = Optional.empty();
 
         private Optional<VehicleStatsFaultCodesValueObdiiMonitorStatusO2Sensor> o2Sensor = Optional.empty();
 
@@ -465,12 +465,12 @@ public final class VehicleStatsFaultCodesValueObdiiMonitorStatus {
          * <p>Count of the number of sensors reporting N: Not Complete</p>
          */
         @JsonSetter(value = "notReadyCount", nulls = Nulls.SKIP)
-        public Builder notReadyCount(Optional<Integer> notReadyCount) {
+        public Builder notReadyCount(Optional<Long> notReadyCount) {
             this.notReadyCount = notReadyCount;
             return this;
         }
 
-        public Builder notReadyCount(Integer notReadyCount) {
+        public Builder notReadyCount(Long notReadyCount) {
             this.notReadyCount = Optional.ofNullable(notReadyCount);
             return this;
         }

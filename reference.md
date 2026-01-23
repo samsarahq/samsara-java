@@ -1,6 +1,6 @@
 # Reference
 ## Addresses
-<details><summary><code>client.addresses.list() -> SyncPagingIterable&lt;Address&gt;</code></summary>
+<details><summary><code>client.addresses.list() -> SyncPagingIterable&amp;lt;Address&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -151,7 +151,7 @@ client.addresses().create(
 <dl>
 <dd>
 
-**addressTypes:** `Optional<List<CreateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`.
+**addressTypes:** `Optional<List<CreateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
     
 </dd>
 </dl>
@@ -420,7 +420,7 @@ client.addresses().update(
 <dl>
 <dd>
 
-**addressTypes:** `Optional<List<UpdateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`.
+**addressTypes:** `Optional<List<UpdateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
     
 </dd>
 </dl>
@@ -1055,7 +1055,7 @@ client.alerts().getIncidents(
 </details>
 
 ## Assets
-<details><summary><code>client.assets.list() -> SyncPagingIterable&lt;AssetResponseBody&gt;</code></summary>
+<details><summary><code>client.assets.list() -> SyncPagingIterable&amp;lt;AssetResponseBody&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -1180,7 +1180,7 @@ client.assets().list(
 <dl>
 <dd>
 
-**attributes:** `Optional<String>` — A filter on the data to return entities within given range query (only for numeric attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: `attributes=Length:range(8,)&attributes=Length:range(10,20)`
+**attributes:** `Optional<String>` — A filter on the data to return entities within given range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: `attributes=Length:range(8,)&attributes=Length:range(10,20)&attributes=Date:range(2025-01-01,2025-01-31)`
     
 </dd>
 </dl>
@@ -1761,7 +1761,7 @@ client.assets().v1GetAssetsReefers(
 </dl>
 </details>
 
-<details><summary><code>client.assets.v1GetAssetLocation(assetId) -> List&lt;V1AssetLocationResponseItem&gt;</code></summary>
+<details><summary><code>client.assets.v1GetAssetLocation(assetId) -> List&amp;lt;V1AssetLocationResponseItem&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -2028,6 +2028,95 @@ client.assets().update(
 </details>
 
 ## Beta APIs
+<details><summary><code>client.betaApIs.getDepreciationTransactions() -> DepreciationGetDepreciationTransactionsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getDepreciationTransactions(
+    GetDepreciationTransactionsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<OffsetDateTime>` — RFC 3339 timestamp. Returns transactions updated after this time. Compared against updatedAt. If not provided, returns all transactions. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<OffsetDateTime>` — RFC 3339 timestamp. Returns transactions updated before this time. Compared against updatedAt. If not provided, behaves as an unending feed of changes. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — Filter by asset IDs. Up to 50 ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.getAssetsInputs() -> AssetsInputsGetAssetsInputsResponseBody</code></summary>
 <dl>
 <dd>
@@ -2582,7 +2671,7 @@ client.betaApIs().getHosEldEvents(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 25 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 25 objects.
     
 </dd>
 </dl>
@@ -3123,7 +3212,7 @@ client.betaApIs().updateEngineImmobilizerState(
                 UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
                     .builder()
                     .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                    .isOpen(false)
+                    .isOpen(true)
                     .build()
             )
         )
@@ -3246,7 +3335,7 @@ client.betaApIs().getJobs(
 <dl>
 <dd>
 
-**fleetDeviceIds:** `Optional<Integer>` — FleetDeviceId in INTEGER format. (Example: `123456`).
+**fleetDeviceIds:** `Optional<Long>` — FleetDeviceId in INTEGER format. (Example: `123456`).
     
 </dd>
 </dl>
@@ -3575,7 +3664,7 @@ client.betaApIs().getDetections(
 <dl>
 <dd>
 
-**detectionBehaviorLabels:** `Optional<String>` — Optional string of comma separated labels to filter behavior labels. Uses OR semantics for filtering. An empty list allows all values. Valid values: `acceleration`, `braking`, `crash`, `drowsy`, `eatingDrinking`, `edgeRailroadCrossingViolation`, `followingDistance`, `forwardCollisionWarning`, `genericDistraction`, `harshTurn`, `laneDeparture`, `maxSpeed`, `mobileUsage`, `noSeatbelt`, `obstructedCamera`, `passenger`, `policyViolationMask`, `rollingStop`, `rolloverProtection`, `smoking`, `speeding`, `unsafeParking`, `vulnerableRoadUserCollisionWarning`, `yawControl`. (Example: rollingStop,obstructedCamera,noSeatbelt)
+**detectionBehaviorLabels:** `Optional<String>` — Optional string of comma separated labels to filter behavior labels. Uses OR semantics for filtering. An empty list allows all values. Valid values: `acceleration`, `braking`, `crash`, `drowsy`, `eatingDrinking`, `edgeRailroadCrossingViolation`, `followingDistance`, `forwardCollisionWarning`, `genericDistraction`, `harshTurn`, `heavySpeeding`, `laneDeparture`, `lightSpeeding`, `maxSpeed`, `mobileUsage`, `moderateSpeeding`, `noSeatbelt`, `obstructedCamera`, `passenger`, `policyViolationMask`, `ranRedLight`, `rearCollisionWarning`, `rollingStop`, `rolloverProtection`, `severeSpeeding`, `smoking`, `speeding`, `unsafeParking`, `vehicleInBlindSpotWarning`, `vulnerableRoadUserCollisionWarning`, `yawControl`. (Example: rollingStop,obstructedCamera,noSeatbelt)
     
 </dd>
 </dl>
@@ -3583,7 +3672,7 @@ client.betaApIs().getDetections(
 <dl>
 <dd>
 
-**inboxFilterReason:** `Optional<String>` — Optional string of comma separated reasons to filter detections. Uses OR semantics for filtering. An empty list allows all values. Valid values: `overDailyLimit`, `overHourlyLimit`, `overTripLimit`, `belowConfidenceThreshold`, `belowSeverityThreshold`, `overEventRateLimit`, `geofenceFilter`, `belowNudgeThreshold`, `belowSpeedThreshold`, `nighttimeFilter`, `speedingFilter`, `unknown`. (Example: overDailyLimit,overHourlyLimit,belowConfidenceThreshold)
+**inboxFilterReason:** `Optional<String>` — Optional string of comma separated reasons to filter detections. Uses OR semantics for filtering. An empty list allows all values. Valid values: `overDailyLimit`, `overHourlyLimit`, `overTripLimit`, `belowConfidenceThreshold`, `belowSeverityThreshold`, `overEventRateLimit`, `geofenceFilter`, `belowNudgeThreshold`, `belowSpeedThreshold`, `nighttimeFilter`, `speedingFilter`, `inCabAlertOnly`, `unknown`. (Example: overDailyLimit,overHourlyLimit,belowConfidenceThreshold)
     
 </dd>
 </dl>
@@ -3746,72 +3835,7 @@ client.betaApIs().getDevices(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 100 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getDriverTrailerAssignments() -> TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get currently active driver-trailer assignments for driver.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getDriverTrailerAssignments(
-    GetDriverTrailerAssignmentsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 100 objects.
     
 </dd>
 </dl>
@@ -3819,7 +3843,7 @@ client.betaApIs().getDriverTrailerAssignments(
 <dl>
 <dd>
 
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+**includeTags:** `Optional<Boolean>` — Optional boolean to control whether tags are returned in the response. Defaults to false.
     
 </dd>
 </dl>
@@ -3827,74 +3851,7 @@ client.betaApIs().getDriverTrailerAssignments(
 <dl>
 <dd>
 
-**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createDriverTrailerAssignment(request) -> TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a new driver-trailer assignment
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createDriverTrailerAssignment(
-    TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody
-        .builder()
-        .driverId("494123")
-        .trailerId("12345")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `String` — ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
     
 </dd>
 </dl>
@@ -3902,90 +3859,7 @@ client.betaApIs().createDriverTrailerAssignment(
 <dl>
 <dd>
 
-**startTime:** `Optional<String>` — The start time in RFC 3339 format. The time needs to be current or within the past 7 days. Defaults to now if not provided
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**trailerId:** `String` — ID of the trailer. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the trailer.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateDriverTrailerAssignment(request) -> TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update an existing driver-trailer assignment.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateDriverTrailerAssignment(
-    TrailerAssignmentsUpdateDriverTrailerAssignmentRequestBody
-        .builder()
-        .id("id")
-        .endTime("2019-06-13T19:08:25Z")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Samsara ID for the assignment.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` — The end time in RFC 3339 format. The end time should not be in the future
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
     
 </dd>
 </dl>
@@ -4240,6 +4114,122 @@ client.betaApIs().updateShippingDocs(
 <dd>
 
 **shippingDocs:** `String` — ShippingDocs associated with the driver for the day.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listHubCustomProperties() -> HubCustomPropertiesListHubCustomPropertiesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve custom properties for a specific hub.
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.
+
+ <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listHubCustomProperties(
+    ListHubCustomPropertiesRequest
+        .builder()
+        .hubId("hubId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**hubId:** `String` — The hub identifier
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customPropertyIds:** `Optional<String>` — A comma-separated list of custom property IDs that can be used for filtering.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customPropertyNames:** `Optional<String>` — A comma-separated list of custom property names that can be used for filtering.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<OffsetDateTime>` — Time filter of when the custom property was updated, in RFC 3339 format
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<OffsetDateTime>` — Time filter of when the custom property was updated, in RFC 3339 format
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` — If specified, should be the endCursor from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -4797,7 +4787,7 @@ client.betaApIs().archiveQualificationRecord(
 <dl>
 <dd>
 
-Returns all qualification records that have been created or modified for your organization based on the time parameters passed in. Results are paginated and sorted by last modified time. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
+Returns all qualification records that have been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5152,10 +5142,6 @@ client.betaApIs().postReadings(
 <dd>
 
 An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-	Examples:
-	Diagnostic/Engine Readings: engineState, engineSpeed, fuelLevelPerc etc.
-	Level Monitoring Readings: defLevel, defLevelMilliPercent etc.
-	Smart Trailer Readings: reeferState  etc.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5237,20 +5223,6 @@ client.betaApIs().listReadingsDefinitions(
 <dd>
 
 Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime <= happenedAtTime < endTime. End time of null implies endTime is infinite and all known readings are returned.
-	Example:
-	engineRpm Readings for entityId 212014918105584 between time 2025-01-27T19:22:30Z and 2025-01-27T19:25:00Z
-	"data": [
-    {
-      "entityId": "212014918105584",
-      "value": 807,
-      "happenedAtTime": "2025-01-27T19:22:30Z"
-    },
-    {
-      "entityId": "212014918105584",
-      "value": 811,
-      "happenedAtTime": "2025-01-27T19:24:30Z"
-    }
-  ],
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5325,7 +5297,7 @@ client.betaApIs().getReadingsHistory(
 <dl>
 <dd>
 
-**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs.
+**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)
     
 </dd>
 </dl>
@@ -5382,16 +5354,6 @@ client.betaApIs().getReadingsHistory(
 <dd>
 
 An endpoint to get the last value of a reading for a set of entities at the specified time.
-	Example:
-	engineRpm Readings for entityId 212014918105584 at time 2025-04-16T20:49:19Z
-	"data": [
-    {
-      "readingId": "engineRpm",
-      "entityId": "212014918105584",
-      "value": 600,
-      "happenedAtTime": "2025-04-16T20:49:19Z"
-    }
-  ],
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5458,7 +5420,7 @@ client.betaApIs().getReadingsSnapshot(
 <dl>
 <dd>
 
-**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs.
+**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)
     
 </dd>
 </dl>
@@ -5494,7 +5456,7 @@ client.betaApIs().getReadingsSnapshot(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.getSafetyEventsV2() -> SafetyEventsV2GetSafetyEventsV2ResponseBody</code></summary>
+<details><summary><code>client.betaApIs.getReportConfigs() -> ReportsGetReportConfigsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5506,11 +5468,11 @@ client.betaApIs().getReadingsSnapshot(
 <dl>
 <dd>
 
-This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
+Get report configs created in the organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Custom Reports** under the Custom Reports category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5528,8 +5490,8 @@ To use this endpoint, select **Read Safety Events & Scores** under the Safety & 
 <dd>
 
 ```java
-client.betaApIs().getSafetyEventsV2(
-    GetSafetyEventsV2Request
+client.betaApIs().getReportConfigs(
+    GetReportConfigsRequest
         .builder()
         .build()
 );
@@ -5547,31 +5509,23 @@ client.betaApIs().getSafetyEventsV2(
 <dl>
 <dd>
 
-**safetyEventIds:** `Optional<String>` — Required string of comma separated Safety Event IDs. Unique Samsara IDs (uuid) of the safety event.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeAsset:** `Optional<Boolean>` — Indicates whether or not to return expanded “asset” data
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeDriver:** `Optional<Boolean>` — Indicates whether or not to return expanded “driver” data
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Maximum number of configs to return
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — The list of report config IDs to retrieve. Include up to 10 report config IDs. If not provided, all configs will be returned.
     
 </dd>
 </dl>
@@ -5583,7 +5537,7 @@ client.betaApIs().getSafetyEventsV2(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.getSafetyEventsV2Stream() -> SafetyEventsV2GetSafetyEventsV2StreamResponseBody</code></summary>
+<details><summary><code>client.betaApIs.getDatasets() -> ReportsGetDatasetsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5595,11 +5549,11 @@ client.betaApIs().getSafetyEventsV2(
 <dl>
 <dd>
 
-This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events & Scores under the Safety & Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
+Get datasets for custom reports.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Custom Reports** under the Custom Reports category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5617,10 +5571,9 @@ To use this endpoint, select **Read Safety Events & Scores** under the Safety & 
 <dd>
 
 ```java
-client.betaApIs().getSafetyEventsV2Stream(
-    GetSafetyEventsV2StreamRequest
+client.betaApIs().getDatasets(
+    GetDatasetsRequest
         .builder()
-        .startTime("startTime")
         .build()
 );
 ```
@@ -5637,79 +5590,7 @@ client.betaApIs().getSafetyEventsV2Stream(
 <dl>
 <dd>
 
-**startTime:** `String` — RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against `updatedAtTime` of the events.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` — RFC 3339 timestamp which is compared against `updatedAtTime` of the events. If not provided then the endpoint behaves as an unending feed of changes.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetIds:** `Optional<String>` — Optional string of comma separated asset IDs. If asset ID is present, events for the specified asset(s) will be returned. Limit of 2000 asset IDs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**driverIds:** `Optional<String>` — Optional string of comma separated driver IDs. If driver ID is present, events for the specified driver(s) will be returned. Limit of 2000 driver IDs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` — Optional string of comma separated tag IDs. If tag ID is present, events for the specified tag(s) will be returned. Limit of 2000 tag IDs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assignedCoaches:** `Optional<String>` — Optional string of comma separated coach IDs to filter events assigned to a particular coach. Limit of 2000 coach IDs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**behaviorLabels:** `Optional<String>` — Optional string of comma separated labels to filter behavior labels.  Valid values: `Acceleration`, `AggressiveDriving`, `BluetoothHeadset`, `Braking`, `ContextConstructionOrWorkZone`, `ContextSnowyOrIcy`, `ContextVulnerableRoadUser`, `ContextWet`, `Crash`, `DefensiveDriving`, `DidNotYield`, `Drinking`, `Drowsy`, `Eating`, `EatingDrinking`, `EdgeDistractedDriving`, `EdgeRailroadCrossingViolation`, `FollowingDistance`, `FollowingDistanceModerate`, `FollowingDistanceSevere`, `ForwardCollisionWarning`, `GenericDistraction`, `GenericTailgating`, `HarshTurn`, `HeavySpeeding`, `HosViolation`, `Idling`, `Invalid`, `LaneDeparture`, `LateResponse`, `LeftTurn`, `LightSpeeding`, `MaxSpeed`, `MobileUsage`, `ModerateSpeeding`, `NearCollison`, `NearPedestrianCollision`, `NoSeatbelt`, `ObstructedCamera`, `OtherViolation`, `Passenger`, `PolicyViolationMask`, `ProtectiveEquipment`, `RanRedLight`, `Reversing`, `RollingStop`, `RolloverProtection`, `SevereSpeeding`, `Smoking`, `Speeding`, `UTurn`, `UnsafeManeuver`, `UnsafeParking`, `VulnerableRoadUserCollisionWarning`, `YawControl`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**eventStates:** `Optional<String>` — Optional string of comma separated values to filter event states.  Valid values: `needsReview`, `reviewed`, `needsCoaching`, `coached`, `dismissed`, `needsRecognition`, `recognized`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeAsset:** `Optional<Boolean>` — Indicates whether or not to return expanded “asset” data
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeDriver:** `Optional<Boolean>` — Indicates whether or not to return expanded “driver” data
+**ids:** `Optional<String>` — The list of dataset IDs to retrieve the datasets for. Include up to 10 dataset IDs. If not provided, all datasets will be returned.
     
 </dd>
 </dl>
@@ -5718,6 +5599,255 @@ client.betaApIs().getSafetyEventsV2Stream(
 <dd>
 
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Maximum number of datasets to return.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.getReportRuns() -> ReportsGetReportRunsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get custom report runs created by the user.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Custom Reports** under the Custom Reports category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getReportRuns(
+    GetReportRunsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**reportConfigIds:** `Optional<String>` — The list of report config IDs to retrieve the report runs for. Include up to 10 report config IDs. If not provided, runs for all configs will be returned.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — The list of report run IDs to retrieve the report runs for. Include up to 10 report run IDs. If not provided, all report runs will be returned.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Maximum number of runs to return.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createReportRun(request) -> ReportsCreateReportRunResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Triggers a new custom report run based on the provided configuration.
+
+ <b>Rate limit:</b> 50 requests/hour (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Custom Reports** under the Custom Reports category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createReportRun(
+    ReportsCreateReportRunRequestBody
+        .builder()
+        .reportConfig(
+            CreateReportConfigObjectRequestBody
+                .builder()
+                .build()
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**reportConfig:** `CreateReportConfigObjectRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.getReportRunData() -> ReportsGetReportRunDataResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get data for the given custom report run.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Custom Reports** under the Custom Reports category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getReportRunData(
+    GetReportRunDataRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — ID of the report run.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Maximum number of rows to return.
     
 </dd>
 </dl>
@@ -6425,7 +6555,7 @@ client.betaApIs().deleteTrainingAssignments(
 <dl>
 <dd>
 
-**ids:** `Optional<String>` — String of comma separated assignments IDs. Max value for this value is 100 objects .Example: `ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075`
+**ids:** `Optional<String>` — String of comma separated assignments IDs. Max value for this value is 100 objects. Example: `ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075`
     
 </dd>
 </dl>
@@ -6493,7 +6623,7 @@ client.betaApIs().patchTrainingAssignments(
 <dl>
 <dd>
 
-**ids:** `Optional<String>` — String of comma separated assignments IDs. Max value for this value is 100 objects .Example: `ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075`
+**ids:** `Optional<String>` — String of comma separated assignments IDs. Max value for this value is 100 objects. Example: `ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075`
     
 </dd>
 </dl>
@@ -6525,9 +6655,7 @@ client.betaApIs().patchTrainingAssignments(
 <dl>
 <dd>
 
-Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. 
-
-**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Training APIs enabled for your organization.
+Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -6610,6 +6738,22 @@ client.betaApIs().getTrainingAssignmentsStream(
 <dd>
 
 **status:** `Optional<String>` — Optional string of comma separated values. If status is present, training assignments for the specified status(s) will be returned. Valid values: "notStarted", "inProgress", "completed". Defaults to returning all courses.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isOverdue:** `Optional<Boolean>` — Optional boolean value. If present, training assignments for the specified overdue status will be returned. Valid values: true, false. Defaults to returning all assignments.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**categoryIds:** `Optional<String>` — Optional string of comma separated category IDs. If category ID is present, training assignments for the specified category ID(s) will be returned. Max value for this value is 100 objects. Example: `categoryIds=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075`
     
 </dd>
 </dl>
@@ -6711,120 +6855,6 @@ client.betaApIs().getTrainingCourses(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.getTrips() -> TripsGetTripsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-This endpoint will return trips that have been collected for your organization based on the time parameters passed in. Results are paginated. Reach out to your Samsara Representative to have this API enabled for your organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Trips** under the Trips category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getTrips(
-    GetTripsRequest
-        .builder()
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeAsset:** `Optional<Boolean>` — Indicates whether or not to return expanded “asset” data
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**completionStatus:** `Optional<GetTripsRequestCompletionStatus>` — Filters trips based on a specific completion status  Valid values: `inProgress`, `completed`, `all`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against `updatedAtTime` or `tripStartTime` depending on the queryBy parameter.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` — RFC 3339 timestamp which is compared against `updatedAtTime` or `tripStartTime` depending on the queryBy parameter. If not provided then the endpoint behaves as an unending feed of changes.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**queryBy:** `Optional<GetTripsRequestQueryBy>` — Decide which timestamp the `startTime` and `endTime` are compared to.  Valid values: `updatedAtTime`, `tripStartTime`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — Comma-separated list of asset IDs. Include up to 50 asset IDs.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## LocationAndSpeed
 <details><summary><code>client.locationAndSpeed.getLocationAndSpeed() -> LocationAndSpeedGetLocationAndSpeedResponseBody</code></summary>
 <dl>
@@ -6887,7 +6917,7 @@ client.locationAndSpeed().getLocationAndSpeed(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>
@@ -6927,7 +6957,7 @@ client.locationAndSpeed().getLocationAndSpeed(
 <dl>
 <dd>
 
-**includeReverseGeo:** `Optional<Boolean>` — Optional boolean indicating whether or not to return the 'address' object
+**includeReverseGeo:** `Optional<Boolean>` — Optional boolean indicating whether or not to return the 'address' object. Address information won't be returned for high-frequency locations.
     
 </dd>
 </dl>
@@ -6936,6 +6966,14 @@ client.locationAndSpeed().getLocationAndSpeed(
 <dd>
 
 **includeGeofenceLookup:** `Optional<Boolean>` — Optional boolean indicating whether or not to return the 'geofence' object
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeHighFrequencyLocations:** `Optional<Boolean>` — Optional boolean indicating whether or not to return high-frequency location data (up to 1Hz). Cannot be used with includeGeofenceLookup.
     
 </dd>
 </dl>
@@ -7088,7 +7126,7 @@ client.attributes().createAttribute(
 <dl>
 <dd>
 
-**attributeType:** `CreateAttributeRequestAttributeType` — Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`.
+**attributeType:** `CreateAttributeRequestAttributeType` — Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`, `number`, `date`.
     
 </dd>
 </dl>
@@ -7352,7 +7390,7 @@ client.attributes().updateAttribute(
 <dl>
 <dd>
 
-**attributeType:** `Optional<UpdateAttributeRequestAttributeType>` — Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`.
+**attributeType:** `Optional<UpdateAttributeRequestAttributeType>` — Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`, `number`, `date`.
     
 </dd>
 </dl>
@@ -7637,7 +7675,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );
@@ -8425,7 +8463,7 @@ client.maintenance().getDefectTypes(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>
@@ -8507,7 +8545,7 @@ client.maintenance().streamDefects(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
     
 </dd>
 </dl>
@@ -8687,7 +8725,7 @@ client.maintenance().getDvirs(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
     
 </dd>
 </dl>
@@ -8985,7 +9023,7 @@ client.maintenance().createDvir(
 <dl>
 <dd>
 
-**odometerMeters:** `Optional<Integer>` — The odometer reading in meters.
+**odometerMeters:** `Optional<Long>` — The odometer reading in meters.
     
 </dd>
 </dl>
@@ -9794,6 +9832,246 @@ client.fuelAndEnergy().postFuelPurchase(
 <dd>
 
 **vehicleId:** `Optional<String>` — Samsara ID of the vehicle that purchased the fuel.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## DriverTrailerAssignments
+<details><summary><code>client.driverTrailerAssignments.getDriverTrailerAssignments() -> TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get currently active driver-trailer assignments for driver.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.driverTrailerAssignments().getDriverTrailerAssignments(
+    GetDriverTrailerAssignmentsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.driverTrailerAssignments.createDriverTrailerAssignment(request) -> TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new driver-trailer assignment
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.driverTrailerAssignments().createDriverTrailerAssignment(
+    TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody
+        .builder()
+        .driverId("494123")
+        .trailerId("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` — ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<String>` — The start time in RFC 3339 format. The time needs to be current or within the past 7 days. Defaults to now if not provided
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trailerId:** `String` — ID of the trailer. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the trailer.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.driverTrailerAssignments.updateDriverTrailerAssignment(request) -> TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an existing driver-trailer assignment.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.driverTrailerAssignments().updateDriverTrailerAssignment(
+    TrailerAssignmentsUpdateDriverTrailerAssignmentRequestBody
+        .builder()
+        .id("id")
+        .endTime("2019-06-13T19:08:25Z")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Samsara ID for the assignment.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `String` — The end time in RFC 3339 format. The end time should not be in the future
     
 </dd>
 </dl>
@@ -10638,7 +10916,7 @@ client.legacyApIs().getVehicleIdlingReports(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>
@@ -10694,7 +10972,194 @@ client.legacyApIs().getVehicleIdlingReports(
 <dl>
 <dd>
 
-**minIdlingDurationMinutes:** `Optional<Integer>` — A filter on the data based on a minimum idling duration.
+**minIdlingDurationMinutes:** `Optional<Long>` — A filter on the data based on a minimum idling duration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getSafetyEvents() -> SafetyEventsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** 
+
+ Fetch safety events for the organization in a given time period. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getSafetyEvents(
+    GetSafetyEventsRequest
+        .builder()
+        .startTime("startTime")
+        .endTime("endTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getSafetyActivityEventFeed() -> SafetyEventsGetSafetyActivityEventFeedResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.**
+
+Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
+
+| ActivityType      | Description |
+| ----------- | ----------- |
+| CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+| BehaviorLabelActivityType     | a label is added or removed from a safety event |
+| CoachingStateActivityType     | a safety event coaching state is updated        |
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getSafetyActivityEventFeed(
+    GetSafetyActivityEventFeedRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     
 </dd>
 </dl>
@@ -10800,6 +11265,85 @@ client.legacyApIs().getVehiclesDriverAssignments(
 <dd>
 
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.v1GetVehicleHarshEvent(vehicleId) -> V1VehicleHarshEventResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** <n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Fetch harsh event details for a vehicle. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().v1GetVehicleHarshEvent(
+    1000000L,
+    V1GetVehicleHarshEventRequest
+        .builder()
+        .timestamp(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**vehicleId:** `Long` — ID of the vehicle. Must contain only digits 0-9.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timestamp:** `Long` — Timestamp in milliseconds representing the timestamp of a harsh event.
     
 </dd>
 </dl>
@@ -11818,7 +12362,7 @@ client.driverVehicleAssignments().updateDriverVehicleAssignment(
 </details>
 
 ## Drivers
-<details><summary><code>client.drivers.list() -> SyncPagingIterable&lt;Driver&gt;</code></summary>
+<details><summary><code>client.drivers.list() -> SyncPagingIterable&amp;lt;Driver&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -12037,7 +12581,7 @@ client.drivers().create(
 <dl>
 <dd>
 
-**eldDayStartHour:** `Optional<Integer>` — `0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.
+**eldDayStartHour:** `Optional<Long>` — `0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.
     
 </dd>
 </dl>
@@ -12494,7 +13038,7 @@ client.drivers().update(
 <dl>
 <dd>
 
-**attributes:** `Optional<List<CreateDriverRequestAttributes>>` 
+**attributes:** `Optional<List<UpdateDriverRequestAttributes>>` 
     
 </dd>
 </dl>
@@ -12550,7 +13094,7 @@ client.drivers().update(
 <dl>
 <dd>
 
-**eldDayStartHour:** `Optional<Integer>` — `0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.
+**eldDayStartHour:** `Optional<Long>` — `0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.
     
 </dd>
 </dl>
@@ -12759,6 +13303,97 @@ client.drivers().update(
 <dd>
 
 **waitingTimeDutyStatusEnabled:** `Optional<Boolean>` — Flag indicating this driver may select waiting time duty status in ELD logs
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## AuthTokenForDriver
+<details><summary><code>client.authTokenForDriver.authToken(request) -> AuthTokenAuthTokenResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a short-lived auth token a driver can use to login.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Driver Auth Token** under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.authTokenForDriver().authToken(
+    AuthTokenAuthTokenRequestBody
+        .builder()
+        .code("dp[gZc1wAigz4uGa0Hh")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**code:** `String` — Required. Random 12+ character string, used with the auth token to help secure the client from intercepted tokens.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverId:** `Optional<Long>` — Optional. Samsara ID of the driver. One of `id`, `externalId`, or `username` is required.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` — Optional. External ID of the driver, in the format `key:value` (e.g., `payrollId:ABFS18600`). One of `id`, `externalId`, or `username` is required.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**username:** `Optional<String>` — Optional. Username of the driver. This is the login identifier configured when the driver is created. One of `id`, `externalId`, or `username` is required.
     
 </dd>
 </dl>
@@ -14568,7 +15203,7 @@ To use this endpoint, select **Read IFTA (US)** under the Compliance category wh
 client.ifta().getIftaJurisdictionReports(
     GetIftaJurisdictionReportsRequest
         .builder()
-        .year(1)
+        .year(1000000L)
         .build()
 );
 ```
@@ -14585,7 +15220,7 @@ client.ifta().getIftaJurisdictionReports(
 <dl>
 <dd>
 
-**year:** `Integer` —  The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`
+**year:** `Long` —  The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`
     
 </dd>
 </dl>
@@ -14692,7 +15327,7 @@ To use this endpoint, select **Read IFTA (US)** under the Compliance category wh
 client.ifta().getIftaVehicleReports(
     GetIftaVehicleReportsRequest
         .builder()
-        .year(1)
+        .year(1000000L)
         .build()
 );
 ```
@@ -14709,7 +15344,7 @@ client.ifta().getIftaVehicleReports(
 <dl>
 <dd>
 
-**year:** `Integer` —  The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`
+**year:** `Long` —  The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: `year=2021`
     
 </dd>
 </dl>
@@ -15022,7 +15657,7 @@ client.routes().fetchRoutes(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>
@@ -15031,6 +15666,14 @@ client.routes().fetchRoutes(
 <dd>
 
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include:** `Optional<String>` — A comma-separated list of additional fields to include in the response. Valid values: `stops.actualDistanceMeters`
     
 </dd>
 </dl>
@@ -15313,6 +15956,14 @@ client.routes().fetchRoute(
 <dd>
 
 **id:** `String` — ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include:** `Optional<String>` — A comma-separated list of additional fields to include in the response. Valid values: `stops.actualDistanceMeters`
     
 </dd>
 </dl>
@@ -15626,7 +16277,7 @@ client.routes().listHubPlanRoutes(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — Maximum number of objects to return. Default and maximum is 100
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -15705,449 +16356,6 @@ client.routes().v1DeleteDispatchRouteById(
 <dd>
 
 **applyToFutureRoutes:** `Optional<Boolean>` — This is only for a recurring route.  If set to true, delete all following runs of the route.  If set to false, only delete the current route.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Safety
-<details><summary><code>client.safety.getSafetyEvents() -> SafetyEventsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetch safety events for the organization in a given time period. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.safety().getSafetyEvents(
-    GetSafetyEventsRequest
-        .builder()
-        .startTime("startTime")
-        .endTime("endTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.safety.getSafetyActivityEventFeed() -> SafetyEventsGetSafetyActivityEventFeedResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
-
-| ActivityType      | Description |
-| ----------- | ----------- |
-| CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-| BehaviorLabelActivityType     | a label is added or removed from a safety event |
-| CoachingStateActivityType     | a safety event coaching state is updated        |
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.safety().getSafetyActivityEventFeed(
-    GetSafetyActivityEventFeedRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.safety.v1GetDriverSafetyScore(driverId) -> V1DriverSafetyScoreResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Fetch the safety score for the driver.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.safety().v1GetDriverSafetyScore(
-    1000000L,
-    V1GetDriverSafetyScoreRequest
-        .builder()
-        .startMs(1000000L)
-        .endMs(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `Long` — ID of the driver. Must contain only digits 0-9.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.safety.v1GetVehicleHarshEvent(vehicleId) -> V1VehicleHarshEventResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Fetch harsh event details for a vehicle. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.safety().v1GetVehicleHarshEvent(
-    1000000L,
-    V1GetVehicleHarshEventRequest
-        .builder()
-        .timestamp(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**vehicleId:** `Long` — ID of the vehicle. Must contain only digits 0-9.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**timestamp:** `Long` — Timestamp in milliseconds representing the timestamp of a harsh event.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.safety.v1GetVehicleSafetyScore(vehicleId) -> V1VehicleSafetyScoreResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Fetch the safety score for the vehicle. 
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.safety().v1GetVehicleSafetyScore(
-    1000000L,
-    V1GetVehicleSafetyScoreRequest
-        .builder()
-        .startMs(1000000L)
-        .endMs(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**vehicleId:** `Long` — ID of the vehicle. Must contain only digits 0-9.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
     
 </dd>
 </dl>
@@ -16610,7 +16818,7 @@ client.trailers().listTrailers(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>
@@ -17025,7 +17233,7 @@ client.trailers().updateTrailer(
 </details>
 
 ## Vehicles
-<details><summary><code>client.vehicles.list() -> SyncPagingIterable&lt;VehicleResponseObjectResponseBody&gt;</code></summary>
+<details><summary><code>client.vehicles.list() -> SyncPagingIterable&amp;lt;VehicleResponseObjectResponseBody&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -17078,7 +17286,7 @@ client.vehicles().list(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>
@@ -17118,7 +17326,7 @@ client.vehicles().list(
 <dl>
 <dd>
 
-**attributes:** `Optional<String>` — A filter on the data to return entities having given attributes using either name-value pair, or range query (only for numeric attributes) separated by a comma. Only entities meeting all the conditions will be returned. Example: `attributes=ExampleAttributeName:some_value&attributes=SomeOtherAttr:123&attributes=Length:range(10,20)`
+**attributes:** `Optional<String>` — A filter on the data to return entities having given attributes using either name-value pair, or range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. Example: `attributes=ExampleAttributeName:some_value&attributes=SomeOtherAttr:123&attributes=Length:range(10,20)&attributes=Date:range(2025-01-01,2025-01-31)`
     
 </dd>
 </dl>
@@ -19390,7 +19598,7 @@ client.hubs().listHubCapacities(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — Maximum number of objects to return. Default and maximum is 100
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -19611,7 +19819,7 @@ client.hubs().listHubLocations(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — Maximum number of objects to return. Default and maximum is 100
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -19668,10 +19876,10 @@ client.hubs().createHubLocations(
                     .customerLocationId("LOC-123")
                     .hubId("550e8400-e29b-41d4-a716-446655440000")
                     .isDepot(false)
-                    .latitude(34.0522)
-                    .longitude(-118.2437)
                     .name("Customer ABC Warehouse")
                     .driverInstructions("sample instructions")
+                    .latitude(34.0522)
+                    .longitude(-118.2437)
                     .plannerNotes("sample note")
                     .serviceTimeSeconds(1800)
                     .serviceWindows(
@@ -19826,7 +20034,7 @@ client.hubs().listHubSkills(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — Maximum number of objects to return. Default and maximum is 100
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -19923,7 +20131,7 @@ client.hubs().listHubs(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — Maximum number of objects to return. Default and maximum is 100
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -20000,6 +20208,14 @@ client.plans().createHubPlan(
 <dd>
 
 **name:** `String` — The name of the plan
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shiftStartTime:** `Optional<OffsetDateTime>` — The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.
     
 </dd>
 </dl>
@@ -20105,7 +20321,7 @@ client.plans().listHubPlans(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — Maximum number of objects to return. Default and maximum is 100
+**limit:** `Optional<Long>` — Maximum number of objects to return. Default and maximum is 100
     
 </dd>
 </dl>
@@ -20215,7 +20431,7 @@ client.idling().getIdlingEvents(
 <dl>
 <dd>
 
-**minAirTemperatureMillicelsius:** `Optional<Integer>` — A filter on the data based on the minimum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.
+**minAirTemperatureMillicelsius:** `Optional<Long>` — A filter on the data based on the minimum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.
     
 </dd>
 </dl>
@@ -20223,7 +20439,7 @@ client.idling().getIdlingEvents(
 <dl>
 <dd>
 
-**maxAirTemperatureMillicelsius:** `Optional<Integer>` — A filter on the data based on the maximum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.
+**maxAirTemperatureMillicelsius:** `Optional<Long>` — A filter on the data based on the maximum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.
     
 </dd>
 </dl>
@@ -20239,7 +20455,7 @@ client.idling().getIdlingEvents(
 <dl>
 <dd>
 
-**minDurationMilliseconds:** `Optional<Integer>` — A filter on the data based on the minimum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.
+**minDurationMilliseconds:** `Optional<Long>` — A filter on the data based on the minimum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.
     
 </dd>
 </dl>
@@ -20247,7 +20463,7 @@ client.idling().getIdlingEvents(
 <dl>
 <dd>
 
-**maxDurationMilliseconds:** `Optional<Integer>` — A filter on the data based on the maximum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.
+**maxDurationMilliseconds:** `Optional<Long>` — A filter on the data based on the maximum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.
     
 </dd>
 </dl>
@@ -20287,7 +20503,7 @@ client.idling().getIdlingEvents(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
     
 </dd>
 </dl>
@@ -21182,7 +21398,7 @@ client.industrial().getDataInputDataHistory(
 </dl>
 </details>
 
-<details><summary><code>client.industrial.v1GetCameras() -> List&lt;V1VisionCamerasResponseItem&gt;</code></summary>
+<details><summary><code>client.industrial.v1GetCameras() -> List&amp;lt;V1VisionCamerasResponseItem&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -21232,7 +21448,7 @@ client.industrial().v1GetCameras();
 </dl>
 </details>
 
-<details><summary><code>client.industrial.v1GetVisionProgramsByCamera(cameraId) -> List&lt;V1ProgramsForTheCameraResponseItem&gt;</code></summary>
+<details><summary><code>client.industrial.v1GetVisionProgramsByCamera(cameraId) -> List&amp;lt;V1ProgramsForTheCameraResponseItem&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -21475,7 +21691,7 @@ client.industrial().v1GetVisionRuns(
 </dl>
 </details>
 
-<details><summary><code>client.industrial.getVisionRunsByCamera(cameraId) -> List&lt;V1VisionRunsByCameraResponseItem&gt;</code></summary>
+<details><summary><code>client.industrial.getVisionRunsByCamera(cameraId) -> List&amp;lt;V1VisionRunsByCameraResponseItem&amp;gt;</code></summary>
 <dl>
 <dd>
 
@@ -22143,7 +22359,7 @@ client.liveSharingLinks().getLiveSharingLinks(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 100 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 100 objects.
     
 </dd>
 </dl>
@@ -22436,6 +22652,94 @@ client.liveSharingLinks().updateLiveSharingLink(
 </details>
 
 ## WorkOrders
+<details><summary><code>client.workOrders.postInvoiceScan(request) -> WorkOrdersPostInvoiceScanResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Process an invoice scan to create or update a work order with AI-extracted data. Accepts base64 encoded invoice files (PDF, JPEG, PNG) up to 10MB.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.workOrders().postInvoiceScan(
+    WorkOrdersPostInvoiceScanRequestBody
+        .builder()
+        .file(
+            InvoiceScanFileRequestBody
+                .builder()
+                .base64Content("JVBERi0xLjQKJeLjz9MKMyAwIG9iago8P...")
+                .contentType("application/pdf")
+                .build()
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Asset ID to create a new work order for the invoice. Provide either workOrderId OR assetId, but not both. If assetId is provided, a new work order will be created for that asset. If workOrderId is provided instead, the invoice will be attached to the existing work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**file:** `InvoiceScanFileRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**workOrderId:** `Optional<String>` — Work order ID to attach the invoice to an existing work order. Provide either workOrderId OR assetId, but not both. If workOrderId is provided, the invoice will be attached to the existing work order. If assetId is provided instead, a new work order will be created for that asset.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.workOrders.getServiceTasks() -> WorkOrdersGetServiceTasksResponseBody</code></summary>
 <dl>
 <dd>
@@ -22660,7 +22964,7 @@ client.workOrders().postWorkOrders(
 <dl>
 <dd>
 
-**category:** `Optional<WorkOrdersPostWorkOrdersRequestBodyCategory>` — The category of the work order  Valid values: `Annual`, `Corrective`, `Damage Repair`, `Preventive`, `Recall`, `Unspecified`
+**category:** `Optional<String>` — The category of the work order
     
 </dd>
 </dl>
@@ -22896,7 +23200,7 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
-**category:** `Optional<WorkOrdersPatchWorkOrdersRequestBodyCategory>` — The category of the work order  Valid values: `Annual`, `Corrective`, `Damage Repair`, `Preventive`, `Recall`, `Unspecified`
+**category:** `Optional<String>` — The category of the work order
     
 </dd>
 </dl>
@@ -23203,7 +23507,7 @@ Creates a short-lived auth token for a driver.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Driver Auth Token** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Driver Auth Token** under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
 
 Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
 
@@ -23497,7 +23801,7 @@ client.routeEvents().getRouteEventsStream(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many events will be in the response. Default and max for this value is 200 events.
+**limit:** `Optional<Long>` — The limit for how many events will be in the response. Default and max for this value is 200 events.
     
 </dd>
 </dl>
@@ -23506,6 +23810,446 @@ client.routeEvents().getRouteEventsStream(
 <dd>
 
 **includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Safety
+<details><summary><code>client.safety.getSafetyEventsV2() -> SafetyEventsV2GetSafetyEventsV2ResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safety().getSafetyEventsV2(
+    GetSafetyEventsV2Request
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**safetyEventIds:** `Optional<String>` — Required string of comma separated Safety Event IDs. Unique Samsara IDs (uuid) of the safety event.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeAsset:** `Optional<Boolean>` — Indicates whether or not to return expanded “asset” data
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeDriver:** `Optional<Boolean>` — Indicates whether or not to return expanded “driver” data
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeVgOnlyEvents:** `Optional<Boolean>` — Indicates whether or not to return events that are captured by devices with only a Vehicle Gateway (VG) installed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.safety.getSafetyEventsV2Stream() -> SafetyEventsV2GetSafetyEventsV2StreamResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events & Scores under the Safety & Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safety().getSafetyEventsV2Stream(
+    GetSafetyEventsV2StreamRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `String` — RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against `updatedAtTime` or `createdAtTime` depending on the `queryByTimeField` parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — RFC 3339 timestamp. If not provided and filtering by `updatedAtTime` then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against `updatedAtTime` or `createdAtTime` depending on the `queryByTimeField` parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**queryByTimeField:** `Optional<GetSafetyEventsV2StreamRequestQueryByTimeField>` — Optional string that decides which field to compare against the provided time range.  Valid values: `updatedAtTime`, `createdAtTime`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — Optional string of comma separated asset IDs. If asset ID is present, events for the specified asset(s) will be returned. Limit of 2000 asset IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverIds:** `Optional<String>` — Optional string of comma separated driver IDs. If driver ID is present, events for the specified driver(s) will be returned. Limit of 2000 driver IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — Optional string of comma separated tag IDs. If tag ID is present, events for the specified tag(s) will be returned. Limit of 2000 tag IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assignedCoaches:** `Optional<String>` — Optional string of comma separated coach IDs to filter events assigned to a particular coach. Limit of 2000 coach IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**behaviorLabels:** `Optional<String>` — Optional string of comma separated values to filter behavior labels. Valid values: `Acceleration`, `AggressiveDriving`, `BluetoothHeadset`, `Braking`, `ContextConstructionOrWorkZone`, `ContextSnowyOrIcy`, `ContextVulnerableRoadUser`, `ContextWet`, `Crash`, `DefensiveDriving`, `DidNotYield`, `Drinking`, `Drowsy`, `Eating`, `EatingDrinking`, `EdgeDistractedDriving`, `EdgeRailroadCrossingViolation`, `FollowingDistance`, `FollowingDistanceModerate`, `FollowingDistanceSevere`, `ForwardCollisionWarning`, `GenericDistraction`, `GenericTailgating`, `HarshTurn`, `HeavySpeeding`, `HosViolation`, `Idling`, `Invalid`, `LaneDeparture`, `LateResponse`, `LeftTurn`, `LightSpeeding`, `MaxSpeed`, `MobileUsage`, `ModerateSpeeding`, `NearCollison`, `NearPedestrianCollision`, `NoSeatbelt`, `ObstructedCamera`, `OtherViolation`, `Passenger`, `PolicyViolationMask`, `ProtectiveEquipment`, `RanRedLight`, `Reversing`, `RollingStop`, `RolloverProtection`, `SevereSpeeding`, `Smoking`, `Speeding`, `UTurn`, `UnsafeManeuver`, `UnsafeParking`, `VulnerableRoadUserCollisionWarning`, `YawControl`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eventStates:** `Optional<String>` — Optional string of comma separated values to filter event states. Valid values: `needsReview`, `reviewed`, `needsCoaching`, `coached`, `dismissed`, `needsRecognition`, `recognized`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeAsset:** `Optional<Boolean>` — Indicates whether or not to return expanded “asset” data
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeDriver:** `Optional<Boolean>` — Indicates whether or not to return expanded “driver” data
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeVgOnlyEvents:** `Optional<Boolean>` — Indicates whether or not to return events that are captured by devices with only a Vehicle Gateway (VG) installed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.safety.v1GetDriverSafetyScore(driverId) -> V1DriverSafetyScoreResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Fetch the safety score for the driver.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safety().v1GetDriverSafetyScore(
+    1000000L,
+    V1GetDriverSafetyScoreRequest
+        .builder()
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `Long` — ID of the driver. Must contain only digits 0-9.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.safety.v1GetVehicleSafetyScore(vehicleId) -> V1VehicleSafetyScoreResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Fetch the safety score for the vehicle. 
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safety().v1GetVehicleSafetyScore(
+    1000000L,
+    V1GetVehicleSafetyScoreRequest
+        .builder()
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**vehicleId:** `Long` — ID of the vehicle. Must contain only digits 0-9.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
     
 </dd>
 </dl>
@@ -24230,6 +24974,209 @@ client.tags().patchTag(
 </dl>
 </details>
 
+## Trips
+<details><summary><code>client.trips.getTrips() -> TripsGetTripsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint will return trips that have been collected for your organization based on the time parameters passed in. Results are paginated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Trips** under the Trips category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.trips().getTrips(
+    GetTripsRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeAsset:** `Optional<Boolean>` — Indicates whether or not to return expanded “asset” data
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**completionStatus:** `Optional<GetTripsRequestCompletionStatus>` — Filters trips based on a specific completion status  Valid values: `inProgress`, `completed`, `all`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against `updatedAtTime` or `tripStartTime` depending on the queryBy parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — RFC 3339 timestamp which is compared against `updatedAtTime` or `tripStartTime` depending on the queryBy parameter. If not provided then the endpoint behaves as an unending feed of changes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**queryBy:** `Optional<GetTripsRequestQueryBy>` — Decide which timestamp the `startTime` and `endTime` are compared to.  Valid values: `updatedAtTime`, `tripStartTime`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — Comma-separated list of asset IDs. Include up to 50 asset IDs.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trips.v1GetFleetTrips() -> V1TripResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Vehicle Trips** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.trips().v1GetFleetTrips(
+    V1GetFleetTripsRequest
+        .builder()
+        .vehicleId(1000000L)
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**vehicleId:** `Long` — Vehicle ID to query.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Beginning of the time range, specified in milliseconds UNIX time. Limited to a 90 day window with respect to startMs and endMs
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — End of the time range, specified in milliseconds UNIX time.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Users
 <details><summary><code>client.users.listUserRoles() -> ListUserRolesResponse</code></summary>
 <dl>
@@ -24765,7 +25712,7 @@ This endpoint is still on our legacy API.
 
 Get all messages. 
 
- <b>Rate limit:</b> 75 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
 
@@ -24926,7 +25873,7 @@ This endpoint is still on our legacy API.
 
 Fetch trailer assignment data for all trailers in your organization. 
 
- <b>Rate limit:</b> 100 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
 
@@ -25029,7 +25976,7 @@ This endpoint is still on our legacy API.
 
 Fetch trailer assignment data for a single trailer. 
 
- <b>Rate limit:</b> 100 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
 
@@ -25085,95 +26032,6 @@ client.trailerAssignments().v1GetFleetTrailerAssignments(
 <dd>
 
 **endMs:** `Optional<Long>` — Timestamp in Unix epoch milliseconds representing the end of the period to fetch. Omitting endMs sets endMs as the current time
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Trips
-<details><summary><code>client.trips.v1GetFleetTrips() -> V1TripResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Get historical trips data for specified vehicle. This method returns a set of historical trips data for the specified vehicle in the specified time range. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Vehicle Trips** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.trips().v1GetFleetTrips(
-    V1GetFleetTripsRequest
-        .builder()
-        .vehicleId(1000000L)
-        .startMs(1000000L)
-        .endMs(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**vehicleId:** `Long` — Vehicle ID to query.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startMs:** `Long` — Beginning of the time range, specified in milliseconds UNIX time. Limited to a 90 day window with respect to startMs and endMs
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endMs:** `Long` — End of the time range, specified in milliseconds UNIX time.
     
 </dd>
 </dl>
@@ -25351,7 +26209,7 @@ This endpoint is still on our legacy API.
 
 Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution. 
 
- <b>Rate limit:</b> 100 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
 
@@ -25375,7 +26233,7 @@ client.sensors().v1GetSensorsHistory(
         .builder()
         .endMs(1462881998034L)
         .startMs(1462878398034L)
-        .stepMs(3600000)
+        .stepMs(3600000L)
         .series(
             Arrays.asList(
                 V1SensorsHistorySeries
@@ -25433,7 +26291,7 @@ client.sensors().v1GetSensorsHistory(
 <dl>
 <dd>
 
-**stepMs:** `Integer` — Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.
+**stepMs:** `Long` — Time resolution for which data should be returned, in milliseconds. Specifying 3600000 will return data at hour intervals.
     
 </dd>
 </dl>
@@ -25701,7 +26559,7 @@ client.webhooks().listWebhooks(
 <dl>
 <dd>
 
-**limit:** `Optional<Integer>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
     
 </dd>
 </dl>

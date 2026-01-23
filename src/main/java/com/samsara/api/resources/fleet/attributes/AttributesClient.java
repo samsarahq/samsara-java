@@ -28,6 +28,10 @@ public class AttributesClient {
         this.rawClient.update(id).body();
     }
 
+    public void update(String id, RequestOptions requestOptions) {
+        this.rawClient.update(id, requestOptions).body();
+    }
+
     public void update(String id, UpdateAttributesRequest request) {
         this.rawClient.update(id, request).body();
     }

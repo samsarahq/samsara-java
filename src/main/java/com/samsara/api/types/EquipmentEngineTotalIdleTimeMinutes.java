@@ -21,11 +21,11 @@ import org.jetbrains.annotations.NotNull;
 public final class EquipmentEngineTotalIdleTimeMinutes {
     private final String time;
 
-    private final int value;
+    private final long value;
 
     private final Map<String, Object> additionalProperties;
 
-    private EquipmentEngineTotalIdleTimeMinutes(String time, int value, Map<String, Object> additionalProperties) {
+    private EquipmentEngineTotalIdleTimeMinutes(String time, long value, Map<String, Object> additionalProperties) {
         this.time = time;
         this.value = value;
         this.additionalProperties = additionalProperties;
@@ -40,7 +40,7 @@ public final class EquipmentEngineTotalIdleTimeMinutes {
      * @return Total time in minutes that the engine has been idling since the device was installed. This value is calculated based on the time the engine has been running while the vehicle is not in motion.
      */
     @JsonProperty("value")
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
@@ -84,7 +84,7 @@ public final class EquipmentEngineTotalIdleTimeMinutes {
         /**
          * <p>Total time in minutes that the engine has been idling since the device was installed. This value is calculated based on the time the engine has been running while the vehicle is not in motion.</p>
          */
-        _FinalStage value(int value);
+        _FinalStage value(long value);
     }
 
     public interface _FinalStage {
@@ -95,7 +95,7 @@ public final class EquipmentEngineTotalIdleTimeMinutes {
     public static final class Builder implements TimeStage, ValueStage, _FinalStage {
         private String time;
 
-        private int value;
+        private long value;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -123,7 +123,7 @@ public final class EquipmentEngineTotalIdleTimeMinutes {
          */
         @java.lang.Override
         @JsonSetter("value")
-        public _FinalStage value(int value) {
+        public _FinalStage value(long value) {
             this.value = value;
             return this;
         }

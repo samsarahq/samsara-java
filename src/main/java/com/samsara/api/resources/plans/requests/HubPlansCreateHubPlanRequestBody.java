@@ -9,11 +9,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -23,11 +26,18 @@ public final class HubPlansCreateHubPlanRequestBody {
 
     private final String name;
 
+    private final Optional<OffsetDateTime> shiftStartTime;
+
     private final Map<String, Object> additionalProperties;
 
-    private HubPlansCreateHubPlanRequestBody(String hubId, String name, Map<String, Object> additionalProperties) {
+    private HubPlansCreateHubPlanRequestBody(
+            String hubId,
+            String name,
+            Optional<OffsetDateTime> shiftStartTime,
+            Map<String, Object> additionalProperties) {
         this.hubId = hubId;
         this.name = name;
+        this.shiftStartTime = shiftStartTime;
         this.additionalProperties = additionalProperties;
     }
 
@@ -47,6 +57,14 @@ public final class HubPlansCreateHubPlanRequestBody {
         return name;
     }
 
+    /**
+     * @return The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.
+     */
+    @JsonProperty("shiftStartTime")
+    public Optional<OffsetDateTime> getShiftStartTime() {
+        return shiftStartTime;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -59,12 +77,12 @@ public final class HubPlansCreateHubPlanRequestBody {
     }
 
     private boolean equalTo(HubPlansCreateHubPlanRequestBody other) {
-        return hubId.equals(other.hubId) && name.equals(other.name);
+        return hubId.equals(other.hubId) && name.equals(other.name) && shiftStartTime.equals(other.shiftStartTime);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.hubId, this.name);
+        return Objects.hash(this.hubId, this.name, this.shiftStartTime);
     }
 
     @java.lang.Override
@@ -94,6 +112,13 @@ public final class HubPlansCreateHubPlanRequestBody {
 
     public interface _FinalStage {
         HubPlansCreateHubPlanRequestBody build();
+
+        /**
+         * <p>The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.</p>
+         */
+        _FinalStage shiftStartTime(Optional<OffsetDateTime> shiftStartTime);
+
+        _FinalStage shiftStartTime(OffsetDateTime shiftStartTime);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -101,6 +126,8 @@ public final class HubPlansCreateHubPlanRequestBody {
         private String hubId;
 
         private String name;
+
+        private Optional<OffsetDateTime> shiftStartTime = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -111,6 +138,7 @@ public final class HubPlansCreateHubPlanRequestBody {
         public Builder from(HubPlansCreateHubPlanRequestBody other) {
             hubId(other.getHubId());
             name(other.getName());
+            shiftStartTime(other.getShiftStartTime());
             return this;
         }
 
@@ -138,9 +166,29 @@ public final class HubPlansCreateHubPlanRequestBody {
             return this;
         }
 
+        /**
+         * <p>The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage shiftStartTime(OffsetDateTime shiftStartTime) {
+            this.shiftStartTime = Optional.ofNullable(shiftStartTime);
+            return this;
+        }
+
+        /**
+         * <p>The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "shiftStartTime", nulls = Nulls.SKIP)
+        public _FinalStage shiftStartTime(Optional<OffsetDateTime> shiftStartTime) {
+            this.shiftStartTime = shiftStartTime;
+            return this;
+        }
+
         @java.lang.Override
         public HubPlansCreateHubPlanRequestBody build() {
-            return new HubPlansCreateHubPlanRequestBody(hubId, name, additionalProperties);
+            return new HubPlansCreateHubPlanRequestBody(hubId, name, shiftStartTime, additionalProperties);
         }
     }
 }

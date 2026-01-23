@@ -11,6 +11,10 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
                     Value.HA_PERSONAL_PROTECTIVE_EQUIPMENT, "haPersonalProtectiveEquipment");
 
+    public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_VEHICLE_IN_BLIND_SPOT_WARNING =
+            new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
+                    Value.HA_VEHICLE_IN_BLIND_SPOT_WARNING, "haVehicleInBlindSpotWarning");
+
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_TRAFFIC_LIGHT_DETECTION =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
                     Value.HA_TRAFFIC_LIGHT_DETECTION, "haTrafficLightDetection");
@@ -96,6 +100,10 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_SEATBELT_POLICY =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_SEATBELT_POLICY, "haSeatbeltPolicy");
 
+    public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_HIGH_SPEED_SUDDEN_DISCONNECT =
+            new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
+                    Value.HA_HIGH_SPEED_SUDDEN_DISCONNECT, "haHighSpeedSuddenDisconnect");
+
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_REAR_COLLISION_WARNING =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
                     Value.HA_REAR_COLLISION_WARNING, "haRearCollisionWarning");
@@ -178,6 +186,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         switch (value) {
             case HA_PERSONAL_PROTECTIVE_EQUIPMENT:
                 return visitor.visitHaPersonalProtectiveEquipment();
+            case HA_VEHICLE_IN_BLIND_SPOT_WARNING:
+                return visitor.visitHaVehicleInBlindSpotWarning();
             case HA_TRAFFIC_LIGHT_DETECTION:
                 return visitor.visitHaTrafficLightDetection();
             case HA_TILE_ROLLING_STOP_SIGN:
@@ -228,6 +238,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return visitor.visitHaRolledStopSign();
             case HA_SEATBELT_POLICY:
                 return visitor.visitHaSeatbeltPolicy();
+            case HA_HIGH_SPEED_SUDDEN_DISCONNECT:
+                return visitor.visitHaHighSpeedSuddenDisconnect();
             case HA_REAR_COLLISION_WARNING:
                 return visitor.visitHaRearCollisionWarning();
             case HA_SMOKING_POLICY:
@@ -267,6 +279,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         switch (value) {
             case "haPersonalProtectiveEquipment":
                 return HA_PERSONAL_PROTECTIVE_EQUIPMENT;
+            case "haVehicleInBlindSpotWarning":
+                return HA_VEHICLE_IN_BLIND_SPOT_WARNING;
             case "haTrafficLightDetection":
                 return HA_TRAFFIC_LIGHT_DETECTION;
             case "haTileRollingStopSign":
@@ -317,6 +331,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return HA_ROLLED_STOP_SIGN;
             case "haSeatbeltPolicy":
                 return HA_SEATBELT_POLICY;
+            case "haHighSpeedSuddenDisconnect":
+                return HA_HIGH_SPEED_SUDDEN_DISCONNECT;
             case "haRearCollisionWarning":
                 return HA_REAR_COLLISION_WARNING;
             case "haSmokingPolicy":
@@ -375,6 +391,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
 
         HA_FOOD_POLICY,
 
+        HA_HIGH_SPEED_SUDDEN_DISCONNECT,
+
         HA_INVALID,
 
         HA_LANE_DEPARTURE,
@@ -425,6 +443,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
 
         HA_UNSAFE_PARKING,
 
+        HA_VEHICLE_IN_BLIND_SPOT_WARNING,
+
         HA_VULNERABLE_ROAD_USER_COLLISION_WARNING,
 
         HA_YAW_CONTROL_BRAKE_CONTROL_ACTIVATED,
@@ -458,6 +478,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         T visitHaFalsePositive();
 
         T visitHaFoodPolicy();
+
+        T visitHaHighSpeedSuddenDisconnect();
 
         T visitHaInvalid();
 
@@ -508,6 +530,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         T visitHaTrafficLightDetection();
 
         T visitHaUnsafeParking();
+
+        T visitHaVehicleInBlindSpotWarning();
 
         T visitHaVulnerableRoadUserCollisionWarning();
 

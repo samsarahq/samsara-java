@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1TemperatureResponseSensors.Builder.class)
 public final class V1TemperatureResponseSensors {
-    private final Optional<Integer> ambientTemperature;
+    private final Optional<Long> ambientTemperature;
 
     private final Optional<String> ambientTemperatureTime;
 
@@ -28,25 +28,25 @@ public final class V1TemperatureResponseSensors {
 
     private final Optional<String> name;
 
-    private final Optional<Integer> probeTemperature;
+    private final Optional<Long> probeTemperature;
 
     private final Optional<String> probeTemperatureTime;
 
-    private final Optional<Integer> trailerId;
+    private final Optional<Long> trailerId;
 
-    private final Optional<Integer> vehicleId;
+    private final Optional<Long> vehicleId;
 
     private final Map<String, Object> additionalProperties;
 
     private V1TemperatureResponseSensors(
-            Optional<Integer> ambientTemperature,
+            Optional<Long> ambientTemperature,
             Optional<String> ambientTemperatureTime,
             Optional<Long> id,
             Optional<String> name,
-            Optional<Integer> probeTemperature,
+            Optional<Long> probeTemperature,
             Optional<String> probeTemperatureTime,
-            Optional<Integer> trailerId,
-            Optional<Integer> vehicleId,
+            Optional<Long> trailerId,
+            Optional<Long> vehicleId,
             Map<String, Object> additionalProperties) {
         this.ambientTemperature = ambientTemperature;
         this.ambientTemperatureTime = ambientTemperatureTime;
@@ -63,7 +63,7 @@ public final class V1TemperatureResponseSensors {
      * @return Currently reported ambient temperature in millidegrees celsius.
      */
     @JsonProperty("ambientTemperature")
-    public Optional<Integer> getAmbientTemperature() {
+    public Optional<Long> getAmbientTemperature() {
         return ambientTemperature;
     }
 
@@ -95,7 +95,7 @@ public final class V1TemperatureResponseSensors {
      * @return Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported.
      */
     @JsonProperty("probeTemperature")
-    public Optional<Integer> getProbeTemperature() {
+    public Optional<Long> getProbeTemperature() {
         return probeTemperature;
     }
 
@@ -111,7 +111,7 @@ public final class V1TemperatureResponseSensors {
      * @return ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.
      */
     @JsonProperty("trailerId")
-    public Optional<Integer> getTrailerId() {
+    public Optional<Long> getTrailerId() {
         return trailerId;
     }
 
@@ -119,7 +119,7 @@ public final class V1TemperatureResponseSensors {
      * @return ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.
      */
     @JsonProperty("vehicleId")
-    public Optional<Integer> getVehicleId() {
+    public Optional<Long> getVehicleId() {
         return vehicleId;
     }
 
@@ -169,7 +169,7 @@ public final class V1TemperatureResponseSensors {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Integer> ambientTemperature = Optional.empty();
+        private Optional<Long> ambientTemperature = Optional.empty();
 
         private Optional<String> ambientTemperatureTime = Optional.empty();
 
@@ -177,13 +177,13 @@ public final class V1TemperatureResponseSensors {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Integer> probeTemperature = Optional.empty();
+        private Optional<Long> probeTemperature = Optional.empty();
 
         private Optional<String> probeTemperatureTime = Optional.empty();
 
-        private Optional<Integer> trailerId = Optional.empty();
+        private Optional<Long> trailerId = Optional.empty();
 
-        private Optional<Integer> vehicleId = Optional.empty();
+        private Optional<Long> vehicleId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -206,12 +206,12 @@ public final class V1TemperatureResponseSensors {
          * <p>Currently reported ambient temperature in millidegrees celsius.</p>
          */
         @JsonSetter(value = "ambientTemperature", nulls = Nulls.SKIP)
-        public Builder ambientTemperature(Optional<Integer> ambientTemperature) {
+        public Builder ambientTemperature(Optional<Long> ambientTemperature) {
             this.ambientTemperature = ambientTemperature;
             return this;
         }
 
-        public Builder ambientTemperature(Integer ambientTemperature) {
+        public Builder ambientTemperature(Long ambientTemperature) {
             this.ambientTemperature = Optional.ofNullable(ambientTemperature);
             return this;
         }
@@ -262,12 +262,12 @@ public final class V1TemperatureResponseSensors {
          * <p>Currently reported probe temperature in millidegrees celsius. If no probe is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "probeTemperature", nulls = Nulls.SKIP)
-        public Builder probeTemperature(Optional<Integer> probeTemperature) {
+        public Builder probeTemperature(Optional<Long> probeTemperature) {
             this.probeTemperature = probeTemperature;
             return this;
         }
 
-        public Builder probeTemperature(Integer probeTemperature) {
+        public Builder probeTemperature(Long probeTemperature) {
             this.probeTemperature = Optional.ofNullable(probeTemperature);
             return this;
         }
@@ -290,12 +290,12 @@ public final class V1TemperatureResponseSensors {
          * <p>ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "trailerId", nulls = Nulls.SKIP)
-        public Builder trailerId(Optional<Integer> trailerId) {
+        public Builder trailerId(Optional<Long> trailerId) {
             this.trailerId = trailerId;
             return this;
         }
 
-        public Builder trailerId(Integer trailerId) {
+        public Builder trailerId(Long trailerId) {
             this.trailerId = Optional.ofNullable(trailerId);
             return this;
         }
@@ -304,12 +304,12 @@ public final class V1TemperatureResponseSensors {
          * <p>ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
-        public Builder vehicleId(Optional<Integer> vehicleId) {
+        public Builder vehicleId(Optional<Long> vehicleId) {
             this.vehicleId = vehicleId;
             return this;
         }
 
-        public Builder vehicleId(Integer vehicleId) {
+        public Builder vehicleId(Long vehicleId) {
             this.vehicleId = Optional.ofNullable(vehicleId);
             return this;
         }

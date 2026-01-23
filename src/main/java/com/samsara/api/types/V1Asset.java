@@ -24,7 +24,7 @@ public final class V1Asset {
 
     private final Optional<V1AssetCable> cable;
 
-    private final Optional<Integer> engineHours;
+    private final Optional<Long> engineHours;
 
     private final long id;
 
@@ -37,7 +37,7 @@ public final class V1Asset {
     private V1Asset(
             Optional<String> assetSerialNumber,
             Optional<V1AssetCable> cable,
-            Optional<Integer> engineHours,
+            Optional<Long> engineHours,
             long id,
             Optional<String> name,
             Optional<Long> vehicleId,
@@ -68,7 +68,7 @@ public final class V1Asset {
      * @return Engine hours
      */
     @JsonProperty("engineHours")
-    public Optional<Integer> getEngineHours() {
+    public Optional<Long> getEngineHours() {
         return engineHours;
     }
 
@@ -156,9 +156,9 @@ public final class V1Asset {
         /**
          * <p>Engine hours</p>
          */
-        _FinalStage engineHours(Optional<Integer> engineHours);
+        _FinalStage engineHours(Optional<Long> engineHours);
 
-        _FinalStage engineHours(Integer engineHours);
+        _FinalStage engineHours(Long engineHours);
 
         /**
          * <p>Asset name</p>
@@ -183,7 +183,7 @@ public final class V1Asset {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Integer> engineHours = Optional.empty();
+        private Optional<Long> engineHours = Optional.empty();
 
         private Optional<V1AssetCable> cable = Optional.empty();
 
@@ -262,7 +262,7 @@ public final class V1Asset {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage engineHours(Integer engineHours) {
+        public _FinalStage engineHours(Long engineHours) {
             this.engineHours = Optional.ofNullable(engineHours);
             return this;
         }
@@ -272,7 +272,7 @@ public final class V1Asset {
          */
         @java.lang.Override
         @JsonSetter(value = "engineHours", nulls = Nulls.SKIP)
-        public _FinalStage engineHours(Optional<Integer> engineHours) {
+        public _FinalStage engineHours(Optional<Long> engineHours) {
             this.engineHours = engineHours;
             return this;
         }

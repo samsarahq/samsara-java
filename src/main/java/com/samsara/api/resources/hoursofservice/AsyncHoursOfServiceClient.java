@@ -49,6 +49,15 @@ public class AsyncHoursOfServiceClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<HosClocksResponse> getHosClocks(RequestOptions requestOptions) {
+        return this.rawClient.getHosClocks(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get the current HOS status for all drivers. Note that this includes inactive as well as active drivers. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getFleetHosLogsSummary">samsara.com/api-legacy</a>.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<HosClocksResponse> getHosClocks(GetHosClocksRequest request) {
         return this.rawClient.getHosClocks(request).thenApply(response -> response.body());
     }
@@ -75,6 +84,20 @@ public class AsyncHoursOfServiceClient {
      */
     public CompletableFuture<HosDailyLogsGetHosDailyLogsResponseBody> getHosDailyLogs() {
         return this.rawClient.getHosDailyLogs().thenApply(response -> response.body());
+    }
+
+    /**
+     * Get summarized daily Hours of Service charts for the specified drivers.
+     * <p>The time range for a log is defined by the <code>driver</code>'s <code>eldDayStartHour</code>. This value is configurable per driver.</p>
+     * <p>The <code>startDate</code> and <code>endDate</code> parameters indicate the date range you'd like to retrieve daily logs for. A daily log will be returned if its <code>startTime</code> is on any of the days within in this date range (inclusive of <code>startDate</code> and <code>endDate</code>).</p>
+     * <p><strong>Note:</strong> If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.</p>
+     * <p>If you are using the legacy version of this endpoint and looking for its documentation, you can find it <a href="https://www.samsara.com/api-legacy#operation/getFleetDriversHosDailyLogs">here</a>.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<HosDailyLogsGetHosDailyLogsResponseBody> getHosDailyLogs(RequestOptions requestOptions) {
+        return this.rawClient.getHosDailyLogs(requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -124,6 +147,17 @@ public class AsyncHoursOfServiceClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<HosLogsResponse> getHosLogs(RequestOptions requestOptions) {
+        return this.rawClient.getHosLogs(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns HOS logs between a given <code>startTime</code> and <code>endTime</code>. The logs can be further filtered using tags or by providing a list of driver IDs (including external IDs). The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getFleetHosLogs">samsara.com/api-legacy</a>.
+     * <p><strong>Note:</strong> If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<HosLogsResponse> getHosLogs(GetHosLogsRequest request) {
         return this.rawClient.getHosLogs(request).thenApply(response -> response.body());
     }
@@ -150,6 +184,20 @@ public class AsyncHoursOfServiceClient {
      */
     public CompletableFuture<HosViolationsGetHosViolationsResponseBody> getHosViolations() {
         return this.rawClient.getHosViolations().thenApply(response -> response.body());
+    }
+
+    /**
+     * Get active Hours of Service violations for the specified drivers.
+     * <p>The day object time range for a violation is defined by the <code>driver</code>'s <code>eldDayStartHour</code>. This value is configurable per driver.</p>
+     * <p>The <code>startTime</code> and <code>endTime</code> parameters indicate the datetime range you'd like to retrieve violations for. A violation will be returned if its <code>violationStartTime</code> falls within this datetime range (inclusive of <code>startTime</code> and <code>endTime</code>)</p>
+     * <p><strong>Note:</strong> The following are all the violation types with a short explanation about what each of them means: <code>californiaMealbreakMissed</code> (Missed California Meal Break), <code>cycleHoursOn</code> (Cycle Limit), <code>cycleOffHoursAfterOnDutyHours</code> (Cycle 2 Limit), <code>dailyDrivingHours</code> (Daily Driving Limit), <code>dailyOffDutyDeferralAddToDay2Consecutive</code> (Daily Off-Duty Deferral: Add To Day2 Consecutive), <code>dailyOffDutyDeferralNotPartMandatory</code> (Daily Off-Duty Deferral: Not Part Of Mandatory), <code>dailyOffDutyDeferralTwoDayDrivingLimit</code> (Daily Off-Duty Deferral: 2 Day Driving Limit), <code>dailyOffDutyDeferralTwoDayOffDuty</code> (Daily Off-Duty Deferral: 2 Day Off Duty), <code>dailyOffDutyNonResetHours</code> (Daily Off-Duty Time: Non-Reset), <code>dailyOffDutyTotalHours</code> (Daily Off-Duty Time), <code>dailyOnDutyHours</code> (Daily On-Duty Limit), <code>mandatory24HoursOffDuty</code> (24 Hours of Off Duty required), <code>restbreakMissed</code> (Missed Rest Break), <code>shiftDrivingHours</code> (Shift Driving Limit), <code>shiftHours</code> (Shift Duty Limit), <code>shiftOnDutyHours</code> (Shift On-Duty Limit), <code>unsubmittedLogs</code> (Missing Driver Certification)</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read ELD Compliance Settings (US)</strong> under the Compliance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<HosViolationsGetHosViolationsResponseBody> getHosViolations(
+            RequestOptions requestOptions) {
+        return this.rawClient.getHosViolations(requestOptions).thenApply(response -> response.body());
     }
 
     /**

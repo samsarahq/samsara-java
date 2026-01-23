@@ -66,7 +66,7 @@ public final class AttributeExpanded implements IAttribute, IAttributeExpandedAl
     }
 
     /**
-     * @return Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>.
+     * @return Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.
      */
     @JsonProperty("attributeType")
     public Optional<AttributeAttributeType> getAttributeType() {
@@ -228,7 +228,7 @@ public final class AttributeExpanded implements IAttribute, IAttributeExpandedAl
         }
 
         /**
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
          */
         @JsonSetter(value = "attributeType", nulls = Nulls.SKIP)
         public Builder attributeType(Optional<AttributeAttributeType> attributeType) {

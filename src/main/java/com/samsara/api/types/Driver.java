@@ -35,7 +35,7 @@ public final class Driver {
 
     private final Optional<Boolean> eldBigDayExemptionEnabled;
 
-    private final Optional<Integer> eldDayStartHour;
+    private final Optional<Long> eldDayStartHour;
 
     private final Optional<Boolean> eldExempt;
 
@@ -101,7 +101,7 @@ public final class Driver {
             Optional<DriverActivationStatus> driverActivationStatus,
             Optional<Boolean> eldAdverseWeatherExemptionEnabled,
             Optional<Boolean> eldBigDayExemptionEnabled,
-            Optional<Integer> eldDayStartHour,
+            Optional<Long> eldDayStartHour,
             Optional<Boolean> eldExempt,
             Optional<String> eldExemptReason,
             Optional<Boolean> eldPcEnabled,
@@ -207,7 +207,7 @@ public final class Driver {
     }
 
     @JsonProperty("eldDayStartHour")
-    public Optional<Integer> getEldDayStartHour() {
+    public Optional<Long> getEldDayStartHour() {
         return eldDayStartHour;
     }
 
@@ -460,7 +460,7 @@ public final class Driver {
 
         private Optional<Boolean> eldBigDayExemptionEnabled = Optional.empty();
 
-        private Optional<Integer> eldDayStartHour = Optional.empty();
+        private Optional<Long> eldDayStartHour = Optional.empty();
 
         private Optional<Boolean> eldExempt = Optional.empty();
 
@@ -641,12 +641,12 @@ public final class Driver {
         }
 
         @JsonSetter(value = "eldDayStartHour", nulls = Nulls.SKIP)
-        public Builder eldDayStartHour(Optional<Integer> eldDayStartHour) {
+        public Builder eldDayStartHour(Optional<Long> eldDayStartHour) {
             this.eldDayStartHour = eldDayStartHour;
             return this;
         }
 
-        public Builder eldDayStartHour(Integer eldDayStartHour) {
+        public Builder eldDayStartHour(Long eldDayStartHour) {
             this.eldDayStartHour = Optional.ofNullable(eldDayStartHour);
             return this;
         }

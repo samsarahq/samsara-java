@@ -9,6 +9,7 @@ import com.samsara.api.resources.addresses.AddressesClient;
 import com.samsara.api.resources.alerts.AlertsClient;
 import com.samsara.api.resources.assets.AssetsClient;
 import com.samsara.api.resources.attributes.AttributesClient;
+import com.samsara.api.resources.authtokenfordriver.AuthTokenForDriverClient;
 import com.samsara.api.resources.betaapis.BetaApIsClient;
 import com.samsara.api.resources.carrierproposedassignments.CarrierProposedAssignmentsClient;
 import com.samsara.api.resources.coaching.CoachingClient;
@@ -16,6 +17,7 @@ import com.samsara.api.resources.contacts.ContactsClient;
 import com.samsara.api.resources.documents.DocumentsClient;
 import com.samsara.api.resources.driverqrcodes.DriverQrCodesClient;
 import com.samsara.api.resources.drivers.DriversClient;
+import com.samsara.api.resources.drivertrailerassignments.DriverTrailerAssignmentsClient;
 import com.samsara.api.resources.drivervehicleassignments.DriverVehicleAssignmentsClient;
 import com.samsara.api.resources.equipment.EquipmentClient;
 import com.samsara.api.resources.fleet.FleetClient;
@@ -82,6 +84,8 @@ public class SamsaraApiClient {
 
     protected final Supplier<FuelAndEnergyClient> fuelAndEnergyClient;
 
+    protected final Supplier<DriverTrailerAssignmentsClient> driverTrailerAssignmentsClient;
+
     protected final Supplier<DriverQrCodesClient> driverQrCodesClient;
 
     protected final Supplier<CarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
@@ -94,6 +98,8 @@ public class SamsaraApiClient {
 
     protected final Supplier<DriversClient> driversClient;
 
+    protected final Supplier<AuthTokenForDriverClient> authTokenForDriverClient;
+
     protected final Supplier<TachographEuOnlyClient> tachographEuOnlyClient;
 
     protected final Supplier<EquipmentClient> equipmentClient;
@@ -103,8 +109,6 @@ public class SamsaraApiClient {
     protected final Supplier<IftaClient> iftaClient;
 
     protected final Supplier<RoutesClient> routesClient;
-
-    protected final Supplier<SafetyClient> safetyClient;
 
     protected final Supplier<SettingsClient> settingsClient;
 
@@ -140,9 +144,13 @@ public class SamsaraApiClient {
 
     protected final Supplier<RouteEventsClient> routeEventsClient;
 
+    protected final Supplier<SafetyClient> safetyClient;
+
     protected final Supplier<SpeedingIntervalsClient> speedingIntervalsClient;
 
     protected final Supplier<TagsClient> tagsClient;
+
+    protected final Supplier<TripsClient> tripsClient;
 
     protected final Supplier<UsersClient> usersClient;
 
@@ -151,8 +159,6 @@ public class SamsaraApiClient {
     protected final Supplier<MessagesClient> messagesClient;
 
     protected final Supplier<TrailerAssignmentsClient> trailerAssignmentsClient;
-
-    protected final Supplier<TripsClient> tripsClient;
 
     protected final Supplier<SensorsClient> sensorsClient;
 
@@ -173,6 +179,8 @@ public class SamsaraApiClient {
         this.contactsClient = Suppliers.memoize(() -> new ContactsClient(clientOptions));
         this.maintenanceClient = Suppliers.memoize(() -> new MaintenanceClient(clientOptions));
         this.fuelAndEnergyClient = Suppliers.memoize(() -> new FuelAndEnergyClient(clientOptions));
+        this.driverTrailerAssignmentsClient =
+                Suppliers.memoize(() -> new DriverTrailerAssignmentsClient(clientOptions));
         this.driverQrCodesClient = Suppliers.memoize(() -> new DriverQrCodesClient(clientOptions));
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new CarrierProposedAssignmentsClient(clientOptions));
@@ -181,12 +189,12 @@ public class SamsaraApiClient {
         this.driverVehicleAssignmentsClient =
                 Suppliers.memoize(() -> new DriverVehicleAssignmentsClient(clientOptions));
         this.driversClient = Suppliers.memoize(() -> new DriversClient(clientOptions));
+        this.authTokenForDriverClient = Suppliers.memoize(() -> new AuthTokenForDriverClient(clientOptions));
         this.tachographEuOnlyClient = Suppliers.memoize(() -> new TachographEuOnlyClient(clientOptions));
         this.equipmentClient = Suppliers.memoize(() -> new EquipmentClient(clientOptions));
         this.hoursOfServiceClient = Suppliers.memoize(() -> new HoursOfServiceClient(clientOptions));
         this.iftaClient = Suppliers.memoize(() -> new IftaClient(clientOptions));
         this.routesClient = Suppliers.memoize(() -> new RoutesClient(clientOptions));
-        this.safetyClient = Suppliers.memoize(() -> new SafetyClient(clientOptions));
         this.settingsClient = Suppliers.memoize(() -> new SettingsClient(clientOptions));
         this.trailersClient = Suppliers.memoize(() -> new TrailersClient(clientOptions));
         this.vehiclesClient = Suppliers.memoize(() -> new VehiclesClient(clientOptions));
@@ -204,13 +212,14 @@ public class SamsaraApiClient {
         this.organizationInfoClient = Suppliers.memoize(() -> new OrganizationInfoClient(clientOptions));
         this.previewApIsClient = Suppliers.memoize(() -> new PreviewApIsClient(clientOptions));
         this.routeEventsClient = Suppliers.memoize(() -> new RouteEventsClient(clientOptions));
+        this.safetyClient = Suppliers.memoize(() -> new SafetyClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new SpeedingIntervalsClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new TagsClient(clientOptions));
+        this.tripsClient = Suppliers.memoize(() -> new TripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new UsersClient(clientOptions));
         this.legacyClient = Suppliers.memoize(() -> new LegacyClient(clientOptions));
         this.messagesClient = Suppliers.memoize(() -> new MessagesClient(clientOptions));
         this.trailerAssignmentsClient = Suppliers.memoize(() -> new TrailerAssignmentsClient(clientOptions));
-        this.tripsClient = Suppliers.memoize(() -> new TripsClient(clientOptions));
         this.sensorsClient = Suppliers.memoize(() -> new SensorsClient(clientOptions));
         this.webhooksClient = Suppliers.memoize(() -> new WebhooksClient(clientOptions));
         this.fleetClient = Suppliers.memoize(() -> new FleetClient(clientOptions));
@@ -260,6 +269,10 @@ public class SamsaraApiClient {
         return this.fuelAndEnergyClient.get();
     }
 
+    public DriverTrailerAssignmentsClient driverTrailerAssignments() {
+        return this.driverTrailerAssignmentsClient.get();
+    }
+
     public DriverQrCodesClient driverQrCodes() {
         return this.driverQrCodesClient.get();
     }
@@ -284,6 +297,10 @@ public class SamsaraApiClient {
         return this.driversClient.get();
     }
 
+    public AuthTokenForDriverClient authTokenForDriver() {
+        return this.authTokenForDriverClient.get();
+    }
+
     public TachographEuOnlyClient tachographEuOnly() {
         return this.tachographEuOnlyClient.get();
     }
@@ -302,10 +319,6 @@ public class SamsaraApiClient {
 
     public RoutesClient routes() {
         return this.routesClient.get();
-    }
-
-    public SafetyClient safety() {
-        return this.safetyClient.get();
     }
 
     public SettingsClient settings() {
@@ -376,12 +389,20 @@ public class SamsaraApiClient {
         return this.routeEventsClient.get();
     }
 
+    public SafetyClient safety() {
+        return this.safetyClient.get();
+    }
+
     public SpeedingIntervalsClient speedingIntervals() {
         return this.speedingIntervalsClient.get();
     }
 
     public TagsClient tags() {
         return this.tagsClient.get();
+    }
+
+    public TripsClient trips() {
+        return this.tripsClient.get();
     }
 
     public UsersClient users() {
@@ -398,10 +419,6 @@ public class SamsaraApiClient {
 
     public TrailerAssignmentsClient trailerAssignments() {
         return this.trailerAssignmentsClient.get();
-    }
-
-    public TripsClient trips() {
-        return this.tripsClient.get();
     }
 
     public SensorsClient sensors() {

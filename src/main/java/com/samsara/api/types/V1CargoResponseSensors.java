@@ -28,11 +28,11 @@ public final class V1CargoResponseSensors {
 
     private final Optional<String> name;
 
-    private final Optional<Integer> redEyeDistance;
+    private final Optional<Long> redEyeDistance;
 
-    private final Optional<Integer> trailerId;
+    private final Optional<Long> trailerId;
 
-    private final Optional<Integer> vehicleId;
+    private final Optional<Long> vehicleId;
 
     private final Map<String, Object> additionalProperties;
 
@@ -41,9 +41,9 @@ public final class V1CargoResponseSensors {
             Optional<String> cargoStatusTime,
             Optional<Long> id,
             Optional<String> name,
-            Optional<Integer> redEyeDistance,
-            Optional<Integer> trailerId,
-            Optional<Integer> vehicleId,
+            Optional<Long> redEyeDistance,
+            Optional<Long> trailerId,
+            Optional<Long> vehicleId,
             Map<String, Object> additionalProperties) {
         this.cargoEmpty = cargoEmpty;
         this.cargoStatusTime = cargoStatusTime;
@@ -91,7 +91,7 @@ public final class V1CargoResponseSensors {
      * @return The distance between red eye detector and the closest object in cm.
      */
     @JsonProperty("redEyeDistance")
-    public Optional<Integer> getRedEyeDistance() {
+    public Optional<Long> getRedEyeDistance() {
         return redEyeDistance;
     }
 
@@ -99,7 +99,7 @@ public final class V1CargoResponseSensors {
      * @return ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.
      */
     @JsonProperty("trailerId")
-    public Optional<Integer> getTrailerId() {
+    public Optional<Long> getTrailerId() {
         return trailerId;
     }
 
@@ -107,7 +107,7 @@ public final class V1CargoResponseSensors {
      * @return ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.
      */
     @JsonProperty("vehicleId")
-    public Optional<Integer> getVehicleId() {
+    public Optional<Long> getVehicleId() {
         return vehicleId;
     }
 
@@ -163,11 +163,11 @@ public final class V1CargoResponseSensors {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Integer> redEyeDistance = Optional.empty();
+        private Optional<Long> redEyeDistance = Optional.empty();
 
-        private Optional<Integer> trailerId = Optional.empty();
+        private Optional<Long> trailerId = Optional.empty();
 
-        private Optional<Integer> vehicleId = Optional.empty();
+        private Optional<Long> vehicleId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -245,12 +245,12 @@ public final class V1CargoResponseSensors {
          * <p>The distance between red eye detector and the closest object in cm.</p>
          */
         @JsonSetter(value = "redEyeDistance", nulls = Nulls.SKIP)
-        public Builder redEyeDistance(Optional<Integer> redEyeDistance) {
+        public Builder redEyeDistance(Optional<Long> redEyeDistance) {
             this.redEyeDistance = redEyeDistance;
             return this;
         }
 
-        public Builder redEyeDistance(Integer redEyeDistance) {
+        public Builder redEyeDistance(Long redEyeDistance) {
             this.redEyeDistance = Optional.ofNullable(redEyeDistance);
             return this;
         }
@@ -259,12 +259,12 @@ public final class V1CargoResponseSensors {
          * <p>ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "trailerId", nulls = Nulls.SKIP)
-        public Builder trailerId(Optional<Integer> trailerId) {
+        public Builder trailerId(Optional<Long> trailerId) {
             this.trailerId = trailerId;
             return this;
         }
 
-        public Builder trailerId(Integer trailerId) {
+        public Builder trailerId(Long trailerId) {
             this.trailerId = Optional.ofNullable(trailerId);
             return this;
         }
@@ -273,12 +273,12 @@ public final class V1CargoResponseSensors {
          * <p>ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
-        public Builder vehicleId(Optional<Integer> vehicleId) {
+        public Builder vehicleId(Optional<Long> vehicleId) {
             this.vehicleId = vehicleId;
             return this;
         }
 
-        public Builder vehicleId(Integer vehicleId) {
+        public Builder vehicleId(Long vehicleId) {
             this.vehicleId = Optional.ofNullable(vehicleId);
             return this;
         }

@@ -60,6 +60,9 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(
                     Value.CONTEXT_CONSTRUCTION_OR_WORK_ZONE, "ContextConstructionOrWorkZone");
 
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel REAR_COLLISION_WARNING =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.REAR_COLLISION_WARNING, "RearCollisionWarning");
+
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel LANE_DEPARTURE =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.LANE_DEPARTURE, "LaneDeparture");
 
@@ -105,6 +108,10 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HEAVY_SPEEDING =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.HEAVY_SPEEDING, "HeavySpeeding");
+
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HIGH_SPEED_SUDDEN_DISCONNECT =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(
+                    Value.HIGH_SPEED_SUDDEN_DISCONNECT, "HighSpeedSuddenDisconnect");
 
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel IDLING =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.IDLING, "Idling");
@@ -180,6 +187,10 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(
                     Value.CONTEXT_VULNERABLE_ROAD_USER, "ContextVulnerableRoadUser");
 
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel VEHICLE_IN_BLIND_SPOT_WARNING =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(
+                    Value.VEHICLE_IN_BLIND_SPOT_WARNING, "VehicleInBlindSpotWarning");
+
     private final Value value;
 
     private final String string;
@@ -247,6 +258,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitGenericDistraction();
             case CONTEXT_CONSTRUCTION_OR_WORK_ZONE:
                 return visitor.visitContextConstructionOrWorkZone();
+            case REAR_COLLISION_WARNING:
+                return visitor.visitRearCollisionWarning();
             case LANE_DEPARTURE:
                 return visitor.visitLaneDeparture();
             case LEFT_TURN:
@@ -277,6 +290,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitGenericTailgating();
             case HEAVY_SPEEDING:
                 return visitor.visitHeavySpeeding();
+            case HIGH_SPEED_SUDDEN_DISCONNECT:
+                return visitor.visitHighSpeedSuddenDisconnect();
             case IDLING:
                 return visitor.visitIdling();
             case EDGE_DISTRACTED_DRIVING:
@@ -323,6 +338,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitBraking();
             case CONTEXT_VULNERABLE_ROAD_USER:
                 return visitor.visitContextVulnerableRoadUser();
+            case VEHICLE_IN_BLIND_SPOT_WARNING:
+                return visitor.visitVehicleInBlindSpotWarning();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -366,6 +383,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return GENERIC_DISTRACTION;
             case "ContextConstructionOrWorkZone":
                 return CONTEXT_CONSTRUCTION_OR_WORK_ZONE;
+            case "RearCollisionWarning":
+                return REAR_COLLISION_WARNING;
             case "LaneDeparture":
                 return LANE_DEPARTURE;
             case "LeftTurn":
@@ -396,6 +415,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return GENERIC_TAILGATING;
             case "HeavySpeeding":
                 return HEAVY_SPEEDING;
+            case "HighSpeedSuddenDisconnect":
+                return HIGH_SPEED_SUDDEN_DISCONNECT;
             case "Idling":
                 return IDLING;
             case "EdgeDistractedDriving":
@@ -442,6 +463,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return BRAKING;
             case "ContextVulnerableRoadUser":
                 return CONTEXT_VULNERABLE_ROAD_USER;
+            case "VehicleInBlindSpotWarning":
+                return VEHICLE_IN_BLIND_SPOT_WARNING;
             default:
                 return new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.UNKNOWN, value);
         }
@@ -498,6 +521,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         HEAVY_SPEEDING,
 
+        HIGH_SPEED_SUDDEN_DISCONNECT,
+
         HOS_VIOLATION,
 
         IDLING,
@@ -536,6 +561,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         RAN_RED_LIGHT,
 
+        REAR_COLLISION_WARNING,
+
         REVERSING,
 
         ROLLING_STOP,
@@ -553,6 +580,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
         UNSAFE_MANEUVER,
 
         UNSAFE_PARKING,
+
+        VEHICLE_IN_BLIND_SPOT_WARNING,
 
         VULNERABLE_ROAD_USER_COLLISION_WARNING,
 
@@ -612,6 +641,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         T visitHeavySpeeding();
 
+        T visitHighSpeedSuddenDisconnect();
+
         T visitHosViolation();
 
         T visitIdling();
@@ -650,6 +681,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         T visitRanRedLight();
 
+        T visitRearCollisionWarning();
+
         T visitReversing();
 
         T visitRollingStop();
@@ -667,6 +700,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
         T visitUnsafeManeuver();
 
         T visitUnsafeParking();
+
+        T visitVehicleInBlindSpotWarning();
 
         T visitVulnerableRoadUserCollisionWarning();
 

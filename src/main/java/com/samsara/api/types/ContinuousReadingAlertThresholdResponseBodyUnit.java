@@ -28,11 +28,17 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     public static final ContinuousReadingAlertThresholdResponseBodyUnit LPERKM =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.LPERKM, "lperkm");
 
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit GBP =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.GBP, "gbp");
+
     public static final ContinuousReadingAlertThresholdResponseBodyUnit FOOT =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.FOOT, "foot");
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit MILLIVOLT =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.MILLIVOLT, "millivolt");
+
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit EUR =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.EUR, "eur");
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit HOUR =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.HOUR, "hour");
@@ -49,6 +55,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     public static final ContinuousReadingAlertThresholdResponseBodyUnit INCH =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.INCH, "inch");
 
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit WATT =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.WATT, "watt");
+
     public static final ContinuousReadingAlertThresholdResponseBodyUnit MPKGGASEOUSFUEL =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.MPKGGASEOUSFUEL, "mpkggaseousfuel");
 
@@ -60,6 +69,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit GALLON =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.GALLON, "gallon");
+
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit VOLT_AMPERE_REACTIVE =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.VOLT_AMPERE_REACTIVE, "voltAmpereReactive");
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit GPERLITER =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.GPERLITER, "gperliter");
@@ -75,6 +87,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit MPGUSGALGASEOUSFUEL =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.MPGUSGALGASEOUSFUEL, "mpgusgalgaseousfuel");
+
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit MXN =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.MXN, "mxn");
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit POUNDS_PER_SQUARE_INCH =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.POUNDS_PER_SQUARE_INCH, "poundsPerSquareInch");
@@ -103,6 +118,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     public static final ContinuousReadingAlertThresholdResponseBodyUnit VOLT =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.VOLT, "volt");
 
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit CHF =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.CHF, "chf");
+
     public static final ContinuousReadingAlertThresholdResponseBodyUnit GALPERMI =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.GALPERMI, "galpermi");
 
@@ -124,6 +142,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     public static final ContinuousReadingAlertThresholdResponseBodyUnit KILOGRAMGASEOUSFUEL =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.KILOGRAMGASEOUSFUEL, "kilogramgaseousfuel");
 
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit CAD =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.CAD, "cad");
+
     public static final ContinuousReadingAlertThresholdResponseBodyUnit KMPERHR =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.KMPERHR, "kmperhr");
 
@@ -139,6 +160,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     public static final ContinuousReadingAlertThresholdResponseBodyUnit KGPER100KMGASEOUSFUEL =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.KGPER100KMGASEOUSFUEL, "kgper100kmgaseousfuel");
 
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit VOLT_AMPERE =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.VOLT_AMPERE, "voltAmpere");
+
     public static final ContinuousReadingAlertThresholdResponseBodyUnit DAY =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.DAY, "day");
 
@@ -151,6 +175,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     public static final ContinuousReadingAlertThresholdResponseBodyUnit KELVIN =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.KELVIN, "kelvin");
 
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit AMPERE =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.AMPERE, "ampere");
+
     public static final ContinuousReadingAlertThresholdResponseBodyUnit RPM =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.RPM, "rpm");
 
@@ -159,6 +186,9 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit MIPERGAL =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.MIPERGAL, "mipergal");
+
+    public static final ContinuousReadingAlertThresholdResponseBodyUnit HERTZ =
+            new ContinuousReadingAlertThresholdResponseBodyUnit(Value.HERTZ, "hertz");
 
     public static final ContinuousReadingAlertThresholdResponseBodyUnit GFORCE =
             new ContinuousReadingAlertThresholdResponseBodyUnit(Value.GFORCE, "gforce");
@@ -259,10 +289,14 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitGallonperkilogram();
             case LPERKM:
                 return visitor.visitLperkm();
+            case GBP:
+                return visitor.visitGbp();
             case FOOT:
                 return visitor.visitFoot();
             case MILLIVOLT:
                 return visitor.visitMillivolt();
+            case EUR:
+                return visitor.visitEur();
             case HOUR:
                 return visitor.visitHour();
             case MIPERHR:
@@ -273,6 +307,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitKilogram();
             case INCH:
                 return visitor.visitInch();
+            case WATT:
+                return visitor.visitWatt();
             case MPKGGASEOUSFUEL:
                 return visitor.visitMpkggaseousfuel();
             case GALLONSPERHOUR:
@@ -281,6 +317,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitKilopascal();
             case GALLON:
                 return visitor.visitGallon();
+            case VOLT_AMPERE_REACTIVE:
+                return visitor.visitVoltAmpereReactive();
             case GPERLITER:
                 return visitor.visitGperliter();
             case MILLISECOND:
@@ -291,6 +329,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitKilometer();
             case MPGUSGALGASEOUSFUEL:
                 return visitor.visitMpgusgalgaseousfuel();
+            case MXN:
+                return visitor.visitMxn();
             case POUNDS_PER_SQUARE_INCH:
                 return visitor.visitPoundsPerSquareInch();
             case KGPERLITER:
@@ -309,6 +349,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitMeterspersec();
             case VOLT:
                 return visitor.visitVolt();
+            case CHF:
+                return visitor.visitChf();
             case GALPERMI:
                 return visitor.visitGalpermi();
             case LBPERMI:
@@ -323,6 +365,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitImpgallonsperhour();
             case KILOGRAMGASEOUSFUEL:
                 return visitor.visitKilogramgaseousfuel();
+            case CAD:
+                return visitor.visitCad();
             case KMPERHR:
                 return visitor.visitKmperhr();
             case FAHRENHEIT:
@@ -333,6 +377,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitSecond();
             case KGPER100KMGASEOUSFUEL:
                 return visitor.visitKgper100Kmgaseousfuel();
+            case VOLT_AMPERE:
+                return visitor.visitVoltAmpere();
             case DAY:
                 return visitor.visitDay();
             case KGPERGALLON:
@@ -341,12 +387,16 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return visitor.visitKgpermi();
             case KELVIN:
                 return visitor.visitKelvin();
+            case AMPERE:
+                return visitor.visitAmpere();
             case RPM:
                 return visitor.visitRpm();
             case WATTHOUR:
                 return visitor.visitWatthour();
             case MIPERGAL:
                 return visitor.visitMipergal();
+            case HERTZ:
+                return visitor.visitHertz();
             case GFORCE:
                 return visitor.visitGforce();
             case LITERPERKILOGRAM:
@@ -404,10 +454,14 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return GALLONPERKILOGRAM;
             case "lperkm":
                 return LPERKM;
+            case "gbp":
+                return GBP;
             case "foot":
                 return FOOT;
             case "millivolt":
                 return MILLIVOLT;
+            case "eur":
+                return EUR;
             case "hour":
                 return HOUR;
             case "miperhr":
@@ -418,6 +472,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return KILOGRAM;
             case "inch":
                 return INCH;
+            case "watt":
+                return WATT;
             case "mpkggaseousfuel":
                 return MPKGGASEOUSFUEL;
             case "gallonsperhour":
@@ -426,6 +482,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return KILOPASCAL;
             case "gallon":
                 return GALLON;
+            case "voltAmpereReactive":
+                return VOLT_AMPERE_REACTIVE;
             case "gperliter":
                 return GPERLITER;
             case "millisecond":
@@ -436,6 +494,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return KILOMETER;
             case "mpgusgalgaseousfuel":
                 return MPGUSGALGASEOUSFUEL;
+            case "mxn":
+                return MXN;
             case "poundsPerSquareInch":
                 return POUNDS_PER_SQUARE_INCH;
             case "kgperliter":
@@ -454,6 +514,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return METERSPERSEC;
             case "volt":
                 return VOLT;
+            case "chf":
+                return CHF;
             case "galpermi":
                 return GALPERMI;
             case "lbpermi":
@@ -468,6 +530,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return IMPGALLONSPERHOUR;
             case "kilogramgaseousfuel":
                 return KILOGRAMGASEOUSFUEL;
+            case "cad":
+                return CAD;
             case "kmperhr":
                 return KMPERHR;
             case "fahrenheit":
@@ -478,6 +542,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return SECOND;
             case "kgper100kmgaseousfuel":
                 return KGPER100KMGASEOUSFUEL;
+            case "voltAmpere":
+                return VOLT_AMPERE;
             case "day":
                 return DAY;
             case "kgpergallon":
@@ -486,12 +552,16 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
                 return KGPERMI;
             case "kelvin":
                 return KELVIN;
+            case "ampere":
+                return AMPERE;
             case "rpm":
                 return RPM;
             case "watthour":
                 return WATTHOUR;
             case "mipergal":
                 return MIPERGAL;
+            case "hertz":
+                return HERTZ;
             case "gforce":
                 return GFORCE;
             case "literperkilogram":
@@ -532,13 +602,21 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     }
 
     public enum Value {
+        AMPERE,
+
         BAR,
 
+        CAD,
+
         CELSIUS,
+
+        CHF,
 
         DAY,
 
         DECIMALDEGREES,
+
+        EUR,
 
         FAHRENHEIT,
 
@@ -552,11 +630,15 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
         GALPERMI,
 
+        GBP,
+
         GFORCE,
 
         GPERLITER,
 
         GPERM,
+
+        HERTZ,
 
         HOUR,
 
@@ -644,6 +726,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
         MPKGGASEOUSFUEL,
 
+        MXN,
+
         PERCENT,
 
         POUND,
@@ -664,6 +748,12 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
         VOLT,
 
+        VOLT_AMPERE,
+
+        VOLT_AMPERE_REACTIVE,
+
+        WATT,
+
         WATTHOUR,
 
         WEEK,
@@ -672,13 +762,21 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
     }
 
     public interface Visitor<T> {
+        T visitAmpere();
+
         T visitBar();
 
+        T visitCad();
+
         T visitCelsius();
+
+        T visitChf();
 
         T visitDay();
 
         T visitDecimaldegrees();
+
+        T visitEur();
 
         T visitFahrenheit();
 
@@ -692,11 +790,15 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
         T visitGalpermi();
 
+        T visitGbp();
+
         T visitGforce();
 
         T visitGperliter();
 
         T visitGperm();
+
+        T visitHertz();
 
         T visitHour();
 
@@ -784,6 +886,8 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
 
         T visitMpkggaseousfuel();
 
+        T visitMxn();
+
         T visitPercent();
 
         T visitPound();
@@ -803,6 +907,12 @@ public final class ContinuousReadingAlertThresholdResponseBodyUnit {
         T visitUsgallongaseousfuel();
 
         T visitVolt();
+
+        T visitVoltAmpere();
+
+        T visitVoltAmpereReactive();
+
+        T visitWatt();
 
         T visitWatthour();
 

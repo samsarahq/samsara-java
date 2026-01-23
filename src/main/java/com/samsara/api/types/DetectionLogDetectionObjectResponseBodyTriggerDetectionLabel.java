@@ -23,19 +23,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel SMOKING =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.SMOKING, "smoking");
 
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel
-            VULNERABLE_ROAD_USER_COLLISION_WARNING = new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
-                    Value.VULNERABLE_ROAD_USER_COLLISION_WARNING, "vulnerableRoadUserCollisionWarning");
-
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel MAX_SPEED =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.MAX_SPEED, "maxSpeed");
-
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel ROLLOVER_PROTECTION =
-            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
-                    Value.ROLLOVER_PROTECTION, "rolloverProtection");
-
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel YAW_CONTROL =
-            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.YAW_CONTROL, "yawControl");
 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel PASSENGER =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.PASSENGER, "passenger");
@@ -50,10 +39,6 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel MOBILE_USAGE =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.MOBILE_USAGE, "mobileUsage");
 
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel GENERIC_DISTRACTION =
-            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
-                    Value.GENERIC_DISTRACTION, "genericDistraction");
-
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel UNSAFE_PARKING =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.UNSAFE_PARKING, "unsafeParking");
 
@@ -66,26 +51,65 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel NO_SEATBELT =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.NO_SEATBELT, "noSeatbelt");
 
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel DROWSY =
-            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.DROWSY, "drowsy");
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel LIGHT_SPEEDING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.LIGHT_SPEEDING, "lightSpeeding");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel VEHICLE_IN_BLIND_SPOT_WARNING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.VEHICLE_IN_BLIND_SPOT_WARNING, "vehicleInBlindSpotWarning");
 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel CRASH =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.CRASH, "crash");
-
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel POLICY_VIOLATION_MASK =
-            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
-                    Value.POLICY_VIOLATION_MASK, "policyViolationMask");
 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel EDGE_RAILROAD_CROSSING_VIOLATION =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
                     Value.EDGE_RAILROAD_CROSSING_VIOLATION, "edgeRailroadCrossingViolation");
 
-    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel HARSH_TURN =
-            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.HARSH_TURN, "harshTurn");
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel HEAVY_SPEEDING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.HEAVY_SPEEDING, "heavySpeeding");
 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel OBSTRUCTED_CAMERA =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
                     Value.OBSTRUCTED_CAMERA, "obstructedCamera");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel REAR_COLLISION_WARNING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.REAR_COLLISION_WARNING, "rearCollisionWarning");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel
+            VULNERABLE_ROAD_USER_COLLISION_WARNING = new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.VULNERABLE_ROAD_USER_COLLISION_WARNING, "vulnerableRoadUserCollisionWarning");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel SEVERE_SPEEDING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.SEVERE_SPEEDING, "severeSpeeding");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel ROLLOVER_PROTECTION =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.ROLLOVER_PROTECTION, "rolloverProtection");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel YAW_CONTROL =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.YAW_CONTROL, "yawControl");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel GENERIC_DISTRACTION =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.GENERIC_DISTRACTION, "genericDistraction");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel MODERATE_SPEEDING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.MODERATE_SPEEDING, "moderateSpeeding");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel DROWSY =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.DROWSY, "drowsy");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel RAN_RED_LIGHT =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.RAN_RED_LIGHT, "ranRedLight");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel POLICY_VIOLATION_MASK =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.POLICY_VIOLATION_MASK, "policyViolationMask");
+
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel HARSH_TURN =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.HARSH_TURN, "harshTurn");
 
     private final Value value;
 
@@ -131,14 +155,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitLaneDeparture();
             case SMOKING:
                 return visitor.visitSmoking();
-            case VULNERABLE_ROAD_USER_COLLISION_WARNING:
-                return visitor.visitVulnerableRoadUserCollisionWarning();
             case MAX_SPEED:
                 return visitor.visitMaxSpeed();
-            case ROLLOVER_PROTECTION:
-                return visitor.visitRolloverProtection();
-            case YAW_CONTROL:
-                return visitor.visitYawControl();
             case PASSENGER:
                 return visitor.visitPassenger();
             case SPEEDING:
@@ -147,8 +165,6 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitFollowingDistance();
             case MOBILE_USAGE:
                 return visitor.visitMobileUsage();
-            case GENERIC_DISTRACTION:
-                return visitor.visitGenericDistraction();
             case UNSAFE_PARKING:
                 return visitor.visitUnsafeParking();
             case ROLLING_STOP:
@@ -157,18 +173,40 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitEatingDrinking();
             case NO_SEATBELT:
                 return visitor.visitNoSeatbelt();
-            case DROWSY:
-                return visitor.visitDrowsy();
+            case LIGHT_SPEEDING:
+                return visitor.visitLightSpeeding();
+            case VEHICLE_IN_BLIND_SPOT_WARNING:
+                return visitor.visitVehicleInBlindSpotWarning();
             case CRASH:
                 return visitor.visitCrash();
-            case POLICY_VIOLATION_MASK:
-                return visitor.visitPolicyViolationMask();
             case EDGE_RAILROAD_CROSSING_VIOLATION:
                 return visitor.visitEdgeRailroadCrossingViolation();
-            case HARSH_TURN:
-                return visitor.visitHarshTurn();
+            case HEAVY_SPEEDING:
+                return visitor.visitHeavySpeeding();
             case OBSTRUCTED_CAMERA:
                 return visitor.visitObstructedCamera();
+            case REAR_COLLISION_WARNING:
+                return visitor.visitRearCollisionWarning();
+            case VULNERABLE_ROAD_USER_COLLISION_WARNING:
+                return visitor.visitVulnerableRoadUserCollisionWarning();
+            case SEVERE_SPEEDING:
+                return visitor.visitSevereSpeeding();
+            case ROLLOVER_PROTECTION:
+                return visitor.visitRolloverProtection();
+            case YAW_CONTROL:
+                return visitor.visitYawControl();
+            case GENERIC_DISTRACTION:
+                return visitor.visitGenericDistraction();
+            case MODERATE_SPEEDING:
+                return visitor.visitModerateSpeeding();
+            case DROWSY:
+                return visitor.visitDrowsy();
+            case RAN_RED_LIGHT:
+                return visitor.visitRanRedLight();
+            case POLICY_VIOLATION_MASK:
+                return visitor.visitPolicyViolationMask();
+            case HARSH_TURN:
+                return visitor.visitHarshTurn();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -188,14 +226,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return LANE_DEPARTURE;
             case "smoking":
                 return SMOKING;
-            case "vulnerableRoadUserCollisionWarning":
-                return VULNERABLE_ROAD_USER_COLLISION_WARNING;
             case "maxSpeed":
                 return MAX_SPEED;
-            case "rolloverProtection":
-                return ROLLOVER_PROTECTION;
-            case "yawControl":
-                return YAW_CONTROL;
             case "passenger":
                 return PASSENGER;
             case "speeding":
@@ -204,8 +236,6 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return FOLLOWING_DISTANCE;
             case "mobileUsage":
                 return MOBILE_USAGE;
-            case "genericDistraction":
-                return GENERIC_DISTRACTION;
             case "unsafeParking":
                 return UNSAFE_PARKING;
             case "rollingStop":
@@ -214,18 +244,40 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return EATING_DRINKING;
             case "noSeatbelt":
                 return NO_SEATBELT;
-            case "drowsy":
-                return DROWSY;
+            case "lightSpeeding":
+                return LIGHT_SPEEDING;
+            case "vehicleInBlindSpotWarning":
+                return VEHICLE_IN_BLIND_SPOT_WARNING;
             case "crash":
                 return CRASH;
-            case "policyViolationMask":
-                return POLICY_VIOLATION_MASK;
             case "edgeRailroadCrossingViolation":
                 return EDGE_RAILROAD_CROSSING_VIOLATION;
-            case "harshTurn":
-                return HARSH_TURN;
+            case "heavySpeeding":
+                return HEAVY_SPEEDING;
             case "obstructedCamera":
                 return OBSTRUCTED_CAMERA;
+            case "rearCollisionWarning":
+                return REAR_COLLISION_WARNING;
+            case "vulnerableRoadUserCollisionWarning":
+                return VULNERABLE_ROAD_USER_COLLISION_WARNING;
+            case "severeSpeeding":
+                return SEVERE_SPEEDING;
+            case "rolloverProtection":
+                return ROLLOVER_PROTECTION;
+            case "yawControl":
+                return YAW_CONTROL;
+            case "genericDistraction":
+                return GENERIC_DISTRACTION;
+            case "moderateSpeeding":
+                return MODERATE_SPEEDING;
+            case "drowsy":
+                return DROWSY;
+            case "ranRedLight":
+                return RAN_RED_LIGHT;
+            case "policyViolationMask":
+                return POLICY_VIOLATION_MASK;
+            case "harshTurn":
+                return HARSH_TURN;
             default:
                 return new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.UNKNOWN, value);
         }
@@ -252,11 +304,17 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         HARSH_TURN,
 
+        HEAVY_SPEEDING,
+
         LANE_DEPARTURE,
+
+        LIGHT_SPEEDING,
 
         MAX_SPEED,
 
         MOBILE_USAGE,
+
+        MODERATE_SPEEDING,
 
         NO_SEATBELT,
 
@@ -266,15 +324,23 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         POLICY_VIOLATION_MASK,
 
+        RAN_RED_LIGHT,
+
+        REAR_COLLISION_WARNING,
+
         ROLLING_STOP,
 
         ROLLOVER_PROTECTION,
+
+        SEVERE_SPEEDING,
 
         SMOKING,
 
         SPEEDING,
 
         UNSAFE_PARKING,
+
+        VEHICLE_IN_BLIND_SPOT_WARNING,
 
         VULNERABLE_ROAD_USER_COLLISION_WARNING,
 
@@ -304,11 +370,17 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         T visitHarshTurn();
 
+        T visitHeavySpeeding();
+
         T visitLaneDeparture();
+
+        T visitLightSpeeding();
 
         T visitMaxSpeed();
 
         T visitMobileUsage();
+
+        T visitModerateSpeeding();
 
         T visitNoSeatbelt();
 
@@ -318,15 +390,23 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         T visitPolicyViolationMask();
 
+        T visitRanRedLight();
+
+        T visitRearCollisionWarning();
+
         T visitRollingStop();
 
         T visitRolloverProtection();
+
+        T visitSevereSpeeding();
 
         T visitSmoking();
 
         T visitSpeeding();
 
         T visitUnsafeParking();
+
+        T visitVehicleInBlindSpotWarning();
 
         T visitVulnerableRoadUserCollisionWarning();
 

@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
+    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem AUTHORIZED_ZONE =
+            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.AUTHORIZED_ZONE, "authorizedZone");
+
+    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem UNAUTHORIZED_ZONE =
+            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
+
     public static final IdlingEventAddressObjectResponseBodyAddressTypesItem INDUSTRIAL_SITE =
             new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
@@ -71,6 +77,10 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case AUTHORIZED_ZONE:
+                return visitor.visitAuthorizedZone();
+            case UNAUTHORIZED_ZONE:
+                return visitor.visitUnauthorizedZone();
             case INDUSTRIAL_SITE:
                 return visitor.visitIndustrialSite();
             case AVOIDANCE_ZONE:
@@ -100,6 +110,10 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static IdlingEventAddressObjectResponseBodyAddressTypesItem valueOf(String value) {
         switch (value) {
+            case "authorizedZone":
+                return AUTHORIZED_ZONE;
+            case "unauthorizedZone":
+                return UNAUTHORIZED_ZONE;
             case "industrialSite":
                 return INDUSTRIAL_SITE;
             case "avoidanceZone":
@@ -130,6 +144,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
 
         ALERTS_ONLY,
 
+        AUTHORIZED_ZONE,
+
         AVOIDANCE_ZONE,
 
         INDUSTRIAL_SITE,
@@ -139,6 +155,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
         RISK_ZONE,
 
         SHORT_HAUL,
+
+        UNAUTHORIZED_ZONE,
 
         UNDEFINED,
 
@@ -154,6 +172,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
 
         T visitAlertsOnly();
 
+        T visitAuthorizedZone();
+
         T visitAvoidanceZone();
 
         T visitIndustrialSite();
@@ -163,6 +183,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
         T visitRiskZone();
 
         T visitShortHaul();
+
+        T visitUnauthorizedZone();
 
         T visitUndefined();
 
