@@ -25,13 +25,13 @@ public final class HosEldEventObjectResponseBody {
 
     private final Optional<Double> elapsedEngineHours;
 
-    private final int eldEventCode;
+    private final long eldEventCode;
 
-    private final Optional<Integer> eldEventRecordOrigin;
+    private final Optional<Long> eldEventRecordOrigin;
 
-    private final Optional<Integer> eldEventRecordStatus;
+    private final Optional<Long> eldEventRecordStatus;
 
-    private final int eldEventType;
+    private final long eldEventType;
 
     private final Optional<HosEldEventLocationObjectResponseBody> location;
 
@@ -52,10 +52,10 @@ public final class HosEldEventObjectResponseBody {
     private HosEldEventObjectResponseBody(
             Optional<Long> accumulatedVehicleMeters,
             Optional<Double> elapsedEngineHours,
-            int eldEventCode,
-            Optional<Integer> eldEventRecordOrigin,
-            Optional<Integer> eldEventRecordStatus,
-            int eldEventType,
+            long eldEventCode,
+            Optional<Long> eldEventRecordOrigin,
+            Optional<Long> eldEventRecordStatus,
+            long eldEventType,
             Optional<HosEldEventLocationObjectResponseBody> location,
             Optional<HosEldEventObjectResponseBodyMalfunctionDiagnosticCode> malfunctionDiagnosticCode,
             Optional<HosEldEventRemarkObjectResponseBody> remark,
@@ -100,7 +100,7 @@ public final class HosEldEventObjectResponseBody {
      * @return A dependent attribute on <code>eldEventType</code> that specifies the nature of the event, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.20</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>
      */
     @JsonProperty("eldEventCode")
-    public int getEldEventCode() {
+    public long getEldEventCode() {
         return eldEventCode;
     }
 
@@ -108,7 +108,7 @@ public final class HosEldEventObjectResponseBody {
      * @return An attribute for the event record indicating whether it is automatically recorded, or edited, entered or accepted by the driver, requested by another authenticated user, or assumed from unidentified driver profile, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.22</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>
      */
     @JsonProperty("eldEventRecordOrigin")
-    public Optional<Integer> getEldEventRecordOrigin() {
+    public Optional<Long> getEldEventRecordOrigin() {
         return eldEventRecordOrigin;
     }
 
@@ -116,7 +116,7 @@ public final class HosEldEventObjectResponseBody {
      * @return An attribute for the event record indicating whether an event is active or inactive and further, if inactive, whether it is due to a change or lack of confirmation by the driver or due to a driver's rejection of change request, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.23</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>
      */
     @JsonProperty("eldEventRecordStatus")
-    public Optional<Integer> getEldEventRecordStatus() {
+    public Optional<Long> getEldEventRecordStatus() {
         return eldEventRecordStatus;
     }
 
@@ -124,7 +124,7 @@ public final class HosEldEventObjectResponseBody {
      * @return An attribute specifying the type of ELD event, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.25</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>
      */
     @JsonProperty("eldEventType")
-    public int getEldEventType() {
+    public long getEldEventType() {
         return eldEventType;
     }
 
@@ -233,7 +233,7 @@ public final class HosEldEventObjectResponseBody {
         /**
          * <p>A dependent attribute on <code>eldEventType</code> that specifies the nature of the event, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.20</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code></p>
          */
-        EldEventTypeStage eldEventCode(int eldEventCode);
+        EldEventTypeStage eldEventCode(long eldEventCode);
 
         Builder from(HosEldEventObjectResponseBody other);
     }
@@ -242,7 +242,7 @@ public final class HosEldEventObjectResponseBody {
         /**
          * <p>An attribute specifying the type of ELD event, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.25</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code></p>
          */
-        TimeStage eldEventType(int eldEventType);
+        TimeStage eldEventType(long eldEventType);
     }
 
     public interface TimeStage {
@@ -272,16 +272,16 @@ public final class HosEldEventObjectResponseBody {
         /**
          * <p>An attribute for the event record indicating whether it is automatically recorded, or edited, entered or accepted by the driver, requested by another authenticated user, or assumed from unidentified driver profile, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.22</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code></p>
          */
-        _FinalStage eldEventRecordOrigin(Optional<Integer> eldEventRecordOrigin);
+        _FinalStage eldEventRecordOrigin(Optional<Long> eldEventRecordOrigin);
 
-        _FinalStage eldEventRecordOrigin(Integer eldEventRecordOrigin);
+        _FinalStage eldEventRecordOrigin(Long eldEventRecordOrigin);
 
         /**
          * <p>An attribute for the event record indicating whether an event is active or inactive and further, if inactive, whether it is due to a change or lack of confirmation by the driver or due to a driver's rejection of change request, as defined in the ELD Mandate <a href="https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&amp;ty=HTML&amp;h=L&amp;mc=true&amp;=PART&amp;n=pt49.5.395#ap49.5.395_138.a">section 7.23</a>.  Valid values: <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code></p>
          */
-        _FinalStage eldEventRecordStatus(Optional<Integer> eldEventRecordStatus);
+        _FinalStage eldEventRecordStatus(Optional<Long> eldEventRecordStatus);
 
-        _FinalStage eldEventRecordStatus(Integer eldEventRecordStatus);
+        _FinalStage eldEventRecordStatus(Long eldEventRecordStatus);
 
         _FinalStage location(Optional<HosEldEventLocationObjectResponseBody> location);
 
@@ -321,9 +321,9 @@ public final class HosEldEventObjectResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements EldEventCodeStage, EldEventTypeStage, TimeStage, _FinalStage {
-        private int eldEventCode;
+        private long eldEventCode;
 
-        private int eldEventType;
+        private long eldEventType;
 
         private String time;
 
@@ -340,9 +340,9 @@ public final class HosEldEventObjectResponseBody {
 
         private Optional<HosEldEventLocationObjectResponseBody> location = Optional.empty();
 
-        private Optional<Integer> eldEventRecordStatus = Optional.empty();
+        private Optional<Long> eldEventRecordStatus = Optional.empty();
 
-        private Optional<Integer> eldEventRecordOrigin = Optional.empty();
+        private Optional<Long> eldEventRecordOrigin = Optional.empty();
 
         private Optional<Double> elapsedEngineHours = Optional.empty();
 
@@ -378,7 +378,7 @@ public final class HosEldEventObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("eldEventCode")
-        public EldEventTypeStage eldEventCode(int eldEventCode) {
+        public EldEventTypeStage eldEventCode(long eldEventCode) {
             this.eldEventCode = eldEventCode;
             return this;
         }
@@ -390,7 +390,7 @@ public final class HosEldEventObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("eldEventType")
-        public TimeStage eldEventType(int eldEventType) {
+        public TimeStage eldEventType(long eldEventType) {
             this.eldEventType = eldEventType;
             return this;
         }
@@ -513,7 +513,7 @@ public final class HosEldEventObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage eldEventRecordStatus(Integer eldEventRecordStatus) {
+        public _FinalStage eldEventRecordStatus(Long eldEventRecordStatus) {
             this.eldEventRecordStatus = Optional.ofNullable(eldEventRecordStatus);
             return this;
         }
@@ -523,7 +523,7 @@ public final class HosEldEventObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "eldEventRecordStatus", nulls = Nulls.SKIP)
-        public _FinalStage eldEventRecordStatus(Optional<Integer> eldEventRecordStatus) {
+        public _FinalStage eldEventRecordStatus(Optional<Long> eldEventRecordStatus) {
             this.eldEventRecordStatus = eldEventRecordStatus;
             return this;
         }
@@ -533,7 +533,7 @@ public final class HosEldEventObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage eldEventRecordOrigin(Integer eldEventRecordOrigin) {
+        public _FinalStage eldEventRecordOrigin(Long eldEventRecordOrigin) {
             this.eldEventRecordOrigin = Optional.ofNullable(eldEventRecordOrigin);
             return this;
         }
@@ -543,7 +543,7 @@ public final class HosEldEventObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "eldEventRecordOrigin", nulls = Nulls.SKIP)
-        public _FinalStage eldEventRecordOrigin(Optional<Integer> eldEventRecordOrigin) {
+        public _FinalStage eldEventRecordOrigin(Optional<Long> eldEventRecordOrigin) {
             this.eldEventRecordOrigin = eldEventRecordOrigin;
             return this;
         }

@@ -21,11 +21,11 @@ import org.jetbrains.annotations.NotNull;
 public final class EquipmentGatewayJ1939EngineSeconds {
     private final String time;
 
-    private final int value;
+    private final long value;
 
     private final Map<String, Object> additionalProperties;
 
-    private EquipmentGatewayJ1939EngineSeconds(String time, int value, Map<String, Object> additionalProperties) {
+    private EquipmentGatewayJ1939EngineSeconds(String time, long value, Map<String, Object> additionalProperties) {
         this.time = time;
         this.value = value;
         this.additionalProperties = additionalProperties;
@@ -40,7 +40,7 @@ public final class EquipmentGatewayJ1939EngineSeconds {
      * @return The number of seconds an engine has been running as detected via aux input 1 active state. Used in combination with an offset provided manually through the Samsara cloud dashboard. This is supported with the following hardware configurations: AG24/AG26/AG46P + APWR cable (Auxiliary engine configuration required) AG52/AG53 + BPWR/BEQP cable (Auxiliary engine configuration required).
      */
     @JsonProperty("value")
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
@@ -84,7 +84,7 @@ public final class EquipmentGatewayJ1939EngineSeconds {
         /**
          * <p>The number of seconds an engine has been running as detected via aux input 1 active state. Used in combination with an offset provided manually through the Samsara cloud dashboard. This is supported with the following hardware configurations: AG24/AG26/AG46P + APWR cable (Auxiliary engine configuration required) AG52/AG53 + BPWR/BEQP cable (Auxiliary engine configuration required).</p>
          */
-        _FinalStage value(int value);
+        _FinalStage value(long value);
     }
 
     public interface _FinalStage {
@@ -95,7 +95,7 @@ public final class EquipmentGatewayJ1939EngineSeconds {
     public static final class Builder implements TimeStage, ValueStage, _FinalStage {
         private String time;
 
-        private int value;
+        private long value;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -123,7 +123,7 @@ public final class EquipmentGatewayJ1939EngineSeconds {
          */
         @java.lang.Override
         @JsonSetter("value")
-        public _FinalStage value(int value) {
+        public _FinalStage value(long value) {
             this.value = value;
             return this;
         }

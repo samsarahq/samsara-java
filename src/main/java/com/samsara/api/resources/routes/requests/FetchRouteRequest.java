@@ -7,29 +7,56 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FetchRouteRequest.Builder.class)
 public final class FetchRouteRequest {
+    private final Optional<List<String>> include;
+
     private final Map<String, Object> additionalProperties;
 
-    private FetchRouteRequest(Map<String, Object> additionalProperties) {
+    private FetchRouteRequest(Optional<List<String>> include, Map<String, Object> additionalProperties) {
+        this.include = include;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return A comma-separated list of additional fields to include in the response. Valid values: <code>stops.actualDistanceMeters</code>
+     */
+    @JsonProperty("include")
+    public Optional<List<String>> getInclude() {
+        return include;
     }
 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof FetchRouteRequest;
+        return other instanceof FetchRouteRequest && equalTo((FetchRouteRequest) other);
     }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
+    }
+
+    private boolean equalTo(FetchRouteRequest other) {
+        return include.equals(other.include);
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return Objects.hash(this.include);
     }
 
     @java.lang.Override
@@ -43,17 +70,39 @@ public final class FetchRouteRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> include = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
         public Builder from(FetchRouteRequest other) {
+            include(other.getInclude());
+            return this;
+        }
+
+        /**
+         * <p>A comma-separated list of additional fields to include in the response. Valid values: <code>stops.actualDistanceMeters</code></p>
+         */
+        @JsonSetter(value = "include", nulls = Nulls.SKIP)
+        public Builder include(Optional<List<String>> include) {
+            this.include = include;
+            return this;
+        }
+
+        public Builder include(List<String> include) {
+            this.include = Optional.ofNullable(include);
+            return this;
+        }
+
+        public Builder include(String include) {
+            this.include = Optional.of(Collections.singletonList(include));
             return this;
         }
 
         public FetchRouteRequest build() {
-            return new FetchRouteRequest(additionalProperties);
+            return new FetchRouteRequest(include, additionalProperties);
         }
     }
 }

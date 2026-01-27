@@ -26,7 +26,7 @@ public final class GetLocationAndSpeedRequest {
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Optional<String> startTime;
 
@@ -38,6 +38,8 @@ public final class GetLocationAndSpeedRequest {
 
     private final Optional<Boolean> includeGeofenceLookup;
 
+    private final Optional<Boolean> includeHighFrequencyLocations;
+
     private final Optional<Boolean> includeExternalIds;
 
     private final Map<String, Object> additionalProperties;
@@ -45,12 +47,13 @@ public final class GetLocationAndSpeedRequest {
     private GetLocationAndSpeedRequest(
             Optional<List<String>> ids,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Optional<String> startTime,
             Optional<String> endTime,
             Optional<Boolean> includeSpeed,
             Optional<Boolean> includeReverseGeo,
             Optional<Boolean> includeGeofenceLookup,
+            Optional<Boolean> includeHighFrequencyLocations,
             Optional<Boolean> includeExternalIds,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
@@ -61,6 +64,7 @@ public final class GetLocationAndSpeedRequest {
         this.includeSpeed = includeSpeed;
         this.includeReverseGeo = includeReverseGeo;
         this.includeGeofenceLookup = includeGeofenceLookup;
+        this.includeHighFrequencyLocations = includeHighFrequencyLocations;
         this.includeExternalIds = includeExternalIds;
         this.additionalProperties = additionalProperties;
     }
@@ -85,7 +89,7 @@ public final class GetLocationAndSpeedRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 512 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -114,7 +118,7 @@ public final class GetLocationAndSpeedRequest {
     }
 
     /**
-     * @return Optional boolean indicating whether or not to return the 'address' object
+     * @return Optional boolean indicating whether or not to return the 'address' object. Address information won't be returned for high-frequency locations.
      */
     @JsonProperty("includeReverseGeo")
     public Optional<Boolean> getIncludeReverseGeo() {
@@ -127,6 +131,14 @@ public final class GetLocationAndSpeedRequest {
     @JsonProperty("includeGeofenceLookup")
     public Optional<Boolean> getIncludeGeofenceLookup() {
         return includeGeofenceLookup;
+    }
+
+    /**
+     * @return Optional boolean indicating whether or not to return high-frequency location data (up to 1Hz). Cannot be used with includeGeofenceLookup.
+     */
+    @JsonProperty("includeHighFrequencyLocations")
+    public Optional<Boolean> getIncludeHighFrequencyLocations() {
+        return includeHighFrequencyLocations;
     }
 
     /**
@@ -157,6 +169,7 @@ public final class GetLocationAndSpeedRequest {
                 && includeSpeed.equals(other.includeSpeed)
                 && includeReverseGeo.equals(other.includeReverseGeo)
                 && includeGeofenceLookup.equals(other.includeGeofenceLookup)
+                && includeHighFrequencyLocations.equals(other.includeHighFrequencyLocations)
                 && includeExternalIds.equals(other.includeExternalIds);
     }
 
@@ -171,6 +184,7 @@ public final class GetLocationAndSpeedRequest {
                 this.includeSpeed,
                 this.includeReverseGeo,
                 this.includeGeofenceLookup,
+                this.includeHighFrequencyLocations,
                 this.includeExternalIds);
     }
 
@@ -189,7 +203,7 @@ public final class GetLocationAndSpeedRequest {
 
         private Optional<String> after = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> startTime = Optional.empty();
 
@@ -200,6 +214,8 @@ public final class GetLocationAndSpeedRequest {
         private Optional<Boolean> includeReverseGeo = Optional.empty();
 
         private Optional<Boolean> includeGeofenceLookup = Optional.empty();
+
+        private Optional<Boolean> includeHighFrequencyLocations = Optional.empty();
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
@@ -217,6 +233,7 @@ public final class GetLocationAndSpeedRequest {
             includeSpeed(other.getIncludeSpeed());
             includeReverseGeo(other.getIncludeReverseGeo());
             includeGeofenceLookup(other.getIncludeGeofenceLookup());
+            includeHighFrequencyLocations(other.getIncludeHighFrequencyLocations());
             includeExternalIds(other.getIncludeExternalIds());
             return this;
         }
@@ -258,12 +275,12 @@ public final class GetLocationAndSpeedRequest {
          * <p>The limit for how many objects will be in the response. Default and max for this value is 512 objects.</p>
          */
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public Builder limit(Optional<Integer> limit) {
+        public Builder limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
-        public Builder limit(Integer limit) {
+        public Builder limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -311,7 +328,7 @@ public final class GetLocationAndSpeedRequest {
         }
 
         /**
-         * <p>Optional boolean indicating whether or not to return the 'address' object</p>
+         * <p>Optional boolean indicating whether or not to return the 'address' object. Address information won't be returned for high-frequency locations.</p>
          */
         @JsonSetter(value = "includeReverseGeo", nulls = Nulls.SKIP)
         public Builder includeReverseGeo(Optional<Boolean> includeReverseGeo) {
@@ -339,6 +356,20 @@ public final class GetLocationAndSpeedRequest {
         }
 
         /**
+         * <p>Optional boolean indicating whether or not to return high-frequency location data (up to 1Hz). Cannot be used with includeGeofenceLookup.</p>
+         */
+        @JsonSetter(value = "includeHighFrequencyLocations", nulls = Nulls.SKIP)
+        public Builder includeHighFrequencyLocations(Optional<Boolean> includeHighFrequencyLocations) {
+            this.includeHighFrequencyLocations = includeHighFrequencyLocations;
+            return this;
+        }
+
+        public Builder includeHighFrequencyLocations(Boolean includeHighFrequencyLocations) {
+            this.includeHighFrequencyLocations = Optional.ofNullable(includeHighFrequencyLocations);
+            return this;
+        }
+
+        /**
          * <p>Optional boolean indicating whether to return external IDs on supported entities</p>
          */
         @JsonSetter(value = "includeExternalIds", nulls = Nulls.SKIP)
@@ -362,6 +393,7 @@ public final class GetLocationAndSpeedRequest {
                     includeSpeed,
                     includeReverseGeo,
                     includeGeofenceLookup,
+                    includeHighFrequencyLocations,
                     includeExternalIds,
                     additionalProperties);
         }

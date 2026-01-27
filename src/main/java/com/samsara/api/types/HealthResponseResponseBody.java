@@ -75,7 +75,7 @@ public final class HealthResponseResponseBody {
     }
 
     /**
-     * @return Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code>
+     * @return Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code>
      */
     @JsonProperty("primaryHealthReason")
     public Optional<HealthResponseResponseBodyPrimaryHealthReason> getPrimaryHealthReason() {
@@ -118,6 +118,9 @@ public final class HealthResponseResponseBody {
      * <p><code>recommendedActionAgUnplugged</code>: The asset gateway is unplugged or cut. Check the gateway connection to ensure it is plugged in and has been installed correctly</p>
      * </li>
      * <li>
+     * <p><code>recommendedActionBLEDataPending</code>: This device has recently been installed and more data is required to calculate health. No action required.</p>
+     * </li>
+     * <li>
      * <p><code>recommendedActionBLEHealthy</code>: Device is healthy. No action required.</p>
      * </li>
      * <li>
@@ -136,22 +139,31 @@ public final class HealthResponseResponseBody {
      * <p><code>recommendedActionCcMediaInputUptime</code>: Please ensure the camera is properly connected to the device.</p>
      * </li>
      * <li>
+     * <p><code>recommendedActionCcNotDetected</code>: None</p>
+     * </li>
+     * <li>
      * <p><code>recommendedActionCmCameraMisaligned</code>: The position of the road-facing dash cam is not aligned with the horizon. Video quality and AI detection may be impacted. Reposition dash cam and Test Dash Cam Positioning.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionCmHealthy</code>: Dash cam recording is healthy. No action required.</p>
      * </li>
      * <li>
+     * <p><code>recommendedActionCmInactive</code>: None</p>
+     * </li>
+     * <li>
      * <p><code>recommendedActionCmInwardCameraObstruction</code>: The inward-facing dash cam does not have a clear view of the vehicle cab. Video quality and AI detection may be impacted. Remove obstruction and Test Dash Cam Positioning.</p>
      * </li>
      * <li>
-     * <p><code>recommendedActionCmIrregularRecording</code>: The dash cam is not working as expected. Please contact Support.</p>
+     * <p><code>recommendedActionCmIrregularRecording</code>: The dash cam shows no evidence of recording during the expected recording time over the last 30 days. Please contact Support.</p>
+     * </li>
+     * <li>
+     * <p><code>recommendedActionCmLowUptime</code>: The dash cam is either experiencing low recording uptime, low connectivity, or both. Please follow the troubleshooting steps and contact Support if issues persist.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionCmNewlyInstalledDevice</code>: This dash cam has recently been installed and at least 30 hours of recording time is required to calculate health. No action required.</p>
      * </li>
      * <li>
-     * <p><code>recommendedActionCmNotDetected</code>: The dash cam has not been detected for at least 24 hours. Check the dash cam's connection and verify your dash cam has been installed correctly.</p>
+     * <p><code>recommendedActionCmNotDetected</code>: The dash cam has not been detected within the last 30 days. Check the dash cam's connection and verify your dash cam has been installed correctly.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionCmOutwardCameraObstruction</code>: The outward-facing dash cam does not have a clear view of the road. Video quality and AI detection may be impacted Remove obstruction and Test Dash Cam Positioning.</p>
@@ -206,7 +218,7 @@ public final class HealthResponseResponseBody {
      * </li>
      * <li>
      * <p><code>unknown</code>: None</p>
-     * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
+     * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionBLEDataPending</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCcNotDetected</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInactive</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmLowUptime</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
      * </li>
      * </ul>
      */
@@ -324,7 +336,7 @@ public final class HealthResponseResponseBody {
         }
 
         /**
-         * <p>Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code></p>
+         * <p>Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code></p>
          */
         @JsonSetter(value = "primaryHealthReason", nulls = Nulls.SKIP)
         public Builder primaryHealthReason(
@@ -380,6 +392,9 @@ public final class HealthResponseResponseBody {
          * <p><code>recommendedActionAgUnplugged</code>: The asset gateway is unplugged or cut. Check the gateway connection to ensure it is plugged in and has been installed correctly</p>
          * </li>
          * <li>
+         * <p><code>recommendedActionBLEDataPending</code>: This device has recently been installed and more data is required to calculate health. No action required.</p>
+         * </li>
+         * <li>
          * <p><code>recommendedActionBLEHealthy</code>: Device is healthy. No action required.</p>
          * </li>
          * <li>
@@ -398,22 +413,31 @@ public final class HealthResponseResponseBody {
          * <p><code>recommendedActionCcMediaInputUptime</code>: Please ensure the camera is properly connected to the device.</p>
          * </li>
          * <li>
+         * <p><code>recommendedActionCcNotDetected</code>: None</p>
+         * </li>
+         * <li>
          * <p><code>recommendedActionCmCameraMisaligned</code>: The position of the road-facing dash cam is not aligned with the horizon. Video quality and AI detection may be impacted. Reposition dash cam and Test Dash Cam Positioning.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionCmHealthy</code>: Dash cam recording is healthy. No action required.</p>
          * </li>
          * <li>
+         * <p><code>recommendedActionCmInactive</code>: None</p>
+         * </li>
+         * <li>
          * <p><code>recommendedActionCmInwardCameraObstruction</code>: The inward-facing dash cam does not have a clear view of the vehicle cab. Video quality and AI detection may be impacted. Remove obstruction and Test Dash Cam Positioning.</p>
          * </li>
          * <li>
-         * <p><code>recommendedActionCmIrregularRecording</code>: The dash cam is not working as expected. Please contact Support.</p>
+         * <p><code>recommendedActionCmIrregularRecording</code>: The dash cam shows no evidence of recording during the expected recording time over the last 30 days. Please contact Support.</p>
+         * </li>
+         * <li>
+         * <p><code>recommendedActionCmLowUptime</code>: The dash cam is either experiencing low recording uptime, low connectivity, or both. Please follow the troubleshooting steps and contact Support if issues persist.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionCmNewlyInstalledDevice</code>: This dash cam has recently been installed and at least 30 hours of recording time is required to calculate health. No action required.</p>
          * </li>
          * <li>
-         * <p><code>recommendedActionCmNotDetected</code>: The dash cam has not been detected for at least 24 hours. Check the dash cam's connection and verify your dash cam has been installed correctly.</p>
+         * <p><code>recommendedActionCmNotDetected</code>: The dash cam has not been detected within the last 30 days. Check the dash cam's connection and verify your dash cam has been installed correctly.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionCmOutwardCameraObstruction</code>: The outward-facing dash cam does not have a clear view of the road. Video quality and AI detection may be impacted Remove obstruction and Test Dash Cam Positioning.</p>
@@ -468,7 +492,7 @@ public final class HealthResponseResponseBody {
          * </li>
          * <li>
          * <p><code>unknown</code>: None</p>
-         * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
+         * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionBLEDataPending</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCcNotDetected</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInactive</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmLowUptime</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
          * </li>
          * </ul>
          */

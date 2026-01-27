@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class AddressAddressTypesItem {
+    public static final AddressAddressTypesItem AUTHORIZED_ZONE =
+            new AddressAddressTypesItem(Value.AUTHORIZED_ZONE, "authorizedZone");
+
+    public static final AddressAddressTypesItem UNAUTHORIZED_ZONE =
+            new AddressAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
+
     public static final AddressAddressTypesItem INDUSTRIAL_SITE =
             new AddressAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
@@ -64,6 +70,10 @@ public final class AddressAddressTypesItem {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case AUTHORIZED_ZONE:
+                return visitor.visitAuthorizedZone();
+            case UNAUTHORIZED_ZONE:
+                return visitor.visitUnauthorizedZone();
             case INDUSTRIAL_SITE:
                 return visitor.visitIndustrialSite();
             case AVOIDANCE_ZONE:
@@ -91,6 +101,10 @@ public final class AddressAddressTypesItem {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static AddressAddressTypesItem valueOf(String value) {
         switch (value) {
+            case "authorizedZone":
+                return AUTHORIZED_ZONE;
+            case "unauthorizedZone":
+                return UNAUTHORIZED_ZONE;
             case "industrialSite":
                 return INDUSTRIAL_SITE;
             case "avoidanceZone":
@@ -133,6 +147,10 @@ public final class AddressAddressTypesItem {
 
         KNOWN_GPS_JAMMING_ZONE,
 
+        AUTHORIZED_ZONE,
+
+        UNAUTHORIZED_ZONE,
+
         UNKNOWN
     }
 
@@ -154,6 +172,10 @@ public final class AddressAddressTypesItem {
         T visitAvoidanceZone();
 
         T visitKnownGpsJammingZone();
+
+        T visitAuthorizedZone();
+
+        T visitUnauthorizedZone();
 
         T visitUnknown(String unknownType);
     }

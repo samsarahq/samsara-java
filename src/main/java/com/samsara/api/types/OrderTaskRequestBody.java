@@ -81,7 +81,7 @@ public final class OrderTaskRequestBody {
     }
 
     /**
-     * @return Latitude of the order
+     * @return Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.
      */
     @JsonProperty("latitude")
     public Optional<Double> getLatitude() {
@@ -89,7 +89,7 @@ public final class OrderTaskRequestBody {
     }
 
     /**
-     * @return Longitude of the order
+     * @return Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.
      */
     @JsonProperty("longitude")
     public Optional<Double> getLongitude() {
@@ -239,7 +239,7 @@ public final class OrderTaskRequestBody {
         }
 
         /**
-         * <p>Latitude of the order</p>
+         * <p>Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.</p>
          */
         @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
         public Builder latitude(Optional<Double> latitude) {
@@ -253,7 +253,7 @@ public final class OrderTaskRequestBody {
         }
 
         /**
-         * <p>Longitude of the order</p>
+         * <p>Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.</p>
          */
         @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
         public Builder longitude(Optional<Double> longitude) {

@@ -20,6 +20,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DetectionLogSafetyEventObjectResponseBody.Builder.class)
 public final class DetectionLogSafetyEventObjectResponseBody {
+    private final Optional<String> id;
+
     private final boolean inboxEvent;
 
     private final Optional<DetectionLogSafetyEventObjectResponseBodyInboxFilterReason> inboxFilterReason;
@@ -27,12 +29,22 @@ public final class DetectionLogSafetyEventObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private DetectionLogSafetyEventObjectResponseBody(
+            Optional<String> id,
             boolean inboxEvent,
             Optional<DetectionLogSafetyEventObjectResponseBodyInboxFilterReason> inboxFilterReason,
             Map<String, Object> additionalProperties) {
+        this.id = id;
         this.inboxEvent = inboxEvent;
         this.inboxFilterReason = inboxFilterReason;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Unique Samsara ID (uuid) of the safety event. Only returned when safetyEvent.inboxEvent is true.
+     */
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -44,7 +56,7 @@ public final class DetectionLogSafetyEventObjectResponseBody {
     }
 
     /**
-     * @return The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>unknown</code>
+     * @return The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>inCabAlertOnly</code>, <code>unknown</code>
      */
     @JsonProperty("inboxFilterReason")
     public Optional<DetectionLogSafetyEventObjectResponseBodyInboxFilterReason> getInboxFilterReason() {
@@ -64,12 +76,14 @@ public final class DetectionLogSafetyEventObjectResponseBody {
     }
 
     private boolean equalTo(DetectionLogSafetyEventObjectResponseBody other) {
-        return inboxEvent == other.inboxEvent && inboxFilterReason.equals(other.inboxFilterReason);
+        return id.equals(other.id)
+                && inboxEvent == other.inboxEvent
+                && inboxFilterReason.equals(other.inboxFilterReason);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.inboxEvent, this.inboxFilterReason);
+        return Objects.hash(this.id, this.inboxEvent, this.inboxFilterReason);
     }
 
     @java.lang.Override
@@ -94,7 +108,14 @@ public final class DetectionLogSafetyEventObjectResponseBody {
         DetectionLogSafetyEventObjectResponseBody build();
 
         /**
-         * <p>The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>unknown</code></p>
+         * <p>Unique Samsara ID (uuid) of the safety event. Only returned when safetyEvent.inboxEvent is true.</p>
+         */
+        _FinalStage id(Optional<String> id);
+
+        _FinalStage id(String id);
+
+        /**
+         * <p>The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>inCabAlertOnly</code>, <code>unknown</code></p>
          */
         _FinalStage inboxFilterReason(
                 Optional<DetectionLogSafetyEventObjectResponseBodyInboxFilterReason> inboxFilterReason);
@@ -109,6 +130,8 @@ public final class DetectionLogSafetyEventObjectResponseBody {
         private Optional<DetectionLogSafetyEventObjectResponseBodyInboxFilterReason> inboxFilterReason =
                 Optional.empty();
 
+        private Optional<String> id = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -116,6 +139,7 @@ public final class DetectionLogSafetyEventObjectResponseBody {
 
         @java.lang.Override
         public Builder from(DetectionLogSafetyEventObjectResponseBody other) {
+            id(other.getId());
             inboxEvent(other.getInboxEvent());
             inboxFilterReason(other.getInboxFilterReason());
             return this;
@@ -134,7 +158,7 @@ public final class DetectionLogSafetyEventObjectResponseBody {
         }
 
         /**
-         * <p>The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>unknown</code></p>
+         * <p>The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>inCabAlertOnly</code>, <code>unknown</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -145,7 +169,7 @@ public final class DetectionLogSafetyEventObjectResponseBody {
         }
 
         /**
-         * <p>The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>unknown</code></p>
+         * <p>The reason the detection was filtered out of the inbox. Only returned when safetyEvent.inboxEvent is false  Valid values: <code>overDailyLimit</code>, <code>overHourlyLimit</code>, <code>overTripLimit</code>, <code>belowConfidenceThreshold</code>, <code>belowSeverityThreshold</code>, <code>overEventRateLimit</code>, <code>geofenceFilter</code>, <code>belowNudgeThreshold</code>, <code>belowSpeedThreshold</code>, <code>nighttimeFilter</code>, <code>speedingFilter</code>, <code>inCabAlertOnly</code>, <code>unknown</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "inboxFilterReason", nulls = Nulls.SKIP)
@@ -155,9 +179,30 @@ public final class DetectionLogSafetyEventObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Unique Samsara ID (uuid) of the safety event. Only returned when safetyEvent.inboxEvent is true.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage id(String id) {
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>Unique Samsara ID (uuid) of the safety event. Only returned when safetyEvent.inboxEvent is true.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public _FinalStage id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
         @java.lang.Override
         public DetectionLogSafetyEventObjectResponseBody build() {
-            return new DetectionLogSafetyEventObjectResponseBody(inboxEvent, inboxFilterReason, additionalProperties);
+            return new DetectionLogSafetyEventObjectResponseBody(
+                    id, inboxEvent, inboxFilterReason, additionalProperties);
         }
     }
 }

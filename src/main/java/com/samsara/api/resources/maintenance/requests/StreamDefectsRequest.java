@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 public final class StreamDefectsRequest {
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final String startTime;
 
@@ -37,7 +37,7 @@ public final class StreamDefectsRequest {
 
     private StreamDefectsRequest(
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             String startTime,
             Optional<String> endTime,
             Optional<Boolean> includeExternalIds,
@@ -64,7 +64,7 @@ public final class StreamDefectsRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 200 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -157,9 +157,9 @@ public final class StreamDefectsRequest {
         /**
          * <p>The limit for how many objects will be in the response. Default and max for this value is 200 objects.</p>
          */
-        _FinalStage limit(Optional<Integer> limit);
+        _FinalStage limit(Optional<Long> limit);
 
-        _FinalStage limit(Integer limit);
+        _FinalStage limit(Long limit);
 
         /**
          * <p>Optional RFC 3339 timestamp. If not provided then the endpoint behaves as an unending feed of changes.</p>
@@ -193,7 +193,7 @@ public final class StreamDefectsRequest {
 
         private Optional<String> endTime = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -290,7 +290,7 @@ public final class StreamDefectsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage limit(Integer limit) {
+        public _FinalStage limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -300,7 +300,7 @@ public final class StreamDefectsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public _FinalStage limit(Optional<Integer> limit) {
+        public _FinalStage limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }

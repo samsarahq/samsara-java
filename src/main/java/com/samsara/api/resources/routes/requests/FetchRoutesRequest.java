@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,27 +23,39 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FetchRoutesRequest.Builder.class)
 public final class FetchRoutesRequest {
+    private final Optional<List<String>> include;
+
     private final String startTime;
 
     private final String endTime;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Optional<String> after;
 
     private final Map<String, Object> additionalProperties;
 
     private FetchRoutesRequest(
+            Optional<List<String>> include,
             String startTime,
             String endTime,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Optional<String> after,
             Map<String, Object> additionalProperties) {
+        this.include = include;
         this.startTime = startTime;
         this.endTime = endTime;
         this.limit = limit;
         this.after = after;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return A comma-separated list of additional fields to include in the response. Valid values: <code>stops.actualDistanceMeters</code>
+     */
+    @JsonProperty("include")
+    public Optional<List<String>> getInclude() {
+        return include;
     }
 
     /**
@@ -64,7 +78,7 @@ public final class FetchRoutesRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 512 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -88,7 +102,8 @@ public final class FetchRoutesRequest {
     }
 
     private boolean equalTo(FetchRoutesRequest other) {
-        return startTime.equals(other.startTime)
+        return include.equals(other.include)
+                && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
                 && limit.equals(other.limit)
                 && after.equals(other.after);
@@ -96,7 +111,7 @@ public final class FetchRoutesRequest {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.startTime, this.endTime, this.limit, this.after);
+        return Objects.hash(this.include, this.startTime, this.endTime, this.limit, this.after);
     }
 
     @java.lang.Override
@@ -128,11 +143,20 @@ public final class FetchRoutesRequest {
         FetchRoutesRequest build();
 
         /**
+         * <p>A comma-separated list of additional fields to include in the response. Valid values: <code>stops.actualDistanceMeters</code></p>
+         */
+        _FinalStage include(Optional<List<String>> include);
+
+        _FinalStage include(List<String> include);
+
+        _FinalStage include(String include);
+
+        /**
          * <p>The limit for how many objects will be in the response. Default and max for this value is 512 objects.</p>
          */
-        _FinalStage limit(Optional<Integer> limit);
+        _FinalStage limit(Optional<Long> limit);
 
-        _FinalStage limit(Integer limit);
+        _FinalStage limit(Long limit);
 
         /**
          * <p>If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.</p>
@@ -150,7 +174,9 @@ public final class FetchRoutesRequest {
 
         private Optional<String> after = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
+
+        private Optional<List<String>> include = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -159,6 +185,7 @@ public final class FetchRoutesRequest {
 
         @java.lang.Override
         public Builder from(FetchRoutesRequest other) {
+            include(other.getInclude());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
             limit(other.getLimit());
@@ -215,7 +242,7 @@ public final class FetchRoutesRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage limit(Integer limit) {
+        public _FinalStage limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -225,14 +252,40 @@ public final class FetchRoutesRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public _FinalStage limit(Optional<Integer> limit) {
+        public _FinalStage limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
         @java.lang.Override
+        public _FinalStage include(String include) {
+            this.include = Optional.of(Collections.singletonList(include));
+            return this;
+        }
+
+        /**
+         * <p>A comma-separated list of additional fields to include in the response. Valid values: <code>stops.actualDistanceMeters</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage include(List<String> include) {
+            this.include = Optional.ofNullable(include);
+            return this;
+        }
+
+        /**
+         * <p>A comma-separated list of additional fields to include in the response. Valid values: <code>stops.actualDistanceMeters</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "include", nulls = Nulls.SKIP)
+        public _FinalStage include(Optional<List<String>> include) {
+            this.include = include;
+            return this;
+        }
+
+        @java.lang.Override
         public FetchRoutesRequest build() {
-            return new FetchRoutesRequest(startTime, endTime, limit, after, additionalProperties);
+            return new FetchRoutesRequest(include, startTime, endTime, limit, after, additionalProperties);
         }
     }
 }

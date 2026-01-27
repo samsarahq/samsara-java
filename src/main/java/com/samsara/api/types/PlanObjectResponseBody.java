@@ -28,6 +28,8 @@ public final class PlanObjectResponseBody {
 
     private final String name;
 
+    private final OffsetDateTime shiftStartTime;
+
     private final OffsetDateTime updatedAt;
 
     private final Map<String, Object> additionalProperties;
@@ -37,12 +39,14 @@ public final class PlanObjectResponseBody {
             String hubId,
             String id,
             String name,
+            OffsetDateTime shiftStartTime,
             OffsetDateTime updatedAt,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
         this.hubId = hubId;
         this.id = id;
         this.name = name;
+        this.shiftStartTime = shiftStartTime;
         this.updatedAt = updatedAt;
         this.additionalProperties = additionalProperties;
     }
@@ -80,6 +84,14 @@ public final class PlanObjectResponseBody {
     }
 
     /**
+     * @return The shift start time for the plan in RFC 3339 format
+     */
+    @JsonProperty("shiftStartTime")
+    public OffsetDateTime getShiftStartTime() {
+        return shiftStartTime;
+    }
+
+    /**
      * @return The timestamp (in UTC) when the plan was last updated
      */
     @JsonProperty("updatedAt")
@@ -103,12 +115,13 @@ public final class PlanObjectResponseBody {
                 && hubId.equals(other.hubId)
                 && id.equals(other.id)
                 && name.equals(other.name)
+                && shiftStartTime.equals(other.shiftStartTime)
                 && updatedAt.equals(other.updatedAt);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.createdAt, this.hubId, this.id, this.name, this.updatedAt);
+        return Objects.hash(this.createdAt, this.hubId, this.id, this.name, this.shiftStartTime, this.updatedAt);
     }
 
     @java.lang.Override
@@ -147,7 +160,14 @@ public final class PlanObjectResponseBody {
         /**
          * <p>The name of the plan</p>
          */
-        UpdatedAtStage name(@NotNull String name);
+        ShiftStartTimeStage name(@NotNull String name);
+    }
+
+    public interface ShiftStartTimeStage {
+        /**
+         * <p>The shift start time for the plan in RFC 3339 format</p>
+         */
+        UpdatedAtStage shiftStartTime(@NotNull OffsetDateTime shiftStartTime);
     }
 
     public interface UpdatedAtStage {
@@ -163,7 +183,13 @@ public final class PlanObjectResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements CreatedAtStage, HubIdStage, IdStage, NameStage, UpdatedAtStage, _FinalStage {
+            implements CreatedAtStage,
+                    HubIdStage,
+                    IdStage,
+                    NameStage,
+                    ShiftStartTimeStage,
+                    UpdatedAtStage,
+                    _FinalStage {
         private OffsetDateTime createdAt;
 
         private String hubId;
@@ -171,6 +197,8 @@ public final class PlanObjectResponseBody {
         private String id;
 
         private String name;
+
+        private OffsetDateTime shiftStartTime;
 
         private OffsetDateTime updatedAt;
 
@@ -185,6 +213,7 @@ public final class PlanObjectResponseBody {
             hubId(other.getHubId());
             id(other.getId());
             name(other.getName());
+            shiftStartTime(other.getShiftStartTime());
             updatedAt(other.getUpdatedAt());
             return this;
         }
@@ -232,8 +261,20 @@ public final class PlanObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("name")
-        public UpdatedAtStage name(@NotNull String name) {
+        public ShiftStartTimeStage name(@NotNull String name) {
             this.name = Objects.requireNonNull(name, "name must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The shift start time for the plan in RFC 3339 format</p>
+         * <p>The shift start time for the plan in RFC 3339 format</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("shiftStartTime")
+        public UpdatedAtStage shiftStartTime(@NotNull OffsetDateTime shiftStartTime) {
+            this.shiftStartTime = Objects.requireNonNull(shiftStartTime, "shiftStartTime must not be null");
             return this;
         }
 
@@ -251,7 +292,8 @@ public final class PlanObjectResponseBody {
 
         @java.lang.Override
         public PlanObjectResponseBody build() {
-            return new PlanObjectResponseBody(createdAt, hubId, id, name, updatedAt, additionalProperties);
+            return new PlanObjectResponseBody(
+                    createdAt, hubId, id, name, shiftStartTime, updatedAt, additionalProperties);
         }
     }
 }

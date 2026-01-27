@@ -22,7 +22,7 @@ import java.util.Optional;
 public final class V1AssetReeferResponse {
     private final Optional<String> assetType;
 
-    private final Optional<Integer> id;
+    private final Optional<Long> id;
 
     private final Optional<String> name;
 
@@ -32,7 +32,7 @@ public final class V1AssetReeferResponse {
 
     private V1AssetReeferResponse(
             Optional<String> assetType,
-            Optional<Integer> id,
+            Optional<Long> id,
             Optional<String> name,
             Optional<V1AssetReeferResponseReeferStats> reeferStats,
             Map<String, Object> additionalProperties) {
@@ -55,7 +55,7 @@ public final class V1AssetReeferResponse {
      * @return Asset ID
      */
     @JsonProperty("id")
-    public Optional<Integer> getId() {
+    public Optional<Long> getId() {
         return id;
     }
 
@@ -108,7 +108,7 @@ public final class V1AssetReeferResponse {
     public static final class Builder {
         private Optional<String> assetType = Optional.empty();
 
-        private Optional<Integer> id = Optional.empty();
+        private Optional<Long> id = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -145,12 +145,12 @@ public final class V1AssetReeferResponse {
          * <p>Asset ID</p>
          */
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<Integer> id) {
+        public Builder id(Optional<Long> id) {
             this.id = id;
             return this;
         }
 
-        public Builder id(Integer id) {
+        public Builder id(Long id) {
             this.id = Optional.ofNullable(id);
             return this;
         }

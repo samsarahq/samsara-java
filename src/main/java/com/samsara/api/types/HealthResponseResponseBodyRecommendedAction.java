@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class HealthResponseResponseBodyRecommendedAction {
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CM_LOW_UPTIME =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_CM_LOW_UPTIME, "recommendedActionCmLowUptime");
+
     public static final HealthResponseResponseBodyRecommendedAction
             RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_EXCHANGE_SUBMITTED =
                     new HealthResponseResponseBodyRecommendedAction(
@@ -62,6 +66,10 @@ public final class HealthResponseResponseBodyRecommendedAction {
                             Value.RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_HARDWARE_EXCHANGED,
                             "recommendedActionVgMissingEldDiagnosticsHardwareExchanged");
 
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_BLE_DATA_PENDING =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_BLE_DATA_PENDING, "recommendedActionBLEDataPending");
+
     public static final HealthResponseResponseBodyRecommendedAction
             RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_NO_EXCHANGE_SUBMITTED =
                     new HealthResponseResponseBodyRecommendedAction(
@@ -116,6 +124,10 @@ public final class HealthResponseResponseBodyRecommendedAction {
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_AG_NO_GPS_SIGNAL, "recommendedActionAgNoGpsSignal");
 
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CM_INACTIVE =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_CM_INACTIVE, "recommendedActionCmInactive");
+
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_VG_NOT_DETECTED =
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_VG_NOT_DETECTED, "recommendedActionVgNotDetected");
@@ -164,6 +176,10 @@ public final class HealthResponseResponseBodyRecommendedAction {
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_VG_NEEDS_REPLACEMENT, "recommendedActionVgNeedsReplacement");
 
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CC_NOT_DETECTED =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_CC_NOT_DETECTED, "recommendedActionCcNotDetected");
+
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_VG_VG_UNPLUGGED =
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_VG_VG_UNPLUGGED, "recommendedActionVgVgUnplugged");
@@ -201,6 +217,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case RECOMMENDED_ACTION_CM_LOW_UPTIME:
+                return visitor.visitRecommendedActionCmLowUptime();
             case RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_EXCHANGE_SUBMITTED:
                 return visitor.visitRecommendedActionVgMissingEldDiagnosticsExchangeSubmitted();
             case RECOMMENDED_ACTION_AG_LOW_DEVICE_BATTERY_POWERED_AG:
@@ -225,6 +243,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return visitor.visitRecommendedActionCmIrregularRecording();
             case RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_HARDWARE_EXCHANGED:
                 return visitor.visitRecommendedActionVgMissingEldDiagnosticsHardwareExchanged();
+            case RECOMMENDED_ACTION_BLE_DATA_PENDING:
+                return visitor.visitRecommendedActionBleDataPending();
             case RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_NO_EXCHANGE_SUBMITTED:
                 return visitor.visitRecommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted();
             case RECOMMENDED_ACTION_VG_MISSING_VIN:
@@ -251,6 +271,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return visitor.visitRecommendedActionOemNotReporting();
             case RECOMMENDED_ACTION_AG_NO_GPS_SIGNAL:
                 return visitor.visitRecommendedActionAgNoGpsSignal();
+            case RECOMMENDED_ACTION_CM_INACTIVE:
+                return visitor.visitRecommendedActionCmInactive();
             case RECOMMENDED_ACTION_VG_NOT_DETECTED:
                 return visitor.visitRecommendedActionVgNotDetected();
             case RECOMMENDED_ACTION_CC_HEALTHY:
@@ -275,6 +297,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return visitor.visitRecommendedActionCmVgUnplugged();
             case RECOMMENDED_ACTION_VG_NEEDS_REPLACEMENT:
                 return visitor.visitRecommendedActionVgNeedsReplacement();
+            case RECOMMENDED_ACTION_CC_NOT_DETECTED:
+                return visitor.visitRecommendedActionCcNotDetected();
             case RECOMMENDED_ACTION_VG_VG_UNPLUGGED:
                 return visitor.visitRecommendedActionVgVgUnplugged();
             case _UNKNOWN:
@@ -286,6 +310,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static HealthResponseResponseBodyRecommendedAction valueOf(String value) {
         switch (value) {
+            case "recommendedActionCmLowUptime":
+                return RECOMMENDED_ACTION_CM_LOW_UPTIME;
             case "recommendedActionVgMissingEldDiagnosticsExchangeSubmitted":
                 return RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_EXCHANGE_SUBMITTED;
             case "recommendedActionAgLowDeviceBatteryPoweredAG":
@@ -310,6 +336,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return RECOMMENDED_ACTION_CM_IRREGULAR_RECORDING;
             case "recommendedActionVgMissingEldDiagnosticsHardwareExchanged":
                 return RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_HARDWARE_EXCHANGED;
+            case "recommendedActionBLEDataPending":
+                return RECOMMENDED_ACTION_BLE_DATA_PENDING;
             case "recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted":
                 return RECOMMENDED_ACTION_VG_MISSING_ELD_DIAGNOSTICS_NO_EXCHANGE_SUBMITTED;
             case "recommendedActionVgMissingVin":
@@ -336,6 +364,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return RECOMMENDED_ACTION_OEM_NOT_REPORTING;
             case "recommendedActionAgNoGpsSignal":
                 return RECOMMENDED_ACTION_AG_NO_GPS_SIGNAL;
+            case "recommendedActionCmInactive":
+                return RECOMMENDED_ACTION_CM_INACTIVE;
             case "recommendedActionVgNotDetected":
                 return RECOMMENDED_ACTION_VG_NOT_DETECTED;
             case "recommendedActionCcHealthy":
@@ -360,6 +390,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return RECOMMENDED_ACTION_CM_VG_UNPLUGGED;
             case "recommendedActionVgNeedsReplacement":
                 return RECOMMENDED_ACTION_VG_NEEDS_REPLACEMENT;
+            case "recommendedActionCcNotDetected":
+                return RECOMMENDED_ACTION_CC_NOT_DETECTED;
             case "recommendedActionVgVgUnplugged":
                 return RECOMMENDED_ACTION_VG_VG_UNPLUGGED;
             default:
@@ -384,6 +416,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         RECOMMENDED_ACTION_AG_UNPLUGGED,
 
+        RECOMMENDED_ACTION_BLE_DATA_PENDING,
+
         RECOMMENDED_ACTION_BLE_HEALTHY,
 
         RECOMMENDED_ACTION_BLE_LOW_BATTERY,
@@ -396,13 +430,19 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         RECOMMENDED_ACTION_CC_MEDIA_INPUT_UPTIME,
 
+        RECOMMENDED_ACTION_CC_NOT_DETECTED,
+
         RECOMMENDED_ACTION_CM_CAMERA_MISALIGNED,
 
         RECOMMENDED_ACTION_CM_HEALTHY,
 
+        RECOMMENDED_ACTION_CM_INACTIVE,
+
         RECOMMENDED_ACTION_CM_INWARD_CAMERA_OBSTRUCTION,
 
         RECOMMENDED_ACTION_CM_IRREGULAR_RECORDING,
+
+        RECOMMENDED_ACTION_CM_LOW_UPTIME,
 
         RECOMMENDED_ACTION_CM_NEWLY_INSTALLED_DEVICE,
 
@@ -464,6 +504,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         T visitRecommendedActionAgUnplugged();
 
+        T visitRecommendedActionBleDataPending();
+
         T visitRecommendedActionBleHealthy();
 
         T visitRecommendedActionBleLowBattery();
@@ -476,13 +518,19 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         T visitRecommendedActionCcMediaInputUptime();
 
+        T visitRecommendedActionCcNotDetected();
+
         T visitRecommendedActionCmCameraMisaligned();
 
         T visitRecommendedActionCmHealthy();
 
+        T visitRecommendedActionCmInactive();
+
         T visitRecommendedActionCmInwardCameraObstruction();
 
         T visitRecommendedActionCmIrregularRecording();
+
+        T visitRecommendedActionCmLowUptime();
 
         T visitRecommendedActionCmNewlyInstalledDevice();
 

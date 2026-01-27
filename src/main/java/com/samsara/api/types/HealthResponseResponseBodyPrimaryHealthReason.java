@@ -35,6 +35,9 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
     public static final HealthResponseResponseBodyPrimaryHealthReason CAMERA_MISALIGNED =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.CAMERA_MISALIGNED, "cameraMisaligned");
 
+    public static final HealthResponseResponseBodyPrimaryHealthReason DATA_PENDING =
+            new HealthResponseResponseBodyPrimaryHealthReason(Value.DATA_PENDING, "dataPending");
+
     public static final HealthResponseResponseBodyPrimaryHealthReason NO_GPS_SIGNAL =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.NO_GPS_SIGNAL, "noGpsSignal");
 
@@ -108,6 +111,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
                 return visitor.visitHealthy();
             case CAMERA_MISALIGNED:
                 return visitor.visitCameraMisaligned();
+            case DATA_PENDING:
+                return visitor.visitDataPending();
             case NO_GPS_SIGNAL:
                 return visitor.visitNoGpsSignal();
             case INWARD_CAMERA_OBSTRUCTION:
@@ -149,6 +154,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
                 return HEALTHY;
             case "cameraMisaligned":
                 return CAMERA_MISALIGNED;
+            case "dataPending":
+                return DATA_PENDING;
             case "noGpsSignal":
                 return NO_GPS_SIGNAL;
             case "inwardCameraObstruction":
@@ -172,6 +179,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         ASSET_UNPLUGGED,
 
         CAMERA_MISALIGNED,
+
+        DATA_PENDING,
 
         HEALTHY,
 
@@ -208,6 +217,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         T visitAssetUnplugged();
 
         T visitCameraMisaligned();
+
+        T visitDataPending();
 
         T visitHealthy();
 

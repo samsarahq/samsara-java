@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = OrderTaskObjectResponseBody.Builder.class)
 public final class OrderTaskObjectResponseBody {
+    private final Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties;
+
     private final String id;
 
     private final Optional<List<QuantityObjectResponseBody>> quantities;
@@ -35,18 +37,28 @@ public final class OrderTaskObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private OrderTaskObjectResponseBody(
+            Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties,
             String id,
             Optional<List<QuantityObjectResponseBody>> quantities,
             Optional<List<OrderTaskSkillObjectResponseBody>> requiredSkills,
             Optional<String> serviceWindow,
             String type,
             Map<String, Object> additionalProperties) {
+        this.customProperties = customProperties;
         this.id = id;
         this.quantities = quantities;
         this.requiredSkills = requiredSkills;
         this.serviceWindow = serviceWindow;
         this.type = type;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return List of custom properties for the order
+     */
+    @JsonProperty("customProperties")
+    public Optional<List<OrderTaskCustomPropertyObjectResponseBody>> getCustomProperties() {
+        return customProperties;
     }
 
     /**
@@ -101,7 +113,8 @@ public final class OrderTaskObjectResponseBody {
     }
 
     private boolean equalTo(OrderTaskObjectResponseBody other) {
-        return id.equals(other.id)
+        return customProperties.equals(other.customProperties)
+                && id.equals(other.id)
                 && quantities.equals(other.quantities)
                 && requiredSkills.equals(other.requiredSkills)
                 && serviceWindow.equals(other.serviceWindow)
@@ -110,7 +123,8 @@ public final class OrderTaskObjectResponseBody {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.quantities, this.requiredSkills, this.serviceWindow, this.type);
+        return Objects.hash(
+                this.customProperties, this.id, this.quantities, this.requiredSkills, this.serviceWindow, this.type);
     }
 
     @java.lang.Override
@@ -140,6 +154,13 @@ public final class OrderTaskObjectResponseBody {
 
     public interface _FinalStage {
         OrderTaskObjectResponseBody build();
+
+        /**
+         * <p>List of custom properties for the order</p>
+         */
+        _FinalStage customProperties(Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties);
+
+        _FinalStage customProperties(List<OrderTaskCustomPropertyObjectResponseBody> customProperties);
 
         /**
          * <p>List of quantity information for the order</p>
@@ -175,6 +196,8 @@ public final class OrderTaskObjectResponseBody {
 
         private Optional<List<QuantityObjectResponseBody>> quantities = Optional.empty();
 
+        private Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -182,6 +205,7 @@ public final class OrderTaskObjectResponseBody {
 
         @java.lang.Override
         public Builder from(OrderTaskObjectResponseBody other) {
+            customProperties(other.getCustomProperties());
             id(other.getId());
             quantities(other.getQuantities());
             requiredSkills(other.getRequiredSkills());
@@ -274,10 +298,31 @@ public final class OrderTaskObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>List of custom properties for the order</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage customProperties(List<OrderTaskCustomPropertyObjectResponseBody> customProperties) {
+            this.customProperties = Optional.ofNullable(customProperties);
+            return this;
+        }
+
+        /**
+         * <p>List of custom properties for the order</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "customProperties", nulls = Nulls.SKIP)
+        public _FinalStage customProperties(
+                Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties) {
+            this.customProperties = customProperties;
+            return this;
+        }
+
         @java.lang.Override
         public OrderTaskObjectResponseBody build() {
             return new OrderTaskObjectResponseBody(
-                    id, quantities, requiredSkills, serviceWindow, type, additionalProperties);
+                    customProperties, id, quantities, requiredSkills, serviceWindow, type, additionalProperties);
         }
     }
 }

@@ -33,11 +33,9 @@ public final class SafetyEventV2ObjectResponseBody {
 
     private final String createdAtTime;
 
+    private final Optional<List<SafetyEventV2MediaResponseBody>> detectedStreams;
+
     private final Optional<SafetyEventDismissalReasonResponseBody> dismissalReason;
-
-    private final Optional<String> downloadForwardVideoUrl;
-
-    private final Optional<String> downloadInwardVideoUrl;
 
     private final SafetyEventV2DriverObjectResponseBody driver;
 
@@ -55,7 +53,13 @@ public final class SafetyEventV2ObjectResponseBody {
 
     private final double maxAccelerationGForce;
 
+    private final Optional<List<SafetyEventV2MediaResponseBody>> media;
+
+    private final Optional<SafetyEventSpeedingMetadataResponseBody> speedingMetadata;
+
     private final String startMs;
+
+    private final Optional<String> tripEndTime;
 
     private final Optional<String> tripStartTime;
 
@@ -71,9 +75,8 @@ public final class SafetyEventV2ObjectResponseBody {
             List<SafetyEventV2BehaviorLabelsResponseBody> behaviorLabels,
             List<SafetyEventV2ContextLabelsResponseBody> contextLabels,
             String createdAtTime,
+            Optional<List<SafetyEventV2MediaResponseBody>> detectedStreams,
             Optional<SafetyEventDismissalReasonResponseBody> dismissalReason,
-            Optional<String> downloadForwardVideoUrl,
-            Optional<String> downloadInwardVideoUrl,
             SafetyEventV2DriverObjectResponseBody driver,
             String endMs,
             SafetyEventV2ObjectResponseBodyEventState eventState,
@@ -82,7 +85,10 @@ public final class SafetyEventV2ObjectResponseBody {
             String incidentReportUrl,
             LocationResponseResponseBody location,
             double maxAccelerationGForce,
+            Optional<List<SafetyEventV2MediaResponseBody>> media,
+            Optional<SafetyEventSpeedingMetadataResponseBody> speedingMetadata,
             String startMs,
+            Optional<String> tripEndTime,
             Optional<String> tripStartTime,
             String updatedAtTime,
             Optional<String> updatedByUserId,
@@ -92,9 +98,8 @@ public final class SafetyEventV2ObjectResponseBody {
         this.behaviorLabels = behaviorLabels;
         this.contextLabels = contextLabels;
         this.createdAtTime = createdAtTime;
+        this.detectedStreams = detectedStreams;
         this.dismissalReason = dismissalReason;
-        this.downloadForwardVideoUrl = downloadForwardVideoUrl;
-        this.downloadInwardVideoUrl = downloadInwardVideoUrl;
         this.driver = driver;
         this.endMs = endMs;
         this.eventState = eventState;
@@ -103,7 +108,10 @@ public final class SafetyEventV2ObjectResponseBody {
         this.incidentReportUrl = incidentReportUrl;
         this.location = location;
         this.maxAccelerationGForce = maxAccelerationGForce;
+        this.media = media;
+        this.speedingMetadata = speedingMetadata;
         this.startMs = startMs;
+        this.tripEndTime = tripEndTime;
         this.tripStartTime = tripStartTime;
         this.updatedAtTime = updatedAtTime;
         this.updatedByUserId = updatedByUserId;
@@ -147,25 +155,17 @@ public final class SafetyEventV2ObjectResponseBody {
         return createdAtTime;
     }
 
+    /**
+     * @return Camera streams that detected the safety event.
+     */
+    @JsonProperty("detectedStreams")
+    public Optional<List<SafetyEventV2MediaResponseBody>> getDetectedStreams() {
+        return detectedStreams;
+    }
+
     @JsonProperty("dismissalReason")
     public Optional<SafetyEventDismissalReasonResponseBody> getDismissalReason() {
         return dismissalReason;
-    }
-
-    /**
-     * @return URL to download the forward video. Only returned with sufficient Read Camera Media permissions.
-     */
-    @JsonProperty("downloadForwardVideoUrl")
-    public Optional<String> getDownloadForwardVideoUrl() {
-        return downloadForwardVideoUrl;
-    }
-
-    /**
-     * @return URL to download the inward video. Only returned with sufficient Read Camera Media permissions.
-     */
-    @JsonProperty("downloadInwardVideoUrl")
-    public Optional<String> getDownloadInwardVideoUrl() {
-        return downloadInwardVideoUrl;
     }
 
     @JsonProperty("driver")
@@ -227,11 +227,32 @@ public final class SafetyEventV2ObjectResponseBody {
     }
 
     /**
+     * @return Media assets available for the safety event.
+     */
+    @JsonProperty("media")
+    public Optional<List<SafetyEventV2MediaResponseBody>> getMedia() {
+        return media;
+    }
+
+    @JsonProperty("speedingMetadata")
+    public Optional<SafetyEventSpeedingMetadataResponseBody> getSpeedingMetadata() {
+        return speedingMetadata;
+    }
+
+    /**
      * @return UTC time the Safety Event started in RFC 3339 format.
      */
     @JsonProperty("startMs")
     public String getStartMs() {
         return startMs;
+    }
+
+    /**
+     * @return UTC time the trip ended in RFC 3339 format. Null when Safety Event occurs off-trip or the trip is ongoing.
+     */
+    @JsonProperty("tripEndTime")
+    public Optional<String> getTripEndTime() {
+        return tripEndTime;
     }
 
     /**
@@ -275,9 +296,8 @@ public final class SafetyEventV2ObjectResponseBody {
                 && behaviorLabels.equals(other.behaviorLabels)
                 && contextLabels.equals(other.contextLabels)
                 && createdAtTime.equals(other.createdAtTime)
+                && detectedStreams.equals(other.detectedStreams)
                 && dismissalReason.equals(other.dismissalReason)
-                && downloadForwardVideoUrl.equals(other.downloadForwardVideoUrl)
-                && downloadInwardVideoUrl.equals(other.downloadInwardVideoUrl)
                 && driver.equals(other.driver)
                 && endMs.equals(other.endMs)
                 && eventState.equals(other.eventState)
@@ -286,7 +306,10 @@ public final class SafetyEventV2ObjectResponseBody {
                 && incidentReportUrl.equals(other.incidentReportUrl)
                 && location.equals(other.location)
                 && maxAccelerationGForce == other.maxAccelerationGForce
+                && media.equals(other.media)
+                && speedingMetadata.equals(other.speedingMetadata)
                 && startMs.equals(other.startMs)
+                && tripEndTime.equals(other.tripEndTime)
                 && tripStartTime.equals(other.tripStartTime)
                 && updatedAtTime.equals(other.updatedAtTime)
                 && updatedByUserId.equals(other.updatedByUserId);
@@ -300,9 +323,8 @@ public final class SafetyEventV2ObjectResponseBody {
                 this.behaviorLabels,
                 this.contextLabels,
                 this.createdAtTime,
+                this.detectedStreams,
                 this.dismissalReason,
-                this.downloadForwardVideoUrl,
-                this.downloadInwardVideoUrl,
                 this.driver,
                 this.endMs,
                 this.eventState,
@@ -311,7 +333,10 @@ public final class SafetyEventV2ObjectResponseBody {
                 this.incidentReportUrl,
                 this.location,
                 this.maxAccelerationGForce,
+                this.media,
+                this.speedingMetadata,
                 this.startMs,
+                this.tripEndTime,
                 this.tripStartTime,
                 this.updatedAtTime,
                 this.updatedByUserId);
@@ -431,23 +456,34 @@ public final class SafetyEventV2ObjectResponseBody {
 
         _FinalStage addAllContextLabels(List<SafetyEventV2ContextLabelsResponseBody> contextLabels);
 
+        /**
+         * <p>Camera streams that detected the safety event.</p>
+         */
+        _FinalStage detectedStreams(Optional<List<SafetyEventV2MediaResponseBody>> detectedStreams);
+
+        _FinalStage detectedStreams(List<SafetyEventV2MediaResponseBody> detectedStreams);
+
         _FinalStage dismissalReason(Optional<SafetyEventDismissalReasonResponseBody> dismissalReason);
 
         _FinalStage dismissalReason(SafetyEventDismissalReasonResponseBody dismissalReason);
 
         /**
-         * <p>URL to download the forward video. Only returned with sufficient Read Camera Media permissions.</p>
+         * <p>Media assets available for the safety event.</p>
          */
-        _FinalStage downloadForwardVideoUrl(Optional<String> downloadForwardVideoUrl);
+        _FinalStage media(Optional<List<SafetyEventV2MediaResponseBody>> media);
 
-        _FinalStage downloadForwardVideoUrl(String downloadForwardVideoUrl);
+        _FinalStage media(List<SafetyEventV2MediaResponseBody> media);
+
+        _FinalStage speedingMetadata(Optional<SafetyEventSpeedingMetadataResponseBody> speedingMetadata);
+
+        _FinalStage speedingMetadata(SafetyEventSpeedingMetadataResponseBody speedingMetadata);
 
         /**
-         * <p>URL to download the inward video. Only returned with sufficient Read Camera Media permissions.</p>
+         * <p>UTC time the trip ended in RFC 3339 format. Null when Safety Event occurs off-trip or the trip is ongoing.</p>
          */
-        _FinalStage downloadInwardVideoUrl(Optional<String> downloadInwardVideoUrl);
+        _FinalStage tripEndTime(Optional<String> tripEndTime);
 
-        _FinalStage downloadInwardVideoUrl(String downloadInwardVideoUrl);
+        _FinalStage tripEndTime(String tripEndTime);
 
         /**
          * <p>UTC time the trip started in RFC 3339 format. Null when Safety Event occurs off-trip.</p>
@@ -507,11 +543,15 @@ public final class SafetyEventV2ObjectResponseBody {
 
         private Optional<String> tripStartTime = Optional.empty();
 
-        private Optional<String> downloadInwardVideoUrl = Optional.empty();
+        private Optional<String> tripEndTime = Optional.empty();
 
-        private Optional<String> downloadForwardVideoUrl = Optional.empty();
+        private Optional<SafetyEventSpeedingMetadataResponseBody> speedingMetadata = Optional.empty();
+
+        private Optional<List<SafetyEventV2MediaResponseBody>> media = Optional.empty();
 
         private Optional<SafetyEventDismissalReasonResponseBody> dismissalReason = Optional.empty();
+
+        private Optional<List<SafetyEventV2MediaResponseBody>> detectedStreams = Optional.empty();
 
         private List<SafetyEventV2ContextLabelsResponseBody> contextLabels = new ArrayList<>();
 
@@ -531,9 +571,8 @@ public final class SafetyEventV2ObjectResponseBody {
             behaviorLabels(other.getBehaviorLabels());
             contextLabels(other.getContextLabels());
             createdAtTime(other.getCreatedAtTime());
+            detectedStreams(other.getDetectedStreams());
             dismissalReason(other.getDismissalReason());
-            downloadForwardVideoUrl(other.getDownloadForwardVideoUrl());
-            downloadInwardVideoUrl(other.getDownloadInwardVideoUrl());
             driver(other.getDriver());
             endMs(other.getEndMs());
             eventState(other.getEventState());
@@ -542,7 +581,10 @@ public final class SafetyEventV2ObjectResponseBody {
             incidentReportUrl(other.getIncidentReportUrl());
             location(other.getLocation());
             maxAccelerationGForce(other.getMaxAccelerationGForce());
+            media(other.getMedia());
+            speedingMetadata(other.getSpeedingMetadata());
             startMs(other.getStartMs());
+            tripEndTime(other.getTripEndTime());
             tripStartTime(other.getTripStartTime());
             updatedAtTime(other.getUpdatedAtTime());
             updatedByUserId(other.getUpdatedByUserId());
@@ -719,42 +761,55 @@ public final class SafetyEventV2ObjectResponseBody {
         }
 
         /**
-         * <p>URL to download the inward video. Only returned with sufficient Read Camera Media permissions.</p>
+         * <p>UTC time the trip ended in RFC 3339 format. Null when Safety Event occurs off-trip or the trip is ongoing.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage downloadInwardVideoUrl(String downloadInwardVideoUrl) {
-            this.downloadInwardVideoUrl = Optional.ofNullable(downloadInwardVideoUrl);
+        public _FinalStage tripEndTime(String tripEndTime) {
+            this.tripEndTime = Optional.ofNullable(tripEndTime);
             return this;
         }
 
         /**
-         * <p>URL to download the inward video. Only returned with sufficient Read Camera Media permissions.</p>
+         * <p>UTC time the trip ended in RFC 3339 format. Null when Safety Event occurs off-trip or the trip is ongoing.</p>
          */
         @java.lang.Override
-        @JsonSetter(value = "downloadInwardVideoUrl", nulls = Nulls.SKIP)
-        public _FinalStage downloadInwardVideoUrl(Optional<String> downloadInwardVideoUrl) {
-            this.downloadInwardVideoUrl = downloadInwardVideoUrl;
+        @JsonSetter(value = "tripEndTime", nulls = Nulls.SKIP)
+        public _FinalStage tripEndTime(Optional<String> tripEndTime) {
+            this.tripEndTime = tripEndTime;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage speedingMetadata(SafetyEventSpeedingMetadataResponseBody speedingMetadata) {
+            this.speedingMetadata = Optional.ofNullable(speedingMetadata);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "speedingMetadata", nulls = Nulls.SKIP)
+        public _FinalStage speedingMetadata(Optional<SafetyEventSpeedingMetadataResponseBody> speedingMetadata) {
+            this.speedingMetadata = speedingMetadata;
             return this;
         }
 
         /**
-         * <p>URL to download the forward video. Only returned with sufficient Read Camera Media permissions.</p>
+         * <p>Media assets available for the safety event.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage downloadForwardVideoUrl(String downloadForwardVideoUrl) {
-            this.downloadForwardVideoUrl = Optional.ofNullable(downloadForwardVideoUrl);
+        public _FinalStage media(List<SafetyEventV2MediaResponseBody> media) {
+            this.media = Optional.ofNullable(media);
             return this;
         }
 
         /**
-         * <p>URL to download the forward video. Only returned with sufficient Read Camera Media permissions.</p>
+         * <p>Media assets available for the safety event.</p>
          */
         @java.lang.Override
-        @JsonSetter(value = "downloadForwardVideoUrl", nulls = Nulls.SKIP)
-        public _FinalStage downloadForwardVideoUrl(Optional<String> downloadForwardVideoUrl) {
-            this.downloadForwardVideoUrl = downloadForwardVideoUrl;
+        @JsonSetter(value = "media", nulls = Nulls.SKIP)
+        public _FinalStage media(Optional<List<SafetyEventV2MediaResponseBody>> media) {
+            this.media = media;
             return this;
         }
 
@@ -768,6 +823,26 @@ public final class SafetyEventV2ObjectResponseBody {
         @JsonSetter(value = "dismissalReason", nulls = Nulls.SKIP)
         public _FinalStage dismissalReason(Optional<SafetyEventDismissalReasonResponseBody> dismissalReason) {
             this.dismissalReason = dismissalReason;
+            return this;
+        }
+
+        /**
+         * <p>Camera streams that detected the safety event.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage detectedStreams(List<SafetyEventV2MediaResponseBody> detectedStreams) {
+            this.detectedStreams = Optional.ofNullable(detectedStreams);
+            return this;
+        }
+
+        /**
+         * <p>Camera streams that detected the safety event.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "detectedStreams", nulls = Nulls.SKIP)
+        public _FinalStage detectedStreams(Optional<List<SafetyEventV2MediaResponseBody>> detectedStreams) {
+            this.detectedStreams = detectedStreams;
             return this;
         }
 
@@ -869,9 +944,8 @@ public final class SafetyEventV2ObjectResponseBody {
                     behaviorLabels,
                     contextLabels,
                     createdAtTime,
+                    detectedStreams,
                     dismissalReason,
-                    downloadForwardVideoUrl,
-                    downloadInwardVideoUrl,
                     driver,
                     endMs,
                     eventState,
@@ -880,7 +954,10 @@ public final class SafetyEventV2ObjectResponseBody {
                     incidentReportUrl,
                     location,
                     maxAccelerationGForce,
+                    media,
+                    speedingMetadata,
                     startMs,
+                    tripEndTime,
                     tripStartTime,
                     updatedAtTime,
                     updatedByUserId,

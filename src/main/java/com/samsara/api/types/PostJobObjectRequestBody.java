@@ -38,9 +38,9 @@ public final class PostJobObjectRequestBody {
 
     private final Optional<String> notes;
 
-    private final Optional<Integer> ontimeWindowAfterArrivalMs;
+    private final Optional<Long> ontimeWindowAfterArrivalMs;
 
-    private final Optional<Integer> ontimeWindowBeforeArrivalMs;
+    private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
     private final String startDate;
 
@@ -55,8 +55,8 @@ public final class PostJobObjectRequestBody {
             Optional<List<String>> industrialAssetIds,
             String name,
             Optional<String> notes,
-            Optional<Integer> ontimeWindowAfterArrivalMs,
-            Optional<Integer> ontimeWindowBeforeArrivalMs,
+            Optional<Long> ontimeWindowAfterArrivalMs,
+            Optional<Long> ontimeWindowBeforeArrivalMs,
             String startDate,
             Map<String, Object> additionalProperties) {
         this.address = address;
@@ -138,7 +138,7 @@ public final class PostJobObjectRequestBody {
      * @return Specifies the time window (in milliseconds) after a stop's scheduled arrival time during which the stop is considered 'on-time'.
      */
     @JsonProperty("ontimeWindowAfterArrivalMs")
-    public Optional<Integer> getOntimeWindowAfterArrivalMs() {
+    public Optional<Long> getOntimeWindowAfterArrivalMs() {
         return ontimeWindowAfterArrivalMs;
     }
 
@@ -146,7 +146,7 @@ public final class PostJobObjectRequestBody {
      * @return Specifies the time window (in milliseconds) before a stop's scheduled arrival time during which the stop is considered 'on-time'.
      */
     @JsonProperty("ontimeWindowBeforeArrivalMs")
-    public Optional<Integer> getOntimeWindowBeforeArrivalMs() {
+    public Optional<Long> getOntimeWindowBeforeArrivalMs() {
         return ontimeWindowBeforeArrivalMs;
     }
 
@@ -276,16 +276,16 @@ public final class PostJobObjectRequestBody {
         /**
          * <p>Specifies the time window (in milliseconds) after a stop's scheduled arrival time during which the stop is considered 'on-time'.</p>
          */
-        _FinalStage ontimeWindowAfterArrivalMs(Optional<Integer> ontimeWindowAfterArrivalMs);
+        _FinalStage ontimeWindowAfterArrivalMs(Optional<Long> ontimeWindowAfterArrivalMs);
 
-        _FinalStage ontimeWindowAfterArrivalMs(Integer ontimeWindowAfterArrivalMs);
+        _FinalStage ontimeWindowAfterArrivalMs(Long ontimeWindowAfterArrivalMs);
 
         /**
          * <p>Specifies the time window (in milliseconds) before a stop's scheduled arrival time during which the stop is considered 'on-time'.</p>
          */
-        _FinalStage ontimeWindowBeforeArrivalMs(Optional<Integer> ontimeWindowBeforeArrivalMs);
+        _FinalStage ontimeWindowBeforeArrivalMs(Optional<Long> ontimeWindowBeforeArrivalMs);
 
-        _FinalStage ontimeWindowBeforeArrivalMs(Integer ontimeWindowBeforeArrivalMs);
+        _FinalStage ontimeWindowBeforeArrivalMs(Long ontimeWindowBeforeArrivalMs);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -298,9 +298,9 @@ public final class PostJobObjectRequestBody {
 
         private String startDate;
 
-        private Optional<Integer> ontimeWindowBeforeArrivalMs = Optional.empty();
+        private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
-        private Optional<Integer> ontimeWindowAfterArrivalMs = Optional.empty();
+        private Optional<Long> ontimeWindowAfterArrivalMs = Optional.empty();
 
         private Optional<String> notes = Optional.empty();
 
@@ -386,7 +386,7 @@ public final class PostJobObjectRequestBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage ontimeWindowBeforeArrivalMs(Integer ontimeWindowBeforeArrivalMs) {
+        public _FinalStage ontimeWindowBeforeArrivalMs(Long ontimeWindowBeforeArrivalMs) {
             this.ontimeWindowBeforeArrivalMs = Optional.ofNullable(ontimeWindowBeforeArrivalMs);
             return this;
         }
@@ -396,7 +396,7 @@ public final class PostJobObjectRequestBody {
          */
         @java.lang.Override
         @JsonSetter(value = "ontimeWindowBeforeArrivalMs", nulls = Nulls.SKIP)
-        public _FinalStage ontimeWindowBeforeArrivalMs(Optional<Integer> ontimeWindowBeforeArrivalMs) {
+        public _FinalStage ontimeWindowBeforeArrivalMs(Optional<Long> ontimeWindowBeforeArrivalMs) {
             this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
             return this;
         }
@@ -406,7 +406,7 @@ public final class PostJobObjectRequestBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage ontimeWindowAfterArrivalMs(Integer ontimeWindowAfterArrivalMs) {
+        public _FinalStage ontimeWindowAfterArrivalMs(Long ontimeWindowAfterArrivalMs) {
             this.ontimeWindowAfterArrivalMs = Optional.ofNullable(ontimeWindowAfterArrivalMs);
             return this;
         }
@@ -416,7 +416,7 @@ public final class PostJobObjectRequestBody {
          */
         @java.lang.Override
         @JsonSetter(value = "ontimeWindowAfterArrivalMs", nulls = Nulls.SKIP)
-        public _FinalStage ontimeWindowAfterArrivalMs(Optional<Integer> ontimeWindowAfterArrivalMs) {
+        public _FinalStage ontimeWindowAfterArrivalMs(Optional<Long> ontimeWindowAfterArrivalMs) {
             this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
             return this;
         }

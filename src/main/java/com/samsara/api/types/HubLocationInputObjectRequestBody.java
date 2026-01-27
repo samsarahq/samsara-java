@@ -32,9 +32,9 @@ public final class HubLocationInputObjectRequestBody {
 
     private final boolean isDepot;
 
-    private final double latitude;
+    private final Optional<Double> latitude;
 
-    private final double longitude;
+    private final Optional<Double> longitude;
 
     private final String name;
 
@@ -54,8 +54,8 @@ public final class HubLocationInputObjectRequestBody {
             Optional<String> driverInstructions,
             String hubId,
             boolean isDepot,
-            double latitude,
-            double longitude,
+            Optional<Double> latitude,
+            Optional<Double> longitude,
             String name,
             Optional<String> plannerNotes,
             Optional<Integer> serviceTimeSeconds,
@@ -118,18 +118,18 @@ public final class HubLocationInputObjectRequestBody {
     }
 
     /**
-     * @return Latitude coordinate of the location
+     * @return Latitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.
      */
     @JsonProperty("latitude")
-    public double getLatitude() {
+    public Optional<Double> getLatitude() {
         return latitude;
     }
 
     /**
-     * @return Longitude coordinate of the location
+     * @return Longitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.
      */
     @JsonProperty("longitude")
-    public double getLongitude() {
+    public Optional<Double> getLongitude() {
         return longitude;
     }
 
@@ -190,8 +190,8 @@ public final class HubLocationInputObjectRequestBody {
                 && driverInstructions.equals(other.driverInstructions)
                 && hubId.equals(other.hubId)
                 && isDepot == other.isDepot
-                && latitude == other.latitude
-                && longitude == other.longitude
+                && latitude.equals(other.latitude)
+                && longitude.equals(other.longitude)
                 && name.equals(other.name)
                 && plannerNotes.equals(other.plannerNotes)
                 && serviceTimeSeconds.equals(other.serviceTimeSeconds)
@@ -252,21 +252,7 @@ public final class HubLocationInputObjectRequestBody {
         /**
          * <p>Indicates if the location is a depot</p>
          */
-        LatitudeStage isDepot(boolean isDepot);
-    }
-
-    public interface LatitudeStage {
-        /**
-         * <p>Latitude coordinate of the location</p>
-         */
-        LongitudeStage latitude(double latitude);
-    }
-
-    public interface LongitudeStage {
-        /**
-         * <p>Longitude coordinate of the location</p>
-         */
-        NameStage longitude(double longitude);
+        NameStage isDepot(boolean isDepot);
     }
 
     public interface NameStage {
@@ -285,6 +271,20 @@ public final class HubLocationInputObjectRequestBody {
         _FinalStage driverInstructions(Optional<String> driverInstructions);
 
         _FinalStage driverInstructions(String driverInstructions);
+
+        /**
+         * <p>Latitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.</p>
+         */
+        _FinalStage latitude(Optional<Double> latitude);
+
+        _FinalStage latitude(Double latitude);
+
+        /**
+         * <p>Longitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.</p>
+         */
+        _FinalStage longitude(Optional<Double> longitude);
+
+        _FinalStage longitude(Double longitude);
 
         /**
          * <p>Notes for the planner</p>
@@ -317,14 +317,7 @@ public final class HubLocationInputObjectRequestBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements AddressStage,
-                    CustomerLocationIdStage,
-                    HubIdStage,
-                    IsDepotStage,
-                    LatitudeStage,
-                    LongitudeStage,
-                    NameStage,
-                    _FinalStage {
+            implements AddressStage, CustomerLocationIdStage, HubIdStage, IsDepotStage, NameStage, _FinalStage {
         private String address;
 
         private String customerLocationId;
@@ -332,10 +325,6 @@ public final class HubLocationInputObjectRequestBody {
         private String hubId;
 
         private boolean isDepot;
-
-        private double latitude;
-
-        private double longitude;
 
         private String name;
 
@@ -346,6 +335,10 @@ public final class HubLocationInputObjectRequestBody {
         private Optional<Integer> serviceTimeSeconds = Optional.empty();
 
         private Optional<String> plannerNotes = Optional.empty();
+
+        private Optional<Double> longitude = Optional.empty();
+
+        private Optional<Double> latitude = Optional.empty();
 
         private Optional<String> driverInstructions = Optional.empty();
 
@@ -414,32 +407,8 @@ public final class HubLocationInputObjectRequestBody {
          */
         @java.lang.Override
         @JsonSetter("isDepot")
-        public LatitudeStage isDepot(boolean isDepot) {
+        public NameStage isDepot(boolean isDepot) {
             this.isDepot = isDepot;
-            return this;
-        }
-
-        /**
-         * <p>Latitude coordinate of the location</p>
-         * <p>Latitude coordinate of the location</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("latitude")
-        public LongitudeStage latitude(double latitude) {
-            this.latitude = latitude;
-            return this;
-        }
-
-        /**
-         * <p>Longitude coordinate of the location</p>
-         * <p>Longitude coordinate of the location</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("longitude")
-        public NameStage longitude(double longitude) {
-            this.longitude = longitude;
             return this;
         }
 
@@ -532,6 +501,46 @@ public final class HubLocationInputObjectRequestBody {
         @JsonSetter(value = "plannerNotes", nulls = Nulls.SKIP)
         public _FinalStage plannerNotes(Optional<String> plannerNotes) {
             this.plannerNotes = plannerNotes;
+            return this;
+        }
+
+        /**
+         * <p>Longitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage longitude(Double longitude) {
+            this.longitude = Optional.ofNullable(longitude);
+            return this;
+        }
+
+        /**
+         * <p>Longitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
+        public _FinalStage longitude(Optional<Double> longitude) {
+            this.longitude = longitude;
+            return this;
+        }
+
+        /**
+         * <p>Latitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage latitude(Double latitude) {
+            this.latitude = Optional.ofNullable(latitude);
+            return this;
+        }
+
+        /**
+         * <p>Latitude coordinate of the location. If not provided and address is provided, the address will be geocoded to obtain coordinates.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
+        public _FinalStage latitude(Optional<Double> latitude) {
+            this.latitude = latitude;
             return this;
         }
 

@@ -37,6 +37,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
     private final Optional<OffsetDateTime> scheduledDepartureTime;
 
+    private final Optional<Long> sequenceNumber;
+
     private final Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation;
 
     private final Map<String, Object> additionalProperties;
@@ -50,6 +52,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             Optional<Long> ontimeWindowBeforeArrivalMs,
             Optional<OffsetDateTime> scheduledArrivalTime,
             Optional<OffsetDateTime> scheduledDepartureTime,
+            Optional<Long> sequenceNumber,
             Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation,
             Map<String, Object> additionalProperties) {
         this.addressId = addressId;
@@ -60,6 +63,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
         this.scheduledArrivalTime = scheduledArrivalTime;
         this.scheduledDepartureTime = scheduledDepartureTime;
+        this.sequenceNumber = sequenceNumber;
         this.singleUseLocation = singleUseLocation;
         this.additionalProperties = additionalProperties;
     }
@@ -128,6 +132,14 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         return scheduledDepartureTime;
     }
 
+    /**
+     * @return Manual sequence position for this stop. Only meaningful when route.settings.sequencingMethod=manual. Must be unique and positive when specified.
+     */
+    @JsonProperty("sequenceNumber")
+    public Optional<Long> getSequenceNumber() {
+        return sequenceNumber;
+    }
+
     @JsonProperty("singleUseLocation")
     public Optional<RoutesSingleUseAddressObjectRequestBody> getSingleUseLocation() {
         return singleUseLocation;
@@ -154,6 +166,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                 && ontimeWindowBeforeArrivalMs.equals(other.ontimeWindowBeforeArrivalMs)
                 && scheduledArrivalTime.equals(other.scheduledArrivalTime)
                 && scheduledDepartureTime.equals(other.scheduledDepartureTime)
+                && sequenceNumber.equals(other.sequenceNumber)
                 && singleUseLocation.equals(other.singleUseLocation);
     }
 
@@ -168,6 +181,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                 this.ontimeWindowBeforeArrivalMs,
                 this.scheduledArrivalTime,
                 this.scheduledDepartureTime,
+                this.sequenceNumber,
                 this.singleUseLocation);
     }
 
@@ -198,6 +212,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
         private Optional<OffsetDateTime> scheduledDepartureTime = Optional.empty();
 
+        private Optional<Long> sequenceNumber = Optional.empty();
+
         private Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation = Optional.empty();
 
         @JsonAnySetter
@@ -214,6 +230,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             ontimeWindowBeforeArrivalMs(other.getOntimeWindowBeforeArrivalMs());
             scheduledArrivalTime(other.getScheduledArrivalTime());
             scheduledDepartureTime(other.getScheduledDepartureTime());
+            sequenceNumber(other.getSequenceNumber());
             singleUseLocation(other.getSingleUseLocation());
             return this;
         }
@@ -330,6 +347,20 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             return this;
         }
 
+        /**
+         * <p>Manual sequence position for this stop. Only meaningful when route.settings.sequencingMethod=manual. Must be unique and positive when specified.</p>
+         */
+        @JsonSetter(value = "sequenceNumber", nulls = Nulls.SKIP)
+        public Builder sequenceNumber(Optional<Long> sequenceNumber) {
+            this.sequenceNumber = sequenceNumber;
+            return this;
+        }
+
+        public Builder sequenceNumber(Long sequenceNumber) {
+            this.sequenceNumber = Optional.ofNullable(sequenceNumber);
+            return this;
+        }
+
         @JsonSetter(value = "singleUseLocation", nulls = Nulls.SKIP)
         public Builder singleUseLocation(Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation) {
             this.singleUseLocation = singleUseLocation;
@@ -351,6 +382,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                     ontimeWindowBeforeArrivalMs,
                     scheduledArrivalTime,
                     scheduledDepartureTime,
+                    sequenceNumber,
                     singleUseLocation,
                     additionalProperties);
         }

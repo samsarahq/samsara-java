@@ -21,14 +21,14 @@ import org.jetbrains.annotations.NotNull;
 public final class V1VehicleMaintenancePassengerDiagnosticTroubleCodes {
     private final String dtcDescription;
 
-    private final int dtcId;
+    private final long dtcId;
 
     private final String dtcShortCode;
 
     private final Map<String, Object> additionalProperties;
 
     private V1VehicleMaintenancePassengerDiagnosticTroubleCodes(
-            String dtcDescription, int dtcId, String dtcShortCode, Map<String, Object> additionalProperties) {
+            String dtcDescription, long dtcId, String dtcShortCode, Map<String, Object> additionalProperties) {
         this.dtcDescription = dtcDescription;
         this.dtcId = dtcId;
         this.dtcShortCode = dtcShortCode;
@@ -41,7 +41,7 @@ public final class V1VehicleMaintenancePassengerDiagnosticTroubleCodes {
     }
 
     @JsonProperty("dtcId")
-    public int getDtcId() {
+    public long getDtcId() {
         return dtcId;
     }
 
@@ -89,7 +89,7 @@ public final class V1VehicleMaintenancePassengerDiagnosticTroubleCodes {
     }
 
     public interface DtcIdStage {
-        DtcShortCodeStage dtcId(int dtcId);
+        DtcShortCodeStage dtcId(long dtcId);
     }
 
     public interface DtcShortCodeStage {
@@ -104,7 +104,7 @@ public final class V1VehicleMaintenancePassengerDiagnosticTroubleCodes {
     public static final class Builder implements DtcDescriptionStage, DtcIdStage, DtcShortCodeStage, _FinalStage {
         private String dtcDescription;
 
-        private int dtcId;
+        private long dtcId;
 
         private String dtcShortCode;
 
@@ -130,7 +130,7 @@ public final class V1VehicleMaintenancePassengerDiagnosticTroubleCodes {
 
         @java.lang.Override
         @JsonSetter("dtcId")
-        public DtcShortCodeStage dtcId(int dtcId) {
+        public DtcShortCodeStage dtcId(long dtcId) {
             this.dtcId = dtcId;
             return this;
         }

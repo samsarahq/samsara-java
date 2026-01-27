@@ -10,6 +10,9 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
     public static final MediaRetrievalPostMediaRetrievalRequestBodyMediaType VIDEO_HIGH_RES =
             new MediaRetrievalPostMediaRetrievalRequestBodyMediaType(Value.VIDEO_HIGH_RES, "videoHighRes");
 
+    public static final MediaRetrievalPostMediaRetrievalRequestBodyMediaType VIDEO_LOW_RES =
+            new MediaRetrievalPostMediaRetrievalRequestBodyMediaType(Value.VIDEO_LOW_RES, "videoLowRes");
+
     public static final MediaRetrievalPostMediaRetrievalRequestBodyMediaType IMAGE =
             new MediaRetrievalPostMediaRetrievalRequestBodyMediaType(Value.IMAGE, "image");
 
@@ -48,6 +51,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
         switch (value) {
             case VIDEO_HIGH_RES:
                 return visitor.visitVideoHighRes();
+            case VIDEO_LOW_RES:
+                return visitor.visitVideoLowRes();
             case IMAGE:
                 return visitor.visitImage();
             case UNKNOWN:
@@ -61,6 +66,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
         switch (value) {
             case "videoHighRes":
                 return VIDEO_HIGH_RES;
+            case "videoLowRes":
+                return VIDEO_LOW_RES;
             case "image":
                 return IMAGE;
             default:
@@ -73,6 +80,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
 
         VIDEO_HIGH_RES,
 
+        VIDEO_LOW_RES,
+
         UNKNOWN
     }
 
@@ -80,6 +89,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
         T visitImage();
 
         T visitVideoHighRes();
+
+        T visitVideoLowRes();
 
         T visitUnknown(String unknownType);
     }

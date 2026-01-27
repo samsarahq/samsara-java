@@ -57,7 +57,7 @@ public final class UpdateAttributeRequest {
     }
 
     /**
-     * @return Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.
+     * @return Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.
      */
     @JsonProperty("attributeType")
     public Optional<UpdateAttributeRequestAttributeType> getAttributeType() {
@@ -152,7 +152,7 @@ public final class UpdateAttributeRequest {
         UpdateAttributeRequest build();
 
         /**
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
          */
         _FinalStage attributeType(Optional<UpdateAttributeRequestAttributeType> attributeType);
 
@@ -310,7 +310,7 @@ public final class UpdateAttributeRequest {
         }
 
         /**
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -320,7 +320,7 @@ public final class UpdateAttributeRequest {
         }
 
         /**
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "attributeType", nulls = Nulls.SKIP)

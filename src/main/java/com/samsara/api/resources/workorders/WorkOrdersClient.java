@@ -10,10 +10,12 @@ import com.samsara.api.resources.workorders.requests.GetServiceTasksRequest;
 import com.samsara.api.resources.workorders.requests.GetWorkOrdersRequest;
 import com.samsara.api.resources.workorders.requests.StreamWorkOrdersRequest;
 import com.samsara.api.resources.workorders.requests.WorkOrdersPatchWorkOrdersRequestBody;
+import com.samsara.api.resources.workorders.requests.WorkOrdersPostInvoiceScanRequestBody;
 import com.samsara.api.resources.workorders.requests.WorkOrdersPostWorkOrdersRequestBody;
 import com.samsara.api.types.WorkOrdersGetServiceTasksResponseBody;
 import com.samsara.api.types.WorkOrdersGetWorkOrdersResponseBody;
 import com.samsara.api.types.WorkOrdersPatchWorkOrdersResponseBody;
+import com.samsara.api.types.WorkOrdersPostInvoiceScanResponseBody;
 import com.samsara.api.types.WorkOrdersPostWorkOrdersResponseBody;
 import com.samsara.api.types.WorkOrdersStreamWorkOrdersResponseBody;
 
@@ -35,6 +37,27 @@ public class WorkOrdersClient {
     }
 
     /**
+     * Process an invoice scan to create or update a work order with AI-extracted data. Accepts base64 encoded invoice files (PDF, JPEG, PNG) up to 10MB.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public WorkOrdersPostInvoiceScanResponseBody postInvoiceScan(WorkOrdersPostInvoiceScanRequestBody request) {
+        return this.rawClient.postInvoiceScan(request).body();
+    }
+
+    /**
+     * Process an invoice scan to create or update a work order with AI-extracted data. Accepts base64 encoded invoice files (PDF, JPEG, PNG) up to 10MB.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public WorkOrdersPostInvoiceScanResponseBody postInvoiceScan(
+            WorkOrdersPostInvoiceScanRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postInvoiceScan(request, requestOptions).body();
+    }
+
+    /**
      * Gets service tasks.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
@@ -42,6 +65,16 @@ public class WorkOrdersClient {
      */
     public WorkOrdersGetServiceTasksResponseBody getServiceTasks() {
         return this.rawClient.getServiceTasks().body();
+    }
+
+    /**
+     * Gets service tasks.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public WorkOrdersGetServiceTasksResponseBody getServiceTasks(RequestOptions requestOptions) {
+        return this.rawClient.getServiceTasks(requestOptions).body();
     }
 
     /**
@@ -73,6 +106,16 @@ public class WorkOrdersClient {
      */
     public WorkOrdersGetWorkOrdersResponseBody getWorkOrders() {
         return this.rawClient.getWorkOrders().body();
+    }
+
+    /**
+     * Gets work orders.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public WorkOrdersGetWorkOrdersResponseBody getWorkOrders(RequestOptions requestOptions) {
+        return this.rawClient.getWorkOrders(requestOptions).body();
     }
 
     /**

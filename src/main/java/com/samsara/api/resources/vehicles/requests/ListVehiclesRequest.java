@@ -24,7 +24,7 @@ import java.util.Optional;
 public final class ListVehiclesRequest {
     private final Optional<List<String>> attributes;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Optional<String> after;
 
@@ -42,7 +42,7 @@ public final class ListVehiclesRequest {
 
     private ListVehiclesRequest(
             Optional<List<String>> attributes,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Optional<String> after,
             Optional<String> parentTagIds,
             Optional<String> tagIds,
@@ -62,7 +62,7 @@ public final class ListVehiclesRequest {
     }
 
     /**
-     * @return A filter on the data to return entities having given attributes using either name-value pair, or range query (only for numeric attributes) separated by a comma. Only entities meeting all the conditions will be returned. Example: <code>attributes=ExampleAttributeName:some_value&amp;attributes=SomeOtherAttr:123&amp;attributes=Length:range(10,20)</code>
+     * @return A filter on the data to return entities having given attributes using either name-value pair, or range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. Example: <code>attributes=ExampleAttributeName:some_value&amp;attributes=SomeOtherAttr:123&amp;attributes=Length:range(10,20)&amp;attributes=Date:range(2025-01-01,2025-01-31)</code>
      */
     @JsonProperty("attributes")
     public Optional<List<String>> getAttributes() {
@@ -73,7 +73,7 @@ public final class ListVehiclesRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 512 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -173,7 +173,7 @@ public final class ListVehiclesRequest {
     public static final class Builder {
         private Optional<List<String>> attributes = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -205,7 +205,7 @@ public final class ListVehiclesRequest {
         }
 
         /**
-         * <p>A filter on the data to return entities having given attributes using either name-value pair, or range query (only for numeric attributes) separated by a comma. Only entities meeting all the conditions will be returned. Example: <code>attributes=ExampleAttributeName:some_value&amp;attributes=SomeOtherAttr:123&amp;attributes=Length:range(10,20)</code></p>
+         * <p>A filter on the data to return entities having given attributes using either name-value pair, or range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. Example: <code>attributes=ExampleAttributeName:some_value&amp;attributes=SomeOtherAttr:123&amp;attributes=Length:range(10,20)&amp;attributes=Date:range(2025-01-01,2025-01-31)</code></p>
          */
         @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
         public Builder attributes(Optional<List<String>> attributes) {
@@ -227,12 +227,12 @@ public final class ListVehiclesRequest {
          * <p>The limit for how many objects will be in the response. Default and max for this value is 512 objects.</p>
          */
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public Builder limit(Optional<Integer> limit) {
+        public Builder limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
-        public Builder limit(Integer limit) {
+        public Builder limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }

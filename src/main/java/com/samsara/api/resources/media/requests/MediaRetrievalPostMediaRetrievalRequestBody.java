@@ -52,7 +52,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
     }
 
     /**
-     * @return An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than 60 seconds after startTime (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).
+     * @return An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than the maximum allowed duration per video retrieval type. Please refer to our KB articles for more information. (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).
      */
     @JsonProperty("endTime")
     public String getEndTime() {
@@ -68,7 +68,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
     }
 
     /**
-     * @return The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes. Examples: image, videoHighRes.  Valid values: <code>image</code>, <code>videoHighRes</code>
+     * @return The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>
      */
     @JsonProperty("mediaType")
     public MediaRetrievalPostMediaRetrievalRequestBodyMediaType getMediaType() {
@@ -127,7 +127,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
 
     public interface EndTimeStage {
         /**
-         * <p>An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than 60 seconds after startTime (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).</p>
+         * <p>An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than the maximum allowed duration per video retrieval type. Please refer to our KB articles for more information. (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).</p>
          */
         MediaTypeStage endTime(@NotNull String endTime);
 
@@ -136,7 +136,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
 
     public interface MediaTypeStage {
         /**
-         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes. Examples: image, videoHighRes.  Valid values: <code>image</code>, <code>videoHighRes</code></p>
+         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code></p>
          */
         StartTimeStage mediaType(@NotNull MediaRetrievalPostMediaRetrievalRequestBodyMediaType mediaType);
     }
@@ -197,8 +197,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
         }
 
         /**
-         * <p>An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than 60 seconds after startTime (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).</p>
-         * <p>An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than 60 seconds after startTime (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).</p>
+         * <p>An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than the maximum allowed duration per video retrieval type. Please refer to our KB articles for more information. (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).</p>
+         * <p>An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than the maximum allowed duration per video retrieval type. Please refer to our KB articles for more information. (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -209,8 +209,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
         }
 
         /**
-         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes. Examples: image, videoHighRes.  Valid values: <code>image</code>, <code>videoHighRes</code></p>
-         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes. Examples: image, videoHighRes.  Valid values: <code>image</code>, <code>videoHighRes</code></p>
+         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code></p>
+         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

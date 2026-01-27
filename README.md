@@ -1,6 +1,6 @@
 # Samsara Java Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Ffern-demo%2Fsamsara-java)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fsamsarahq%2Fsamsara-java)
 
 The Samsara Java library provides convenient access to the Samsara APIs from Java.
 
@@ -27,7 +27,7 @@ API reference documentation is available [here](https://developers.samsara.com/r
 
 ## Reference
 
-A full reference for this library is available [here](https://github.com/fern-demo/samsara-java/blob/HEAD/./reference.md).
+A full reference for this library is available [here](https://github.com/samsarahq/samsara-java/blob/HEAD/./reference.md).
 
 ## Usage
 

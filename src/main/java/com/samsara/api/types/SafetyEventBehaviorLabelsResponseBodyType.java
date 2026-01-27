@@ -38,6 +38,10 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
     public static final SafetyEventBehaviorLabelsResponseBodyType FORWARD_COLLISION_WARNING =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.FORWARD_COLLISION_WARNING, "ForwardCollisionWarning");
 
+    public static final SafetyEventBehaviorLabelsResponseBodyType HIGH_SPEED_SUDDEN_DISCONNECT =
+            new SafetyEventBehaviorLabelsResponseBodyType(
+                    Value.HIGH_SPEED_SUDDEN_DISCONNECT, "HighSpeedSuddenDisconnect");
+
     public static final SafetyEventBehaviorLabelsResponseBodyType OBSTRUCTED_CAMERA =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.OBSTRUCTED_CAMERA, "ObstructedCamera");
 
@@ -96,6 +100,9 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
     public static final SafetyEventBehaviorLabelsResponseBodyType ROLLING_STOP =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.ROLLING_STOP, "RollingStop");
 
+    public static final SafetyEventBehaviorLabelsResponseBodyType REAR_COLLISION_WARNING =
+            new SafetyEventBehaviorLabelsResponseBodyType(Value.REAR_COLLISION_WARNING, "RearCollisionWarning");
+
     public static final SafetyEventBehaviorLabelsResponseBodyType FOLLOWING_DISTANCE_MODERATE =
             new SafetyEventBehaviorLabelsResponseBodyType(
                     Value.FOLLOWING_DISTANCE_MODERATE, "FollowingDistanceModerate");
@@ -111,6 +118,10 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
     public static final SafetyEventBehaviorLabelsResponseBodyType BRAKING =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.BRAKING, "Braking");
+
+    public static final SafetyEventBehaviorLabelsResponseBodyType VEHICLE_IN_BLIND_SPOT_WARNING =
+            new SafetyEventBehaviorLabelsResponseBodyType(
+                    Value.VEHICLE_IN_BLIND_SPOT_WARNING, "VehicleInBlindSpotWarning");
 
     public static final SafetyEventBehaviorLabelsResponseBodyType SMOKING =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.SMOKING, "Smoking");
@@ -168,6 +179,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitGenericTailgating();
             case FORWARD_COLLISION_WARNING:
                 return visitor.visitForwardCollisionWarning();
+            case HIGH_SPEED_SUDDEN_DISCONNECT:
+                return visitor.visitHighSpeedSuddenDisconnect();
             case OBSTRUCTED_CAMERA:
                 return visitor.visitObstructedCamera();
             case EDGE_DISTRACTED_DRIVING:
@@ -206,6 +219,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitGenericDistraction();
             case ROLLING_STOP:
                 return visitor.visitRollingStop();
+            case REAR_COLLISION_WARNING:
+                return visitor.visitRearCollisionWarning();
             case FOLLOWING_DISTANCE_MODERATE:
                 return visitor.visitFollowingDistanceModerate();
             case LANE_DEPARTURE:
@@ -216,6 +231,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitEatingDrinking();
             case BRAKING:
                 return visitor.visitBraking();
+            case VEHICLE_IN_BLIND_SPOT_WARNING:
+                return visitor.visitVehicleInBlindSpotWarning();
             case SMOKING:
                 return visitor.visitSmoking();
             case UNKNOWN:
@@ -247,6 +264,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return GENERIC_TAILGATING;
             case "ForwardCollisionWarning":
                 return FORWARD_COLLISION_WARNING;
+            case "HighSpeedSuddenDisconnect":
+                return HIGH_SPEED_SUDDEN_DISCONNECT;
             case "ObstructedCamera":
                 return OBSTRUCTED_CAMERA;
             case "EdgeDistractedDriving":
@@ -285,6 +304,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return GENERIC_DISTRACTION;
             case "RollingStop":
                 return ROLLING_STOP;
+            case "RearCollisionWarning":
+                return REAR_COLLISION_WARNING;
             case "FollowingDistanceModerate":
                 return FOLLOWING_DISTANCE_MODERATE;
             case "LaneDeparture":
@@ -295,6 +316,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return EATING_DRINKING;
             case "Braking":
                 return BRAKING;
+            case "VehicleInBlindSpotWarning":
+                return VEHICLE_IN_BLIND_SPOT_WARNING;
             case "Smoking":
                 return SMOKING;
             default:
@@ -339,6 +362,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         HARSH_TURN,
 
+        HIGH_SPEED_SUDDEN_DISCONNECT,
+
         INVALID,
 
         LANE_DEPARTURE,
@@ -361,6 +386,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         RAN_RED_LIGHT,
 
+        REAR_COLLISION_WARNING,
+
         ROLLING_STOP,
 
         ROLLOVER_PROTECTION,
@@ -368,6 +395,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         SMOKING,
 
         SPEEDING,
+
+        VEHICLE_IN_BLIND_SPOT_WARNING,
 
         VULNERABLE_ROAD_USER_COLLISION_WARNING,
 
@@ -413,6 +442,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         T visitHarshTurn();
 
+        T visitHighSpeedSuddenDisconnect();
+
         T visitInvalid();
 
         T visitLaneDeparture();
@@ -435,6 +466,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         T visitRanRedLight();
 
+        T visitRearCollisionWarning();
+
         T visitRollingStop();
 
         T visitRolloverProtection();
@@ -442,6 +475,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         T visitSmoking();
 
         T visitSpeeding();
+
+        T visitVehicleInBlindSpotWarning();
 
         T visitVulnerableRoadUserCollisionWarning();
 
