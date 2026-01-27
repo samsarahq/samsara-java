@@ -46,7 +46,7 @@ public final class ClientOptions {
             {
                 put("X-Fern-Language", "JAVA");
                 put("X-Fern-SDK-Name", "com.samsara.fern:api-sdk");
-                put("X-Fern-SDK-Version", "0.0.5");
+                put("X-Fern-SDK-Version", "5.3.1");
             }
         });
         this.headerSuppliers = headerSuppliers;

@@ -3664,7 +3664,7 @@ client.betaApIs().getDetections(
 <dl>
 <dd>
 
-**detectionBehaviorLabels:** `Optional<String>` — Optional string of comma separated labels to filter behavior labels. Uses OR semantics for filtering. An empty list allows all values. Valid values: `acceleration`, `braking`, `crash`, `drowsy`, `eatingDrinking`, `edgeRailroadCrossingViolation`, `followingDistance`, `forwardCollisionWarning`, `genericDistraction`, `harshTurn`, `heavySpeeding`, `laneDeparture`, `lightSpeeding`, `maxSpeed`, `mobileUsage`, `moderateSpeeding`, `noSeatbelt`, `obstructedCamera`, `passenger`, `policyViolationMask`, `ranRedLight`, `rearCollisionWarning`, `rollingStop`, `rolloverProtection`, `severeSpeeding`, `smoking`, `unsafeParking`, `vehicleInBlindSpotWarning`, `vulnerableRoadUserCollisionWarning`, `yawControl`. (Example: rollingStop,obstructedCamera,noSeatbelt)
+**detectionBehaviorLabels:** `Optional<String>` — Optional string of comma separated labels to filter behavior labels. Uses OR semantics for filtering. An empty list allows all values. Valid values: `acceleration`, `braking`, `crash`, `drowsy`, `eatingDrinking`, `edgeRailroadCrossingViolation`, `followingDistance`, `forwardCollisionWarning`, `genericDistraction`, `harshTurn`, `heavySpeeding`, `laneDeparture`, `lightSpeeding`, `maxSpeed`, `mobileUsage`, `moderateSpeeding`, `noSeatbelt`, `obstructedCamera`, `passenger`, `policyViolationMask`, `ranRedLight`, `rearCollisionWarning`, `rollingStop`, `rolloverProtection`, `severeSpeeding`, `smoking`, `speeding`, `unsafeParking`, `vehicleInBlindSpotWarning`, `vulnerableRoadUserCollisionWarning`, `yawControl`. (Example: rollingStop,obstructedCamera,noSeatbelt)
     
 </dd>
 </dl>
@@ -7693,7 +7693,7 @@ client.media().postMediaRetrieval(
 <dl>
 <dd>
 
-**endTime:** `String` — An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than 60 seconds after startTime (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).
+**endTime:** `String` — An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than the maximum allowed duration per video retrieval type. Please refer to our KB articles for more information. (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).
     
 </dd>
 </dl>
@@ -7709,7 +7709,7 @@ client.media().postMediaRetrieval(
 <dl>
 <dd>
 
-**mediaType:** `MediaRetrievalPostMediaRetrievalRequestBodyMediaType` — The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes. Examples: image, videoHighRes.  Valid values: `image`, `videoHighRes`
+**mediaType:** `MediaRetrievalPostMediaRetrievalRequestBodyMediaType` — The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: `image`, `videoHighRes`, `videoLowRes`
     
 </dd>
 </dl>

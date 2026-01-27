@@ -5,5 +5,5 @@
   "generatorConfig": {
     "package-prefix": "com.samsara.api"
   },
-  "sdkVersion": "0.0.5"
+  "sdkVersion": "5.3.1"
 }

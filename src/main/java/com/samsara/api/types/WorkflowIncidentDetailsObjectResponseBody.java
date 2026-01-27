@@ -88,6 +88,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<JammingDetectedResponseBody> jammingDetected;
 
+    private final Optional<MissingDvirPastDueResponseBody> missingDvirPastDue;
+
     private final Optional<MotionDetectedResponseBody> motionDetected;
 
     private final Optional<OutOfRouteResponseBody> outOfRoute;
@@ -177,6 +179,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<InsideGeofenceDataResponseBody> insideGeofence,
             Optional<IssueCreatedResponseBody> issueCreated,
             Optional<JammingDetectedResponseBody> jammingDetected,
+            Optional<MissingDvirPastDueResponseBody> missingDvirPastDue,
             Optional<MotionDetectedResponseBody> motionDetected,
             Optional<OutOfRouteResponseBody> outOfRoute,
             Optional<OutsideGeofenceDataResponseBody> outsideGeofence,
@@ -238,6 +241,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.insideGeofence = insideGeofence;
         this.issueCreated = issueCreated;
         this.jammingDetected = jammingDetected;
+        this.missingDvirPastDue = missingDvirPastDue;
         this.motionDetected = motionDetected;
         this.outOfRoute = outOfRoute;
         this.outsideGeofence = outsideGeofence;
@@ -437,6 +441,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return jammingDetected;
     }
 
+    @JsonProperty("missingDvirPastDue")
+    public Optional<MissingDvirPastDueResponseBody> getMissingDvirPastDue() {
+        return missingDvirPastDue;
+    }
+
     @JsonProperty("motionDetected")
     public Optional<MotionDetectedResponseBody> getMotionDetected() {
         return motionDetected;
@@ -614,6 +623,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && insideGeofence.equals(other.insideGeofence)
                 && issueCreated.equals(other.issueCreated)
                 && jammingDetected.equals(other.jammingDetected)
+                && missingDvirPastDue.equals(other.missingDvirPastDue)
                 && motionDetected.equals(other.motionDetected)
                 && outOfRoute.equals(other.outOfRoute)
                 && outsideGeofence.equals(other.outsideGeofence)
@@ -679,6 +689,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.insideGeofence,
                 this.issueCreated,
                 this.jammingDetected,
+                this.missingDvirPastDue,
                 this.motionDetected,
                 this.outOfRoute,
                 this.outsideGeofence,
@@ -786,6 +797,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<JammingDetectedResponseBody> jammingDetected = Optional.empty();
 
+        private Optional<MissingDvirPastDueResponseBody> missingDvirPastDue = Optional.empty();
+
         private Optional<MotionDetectedResponseBody> motionDetected = Optional.empty();
 
         private Optional<OutOfRouteResponseBody> outOfRoute = Optional.empty();
@@ -879,6 +892,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             insideGeofence(other.getInsideGeofence());
             issueCreated(other.getIssueCreated());
             jammingDetected(other.getJammingDetected());
+            missingDvirPastDue(other.getMissingDvirPastDue());
             motionDetected(other.getMotionDetected());
             outOfRoute(other.getOutOfRoute());
             outsideGeofence(other.getOutsideGeofence());
@@ -1284,6 +1298,17 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "missingDvirPastDue", nulls = Nulls.SKIP)
+        public Builder missingDvirPastDue(Optional<MissingDvirPastDueResponseBody> missingDvirPastDue) {
+            this.missingDvirPastDue = missingDvirPastDue;
+            return this;
+        }
+
+        public Builder missingDvirPastDue(MissingDvirPastDueResponseBody missingDvirPastDue) {
+            this.missingDvirPastDue = Optional.ofNullable(missingDvirPastDue);
+            return this;
+        }
+
         @JsonSetter(value = "motionDetected", nulls = Nulls.SKIP)
         public Builder motionDetected(Optional<MotionDetectedResponseBody> motionDetected) {
             this.motionDetected = motionDetected;
@@ -1611,6 +1636,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     insideGeofence,
                     issueCreated,
                     jammingDetected,
+                    missingDvirPastDue,
                     motionDetected,
                     outOfRoute,
                     outsideGeofence,
