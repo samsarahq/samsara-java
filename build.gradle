@@ -1,13 +1,29 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'signing'
+    id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
     id 'com.diffplug.spotless' version '6.11.0'
 }
+
+group = 'com.samsara'
+
+// Extract version from ClientOptions.java (same source as pr-merged.yml workflow)
+def extractVersionFromClientOptions() {
+    def clientOptionsFile = file('src/main/java/com/samsara/api/core/ClientOptions.java')
+    def matcher = clientOptionsFile.text =~ /X-Fern-SDK-Version.*?"(\d+\.\d+\.\d+)"/
+    if (matcher.find()) {
+        return matcher.group(1)
+    }
+    throw new GradleException("Could not extract version from ClientOptions.java")
+}
+
+version = extractVersionFromClientOptions()
 
 repositories {
     mavenCentral()
     maven {
-        url 'https://s01.oss.sonatype.org/content/repositories/releases/'
+        url = 'https://s01.oss.sonatype.org/content/repositories/releases/'
     }
 }
 
@@ -26,7 +42,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 tasks.withType(Javadoc) {
-    failOnError false
+    failOnError = false
     options.addStringOption('Xdoclint:none', '-quiet')
 }
 
@@ -50,3 +66,66 @@ test {
     }
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId = 'com.samsara'
+            artifactId = 'samsara-java-sdk'
+            version = project.version
+
+            pom {
+                name = 'Samsara Java SDK'
+                description = 'Official Java SDK for the Samsara API'
+                url = 'https://github.com/samsarahq/samsara-java'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = 'Samsara Developer Ecosystems'
+                        email = 'sdks@samsara.com'
+                        organization = 'Samsara'
+                        organizationUrl = 'https://www.samsara.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/samsarahq/samsara-java.git'
+                    developerConnection = 'scm:git:ssh://github.com:samsarahq/samsara-java.git'
+                    url = 'https://github.com/samsarahq/samsara-java'
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl = uri('https://s01.oss.sonatype.org/service/local/')
+            snapshotRepositoryUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots/')
+            username = findProperty('sonatypeUsername') ?: System.getenv('MAVEN_CENTRAL_USERNAME')
+            password = findProperty('sonatypePassword') ?: System.getenv('MAVEN_CENTRAL_PASSWORD')
+        }
+    }
+}
+
+signing {
+    def signingKey = findProperty('signingKey') ?: System.getenv('GPG_PRIVATE_KEY')
+    def signingPassword = findProperty('signingPassword') ?: System.getenv('GPG_PASSPHRASE')
+
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+}
+
+// Only sign when publishing (not during local builds)
+tasks.withType(Sign).configureEach {
+    onlyIf { gradle.taskGraph.hasTask('publish') || gradle.taskGraph.hasTask('publishToSonatype') }
+}
