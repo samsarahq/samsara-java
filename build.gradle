@@ -106,13 +106,17 @@ signing {
     def signingKey = findProperty('signingKey') ?: System.getenv('GPG_PRIVATE_KEY')
     def signingPassword = findProperty('signingPassword') ?: System.getenv('GPG_PASSPHRASE')
 
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign publishing.publications.mavenJava
+    // Only configure signing if keys are available
+    if (signingKey) {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications.mavenJava
+    }
 }
 
-// Only sign when publishing (not during local builds)
+// Make signing required for publishing
 tasks.withType(Sign).configureEach {
-    onlyIf { gradle.taskGraph.hasTask('publish') || gradle.taskGraph.hasTask('publishMavenJavaPublicationToMavenLocal') }
+    def signingKey = System.getenv('GPG_PRIVATE_KEY')
+    onlyIf { signingKey != null && !signingKey.isEmpty() }
 }
 
 // Task to create the publication bundle for Central Portal upload
