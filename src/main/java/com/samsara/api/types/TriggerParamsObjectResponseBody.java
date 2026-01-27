@@ -66,6 +66,8 @@ public final class TriggerParamsObjectResponseBody {
 
     private final Optional<RouteStopEstimatedArrivalDetailsObjectResponseBody> routeStopEstimatedArrival;
 
+    private final Optional<SafetyBehaviorTriggerDetailsObjectResponseBody> safetyBehavior;
+
     private final Optional<ScheduledMaintenanceTriggerDetailsObjectResponseBody> scheduledMaintenance;
 
     private final Optional<ScheduledMaintenanceByEngineHoursDetailsObjectResponseBody>
@@ -115,6 +117,7 @@ public final class TriggerParamsObjectResponseBody {
             Optional<PanicButtonDetailsObjectResponseBody> panicButton,
             Optional<ReadingTriggerDetailsObjectResponseBody> reading,
             Optional<RouteStopEstimatedArrivalDetailsObjectResponseBody> routeStopEstimatedArrival,
+            Optional<SafetyBehaviorTriggerDetailsObjectResponseBody> safetyBehavior,
             Optional<ScheduledMaintenanceTriggerDetailsObjectResponseBody> scheduledMaintenance,
             Optional<ScheduledMaintenanceByEngineHoursDetailsObjectResponseBody> scheduledMaintenanceByEngineHours,
             Optional<ScheduledMaintenanceOdometerTriggerDetailsObjectResponseBody> scheduledMaintenanceOdometer,
@@ -150,6 +153,7 @@ public final class TriggerParamsObjectResponseBody {
         this.panicButton = panicButton;
         this.reading = reading;
         this.routeStopEstimatedArrival = routeStopEstimatedArrival;
+        this.safetyBehavior = safetyBehavior;
         this.scheduledMaintenance = scheduledMaintenance;
         this.scheduledMaintenanceByEngineHours = scheduledMaintenanceByEngineHours;
         this.scheduledMaintenanceOdometer = scheduledMaintenanceOdometer;
@@ -279,6 +283,11 @@ public final class TriggerParamsObjectResponseBody {
         return routeStopEstimatedArrival;
     }
 
+    @JsonProperty("safetyBehavior")
+    public Optional<SafetyBehaviorTriggerDetailsObjectResponseBody> getSafetyBehavior() {
+        return safetyBehavior;
+    }
+
     @JsonProperty("scheduledMaintenance")
     public Optional<ScheduledMaintenanceTriggerDetailsObjectResponseBody> getScheduledMaintenance() {
         return scheduledMaintenance;
@@ -369,6 +378,7 @@ public final class TriggerParamsObjectResponseBody {
                 && panicButton.equals(other.panicButton)
                 && reading.equals(other.reading)
                 && routeStopEstimatedArrival.equals(other.routeStopEstimatedArrival)
+                && safetyBehavior.equals(other.safetyBehavior)
                 && scheduledMaintenance.equals(other.scheduledMaintenance)
                 && scheduledMaintenanceByEngineHours.equals(other.scheduledMaintenanceByEngineHours)
                 && scheduledMaintenanceOdometer.equals(other.scheduledMaintenanceOdometer)
@@ -408,6 +418,7 @@ public final class TriggerParamsObjectResponseBody {
                 this.panicButton,
                 this.reading,
                 this.routeStopEstimatedArrival,
+                this.safetyBehavior,
                 this.scheduledMaintenance,
                 this.scheduledMaintenanceByEngineHours,
                 this.scheduledMaintenanceOdometer,
@@ -479,6 +490,8 @@ public final class TriggerParamsObjectResponseBody {
         private Optional<RouteStopEstimatedArrivalDetailsObjectResponseBody> routeStopEstimatedArrival =
                 Optional.empty();
 
+        private Optional<SafetyBehaviorTriggerDetailsObjectResponseBody> safetyBehavior = Optional.empty();
+
         private Optional<ScheduledMaintenanceTriggerDetailsObjectResponseBody> scheduledMaintenance = Optional.empty();
 
         private Optional<ScheduledMaintenanceByEngineHoursDetailsObjectResponseBody> scheduledMaintenanceByEngineHours =
@@ -533,6 +546,7 @@ public final class TriggerParamsObjectResponseBody {
             panicButton(other.getPanicButton());
             reading(other.getReading());
             routeStopEstimatedArrival(other.getRouteStopEstimatedArrival());
+            safetyBehavior(other.getSafetyBehavior());
             scheduledMaintenance(other.getScheduledMaintenance());
             scheduledMaintenanceByEngineHours(other.getScheduledMaintenanceByEngineHours());
             scheduledMaintenanceOdometer(other.getScheduledMaintenanceOdometer());
@@ -803,6 +817,17 @@ public final class TriggerParamsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "safetyBehavior", nulls = Nulls.SKIP)
+        public Builder safetyBehavior(Optional<SafetyBehaviorTriggerDetailsObjectResponseBody> safetyBehavior) {
+            this.safetyBehavior = safetyBehavior;
+            return this;
+        }
+
+        public Builder safetyBehavior(SafetyBehaviorTriggerDetailsObjectResponseBody safetyBehavior) {
+            this.safetyBehavior = Optional.ofNullable(safetyBehavior);
+            return this;
+        }
+
         @JsonSetter(value = "scheduledMaintenance", nulls = Nulls.SKIP)
         public Builder scheduledMaintenance(
                 Optional<ScheduledMaintenanceTriggerDetailsObjectResponseBody> scheduledMaintenance) {
@@ -961,6 +986,7 @@ public final class TriggerParamsObjectResponseBody {
                     panicButton,
                     reading,
                     routeStopEstimatedArrival,
+                    safetyBehavior,
                     scheduledMaintenance,
                     scheduledMaintenanceByEngineHours,
                     scheduledMaintenanceOdometer,

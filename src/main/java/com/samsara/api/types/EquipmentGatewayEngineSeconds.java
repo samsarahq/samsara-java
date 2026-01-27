@@ -21,11 +21,11 @@ import org.jetbrains.annotations.NotNull;
 public final class EquipmentGatewayEngineSeconds {
     private final String time;
 
-    private final int value;
+    private final long value;
 
     private final Map<String, Object> additionalProperties;
 
-    private EquipmentGatewayEngineSeconds(String time, int value, Map<String, Object> additionalProperties) {
+    private EquipmentGatewayEngineSeconds(String time, long value, Map<String, Object> additionalProperties) {
         this.time = time;
         this.value = value;
         this.additionalProperties = additionalProperties;
@@ -40,7 +40,7 @@ public final class EquipmentGatewayEngineSeconds {
      * @return The number of seconds an engine has been running as detected via engine state. Used in combination with an offset provided manually through the Samsara cloud dashboard. Useful for when assets do not report engine hours over the J1939 network. The Engine Speed SPN must be available from the ECU for this parameter to properly calculate seconds. This is supported with the following hardware configurations: AG24/AG26 + AOPEN/A9PIN/ACT9/ACT14.
      */
     @JsonProperty("value")
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
@@ -83,7 +83,7 @@ public final class EquipmentGatewayEngineSeconds {
         /**
          * <p>The number of seconds an engine has been running as detected via engine state. Used in combination with an offset provided manually through the Samsara cloud dashboard. Useful for when assets do not report engine hours over the J1939 network. The Engine Speed SPN must be available from the ECU for this parameter to properly calculate seconds. This is supported with the following hardware configurations: AG24/AG26 + AOPEN/A9PIN/ACT9/ACT14.</p>
          */
-        _FinalStage value(int value);
+        _FinalStage value(long value);
     }
 
     public interface _FinalStage {
@@ -94,7 +94,7 @@ public final class EquipmentGatewayEngineSeconds {
     public static final class Builder implements TimeStage, ValueStage, _FinalStage {
         private String time;
 
-        private int value;
+        private long value;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -122,7 +122,7 @@ public final class EquipmentGatewayEngineSeconds {
          */
         @java.lang.Override
         @JsonSetter("value")
-        public _FinalStage value(int value) {
+        public _FinalStage value(long value) {
             this.value = value;
             return this;
         }

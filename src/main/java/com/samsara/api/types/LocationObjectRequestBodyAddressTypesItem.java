@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class LocationObjectRequestBodyAddressTypesItem {
+    public static final LocationObjectRequestBodyAddressTypesItem AUTHORIZED_ZONE =
+            new LocationObjectRequestBodyAddressTypesItem(Value.AUTHORIZED_ZONE, "authorizedZone");
+
+    public static final LocationObjectRequestBodyAddressTypesItem UNAUTHORIZED_ZONE =
+            new LocationObjectRequestBodyAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
+
     public static final LocationObjectRequestBodyAddressTypesItem INDUSTRIAL_SITE =
             new LocationObjectRequestBodyAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
@@ -70,6 +76,10 @@ public final class LocationObjectRequestBodyAddressTypesItem {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case AUTHORIZED_ZONE:
+                return visitor.visitAuthorizedZone();
+            case UNAUTHORIZED_ZONE:
+                return visitor.visitUnauthorizedZone();
             case INDUSTRIAL_SITE:
                 return visitor.visitIndustrialSite();
             case AVOIDANCE_ZONE:
@@ -99,6 +109,10 @@ public final class LocationObjectRequestBodyAddressTypesItem {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static LocationObjectRequestBodyAddressTypesItem valueOf(String value) {
         switch (value) {
+            case "authorizedZone":
+                return AUTHORIZED_ZONE;
+            case "unauthorizedZone":
+                return UNAUTHORIZED_ZONE;
             case "industrialSite":
                 return INDUSTRIAL_SITE;
             case "avoidanceZone":
@@ -129,6 +143,8 @@ public final class LocationObjectRequestBodyAddressTypesItem {
 
         ALERTS_ONLY,
 
+        AUTHORIZED_ZONE,
+
         AVOIDANCE_ZONE,
 
         INDUSTRIAL_SITE,
@@ -138,6 +154,8 @@ public final class LocationObjectRequestBodyAddressTypesItem {
         RISK_ZONE,
 
         SHORT_HAUL,
+
+        UNAUTHORIZED_ZONE,
 
         UNDEFINED,
 
@@ -153,6 +171,8 @@ public final class LocationObjectRequestBodyAddressTypesItem {
 
         T visitAlertsOnly();
 
+        T visitAuthorizedZone();
+
         T visitAvoidanceZone();
 
         T visitIndustrialSite();
@@ -162,6 +182,8 @@ public final class LocationObjectRequestBodyAddressTypesItem {
         T visitRiskZone();
 
         T visitShortHaul();
+
+        T visitUnauthorizedZone();
 
         T visitUndefined();
 

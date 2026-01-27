@@ -21,7 +21,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1MachineHistoryResponseMachines.Builder.class)
 public final class V1MachineHistoryResponseMachines {
-    private final Optional<Integer> id;
+    private final Optional<Long> id;
 
     private final Optional<String> name;
 
@@ -30,7 +30,7 @@ public final class V1MachineHistoryResponseMachines {
     private final Map<String, Object> additionalProperties;
 
     private V1MachineHistoryResponseMachines(
-            Optional<Integer> id,
+            Optional<Long> id,
             Optional<String> name,
             Optional<List<V1MachineHistoryResponseVibrations>> vibrations,
             Map<String, Object> additionalProperties) {
@@ -44,7 +44,7 @@ public final class V1MachineHistoryResponseMachines {
      * @return Machine ID
      */
     @JsonProperty("id")
-    public Optional<Integer> getId() {
+    public Optional<Long> getId() {
         return id;
     }
 
@@ -95,7 +95,7 @@ public final class V1MachineHistoryResponseMachines {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Integer> id = Optional.empty();
+        private Optional<Long> id = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -117,12 +117,12 @@ public final class V1MachineHistoryResponseMachines {
          * <p>Machine ID</p>
          */
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<Integer> id) {
+        public Builder id(Optional<Long> id) {
             this.id = id;
             return this;
         }
 
-        public Builder id(Integer id) {
+        public Builder id(Long id) {
             this.id = Optional.ofNullable(id);
             return this;
         }

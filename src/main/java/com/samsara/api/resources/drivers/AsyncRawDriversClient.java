@@ -71,6 +71,15 @@ public class AsyncRawDriversClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<SamsaraApiHttpResponse<SyncPagingIterable<Driver>>> list(RequestOptions requestOptions) {
+        return list(ListDriversRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Get all drivers in organization.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<SamsaraApiHttpResponse<SyncPagingIterable<Driver>>> list(ListDriversRequest request) {
         return list(request, null);
     }
@@ -391,6 +400,15 @@ public class AsyncRawDriversClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> get(String id, RequestOptions requestOptions) {
+        return get(id, GetDriversRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Get information about a driver.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> get(String id, GetDriversRequest request) {
         return get(id, request, null);
     }
@@ -450,6 +468,10 @@ public class AsyncRawDriversClient {
         return delete(id, DeleteDriversRequest.builder().build());
     }
 
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, RequestOptions requestOptions) {
+        return delete(id, DeleteDriversRequest.builder().build(), requestOptions);
+    }
+
     public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, DeleteDriversRequest request) {
         return delete(id, request, null);
     }
@@ -504,6 +526,15 @@ public class AsyncRawDriversClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> update(String id) {
         return update(id, UpdateDriverRequest.builder().build());
+    }
+
+    /**
+     * Update a specific driver's information. This can also be used to activate or de-activate a given driver by setting the driverActivationStatus field. If the driverActivationStatus field is 'deactivated' then the user can also specify the deactivatedAtTime. The deactivatedAtTime cannot be more than 6 months in the past and must not come before the dirver's latest active HOS log. It will be considered an error if deactivatedAtTime is provided with a driverActivationStatus of active.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> update(String id, RequestOptions requestOptions) {
+        return update(id, UpdateDriverRequest.builder().build(), requestOptions);
     }
 
     /**

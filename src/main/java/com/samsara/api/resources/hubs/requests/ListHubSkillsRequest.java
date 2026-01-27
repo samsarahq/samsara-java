@@ -34,7 +34,7 @@ public final class ListHubSkillsRequest {
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Map<String, Object> additionalProperties;
 
@@ -45,7 +45,7 @@ public final class ListHubSkillsRequest {
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Map<String, Object> additionalProperties) {
         this.hubId = hubId;
         this.skillIds = skillIds;
@@ -109,7 +109,7 @@ public final class ListHubSkillsRequest {
      * @return Maximum number of objects to return. Default and maximum is 100
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -199,16 +199,16 @@ public final class ListHubSkillsRequest {
         /**
          * <p>Maximum number of objects to return. Default and maximum is 100</p>
          */
-        _FinalStage limit(Optional<Integer> limit);
+        _FinalStage limit(Optional<Long> limit);
 
-        _FinalStage limit(Integer limit);
+        _FinalStage limit(Long limit);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements HubIdStage, _FinalStage {
         private String hubId;
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -254,7 +254,7 @@ public final class ListHubSkillsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage limit(Integer limit) {
+        public _FinalStage limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -264,7 +264,7 @@ public final class ListHubSkillsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public _FinalStage limit(Optional<Integer> limit) {
+        public _FinalStage limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }

@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class UpdateAddressRequestAddressTypesItem {
+    public static final UpdateAddressRequestAddressTypesItem AUTHORIZED_ZONE =
+            new UpdateAddressRequestAddressTypesItem(Value.AUTHORIZED_ZONE, "authorizedZone");
+
+    public static final UpdateAddressRequestAddressTypesItem UNAUTHORIZED_ZONE =
+            new UpdateAddressRequestAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
+
     public static final UpdateAddressRequestAddressTypesItem INDUSTRIAL_SITE =
             new UpdateAddressRequestAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
@@ -67,6 +73,10 @@ public final class UpdateAddressRequestAddressTypesItem {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case AUTHORIZED_ZONE:
+                return visitor.visitAuthorizedZone();
+            case UNAUTHORIZED_ZONE:
+                return visitor.visitUnauthorizedZone();
             case INDUSTRIAL_SITE:
                 return visitor.visitIndustrialSite();
             case AVOIDANCE_ZONE:
@@ -94,6 +104,10 @@ public final class UpdateAddressRequestAddressTypesItem {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static UpdateAddressRequestAddressTypesItem valueOf(String value) {
         switch (value) {
+            case "authorizedZone":
+                return AUTHORIZED_ZONE;
+            case "unauthorizedZone":
+                return UNAUTHORIZED_ZONE;
             case "industrialSite":
                 return INDUSTRIAL_SITE;
             case "avoidanceZone":
@@ -136,6 +150,10 @@ public final class UpdateAddressRequestAddressTypesItem {
 
         KNOWN_GPS_JAMMING_ZONE,
 
+        AUTHORIZED_ZONE,
+
+        UNAUTHORIZED_ZONE,
+
         UNKNOWN
     }
 
@@ -157,6 +175,10 @@ public final class UpdateAddressRequestAddressTypesItem {
         T visitAvoidanceZone();
 
         T visitKnownGpsJammingZone();
+
+        T visitAuthorizedZone();
+
+        T visitUnauthorizedZone();
 
         T visitUnknown(String unknownType);
     }

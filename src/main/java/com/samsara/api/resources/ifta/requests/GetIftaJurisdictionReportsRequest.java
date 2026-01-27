@@ -23,7 +23,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = GetIftaJurisdictionReportsRequest.Builder.class)
 public final class GetIftaJurisdictionReportsRequest {
-    private final int year;
+    private final long year;
 
     private final Optional<GetIftaJurisdictionReportsRequestMonth> month;
 
@@ -42,7 +42,7 @@ public final class GetIftaJurisdictionReportsRequest {
     private final Map<String, Object> additionalProperties;
 
     private GetIftaJurisdictionReportsRequest(
-            int year,
+            long year,
             Optional<GetIftaJurisdictionReportsRequestMonth> month,
             Optional<GetIftaJurisdictionReportsRequestQuarter> quarter,
             Optional<String> jurisdictions,
@@ -66,7 +66,7 @@ public final class GetIftaJurisdictionReportsRequest {
      * @return The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: <code>year=2021</code>
      */
     @JsonProperty("year")
-    public int getYear() {
+    public long getYear() {
         return year;
     }
 
@@ -174,7 +174,7 @@ public final class GetIftaJurisdictionReportsRequest {
         /**
          * <p>The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: <code>year=2021</code></p>
          */
-        _FinalStage year(int year);
+        _FinalStage year(long year);
 
         Builder from(GetIftaJurisdictionReportsRequest other);
     }
@@ -234,7 +234,7 @@ public final class GetIftaJurisdictionReportsRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements YearStage, _FinalStage {
-        private int year;
+        private long year;
 
         private Optional<String> parentTagIds = Optional.empty();
 
@@ -275,7 +275,7 @@ public final class GetIftaJurisdictionReportsRequest {
          */
         @java.lang.Override
         @JsonSetter("year")
-        public _FinalStage year(int year) {
+        public _FinalStage year(long year) {
             this.year = year;
             return this;
         }

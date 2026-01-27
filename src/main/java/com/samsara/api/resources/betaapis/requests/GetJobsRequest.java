@@ -25,7 +25,7 @@ import java.util.Optional;
 public final class GetJobsRequest {
     private final Optional<List<String>> industrialAssetIds;
 
-    private final Optional<List<Integer>> fleetDeviceIds;
+    private final Optional<List<Long>> fleetDeviceIds;
 
     private final Optional<String> id;
 
@@ -43,7 +43,7 @@ public final class GetJobsRequest {
 
     private GetJobsRequest(
             Optional<List<String>> industrialAssetIds,
-            Optional<List<Integer>> fleetDeviceIds,
+            Optional<List<Long>> fleetDeviceIds,
             Optional<String> id,
             Optional<String> startDate,
             Optional<String> endDate,
@@ -74,7 +74,7 @@ public final class GetJobsRequest {
      * @return FleetDeviceId in INTEGER format. (Example: <code>123456</code>).
      */
     @JsonProperty("fleetDeviceIds")
-    public Optional<List<Integer>> getFleetDeviceIds() {
+    public Optional<List<Long>> getFleetDeviceIds() {
         return fleetDeviceIds;
     }
 
@@ -174,7 +174,7 @@ public final class GetJobsRequest {
     public static final class Builder {
         private Optional<List<String>> industrialAssetIds = Optional.empty();
 
-        private Optional<List<Integer>> fleetDeviceIds = Optional.empty();
+        private Optional<List<Long>> fleetDeviceIds = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -228,17 +228,17 @@ public final class GetJobsRequest {
          * <p>FleetDeviceId in INTEGER format. (Example: <code>123456</code>).</p>
          */
         @JsonSetter(value = "fleetDeviceIds", nulls = Nulls.SKIP)
-        public Builder fleetDeviceIds(Optional<List<Integer>> fleetDeviceIds) {
+        public Builder fleetDeviceIds(Optional<List<Long>> fleetDeviceIds) {
             this.fleetDeviceIds = fleetDeviceIds;
             return this;
         }
 
-        public Builder fleetDeviceIds(List<Integer> fleetDeviceIds) {
+        public Builder fleetDeviceIds(List<Long> fleetDeviceIds) {
             this.fleetDeviceIds = Optional.ofNullable(fleetDeviceIds);
             return this;
         }
 
-        public Builder fleetDeviceIds(Integer fleetDeviceIds) {
+        public Builder fleetDeviceIds(Long fleetDeviceIds) {
             this.fleetDeviceIds = Optional.of(Collections.singletonList(fleetDeviceIds));
             return this;
         }

@@ -23,7 +23,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = GetIftaVehicleReportsRequest.Builder.class)
 public final class GetIftaVehicleReportsRequest {
-    private final int year;
+    private final long year;
 
     private final Optional<GetIftaVehicleReportsRequestMonth> month;
 
@@ -44,7 +44,7 @@ public final class GetIftaVehicleReportsRequest {
     private final Map<String, Object> additionalProperties;
 
     private GetIftaVehicleReportsRequest(
-            int year,
+            long year,
             Optional<GetIftaVehicleReportsRequestMonth> month,
             Optional<GetIftaVehicleReportsRequestQuarter> quarter,
             Optional<String> jurisdictions,
@@ -70,7 +70,7 @@ public final class GetIftaVehicleReportsRequest {
      * @return The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: <code>year=2021</code>
      */
     @JsonProperty("year")
-    public int getYear() {
+    public long getYear() {
         return year;
     }
 
@@ -188,7 +188,7 @@ public final class GetIftaVehicleReportsRequest {
         /**
          * <p>The year of the requested IFTA report summary. Must be provided with a month or quarter param. Example: <code>year=2021</code></p>
          */
-        _FinalStage year(int year);
+        _FinalStage year(long year);
 
         Builder from(GetIftaVehicleReportsRequest other);
     }
@@ -255,7 +255,7 @@ public final class GetIftaVehicleReportsRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements YearStage, _FinalStage {
-        private int year;
+        private long year;
 
         private Optional<String> after = Optional.empty();
 
@@ -299,7 +299,7 @@ public final class GetIftaVehicleReportsRequest {
          */
         @java.lang.Override
         @JsonSetter("year")
-        public _FinalStage year(int year) {
+        public _FinalStage year(long year) {
             this.year = year;
             return this;
         }

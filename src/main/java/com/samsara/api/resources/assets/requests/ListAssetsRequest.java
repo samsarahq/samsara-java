@@ -79,7 +79,7 @@ public final class ListAssetsRequest {
     }
 
     /**
-     * @return A filter on the data to return entities within given range query (only for numeric attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: <code>attributes=Length:range(8,)&amp;attributes=Length:range(10,20)</code>
+     * @return A filter on the data to return entities within given range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: <code>attributes=Length:range(8,)&amp;attributes=Length:range(10,20)&amp;attributes=Date:range(2025-01-01,2025-01-31)</code>
      */
     @JsonProperty("attributes")
     public Optional<List<String>> getAttributes() {
@@ -259,7 +259,7 @@ public final class ListAssetsRequest {
         }
 
         /**
-         * <p>A filter on the data to return entities within given range query (only for numeric attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: <code>attributes=Length:range(8,)&amp;attributes=Length:range(10,20)</code></p>
+         * <p>A filter on the data to return entities within given range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: <code>attributes=Length:range(8,)&amp;attributes=Length:range(10,20)&amp;attributes=Date:range(2025-01-01,2025-01-31)</code></p>
          */
         @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
         public Builder attributes(Optional<List<String>> attributes) {

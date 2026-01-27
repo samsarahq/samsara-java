@@ -5,15 +5,13 @@ package com.samsara.api.resources.safety;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
-import com.samsara.api.resources.safety.requests.GetSafetyActivityEventFeedRequest;
-import com.samsara.api.resources.safety.requests.GetSafetyEventsRequest;
+import com.samsara.api.resources.safety.requests.GetSafetyEventsV2Request;
+import com.samsara.api.resources.safety.requests.GetSafetyEventsV2StreamRequest;
 import com.samsara.api.resources.safety.requests.V1GetDriverSafetyScoreRequest;
-import com.samsara.api.resources.safety.requests.V1GetVehicleHarshEventRequest;
 import com.samsara.api.resources.safety.requests.V1GetVehicleSafetyScoreRequest;
-import com.samsara.api.types.SafetyEventsGetSafetyActivityEventFeedResponseBody;
-import com.samsara.api.types.SafetyEventsListResponse;
+import com.samsara.api.types.SafetyEventsV2GetSafetyEventsV2ResponseBody;
+import com.samsara.api.types.SafetyEventsV2GetSafetyEventsV2StreamResponseBody;
 import com.samsara.api.types.V1DriverSafetyScoreResponse;
-import com.samsara.api.types.V1VehicleHarshEventResponse;
 import com.samsara.api.types.V1VehicleSafetyScoreResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -35,71 +33,68 @@ public class AsyncSafetyClient {
     }
 
     /**
-     * Fetch safety events for the organization in a given time period.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<SafetyEventsListResponse> getSafetyEvents(GetSafetyEventsRequest request) {
-        return this.rawClient.getSafetyEvents(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Fetch safety events for the organization in a given time period.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<SafetyEventsListResponse> getSafetyEvents(
-            GetSafetyEventsRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getSafetyEvents(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
-     * <p>| ActivityType      | Description |
-     * | ----------- | ----------- |
-     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
-     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public CompletableFuture<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed() {
-        return this.rawClient.getSafetyActivityEventFeed().thenApply(response -> response.body());
+    public CompletableFuture<SafetyEventsV2GetSafetyEventsV2ResponseBody> getSafetyEventsV2() {
+        return this.rawClient.getSafetyEventsV2().thenApply(response -> response.body());
     }
 
     /**
-     * Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
-     * <p>| ActivityType      | Description |
-     * | ----------- | ----------- |
-     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
-     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public CompletableFuture<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
-            GetSafetyActivityEventFeedRequest request) {
-        return this.rawClient.getSafetyActivityEventFeed(request).thenApply(response -> response.body());
+    public CompletableFuture<SafetyEventsV2GetSafetyEventsV2ResponseBody> getSafetyEventsV2(
+            RequestOptions requestOptions) {
+        return this.rawClient.getSafetyEventsV2(requestOptions).thenApply(response -> response.body());
     }
 
     /**
-     * Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
-     * <p>| ActivityType      | Description |
-     * | ----------- | ----------- |
-     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
-     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public CompletableFuture<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
-            GetSafetyActivityEventFeedRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .getSafetyActivityEventFeed(request, requestOptions)
-                .thenApply(response -> response.body());
+    public CompletableFuture<SafetyEventsV2GetSafetyEventsV2ResponseBody> getSafetyEventsV2(
+            GetSafetyEventsV2Request request) {
+        return this.rawClient.getSafetyEventsV2(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SafetyEventsV2GetSafetyEventsV2ResponseBody> getSafetyEventsV2(
+            GetSafetyEventsV2Request request, RequestOptions requestOptions) {
+        return this.rawClient.getSafetyEventsV2(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events &amp; Scores under the Safety &amp; Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SafetyEventsV2GetSafetyEventsV2StreamResponseBody> getSafetyEventsV2Stream(
+            GetSafetyEventsV2StreamRequest request) {
+        return this.rawClient.getSafetyEventsV2Stream(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events &amp; Scores under the Safety &amp; Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public CompletableFuture<SafetyEventsV2GetSafetyEventsV2StreamResponseBody> getSafetyEventsV2Stream(
+            GetSafetyEventsV2StreamRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getSafetyEventsV2Stream(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -135,40 +130,6 @@ public class AsyncSafetyClient {
             long driverId, V1GetDriverSafetyScoreRequest request, RequestOptions requestOptions) {
         return this.rawClient
                 .v1GetDriverSafetyScore(driverId, request, requestOptions)
-                .thenApply(response -> response.body());
-    }
-
-    /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch harsh event details for a vehicle.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<V1VehicleHarshEventResponse> v1GetVehicleHarshEvent(
-            long vehicleId, V1GetVehicleHarshEventRequest request) {
-        return this.rawClient.v1GetVehicleHarshEvent(vehicleId, request).thenApply(response -> response.body());
-    }
-
-    /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch harsh event details for a vehicle.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<V1VehicleHarshEventResponse> v1GetVehicleHarshEvent(
-            long vehicleId, V1GetVehicleHarshEventRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .v1GetVehicleHarshEvent(vehicleId, request, requestOptions)
                 .thenApply(response -> response.body());
     }
 

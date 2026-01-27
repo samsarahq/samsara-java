@@ -138,6 +138,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<VehicleFaultsResponseBody> vehicleFaults;
 
+    private final Optional<WorkerSafetySosDataResponseBody> workerSafetySos;
+
     private final Map<String, Object> additionalProperties;
 
     private WorkflowIncidentDetailsObjectResponseBody(
@@ -200,6 +202,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<VehicleDefLevelPercentageResponseBody> vehicleDefLevelPercentage,
             Optional<VehicleDetectedResponseBody> vehicleDetected,
             Optional<VehicleFaultsResponseBody> vehicleFaults,
+            Optional<WorkerSafetySosDataResponseBody> workerSafetySos,
             Map<String, Object> additionalProperties) {
         this.ambientTemperature = ambientTemperature;
         this.cameraConnectorDisconected = cameraConnectorDisconected;
@@ -260,6 +263,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.vehicleDefLevelPercentage = vehicleDefLevelPercentage;
         this.vehicleDetected = vehicleDetected;
         this.vehicleFaults = vehicleFaults;
+        this.workerSafetySos = workerSafetySos;
         this.additionalProperties = additionalProperties;
     }
 
@@ -558,6 +562,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return vehicleFaults;
     }
 
+    @JsonProperty("workerSafetySos")
+    public Optional<WorkerSafetySosDataResponseBody> getWorkerSafetySos() {
+        return workerSafetySos;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -629,7 +638,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && vehicleBatteryVoltage.equals(other.vehicleBatteryVoltage)
                 && vehicleDefLevelPercentage.equals(other.vehicleDefLevelPercentage)
                 && vehicleDetected.equals(other.vehicleDetected)
-                && vehicleFaults.equals(other.vehicleFaults);
+                && vehicleFaults.equals(other.vehicleFaults)
+                && workerSafetySos.equals(other.workerSafetySos);
     }
 
     @java.lang.Override
@@ -693,7 +703,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.vehicleBatteryVoltage,
                 this.vehicleDefLevelPercentage,
                 this.vehicleDetected,
-                this.vehicleFaults);
+                this.vehicleFaults,
+                this.workerSafetySos);
     }
 
     @java.lang.Override
@@ -826,6 +837,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<VehicleFaultsResponseBody> vehicleFaults = Optional.empty();
 
+        private Optional<WorkerSafetySosDataResponseBody> workerSafetySos = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -891,6 +904,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             vehicleDefLevelPercentage(other.getVehicleDefLevelPercentage());
             vehicleDetected(other.getVehicleDetected());
             vehicleFaults(other.getVehicleFaults());
+            workerSafetySos(other.getWorkerSafetySos());
             return this;
         }
 
@@ -1550,6 +1564,17 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "workerSafetySos", nulls = Nulls.SKIP)
+        public Builder workerSafetySos(Optional<WorkerSafetySosDataResponseBody> workerSafetySos) {
+            this.workerSafetySos = workerSafetySos;
+            return this;
+        }
+
+        public Builder workerSafetySos(WorkerSafetySosDataResponseBody workerSafetySos) {
+            this.workerSafetySos = Optional.ofNullable(workerSafetySos);
+            return this;
+        }
+
         public WorkflowIncidentDetailsObjectResponseBody build() {
             return new WorkflowIncidentDetailsObjectResponseBody(
                     ambientTemperature,
@@ -1611,6 +1636,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     vehicleDefLevelPercentage,
                     vehicleDetected,
                     vehicleFaults,
+                    workerSafetySos,
                     additionalProperties);
         }
     }

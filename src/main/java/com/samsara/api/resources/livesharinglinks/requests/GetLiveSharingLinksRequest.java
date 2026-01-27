@@ -27,7 +27,7 @@ public final class GetLiveSharingLinksRequest {
 
     private final Optional<GetLiveSharingLinksRequestType> type;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Optional<String> after;
 
@@ -36,7 +36,7 @@ public final class GetLiveSharingLinksRequest {
     private GetLiveSharingLinksRequest(
             Optional<List<String>> ids,
             Optional<GetLiveSharingLinksRequestType> type,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Optional<String> after,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
@@ -66,7 +66,7 @@ public final class GetLiveSharingLinksRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 100 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -116,7 +116,7 @@ public final class GetLiveSharingLinksRequest {
 
         private Optional<GetLiveSharingLinksRequestType> type = Optional.empty();
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -170,12 +170,12 @@ public final class GetLiveSharingLinksRequest {
          * <p>The limit for how many objects will be in the response. Default and max for this value is 100 objects.</p>
          */
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public Builder limit(Optional<Integer> limit) {
+        public Builder limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
 
-        public Builder limit(Integer limit) {
+        public Builder limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }

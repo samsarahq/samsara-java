@@ -62,7 +62,7 @@ public final class CreateAttributeRequest {
     }
 
     /**
-     * @return Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.
+     * @return Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.
      */
     @JsonProperty("attributeType")
     public CreateAttributeRequestAttributeType getAttributeType() {
@@ -161,7 +161,7 @@ public final class CreateAttributeRequest {
 
     public interface AttributeTypeStage {
         /**
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
          */
         EntityTypeStage attributeType(@NotNull CreateAttributeRequestAttributeType attributeType);
 
@@ -248,8 +248,8 @@ public final class CreateAttributeRequest {
         }
 
         /**
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.</p>
-         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
+         * <p>Denotes the data type of the attribute's values. Valid values: <code>single-select</code>, <code>multi-select</code>, <code>text</code>, <code>freeform-multi-select</code>, <code>number</code>, <code>date</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

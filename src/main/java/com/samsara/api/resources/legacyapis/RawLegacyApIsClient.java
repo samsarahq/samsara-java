@@ -23,12 +23,18 @@ import com.samsara.api.errors.UnauthorizedError;
 import com.samsara.api.resources.legacyapis.requests.GetDriversVehicleAssignmentsRequest;
 import com.samsara.api.resources.legacyapis.requests.GetDvirDefectsRequest;
 import com.samsara.api.resources.legacyapis.requests.GetDvirHistoryRequest;
+import com.samsara.api.resources.legacyapis.requests.GetSafetyActivityEventFeedRequest;
+import com.samsara.api.resources.legacyapis.requests.GetSafetyEventsRequest;
 import com.samsara.api.resources.legacyapis.requests.GetVehicleIdlingReportsRequest;
 import com.samsara.api.resources.legacyapis.requests.GetVehiclesDriverAssignmentsRequest;
+import com.samsara.api.resources.legacyapis.requests.V1GetVehicleHarshEventRequest;
 import com.samsara.api.types.DefectsResponse;
 import com.samsara.api.types.DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody;
 import com.samsara.api.types.DvirsListResponse;
 import com.samsara.api.types.IdlingReportsGetVehicleIdlingReportsResponseBody;
+import com.samsara.api.types.SafetyEventsGetSafetyActivityEventFeedResponseBody;
+import com.samsara.api.types.SafetyEventsListResponse;
+import com.samsara.api.types.V1VehicleHarshEventResponse;
 import com.samsara.api.types.VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody;
 import java.io.IOException;
 import okhttp3.Headers;
@@ -115,6 +121,18 @@ public class RawLegacyApIsClient {
             getDriversVehicleAssignments() {
         return getDriversVehicleAssignments(
                 GetDriversVehicleAssignmentsRequest.builder().build());
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody>
+            getDriversVehicleAssignments(RequestOptions requestOptions) {
+        return getDriversVehicleAssignments(
+                GetDriversVehicleAssignmentsRequest.builder().build(), requestOptions);
     }
 
     /**
@@ -411,6 +429,208 @@ public class RawLegacyApIsClient {
     }
 
     /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
+     * <p>Fetch safety events for the organization in a given time period.</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<SafetyEventsListResponse> getSafetyEvents(GetSafetyEventsRequest request) {
+        return getSafetyEvents(request, null);
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
+     * <p>Fetch safety events for the organization in a given time period.</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<SafetyEventsListResponse> getSafetyEvents(
+            GetSafetyEventsRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("fleet/safety-events");
+        if (request.getAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "after", request.getAfter().get(), false);
+        }
+        QueryStringMapper.addQueryParameter(httpUrl, "startTime", request.getStartTime(), false);
+        QueryStringMapper.addQueryParameter(httpUrl, "endTime", request.getEndTime(), false);
+        if (request.getTagIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "tagIds", request.getTagIds().get(), true);
+        }
+        if (request.getParentTagIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "parentTagIds", request.getParentTagIds().get(), true);
+        }
+        if (request.getVehicleIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "vehicleIds", request.getVehicleIds().get(), true);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SafetyEventsListResponse.class),
+                        response);
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
+     * <p>Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.</p>
+     * <p>| ActivityType      | Description |
+     * | ----------- | ----------- |
+     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
+     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed() {
+        return getSafetyActivityEventFeed(
+                GetSafetyActivityEventFeedRequest.builder().build());
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
+     * <p>Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.</p>
+     * <p>| ActivityType      | Description |
+     * | ----------- | ----------- |
+     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
+     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
+            RequestOptions requestOptions) {
+        return getSafetyActivityEventFeed(
+                GetSafetyActivityEventFeedRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
+     * <p>Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.</p>
+     * <p>| ActivityType      | Description |
+     * | ----------- | ----------- |
+     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
+     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
+            GetSafetyActivityEventFeedRequest request) {
+        return getSafetyActivityEventFeed(request, null);
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
+     * <p>Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.</p>
+     * <p>| ActivityType      | Description |
+     * | ----------- | ----------- |
+     * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+     * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
+     * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
+            GetSafetyActivityEventFeedRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("fleet/safety-events/audit-logs/feed");
+        if (request.getAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "after", request.getAfter().get(), false);
+        }
+        if (request.getStartTime().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "startTime", request.getStartTime().get(), false);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString, SafetyEventsGetSafetyActivityEventFeedResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
@@ -420,6 +640,18 @@ public class RawLegacyApIsClient {
             getVehiclesDriverAssignments() {
         return getVehiclesDriverAssignments(
                 GetVehiclesDriverAssignmentsRequest.builder().build());
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>
+            getVehiclesDriverAssignments(RequestOptions requestOptions) {
+        return getVehiclesDriverAssignments(
+                GetVehiclesDriverAssignmentsRequest.builder().build(), requestOptions);
     }
 
     /**
@@ -520,6 +752,68 @@ public class RawLegacyApIsClient {
                 }
             } catch (JsonProcessingException ignored) {
                 // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> &lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;
+     * <p>Fetch harsh event details for a vehicle.</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<V1VehicleHarshEventResponse> v1GetVehicleHarshEvent(
+            long vehicleId, V1GetVehicleHarshEventRequest request) {
+        return v1GetVehicleHarshEvent(vehicleId, request, null);
+    }
+
+    /**
+     * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> &lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;
+     * <p>Fetch harsh event details for a vehicle.</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<V1VehicleHarshEventResponse> v1GetVehicleHarshEvent(
+            long vehicleId, V1GetVehicleHarshEventRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("v1/fleet/vehicles")
+                .addPathSegment(Long.toString(vehicleId))
+                .addPathSegments("safety")
+                .addPathSegments("harsh_event");
+        QueryStringMapper.addQueryParameter(httpUrl, "timestamp", request.getTimestamp(), false);
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, V1VehicleHarshEventResponse.class),
+                        response);
             }
             Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
             throw new SamsaraApiApiException(

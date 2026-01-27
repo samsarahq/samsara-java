@@ -19,27 +19,27 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1VehicleMaintenanceJ1939DiagnosticTroubleCodes.Builder.class)
 public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
-    private final int fmiId;
+    private final long fmiId;
 
     private final String fmiText;
 
-    private final int occurrenceCount;
+    private final long occurrenceCount;
 
     private final String spnDescription;
 
-    private final int spnId;
+    private final long spnId;
 
-    private final int txId;
+    private final long txId;
 
     private final Map<String, Object> additionalProperties;
 
     private V1VehicleMaintenanceJ1939DiagnosticTroubleCodes(
-            int fmiId,
+            long fmiId,
             String fmiText,
-            int occurrenceCount,
+            long occurrenceCount,
             String spnDescription,
-            int spnId,
-            int txId,
+            long spnId,
+            long txId,
             Map<String, Object> additionalProperties) {
         this.fmiId = fmiId;
         this.fmiText = fmiText;
@@ -51,7 +51,7 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
     }
 
     @JsonProperty("fmiId")
-    public int getFmiId() {
+    public long getFmiId() {
         return fmiId;
     }
 
@@ -61,7 +61,7 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
     }
 
     @JsonProperty("occurrenceCount")
-    public int getOccurrenceCount() {
+    public long getOccurrenceCount() {
         return occurrenceCount;
     }
 
@@ -71,12 +71,12 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
     }
 
     @JsonProperty("spnId")
-    public int getSpnId() {
+    public long getSpnId() {
         return spnId;
     }
 
     @JsonProperty("txId")
-    public int getTxId() {
+    public long getTxId() {
         return txId;
     }
 
@@ -116,7 +116,7 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
     }
 
     public interface FmiIdStage {
-        FmiTextStage fmiId(int fmiId);
+        FmiTextStage fmiId(long fmiId);
 
         Builder from(V1VehicleMaintenanceJ1939DiagnosticTroubleCodes other);
     }
@@ -126,7 +126,7 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
     }
 
     public interface OccurrenceCountStage {
-        SpnDescriptionStage occurrenceCount(int occurrenceCount);
+        SpnDescriptionStage occurrenceCount(long occurrenceCount);
     }
 
     public interface SpnDescriptionStage {
@@ -134,11 +134,11 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
     }
 
     public interface SpnIdStage {
-        TxIdStage spnId(int spnId);
+        TxIdStage spnId(long spnId);
     }
 
     public interface TxIdStage {
-        _FinalStage txId(int txId);
+        _FinalStage txId(long txId);
     }
 
     public interface _FinalStage {
@@ -154,17 +154,17 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
                     SpnIdStage,
                     TxIdStage,
                     _FinalStage {
-        private int fmiId;
+        private long fmiId;
 
         private String fmiText;
 
-        private int occurrenceCount;
+        private long occurrenceCount;
 
         private String spnDescription;
 
-        private int spnId;
+        private long spnId;
 
-        private int txId;
+        private long txId;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -184,7 +184,7 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
 
         @java.lang.Override
         @JsonSetter("fmiId")
-        public FmiTextStage fmiId(int fmiId) {
+        public FmiTextStage fmiId(long fmiId) {
             this.fmiId = fmiId;
             return this;
         }
@@ -198,7 +198,7 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
 
         @java.lang.Override
         @JsonSetter("occurrenceCount")
-        public SpnDescriptionStage occurrenceCount(int occurrenceCount) {
+        public SpnDescriptionStage occurrenceCount(long occurrenceCount) {
             this.occurrenceCount = occurrenceCount;
             return this;
         }
@@ -212,14 +212,14 @@ public final class V1VehicleMaintenanceJ1939DiagnosticTroubleCodes {
 
         @java.lang.Override
         @JsonSetter("spnId")
-        public TxIdStage spnId(int spnId) {
+        public TxIdStage spnId(long spnId) {
             this.spnId = spnId;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("txId")
-        public _FinalStage txId(int txId) {
+        public _FinalStage txId(long txId) {
             this.txId = txId;
             return this;
         }

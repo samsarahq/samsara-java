@@ -33,6 +33,10 @@ public class AsyncRawAttributesClient {
         return update(id, UpdateAttributesRequest.builder().build());
     }
 
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id, RequestOptions requestOptions) {
+        return update(id, UpdateAttributesRequest.builder().build(), requestOptions);
+    }
+
     public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id, UpdateAttributesRequest request) {
         return update(id, request, null);
     }

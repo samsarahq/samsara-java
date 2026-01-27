@@ -37,7 +37,7 @@ public final class PatchTrainingAssignmentsRequest {
     }
 
     /**
-     * @return String of comma separated assignments IDs. Max value for this value is 100 objects .Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code>
+     * @return String of comma separated assignments IDs. Max value for this value is 100 objects. Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code>
      */
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
@@ -94,7 +94,7 @@ public final class PatchTrainingAssignmentsRequest {
         PatchTrainingAssignmentsRequest build();
 
         /**
-         * <p>String of comma separated assignments IDs. Max value for this value is 100 objects .Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
+         * <p>String of comma separated assignments IDs. Max value for this value is 100 objects. Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
          */
         _FinalStage ids(Optional<List<String>> ids);
 
@@ -140,7 +140,7 @@ public final class PatchTrainingAssignmentsRequest {
         }
 
         /**
-         * <p>String of comma separated assignments IDs. Max value for this value is 100 objects .Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
+         * <p>String of comma separated assignments IDs. Max value for this value is 100 objects. Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -150,7 +150,7 @@ public final class PatchTrainingAssignmentsRequest {
         }
 
         /**
-         * <p>String of comma separated assignments IDs. Max value for this value is 100 objects .Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
+         * <p>String of comma separated assignments IDs. Max value for this value is 100 objects. Example: <code>ids=a4db8702-79d5-4396-a717-e301d52ecc11,c6490f6a-d84e-49b5-b0ad-b6baae304075</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "ids", nulls = Nulls.SKIP)

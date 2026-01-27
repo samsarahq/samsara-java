@@ -38,21 +38,21 @@ public final class GetIdlingEventsRequest {
 
     private final Optional<GetIdlingEventsRequestPtoState> ptoState;
 
-    private final Optional<Integer> minAirTemperatureMillicelsius;
+    private final Optional<Long> minAirTemperatureMillicelsius;
 
-    private final Optional<Integer> maxAirTemperatureMillicelsius;
+    private final Optional<Long> maxAirTemperatureMillicelsius;
 
     private final Optional<Boolean> excludeEventsWithUnknownAirTemperature;
 
-    private final Optional<Integer> minDurationMilliseconds;
+    private final Optional<Long> minDurationMilliseconds;
 
-    private final Optional<Integer> maxDurationMilliseconds;
+    private final Optional<Long> maxDurationMilliseconds;
 
     private final Optional<Boolean> includeExternalIds;
 
     private final Optional<String> after;
 
-    private final Optional<Integer> limit;
+    private final Optional<Long> limit;
 
     private final Map<String, Object> additionalProperties;
 
@@ -64,14 +64,14 @@ public final class GetIdlingEventsRequest {
             String startTime,
             String endTime,
             Optional<GetIdlingEventsRequestPtoState> ptoState,
-            Optional<Integer> minAirTemperatureMillicelsius,
-            Optional<Integer> maxAirTemperatureMillicelsius,
+            Optional<Long> minAirTemperatureMillicelsius,
+            Optional<Long> maxAirTemperatureMillicelsius,
             Optional<Boolean> excludeEventsWithUnknownAirTemperature,
-            Optional<Integer> minDurationMilliseconds,
-            Optional<Integer> maxDurationMilliseconds,
+            Optional<Long> minDurationMilliseconds,
+            Optional<Long> maxDurationMilliseconds,
             Optional<Boolean> includeExternalIds,
             Optional<String> after,
-            Optional<Integer> limit,
+            Optional<Long> limit,
             Map<String, Object> additionalProperties) {
         this.assetIds = assetIds;
         this.operatorIds = operatorIds;
@@ -151,7 +151,7 @@ public final class GetIdlingEventsRequest {
      * @return A filter on the data based on the minimum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.
      */
     @JsonProperty("minAirTemperatureMillicelsius")
-    public Optional<Integer> getMinAirTemperatureMillicelsius() {
+    public Optional<Long> getMinAirTemperatureMillicelsius() {
         return minAirTemperatureMillicelsius;
     }
 
@@ -159,7 +159,7 @@ public final class GetIdlingEventsRequest {
      * @return A filter on the data based on the maximum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.
      */
     @JsonProperty("maxAirTemperatureMillicelsius")
-    public Optional<Integer> getMaxAirTemperatureMillicelsius() {
+    public Optional<Long> getMaxAirTemperatureMillicelsius() {
         return maxAirTemperatureMillicelsius;
     }
 
@@ -175,7 +175,7 @@ public final class GetIdlingEventsRequest {
      * @return A filter on the data based on the minimum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.
      */
     @JsonProperty("minDurationMilliseconds")
-    public Optional<Integer> getMinDurationMilliseconds() {
+    public Optional<Long> getMinDurationMilliseconds() {
         return minDurationMilliseconds;
     }
 
@@ -183,7 +183,7 @@ public final class GetIdlingEventsRequest {
      * @return A filter on the data based on the maximum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.
      */
     @JsonProperty("maxDurationMilliseconds")
-    public Optional<Integer> getMaxDurationMilliseconds() {
+    public Optional<Long> getMaxDurationMilliseconds() {
         return maxDurationMilliseconds;
     }
 
@@ -207,7 +207,7 @@ public final class GetIdlingEventsRequest {
      * @return The limit for how many objects will be in the response. Default and max for this value is 200 objects.
      */
     @JsonProperty("limit")
-    public Optional<Integer> getLimit() {
+    public Optional<Long> getLimit() {
         return limit;
     }
 
@@ -334,16 +334,16 @@ public final class GetIdlingEventsRequest {
         /**
          * <p>A filter on the data based on the minimum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.</p>
          */
-        _FinalStage minAirTemperatureMillicelsius(Optional<Integer> minAirTemperatureMillicelsius);
+        _FinalStage minAirTemperatureMillicelsius(Optional<Long> minAirTemperatureMillicelsius);
 
-        _FinalStage minAirTemperatureMillicelsius(Integer minAirTemperatureMillicelsius);
+        _FinalStage minAirTemperatureMillicelsius(Long minAirTemperatureMillicelsius);
 
         /**
          * <p>A filter on the data based on the maximum value of air temperature in millicelsius. The acceptable range for this value is between -20,000 and 50,000 millicelsius.</p>
          */
-        _FinalStage maxAirTemperatureMillicelsius(Optional<Integer> maxAirTemperatureMillicelsius);
+        _FinalStage maxAirTemperatureMillicelsius(Optional<Long> maxAirTemperatureMillicelsius);
 
-        _FinalStage maxAirTemperatureMillicelsius(Integer maxAirTemperatureMillicelsius);
+        _FinalStage maxAirTemperatureMillicelsius(Long maxAirTemperatureMillicelsius);
 
         /**
          * <p>A filter on the data based on unknown air temperature value.</p>
@@ -355,16 +355,16 @@ public final class GetIdlingEventsRequest {
         /**
          * <p>A filter on the data based on the minimum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.</p>
          */
-        _FinalStage minDurationMilliseconds(Optional<Integer> minDurationMilliseconds);
+        _FinalStage minDurationMilliseconds(Optional<Long> minDurationMilliseconds);
 
-        _FinalStage minDurationMilliseconds(Integer minDurationMilliseconds);
+        _FinalStage minDurationMilliseconds(Long minDurationMilliseconds);
 
         /**
          * <p>A filter on the data based on the maximum value of Idling duration in milliseconds. The acceptable range for this value is between 2 minutes and 24 hours.</p>
          */
-        _FinalStage maxDurationMilliseconds(Optional<Integer> maxDurationMilliseconds);
+        _FinalStage maxDurationMilliseconds(Optional<Long> maxDurationMilliseconds);
 
-        _FinalStage maxDurationMilliseconds(Integer maxDurationMilliseconds);
+        _FinalStage maxDurationMilliseconds(Long maxDurationMilliseconds);
 
         /**
          * <p>Optional boolean indicating whether to return external IDs on supported entities</p>
@@ -383,9 +383,9 @@ public final class GetIdlingEventsRequest {
         /**
          * <p>The limit for how many objects will be in the response. Default and max for this value is 200 objects.</p>
          */
-        _FinalStage limit(Optional<Integer> limit);
+        _FinalStage limit(Optional<Long> limit);
 
-        _FinalStage limit(Integer limit);
+        _FinalStage limit(Long limit);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -394,21 +394,21 @@ public final class GetIdlingEventsRequest {
 
         private String endTime;
 
-        private Optional<Integer> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
-        private Optional<Integer> maxDurationMilliseconds = Optional.empty();
+        private Optional<Long> maxDurationMilliseconds = Optional.empty();
 
-        private Optional<Integer> minDurationMilliseconds = Optional.empty();
+        private Optional<Long> minDurationMilliseconds = Optional.empty();
 
         private Optional<Boolean> excludeEventsWithUnknownAirTemperature = Optional.empty();
 
-        private Optional<Integer> maxAirTemperatureMillicelsius = Optional.empty();
+        private Optional<Long> maxAirTemperatureMillicelsius = Optional.empty();
 
-        private Optional<Integer> minAirTemperatureMillicelsius = Optional.empty();
+        private Optional<Long> minAirTemperatureMillicelsius = Optional.empty();
 
         private Optional<GetIdlingEventsRequestPtoState> ptoState = Optional.empty();
 
@@ -474,7 +474,7 @@ public final class GetIdlingEventsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage limit(Integer limit) {
+        public _FinalStage limit(Long limit) {
             this.limit = Optional.ofNullable(limit);
             return this;
         }
@@ -484,7 +484,7 @@ public final class GetIdlingEventsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "limit", nulls = Nulls.SKIP)
-        public _FinalStage limit(Optional<Integer> limit) {
+        public _FinalStage limit(Optional<Long> limit) {
             this.limit = limit;
             return this;
         }
@@ -534,7 +534,7 @@ public final class GetIdlingEventsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage maxDurationMilliseconds(Integer maxDurationMilliseconds) {
+        public _FinalStage maxDurationMilliseconds(Long maxDurationMilliseconds) {
             this.maxDurationMilliseconds = Optional.ofNullable(maxDurationMilliseconds);
             return this;
         }
@@ -544,7 +544,7 @@ public final class GetIdlingEventsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "maxDurationMilliseconds", nulls = Nulls.SKIP)
-        public _FinalStage maxDurationMilliseconds(Optional<Integer> maxDurationMilliseconds) {
+        public _FinalStage maxDurationMilliseconds(Optional<Long> maxDurationMilliseconds) {
             this.maxDurationMilliseconds = maxDurationMilliseconds;
             return this;
         }
@@ -554,7 +554,7 @@ public final class GetIdlingEventsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage minDurationMilliseconds(Integer minDurationMilliseconds) {
+        public _FinalStage minDurationMilliseconds(Long minDurationMilliseconds) {
             this.minDurationMilliseconds = Optional.ofNullable(minDurationMilliseconds);
             return this;
         }
@@ -564,7 +564,7 @@ public final class GetIdlingEventsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "minDurationMilliseconds", nulls = Nulls.SKIP)
-        public _FinalStage minDurationMilliseconds(Optional<Integer> minDurationMilliseconds) {
+        public _FinalStage minDurationMilliseconds(Optional<Long> minDurationMilliseconds) {
             this.minDurationMilliseconds = minDurationMilliseconds;
             return this;
         }
@@ -595,7 +595,7 @@ public final class GetIdlingEventsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage maxAirTemperatureMillicelsius(Integer maxAirTemperatureMillicelsius) {
+        public _FinalStage maxAirTemperatureMillicelsius(Long maxAirTemperatureMillicelsius) {
             this.maxAirTemperatureMillicelsius = Optional.ofNullable(maxAirTemperatureMillicelsius);
             return this;
         }
@@ -605,7 +605,7 @@ public final class GetIdlingEventsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "maxAirTemperatureMillicelsius", nulls = Nulls.SKIP)
-        public _FinalStage maxAirTemperatureMillicelsius(Optional<Integer> maxAirTemperatureMillicelsius) {
+        public _FinalStage maxAirTemperatureMillicelsius(Optional<Long> maxAirTemperatureMillicelsius) {
             this.maxAirTemperatureMillicelsius = maxAirTemperatureMillicelsius;
             return this;
         }
@@ -615,7 +615,7 @@ public final class GetIdlingEventsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage minAirTemperatureMillicelsius(Integer minAirTemperatureMillicelsius) {
+        public _FinalStage minAirTemperatureMillicelsius(Long minAirTemperatureMillicelsius) {
             this.minAirTemperatureMillicelsius = Optional.ofNullable(minAirTemperatureMillicelsius);
             return this;
         }
@@ -625,7 +625,7 @@ public final class GetIdlingEventsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "minAirTemperatureMillicelsius", nulls = Nulls.SKIP)
-        public _FinalStage minAirTemperatureMillicelsius(Optional<Integer> minAirTemperatureMillicelsius) {
+        public _FinalStage minAirTemperatureMillicelsius(Optional<Long> minAirTemperatureMillicelsius) {
             this.minAirTemperatureMillicelsius = minAirTemperatureMillicelsius;
             return this;
         }

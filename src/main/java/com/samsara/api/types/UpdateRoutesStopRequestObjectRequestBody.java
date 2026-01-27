@@ -31,13 +31,15 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
 
     private final Optional<String> notes;
 
-    private final Optional<Integer> ontimeWindowAfterArrivalMs;
+    private final Optional<Long> ontimeWindowAfterArrivalMs;
 
-    private final Optional<Integer> ontimeWindowBeforeArrivalMs;
+    private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
     private final Optional<OffsetDateTime> scheduledArrivalTime;
 
     private final Optional<OffsetDateTime> scheduledDepartureTime;
+
+    private final Optional<Long> sequenceNumber;
 
     private final Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation;
 
@@ -49,10 +51,11 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             Optional<String> id,
             Optional<String> name,
             Optional<String> notes,
-            Optional<Integer> ontimeWindowAfterArrivalMs,
-            Optional<Integer> ontimeWindowBeforeArrivalMs,
+            Optional<Long> ontimeWindowAfterArrivalMs,
+            Optional<Long> ontimeWindowBeforeArrivalMs,
             Optional<OffsetDateTime> scheduledArrivalTime,
             Optional<OffsetDateTime> scheduledDepartureTime,
+            Optional<Long> sequenceNumber,
             Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation,
             Map<String, Object> additionalProperties) {
         this.addressId = addressId;
@@ -64,6 +67,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
         this.scheduledArrivalTime = scheduledArrivalTime;
         this.scheduledDepartureTime = scheduledDepartureTime;
+        this.sequenceNumber = sequenceNumber;
         this.singleUseLocation = singleUseLocation;
         this.additionalProperties = additionalProperties;
     }
@@ -112,7 +116,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
      * @return Specifies the time window (in milliseconds) after a stop's scheduled arrival time during which the stop is considered 'on-time'.
      */
     @JsonProperty("ontimeWindowAfterArrivalMs")
-    public Optional<Integer> getOntimeWindowAfterArrivalMs() {
+    public Optional<Long> getOntimeWindowAfterArrivalMs() {
         return ontimeWindowAfterArrivalMs;
     }
 
@@ -120,7 +124,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
      * @return Specifies the time window (in milliseconds) before a stop's scheduled arrival time during which the stop is considered 'on-time'.
      */
     @JsonProperty("ontimeWindowBeforeArrivalMs")
-    public Optional<Integer> getOntimeWindowBeforeArrivalMs() {
+    public Optional<Long> getOntimeWindowBeforeArrivalMs() {
         return ontimeWindowBeforeArrivalMs;
     }
 
@@ -138,6 +142,14 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
     @JsonProperty("scheduledDepartureTime")
     public Optional<OffsetDateTime> getScheduledDepartureTime() {
         return scheduledDepartureTime;
+    }
+
+    /**
+     * @return Manual sequence position for this stop. Only meaningful when route.settings.sequencingMethod=manual. Must be unique and positive when specified.
+     */
+    @JsonProperty("sequenceNumber")
+    public Optional<Long> getSequenceNumber() {
+        return sequenceNumber;
     }
 
     @JsonProperty("singleUseLocation")
@@ -167,6 +179,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                 && ontimeWindowBeforeArrivalMs.equals(other.ontimeWindowBeforeArrivalMs)
                 && scheduledArrivalTime.equals(other.scheduledArrivalTime)
                 && scheduledDepartureTime.equals(other.scheduledDepartureTime)
+                && sequenceNumber.equals(other.sequenceNumber)
                 && singleUseLocation.equals(other.singleUseLocation);
     }
 
@@ -182,6 +195,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                 this.ontimeWindowBeforeArrivalMs,
                 this.scheduledArrivalTime,
                 this.scheduledDepartureTime,
+                this.sequenceNumber,
                 this.singleUseLocation);
     }
 
@@ -206,13 +220,15 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
 
         private Optional<String> notes = Optional.empty();
 
-        private Optional<Integer> ontimeWindowAfterArrivalMs = Optional.empty();
+        private Optional<Long> ontimeWindowAfterArrivalMs = Optional.empty();
 
-        private Optional<Integer> ontimeWindowBeforeArrivalMs = Optional.empty();
+        private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
         private Optional<OffsetDateTime> scheduledArrivalTime = Optional.empty();
 
         private Optional<OffsetDateTime> scheduledDepartureTime = Optional.empty();
+
+        private Optional<Long> sequenceNumber = Optional.empty();
 
         private Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation = Optional.empty();
 
@@ -231,6 +247,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             ontimeWindowBeforeArrivalMs(other.getOntimeWindowBeforeArrivalMs());
             scheduledArrivalTime(other.getScheduledArrivalTime());
             scheduledDepartureTime(other.getScheduledDepartureTime());
+            sequenceNumber(other.getSequenceNumber());
             singleUseLocation(other.getSingleUseLocation());
             return this;
         }
@@ -309,12 +326,12 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
          * <p>Specifies the time window (in milliseconds) after a stop's scheduled arrival time during which the stop is considered 'on-time'.</p>
          */
         @JsonSetter(value = "ontimeWindowAfterArrivalMs", nulls = Nulls.SKIP)
-        public Builder ontimeWindowAfterArrivalMs(Optional<Integer> ontimeWindowAfterArrivalMs) {
+        public Builder ontimeWindowAfterArrivalMs(Optional<Long> ontimeWindowAfterArrivalMs) {
             this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
             return this;
         }
 
-        public Builder ontimeWindowAfterArrivalMs(Integer ontimeWindowAfterArrivalMs) {
+        public Builder ontimeWindowAfterArrivalMs(Long ontimeWindowAfterArrivalMs) {
             this.ontimeWindowAfterArrivalMs = Optional.ofNullable(ontimeWindowAfterArrivalMs);
             return this;
         }
@@ -323,12 +340,12 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
          * <p>Specifies the time window (in milliseconds) before a stop's scheduled arrival time during which the stop is considered 'on-time'.</p>
          */
         @JsonSetter(value = "ontimeWindowBeforeArrivalMs", nulls = Nulls.SKIP)
-        public Builder ontimeWindowBeforeArrivalMs(Optional<Integer> ontimeWindowBeforeArrivalMs) {
+        public Builder ontimeWindowBeforeArrivalMs(Optional<Long> ontimeWindowBeforeArrivalMs) {
             this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
             return this;
         }
 
-        public Builder ontimeWindowBeforeArrivalMs(Integer ontimeWindowBeforeArrivalMs) {
+        public Builder ontimeWindowBeforeArrivalMs(Long ontimeWindowBeforeArrivalMs) {
             this.ontimeWindowBeforeArrivalMs = Optional.ofNullable(ontimeWindowBeforeArrivalMs);
             return this;
         }
@@ -361,6 +378,20 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             return this;
         }
 
+        /**
+         * <p>Manual sequence position for this stop. Only meaningful when route.settings.sequencingMethod=manual. Must be unique and positive when specified.</p>
+         */
+        @JsonSetter(value = "sequenceNumber", nulls = Nulls.SKIP)
+        public Builder sequenceNumber(Optional<Long> sequenceNumber) {
+            this.sequenceNumber = sequenceNumber;
+            return this;
+        }
+
+        public Builder sequenceNumber(Long sequenceNumber) {
+            this.sequenceNumber = Optional.ofNullable(sequenceNumber);
+            return this;
+        }
+
         @JsonSetter(value = "singleUseLocation", nulls = Nulls.SKIP)
         public Builder singleUseLocation(Optional<RoutesSingleUseAddressObjectRequestBody> singleUseLocation) {
             this.singleUseLocation = singleUseLocation;
@@ -383,6 +414,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                     ontimeWindowBeforeArrivalMs,
                     scheduledArrivalTime,
                     scheduledDepartureTime,
+                    sequenceNumber,
                     singleUseLocation,
                     additionalProperties);
         }

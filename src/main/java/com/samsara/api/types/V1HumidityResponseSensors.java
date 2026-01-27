@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1HumidityResponseSensors.Builder.class)
 public final class V1HumidityResponseSensors {
-    private final Optional<Integer> humidity;
+    private final Optional<Long> humidity;
 
     private final Optional<String> humidityTime;
 
@@ -28,19 +28,19 @@ public final class V1HumidityResponseSensors {
 
     private final Optional<String> name;
 
-    private final Optional<Integer> trailerId;
+    private final Optional<Long> trailerId;
 
-    private final Optional<Integer> vehicleId;
+    private final Optional<Long> vehicleId;
 
     private final Map<String, Object> additionalProperties;
 
     private V1HumidityResponseSensors(
-            Optional<Integer> humidity,
+            Optional<Long> humidity,
             Optional<String> humidityTime,
             Optional<Long> id,
             Optional<String> name,
-            Optional<Integer> trailerId,
-            Optional<Integer> vehicleId,
+            Optional<Long> trailerId,
+            Optional<Long> vehicleId,
             Map<String, Object> additionalProperties) {
         this.humidity = humidity;
         this.humidityTime = humidityTime;
@@ -55,7 +55,7 @@ public final class V1HumidityResponseSensors {
      * @return Currently reported relative humidity in percent, from 0-100.
      */
     @JsonProperty("humidity")
-    public Optional<Integer> getHumidity() {
+    public Optional<Long> getHumidity() {
         return humidity;
     }
 
@@ -87,7 +87,7 @@ public final class V1HumidityResponseSensors {
      * @return ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.
      */
     @JsonProperty("trailerId")
-    public Optional<Integer> getTrailerId() {
+    public Optional<Long> getTrailerId() {
         return trailerId;
     }
 
@@ -95,7 +95,7 @@ public final class V1HumidityResponseSensors {
      * @return ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.
      */
     @JsonProperty("vehicleId")
-    public Optional<Integer> getVehicleId() {
+    public Optional<Long> getVehicleId() {
         return vehicleId;
     }
 
@@ -135,7 +135,7 @@ public final class V1HumidityResponseSensors {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Integer> humidity = Optional.empty();
+        private Optional<Long> humidity = Optional.empty();
 
         private Optional<String> humidityTime = Optional.empty();
 
@@ -143,9 +143,9 @@ public final class V1HumidityResponseSensors {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Integer> trailerId = Optional.empty();
+        private Optional<Long> trailerId = Optional.empty();
 
-        private Optional<Integer> vehicleId = Optional.empty();
+        private Optional<Long> vehicleId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -166,12 +166,12 @@ public final class V1HumidityResponseSensors {
          * <p>Currently reported relative humidity in percent, from 0-100.</p>
          */
         @JsonSetter(value = "humidity", nulls = Nulls.SKIP)
-        public Builder humidity(Optional<Integer> humidity) {
+        public Builder humidity(Optional<Long> humidity) {
             this.humidity = humidity;
             return this;
         }
 
-        public Builder humidity(Integer humidity) {
+        public Builder humidity(Long humidity) {
             this.humidity = Optional.ofNullable(humidity);
             return this;
         }
@@ -222,12 +222,12 @@ public final class V1HumidityResponseSensors {
          * <p>ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "trailerId", nulls = Nulls.SKIP)
-        public Builder trailerId(Optional<Integer> trailerId) {
+        public Builder trailerId(Optional<Long> trailerId) {
             this.trailerId = trailerId;
             return this;
         }
 
-        public Builder trailerId(Integer trailerId) {
+        public Builder trailerId(Long trailerId) {
             this.trailerId = Optional.ofNullable(trailerId);
             return this;
         }
@@ -236,12 +236,12 @@ public final class V1HumidityResponseSensors {
          * <p>ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
-        public Builder vehicleId(Optional<Integer> vehicleId) {
+        public Builder vehicleId(Optional<Long> vehicleId) {
             this.vehicleId = vehicleId;
             return this;
         }
 
-        public Builder vehicleId(Integer vehicleId) {
+        public Builder vehicleId(Long vehicleId) {
             this.vehicleId = Optional.ofNullable(vehicleId);
             return this;
         }

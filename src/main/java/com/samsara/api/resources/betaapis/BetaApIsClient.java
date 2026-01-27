@@ -12,12 +12,13 @@ import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentReques
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
 import com.samsara.api.resources.betaapis.requests.GetAempEquipmentListRequest;
 import com.samsara.api.resources.betaapis.requests.GetAssetsInputsRequest;
+import com.samsara.api.resources.betaapis.requests.GetDatasetsRequest;
+import com.samsara.api.resources.betaapis.requests.GetDepreciationTransactionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDetectionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDevicesRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverEfficiencyRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverSafetyScoreTripsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverSafetyScoresRequest;
-import com.samsara.api.resources.betaapis.requests.GetDriverTrailerAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
@@ -26,8 +27,9 @@ import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsStream
 import com.samsara.api.resources.betaapis.requests.GetQualificationTypesRequest;
 import com.samsara.api.resources.betaapis.requests.GetReadingsHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.GetReadingsSnapshotRequest;
-import com.samsara.api.resources.betaapis.requests.GetSafetyEventsV2Request;
-import com.samsara.api.resources.betaapis.requests.GetSafetyEventsV2StreamRequest;
+import com.samsara.api.resources.betaapis.requests.GetReportConfigsRequest;
+import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
+import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
 import com.samsara.api.resources.betaapis.requests.GetTagGroupSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetTagSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsFeedRequest;
@@ -35,12 +37,12 @@ import com.samsara.api.resources.betaapis.requests.GetTrailerStatsHistoryRequest
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsSnapshotRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrainingAssignmentsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrainingCoursesRequest;
-import com.samsara.api.resources.betaapis.requests.GetTripsRequest;
 import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoreTripsRequest;
 import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
+import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.PatchTrainingAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
@@ -51,10 +53,10 @@ import com.samsara.api.resources.betaapis.requests.QualificationsPatchQualificat
 import com.samsara.api.resources.betaapis.requests.QualificationsPostQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
-import com.samsara.api.resources.betaapis.requests.TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody;
-import com.samsara.api.resources.betaapis.requests.TrailerAssignmentsUpdateDriverTrailerAssignmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
+import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
@@ -63,6 +65,7 @@ import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosEldEventsGetHosEldEventsResponseBody;
+import com.samsara.api.types.HubCustomPropertiesListHubCustomPropertiesResponseBody;
 import com.samsara.api.types.JobsCreateJobResponseBody;
 import com.samsara.api.types.JobsDeleteJobResponseBody;
 import com.samsara.api.types.JobsGetJobsResponseBody;
@@ -76,17 +79,17 @@ import com.samsara.api.types.QualificationsPostQualificationRecordResponseBody;
 import com.samsara.api.types.ReadingsGetReadingsHistoryResponseBody;
 import com.samsara.api.types.ReadingsGetReadingsSnapshotResponseBody;
 import com.samsara.api.types.ReadingsListReadingsDefinitionsResponseBody;
-import com.samsara.api.types.SafetyEventsV2GetSafetyEventsV2ResponseBody;
-import com.samsara.api.types.SafetyEventsV2GetSafetyEventsV2StreamResponseBody;
+import com.samsara.api.types.ReportsCreateReportRunResponseBody;
+import com.samsara.api.types.ReportsGetDatasetsResponseBody;
+import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
+import com.samsara.api.types.ReportsGetReportRunDataResponseBody;
+import com.samsara.api.types.ReportsGetReportRunsResponseBody;
 import com.samsara.api.types.SafetyScoresGetDriverSafetyScoreTripsResponseBody;
 import com.samsara.api.types.SafetyScoresGetDriverSafetyScoresResponseBody;
 import com.samsara.api.types.SafetyScoresGetTagGroupSafetyScoresResponseBody;
 import com.samsara.api.types.SafetyScoresGetTagSafetyScoresResponseBody;
 import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoreTripsResponseBody;
 import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoresResponseBody;
-import com.samsara.api.types.TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody;
-import com.samsara.api.types.TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody;
-import com.samsara.api.types.TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsFeedResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsHistoryResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsSnapshotResponseBody;
@@ -94,7 +97,6 @@ import com.samsara.api.types.TrainingAssignmentsGetTrainingAssignmentsStreamResp
 import com.samsara.api.types.TrainingAssignmentsPatchTrainingAssignmentsResponseBody;
 import com.samsara.api.types.TrainingAssignmentsPostTrainingAssignmentsResponseBody;
 import com.samsara.api.types.TrainingCoursesGetTrainingCoursesResponseBody;
-import com.samsara.api.types.TripsGetTripsResponseBody;
 
 public class BetaApIsClient {
     protected final ClientOptions clientOptions;
@@ -111,6 +113,51 @@ public class BetaApIsClient {
      */
     public RawBetaApIsClient withRawResponse() {
         return this.rawClient;
+    }
+
+    /**
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public DepreciationGetDepreciationTransactionsResponseBody getDepreciationTransactions() {
+        return this.rawClient.getDepreciationTransactions().body();
+    }
+
+    /**
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public DepreciationGetDepreciationTransactionsResponseBody getDepreciationTransactions(
+            RequestOptions requestOptions) {
+        return this.rawClient.getDepreciationTransactions(requestOptions).body();
+    }
+
+    /**
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public DepreciationGetDepreciationTransactionsResponseBody getDepreciationTransactions(
+            GetDepreciationTransactionsRequest request) {
+        return this.rawClient.getDepreciationTransactions(request).body();
+    }
+
+    /**
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public DepreciationGetDepreciationTransactionsResponseBody getDepreciationTransactions(
+            GetDepreciationTransactionsRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .getDepreciationTransactions(request, requestOptions)
+                .body();
     }
 
     /**
@@ -142,6 +189,17 @@ public class BetaApIsClient {
      */
     public AempEquipmentGetAempEquipmentListResponseBody getAempEquipmentList(String pageNumber) {
         return this.rawClient.getAempEquipmentList(pageNumber).body();
+    }
+
+    /**
+     * Get a list of equipment following the AEMP ISO 15143-3 standard.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read AEMP</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public AempEquipmentGetAempEquipmentListResponseBody getAempEquipmentList(
+            String pageNumber, RequestOptions requestOptions) {
+        return this.rawClient.getAempEquipmentList(pageNumber, requestOptions).body();
     }
 
     /**
@@ -186,6 +244,17 @@ public class BetaApIsClient {
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
+    public DriverEfficienciesResponse getDriverEfficiency(RequestOptions requestOptions) {
+        return this.rawClient.getDriverEfficiency(requestOptions).body();
+    }
+
+    /**
+     * Get all driver and associated vehicle efficiency data.
+     * <p>This is a legacy endpoint, consider using this endpoint <a href="https://developers.samsara.com/reference/getdriverefficiencybydrivers">/driver-efficiency/drivers</a> instead. The endpoint will continue to function as documented.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 50 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
     public DriverEfficienciesResponse getDriverEfficiency(GetDriverEfficiencyRequest request) {
         return this.rawClient.getDriverEfficiency(request).body();
     }
@@ -212,6 +281,18 @@ public class BetaApIsClient {
      */
     public EquipmentPatchEquipmentResponseBody patchEquipment(String id) {
         return this.rawClient.patchEquipment(id).body();
+    }
+
+    /**
+     * Update an equipment.  <strong>Note</strong> this implementation of patch uses <a href="https://tools.ietf.org/html/rfc7396">the JSON merge patch</a> proposed standard.
+     * This means that any fields included in the patch request will <em>overwrite</em> fields which exist on the target resource.
+     * For arrays, this means any array included in the request will <em>replace</em> the array that exists at the specified path, it will not <em>add</em> to the existing array
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public EquipmentPatchEquipmentResponseBody patchEquipment(String id, RequestOptions requestOptions) {
+        return this.rawClient.patchEquipment(id, requestOptions).body();
     }
 
     /**
@@ -367,6 +448,15 @@ public class BetaApIsClient {
      * <p>To use this endpoint, select <strong>Read Jobs</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public JobsGetJobsResponseBody getJobs(RequestOptions requestOptions) {
+        return this.rawClient.getJobs(requestOptions).body();
+    }
+
+    /**
+     * Fetches jobs based on id/uuid or provided filters.
+     * <p>To use this endpoint, select <strong>Read Jobs</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public JobsGetJobsResponseBody getJobs(GetJobsRequest request) {
         return this.rawClient.getJobs(request).body();
     }
@@ -475,6 +565,17 @@ public class BetaApIsClient {
      * <p>To use this endpoint, select <strong>Read Devices</strong> under the Devices category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public DevicesGetDevicesResponseBody getDevices(RequestOptions requestOptions) {
+        return this.rawClient.getDevices(requestOptions).body();
+    }
+
+    /**
+     * Returns all installed cameras (CM3x), vehicle gateways (VGs), and asset gateways (AGs) and their health information within an organization.
+     * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Devices API enabled for your organization.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Devices</strong> under the Devices category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public DevicesGetDevicesResponseBody getDevices(GetDevicesRequest request) {
         return this.rawClient.getDevices(request).body();
     }
@@ -488,88 +589,6 @@ public class BetaApIsClient {
      */
     public DevicesGetDevicesResponseBody getDevices(GetDevicesRequest request, RequestOptions requestOptions) {
         return this.rawClient.getDevices(request, requestOptions).body();
-    }
-
-    /**
-     * Get currently active driver-trailer assignments for driver.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody getDriverTrailerAssignments() {
-        return this.rawClient.getDriverTrailerAssignments().body();
-    }
-
-    /**
-     * Get currently active driver-trailer assignments for driver.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody getDriverTrailerAssignments(
-            GetDriverTrailerAssignmentsRequest request) {
-        return this.rawClient.getDriverTrailerAssignments(request).body();
-    }
-
-    /**
-     * Get currently active driver-trailer assignments for driver.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody getDriverTrailerAssignments(
-            GetDriverTrailerAssignmentsRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .getDriverTrailerAssignments(request, requestOptions)
-                .body();
-    }
-
-    /**
-     * Create a new driver-trailer assignment
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody createDriverTrailerAssignment(
-            TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody request) {
-        return this.rawClient.createDriverTrailerAssignment(request).body();
-    }
-
-    /**
-     * Create a new driver-trailer assignment
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody createDriverTrailerAssignment(
-            TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody request, RequestOptions requestOptions) {
-        return this.rawClient
-                .createDriverTrailerAssignment(request, requestOptions)
-                .body();
-    }
-
-    /**
-     * Update an existing driver-trailer assignment.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody updateDriverTrailerAssignment(
-            TrailerAssignmentsUpdateDriverTrailerAssignmentRequestBody request) {
-        return this.rawClient.updateDriverTrailerAssignment(request).body();
-    }
-
-    /**
-     * Update an existing driver-trailer assignment.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody updateDriverTrailerAssignment(
-            TrailerAssignmentsUpdateDriverTrailerAssignmentRequestBody request, RequestOptions requestOptions) {
-        return this.rawClient
-                .updateDriverTrailerAssignment(request, requestOptions)
-                .body();
     }
 
     /**
@@ -641,6 +660,30 @@ public class BetaApIsClient {
     }
 
     /**
+     * Retrieve custom properties for a specific hub.
+     * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public HubCustomPropertiesListHubCustomPropertiesResponseBody listHubCustomProperties(
+            ListHubCustomPropertiesRequest request) {
+        return this.rawClient.listHubCustomProperties(request).body();
+    }
+
+    /**
+     * Retrieve custom properties for a specific hub.
+     * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public HubCustomPropertiesListHubCustomPropertiesResponseBody listHubCustomProperties(
+            ListHubCustomPropertiesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listHubCustomProperties(request, requestOptions).body();
+    }
+
+    /**
      * Create one or more orders (bulk upsert). Pass an array of order objects; any object whose customerOrderId already exists will be updated, otherwise a new order is created. Functions can return JSON arrays in this Order POST format. Orders are initially created at the plan level but will migrate to hub-level entities, with planId becoming optional in future versions.
      * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.</p>
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
@@ -671,6 +714,16 @@ public class BetaApIsClient {
      */
     public QualificationsGetQualificationRecordsResponseBody getQualificationRecords() {
         return this.rawClient.getQualificationRecords().body();
+    }
+
+    /**
+     * Returns qualification records for the specified list of IDs.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Qualification Records</strong> under the Qualification Records category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public QualificationsGetQualificationRecordsResponseBody getQualificationRecords(RequestOptions requestOptions) {
+        return this.rawClient.getQualificationRecords(requestOptions).body();
     }
 
     /**
@@ -782,7 +835,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns all qualification records that have been created or modified for your organization based on the time parameters passed in. Results are paginated and sorted by last modified time. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
+     * Returns all qualification records that have been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Qualification Records</strong> under the Qualification Records category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -793,7 +846,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns all qualification records that have been created or modified for your organization based on the time parameters passed in. Results are paginated and sorted by last modified time. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
+     * Returns all qualification records that have been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Qualification Records</strong> under the Qualification Records category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -871,10 +924,6 @@ public class BetaApIsClient {
 
     /**
      * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * Examples:
-     * Diagnostic/Engine Readings: engineState, engineSpeed, fuelLevelPerc etc.
-     * Level Monitoring Readings: defLevel, defLevelMilliPercent etc.
-     * Smart Trailer Readings: reeferState  etc.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -885,10 +934,16 @@ public class BetaApIsClient {
 
     /**
      * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * Examples:
-     * Diagnostic/Engine Readings: engineState, engineSpeed, fuelLevelPerc etc.
-     * Level Monitoring Readings: defLevel, defLevelMilliPercent etc.
-     * Smart Trailer Readings: reeferState  etc.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReadingsListReadingsDefinitionsResponseBody listReadingsDefinitions(RequestOptions requestOptions) {
+        return this.rawClient.listReadingsDefinitions(requestOptions).body();
+    }
+
+    /**
+     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -899,10 +954,6 @@ public class BetaApIsClient {
 
     /**
      * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * Examples:
-     * Diagnostic/Engine Readings: engineState, engineSpeed, fuelLevelPerc etc.
-     * Level Monitoring Readings: defLevel, defLevelMilliPercent etc.
-     * Smart Trailer Readings: reeferState  etc.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -914,20 +965,6 @@ public class BetaApIsClient {
 
     /**
      * Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime &lt;= happenedAtTime &lt; endTime. End time of null implies endTime is infinite and all known readings are returned.
-     * Example:
-     * engineRpm Readings for entityId 212014918105584 between time 2025-01-27T19:22:30Z and 2025-01-27T19:25:00Z
-     * &quot;data&quot;: [
-     * {
-     * &quot;entityId&quot;: &quot;212014918105584&quot;,
-     * &quot;value&quot;: 807,
-     * &quot;happenedAtTime&quot;: &quot;2025-01-27T19:22:30Z&quot;
-     * },
-     * {
-     * &quot;entityId&quot;: &quot;212014918105584&quot;,
-     * &quot;value&quot;: 811,
-     * &quot;happenedAtTime&quot;: &quot;2025-01-27T19:24:30Z&quot;
-     * }
-     * ],
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -938,20 +975,6 @@ public class BetaApIsClient {
 
     /**
      * Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime &lt;= happenedAtTime &lt; endTime. End time of null implies endTime is infinite and all known readings are returned.
-     * Example:
-     * engineRpm Readings for entityId 212014918105584 between time 2025-01-27T19:22:30Z and 2025-01-27T19:25:00Z
-     * &quot;data&quot;: [
-     * {
-     * &quot;entityId&quot;: &quot;212014918105584&quot;,
-     * &quot;value&quot;: 807,
-     * &quot;happenedAtTime&quot;: &quot;2025-01-27T19:22:30Z&quot;
-     * },
-     * {
-     * &quot;entityId&quot;: &quot;212014918105584&quot;,
-     * &quot;value&quot;: 811,
-     * &quot;happenedAtTime&quot;: &quot;2025-01-27T19:24:30Z&quot;
-     * }
-     * ],
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -963,16 +986,6 @@ public class BetaApIsClient {
 
     /**
      * An endpoint to get the last value of a reading for a set of entities at the specified time.
-     * Example:
-     * engineRpm Readings for entityId 212014918105584 at time 2025-04-16T20:49:19Z
-     * &quot;data&quot;: [
-     * {
-     * &quot;readingId&quot;: &quot;engineRpm&quot;,
-     * &quot;entityId&quot;: &quot;212014918105584&quot;,
-     * &quot;value&quot;: 600,
-     * &quot;happenedAtTime&quot;: &quot;2025-04-16T20:49:19Z&quot;
-     * }
-     * ],
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -983,16 +996,6 @@ public class BetaApIsClient {
 
     /**
      * An endpoint to get the last value of a reading for a set of entities at the specified time.
-     * Example:
-     * engineRpm Readings for entityId 212014918105584 at time 2025-04-16T20:49:19Z
-     * &quot;data&quot;: [
-     * {
-     * &quot;readingId&quot;: &quot;engineRpm&quot;,
-     * &quot;entityId&quot;: &quot;212014918105584&quot;,
-     * &quot;value&quot;: 600,
-     * &quot;happenedAtTime&quot;: &quot;2025-04-16T20:49:19Z&quot;
-     * }
-     * ],
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -1003,56 +1006,166 @@ public class BetaApIsClient {
     }
 
     /**
-     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
+     * Get report configs created in the organization.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public SafetyEventsV2GetSafetyEventsV2ResponseBody getSafetyEventsV2() {
-        return this.rawClient.getSafetyEventsV2().body();
+    public ReportsGetReportConfigsResponseBody getReportConfigs() {
+        return this.rawClient.getReportConfigs().body();
     }
 
     /**
-     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
+     * Get report configs created in the organization.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public SafetyEventsV2GetSafetyEventsV2ResponseBody getSafetyEventsV2(GetSafetyEventsV2Request request) {
-        return this.rawClient.getSafetyEventsV2(request).body();
+    public ReportsGetReportConfigsResponseBody getReportConfigs(RequestOptions requestOptions) {
+        return this.rawClient.getReportConfigs(requestOptions).body();
     }
 
     /**
-     * This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
+     * Get report configs created in the organization.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public SafetyEventsV2GetSafetyEventsV2ResponseBody getSafetyEventsV2(
-            GetSafetyEventsV2Request request, RequestOptions requestOptions) {
-        return this.rawClient.getSafetyEventsV2(request, requestOptions).body();
+    public ReportsGetReportConfigsResponseBody getReportConfigs(GetReportConfigsRequest request) {
+        return this.rawClient.getReportConfigs(request).body();
     }
 
     /**
-     * This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events &amp; Scores under the Safety &amp; Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
+     * Get report configs created in the organization.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public SafetyEventsV2GetSafetyEventsV2StreamResponseBody getSafetyEventsV2Stream(
-            GetSafetyEventsV2StreamRequest request) {
-        return this.rawClient.getSafetyEventsV2Stream(request).body();
+    public ReportsGetReportConfigsResponseBody getReportConfigs(
+            GetReportConfigsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getReportConfigs(request, requestOptions).body();
     }
 
     /**
-     * This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events &amp; Scores under the Safety &amp; Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
+     * Get datasets for custom reports.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
-    public SafetyEventsV2GetSafetyEventsV2StreamResponseBody getSafetyEventsV2Stream(
-            GetSafetyEventsV2StreamRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getSafetyEventsV2Stream(request, requestOptions).body();
+    public ReportsGetDatasetsResponseBody getDatasets() {
+        return this.rawClient.getDatasets().body();
+    }
+
+    /**
+     * Get datasets for custom reports.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetDatasetsResponseBody getDatasets(RequestOptions requestOptions) {
+        return this.rawClient.getDatasets(requestOptions).body();
+    }
+
+    /**
+     * Get datasets for custom reports.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetDatasetsResponseBody getDatasets(GetDatasetsRequest request) {
+        return this.rawClient.getDatasets(request).body();
+    }
+
+    /**
+     * Get datasets for custom reports.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetDatasetsResponseBody getDatasets(GetDatasetsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getDatasets(request, requestOptions).body();
+    }
+
+    /**
+     * Get custom report runs created by the user.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetReportRunsResponseBody getReportRuns() {
+        return this.rawClient.getReportRuns().body();
+    }
+
+    /**
+     * Get custom report runs created by the user.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetReportRunsResponseBody getReportRuns(RequestOptions requestOptions) {
+        return this.rawClient.getReportRuns(requestOptions).body();
+    }
+
+    /**
+     * Get custom report runs created by the user.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetReportRunsResponseBody getReportRuns(GetReportRunsRequest request) {
+        return this.rawClient.getReportRuns(request).body();
+    }
+
+    /**
+     * Get custom report runs created by the user.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetReportRunsResponseBody getReportRuns(GetReportRunsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getReportRuns(request, requestOptions).body();
+    }
+
+    /**
+     * Triggers a new custom report run based on the provided configuration.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 50 requests/hour (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsCreateReportRunResponseBody createReportRun(ReportsCreateReportRunRequestBody request) {
+        return this.rawClient.createReportRun(request).body();
+    }
+
+    /**
+     * Triggers a new custom report run based on the provided configuration.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 50 requests/hour (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsCreateReportRunResponseBody createReportRun(
+            ReportsCreateReportRunRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createReportRun(request, requestOptions).body();
+    }
+
+    /**
+     * Get data for the given custom report run.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetReportRunDataResponseBody getReportRunData(GetReportRunDataRequest request) {
+        return this.rawClient.getReportRunData(request).body();
+    }
+
+    /**
+     * Get data for the given custom report run.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Custom Reports</strong> under the Custom Reports category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public ReportsGetReportRunDataResponseBody getReportRunData(
+            GetReportRunDataRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getReportRunData(request, requestOptions).body();
     }
 
     /**
@@ -1229,6 +1342,17 @@ public class BetaApIsClient {
      * <p>To use this endpoint, select <strong>Write Training Assignments</strong> under the Training Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public void deleteTrainingAssignments(RequestOptions requestOptions) {
+        this.rawClient.deleteTrainingAssignments(requestOptions).body();
+    }
+
+    /**
+     * This endpoint supports batch deletion operations. The response does not indicate which specific deletions, if any, have failed. On a successful deletion or partial failure, a ‘204 No Content’ status is returned.
+     * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Training APIs enabled for your organization.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Training Assignments</strong> under the Training Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public void deleteTrainingAssignments(DeleteTrainingAssignmentsRequest request) {
         this.rawClient.deleteTrainingAssignments(request).body();
     }
@@ -1269,8 +1393,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
-     * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Training APIs enabled for your organization.</p>
+     * Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Training Assignments</strong> under the Training Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -1281,8 +1404,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
-     * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Training APIs enabled for your organization.</p>
+     * Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Read Training Assignments</strong> under the Training Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
@@ -1312,6 +1434,17 @@ public class BetaApIsClient {
      * <p>To use this endpoint, select <strong>Read Training Courses</strong> under the Training Courses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public TrainingCoursesGetTrainingCoursesResponseBody getTrainingCourses(RequestOptions requestOptions) {
+        return this.rawClient.getTrainingCourses(requestOptions).body();
+    }
+
+    /**
+     * Returns all training courses data. Results are paginated.
+     * Courses in the ‘draft’ status are excluded from the data returned by this endpoint.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Training Courses</strong> under the Training Courses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public TrainingCoursesGetTrainingCoursesResponseBody getTrainingCourses(GetTrainingCoursesRequest request) {
         return this.rawClient.getTrainingCourses(request).body();
     }
@@ -1326,25 +1459,5 @@ public class BetaApIsClient {
     public TrainingCoursesGetTrainingCoursesResponseBody getTrainingCourses(
             GetTrainingCoursesRequest request, RequestOptions requestOptions) {
         return this.rawClient.getTrainingCourses(request, requestOptions).body();
-    }
-
-    /**
-     * This endpoint will return trips that have been collected for your organization based on the time parameters passed in. Results are paginated. Reach out to your Samsara Representative to have this API enabled for your organization.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Trips</strong> under the Trips category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TripsGetTripsResponseBody getTrips(GetTripsRequest request) {
-        return this.rawClient.getTrips(request).body();
-    }
-
-    /**
-     * This endpoint will return trips that have been collected for your organization based on the time parameters passed in. Results are paginated. Reach out to your Samsara Representative to have this API enabled for your organization.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Trips</strong> under the Trips category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public TripsGetTripsResponseBody getTrips(GetTripsRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getTrips(request, requestOptions).body();
     }
 }

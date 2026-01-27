@@ -28,9 +28,9 @@ public final class V1DoorResponseSensors {
 
     private final Optional<String> name;
 
-    private final Optional<Integer> trailerId;
+    private final Optional<Long> trailerId;
 
-    private final Optional<Integer> vehicleId;
+    private final Optional<Long> vehicleId;
 
     private final Map<String, Object> additionalProperties;
 
@@ -39,8 +39,8 @@ public final class V1DoorResponseSensors {
             Optional<String> doorStatusTime,
             Optional<Long> id,
             Optional<String> name,
-            Optional<Integer> trailerId,
-            Optional<Integer> vehicleId,
+            Optional<Long> trailerId,
+            Optional<Long> vehicleId,
             Map<String, Object> additionalProperties) {
         this.doorClosed = doorClosed;
         this.doorStatusTime = doorStatusTime;
@@ -87,7 +87,7 @@ public final class V1DoorResponseSensors {
      * @return ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.
      */
     @JsonProperty("trailerId")
-    public Optional<Integer> getTrailerId() {
+    public Optional<Long> getTrailerId() {
         return trailerId;
     }
 
@@ -95,7 +95,7 @@ public final class V1DoorResponseSensors {
      * @return ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.
      */
     @JsonProperty("vehicleId")
-    public Optional<Integer> getVehicleId() {
+    public Optional<Long> getVehicleId() {
         return vehicleId;
     }
 
@@ -143,9 +143,9 @@ public final class V1DoorResponseSensors {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Integer> trailerId = Optional.empty();
+        private Optional<Long> trailerId = Optional.empty();
 
-        private Optional<Integer> vehicleId = Optional.empty();
+        private Optional<Long> vehicleId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -222,12 +222,12 @@ public final class V1DoorResponseSensors {
          * <p>ID of the trailer associated with the sensor for the data point. If no trailer is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "trailerId", nulls = Nulls.SKIP)
-        public Builder trailerId(Optional<Integer> trailerId) {
+        public Builder trailerId(Optional<Long> trailerId) {
             this.trailerId = trailerId;
             return this;
         }
 
-        public Builder trailerId(Integer trailerId) {
+        public Builder trailerId(Long trailerId) {
             this.trailerId = Optional.ofNullable(trailerId);
             return this;
         }
@@ -236,12 +236,12 @@ public final class V1DoorResponseSensors {
          * <p>ID of the vehicle associated with the sensor for the data point. If no vehicle is connected, this parameter will not be reported.</p>
          */
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
-        public Builder vehicleId(Optional<Integer> vehicleId) {
+        public Builder vehicleId(Optional<Long> vehicleId) {
             this.vehicleId = vehicleId;
             return this;
         }
 
-        public Builder vehicleId(Integer vehicleId) {
+        public Builder vehicleId(Long vehicleId) {
             this.vehicleId = Optional.ofNullable(vehicleId);
             return this;
         }

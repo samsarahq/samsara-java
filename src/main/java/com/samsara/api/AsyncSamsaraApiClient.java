@@ -9,6 +9,7 @@ import com.samsara.api.resources.addresses.AsyncAddressesClient;
 import com.samsara.api.resources.alerts.AsyncAlertsClient;
 import com.samsara.api.resources.assets.AsyncAssetsClient;
 import com.samsara.api.resources.attributes.AsyncAttributesClient;
+import com.samsara.api.resources.authtokenfordriver.AsyncAuthTokenForDriverClient;
 import com.samsara.api.resources.betaapis.AsyncBetaApIsClient;
 import com.samsara.api.resources.carrierproposedassignments.AsyncCarrierProposedAssignmentsClient;
 import com.samsara.api.resources.coaching.AsyncCoachingClient;
@@ -16,6 +17,7 @@ import com.samsara.api.resources.contacts.AsyncContactsClient;
 import com.samsara.api.resources.documents.AsyncDocumentsClient;
 import com.samsara.api.resources.driverqrcodes.AsyncDriverQrCodesClient;
 import com.samsara.api.resources.drivers.AsyncDriversClient;
+import com.samsara.api.resources.drivertrailerassignments.AsyncDriverTrailerAssignmentsClient;
 import com.samsara.api.resources.drivervehicleassignments.AsyncDriverVehicleAssignmentsClient;
 import com.samsara.api.resources.equipment.AsyncEquipmentClient;
 import com.samsara.api.resources.fleet.AsyncFleetClient;
@@ -82,6 +84,8 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncFuelAndEnergyClient> fuelAndEnergyClient;
 
+    protected final Supplier<AsyncDriverTrailerAssignmentsClient> driverTrailerAssignmentsClient;
+
     protected final Supplier<AsyncDriverQrCodesClient> driverQrCodesClient;
 
     protected final Supplier<AsyncCarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
@@ -94,6 +98,8 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncDriversClient> driversClient;
 
+    protected final Supplier<AsyncAuthTokenForDriverClient> authTokenForDriverClient;
+
     protected final Supplier<AsyncTachographEuOnlyClient> tachographEuOnlyClient;
 
     protected final Supplier<AsyncEquipmentClient> equipmentClient;
@@ -103,8 +109,6 @@ public class AsyncSamsaraApiClient {
     protected final Supplier<AsyncIftaClient> iftaClient;
 
     protected final Supplier<AsyncRoutesClient> routesClient;
-
-    protected final Supplier<AsyncSafetyClient> safetyClient;
 
     protected final Supplier<AsyncSettingsClient> settingsClient;
 
@@ -140,9 +144,13 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncRouteEventsClient> routeEventsClient;
 
+    protected final Supplier<AsyncSafetyClient> safetyClient;
+
     protected final Supplier<AsyncSpeedingIntervalsClient> speedingIntervalsClient;
 
     protected final Supplier<AsyncTagsClient> tagsClient;
+
+    protected final Supplier<AsyncTripsClient> tripsClient;
 
     protected final Supplier<AsyncUsersClient> usersClient;
 
@@ -151,8 +159,6 @@ public class AsyncSamsaraApiClient {
     protected final Supplier<AsyncMessagesClient> messagesClient;
 
     protected final Supplier<AsyncTrailerAssignmentsClient> trailerAssignmentsClient;
-
-    protected final Supplier<AsyncTripsClient> tripsClient;
 
     protected final Supplier<AsyncSensorsClient> sensorsClient;
 
@@ -173,6 +179,8 @@ public class AsyncSamsaraApiClient {
         this.contactsClient = Suppliers.memoize(() -> new AsyncContactsClient(clientOptions));
         this.maintenanceClient = Suppliers.memoize(() -> new AsyncMaintenanceClient(clientOptions));
         this.fuelAndEnergyClient = Suppliers.memoize(() -> new AsyncFuelAndEnergyClient(clientOptions));
+        this.driverTrailerAssignmentsClient =
+                Suppliers.memoize(() -> new AsyncDriverTrailerAssignmentsClient(clientOptions));
         this.driverQrCodesClient = Suppliers.memoize(() -> new AsyncDriverQrCodesClient(clientOptions));
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncCarrierProposedAssignmentsClient(clientOptions));
@@ -181,12 +189,12 @@ public class AsyncSamsaraApiClient {
         this.driverVehicleAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncDriverVehicleAssignmentsClient(clientOptions));
         this.driversClient = Suppliers.memoize(() -> new AsyncDriversClient(clientOptions));
+        this.authTokenForDriverClient = Suppliers.memoize(() -> new AsyncAuthTokenForDriverClient(clientOptions));
         this.tachographEuOnlyClient = Suppliers.memoize(() -> new AsyncTachographEuOnlyClient(clientOptions));
         this.equipmentClient = Suppliers.memoize(() -> new AsyncEquipmentClient(clientOptions));
         this.hoursOfServiceClient = Suppliers.memoize(() -> new AsyncHoursOfServiceClient(clientOptions));
         this.iftaClient = Suppliers.memoize(() -> new AsyncIftaClient(clientOptions));
         this.routesClient = Suppliers.memoize(() -> new AsyncRoutesClient(clientOptions));
-        this.safetyClient = Suppliers.memoize(() -> new AsyncSafetyClient(clientOptions));
         this.settingsClient = Suppliers.memoize(() -> new AsyncSettingsClient(clientOptions));
         this.trailersClient = Suppliers.memoize(() -> new AsyncTrailersClient(clientOptions));
         this.vehiclesClient = Suppliers.memoize(() -> new AsyncVehiclesClient(clientOptions));
@@ -204,13 +212,14 @@ public class AsyncSamsaraApiClient {
         this.organizationInfoClient = Suppliers.memoize(() -> new AsyncOrganizationInfoClient(clientOptions));
         this.previewApIsClient = Suppliers.memoize(() -> new AsyncPreviewApIsClient(clientOptions));
         this.routeEventsClient = Suppliers.memoize(() -> new AsyncRouteEventsClient(clientOptions));
+        this.safetyClient = Suppliers.memoize(() -> new AsyncSafetyClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new AsyncSpeedingIntervalsClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new AsyncTagsClient(clientOptions));
+        this.tripsClient = Suppliers.memoize(() -> new AsyncTripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new AsyncUsersClient(clientOptions));
         this.legacyClient = Suppliers.memoize(() -> new AsyncLegacyClient(clientOptions));
         this.messagesClient = Suppliers.memoize(() -> new AsyncMessagesClient(clientOptions));
         this.trailerAssignmentsClient = Suppliers.memoize(() -> new AsyncTrailerAssignmentsClient(clientOptions));
-        this.tripsClient = Suppliers.memoize(() -> new AsyncTripsClient(clientOptions));
         this.sensorsClient = Suppliers.memoize(() -> new AsyncSensorsClient(clientOptions));
         this.webhooksClient = Suppliers.memoize(() -> new AsyncWebhooksClient(clientOptions));
         this.fleetClient = Suppliers.memoize(() -> new AsyncFleetClient(clientOptions));
@@ -260,6 +269,10 @@ public class AsyncSamsaraApiClient {
         return this.fuelAndEnergyClient.get();
     }
 
+    public AsyncDriverTrailerAssignmentsClient driverTrailerAssignments() {
+        return this.driverTrailerAssignmentsClient.get();
+    }
+
     public AsyncDriverQrCodesClient driverQrCodes() {
         return this.driverQrCodesClient.get();
     }
@@ -284,6 +297,10 @@ public class AsyncSamsaraApiClient {
         return this.driversClient.get();
     }
 
+    public AsyncAuthTokenForDriverClient authTokenForDriver() {
+        return this.authTokenForDriverClient.get();
+    }
+
     public AsyncTachographEuOnlyClient tachographEuOnly() {
         return this.tachographEuOnlyClient.get();
     }
@@ -302,10 +319,6 @@ public class AsyncSamsaraApiClient {
 
     public AsyncRoutesClient routes() {
         return this.routesClient.get();
-    }
-
-    public AsyncSafetyClient safety() {
-        return this.safetyClient.get();
     }
 
     public AsyncSettingsClient settings() {
@@ -376,12 +389,20 @@ public class AsyncSamsaraApiClient {
         return this.routeEventsClient.get();
     }
 
+    public AsyncSafetyClient safety() {
+        return this.safetyClient.get();
+    }
+
     public AsyncSpeedingIntervalsClient speedingIntervals() {
         return this.speedingIntervalsClient.get();
     }
 
     public AsyncTagsClient tags() {
         return this.tagsClient.get();
+    }
+
+    public AsyncTripsClient trips() {
+        return this.tripsClient.get();
     }
 
     public AsyncUsersClient users() {
@@ -398,10 +419,6 @@ public class AsyncSamsaraApiClient {
 
     public AsyncTrailerAssignmentsClient trailerAssignments() {
         return this.trailerAssignmentsClient.get();
-    }
-
-    public AsyncTripsClient trips() {
-        return this.tripsClient.get();
     }
 
     public AsyncSensorsClient sensors() {

@@ -82,6 +82,10 @@ public class RawRoutesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "after", request.getAfter().get(), false);
         }
+        if (request.getInclude().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "include", request.getInclude().get(), true);
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -248,6 +252,17 @@ public class RawRoutesClient {
      * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public SamsaraApiHttpResponse<RoutesGetRoutesFeedResponseBody> getRoutesFeed(RequestOptions requestOptions) {
+        return getRoutesFeed(GetRoutesFeedRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Subscribes to a feed of immutable, append-only updates for routes. The initial request to this feed endpoint returns a cursor, which can be used on the next request to fetch updated routes that have had state changes since that request.
+     * <p>The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/fetchAllRouteJobUpdates">samsara.com/api-legacy</a>.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public SamsaraApiHttpResponse<RoutesGetRoutesFeedResponseBody> getRoutesFeed(GetRoutesFeedRequest request) {
         return getRoutesFeed(request, null);
     }
@@ -347,6 +362,16 @@ public class RawRoutesClient {
      * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
+    public SamsaraApiHttpResponse<RoutesFetchRouteResponseBody> fetchRoute(String id, RequestOptions requestOptions) {
+        return fetchRoute(id, FetchRouteRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Returns a single route. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDispatchRouteById">samsara.com/api-legacy</a>.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
     public SamsaraApiHttpResponse<RoutesFetchRouteResponseBody> fetchRoute(String id, FetchRouteRequest request) {
         return fetchRoute(id, request, null);
     }
@@ -359,13 +384,16 @@ public class RawRoutesClient {
      */
     public SamsaraApiHttpResponse<RoutesFetchRouteResponseBody> fetchRoute(
             String id, FetchRouteRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/routes")
-                .addPathSegment(id)
-                .build();
+                .addPathSegment(id);
+        if (request.getInclude().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "include", request.getInclude().get(), true);
+        }
         Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json");
@@ -431,6 +459,16 @@ public class RawRoutesClient {
      */
     public SamsaraApiHttpResponse<Void> deleteRoute(String id) {
         return deleteRoute(id, DeleteRouteRequest.builder().build());
+    }
+
+    /**
+     * Delete a dispatch route and its associated stops.
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<Void> deleteRoute(String id, RequestOptions requestOptions) {
+        return deleteRoute(id, DeleteRouteRequest.builder().build(), requestOptions);
     }
 
     /**
@@ -524,6 +562,19 @@ public class RawRoutesClient {
      */
     public SamsaraApiHttpResponse<RoutesPatchRouteResponseBody> patchRoute(String id) {
         return patchRoute(id, RoutesPatchRouteRequestBody.builder().build());
+    }
+
+    /**
+     * Update a route.  <strong>Note</strong> this implementation of patch uses <a href="https://tools.ietf.org/html/rfc7396">the JSON merge patch</a> proposed standard.
+     * This means that any fields included in the patch request will <em>overwrite</em> fields which exist on the target resource.
+     * For arrays, this means any array included in the request will <em>replace</em> the array that exists at the specified path, it will not <em>add</em> to the existing array.
+     * <p>The legacy version of this endpoint (which uses PUT instead of PATCH) can be found at <a href="https://www.samsara.com/api-legacy#operation/updateDispatchRouteById">samsara.com/api-legacy</a>.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<RoutesPatchRouteResponseBody> patchRoute(String id, RequestOptions requestOptions) {
+        return patchRoute(id, RoutesPatchRouteRequestBody.builder().build(), requestOptions);
     }
 
     /**
@@ -740,6 +791,23 @@ public class RawRoutesClient {
     public SamsaraApiHttpResponse<Void> v1DeleteDispatchRouteById(String routeIdOrExternalId) {
         return v1DeleteDispatchRouteById(
                 routeIdOrExternalId, InlineObject.builder().build());
+    }
+
+    /**
+     * <p>&lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;</p>
+     * Delete a dispatch route and its associated jobs.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<Void> v1DeleteDispatchRouteById(
+            String routeIdOrExternalId, RequestOptions requestOptions) {
+        return v1DeleteDispatchRouteById(
+                routeIdOrExternalId, InlineObject.builder().build(), requestOptions);
     }
 
     /**

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = SafetyEventV2DriverObjectResponseBody.Builder.class)
@@ -25,7 +26,7 @@ public final class SafetyEventV2DriverObjectResponseBody {
 
     private final Optional<Map<String, String>> externalIds;
 
-    private final Optional<String> id;
+    private final String id;
 
     private final Optional<String> name;
 
@@ -36,7 +37,7 @@ public final class SafetyEventV2DriverObjectResponseBody {
     private SafetyEventV2DriverObjectResponseBody(
             Optional<List<GoaAttributeTinyResponseBody>> attributes,
             Optional<Map<String, String>> externalIds,
-            Optional<String> id,
+            String id,
             Optional<String> name,
             Optional<List<GoaTagTinyResponseResponseBody>> tags,
             Map<String, Object> additionalProperties) {
@@ -68,7 +69,7 @@ public final class SafetyEventV2DriverObjectResponseBody {
      * @return Unique ID for the driver object that is assigned to the safety event.
      */
     @JsonProperty("id")
-    public Optional<String> getId() {
+    public String getId() {
         return id;
     }
 
@@ -118,27 +119,69 @@ public final class SafetyEventV2DriverObjectResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static Builder builder() {
+    public static IdStage builder() {
         return new Builder();
     }
 
+    public interface IdStage {
+        /**
+         * <p>Unique ID for the driver object that is assigned to the safety event.</p>
+         */
+        _FinalStage id(@NotNull String id);
+
+        Builder from(SafetyEventV2DriverObjectResponseBody other);
+    }
+
+    public interface _FinalStage {
+        SafetyEventV2DriverObjectResponseBody build();
+
+        /**
+         * <p>Attributes for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes);
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        _FinalStage externalIds(Optional<Map<String, String>> externalIds);
+
+        _FinalStage externalIds(Map<String, String> externalIds);
+
+        /**
+         * <p>Name of the driver. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         */
+        _FinalStage name(Optional<String> name);
+
+        _FinalStage name(String name);
+
+        /**
+         * <p>Tags for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         */
+        _FinalStage tags(Optional<List<GoaTagTinyResponseResponseBody>> tags);
+
+        _FinalStage tags(List<GoaTagTinyResponseResponseBody> tags);
+    }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder {
-        private Optional<List<GoaAttributeTinyResponseBody>> attributes = Optional.empty();
+    public static final class Builder implements IdStage, _FinalStage {
+        private String id;
 
-        private Optional<Map<String, String>> externalIds = Optional.empty();
-
-        private Optional<String> id = Optional.empty();
+        private Optional<List<GoaTagTinyResponseResponseBody>> tags = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<List<GoaTagTinyResponseResponseBody>> tags = Optional.empty();
+        private Optional<Map<String, String>> externalIds = Optional.empty();
+
+        private Optional<List<GoaAttributeTinyResponseBody>> attributes = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
+        @java.lang.Override
         public Builder from(SafetyEventV2DriverObjectResponseBody other) {
             attributes(other.getAttributes());
             externalIds(other.getExternalIds());
@@ -149,75 +192,98 @@ public final class SafetyEventV2DriverObjectResponseBody {
         }
 
         /**
-         * <p>Attributes for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
-         */
-        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
-        public Builder attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes) {
-            this.attributes = attributes;
-            return this;
-        }
-
-        public Builder attributes(List<GoaAttributeTinyResponseBody> attributes) {
-            this.attributes = Optional.ofNullable(attributes);
-            return this;
-        }
-
-        /**
-         * <p>A map of external ids</p>
-         */
-        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
-        public Builder externalIds(Optional<Map<String, String>> externalIds) {
-            this.externalIds = externalIds;
-            return this;
-        }
-
-        public Builder externalIds(Map<String, String> externalIds) {
-            this.externalIds = Optional.ofNullable(externalIds);
-            return this;
-        }
-
-        /**
          * <p>Unique ID for the driver object that is assigned to the safety event.</p>
+         * <p>Unique ID for the driver object that is assigned to the safety event.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<String> id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder id(String id) {
-            this.id = Optional.ofNullable(id);
+        @java.lang.Override
+        @JsonSetter("id")
+        public _FinalStage id(@NotNull String id) {
+            this.id = Objects.requireNonNull(id, "id must not be null");
             return this;
         }
 
         /**
-         * <p>Name of the driver. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         * <p>Tags for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @JsonSetter(value = "name", nulls = Nulls.SKIP)
-        public Builder name(Optional<String> name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = Optional.ofNullable(name);
+        @java.lang.Override
+        public _FinalStage tags(List<GoaTagTinyResponseResponseBody> tags) {
+            this.tags = Optional.ofNullable(tags);
             return this;
         }
 
         /**
          * <p>Tags for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
          */
+        @java.lang.Override
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
-        public Builder tags(Optional<List<GoaTagTinyResponseResponseBody>> tags) {
+        public _FinalStage tags(Optional<List<GoaTagTinyResponseResponseBody>> tags) {
             this.tags = tags;
             return this;
         }
 
-        public Builder tags(List<GoaTagTinyResponseResponseBody> tags) {
-            this.tags = Optional.ofNullable(tags);
+        /**
+         * <p>Name of the driver. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage name(String name) {
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * <p>Name of the driver. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public _FinalStage name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * <p>A map of external ids</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalIds(Map<String, String> externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public _FinalStage externalIds(Optional<Map<String, String>> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
+        /**
+         * <p>Attributes for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>Attributes for the driver associated with the safety event. Only returns when <code>includeDriver</code> is set to <code>true</code>.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
+        @java.lang.Override
         public SafetyEventV2DriverObjectResponseBody build() {
             return new SafetyEventV2DriverObjectResponseBody(
                     attributes, externalIds, id, name, tags, additionalProperties);

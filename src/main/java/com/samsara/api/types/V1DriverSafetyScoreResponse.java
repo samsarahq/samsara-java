@@ -21,45 +21,45 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1DriverSafetyScoreResponse.Builder.class)
 public final class V1DriverSafetyScoreResponse {
-    private final Optional<Integer> crashCount;
+    private final Optional<Long> crashCount;
 
-    private final Optional<Integer> driverId;
+    private final Optional<Long> driverId;
 
-    private final Optional<Integer> harshAccelCount;
+    private final Optional<Long> harshAccelCount;
 
-    private final Optional<Integer> harshBrakingCount;
+    private final Optional<Long> harshBrakingCount;
 
     private final Optional<List<V1SafetyReportHarshEvent>> harshEvents;
 
-    private final Optional<Integer> harshTurningCount;
+    private final Optional<Long> harshTurningCount;
 
-    private final Optional<Integer> safetyScore;
+    private final Optional<Long> safetyScore;
 
     private final Optional<String> safetyScoreRank;
 
-    private final Optional<Integer> timeOverSpeedLimitMs;
+    private final Optional<Long> timeOverSpeedLimitMs;
 
-    private final Optional<Integer> totalDistanceDrivenMeters;
+    private final Optional<Long> totalDistanceDrivenMeters;
 
-    private final Optional<Integer> totalHarshEventCount;
+    private final Optional<Long> totalHarshEventCount;
 
-    private final Optional<Integer> totalTimeDrivenMs;
+    private final Optional<Long> totalTimeDrivenMs;
 
     private final Map<String, Object> additionalProperties;
 
     private V1DriverSafetyScoreResponse(
-            Optional<Integer> crashCount,
-            Optional<Integer> driverId,
-            Optional<Integer> harshAccelCount,
-            Optional<Integer> harshBrakingCount,
+            Optional<Long> crashCount,
+            Optional<Long> driverId,
+            Optional<Long> harshAccelCount,
+            Optional<Long> harshBrakingCount,
             Optional<List<V1SafetyReportHarshEvent>> harshEvents,
-            Optional<Integer> harshTurningCount,
-            Optional<Integer> safetyScore,
+            Optional<Long> harshTurningCount,
+            Optional<Long> safetyScore,
             Optional<String> safetyScoreRank,
-            Optional<Integer> timeOverSpeedLimitMs,
-            Optional<Integer> totalDistanceDrivenMeters,
-            Optional<Integer> totalHarshEventCount,
-            Optional<Integer> totalTimeDrivenMs,
+            Optional<Long> timeOverSpeedLimitMs,
+            Optional<Long> totalDistanceDrivenMeters,
+            Optional<Long> totalHarshEventCount,
+            Optional<Long> totalTimeDrivenMs,
             Map<String, Object> additionalProperties) {
         this.crashCount = crashCount;
         this.driverId = driverId;
@@ -80,7 +80,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Crash event count
      */
     @JsonProperty("crashCount")
-    public Optional<Integer> getCrashCount() {
+    public Optional<Long> getCrashCount() {
         return crashCount;
     }
 
@@ -88,7 +88,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Driver ID
      */
     @JsonProperty("driverId")
-    public Optional<Integer> getDriverId() {
+    public Optional<Long> getDriverId() {
         return driverId;
     }
 
@@ -96,7 +96,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Harsh acceleration event count
      */
     @JsonProperty("harshAccelCount")
-    public Optional<Integer> getHarshAccelCount() {
+    public Optional<Long> getHarshAccelCount() {
         return harshAccelCount;
     }
 
@@ -104,7 +104,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Harsh braking event count
      */
     @JsonProperty("harshBrakingCount")
-    public Optional<Integer> getHarshBrakingCount() {
+    public Optional<Long> getHarshBrakingCount() {
         return harshBrakingCount;
     }
 
@@ -117,7 +117,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Harsh turning event count
      */
     @JsonProperty("harshTurningCount")
-    public Optional<Integer> getHarshTurningCount() {
+    public Optional<Long> getHarshTurningCount() {
         return harshTurningCount;
     }
 
@@ -125,7 +125,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return The driver’s Safety Score for the requested period. Note that if the driver has zero drive time in this period, the Safety Score will be returned as 100.
      */
     @JsonProperty("safetyScore")
-    public Optional<Integer> getSafetyScore() {
+    public Optional<Long> getSafetyScore() {
         return safetyScore;
     }
 
@@ -141,7 +141,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Amount of time driven over the speed limit in milliseconds
      */
     @JsonProperty("timeOverSpeedLimitMs")
-    public Optional<Integer> getTimeOverSpeedLimitMs() {
+    public Optional<Long> getTimeOverSpeedLimitMs() {
         return timeOverSpeedLimitMs;
     }
 
@@ -149,7 +149,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Total distance driven in meters
      */
     @JsonProperty("totalDistanceDrivenMeters")
-    public Optional<Integer> getTotalDistanceDrivenMeters() {
+    public Optional<Long> getTotalDistanceDrivenMeters() {
         return totalDistanceDrivenMeters;
     }
 
@@ -157,7 +157,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Total harsh event count
      */
     @JsonProperty("totalHarshEventCount")
-    public Optional<Integer> getTotalHarshEventCount() {
+    public Optional<Long> getTotalHarshEventCount() {
         return totalHarshEventCount;
     }
 
@@ -165,7 +165,7 @@ public final class V1DriverSafetyScoreResponse {
      * @return Amount of time driven in milliseconds
      */
     @JsonProperty("totalTimeDrivenMs")
-    public Optional<Integer> getTotalTimeDrivenMs() {
+    public Optional<Long> getTotalTimeDrivenMs() {
         return totalTimeDrivenMs;
     }
 
@@ -223,29 +223,29 @@ public final class V1DriverSafetyScoreResponse {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Integer> crashCount = Optional.empty();
+        private Optional<Long> crashCount = Optional.empty();
 
-        private Optional<Integer> driverId = Optional.empty();
+        private Optional<Long> driverId = Optional.empty();
 
-        private Optional<Integer> harshAccelCount = Optional.empty();
+        private Optional<Long> harshAccelCount = Optional.empty();
 
-        private Optional<Integer> harshBrakingCount = Optional.empty();
+        private Optional<Long> harshBrakingCount = Optional.empty();
 
         private Optional<List<V1SafetyReportHarshEvent>> harshEvents = Optional.empty();
 
-        private Optional<Integer> harshTurningCount = Optional.empty();
+        private Optional<Long> harshTurningCount = Optional.empty();
 
-        private Optional<Integer> safetyScore = Optional.empty();
+        private Optional<Long> safetyScore = Optional.empty();
 
         private Optional<String> safetyScoreRank = Optional.empty();
 
-        private Optional<Integer> timeOverSpeedLimitMs = Optional.empty();
+        private Optional<Long> timeOverSpeedLimitMs = Optional.empty();
 
-        private Optional<Integer> totalDistanceDrivenMeters = Optional.empty();
+        private Optional<Long> totalDistanceDrivenMeters = Optional.empty();
 
-        private Optional<Integer> totalHarshEventCount = Optional.empty();
+        private Optional<Long> totalHarshEventCount = Optional.empty();
 
-        private Optional<Integer> totalTimeDrivenMs = Optional.empty();
+        private Optional<Long> totalTimeDrivenMs = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -272,12 +272,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Crash event count</p>
          */
         @JsonSetter(value = "crashCount", nulls = Nulls.SKIP)
-        public Builder crashCount(Optional<Integer> crashCount) {
+        public Builder crashCount(Optional<Long> crashCount) {
             this.crashCount = crashCount;
             return this;
         }
 
-        public Builder crashCount(Integer crashCount) {
+        public Builder crashCount(Long crashCount) {
             this.crashCount = Optional.ofNullable(crashCount);
             return this;
         }
@@ -286,12 +286,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Driver ID</p>
          */
         @JsonSetter(value = "driverId", nulls = Nulls.SKIP)
-        public Builder driverId(Optional<Integer> driverId) {
+        public Builder driverId(Optional<Long> driverId) {
             this.driverId = driverId;
             return this;
         }
 
-        public Builder driverId(Integer driverId) {
+        public Builder driverId(Long driverId) {
             this.driverId = Optional.ofNullable(driverId);
             return this;
         }
@@ -300,12 +300,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Harsh acceleration event count</p>
          */
         @JsonSetter(value = "harshAccelCount", nulls = Nulls.SKIP)
-        public Builder harshAccelCount(Optional<Integer> harshAccelCount) {
+        public Builder harshAccelCount(Optional<Long> harshAccelCount) {
             this.harshAccelCount = harshAccelCount;
             return this;
         }
 
-        public Builder harshAccelCount(Integer harshAccelCount) {
+        public Builder harshAccelCount(Long harshAccelCount) {
             this.harshAccelCount = Optional.ofNullable(harshAccelCount);
             return this;
         }
@@ -314,12 +314,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Harsh braking event count</p>
          */
         @JsonSetter(value = "harshBrakingCount", nulls = Nulls.SKIP)
-        public Builder harshBrakingCount(Optional<Integer> harshBrakingCount) {
+        public Builder harshBrakingCount(Optional<Long> harshBrakingCount) {
             this.harshBrakingCount = harshBrakingCount;
             return this;
         }
 
-        public Builder harshBrakingCount(Integer harshBrakingCount) {
+        public Builder harshBrakingCount(Long harshBrakingCount) {
             this.harshBrakingCount = Optional.ofNullable(harshBrakingCount);
             return this;
         }
@@ -339,12 +339,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Harsh turning event count</p>
          */
         @JsonSetter(value = "harshTurningCount", nulls = Nulls.SKIP)
-        public Builder harshTurningCount(Optional<Integer> harshTurningCount) {
+        public Builder harshTurningCount(Optional<Long> harshTurningCount) {
             this.harshTurningCount = harshTurningCount;
             return this;
         }
 
-        public Builder harshTurningCount(Integer harshTurningCount) {
+        public Builder harshTurningCount(Long harshTurningCount) {
             this.harshTurningCount = Optional.ofNullable(harshTurningCount);
             return this;
         }
@@ -353,12 +353,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>The driver’s Safety Score for the requested period. Note that if the driver has zero drive time in this period, the Safety Score will be returned as 100.</p>
          */
         @JsonSetter(value = "safetyScore", nulls = Nulls.SKIP)
-        public Builder safetyScore(Optional<Integer> safetyScore) {
+        public Builder safetyScore(Optional<Long> safetyScore) {
             this.safetyScore = safetyScore;
             return this;
         }
 
-        public Builder safetyScore(Integer safetyScore) {
+        public Builder safetyScore(Long safetyScore) {
             this.safetyScore = Optional.ofNullable(safetyScore);
             return this;
         }
@@ -381,12 +381,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Amount of time driven over the speed limit in milliseconds</p>
          */
         @JsonSetter(value = "timeOverSpeedLimitMs", nulls = Nulls.SKIP)
-        public Builder timeOverSpeedLimitMs(Optional<Integer> timeOverSpeedLimitMs) {
+        public Builder timeOverSpeedLimitMs(Optional<Long> timeOverSpeedLimitMs) {
             this.timeOverSpeedLimitMs = timeOverSpeedLimitMs;
             return this;
         }
 
-        public Builder timeOverSpeedLimitMs(Integer timeOverSpeedLimitMs) {
+        public Builder timeOverSpeedLimitMs(Long timeOverSpeedLimitMs) {
             this.timeOverSpeedLimitMs = Optional.ofNullable(timeOverSpeedLimitMs);
             return this;
         }
@@ -395,12 +395,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Total distance driven in meters</p>
          */
         @JsonSetter(value = "totalDistanceDrivenMeters", nulls = Nulls.SKIP)
-        public Builder totalDistanceDrivenMeters(Optional<Integer> totalDistanceDrivenMeters) {
+        public Builder totalDistanceDrivenMeters(Optional<Long> totalDistanceDrivenMeters) {
             this.totalDistanceDrivenMeters = totalDistanceDrivenMeters;
             return this;
         }
 
-        public Builder totalDistanceDrivenMeters(Integer totalDistanceDrivenMeters) {
+        public Builder totalDistanceDrivenMeters(Long totalDistanceDrivenMeters) {
             this.totalDistanceDrivenMeters = Optional.ofNullable(totalDistanceDrivenMeters);
             return this;
         }
@@ -409,12 +409,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Total harsh event count</p>
          */
         @JsonSetter(value = "totalHarshEventCount", nulls = Nulls.SKIP)
-        public Builder totalHarshEventCount(Optional<Integer> totalHarshEventCount) {
+        public Builder totalHarshEventCount(Optional<Long> totalHarshEventCount) {
             this.totalHarshEventCount = totalHarshEventCount;
             return this;
         }
 
-        public Builder totalHarshEventCount(Integer totalHarshEventCount) {
+        public Builder totalHarshEventCount(Long totalHarshEventCount) {
             this.totalHarshEventCount = Optional.ofNullable(totalHarshEventCount);
             return this;
         }
@@ -423,12 +423,12 @@ public final class V1DriverSafetyScoreResponse {
          * <p>Amount of time driven in milliseconds</p>
          */
         @JsonSetter(value = "totalTimeDrivenMs", nulls = Nulls.SKIP)
-        public Builder totalTimeDrivenMs(Optional<Integer> totalTimeDrivenMs) {
+        public Builder totalTimeDrivenMs(Optional<Long> totalTimeDrivenMs) {
             this.totalTimeDrivenMs = totalTimeDrivenMs;
             return this;
         }
 
-        public Builder totalTimeDrivenMs(Integer totalTimeDrivenMs) {
+        public Builder totalTimeDrivenMs(Long totalTimeDrivenMs) {
             this.totalTimeDrivenMs = Optional.ofNullable(totalTimeDrivenMs);
             return this;
         }

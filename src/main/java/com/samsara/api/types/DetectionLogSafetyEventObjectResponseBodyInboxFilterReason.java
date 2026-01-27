@@ -13,18 +13,25 @@ public final class DetectionLogSafetyEventObjectResponseBodyInboxFilterReason {
     public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason OVER_DAILY_LIMIT =
             new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.OVER_DAILY_LIMIT, "overDailyLimit");
 
+    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason NIGHTTIME_FILTER =
+            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.NIGHTTIME_FILTER, "nighttimeFilter");
+
+    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason UNKNOWN =
+            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.UNKNOWN, "unknown");
+
+    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason BELOW_CONFIDENCE_THRESHOLD =
+            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(
+                    Value.BELOW_CONFIDENCE_THRESHOLD, "belowConfidenceThreshold");
+
+    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason IN_CAB_ALERT_ONLY =
+            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.IN_CAB_ALERT_ONLY, "inCabAlertOnly");
+
     public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason BELOW_SPEED_THRESHOLD =
             new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(
                     Value.BELOW_SPEED_THRESHOLD, "belowSpeedThreshold");
 
-    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason NIGHTTIME_FILTER =
-            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.NIGHTTIME_FILTER, "nighttimeFilter");
-
     public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason OVER_HOURLY_LIMIT =
             new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.OVER_HOURLY_LIMIT, "overHourlyLimit");
-
-    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason UNKNOWN =
-            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.UNKNOWN, "unknown");
 
     public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason SPEEDING_FILTER =
             new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.SPEEDING_FILTER, "speedingFilter");
@@ -35,10 +42,6 @@ public final class DetectionLogSafetyEventObjectResponseBodyInboxFilterReason {
 
     public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason OVER_TRIP_LIMIT =
             new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(Value.OVER_TRIP_LIMIT, "overTripLimit");
-
-    public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason BELOW_CONFIDENCE_THRESHOLD =
-            new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(
-                    Value.BELOW_CONFIDENCE_THRESHOLD, "belowConfidenceThreshold");
 
     public static final DetectionLogSafetyEventObjectResponseBodyInboxFilterReason BELOW_NUDGE_THRESHOLD =
             new DetectionLogSafetyEventObjectResponseBodyInboxFilterReason(
@@ -86,22 +89,24 @@ public final class DetectionLogSafetyEventObjectResponseBodyInboxFilterReason {
                 return visitor.visitGeofenceFilter();
             case OVER_DAILY_LIMIT:
                 return visitor.visitOverDailyLimit();
-            case BELOW_SPEED_THRESHOLD:
-                return visitor.visitBelowSpeedThreshold();
             case NIGHTTIME_FILTER:
                 return visitor.visitNighttimeFilter();
-            case OVER_HOURLY_LIMIT:
-                return visitor.visitOverHourlyLimit();
             case UNKNOWN:
                 return visitor.visitUnknown();
+            case BELOW_CONFIDENCE_THRESHOLD:
+                return visitor.visitBelowConfidenceThreshold();
+            case IN_CAB_ALERT_ONLY:
+                return visitor.visitInCabAlertOnly();
+            case BELOW_SPEED_THRESHOLD:
+                return visitor.visitBelowSpeedThreshold();
+            case OVER_HOURLY_LIMIT:
+                return visitor.visitOverHourlyLimit();
             case SPEEDING_FILTER:
                 return visitor.visitSpeedingFilter();
             case OVER_EVENT_RATE_LIMIT:
                 return visitor.visitOverEventRateLimit();
             case OVER_TRIP_LIMIT:
                 return visitor.visitOverTripLimit();
-            case BELOW_CONFIDENCE_THRESHOLD:
-                return visitor.visitBelowConfidenceThreshold();
             case BELOW_NUDGE_THRESHOLD:
                 return visitor.visitBelowNudgeThreshold();
             case BELOW_SEVERITY_THRESHOLD:
@@ -119,22 +124,24 @@ public final class DetectionLogSafetyEventObjectResponseBodyInboxFilterReason {
                 return GEOFENCE_FILTER;
             case "overDailyLimit":
                 return OVER_DAILY_LIMIT;
-            case "belowSpeedThreshold":
-                return BELOW_SPEED_THRESHOLD;
             case "nighttimeFilter":
                 return NIGHTTIME_FILTER;
-            case "overHourlyLimit":
-                return OVER_HOURLY_LIMIT;
             case "unknown":
                 return UNKNOWN;
+            case "belowConfidenceThreshold":
+                return BELOW_CONFIDENCE_THRESHOLD;
+            case "inCabAlertOnly":
+                return IN_CAB_ALERT_ONLY;
+            case "belowSpeedThreshold":
+                return BELOW_SPEED_THRESHOLD;
+            case "overHourlyLimit":
+                return OVER_HOURLY_LIMIT;
             case "speedingFilter":
                 return SPEEDING_FILTER;
             case "overEventRateLimit":
                 return OVER_EVENT_RATE_LIMIT;
             case "overTripLimit":
                 return OVER_TRIP_LIMIT;
-            case "belowConfidenceThreshold":
-                return BELOW_CONFIDENCE_THRESHOLD;
             case "belowNudgeThreshold":
                 return BELOW_NUDGE_THRESHOLD;
             case "belowSeverityThreshold":
@@ -167,6 +174,8 @@ public final class DetectionLogSafetyEventObjectResponseBodyInboxFilterReason {
 
         SPEEDING_FILTER,
 
+        IN_CAB_ALERT_ONLY,
+
         UNKNOWN,
 
         _UNKNOWN
@@ -194,6 +203,8 @@ public final class DetectionLogSafetyEventObjectResponseBodyInboxFilterReason {
         T visitNighttimeFilter();
 
         T visitSpeedingFilter();
+
+        T visitInCabAlertOnly();
 
         T visitUnknown();
 
