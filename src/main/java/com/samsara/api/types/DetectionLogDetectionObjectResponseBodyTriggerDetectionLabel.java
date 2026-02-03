@@ -29,6 +29,9 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel PASSENGER =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.PASSENGER, "passenger");
 
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel SPEEDING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.SPEEDING, "speeding");
+
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel FOLLOWING_DISTANCE =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
                     Value.FOLLOWING_DISTANCE, "followingDistance");
@@ -156,6 +159,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitMaxSpeed();
             case PASSENGER:
                 return visitor.visitPassenger();
+            case SPEEDING:
+                return visitor.visitSpeeding();
             case FOLLOWING_DISTANCE:
                 return visitor.visitFollowingDistance();
             case MOBILE_USAGE:
@@ -225,6 +230,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return MAX_SPEED;
             case "passenger":
                 return PASSENGER;
+            case "speeding":
+                return SPEEDING;
             case "followingDistance":
                 return FOLLOWING_DISTANCE;
             case "mobileUsage":
@@ -329,6 +336,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         SMOKING,
 
+        SPEEDING,
+
         UNSAFE_PARKING,
 
         VEHICLE_IN_BLIND_SPOT_WARNING,
@@ -392,6 +401,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
         T visitSevereSpeeding();
 
         T visitSmoking();
+
+        T visitSpeeding();
 
         T visitUnsafeParking();
 

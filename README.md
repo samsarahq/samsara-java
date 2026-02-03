@@ -1,12 +1,14 @@
 # Samsara Java Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fsamsarahq%2Fsamsara-java)
+[![Maven Central](https://img.shields.io/maven-central/v/com.samsara/samsara-java)](https://central.sonatype.com/artifact/com.samsara/samsara-java)
 
 The Samsara Java library provides convenient access to the Samsara APIs from Java.
 
 ## Table of Contents
 
 - [Documentation](#documentation)
+- [Installation](#installation)
 - [Reference](#reference)
 - [Usage](#usage)
 - [Environments](#environments)
@@ -24,6 +26,30 @@ The Samsara Java library provides convenient access to the Samsara APIs from Jav
 ## Documentation
 
 API reference documentation is available [here](https://developers.samsara.com/reference/overview).
+
+## Installation
+
+### Gradle
+
+Add the dependency in your `build.gradle` file:
+
+```groovy
+dependencies {
+  implementation 'com.samsara:samsara-java'
+}
+```
+
+### Maven
+
+Add the dependency in your `pom.xml` file:
+
+```xml
+<dependency>
+  <groupId>com.samsara</groupId>
+  <artifactId>samsara-java</artifactId>
+  <version>5.4.1</version>
+</dependency>
+```
 
 ## Reference
 

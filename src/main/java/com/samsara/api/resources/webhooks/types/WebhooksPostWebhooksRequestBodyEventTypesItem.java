@@ -68,6 +68,9 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
     public static final WebhooksPostWebhooksRequestBodyEventTypesItem FORM_SUBMITTED =
             new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.FORM_SUBMITTED, "FormSubmitted");
 
+    public static final WebhooksPostWebhooksRequestBodyEventTypesItem MISSING_DVIR_PAST_DUE =
+            new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.MISSING_DVIR_PAST_DUE, "MissingDvirPastDue");
+
     public static final WebhooksPostWebhooksRequestBodyEventTypesItem ROUTE_STOP_RESEQUENCE =
             new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.ROUTE_STOP_RESEQUENCE, "RouteStopResequence");
 
@@ -175,6 +178,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
                 return visitor.visitSevereSpeedingEnded();
             case FORM_SUBMITTED:
                 return visitor.visitFormSubmitted();
+            case MISSING_DVIR_PAST_DUE:
+                return visitor.visitMissingDvirPastDue();
             case ROUTE_STOP_RESEQUENCE:
                 return visitor.visitRouteStopResequence();
             case ENGINE_FAULT_ON:
@@ -246,6 +251,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
                 return SEVERE_SPEEDING_ENDED;
             case "FormSubmitted":
                 return FORM_SUBMITTED;
+            case "MissingDvirPastDue":
+                return MISSING_DVIR_PAST_DUE;
             case "RouteStopResequence":
                 return ROUTE_STOP_RESEQUENCE;
             case "EngineFaultOn":
@@ -307,6 +314,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
         GEOFENCE_EXIT,
 
         ISSUE_CREATED,
+
+        MISSING_DVIR_PAST_DUE,
 
         PREDICTIVE_MAINTENANCE_ALERT,
 
@@ -373,6 +382,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
         T visitGeofenceExit();
 
         T visitIssueCreated();
+
+        T visitMissingDvirPastDue();
 
         T visitPredictiveMaintenanceAlert();
 

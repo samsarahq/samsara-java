@@ -50,6 +50,8 @@ import com.samsara.api.resources.tachographeuonly.TachographEuOnlyClient;
 import com.samsara.api.resources.tags.TagsClient;
 import com.samsara.api.resources.trailerassignments.TrailerAssignmentsClient;
 import com.samsara.api.resources.trailers.TrailersClient;
+import com.samsara.api.resources.trainingassignments.TrainingAssignmentsClient;
+import com.samsara.api.resources.trainingcourses.TrainingCoursesClient;
 import com.samsara.api.resources.trips.TripsClient;
 import com.samsara.api.resources.users.UsersClient;
 import com.samsara.api.resources.vehiclelocations.VehicleLocationsClient;
@@ -150,6 +152,10 @@ public class SamsaraApiClient {
 
     protected final Supplier<TagsClient> tagsClient;
 
+    protected final Supplier<TrainingAssignmentsClient> trainingAssignmentsClient;
+
+    protected final Supplier<TrainingCoursesClient> trainingCoursesClient;
+
     protected final Supplier<TripsClient> tripsClient;
 
     protected final Supplier<UsersClient> usersClient;
@@ -215,6 +221,8 @@ public class SamsaraApiClient {
         this.safetyClient = Suppliers.memoize(() -> new SafetyClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new SpeedingIntervalsClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new TagsClient(clientOptions));
+        this.trainingAssignmentsClient = Suppliers.memoize(() -> new TrainingAssignmentsClient(clientOptions));
+        this.trainingCoursesClient = Suppliers.memoize(() -> new TrainingCoursesClient(clientOptions));
         this.tripsClient = Suppliers.memoize(() -> new TripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new UsersClient(clientOptions));
         this.legacyClient = Suppliers.memoize(() -> new LegacyClient(clientOptions));
@@ -399,6 +407,14 @@ public class SamsaraApiClient {
 
     public TagsClient tags() {
         return this.tagsClient.get();
+    }
+
+    public TrainingAssignmentsClient trainingAssignments() {
+        return this.trainingAssignmentsClient.get();
+    }
+
+    public TrainingCoursesClient trainingCourses() {
+        return this.trainingCoursesClient.get();
     }
 
     public TripsClient trips() {
