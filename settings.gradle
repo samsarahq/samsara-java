@@ -1,3 +1,3 @@
-rootProject.name = 'samsara-java'
+rootProject.name = 'samsara-java-sdk'
 
 include 'sample-app'

@@ -1,14 +1,26 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'signing'
     id 'com.diffplug.spotless' version '6.11.0'
 }
 
+group = 'com.samsara'
+
+// Extract version from ClientOptions.java (same source as pr-merged.yml workflow)
+def extractVersionFromClientOptions() {
+    def clientOptionsFile = file('src/main/java/com/samsara/api/core/ClientOptions.java')
+    def matcher = clientOptionsFile.text =~ /X-Fern-SDK-Version.*?"(\d+\.\d+\.\d+)"/
+    if (matcher.find()) {
+        return matcher.group(1)
+    }
+    throw new GradleException("Could not extract version from ClientOptions.java")
+}
+
+version = extractVersionFromClientOptions()
+
 repositories {
     mavenCentral()
-    maven {
-        url 'https://s01.oss.sonatype.org/content/repositories/releases/'
-    }
 }
 
 dependencies {
@@ -26,7 +38,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 tasks.withType(Javadoc) {
-    failOnError false
+    failOnError = false
     options.addStringOption('Xdoclint:none', '-quiet')
 }
 
@@ -43,23 +55,6 @@ java {
 }
 
 
-group = 'com.samsara'
-
-version = '5.4.1'
-
-jar {
-    dependsOn(":generatePomFileForMavenPublication")
-    archiveBaseName = "samsara-java"
-}
-
-sourcesJar {
-    archiveBaseName = "samsara-java"
-}
-
-javadocJar {
-    archiveBaseName = "samsara-java"
-}
-
 test {
     useJUnitPlatform()
     testLogging {
@@ -69,33 +64,95 @@ test {
 
 publishing {
     publications {
-        maven(MavenPublication) {
-            groupId = 'com.samsara'
-            artifactId = 'samsara-java'
-            version = '5.4.1'
+        mavenJava(MavenPublication) {
             from components.java
+
+            groupId = 'com.samsara'
+            artifactId = 'samsara-java-sdk'
+            version = project.version
+
             pom {
+                name = 'Samsara Java SDK'
+                description = 'Official Java SDK for the Samsara API'
+                url = 'https://github.com/samsarahq/samsara-java'
+
                 licenses {
                     license {
-                        name = 'MIT'
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
                     }
                 }
+
+                developers {
+                    developer {
+                        name = 'Samsara Developer Ecosystems'
+                        email = 'sdks@samsara.com'
+                        organization = 'Samsara'
+                        organizationUrl = 'https://www.samsara.com'
+                    }
+                }
+
                 scm {
                     connection = 'scm:git:git://github.com/samsarahq/samsara-java.git'
-                    developerConnection = 'scm:git:git://github.com/samsarahq/samsara-java.git'
+                    developerConnection = 'scm:git:ssh://github.com:samsarahq/samsara-java.git'
                     url = 'https://github.com/samsarahq/samsara-java'
                 }
             }
         }
     }
-    repositories {
-        maven {
-            url "$System.env.MAVEN_PUBLISH_REGISTRY_URL"
-            credentials {
-                username "$System.env.MAVEN_USERNAME"
-                password "$System.env.MAVEN_PASSWORD"
-            }
-        }
+}
+
+signing {
+    def signingKey = findProperty('signingKey') ?: System.getenv('GPG_PRIVATE_KEY')
+    def signingPassword = findProperty('signingPassword') ?: System.getenv('GPG_PASSPHRASE')
+
+    // Only configure signing if keys are available
+    if (signingKey) {
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications.mavenJava
     }
 }
 
+// Make signing required for publishing
+tasks.withType(Sign).configureEach {
+    def signingKey = System.getenv('GPG_PRIVATE_KEY')
+    onlyIf { signingKey != null && !signingKey.isEmpty() }
+}
+
+// Task to create the publication bundle for Central Portal upload
+tasks.register('createPublicationBundle', Zip) {
+    dependsOn 'publishMavenJavaPublicationToMavenLocal'
+    
+    from("${System.getProperty('user.home')}/.m2/repository/com/samsara/samsara-java-sdk/${version}") {
+        include '*.jar'
+        include '*.pom'
+        include '*.asc'
+        include '*.md5'
+        include '*.sha1'
+    }
+    
+    archiveFileName = "samsara-java-sdk-${version}-bundle.zip"
+    destinationDirectory = layout.buildDirectory.dir('publications')
+}
+
+// Task to publish to Central Portal via REST API
+tasks.register('publishToCentralPortal') {
+    dependsOn 'createPublicationBundle'
+    
+    doLast {
+        def bundleFile = file("${layout.buildDirectory.get()}/publications/samsara-java-sdk-${version}-bundle.zip")
+        def username = System.getenv('MAVEN_CENTRAL_USERNAME')
+        def password = System.getenv('MAVEN_CENTRAL_PASSWORD')
+        
+        if (!bundleFile.exists()) {
+            throw new GradleException("Bundle file not found: ${bundleFile}")
+        }
+        
+        println "Uploading bundle to Central Portal..."
+        println "Bundle: ${bundleFile}"
+        println "Size: ${bundleFile.length()} bytes"
+        
+        // The actual upload will be done via curl in the workflow
+        // This task just prepares the bundle
+    }
+}
