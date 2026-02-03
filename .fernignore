@@ -5,3 +5,8 @@
 .github/workflows/pr-opened.yml
 .github/workflows/publish.yml
 .github/workflows/release.yml
+
+# Build & Publish files
+build.gradle
+gradle.properties
+settings.gradle
