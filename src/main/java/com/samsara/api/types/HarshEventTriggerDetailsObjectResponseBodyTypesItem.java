@@ -148,6 +148,9 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_INVALID =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_INVALID, "haInvalid");
 
+    public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_REVERSING =
+            new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_REVERSING, "haReversing");
+
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_PASSENGER_POLICY =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_PASSENGER_POLICY, "haPassengerPolicy");
 
@@ -266,6 +269,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return visitor.visitHaRedLightViolation();
             case HA_INVALID:
                 return visitor.visitHaInvalid();
+            case HA_REVERSING:
+                return visitor.visitHaReversing();
             case HA_PASSENGER_POLICY:
                 return visitor.visitHaPassengerPolicy();
             case UNKNOWN:
@@ -359,6 +364,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return HA_RED_LIGHT_VIOLATION;
             case "haInvalid":
                 return HA_INVALID;
+            case "haReversing":
+                return HA_REVERSING;
             case "haPassengerPolicy":
                 return HA_PASSENGER_POLICY;
             default:
@@ -414,6 +421,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         HA_REAR_COLLISION_WARNING,
 
         HA_RED_LIGHT_VIOLATION,
+
+        HA_REVERSING,
 
         HA_ROLLED_STOP_SIGN,
 
@@ -502,6 +511,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         T visitHaRearCollisionWarning();
 
         T visitHaRedLightViolation();
+
+        T visitHaReversing();
 
         T visitHaRolledStopSign();
 

@@ -50,6 +50,8 @@ import com.samsara.api.resources.tachographeuonly.AsyncTachographEuOnlyClient;
 import com.samsara.api.resources.tags.AsyncTagsClient;
 import com.samsara.api.resources.trailerassignments.AsyncTrailerAssignmentsClient;
 import com.samsara.api.resources.trailers.AsyncTrailersClient;
+import com.samsara.api.resources.trainingassignments.AsyncTrainingAssignmentsClient;
+import com.samsara.api.resources.trainingcourses.AsyncTrainingCoursesClient;
 import com.samsara.api.resources.trips.AsyncTripsClient;
 import com.samsara.api.resources.users.AsyncUsersClient;
 import com.samsara.api.resources.vehiclelocations.AsyncVehicleLocationsClient;
@@ -150,6 +152,10 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncTagsClient> tagsClient;
 
+    protected final Supplier<AsyncTrainingAssignmentsClient> trainingAssignmentsClient;
+
+    protected final Supplier<AsyncTrainingCoursesClient> trainingCoursesClient;
+
     protected final Supplier<AsyncTripsClient> tripsClient;
 
     protected final Supplier<AsyncUsersClient> usersClient;
@@ -215,6 +221,8 @@ public class AsyncSamsaraApiClient {
         this.safetyClient = Suppliers.memoize(() -> new AsyncSafetyClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new AsyncSpeedingIntervalsClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new AsyncTagsClient(clientOptions));
+        this.trainingAssignmentsClient = Suppliers.memoize(() -> new AsyncTrainingAssignmentsClient(clientOptions));
+        this.trainingCoursesClient = Suppliers.memoize(() -> new AsyncTrainingCoursesClient(clientOptions));
         this.tripsClient = Suppliers.memoize(() -> new AsyncTripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new AsyncUsersClient(clientOptions));
         this.legacyClient = Suppliers.memoize(() -> new AsyncLegacyClient(clientOptions));
@@ -399,6 +407,14 @@ public class AsyncSamsaraApiClient {
 
     public AsyncTagsClient tags() {
         return this.tagsClient.get();
+    }
+
+    public AsyncTrainingAssignmentsClient trainingAssignments() {
+        return this.trainingAssignmentsClient.get();
+    }
+
+    public AsyncTrainingCoursesClient trainingCourses() {
+        return this.trainingCoursesClient.get();
     }
 
     public AsyncTripsClient trips() {

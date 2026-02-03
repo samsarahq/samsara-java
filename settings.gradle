@@ -1,1 +1,3 @@
+rootProject.name = 'samsara-java'
+
 include 'sample-app'

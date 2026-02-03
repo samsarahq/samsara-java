@@ -84,10 +84,9 @@ public final class WorkflowTriggerObjectRequestBody {
      * Geofence Entry = 5016
      * Geofence Exit = 5017
      * Route Stop ETA Alert = 5018
+     * A safety event occurred with a driver assigned = 5033
+     * A safety event occurred = 5039
      * Scheduled Date And Time = 8001</p>
-     * <p>The following trigger types are in Preview:
-     * A safety event occurred = 5033
-     * A safety event occurred = 5039</p>
      */
     @JsonProperty("triggerTypeId")
     public int getTriggerTypeId() {
@@ -168,10 +167,9 @@ public final class WorkflowTriggerObjectRequestBody {
          * Geofence Entry = 5016
          * Geofence Exit = 5017
          * Route Stop ETA Alert = 5018
+         * A safety event occurred with a driver assigned = 5033
+         * A safety event occurred = 5039
          * Scheduled Date And Time = 8001</p>
-         * <p>The following trigger types are in Preview:
-         * A safety event occurred = 5033
-         * A safety event occurred = 5039</p>
          */
         _FinalStage triggerTypeId(int triggerTypeId);
 
@@ -248,10 +246,9 @@ public final class WorkflowTriggerObjectRequestBody {
          * Geofence Entry = 5016
          * Geofence Exit = 5017
          * Route Stop ETA Alert = 5018
+         * A safety event occurred with a driver assigned = 5033
+         * A safety event occurred = 5039
          * Scheduled Date And Time = 8001</p>
-         * <p>The following trigger types are in Preview:
-         * A safety event occurred = 5033
-         * A safety event occurred = 5039</p>
          * <p>The id of the trigger type. Reference the following list for the ids:</p>
          * <p>Ambient Temperature = 1003
          * Asset Reading = 1062
@@ -295,10 +292,9 @@ public final class WorkflowTriggerObjectRequestBody {
          * Geofence Entry = 5016
          * Geofence Exit = 5017
          * Route Stop ETA Alert = 5018
+         * A safety event occurred with a driver assigned = 5033
+         * A safety event occurred = 5039
          * Scheduled Date And Time = 8001</p>
-         * <p>The following trigger types are in Preview:
-         * A safety event occurred = 5033
-         * A safety event occurred = 5039</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

@@ -68,6 +68,9 @@ public final class WebhooksPatchWebhookResponseBodyEventTypesItem {
     public static final WebhooksPatchWebhookResponseBodyEventTypesItem FORM_SUBMITTED =
             new WebhooksPatchWebhookResponseBodyEventTypesItem(Value.FORM_SUBMITTED, "FormSubmitted");
 
+    public static final WebhooksPatchWebhookResponseBodyEventTypesItem MISSING_DVIR_PAST_DUE =
+            new WebhooksPatchWebhookResponseBodyEventTypesItem(Value.MISSING_DVIR_PAST_DUE, "MissingDvirPastDue");
+
     public static final WebhooksPatchWebhookResponseBodyEventTypesItem ROUTE_STOP_RESEQUENCE =
             new WebhooksPatchWebhookResponseBodyEventTypesItem(Value.ROUTE_STOP_RESEQUENCE, "RouteStopResequence");
 
@@ -175,6 +178,8 @@ public final class WebhooksPatchWebhookResponseBodyEventTypesItem {
                 return visitor.visitSevereSpeedingEnded();
             case FORM_SUBMITTED:
                 return visitor.visitFormSubmitted();
+            case MISSING_DVIR_PAST_DUE:
+                return visitor.visitMissingDvirPastDue();
             case ROUTE_STOP_RESEQUENCE:
                 return visitor.visitRouteStopResequence();
             case ENGINE_FAULT_ON:
@@ -246,6 +251,8 @@ public final class WebhooksPatchWebhookResponseBodyEventTypesItem {
                 return SEVERE_SPEEDING_ENDED;
             case "FormSubmitted":
                 return FORM_SUBMITTED;
+            case "MissingDvirPastDue":
+                return MISSING_DVIR_PAST_DUE;
             case "RouteStopResequence":
                 return ROUTE_STOP_RESEQUENCE;
             case "EngineFaultOn":
@@ -307,6 +314,8 @@ public final class WebhooksPatchWebhookResponseBodyEventTypesItem {
         GEOFENCE_EXIT,
 
         ISSUE_CREATED,
+
+        MISSING_DVIR_PAST_DUE,
 
         PREDICTIVE_MAINTENANCE_ALERT,
 
@@ -373,6 +382,8 @@ public final class WebhooksPatchWebhookResponseBodyEventTypesItem {
         T visitGeofenceExit();
 
         T visitIssueCreated();
+
+        T visitMissingDvirPastDue();
 
         T visitPredictiveMaintenanceAlert();
 
