@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1VisionRunsResponseReportMetadata.Builder.class)
 public final class V1VisionRunsResponseReportMetadata {
-    private final Optional<Float> itemsPerMinute;
+    private final Optional<Double> itemsPerMinute;
 
     private final Optional<Long> noReadCount;
 
@@ -31,7 +31,7 @@ public final class V1VisionRunsResponseReportMetadata {
     private final Map<String, Object> additionalProperties;
 
     private V1VisionRunsResponseReportMetadata(
-            Optional<Float> itemsPerMinute,
+            Optional<Double> itemsPerMinute,
             Optional<Long> noReadCount,
             Optional<Long> rejectCount,
             Optional<Long> successCount,
@@ -47,7 +47,7 @@ public final class V1VisionRunsResponseReportMetadata {
      * @return <p>average scanned items per minute. Should be used instead of scanRate.</p>
      */
     @JsonProperty("itemsPerMinute")
-    public Optional<Float> getItemsPerMinute() {
+    public Optional<Double> getItemsPerMinute() {
         return itemsPerMinute;
     }
 
@@ -110,7 +110,7 @@ public final class V1VisionRunsResponseReportMetadata {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Float> itemsPerMinute = Optional.empty();
+        private Optional<Double> itemsPerMinute = Optional.empty();
 
         private Optional<Long> noReadCount = Optional.empty();
 
@@ -135,12 +135,12 @@ public final class V1VisionRunsResponseReportMetadata {
          * <p>Returns average scanned items per minute. Should be used instead of scanRate.</p>
          */
         @JsonSetter(value = "itemsPerMinute", nulls = Nulls.SKIP)
-        public Builder itemsPerMinute(Optional<Float> itemsPerMinute) {
+        public Builder itemsPerMinute(Optional<Double> itemsPerMinute) {
             this.itemsPerMinute = itemsPerMinute;
             return this;
         }
 
-        public Builder itemsPerMinute(Float itemsPerMinute) {
+        public Builder itemsPerMinute(Double itemsPerMinute) {
             this.itemsPerMinute = Optional.ofNullable(itemsPerMinute);
             return this;
         }

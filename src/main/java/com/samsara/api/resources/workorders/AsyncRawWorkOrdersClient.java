@@ -73,10 +73,14 @@ public class AsyncRawWorkOrdersClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<WorkOrdersPostInvoiceScanResponseBody>> postInvoiceScan(
             WorkOrdersPostInvoiceScanRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("maintenance/invoice-scans")
-                .build();
+                .addPathSegments("maintenance/invoice-scans");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -85,7 +89,7 @@ public class AsyncRawWorkOrdersClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -231,6 +235,11 @@ public class AsyncRawWorkOrdersClient {
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -373,6 +382,11 @@ public class AsyncRawWorkOrdersClient {
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -484,10 +498,14 @@ public class AsyncRawWorkOrdersClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<WorkOrdersPostWorkOrdersResponseBody>> postWorkOrders(
             WorkOrdersPostWorkOrdersRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("maintenance/work-orders")
-                .build();
+                .addPathSegments("maintenance/work-orders");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -496,7 +514,7 @@ public class AsyncRawWorkOrdersClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -610,6 +628,11 @@ public class AsyncRawWorkOrdersClient {
                 .newBuilder()
                 .addPathSegments("maintenance/work-orders");
         QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
@@ -717,10 +740,14 @@ public class AsyncRawWorkOrdersClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<WorkOrdersPatchWorkOrdersResponseBody>> patchWorkOrders(
             WorkOrdersPatchWorkOrdersRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("maintenance/work-orders")
-                .build();
+                .addPathSegments("maintenance/work-orders");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -729,7 +756,7 @@ public class AsyncRawWorkOrdersClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -863,6 +890,11 @@ public class AsyncRawWorkOrdersClient {
         if (request.getAssignedUserIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assignedUserIds", request.getAssignedUserIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

@@ -88,6 +88,11 @@ public class RawSpeedingIntervalsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "severityLevels", request.getSeverityLevels().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)

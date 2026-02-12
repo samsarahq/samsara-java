@@ -1,0 +1,67 @@
+{
+  "data": {
+    "columns": [
+      {
+        "dataType": "string",
+        "name": "Device Name"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        }
+      ],
+      [
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        }
+      ],
+      [
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        }
+      ],
+      [
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        },
+        {
+          "key": "value"
+        }
+      ]
+    ],
+    "status": "complete"
+  },
+  "pagination": {
+    "endCursor": "MjkY",
+    "hasNextPage": true
+  }
+}

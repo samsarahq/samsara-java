@@ -97,7 +97,7 @@ public final class UploadedMediaObjectResponseBody {
     }
 
     /**
-     * @return Type of media.  Valid values: <code>image</code>, <code>video</code>
+     * @return Type of media.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code>
      */
     @JsonProperty("mediaType")
     public UploadedMediaObjectResponseBodyMediaType getMediaType() {
@@ -204,7 +204,7 @@ public final class UploadedMediaObjectResponseBody {
 
     public interface MediaTypeStage {
         /**
-         * <p>Type of media.  Valid values: <code>image</code>, <code>video</code></p>
+         * <p>Type of media.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code></p>
          */
         StartTimeStage mediaType(@NotNull UploadedMediaObjectResponseBodyMediaType mediaType);
     }
@@ -329,8 +329,8 @@ public final class UploadedMediaObjectResponseBody {
         }
 
         /**
-         * <p>Type of media.  Valid values: <code>image</code>, <code>video</code></p>
-         * <p>Type of media.  Valid values: <code>image</code>, <code>video</code></p>
+         * <p>Type of media.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code></p>
+         * <p>Type of media.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

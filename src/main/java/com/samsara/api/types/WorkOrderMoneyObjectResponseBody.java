@@ -21,16 +21,10 @@ import org.jetbrains.annotations.NotNull;
 public final class WorkOrderMoneyObjectResponseBody {
     private final String amount;
 
-    private final WorkOrderMoneyObjectResponseBodyCurrency currency;
-
     private final Map<String, Object> additionalProperties;
 
-    private WorkOrderMoneyObjectResponseBody(
-            String amount,
-            WorkOrderMoneyObjectResponseBodyCurrency currency,
-            Map<String, Object> additionalProperties) {
+    private WorkOrderMoneyObjectResponseBody(String amount, Map<String, Object> additionalProperties) {
         this.amount = amount;
-        this.currency = currency;
         this.additionalProperties = additionalProperties;
     }
 
@@ -46,8 +40,8 @@ public final class WorkOrderMoneyObjectResponseBody {
      * @return Type of the currency. We currently only support usd.  Valid values: <code>usd</code>
      */
     @JsonProperty("currency")
-    public WorkOrderMoneyObjectResponseBodyCurrency getCurrency() {
-        return currency;
+    public String getCurrency() {
+        return "usd";
     }
 
     @java.lang.Override
@@ -62,12 +56,12 @@ public final class WorkOrderMoneyObjectResponseBody {
     }
 
     private boolean equalTo(WorkOrderMoneyObjectResponseBody other) {
-        return amount.equals(other.amount) && currency.equals(other.currency);
+        return amount.equals(other.amount);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.amount, this.currency);
+        return Objects.hash(this.amount);
     }
 
     @java.lang.Override
@@ -83,16 +77,9 @@ public final class WorkOrderMoneyObjectResponseBody {
         /**
          * <p>Amount of the currency.</p>
          */
-        CurrencyStage amount(@NotNull String amount);
+        _FinalStage amount(@NotNull String amount);
 
         Builder from(WorkOrderMoneyObjectResponseBody other);
-    }
-
-    public interface CurrencyStage {
-        /**
-         * <p>Type of the currency. We currently only support usd.  Valid values: <code>usd</code></p>
-         */
-        _FinalStage currency(@NotNull WorkOrderMoneyObjectResponseBodyCurrency currency);
     }
 
     public interface _FinalStage {
@@ -100,10 +87,8 @@ public final class WorkOrderMoneyObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AmountStage, CurrencyStage, _FinalStage {
+    public static final class Builder implements AmountStage, _FinalStage {
         private String amount;
-
-        private WorkOrderMoneyObjectResponseBodyCurrency currency;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -113,7 +98,6 @@ public final class WorkOrderMoneyObjectResponseBody {
         @java.lang.Override
         public Builder from(WorkOrderMoneyObjectResponseBody other) {
             amount(other.getAmount());
-            currency(other.getCurrency());
             return this;
         }
 
@@ -124,26 +108,14 @@ public final class WorkOrderMoneyObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("amount")
-        public CurrencyStage amount(@NotNull String amount) {
+        public _FinalStage amount(@NotNull String amount) {
             this.amount = Objects.requireNonNull(amount, "amount must not be null");
-            return this;
-        }
-
-        /**
-         * <p>Type of the currency. We currently only support usd.  Valid values: <code>usd</code></p>
-         * <p>Type of the currency. We currently only support usd.  Valid values: <code>usd</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("currency")
-        public _FinalStage currency(@NotNull WorkOrderMoneyObjectResponseBodyCurrency currency) {
-            this.currency = Objects.requireNonNull(currency, "currency must not be null");
             return this;
         }
 
         @java.lang.Override
         public WorkOrderMoneyObjectResponseBody build() {
-            return new WorkOrderMoneyObjectResponseBody(amount, currency, additionalProperties);
+            return new WorkOrderMoneyObjectResponseBody(amount, additionalProperties);
         }
     }
 }

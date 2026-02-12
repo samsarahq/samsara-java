@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1VisionRunsByCameraResponseItemReportMetadata.Builder.class)
 public final class V1VisionRunsByCameraResponseItemReportMetadata {
-    private final Optional<Float> itemsPerMinute;
+    private final Optional<Double> itemsPerMinute;
 
     private final Optional<Long> noReadCount;
 
@@ -31,7 +31,7 @@ public final class V1VisionRunsByCameraResponseItemReportMetadata {
     private final Map<String, Object> additionalProperties;
 
     private V1VisionRunsByCameraResponseItemReportMetadata(
-            Optional<Float> itemsPerMinute,
+            Optional<Double> itemsPerMinute,
             Optional<Long> noReadCount,
             Optional<Long> rejectCount,
             Optional<Long> successCount,
@@ -44,7 +44,7 @@ public final class V1VisionRunsByCameraResponseItemReportMetadata {
     }
 
     @JsonProperty("itemsPerMinute")
-    public Optional<Float> getItemsPerMinute() {
+    public Optional<Double> getItemsPerMinute() {
         return itemsPerMinute;
     }
 
@@ -98,7 +98,7 @@ public final class V1VisionRunsByCameraResponseItemReportMetadata {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Float> itemsPerMinute = Optional.empty();
+        private Optional<Double> itemsPerMinute = Optional.empty();
 
         private Optional<Long> noReadCount = Optional.empty();
 
@@ -120,12 +120,12 @@ public final class V1VisionRunsByCameraResponseItemReportMetadata {
         }
 
         @JsonSetter(value = "itemsPerMinute", nulls = Nulls.SKIP)
-        public Builder itemsPerMinute(Optional<Float> itemsPerMinute) {
+        public Builder itemsPerMinute(Optional<Double> itemsPerMinute) {
             this.itemsPerMinute = itemsPerMinute;
             return this;
         }
 
-        public Builder itemsPerMinute(Float itemsPerMinute) {
+        public Builder itemsPerMinute(Double itemsPerMinute) {
             this.itemsPerMinute = Optional.ofNullable(itemsPerMinute);
             return this;
         }

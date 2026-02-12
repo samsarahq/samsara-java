@@ -109,6 +109,11 @@ public class AsyncRawHoursOfServiceClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverIds", request.getDriverIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -241,6 +246,11 @@ public class AsyncRawHoursOfServiceClient {
         if (request.getDriverIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverIds", request.getDriverIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -403,6 +413,11 @@ public class AsyncRawHoursOfServiceClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverIds", request.getDriverIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -524,6 +539,11 @@ public class AsyncRawHoursOfServiceClient {
         if (request.getTypes().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "types", request.getTypes().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -647,13 +667,17 @@ public class AsyncRawHoursOfServiceClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<Void>> setCurrentDutyStatus(
             long driverId, InlineObject1 request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("v1/fleet/drivers")
                 .addPathSegment(Long.toString(driverId))
                 .addPathSegments("hos")
-                .addPathSegments("duty_status")
-                .build();
+                .addPathSegments("duty_status");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -662,7 +686,7 @@ public class AsyncRawHoursOfServiceClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -735,6 +759,11 @@ public class AsyncRawHoursOfServiceClient {
         QueryStringMapper.addQueryParameter(httpUrl, "driverId", request.getDriverId(), false);
         QueryStringMapper.addQueryParameter(httpUrl, "startMs", request.getStartMs(), false);
         QueryStringMapper.addQueryParameter(httpUrl, "endMs", request.getEndMs(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)

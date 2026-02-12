@@ -9,7 +9,6 @@ import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
-import com.samsara.api.resources.betaapis.requests.GetAempEquipmentListRequest;
 import com.samsara.api.resources.betaapis.requests.GetAssetsInputsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDatasetsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDepreciationTransactionsRequest;
@@ -191,30 +190,6 @@ public class BetaApIsClient {
     public AempEquipmentGetAempEquipmentListResponseBody getAempEquipmentList(
             String pageNumber, RequestOptions requestOptions) {
         return this.rawClient.getAempEquipmentList(pageNumber, requestOptions).body();
-    }
-
-    /**
-     * Get a list of equipment following the AEMP ISO 15143-3 standard.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read AEMP</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public AempEquipmentGetAempEquipmentListResponseBody getAempEquipmentList(
-            String pageNumber, GetAempEquipmentListRequest request) {
-        return this.rawClient.getAempEquipmentList(pageNumber, request).body();
-    }
-
-    /**
-     * Get a list of equipment following the AEMP ISO 15143-3 standard.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read AEMP</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public AempEquipmentGetAempEquipmentListResponseBody getAempEquipmentList(
-            String pageNumber, GetAempEquipmentListRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .getAempEquipmentList(pageNumber, request, requestOptions)
-                .body();
     }
 
     /**

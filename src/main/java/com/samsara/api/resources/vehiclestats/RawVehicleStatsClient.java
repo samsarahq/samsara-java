@@ -95,6 +95,11 @@ public class RawVehicleStatsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "types", request.getTypes().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -197,6 +202,11 @@ public class RawVehicleStatsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "decorations", request.getDecorations().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -270,6 +280,11 @@ public class RawVehicleStatsClient {
         if (request.getDecorations().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "decorations", request.getDecorations().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

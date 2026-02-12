@@ -7,11 +7,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class MediaObjectResponseBodyMediaType {
+    public static final MediaObjectResponseBodyMediaType VIDEO_HIGH_RES =
+            new MediaObjectResponseBodyMediaType(Value.VIDEO_HIGH_RES, "videoHighRes");
+
+    public static final MediaObjectResponseBodyMediaType VIDEO_LOW_RES =
+            new MediaObjectResponseBodyMediaType(Value.VIDEO_LOW_RES, "videoLowRes");
+
+    public static final MediaObjectResponseBodyMediaType HYPERLAPSE =
+            new MediaObjectResponseBodyMediaType(Value.HYPERLAPSE, "hyperlapse");
+
     public static final MediaObjectResponseBodyMediaType IMAGE =
             new MediaObjectResponseBodyMediaType(Value.IMAGE, "image");
-
-    public static final MediaObjectResponseBodyMediaType VIDEO =
-            new MediaObjectResponseBodyMediaType(Value.VIDEO, "video");
 
     private final Value value;
 
@@ -46,10 +52,14 @@ public final class MediaObjectResponseBodyMediaType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case VIDEO_HIGH_RES:
+                return visitor.visitVideoHighRes();
+            case VIDEO_LOW_RES:
+                return visitor.visitVideoLowRes();
+            case HYPERLAPSE:
+                return visitor.visitHyperlapse();
             case IMAGE:
                 return visitor.visitImage();
-            case VIDEO:
-                return visitor.visitVideo();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -59,10 +69,14 @@ public final class MediaObjectResponseBodyMediaType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static MediaObjectResponseBodyMediaType valueOf(String value) {
         switch (value) {
+            case "videoHighRes":
+                return VIDEO_HIGH_RES;
+            case "videoLowRes":
+                return VIDEO_LOW_RES;
+            case "hyperlapse":
+                return HYPERLAPSE;
             case "image":
                 return IMAGE;
-            case "video":
-                return VIDEO;
             default:
                 return new MediaObjectResponseBodyMediaType(Value.UNKNOWN, value);
         }
@@ -71,7 +85,11 @@ public final class MediaObjectResponseBodyMediaType {
     public enum Value {
         IMAGE,
 
-        VIDEO,
+        VIDEO_HIGH_RES,
+
+        VIDEO_LOW_RES,
+
+        HYPERLAPSE,
 
         UNKNOWN
     }
@@ -79,7 +97,11 @@ public final class MediaObjectResponseBodyMediaType {
     public interface Visitor<T> {
         T visitImage();
 
-        T visitVideo();
+        T visitVideoHighRes();
+
+        T visitVideoLowRes();
+
+        T visitHyperlapse();
 
         T visitUnknown(String unknownType);
     }

@@ -90,6 +90,11 @@ public class AsyncRawLegacyApIsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "isResolved", request.getIsResolved().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -205,6 +210,11 @@ public class AsyncRawLegacyApIsClient {
         if (request.getDriverIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverIds", request.getDriverIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -338,6 +348,11 @@ public class AsyncRawLegacyApIsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "tagIds", request.getTagIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -431,6 +446,11 @@ public class AsyncRawLegacyApIsClient {
                     "minIdlingDurationMinutes",
                     request.getMinIdlingDurationMinutes().get(),
                     false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -564,6 +584,11 @@ public class AsyncRawLegacyApIsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "vehicleIds", request.getVehicleIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -680,6 +705,11 @@ public class AsyncRawLegacyApIsClient {
         if (request.getStartTime().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "startTime", request.getStartTime().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -843,6 +873,11 @@ public class AsyncRawLegacyApIsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "after", request.getAfter().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -972,6 +1007,11 @@ public class AsyncRawLegacyApIsClient {
                 .addPathSegments("safety")
                 .addPathSegments("harsh_event");
         QueryStringMapper.addQueryParameter(httpUrl, "timestamp", request.getTimestamp(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)

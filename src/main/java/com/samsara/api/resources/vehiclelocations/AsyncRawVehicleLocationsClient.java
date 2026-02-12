@@ -101,6 +101,11 @@ public class AsyncRawVehicleLocationsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "vehicleIds", request.getVehicleIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -215,6 +220,11 @@ public class AsyncRawVehicleLocationsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "vehicleIds", request.getVehicleIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -296,6 +306,11 @@ public class AsyncRawVehicleLocationsClient {
         if (request.getVehicleIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "vehicleIds", request.getVehicleIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

@@ -5,10 +5,11 @@ package com.samsara.api.resources.industrial;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.core.Suppliers;
+import com.samsara.api.resources.industrial.assets.AssetsClient;
 import com.samsara.api.resources.industrial.requests.AssetCreate;
 import com.samsara.api.resources.industrial.requests.AssetDataOutputsPatchAssetDataOutputsRequestBody;
 import com.samsara.api.resources.industrial.requests.AssetPatch;
-import com.samsara.api.resources.industrial.requests.DeleteIndustrialAssetRequest;
 import com.samsara.api.resources.industrial.requests.GetDataInputDataFeedRequest;
 import com.samsara.api.resources.industrial.requests.GetDataInputDataHistoryRequest;
 import com.samsara.api.resources.industrial.requests.GetDataInputDataSnapshotRequest;
@@ -17,7 +18,6 @@ import com.samsara.api.resources.industrial.requests.GetIndustrialAssetsRequest;
 import com.samsara.api.resources.industrial.requests.GetVisionRunsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.InlineObject3;
 import com.samsara.api.resources.industrial.requests.V1GetVisionLatestRunCameraRequest;
-import com.samsara.api.resources.industrial.requests.V1GetVisionProgramsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsByCameraAndProgramRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsRequest;
 import com.samsara.api.types.AssetDataOutputsPatchAssetDataOutputsResponseBody;
@@ -35,15 +35,19 @@ import com.samsara.api.types.V1VisionRunsByCameraAndProgramResponse;
 import com.samsara.api.types.V1VisionRunsByCameraResponseItem;
 import com.samsara.api.types.V1VisionRunsResponse;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class IndustrialClient {
     protected final ClientOptions clientOptions;
 
     private final RawIndustrialClient rawClient;
 
+    protected final Supplier<AssetsClient> assetsClient;
+
     public IndustrialClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
         this.rawClient = new RawIndustrialClient(clientOptions);
+        this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
     }
 
     /**
@@ -106,43 +110,6 @@ public class IndustrialClient {
      */
     public InlineResponse200 createIndustrialAsset(AssetCreate request, RequestOptions requestOptions) {
         return this.rawClient.createIndustrialAsset(request, requestOptions).body();
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteIndustrialAsset(String id) {
-        return this.rawClient.deleteIndustrialAsset(id).body();
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteIndustrialAsset(String id, RequestOptions requestOptions) {
-        return this.rawClient.deleteIndustrialAsset(id, requestOptions).body();
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteIndustrialAsset(String id, DeleteIndustrialAssetRequest request) {
-        return this.rawClient.deleteIndustrialAsset(id, request).body();
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteIndustrialAsset(
-            String id, DeleteIndustrialAssetRequest request, RequestOptions requestOptions) {
-        return this.rawClient.deleteIndustrialAsset(id, request, requestOptions).body();
     }
 
     /**
@@ -408,40 +375,6 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public List<V1ProgramsForTheCameraResponseItem> v1GetVisionProgramsByCamera(
-            long cameraId, V1GetVisionProgramsByCameraRequest request) {
-        return this.rawClient.v1GetVisionProgramsByCamera(cameraId, request).body();
-    }
-
-    /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public List<V1ProgramsForTheCameraResponseItem> v1GetVisionProgramsByCamera(
-            long cameraId, V1GetVisionProgramsByCameraRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .v1GetVisionProgramsByCamera(cameraId, request, requestOptions)
-                .body();
-    }
-
-    /**
      * Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
@@ -681,5 +614,9 @@ public class IndustrialClient {
      */
     public InlineResponse2008 v1GetMachines(RequestOptions requestOptions) {
         return this.rawClient.v1GetMachines(requestOptions).body();
+    }
+
+    public AssetsClient assets() {
+        return this.assetsClient.get();
     }
 }

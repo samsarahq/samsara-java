@@ -96,6 +96,11 @@ public class AsyncRawIssuesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "include", request.getInclude().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -206,10 +211,14 @@ public class AsyncRawIssuesClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<IssuesPatchIssueResponseBody>> patchIssue(
             IssuesPatchIssueRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("issues")
-                .build();
+                .addPathSegments("issues");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -218,7 +227,7 @@ public class AsyncRawIssuesClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -358,6 +367,11 @@ public class AsyncRawIssuesClient {
                     "assignedToRouteStopIds",
                     request.getAssignedToRouteStopIds().get(),
                     true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

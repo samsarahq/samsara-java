@@ -1,0 +1,128 @@
+{
+  "data": [
+    {
+      "asset": {
+        "attributes": [
+          {
+            "dateValues": [
+              "dateValues",
+              "dateValues"
+            ],
+            "id": "id",
+            "name": "name",
+            "numberValues": [
+              1.1,
+              1.1
+            ],
+            "stringValues": [
+              "stringValues",
+              "stringValues"
+            ]
+          },
+          {
+            "dateValues": [
+              "dateValues",
+              "dateValues"
+            ],
+            "id": "id",
+            "name": "name",
+            "numberValues": [
+              1.1,
+              1.1
+            ],
+            "stringValues": [
+              "stringValues",
+              "stringValues"
+            ]
+          }
+        ],
+        "externalIds": {
+          "externalIds": "externalIds"
+        },
+        "id": "id",
+        "tags": [
+          {
+            "id": "id",
+            "name": "name",
+            "parentTagId": "parentTagId"
+          },
+          {
+            "id": "id",
+            "name": "name",
+            "parentTagId": "parentTagId"
+          }
+        ]
+      },
+      "auxInput": {
+        "name": "name"
+      },
+      "happenedAtTime": "happenedAtTime",
+      "units": "boolean",
+      "value": "value"
+    },
+    {
+      "asset": {
+        "attributes": [
+          {
+            "dateValues": [
+              "dateValues",
+              "dateValues"
+            ],
+            "id": "id",
+            "name": "name",
+            "numberValues": [
+              1.1,
+              1.1
+            ],
+            "stringValues": [
+              "stringValues",
+              "stringValues"
+            ]
+          },
+          {
+            "dateValues": [
+              "dateValues",
+              "dateValues"
+            ],
+            "id": "id",
+            "name": "name",
+            "numberValues": [
+              1.1,
+              1.1
+            ],
+            "stringValues": [
+              "stringValues",
+              "stringValues"
+            ]
+          }
+        ],
+        "externalIds": {
+          "externalIds": "externalIds"
+        },
+        "id": "id",
+        "tags": [
+          {
+            "id": "id",
+            "name": "name",
+            "parentTagId": "parentTagId"
+          },
+          {
+            "id": "id",
+            "name": "name",
+            "parentTagId": "parentTagId"
+          }
+        ]
+      },
+      "auxInput": {
+        "name": "name"
+      },
+      "happenedAtTime": "happenedAtTime",
+      "units": "boolean",
+      "value": "value"
+    }
+  ],
+  "pagination": {
+    "endCursor": "endCursor",
+    "hasNextPage": true
+  }
+}

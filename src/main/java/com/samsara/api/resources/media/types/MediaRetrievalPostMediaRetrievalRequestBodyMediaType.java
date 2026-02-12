@@ -13,6 +13,9 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
     public static final MediaRetrievalPostMediaRetrievalRequestBodyMediaType VIDEO_LOW_RES =
             new MediaRetrievalPostMediaRetrievalRequestBodyMediaType(Value.VIDEO_LOW_RES, "videoLowRes");
 
+    public static final MediaRetrievalPostMediaRetrievalRequestBodyMediaType HYPERLAPSE =
+            new MediaRetrievalPostMediaRetrievalRequestBodyMediaType(Value.HYPERLAPSE, "hyperlapse");
+
     public static final MediaRetrievalPostMediaRetrievalRequestBodyMediaType IMAGE =
             new MediaRetrievalPostMediaRetrievalRequestBodyMediaType(Value.IMAGE, "image");
 
@@ -53,6 +56,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
                 return visitor.visitVideoHighRes();
             case VIDEO_LOW_RES:
                 return visitor.visitVideoLowRes();
+            case HYPERLAPSE:
+                return visitor.visitHyperlapse();
             case IMAGE:
                 return visitor.visitImage();
             case UNKNOWN:
@@ -68,6 +73,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
                 return VIDEO_HIGH_RES;
             case "videoLowRes":
                 return VIDEO_LOW_RES;
+            case "hyperlapse":
+                return HYPERLAPSE;
             case "image":
                 return IMAGE;
             default:
@@ -82,6 +89,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
 
         VIDEO_LOW_RES,
 
+        HYPERLAPSE,
+
         UNKNOWN
     }
 
@@ -91,6 +100,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBodyMediaType {
         T visitVideoHighRes();
 
         T visitVideoLowRes();
+
+        T visitHyperlapse();
 
         T visitUnknown(String unknownType);
     }

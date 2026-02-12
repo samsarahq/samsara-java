@@ -73,6 +73,11 @@ public class AsyncRawTachographEuOnlyClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "tagIds", request.getTagIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -153,6 +158,11 @@ public class AsyncRawTachographEuOnlyClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "tagIds", request.getTagIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -232,6 +242,11 @@ public class AsyncRawTachographEuOnlyClient {
         if (request.getTagIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "tagIds", request.getTagIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

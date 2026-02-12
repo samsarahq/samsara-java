@@ -16,6 +16,9 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HARSH_TURN =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.HARSH_TURN, "HarshTurn");
 
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel OPERATIONAL_EVENT =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.OPERATIONAL_EVENT, "OperationalEvent");
+
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel SPEEDING =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.SPEEDING, "Speeding");
 
@@ -230,6 +233,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitDefensiveDriving();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
+            case OPERATIONAL_EVENT:
+                return visitor.visitOperationalEvent();
             case SPEEDING:
                 return visitor.visitSpeeding();
             case DRINKING:
@@ -355,6 +360,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return DEFENSIVE_DRIVING;
             case "HarshTurn":
                 return HARSH_TURN;
+            case "OperationalEvent":
+                return OPERATIONAL_EVENT;
             case "Speeding":
                 return SPEEDING;
             case "Drinking":
@@ -551,6 +558,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         OBSTRUCTED_CAMERA,
 
+        OPERATIONAL_EVENT,
+
         OTHER_VIOLATION,
 
         PASSENGER,
@@ -670,6 +679,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
         T visitNoSeatbelt();
 
         T visitObstructedCamera();
+
+        T visitOperationalEvent();
 
         T visitOtherViolation();
 

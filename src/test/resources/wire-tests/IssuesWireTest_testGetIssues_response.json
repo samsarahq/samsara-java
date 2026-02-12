@@ -1,0 +1,100 @@
+{
+  "data": [
+    {
+      "asset": {
+        "entryType": "tracked",
+        "externalIds": {
+          "externalIds": "externalIds"
+        },
+        "id": "id",
+        "name": "name"
+      },
+      "assignedTo": {
+        "id": "id",
+        "type": "driver"
+      },
+      "createdAtTime": "2024-01-15T09:30:00Z",
+      "description": "description",
+      "dueDate": "2024-01-15T09:30:00Z",
+      "externalIds": {
+        "externalIds": "externalIds"
+      },
+      "id": "id",
+      "issueSource": {
+        "id": "id",
+        "type": "form"
+      },
+      "mediaList": [
+        {
+          "id": "id",
+          "processingStatus": "unknown",
+          "url": "url",
+          "urlExpiresAt": "2024-01-15T09:30:00Z"
+        },
+        {
+          "id": "id",
+          "processingStatus": "unknown",
+          "url": "url",
+          "urlExpiresAt": "2024-01-15T09:30:00Z"
+        }
+      ],
+      "priority": "low",
+      "status": "open",
+      "submittedAtTime": "2024-01-15T09:30:00Z",
+      "submittedBy": {
+        "id": "id",
+        "type": "driver"
+      },
+      "title": "title",
+      "updatedAtTime": "2024-01-15T09:30:00Z"
+    },
+    {
+      "asset": {
+        "entryType": "tracked",
+        "externalIds": {
+          "externalIds": "externalIds"
+        },
+        "id": "id",
+        "name": "name"
+      },
+      "assignedTo": {
+        "id": "id",
+        "type": "driver"
+      },
+      "createdAtTime": "2024-01-15T09:30:00Z",
+      "description": "description",
+      "dueDate": "2024-01-15T09:30:00Z",
+      "externalIds": {
+        "externalIds": "externalIds"
+      },
+      "id": "id",
+      "issueSource": {
+        "id": "id",
+        "type": "form"
+      },
+      "mediaList": [
+        {
+          "id": "id",
+          "processingStatus": "unknown",
+          "url": "url",
+          "urlExpiresAt": "2024-01-15T09:30:00Z"
+        },
+        {
+          "id": "id",
+          "processingStatus": "unknown",
+          "url": "url",
+          "urlExpiresAt": "2024-01-15T09:30:00Z"
+        }
+      ],
+      "priority": "low",
+      "status": "open",
+      "submittedAtTime": "2024-01-15T09:30:00Z",
+      "submittedBy": {
+        "id": "id",
+        "type": "driver"
+      },
+      "title": "title",
+      "updatedAtTime": "2024-01-15T09:30:00Z"
+    }
+  ]
+}

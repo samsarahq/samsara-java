@@ -66,12 +66,16 @@ public class AsyncRawSettingsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<SettingsGetComplianceSettingsResponseBody>> getComplianceSettings(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/settings/compliance")
-                .build();
+                .addPathSegments("fleet/settings/compliance");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json")
@@ -205,10 +209,14 @@ public class AsyncRawSettingsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<SettingsPatchComplianceSettingsResponseBody>>
             patchComplianceSettings(SettingsPatchComplianceSettingsRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/settings/compliance")
-                .build();
+                .addPathSegments("fleet/settings/compliance");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -217,7 +225,7 @@ public class AsyncRawSettingsClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -327,12 +335,16 @@ public class AsyncRawSettingsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<SettingsGetDriverAppSettingsResponseBody>> getDriverAppSettings(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/settings/driver-app")
-                .build();
+                .addPathSegments("fleet/settings/driver-app");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json")
@@ -466,10 +478,14 @@ public class AsyncRawSettingsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<SettingsPatchDriverAppSettingsResponseBody>> patchDriverAppSettings(
             SettingsPatchDriverAppSettingsRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/settings/driver-app")
-                .build();
+                .addPathSegments("fleet/settings/driver-app");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -478,7 +494,7 @@ public class AsyncRawSettingsClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -588,12 +604,16 @@ public class AsyncRawSettingsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<SafetySettingsGetSafetySettingsResponseBody>> getSafetySettings(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/settings/safety")
-                .build();
+                .addPathSegments("fleet/settings/safety");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json")

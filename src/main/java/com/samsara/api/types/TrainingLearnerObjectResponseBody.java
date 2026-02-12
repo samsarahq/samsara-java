@@ -21,14 +21,10 @@ import org.jetbrains.annotations.NotNull;
 public final class TrainingLearnerObjectResponseBody {
     private final String id;
 
-    private final TrainingLearnerObjectResponseBodyType type;
-
     private final Map<String, Object> additionalProperties;
 
-    private TrainingLearnerObjectResponseBody(
-            String id, TrainingLearnerObjectResponseBodyType type, Map<String, Object> additionalProperties) {
+    private TrainingLearnerObjectResponseBody(String id, Map<String, Object> additionalProperties) {
         this.id = id;
-        this.type = type;
         this.additionalProperties = additionalProperties;
     }
 
@@ -44,8 +40,8 @@ public final class TrainingLearnerObjectResponseBody {
      * @return The type of the polymorphic user.  Valid values: <code>driver</code>
      */
     @JsonProperty("type")
-    public TrainingLearnerObjectResponseBodyType getType() {
-        return type;
+    public String getType() {
+        return "driver";
     }
 
     @java.lang.Override
@@ -60,12 +56,12 @@ public final class TrainingLearnerObjectResponseBody {
     }
 
     private boolean equalTo(TrainingLearnerObjectResponseBody other) {
-        return id.equals(other.id) && type.equals(other.type);
+        return id.equals(other.id);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.type);
+        return Objects.hash(this.id);
     }
 
     @java.lang.Override
@@ -81,16 +77,9 @@ public final class TrainingLearnerObjectResponseBody {
         /**
          * <p>ID of the polymorphic user.</p>
          */
-        TypeStage id(@NotNull String id);
+        _FinalStage id(@NotNull String id);
 
         Builder from(TrainingLearnerObjectResponseBody other);
-    }
-
-    public interface TypeStage {
-        /**
-         * <p>The type of the polymorphic user.  Valid values: <code>driver</code></p>
-         */
-        _FinalStage type(@NotNull TrainingLearnerObjectResponseBodyType type);
     }
 
     public interface _FinalStage {
@@ -98,10 +87,8 @@ public final class TrainingLearnerObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements IdStage, TypeStage, _FinalStage {
+    public static final class Builder implements IdStage, _FinalStage {
         private String id;
-
-        private TrainingLearnerObjectResponseBodyType type;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -111,7 +98,6 @@ public final class TrainingLearnerObjectResponseBody {
         @java.lang.Override
         public Builder from(TrainingLearnerObjectResponseBody other) {
             id(other.getId());
-            type(other.getType());
             return this;
         }
 
@@ -122,26 +108,14 @@ public final class TrainingLearnerObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("id")
-        public TypeStage id(@NotNull String id) {
+        public _FinalStage id(@NotNull String id) {
             this.id = Objects.requireNonNull(id, "id must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The type of the polymorphic user.  Valid values: <code>driver</code></p>
-         * <p>The type of the polymorphic user.  Valid values: <code>driver</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("type")
-        public _FinalStage type(@NotNull TrainingLearnerObjectResponseBodyType type) {
-            this.type = Objects.requireNonNull(type, "type must not be null");
             return this;
         }
 
         @java.lang.Override
         public TrainingLearnerObjectResponseBody build() {
-            return new TrainingLearnerObjectResponseBody(id, type, additionalProperties);
+            return new TrainingLearnerObjectResponseBody(id, additionalProperties);
         }
     }
 }

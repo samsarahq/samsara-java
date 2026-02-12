@@ -266,12 +266,7 @@ To use this endpoint, select **Read Addresses** under the Addresses category whe
 <dd>
 
 ```java
-client.addresses().get(
-    "id",
-    GetAddressesRequest
-        .builder()
-        .build()
-);
+client.addresses().get("id");
 ```
 </dd>
 </dl>
@@ -329,12 +324,7 @@ To use this endpoint, select **Write Addresses** under the Addresses category wh
 <dd>
 
 ```java
-client.addresses().delete(
-    "id",
-    DeleteAddressesRequest
-        .builder()
-        .build()
-);
+client.addresses().delete("id");
 ```
 </dd>
 </dl>
@@ -536,7 +526,6 @@ Driver HOS Violation
 Vehicle Engine Idle
 Asset Engine On
 Asset Engine Off
-Harsh Event
 Scheduled Maintenance
 Scheduled Maintenance by Odometer
 Scheduled Maintenance by Engine Hours
@@ -1952,12 +1941,7 @@ client.assets().v1GetAssetReefer(
 <dd>
 
 ```java
-client.assets().get(
-    "id",
-    GetAssetsRequest
-        .builder()
-        .build()
-);
+client.assets().get("id");
 ```
 </dd>
 </dl>
@@ -1997,12 +1981,7 @@ client.assets().get(
 <dd>
 
 ```java
-client.assets().update(
-    "id",
-    UpdateAssetsRequest
-        .builder()
-        .build()
-);
+client.assets().update("id");
 ```
 </dd>
 </dl>
@@ -2276,12 +2255,7 @@ To use this endpoint, select **Read AEMP** under the Equipment category when cre
 <dd>
 
 ```java
-client.betaApIs().getAempEquipmentList(
-    "pageNumber",
-    GetAempEquipmentListRequest
-        .builder()
-        .build()
-);
+client.betaApIs().getAempEquipmentList("pageNumber");
 ```
 </dd>
 </dl>
@@ -5092,7 +5066,6 @@ client.betaApIs().postReadings(
                 ReadingDatapointRequestBody
                     .builder()
                     .entityId("123451234512345")
-                    .entityType(ReadingDatapointRequestBodyEntityType.ASSET)
                     .happenedAtTime("2023-10-27T10:00:00Z")
                     .readingId("airInletPressure")
                     .value(
@@ -6820,7 +6793,7 @@ client.attributes().getAttribute(
 </dl>
 </details>
 
-<details><summary><code>client.attributes.deleteAttribute(id) -> String</code></summary>
+<details><summary><code>client.attributes.delete(id) -> String</code></summary>
 <dl>
 <dd>
 
@@ -6851,11 +6824,11 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 <dd>
 
 ```java
-client.attributes().deleteAttribute(
+client.attributes().delete(
     "id",
-    DeleteAttributeRequest
+    DeleteAttributesRequest
         .builder()
-        .entityType(DeleteAttributeRequestEntityType.DRIVER)
+        .entityType(DeleteAttributesRequestEntityType.DRIVER)
         .build()
 );
 ```
@@ -6880,7 +6853,7 @@ client.attributes().deleteAttribute(
 <dl>
 <dd>
 
-**entityType:** `DeleteAttributeRequestEntityType` — Denotes the type of entity, driver or asset.
+**entityType:** `DeleteAttributesRequestEntityType` — Denotes the type of entity, driver or asset.
     
 </dd>
 </dl>
@@ -7207,7 +7180,7 @@ client.media().getMediaRetrieval(
 <dl>
 <dd>
 
-This endpoint creates an asynchronous request to upload certain media from a device. The closest available media to the requested timestamp is returned. Images and high-res videos are supported; other types of media (e.g. hyperlapse, low-res) are planned to be supported in the future. Currently, only unblurred media is supported. If a device is offline, the requested media will be uploaded once it comes back online. Quota limits are enforced for media retrievals made through the API. The Create a media retrieval request response includes information about the media retrieval quota remaining for the organization. The media retrieval quota for the organization is reset at the beginning of each month.The quota is expressed using seconds of High Resolution video. 10 still images are equivalent to a 1 second of High Resolution footage.
+This endpoint creates an asynchronous request to upload certain media from a device. The closest available media to the requested timestamp is returned. Images, videos(both high resolution and low resolution) and hyperlapses are supported.Currently, only unblurred media is supported. If a device is offline, the requested media will be uploaded once it comes back online. Quota limits are enforced for media retrievals made through the API. The Create a media retrieval request response includes information about the media retrieval quota remaining for the organization. The media retrieval quota for the organization is reset at the beginning of each month.The quota is expressed using seconds of High Resolution video. 10 still images are equivalent to a 1 second of High Resolution footage.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -7271,7 +7244,7 @@ client.media().postMediaRetrieval(
 <dl>
 <dd>
 
-**mediaType:** `MediaRetrievalPostMediaRetrievalRequestBodyMediaType` — The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: `image`, `videoHighRes`, `videoLowRes`
+**mediaType:** `MediaRetrievalPostMediaRetrievalRequestBodyMediaType` — The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: `image`, `videoHighRes`, `videoLowRes`, `hyperlapse`
     
 </dd>
 </dl>
@@ -7773,12 +7746,7 @@ To use this endpoint, select **Read Alert Contacts** under the Setup & Administr
 <dd>
 
 ```java
-client.contacts().getContact(
-    "id",
-    GetContactRequest
-        .builder()
-        .build()
-);
+client.contacts().getContact("id");
 ```
 </dd>
 </dl>
@@ -7805,7 +7773,7 @@ client.contacts().getContact(
 </dl>
 </details>
 
-<details><summary><code>client.contacts.deleteContact(id) -> String</code></summary>
+<details><summary><code>client.contacts.delete(id) -> String</code></summary>
 <dl>
 <dd>
 
@@ -7836,12 +7804,7 @@ To use this endpoint, select **Write Alert Contacts** under the Setup & Administ
 <dd>
 
 ```java
-client.contacts().deleteContact(
-    "id",
-    DeleteContactRequest
-        .builder()
-        .build()
-);
+client.contacts().delete("id");
 ```
 </dd>
 </dl>
@@ -8536,7 +8499,6 @@ client.maintenance().createDvir(
         .builder()
         .authorId("11")
         .safetyStatus(CreateDvirRequestSafetyStatus.SAFE)
-        .type(CreateDvirRequestType.MECHANIC)
         .build()
 );
 ```
@@ -8617,7 +8579,7 @@ client.maintenance().createDvir(
 <dl>
 <dd>
 
-**type:** `CreateDvirRequestType` — Only type 'mechanic' is currently accepted.
+**type:** `String` — Only type 'mechanic' is currently accepted.
     
 </dd>
 </dl>
@@ -10034,69 +9996,6 @@ client.carrierProposedAssignments().createCarrierProposedAssignment(
 </dl>
 </details>
 
-<details><summary><code>client.carrierProposedAssignments.deleteCarrierProposedAssignment(id) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.carrierProposedAssignments().deleteCarrierProposedAssignment(
-    "id",
-    DeleteCarrierProposedAssignmentRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — ID of the assignment.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Legacy APIs
 <details><summary><code>client.legacyApIs.getDvirDefects() -> DefectsResponse</code></summary>
 <dl>
@@ -11299,12 +11198,7 @@ To use this endpoint, select **Read Documents** under the Driver Workflow catego
 <dd>
 
 ```java
-client.documents().getDocumentPdf(
-    "id",
-    GetDocumentPdfRequest
-        .builder()
-        .build()
-);
+client.documents().getDocumentPdf("id");
 ```
 </dd>
 </dl>
@@ -11365,12 +11259,7 @@ To use this endpoint, select **Read Documents** under the Driver Workflow catego
 <dd>
 
 ```java
-client.documents().getDocument(
-    "id",
-    GetDocumentRequest
-        .builder()
-        .build()
-);
+client.documents().getDocument("id");
 ```
 </dd>
 </dl>
@@ -11431,12 +11320,7 @@ To use this endpoint, select **Write Documents** under the Driver Workflow categ
 <dd>
 
 ```java
-client.documents().deleteDocument(
-    "id",
-    DeleteDocumentRequest
-        .builder()
-        .build()
-);
+client.documents().deleteDocument("id");
 ```
 </dd>
 </dl>
@@ -12464,12 +12348,7 @@ To use this endpoint, select **Read Drivers** under the Drivers category when cr
 <dd>
 
 ```java
-client.drivers().get(
-    "id",
-    GetDriversRequest
-        .builder()
-        .build()
-);
+client.drivers().get("id");
 ```
 </dd>
 </dl>
@@ -12509,12 +12388,7 @@ client.drivers().get(
 <dd>
 
 ```java
-client.drivers().delete(
-    "id",
-    DeleteDriversRequest
-        .builder()
-        .build()
-);
+client.drivers().delete("id");
 ```
 </dd>
 </dl>
@@ -14037,12 +13911,7 @@ To use this endpoint, select **Read Equipment** under the Equipment category whe
 <dd>
 
 ```java
-client.equipment().getEquipment(
-    "id",
-    GetEquipmentRequest
-        .builder()
-        .build()
-);
+client.equipment().getEquipment("id");
 ```
 </dd>
 </dl>
@@ -14281,7 +14150,7 @@ client.hoursOfService().getHosDailyLogs(
 <dl>
 <dd>
 
-**expand:** `Optional<GetHosDailyLogsRequestExpand>` 
+**expand:** `Optional<String>` 
 
 Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.
 
@@ -15115,12 +14984,7 @@ To use this endpoint, select **Read IFTA (US)** under the Compliance category wh
 <dd>
 
 ```java
-client.ifta().getIftaDetailJob(
-    "id",
-    GetIftaDetailJobRequest
-        .builder()
-        .build()
-);
+client.ifta().getIftaDetailJob("id");
 ```
 </dd>
 </dl>
@@ -15447,7 +15311,7 @@ client.routes().getRoutesFeed(
 <dl>
 <dd>
 
-**expand:** `Optional<GetRoutesFeedRequestExpand>` 
+**expand:** `Optional<String>` 
 
 Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.
 
@@ -15571,12 +15435,7 @@ To use this endpoint, select **Write Routes** under the Driver Workflow category
 <dd>
 
 ```java
-client.routes().deleteRoute(
-    "id",
-    DeleteRouteRequest
-        .builder()
-        .build()
-);
+client.routes().deleteRoute("id");
 ```
 </dd>
 </dl>
@@ -16556,12 +16415,7 @@ To use this endpoint, select **Read Trailers** under the Trailers category when 
 <dd>
 
 ```java
-client.trailers().getTrailer(
-    "id",
-    GetTrailerRequest
-        .builder()
-        .build()
-);
+client.trailers().getTrailer("id");
 ```
 </dd>
 </dl>
@@ -16622,12 +16476,7 @@ To use this endpoint, select **Write Trailers** under the Trailers category when
 <dd>
 
 ```java
-client.trailers().deleteTrailer(
-    "id",
-    DeleteTrailerRequest
-        .builder()
-        .build()
-);
+client.trailers().deleteTrailer("id");
 ```
 </dd>
 </dl>
@@ -16947,12 +16796,7 @@ To use this endpoint, select **Read Vehicles** under the Vehicles category when 
 <dd>
 
 ```java
-client.vehicles().get(
-    "id",
-    GetVehiclesRequest
-        .builder()
-        .build()
-);
+client.vehicles().get("id");
 ```
 </dd>
 </dl>
@@ -18316,7 +18160,6 @@ client.forms().postFormSubmission(
                 .revisionId("1214a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                 .build()
         )
-        .status(FormSubmissionsPostFormSubmissionRequestBodyStatus.NOT_STARTED)
         .build()
 );
 ```
@@ -18381,7 +18224,7 @@ client.forms().postFormSubmission(
 <dl>
 <dd>
 
-**status:** `FormSubmissionsPostFormSubmissionRequestBodyStatus` — Status of the form submission.  Valid values: `notStarted`
+**status:** `String` — Status of the form submission.  Valid values: `notStarted`
     
 </dd>
 </dl>
@@ -19025,12 +18868,7 @@ To use this endpoint, select **Write Gateways** under the Setup & Administration
 <dd>
 
 ```java
-client.gateways().deleteGateway(
-    "id",
-    DeleteGatewayRequest
-        .builder()
-        .build()
-);
+client.gateways().deleteGateway("id");
 ```
 </dd>
 </dl>
@@ -20291,69 +20129,6 @@ client.industrial().createIndustrialAsset(
 </dl>
 </details>
 
-<details><summary><code>client.industrial.deleteIndustrialAsset(id) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete asset. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.industrial().deleteIndustrialAsset(
-    "id",
-    DeleteIndustrialAssetRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Id of the asset to be deleted.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.industrial.patchIndustrialAsset(id, request) -> InlineResponse200</code></summary>
 <dl>
 <dd>
@@ -21048,12 +20823,7 @@ To use this endpoint, select **Read Industrial** under the Industrial category w
 <dd>
 
 ```java
-client.industrial().v1GetVisionProgramsByCamera(
-    1000000L,
-    V1GetVisionProgramsByCameraRequest
-        .builder()
-        .build()
-);
+client.industrial().v1GetVisionProgramsByCamera(1000000L);
 ```
 </dd>
 </dl>
@@ -23189,12 +22959,7 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```java
-client.previewApIs().lockVehicle(
-    "id",
-    LockVehicleRequest
-        .builder()
-        .build()
-);
+client.previewApIs().lockVehicle("id");
 ```
 </dd>
 </dl>
@@ -23261,12 +23026,7 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```java
-client.previewApIs().unlockVehicle(
-    "id",
-    UnlockVehicleRequest
-        .builder()
-        .build()
-);
+client.previewApIs().unlockVehicle("id");
 ```
 </dd>
 </dl>
@@ -24175,12 +23935,7 @@ To use this endpoint, select **Read Tags** under the Setup & Administration cate
 <dd>
 
 ```java
-client.tags().getTag(
-    "id",
-    GetTagRequest
-        .builder()
-        .build()
-);
+client.tags().getTag("id");
 ```
 </dd>
 </dl>
@@ -24334,7 +24089,7 @@ client.tags().replaceTag(
 </dl>
 </details>
 
-<details><summary><code>client.tags.deleteTag(id) -> String</code></summary>
+<details><summary><code>client.tags.delete(id) -> String</code></summary>
 <dl>
 <dd>
 
@@ -24365,12 +24120,7 @@ To use this endpoint, select **Write Tags** under the Setup & Administration cat
 <dd>
 
 ```java
-client.tags().deleteTag(
-    "id",
-    DeleteTagRequest
-        .builder()
-        .build()
-);
+client.tags().delete("id");
 ```
 </dd>
 </dl>
@@ -25452,12 +25202,7 @@ To use this endpoint, select **Read Users** under the Setup & Administration cat
 <dd>
 
 ```java
-client.users().getUser(
-    "id",
-    GetUserRequest
-        .builder()
-        .build()
-);
+client.users().getUser("id");
 ```
 </dd>
 </dl>
@@ -25484,7 +25229,7 @@ client.users().getUser(
 </dl>
 </details>
 
-<details><summary><code>client.users.deleteUser(id) -> String</code></summary>
+<details><summary><code>client.users.delete(id) -> String</code></summary>
 <dl>
 <dd>
 
@@ -25515,12 +25260,7 @@ To use this endpoint, select **Write Users** under the Setup & Administration ca
 <dd>
 
 ```java
-client.users().deleteUser(
-    "id",
-    DeleteUserRequest
-        .builder()
-        .build()
-);
+client.users().delete("id");
 ```
 </dd>
 </dl>
@@ -26710,12 +26450,7 @@ To use this endpoint, select **Read Webhooks** under the Setup & Administration 
 <dd>
 
 ```java
-client.webhooks().getWebhook(
-    "id",
-    GetWebhookRequest
-        .builder()
-        .build()
-);
+client.webhooks().getWebhook("id");
 ```
 </dd>
 </dl>
@@ -26776,12 +26511,7 @@ To use this endpoint, select **Write Webhooks** under the Setup & Administration
 <dd>
 
 ```java
-client.webhooks().deleteWebhook(
-    "id",
-    DeleteWebhookRequest
-        .builder()
-        .build()
-);
+client.webhooks().deleteWebhook("id");
 ```
 </dd>
 </dl>
@@ -26908,6 +26638,65 @@ client.webhooks().patchWebhook(
 </dl>
 </details>
 
+## Fleet CarrierProposedAssignments
+<details><summary><code>client.fleet.carrierProposedAssignments.delete(id) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fleet().carrierProposedAssignments().delete("id");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — ID of the assignment.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Fleet Attributes
 <details><summary><code>client.fleet.attributes.update(id)</code></summary>
 <dl>
@@ -26922,12 +26711,7 @@ client.webhooks().patchWebhook(
 <dd>
 
 ```java
-client.fleet().attributes().update(
-    "id",
-    UpdateAttributesRequest
-        .builder()
-        .build()
-);
+client.fleet().attributes().update("id");
 ```
 </dd>
 </dl>
@@ -26943,6 +26727,65 @@ client.fleet().attributes().update(
 <dd>
 
 **id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Industrial Assets
+<details><summary><code>client.industrial.assets.delete(id) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete asset. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.industrial().assets().delete("id");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Id of the asset to be deleted.
     
 </dd>
 </dl>

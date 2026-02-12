@@ -69,7 +69,6 @@ public class AsyncRawAlertsClient {
      * Vehicle Engine Idle
      * Asset Engine On
      * Asset Engine Off
-     * Harsh Event
      * Scheduled Maintenance
      * Scheduled Maintenance by Odometer
      * Scheduled Maintenance by Engine Hours
@@ -125,7 +124,6 @@ public class AsyncRawAlertsClient {
      * Vehicle Engine Idle
      * Asset Engine On
      * Asset Engine Off
-     * Harsh Event
      * Scheduled Maintenance
      * Scheduled Maintenance by Odometer
      * Scheduled Maintenance by Engine Hours
@@ -182,7 +180,6 @@ public class AsyncRawAlertsClient {
      * Vehicle Engine Idle
      * Asset Engine On
      * Asset Engine Off
-     * Harsh Event
      * Scheduled Maintenance
      * Scheduled Maintenance by Odometer
      * Scheduled Maintenance by Engine Hours
@@ -239,7 +236,6 @@ public class AsyncRawAlertsClient {
      * Vehicle Engine Idle
      * Asset Engine On
      * Asset Engine Off
-     * Harsh Event
      * Scheduled Maintenance
      * Scheduled Maintenance by Odometer
      * Scheduled Maintenance by Engine Hours
@@ -294,6 +290,11 @@ public class AsyncRawAlertsClient {
         }
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -406,10 +407,14 @@ public class AsyncRawAlertsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<AlertsPostConfigurationsResponseBody>> postConfigurations(
             AlertsPostConfigurationsRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("alerts/configurations")
-                .build();
+                .addPathSegments("alerts/configurations");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -418,7 +423,7 @@ public class AsyncRawAlertsClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -532,6 +537,11 @@ public class AsyncRawAlertsClient {
                 .newBuilder()
                 .addPathSegments("alerts/configurations");
         QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
@@ -639,10 +649,14 @@ public class AsyncRawAlertsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<AlertsPatchConfigurationsResponseBody>> patchConfigurations(
             AlertsPatchConfigurationsRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("alerts/configurations")
-                .build();
+                .addPathSegments("alerts/configurations");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -651,7 +665,7 @@ public class AsyncRawAlertsClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -777,6 +791,11 @@ public class AsyncRawAlertsClient {
         if (request.getConfigurationIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "configurationIds", request.getConfigurationIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

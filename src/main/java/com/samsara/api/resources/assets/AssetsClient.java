@@ -9,9 +9,7 @@ import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
-import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
-import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAllAssetCurrentLocationsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
@@ -329,27 +327,11 @@ public class AssetsClient {
         this.rawClient.get(id, requestOptions).body();
     }
 
-    public void get(String id, GetAssetsRequest request) {
-        this.rawClient.get(id, request).body();
-    }
-
-    public void get(String id, GetAssetsRequest request, RequestOptions requestOptions) {
-        this.rawClient.get(id, request, requestOptions).body();
-    }
-
     public void update(String id) {
         this.rawClient.update(id).body();
     }
 
     public void update(String id, RequestOptions requestOptions) {
         this.rawClient.update(id, requestOptions).body();
-    }
-
-    public void update(String id, UpdateAssetsRequest request) {
-        this.rawClient.update(id, request).body();
-    }
-
-    public void update(String id, UpdateAssetsRequest request, RequestOptions requestOptions) {
-        this.rawClient.update(id, request, requestOptions).body();
     }
 }

@@ -21,7 +21,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1VisionRunByCameraResponseInspectionResults.Builder.class)
 public final class V1VisionRunByCameraResponseInspectionResults {
-    private final Optional<Float> captureAtMs;
+    private final Optional<Double> captureAtMs;
 
     private final Optional<String> result;
 
@@ -30,7 +30,7 @@ public final class V1VisionRunByCameraResponseInspectionResults {
     private final Map<String, Object> additionalProperties;
 
     private V1VisionRunByCameraResponseInspectionResults(
-            Optional<Float> captureAtMs,
+            Optional<Double> captureAtMs,
             Optional<String> result,
             Optional<List<V1VisionStepResultsItem>> stepResults,
             Map<String, Object> additionalProperties) {
@@ -41,7 +41,7 @@ public final class V1VisionRunByCameraResponseInspectionResults {
     }
 
     @JsonProperty("captureAtMs")
-    public Optional<Float> getCaptureAtMs() {
+    public Optional<Double> getCaptureAtMs() {
         return captureAtMs;
     }
 
@@ -89,7 +89,7 @@ public final class V1VisionRunByCameraResponseInspectionResults {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<Float> captureAtMs = Optional.empty();
+        private Optional<Double> captureAtMs = Optional.empty();
 
         private Optional<String> result = Optional.empty();
 
@@ -108,12 +108,12 @@ public final class V1VisionRunByCameraResponseInspectionResults {
         }
 
         @JsonSetter(value = "captureAtMs", nulls = Nulls.SKIP)
-        public Builder captureAtMs(Optional<Float> captureAtMs) {
+        public Builder captureAtMs(Optional<Double> captureAtMs) {
             this.captureAtMs = captureAtMs;
             return this;
         }
 
-        public Builder captureAtMs(Float captureAtMs) {
+        public Builder captureAtMs(Double captureAtMs) {
             this.captureAtMs = Optional.ofNullable(captureAtMs);
             return this;
         }

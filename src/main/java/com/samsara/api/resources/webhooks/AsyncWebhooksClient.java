@@ -5,8 +5,6 @@ package com.samsara.api.resources.webhooks;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
-import com.samsara.api.resources.webhooks.requests.DeleteWebhookRequest;
-import com.samsara.api.resources.webhooks.requests.GetWebhookRequest;
 import com.samsara.api.resources.webhooks.requests.ListWebhooksRequest;
 import com.samsara.api.resources.webhooks.requests.WebhooksPatchWebhookRequestBody;
 import com.samsara.api.resources.webhooks.requests.WebhooksPostWebhooksRequestBody;
@@ -116,27 +114,6 @@ public class AsyncWebhooksClient {
     }
 
     /**
-     * Retrieve a webhook with given ID.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Webhooks</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public CompletableFuture<WebhooksGetWebhookResponseBody> getWebhook(String id, GetWebhookRequest request) {
-        return this.rawClient.getWebhook(id, request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Retrieve a webhook with given ID.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Webhooks</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public CompletableFuture<WebhooksGetWebhookResponseBody> getWebhook(
-            String id, GetWebhookRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getWebhook(id, request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
      * Delete a webhook with the given ID.
      * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
      * <p>To use this endpoint, select <strong>Write Webhooks</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
@@ -154,27 +131,6 @@ public class AsyncWebhooksClient {
      */
     public CompletableFuture<Void> deleteWebhook(String id, RequestOptions requestOptions) {
         return this.rawClient.deleteWebhook(id, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Delete a webhook with the given ID.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Webhooks</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public CompletableFuture<Void> deleteWebhook(String id, DeleteWebhookRequest request) {
-        return this.rawClient.deleteWebhook(id, request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Delete a webhook with the given ID.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Webhooks</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     */
-    public CompletableFuture<Void> deleteWebhook(
-            String id, DeleteWebhookRequest request, RequestOptions requestOptions) {
-        return this.rawClient.deleteWebhook(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
