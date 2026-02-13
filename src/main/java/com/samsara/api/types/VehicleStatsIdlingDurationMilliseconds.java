@@ -37,7 +37,7 @@ public final class VehicleStatsIdlingDurationMilliseconds {
     }
 
     /**
-     * @return The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;https://developers.samsara.com/reference/getvehicleidlingreports&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.
+     * @return The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/idling/get-idling-events&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.
      */
     @JsonProperty("value")
     public long getValue() {
@@ -82,7 +82,7 @@ public final class VehicleStatsIdlingDurationMilliseconds {
 
     public interface ValueStage {
         /**
-         * <p>The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;https://developers.samsara.com/reference/getvehicleidlingreports&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
+         * <p>The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/idling/get-idling-events&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
          */
         _FinalStage value(long value);
     }
@@ -117,8 +117,8 @@ public final class VehicleStatsIdlingDurationMilliseconds {
         }
 
         /**
-         * <p>The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;https://developers.samsara.com/reference/getvehicleidlingreports&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
-         * <p>The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;https://developers.samsara.com/reference/getvehicleidlingreports&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
+         * <p>The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/idling/get-idling-events&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
+         * <p>The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/idling/get-idling-events&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

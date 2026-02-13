@@ -115,7 +115,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BetaApIsWireTest {
+public class BetaApisWireTest {
     private MockWebServer server;
     private SamsaraApiClient client;
     private ObjectMapper objectMapper = ObjectMappers.JSON_MAPPER;
@@ -142,7 +142,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"amount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"assetId\":\"281474993384538\",\"costCenterId\":\"5523a39f-42ef-4820-83d0-dfe73dbe7853\",\"createdAt\":\"2024-12-05T10:30:00Z\",\"eventTime\":\"2024-11-30T23:59:59Z\",\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"note\":\"November 2024 monthly depreciation\",\"transactionType\":\"depreciation\",\"updatedAt\":\"2024-12-05T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        DepreciationGetDepreciationTransactionsResponseBody response = client.betaApIs()
+        DepreciationGetDepreciationTransactionsResponseBody response = client.betaApis()
                 .getDepreciationTransactions(
                         GetDepreciationTransactionsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -210,8 +210,8 @@ public class BetaApIsWireTest {
     public void testGetAssetsInputs() throws Exception {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
-                .setBody(TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetAssetsInputs_response.json")));
-        AssetsInputsGetAssetsInputsResponseBody response = client.betaApIs()
+                .setBody(TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetAssetsInputs_response.json")));
+        AssetsInputsGetAssetsInputsResponseBody response = client.betaApis()
                 .getAssetsInputs(GetAssetsInputsRequest.builder()
                         .type(GetAssetsInputsRequestType.AUX_INPUT1)
                         .startTime("startTime")
@@ -224,7 +224,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetAssetsInputs_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetAssetsInputs_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -264,7 +264,7 @@ public class BetaApIsWireTest {
                         .setBody(
                                 "{\"Fleet\":{\"Equipment\":[{\"EquipmentHeader\":{\"EquipmentID\":\"494123\",\"Model\":\"S630 T4\",\"OEMName\":\"Bobcat\",\"PIN\":\"8V8WD530FLN016251\",\"SerialNumber\":\"8V8WD530FLN016251\",\"UnitInstallDateTime\":\"2019-06-13T19:08:25Z\"},\"Location\":{\"Latitude\":12.34,\"Longitude\":12.34,\"datetime\":\"2019-06-13T19:08:25Z\"}}],\"Links\":[{\"href\":\"https://api.samsara.com/aemp/Fleet/1\",\"rel\":\"self\"}],\"snapshotTime\":\"2019-06-13T19:08:25Z\",\"version\":\"1\"}}"));
         AempEquipmentGetAempEquipmentListResponseBody response =
-                client.betaApIs().getAempEquipmentList("pageNumber");
+                client.betaApis().getAempEquipmentList("pageNumber");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -340,7 +340,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"driverSummaries\":[{}],\"summaryEndTime\":\"2020-03-16T16:00:00Z\",\"summaryStartTime\":\"2020-03-15T16:00:00Z\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        DriverEfficienciesResponse response = client.betaApIs()
+        DriverEfficienciesResponse response = client.betaApis()
                 .getDriverEfficiency(GetDriverEfficiencyRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -401,7 +401,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"equipmentSerialNumber\":\"8V8WD530FLN016251\",\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\",\"installedGateway\":{\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"},\"name\":\"Equipment-123\",\"notes\":\"These are my equipment notes\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]}}"));
-        EquipmentPatchEquipmentResponseBody response = client.betaApIs()
+        EquipmentPatchEquipmentResponseBody response = client.betaApis()
                 .patchEquipment(
                         "id", EquipmentPatchEquipmentRequestBody.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -519,7 +519,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"driverActivationStatus\":\"active\",\"eldEvents\":[{\"accumulatedVehicleMeters\":106,\"elapsedEngineHours\":284.1,\"eldEventCode\":3,\"eldEventRecordOrigin\":2,\"eldEventRecordStatus\":2,\"eldEventType\":6,\"remark\":{\"comment\":\"Pre-Trip Inspection\",\"locationDescription\":\"Near San Francisco\",\"time\":\"2019-06-13T19:08:25Z\"},\"time\":\"2019-06-13T19:08:25Z\",\"totalEngineHours\":2894.1,\"totalVehicleMeters\":1004566}],\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\",\"name\":\"Joe Driver\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        HosEldEventsGetHosEldEventsResponseBody response = client.betaApIs()
+        HosEldEventsGetHosEldEventsResponseBody response = client.betaApis()
                 .getHosEldEvents(GetHosEldEventsRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
@@ -602,8 +602,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetTrailerStatsSnapshot_response.json")));
-        TrailerStatsGetTrailerStatsSnapshotResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetTrailerStatsSnapshot_response.json")));
+        TrailerStatsGetTrailerStatsSnapshotResponseBody response = client.betaApis()
                 .getTrailerStatsSnapshot(
                         GetTrailerStatsSnapshotRequest.builder().types("types").build());
         RecordedRequest request = server.takeRequest();
@@ -614,7 +614,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetTrailerStatsSnapshot_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetTrailerStatsSnapshot_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -651,8 +651,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetTrailerStatsFeed_response.json")));
-        TrailerStatsGetTrailerStatsFeedResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetTrailerStatsFeed_response.json")));
+        TrailerStatsGetTrailerStatsFeedResponseBody response = client.betaApis()
                 .getTrailerStatsFeed(
                         GetTrailerStatsFeedRequest.builder().types("types").build());
         RecordedRequest request = server.takeRequest();
@@ -663,7 +663,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetTrailerStatsFeed_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetTrailerStatsFeed_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -700,8 +700,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetTrailerStatsHistory_response.json")));
-        TrailerStatsGetTrailerStatsHistoryResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetTrailerStatsHistory_response.json")));
+        TrailerStatsGetTrailerStatsHistoryResponseBody response = client.betaApis()
                 .getTrailerStatsHistory(GetTrailerStatsHistoryRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
@@ -715,7 +715,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetTrailerStatsHistory_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetTrailerStatsHistory_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -750,7 +750,7 @@ public class BetaApIsWireTest {
     @Test
     public void testUpdateEngineImmobilizerState() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.betaApIs()
+        client.betaApis()
                 .updateEngineImmobilizerState(
                         1000000L,
                         EngineImmobilizerUpdateEngineImmobilizerStateRequestBody.builder()
@@ -810,7 +810,7 @@ public class BetaApIsWireTest {
                         .setBody(
                                 "{\"data\":[{\"address\":{\"address\":\"1990 Alameda st, San Francisco, Ca 94103\",\"latitude\":37.456345,\"longitude\":34.5633749,\"name\":\"Worksite #1\"},\"createdAt\":\"2019-06-13T19:08:25Z\",\"customerName\":\"Samsara\",\"endDate\":\"2019-06-13T19:08:25Z\",\"fleetDevices\":[{\"id\":123456,\"name\":\"My Device\"}],\"id\":\"1553\",\"industrialAssets\":[{\"id\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\",\"name\":\"My asset\"}],\"modifiedAt\":\"2019-06-13T19:08:25Z\",\"name\":\"My Job Name\",\"notes\":\"These are my notes\",\"ontimeWindowAfterArrivalMs\":300000,\"ontimeWindowBeforeArrivalMs\":300000,\"startDate\":\"2019-06-13T19:08:25Z\",\"status\":\"active\",\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"}],\"id\":\"1553\",\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true},\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"}"));
         JobsGetJobsResponseBody response =
-                client.betaApIs().getJobs(GetJobsRequest.builder().build());
+                client.betaApis().getJobs(GetJobsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -899,7 +899,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"address\":{\"address\":\"1990 Alameda st, San Francisco, Ca 94103\",\"latitude\":37.456345,\"longitude\":34.5633749,\"name\":\"Worksite #1\"},\"createdAt\":\"2019-06-13T19:08:25Z\",\"customerName\":\"Samsara\",\"endDate\":\"2019-06-13T19:08:25Z\",\"fleetDevices\":[{\"id\":123456,\"name\":\"My Device\"}],\"id\":\"1553\",\"industrialAssets\":[{\"id\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\",\"name\":\"My asset\"}],\"modifiedAt\":\"2019-06-13T19:08:25Z\",\"name\":\"My Job Name\",\"notes\":\"These are my notes\",\"ontimeWindowAfterArrivalMs\":300000,\"ontimeWindowBeforeArrivalMs\":300000,\"startDate\":\"2019-06-13T19:08:25Z\",\"status\":\"active\",\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"},\"id\":\"1553\",\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"}"));
-        JobsCreateJobResponseBody response = client.betaApIs()
+        JobsCreateJobResponseBody response = client.betaApis()
                 .createJob(JobsCreateJobRequestBody.builder()
                         .job(PostJobObjectRequestBody.builder()
                                 .endDate("2019-06-13T19:08:25Z")
@@ -1026,7 +1026,7 @@ public class BetaApIsWireTest {
                 .setResponseCode(200)
                 .setBody("{\"id\":\"1553\",\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"}"));
         JobsDeleteJobResponseBody response =
-                client.betaApIs().deleteJob(DeleteJobRequest.builder().id("id").build());
+                client.betaApis().deleteJob(DeleteJobRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
@@ -1074,7 +1074,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"address\":{\"address\":\"1990 Alameda st, San Francisco, Ca 94103\",\"latitude\":37.456345,\"longitude\":34.5633749,\"name\":\"Worksite #1\"},\"createdAt\":\"2019-06-13T19:08:25Z\",\"customerName\":\"Samsara\",\"endDate\":\"2019-06-13T19:08:25Z\",\"fleetDevices\":[{\"id\":123456,\"name\":\"My Device\"}],\"id\":\"1553\",\"industrialAssets\":[{\"id\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\",\"name\":\"My asset\"}],\"modifiedAt\":\"2019-06-13T19:08:25Z\",\"name\":\"My Job Name\",\"notes\":\"These are my notes\",\"ontimeWindowAfterArrivalMs\":300000,\"ontimeWindowBeforeArrivalMs\":300000,\"startDate\":\"2019-06-13T19:08:25Z\",\"status\":\"active\",\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"},\"id\":\"1553\",\"uuid\":\"8d218e6c-7a16-4f9f-90f7-cc1d93b9e596\"}"));
-        JobsPatchJobResponseBody response = client.betaApIs()
+        JobsPatchJobResponseBody response = client.betaApis()
                 .patchJob(JobsPatchJobRequestBody.builder()
                         .id("id")
                         .job(PatchJobObjectRequestBody.builder().build())
@@ -1190,7 +1190,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"asset\":{\"id\":\"asset-23ab7cd1-5f6e-4c9b-8f21-1e3b7a9c4d8f\",\"name\":\"Truck 102 - Volvo VNL\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]},\"createdAtTime\":\"2025-09-20T11:15:30Z\",\"driver\":{\"id\":\"driver-8b12fa3d-3c6e-4e2a-9a76-24c1f7b23d9a\",\"name\":\"Alex Johnson\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]},\"id\":\"9c4f81d2-7a25-4f8c-9b83-1c34a91e34a1\",\"inCabAlertPlayed\":true,\"safetyEvent\":[{\"id\":\"a1b2c3d4-5678-90ab-cdef-1234567890ab\",\"inboxEvent\":false}],\"triggerDetectionLabel\":\"acceleration\",\"updatedAtTime\":\"2025-09-20T11:20:45Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        DetectionLogGetDetectionsResponseBody response = client.betaApIs()
+        DetectionLogGetDetectionsResponseBody response = client.betaApis()
                 .getDetections(
                         GetDetectionsRequest.builder().startTime("startTime").build());
         RecordedRequest request = server.takeRequest();
@@ -1283,7 +1283,7 @@ public class BetaApIsWireTest {
                         .setBody(
                                 "{\"data\":[{\"asset\":{\"id\":\"281474982859091\",\"name\":\"MyAsset-1234\"},\"health\":{\"primaryHealthReasonStartTime\":\"2019-06-13T19:08:25Z\"},\"lastConnectedTime\":\"2019-06-13T19:08:25Z\",\"lastKnownLocation\":{\"id\":12345,\"latitude\":12333122.3,\"longitude\":1233331.4},\"model\":\"AG24\",\"serial\":\"ABCD-123-EFG\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DevicesGetDevicesResponseBody response =
-                client.betaApIs().getDevices(GetDevicesRequest.builder().build());
+                client.betaApis().getDevices(GetDevicesRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -1362,7 +1362,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":false,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":false}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        EngineImmobilizerGetEngineImmobilizerStatesResponseBody response = client.betaApIs()
+        EngineImmobilizerGetEngineImmobilizerStatesResponseBody response = client.betaApis()
                 .getEngineImmobilizerStates(GetEngineImmobilizerStatesRequest.builder()
                         .vehicleIds("vehicleIds")
                         .startTime("startTime")
@@ -1430,7 +1430,7 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody("{\"data\":{\"correlationId\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
-        FunctionsStartFunctionRunResponseBody response = client.betaApIs()
+        FunctionsStartFunctionRunResponseBody response = client.betaApis()
                 .startFunctionRun(
                         "name",
                         FunctionsStartFunctionRunRequestBody.builder()
@@ -1517,7 +1517,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"adverseDrivingClaimed\":false,\"bigDayClaimed\":true,\"carrierFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"carrierName\":\"Carrier Name\",\"carrierUsDotNumber\":1234,\"homeTerminalFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"homeTerminalName\":\"Home Terminal Name\",\"isCertified\":true,\"isUsShortHaulActive\":true,\"trailerNames\":[\"10293\",\"Trailer ID 1\"]}}"));
-        HosDailyLogsUpdateShippingDocsResponseBody response = client.betaApIs()
+        HosDailyLogsUpdateShippingDocsResponseBody response = client.betaApis()
                 .updateShippingDocs(HosDailyLogsUpdateShippingDocsRequestBody.builder()
                         .hosDate("hosDate")
                         .driverId("driverID")
@@ -1615,7 +1615,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"createdAt\":\"2024-01-15T10:30:00Z\",\"csvColumns\":\"customer_type,customerType\",\"hubId\":\"650e8400-e29b-41d4-a716-446655440001\",\"id\":\"750e8400-e29b-41d4-a716-446655440004\",\"name\":\"CustomerType\",\"updatedAt\":\"2024-01-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"YXJyYXljb25uZWN0aW9uOjEwMA==\",\"hasNextPage\":false}}"));
-        HubCustomPropertiesListHubCustomPropertiesResponseBody response = client.betaApIs()
+        HubCustomPropertiesListHubCustomPropertiesResponseBody response = client.betaApis()
                 .listHubCustomProperties(
                         ListHubCustomPropertiesRequest.builder().hubId("hubId").build());
         RecordedRequest request = server.takeRequest();
@@ -1678,8 +1678,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(
-                        TestResources.loadResource("/wire-tests/BetaApIsWireTest_testCreatePlanOrders_response.json")));
-        PlanOrdersCreatePlanOrdersResponseBody response = client.betaApIs()
+                        TestResources.loadResource("/wire-tests/BetaApisWireTest_testCreatePlanOrders_response.json")));
+        PlanOrdersCreatePlanOrdersResponseBody response = client.betaApis()
                 .createPlanOrders(PlanOrdersCreatePlanOrdersRequestBody.builder()
                         .data(Arrays.asList(OrderInputObjectRequestBody.builder()
                                 .customerOrderId("ORDER-2024-001")
@@ -1733,7 +1733,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testCreatePlanOrders_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testCreatePlanOrders_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -1770,8 +1770,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetQualificationRecords_response.json")));
-        QualificationsGetQualificationRecordsResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetQualificationRecords_response.json")));
+        QualificationsGetQualificationRecordsResponseBody response = client.betaApis()
                 .getQualificationRecords(
                         GetQualificationRecordsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -1782,7 +1782,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetQualificationRecords_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetQualificationRecords_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -1819,8 +1819,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testPostQualificationRecord_response.json")));
-        QualificationsPostQualificationRecordResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testPostQualificationRecord_response.json")));
+        QualificationsPostQualificationRecordResponseBody response = client.betaApis()
                 .postQualificationRecord(QualificationsPostQualificationRecordRequestBody.builder()
                         .issueDate(OffsetDateTime.parse("2025-08-27T10:20:30Z"))
                         .owner(QualificationOwnerRequestObjectRequestBody.builder()
@@ -1889,7 +1889,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testPostQualificationRecord_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testPostQualificationRecord_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -1924,7 +1924,7 @@ public class BetaApIsWireTest {
     @Test
     public void testDeleteQualificationRecord() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.betaApIs()
+        client.betaApis()
                 .deleteQualificationRecord(QualificationsDeleteQualificationRecordRequestBody.builder()
                         .id("9814a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                         .build());
@@ -1967,8 +1967,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testPatchQualificationRecord_response.json")));
-        QualificationsPatchQualificationRecordResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testPatchQualificationRecord_response.json")));
+        QualificationsPatchQualificationRecordResponseBody response = client.betaApis()
                 .patchQualificationRecord(QualificationsPatchQualificationRecordRequestBody.builder()
                         .id("9814a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                         .issueDate(OffsetDateTime.parse("2025-08-27T10:20:30Z"))
@@ -2022,7 +2022,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testPatchQualificationRecord_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testPatchQualificationRecord_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -2057,7 +2057,7 @@ public class BetaApIsWireTest {
     @Test
     public void testArchiveQualificationRecord() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.betaApIs()
+        client.betaApis()
                 .archiveQualificationRecord(QualificationsArchiveQualificationRecordRequestBody.builder()
                         .id("9814a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                         .build());
@@ -2100,8 +2100,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetQualificationRecordsStream_response.json")));
-        QualificationsGetQualificationRecordsStreamResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetQualificationRecordsStream_response.json")));
+        QualificationsGetQualificationRecordsStreamResponseBody response = client.betaApis()
                 .getQualificationRecordsStream(GetQualificationRecordsStreamRequest.builder()
                         .entityType(GetQualificationRecordsStreamRequestEntityType.WORKER)
                         .startTime(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
@@ -2114,7 +2114,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody = TestResources.loadResource(
-                "/wire-tests/BetaApIsWireTest_testGetQualificationRecordsStream_response.json");
+                "/wire-tests/BetaApisWireTest_testGetQualificationRecordsStream_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -2149,7 +2149,7 @@ public class BetaApIsWireTest {
     @Test
     public void testUnarchiveQualificationRecord() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.betaApIs()
+        client.betaApis()
                 .unarchiveQualificationRecord(QualificationsUnarchiveQualificationRecordRequestBody.builder()
                         .id("9814a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                         .build());
@@ -2192,8 +2192,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetQualificationTypes_response.json")));
-        QualificationsGetQualificationTypesResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetQualificationTypes_response.json")));
+        QualificationsGetQualificationTypesResponseBody response = client.betaApis()
                 .getQualificationTypes(GetQualificationTypesRequest.builder()
                         .entityType(GetQualificationTypesRequestEntityType.WORKER)
                         .build());
@@ -2205,7 +2205,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetQualificationTypes_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetQualificationTypes_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -2240,7 +2240,7 @@ public class BetaApIsWireTest {
     @Test
     public void testPostReadings() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.betaApIs()
+        client.betaApis()
                 .postReadings(ReadingsPostReadingsRequestBody.builder()
                         .data(Arrays.asList(ReadingDatapointRequestBody.builder()
                                 .entityId("123451234512345")
@@ -2307,7 +2307,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"category\":\"smartTrailer\",\"description\":\"Engine Speed\",\"entityType\":\"sensor\",\"enumValues\":[{\"label\":\"Critically High\",\"symbol\":\"criticallyHigh\"}],\"ingestionEnabled\":true,\"label\":\"engineRpm\",\"readingId\":\"12345\",\"type\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReadingsListReadingsDefinitionsResponseBody response = client.betaApIs()
+        ReadingsListReadingsDefinitionsResponseBody response = client.betaApis()
                 .listReadingsDefinitions(
                         ListReadingsDefinitionsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -2381,7 +2381,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"value\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReadingsGetReadingsHistoryResponseBody response = client.betaApIs()
+        ReadingsGetReadingsHistoryResponseBody response = client.betaApis()
                 .getReadingsHistory(GetReadingsHistoryRequest.builder()
                         .readingId("readingId")
                         .entityType("entityType")
@@ -2450,7 +2450,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"readingId\":\"engineSpeed\",\"value\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReadingsGetReadingsSnapshotResponseBody response = client.betaApIs()
+        ReadingsGetReadingsSnapshotResponseBody response = client.betaApis()
                 .getReadingsSnapshot(GetReadingsSnapshotRequest.builder()
                         .readingIds("readingIds")
                         .entityType("entityType")
@@ -2520,7 +2520,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"columns\":[{\"dataType\":\"string\",\"name\":\"Asset: Id\"}],\"datasetId\":\"Assets\",\"filters\":{\"primaryTimeRange\":{\"endTime\":\"2019-06-13T21:08:25Z\",\"startTime\":\"2019-06-13T19:08:25Z\"}},\"id\":\"4f71fd67-54f0-41de-991c-ee1e031134d1\",\"name\":\"Asset Report\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReportsGetReportConfigsResponseBody response = client.betaApIs()
+        ReportsGetReportConfigsResponseBody response = client.betaApis()
                 .getReportConfigs(GetReportConfigsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -2594,7 +2594,7 @@ public class BetaApIsWireTest {
                         .setBody(
                                 "{\"data\":[{\"displayName\":\"Assets\",\"fields\":[{\"dataType\":\"string\",\"displayName\":\"Asset: Name\",\"name\":\"Name\"}],\"hasTimeRangeFilter\":true,\"id\":\"Assets\",\"timeRangeLimitDays\":31}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetDatasetsResponseBody response =
-                client.betaApIs().getDatasets(GetDatasetsRequest.builder().build());
+                client.betaApis().getDatasets(GetDatasetsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -2663,7 +2663,7 @@ public class BetaApIsWireTest {
                         .setBody(
                                 "{\"data\":[{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"4f71fd67-54f0-41de-991c-ee1e031134d1\",\"status\":\"complete\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunsResponseBody response =
-                client.betaApIs().getReportRuns(GetReportRunsRequest.builder().build());
+                client.betaApis().getReportRuns(GetReportRunsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -2724,7 +2724,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"4f71fd67-54f0-41de-991c-ee1e031134d1\",\"status\":\"complete\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}}"));
-        ReportsCreateReportRunResponseBody response = client.betaApIs()
+        ReportsCreateReportRunResponseBody response = client.betaApis()
                 .createReportRun(ReportsCreateReportRunRequestBody.builder()
                         .reportConfig(
                                 CreateReportConfigObjectRequestBody.builder().build())
@@ -2810,8 +2810,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(
-                        TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json")));
-        ReportsGetReportRunDataResponseBody response = client.betaApIs()
+                        TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetReportRunData_response.json")));
+        ReportsGetReportRunDataResponseBody response = client.betaApis()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -2821,7 +2821,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetReportRunData_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -2860,7 +2860,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"driverId\":\"1234\",\"driverScore\":92,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyScoresGetDriverSafetyScoresResponseBody response = client.betaApIs()
+        SafetyScoresGetDriverSafetyScoresResponseBody response = client.betaApis()
                 .getDriverSafetyScores(GetDriverSafetyScoresRequest.builder()
                         .endTime("endTime")
                         .startTime("startTime")
@@ -2937,8 +2937,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetDriverSafetyScoreTrips_response.json")));
-        SafetyScoresGetDriverSafetyScoreTripsResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetDriverSafetyScoreTrips_response.json")));
+        SafetyScoresGetDriverSafetyScoreTripsResponseBody response = client.betaApis()
                 .getDriverSafetyScoreTrips(GetDriverSafetyScoreTripsRequest.builder()
                         .endTime("endTime")
                         .startTime("startTime")
@@ -2951,7 +2951,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetDriverSafetyScoreTrips_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetDriverSafetyScoreTrips_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -2990,7 +2990,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"combinedScore\":92,\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}]}}"));
-        SafetyScoresGetTagGroupSafetyScoresResponseBody response = client.betaApIs()
+        SafetyScoresGetTagGroupSafetyScoresResponseBody response = client.betaApis()
                 .getTagGroupSafetyScores(GetTagGroupSafetyScoresRequest.builder()
                         .endTime("endTime")
                         .startTime("startTime")
@@ -3063,7 +3063,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}],\"tagId\":\"5678\",\"tagScore\":92}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyScoresGetTagSafetyScoresResponseBody response = client.betaApIs()
+        SafetyScoresGetTagSafetyScoresResponseBody response = client.betaApis()
                 .getTagSafetyScores(GetTagSafetyScoresRequest.builder()
                         .endTime("endTime")
                         .startTime("startTime")
@@ -3143,7 +3143,7 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}],\"vehicleId\":\"5678\",\"vehicleScore\":92}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyScoresGetVehicleSafetyScoresResponseBody response = client.betaApIs()
+        SafetyScoresGetVehicleSafetyScoresResponseBody response = client.betaApis()
                 .getVehicleSafetyScores(GetVehicleSafetyScoresRequest.builder()
                         .endTime("endTime")
                         .startTime("startTime")
@@ -3220,8 +3220,8 @@ public class BetaApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetVehicleSafetyScoreTrips_response.json")));
-        SafetyScoresGetVehicleSafetyScoreTripsResponseBody response = client.betaApIs()
+                        "/wire-tests/BetaApisWireTest_testGetVehicleSafetyScoreTrips_response.json")));
+        SafetyScoresGetVehicleSafetyScoreTripsResponseBody response = client.betaApis()
                 .getVehicleSafetyScoreTrips(GetVehicleSafetyScoreTripsRequest.builder()
                         .endTime("endTime")
                         .startTime("startTime")
@@ -3234,7 +3234,7 @@ public class BetaApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetVehicleSafetyScoreTrips_response.json");
+                TestResources.loadResource("/wire-tests/BetaApisWireTest_testGetVehicleSafetyScoreTrips_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(

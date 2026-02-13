@@ -600,7 +600,7 @@ public final class VehicleStatsListResponseData {
     }
 
     /**
-     * @return A list of cumulative fuel consumption readings in milliliters for the given vehicle. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;https://developers.samsara.com/reference/getfuelenergyvehiclereports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.
+     * @return A list of cumulative fuel consumption readings in milliliters for the given vehicle. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/fuel-and-energy/get-fuel-and-energy-vehicle-reports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.
      */
     @JsonProperty("fuelConsumedMilliliters")
     public Optional<List<VehicleStatsFuelConsumedMillilitersWithDecoration>> getFuelConsumedMilliliters() {
@@ -645,7 +645,7 @@ public final class VehicleStatsListResponseData {
     }
 
     /**
-     * @return A list of cumulative idling duration readings in milliseconds for the given vehicle. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;https://developers.samsara.com/reference/getvehicleidlingreports&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.
+     * @return A list of cumulative idling duration readings in milliseconds for the given vehicle. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/idling/get-idling-events&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.
      */
     @JsonProperty("idlingDurationMilliseconds")
     public Optional<List<VehicleStatsIdlingDurationMillisecondsWithDecoration>> getIdlingDurationMilliseconds() {
@@ -1744,7 +1744,7 @@ public final class VehicleStatsListResponseData {
         }
 
         /**
-         * <p>A list of cumulative fuel consumption readings in milliliters for the given vehicle. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;https://developers.samsara.com/reference/getfuelenergyvehiclereports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
+         * <p>A list of cumulative fuel consumption readings in milliliters for the given vehicle. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/fuel-and-energy/get-fuel-and-energy-vehicle-reports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
          */
         @JsonSetter(value = "fuelConsumedMilliliters", nulls = Nulls.SKIP)
         public Builder fuelConsumedMilliliters(
@@ -1829,7 +1829,7 @@ public final class VehicleStatsListResponseData {
         }
 
         /**
-         * <p>A list of cumulative idling duration readings in milliseconds for the given vehicle. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;https://developers.samsara.com/reference/getvehicleidlingreports&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
+         * <p>A list of cumulative idling duration readings in milliseconds for the given vehicle. Cumulative values always increase. For filtering of idling duration please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/idling/get-idling-events&quot; target=&quot;_blank&quot;&gt;the Idling Events API&lt;/a&gt;.</p>
          */
         @JsonSetter(value = "idlingDurationMilliseconds", nulls = Nulls.SKIP)
         public Builder idlingDurationMilliseconds(

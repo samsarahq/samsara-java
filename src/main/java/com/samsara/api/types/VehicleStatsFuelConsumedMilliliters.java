@@ -37,7 +37,7 @@ public final class VehicleStatsFuelConsumedMilliliters {
     }
 
     /**
-     * @return The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;https://developers.samsara.com/reference/getfuelenergyvehiclereports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.
+     * @return The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/fuel-and-energy/get-fuel-and-energy-vehicle-reports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.
      */
     @JsonProperty("value")
     public long getValue() {
@@ -82,7 +82,7 @@ public final class VehicleStatsFuelConsumedMilliliters {
 
     public interface ValueStage {
         /**
-         * <p>The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;https://developers.samsara.com/reference/getfuelenergyvehiclereports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
+         * <p>The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/fuel-and-energy/get-fuel-and-energy-vehicle-reports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
          */
         _FinalStage value(long value);
     }
@@ -117,8 +117,8 @@ public final class VehicleStatsFuelConsumedMilliliters {
         }
 
         /**
-         * <p>The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;https://developers.samsara.com/reference/getfuelenergyvehiclereports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
-         * <p>The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;https://developers.samsara.com/reference/getfuelenergyvehiclereports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
+         * <p>The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/fuel-and-energy/get-fuel-and-energy-vehicle-reports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
+         * <p>The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel &amp; Energy Report, please use &lt;a href=&quot;/api-reference/fuel-and-efficiency/fuel-and-energy/get-fuel-and-energy-vehicle-reports&quot; target=&quot;_blank&quot;&gt;the Fuel and Energy API&lt;/a&gt;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

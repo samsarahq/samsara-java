@@ -38,7 +38,7 @@ public final class TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody {
     }
 
     /**
-     * @return ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.
+     * @return ID of the driver. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.
      */
     @JsonProperty("driverId")
     public String getDriverId() {
@@ -54,7 +54,7 @@ public final class TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody {
     }
 
     /**
-     * @return ID of the trailer. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the trailer.
+     * @return ID of the trailer. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the trailer.
      */
     @JsonProperty("trailerId")
     public String getTrailerId() {
@@ -95,7 +95,7 @@ public final class TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody {
 
     public interface DriverIdStage {
         /**
-         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          */
         TrailerIdStage driverId(@NotNull String driverId);
 
@@ -104,7 +104,7 @@ public final class TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody {
 
     public interface TrailerIdStage {
         /**
-         * <p>ID of the trailer. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the trailer.</p>
+         * <p>ID of the trailer. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the trailer.</p>
          */
         _FinalStage trailerId(@NotNull String trailerId);
     }
@@ -142,8 +142,8 @@ public final class TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody {
         }
 
         /**
-         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
-         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -154,8 +154,8 @@ public final class TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody {
         }
 
         /**
-         * <p>ID of the trailer. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the trailer.</p>
-         * <p>ID of the trailer. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the trailer.</p>
+         * <p>ID of the trailer. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the trailer.</p>
+         * <p>ID of the trailer. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the trailer.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

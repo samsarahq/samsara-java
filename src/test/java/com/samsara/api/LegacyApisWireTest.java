@@ -15,6 +15,7 @@ import com.samsara.api.types.DefectsResponse;
 import com.samsara.api.types.DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody;
 import com.samsara.api.types.DvirsListResponse;
 import com.samsara.api.types.IdlingReportsGetVehicleIdlingReportsResponseBody;
+import com.samsara.api.types.InlineResponse2001;
 import com.samsara.api.types.SafetyEventsGetSafetyActivityEventFeedResponseBody;
 import com.samsara.api.types.SafetyEventsListResponse;
 import com.samsara.api.types.V1VehicleHarshEventResponse;
@@ -27,7 +28,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class LegacyApIsWireTest {
+public class LegacyApisWireTest {
     private MockWebServer server;
     private SamsaraApiClient client;
     private ObjectMapper objectMapper = ObjectMappers.JSON_MAPPER;
@@ -54,7 +55,7 @@ public class LegacyApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"comment\":\"Air Compressor not working\",\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"defectType\":\"Air Compressor\",\"id\":\"18\",\"isResolved\":true,\"mechanicNotes\":\"Extremely large oddly shaped hole in passenger side window.\",\"mechanicNotesUpdatedAtTime\":\"2020-01-27T07:06:25Z\",\"resolvedAtTime\":\"2020-01-27T07:06:25Z\",\"resolvedBy\":{\"id\":\"11\",\"name\":\"Christopher 'The Handyman' Zhen\"},\"trailer\":{\"id\":\"123456789\",\"name\":\"Midwest Trailer #5\"},\"vehicle\":{\"ExternalIds\":{\"maintenanceId\":\"250020\",\"payrollId\":\"ABFS18600\"},\"id\":\"123456789\",\"name\":\"Midwest Truck #4\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        DefectsResponse response = client.legacyApIs()
+        DefectsResponse response = client.legacyApis()
                 .getDvirDefects(GetDvirDefectsRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
@@ -139,7 +140,7 @@ public class LegacyApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"driverActivationStatus\":\"active\",\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\",\"name\":\"Joe Driver\",\"vehicleAssignments\":[{\"assignmentType\":\"driverApp\",\"endTime\":\"2019-06-13T19:08:25Z\",\"isPassenger\":false,\"startTime\":\"2019-06-13T19:08:25Z\",\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody response = client.legacyApIs()
+        DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody response = client.legacyApis()
                 .getDriversVehicleAssignments(
                         GetDriversVehicleAssignmentsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -214,8 +215,8 @@ public class LegacyApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(
-                        TestResources.loadResource("/wire-tests/LegacyApIsWireTest_testGetDvirHistory_response.json")));
-        DvirsListResponse response = client.legacyApIs()
+                        TestResources.loadResource("/wire-tests/LegacyApisWireTest_testGetDvirHistory_response.json")));
+        DvirsListResponse response = client.legacyApis()
                 .getDvirHistory(GetDvirHistoryRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
@@ -228,7 +229,7 @@ public class LegacyApIsWireTest {
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/LegacyApIsWireTest_testGetDvirHistory_response.json");
+                TestResources.loadResource("/wire-tests/LegacyApisWireTest_testGetDvirHistory_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -267,7 +268,7 @@ public class LegacyApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"address\":{\"formatted\":\"123 Main Street Atlanta, GA 30307\",\"latitude\":34.654567,\"longitude\":34.654567},\"durationMs\":860000,\"endTime\":\"2019-06-13T19:08:25Z\",\"fuelConsumptionMl\":2500,\"isPtoActive\":false,\"startTime\":\"2019-06-13T19:08:25Z\",\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true},\"requestEndTime\":\"2019-06-13T19:08:25Z\",\"requestStartTime\":\"2019-06-13T19:08:25Z\"}"));
-        IdlingReportsGetVehicleIdlingReportsResponseBody response = client.legacyApIs()
+        IdlingReportsGetVehicleIdlingReportsResponseBody response = client.legacyApis()
                 .getVehicleIdlingReports(GetVehicleIdlingReportsRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
@@ -344,7 +345,7 @@ public class LegacyApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"behaviorLabels\":[{\"label\":\"genericTailgating\",\"name\":\"Tailgating\",\"source\":\"automated\"}],\"coachingState\":\"needsReview\",\"downloadForwardVideoUrl\":\"https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4\",\"downloadInwardVideoUrl\":\"https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4\",\"downloadTrackedInwardVideoUrl\":\"https://s3.console.aws.amazon.com/s3/buckets/samsara-dashcam-videos/21575/212014918400828/1553060687222/huKA7IhpBV-camera-video-segment-1244214895.mp4\",\"driver\":{\"id\":\"88668\",\"name\":\"Susan Bob\"},\"id\":\"212014918174029-1550954461759\",\"location\":{\"latitude\":122.142,\"longitude\":-93.343},\"maxAccelerationGForce\":0.123,\"time\":\"2019-06-13T19:08:25.455Z\",\"vehicle\":{\"ExternalIds\":{\"maintenanceId\":\"250020\",\"payrollId\":\"ABFS18600\"},\"id\":\"123456789\",\"name\":\"Midwest Truck #4\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyEventsListResponse response = client.legacyApIs()
+        SafetyEventsListResponse response = client.legacyApis()
                 .getSafetyEvents(GetSafetyEventsRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
@@ -435,7 +436,7 @@ public class LegacyApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"id\":\"1622151765-212014918174029-1550954461759\",\"safetyEvent\":{\"id\":\"212014918174029-1550954461759\",\"time\":\"2019-06-13T19:08:25.455Z\"},\"time\":\"2019-10-12T07:20:50.52Z\",\"type\":\"BehaviorLabelActivityType\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyEventsGetSafetyActivityEventFeedResponseBody response = client.legacyApIs()
+        SafetyEventsGetSafetyActivityEventFeedResponseBody response = client.legacyApis()
                 .getSafetyActivityEventFeed(
                         GetSafetyActivityEventFeedRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -501,7 +502,7 @@ public class LegacyApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":[{\"driverAssignments\":[{\"driver\":{\"id\":\"45646\",\"name\":\"Driver Bob\"},\"endTime\":\"2019-06-13T19:08:25Z\",\"isPassenger\":false,\"startTime\":\"2019-06-13T19:08:25Z\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\",\"name\":\"Bus-123\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody response = client.legacyApIs()
+        VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody response = client.legacyApis()
                 .getVehiclesDriverAssignments(
                         GetVehiclesDriverAssignmentsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -570,13 +571,74 @@ public class LegacyApIsWireTest {
     }
 
     @Test
+    public void testV1GetAllAssets() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"assets\":[{\"assetSerialNumber\":\"SNTEST123\",\"cable\":{\"assetType\":\"Thermo King\"},\"engineHours\":104,\"id\":1,\"name\":\"Trailer 123\",\"vehicleId\":2}]}"));
+        InlineResponse2001 response = client.legacyApis().v1GetAllAssets();
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"assets\": [\n"
+                + "    {\n"
+                + "      \"assetSerialNumber\": \"SNTEST123\",\n"
+                + "      \"cable\": {\n"
+                + "        \"assetType\": \"Thermo King\"\n"
+                + "      },\n"
+                + "      \"engineHours\": 104,\n"
+                + "      \"id\": 1,\n"
+                + "      \"name\": \"Trailer 123\",\n"
+                + "      \"vehicleId\": 2\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testV1GetVehicleHarshEvent() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
                                 "{\"downloadForwardVideoUrl\":\"https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-123456789.mp4?...\",\"downloadInwardVideoUrl\":\"https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-driver-123456789.mp4?...\",\"downloadTrackedInwardVideoUrl\":\"https://samsara-dashcam-videos.s3.us-west-2.amazonaws.com/123/212123456789012/1539201872984/abC123De4-camera-video-segment-driver-123456789.tracked.mp4?...\",\"harshEventType\":\"Harsh Braking\",\"incidentReportUrl\":\"https://cloud.samsara.com/o/1234/fleet/reports/safety/vehicle/212123456789012/incident/1539201882984\",\"isDistracted\":true,\"location\":{\"address\":\"350 Rhode Island St, San Francisco, CA\",\"latitude\":33.07614328,\"longitude\":-96.14907287}}"));
-        V1VehicleHarshEventResponse response = client.legacyApIs()
+        V1VehicleHarshEventResponse response = client.legacyApis()
                 .v1GetVehicleHarshEvent(
                         1000000L,
                         V1GetVehicleHarshEventRequest.builder()

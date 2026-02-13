@@ -38,7 +38,7 @@ public final class WebhookParamsObjectRequestBody {
     }
 
     /**
-     * @return This determines the alert webhook payload type to use. Learn more: https://developers.samsara.com/docs/webhook-reference.  Valid values: <code>legacy</code>, <code>enriched</code>
+     * @return This determines the alert webhook payload type to use. Learn more: /docs/webhook-reference.  Valid values: <code>legacy</code>, <code>enriched</code>
      */
     @JsonProperty("payloadType")
     public Optional<WebhookParamsObjectRequestBodyPayloadType> getPayloadType() {
@@ -100,7 +100,7 @@ public final class WebhookParamsObjectRequestBody {
         }
 
         /**
-         * <p>This determines the alert webhook payload type to use. Learn more: https://developers.samsara.com/docs/webhook-reference.  Valid values: <code>legacy</code>, <code>enriched</code></p>
+         * <p>This determines the alert webhook payload type to use. Learn more: /docs/webhook-reference.  Valid values: <code>legacy</code>, <code>enriched</code></p>
          */
         @JsonSetter(value = "payloadType", nulls = Nulls.SKIP)
         public Builder payloadType(Optional<WebhookParamsObjectRequestBodyPayloadType> payloadType) {

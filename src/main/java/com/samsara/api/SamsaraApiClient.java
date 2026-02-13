@@ -10,7 +10,7 @@ import com.samsara.api.resources.alerts.AlertsClient;
 import com.samsara.api.resources.assets.AssetsClient;
 import com.samsara.api.resources.attributes.AttributesClient;
 import com.samsara.api.resources.authtokenfordriver.AuthTokenForDriverClient;
-import com.samsara.api.resources.betaapis.BetaApIsClient;
+import com.samsara.api.resources.betaapis.BetaApisClient;
 import com.samsara.api.resources.carrierproposedassignments.CarrierProposedAssignmentsClient;
 import com.samsara.api.resources.coaching.CoachingClient;
 import com.samsara.api.resources.contacts.ContactsClient;
@@ -30,8 +30,7 @@ import com.samsara.api.resources.idling.IdlingClient;
 import com.samsara.api.resources.ifta.IftaClient;
 import com.samsara.api.resources.industrial.IndustrialClient;
 import com.samsara.api.resources.issues.IssuesClient;
-import com.samsara.api.resources.legacy.LegacyClient;
-import com.samsara.api.resources.legacyapis.LegacyApIsClient;
+import com.samsara.api.resources.legacyapis.LegacyApisClient;
 import com.samsara.api.resources.livesharinglinks.LiveSharingLinksClient;
 import com.samsara.api.resources.locationandspeed.LocationAndSpeedClient;
 import com.samsara.api.resources.maintenance.MaintenanceClient;
@@ -39,7 +38,7 @@ import com.samsara.api.resources.media.MediaClient;
 import com.samsara.api.resources.messages.MessagesClient;
 import com.samsara.api.resources.organizationinfo.OrganizationInfoClient;
 import com.samsara.api.resources.plans.PlansClient;
-import com.samsara.api.resources.previewapis.PreviewApIsClient;
+import com.samsara.api.resources.previewapis.PreviewApisClient;
 import com.samsara.api.resources.routeevents.RouteEventsClient;
 import com.samsara.api.resources.routes.RoutesClient;
 import com.samsara.api.resources.safety.SafetyClient;
@@ -70,7 +69,7 @@ public class SamsaraApiClient {
 
     protected final Supplier<AssetsClient> assetsClient;
 
-    protected final Supplier<BetaApIsClient> betaApIsClient;
+    protected final Supplier<BetaApisClient> betaApisClient;
 
     protected final Supplier<LocationAndSpeedClient> locationAndSpeedClient;
 
@@ -92,7 +91,7 @@ public class SamsaraApiClient {
 
     protected final Supplier<CarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
 
-    protected final Supplier<LegacyApIsClient> legacyApIsClient;
+    protected final Supplier<LegacyApisClient> legacyApisClient;
 
     protected final Supplier<DocumentsClient> documentsClient;
 
@@ -142,7 +141,7 @@ public class SamsaraApiClient {
 
     protected final Supplier<OrganizationInfoClient> organizationInfoClient;
 
-    protected final Supplier<PreviewApIsClient> previewApIsClient;
+    protected final Supplier<PreviewApisClient> previewApisClient;
 
     protected final Supplier<RouteEventsClient> routeEventsClient;
 
@@ -160,8 +159,6 @@ public class SamsaraApiClient {
 
     protected final Supplier<UsersClient> usersClient;
 
-    protected final Supplier<LegacyClient> legacyClient;
-
     protected final Supplier<MessagesClient> messagesClient;
 
     protected final Supplier<TrailerAssignmentsClient> trailerAssignmentsClient;
@@ -177,7 +174,7 @@ public class SamsaraApiClient {
         this.addressesClient = Suppliers.memoize(() -> new AddressesClient(clientOptions));
         this.alertsClient = Suppliers.memoize(() -> new AlertsClient(clientOptions));
         this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
-        this.betaApIsClient = Suppliers.memoize(() -> new BetaApIsClient(clientOptions));
+        this.betaApisClient = Suppliers.memoize(() -> new BetaApisClient(clientOptions));
         this.locationAndSpeedClient = Suppliers.memoize(() -> new LocationAndSpeedClient(clientOptions));
         this.attributesClient = Suppliers.memoize(() -> new AttributesClient(clientOptions));
         this.mediaClient = Suppliers.memoize(() -> new MediaClient(clientOptions));
@@ -190,7 +187,7 @@ public class SamsaraApiClient {
         this.driverQrCodesClient = Suppliers.memoize(() -> new DriverQrCodesClient(clientOptions));
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new CarrierProposedAssignmentsClient(clientOptions));
-        this.legacyApIsClient = Suppliers.memoize(() -> new LegacyApIsClient(clientOptions));
+        this.legacyApisClient = Suppliers.memoize(() -> new LegacyApisClient(clientOptions));
         this.documentsClient = Suppliers.memoize(() -> new DocumentsClient(clientOptions));
         this.driverVehicleAssignmentsClient =
                 Suppliers.memoize(() -> new DriverVehicleAssignmentsClient(clientOptions));
@@ -216,7 +213,7 @@ public class SamsaraApiClient {
         this.liveSharingLinksClient = Suppliers.memoize(() -> new LiveSharingLinksClient(clientOptions));
         this.workOrdersClient = Suppliers.memoize(() -> new WorkOrdersClient(clientOptions));
         this.organizationInfoClient = Suppliers.memoize(() -> new OrganizationInfoClient(clientOptions));
-        this.previewApIsClient = Suppliers.memoize(() -> new PreviewApIsClient(clientOptions));
+        this.previewApisClient = Suppliers.memoize(() -> new PreviewApisClient(clientOptions));
         this.routeEventsClient = Suppliers.memoize(() -> new RouteEventsClient(clientOptions));
         this.safetyClient = Suppliers.memoize(() -> new SafetyClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new SpeedingIntervalsClient(clientOptions));
@@ -225,7 +222,6 @@ public class SamsaraApiClient {
         this.trainingCoursesClient = Suppliers.memoize(() -> new TrainingCoursesClient(clientOptions));
         this.tripsClient = Suppliers.memoize(() -> new TripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new UsersClient(clientOptions));
-        this.legacyClient = Suppliers.memoize(() -> new LegacyClient(clientOptions));
         this.messagesClient = Suppliers.memoize(() -> new MessagesClient(clientOptions));
         this.trailerAssignmentsClient = Suppliers.memoize(() -> new TrailerAssignmentsClient(clientOptions));
         this.sensorsClient = Suppliers.memoize(() -> new SensorsClient(clientOptions));
@@ -245,8 +241,8 @@ public class SamsaraApiClient {
         return this.assetsClient.get();
     }
 
-    public BetaApIsClient betaApIs() {
-        return this.betaApIsClient.get();
+    public BetaApisClient betaApis() {
+        return this.betaApisClient.get();
     }
 
     public LocationAndSpeedClient locationAndSpeed() {
@@ -289,8 +285,8 @@ public class SamsaraApiClient {
         return this.carrierProposedAssignmentsClient.get();
     }
 
-    public LegacyApIsClient legacyApIs() {
-        return this.legacyApIsClient.get();
+    public LegacyApisClient legacyApis() {
+        return this.legacyApisClient.get();
     }
 
     public DocumentsClient documents() {
@@ -389,8 +385,8 @@ public class SamsaraApiClient {
         return this.organizationInfoClient.get();
     }
 
-    public PreviewApIsClient previewApIs() {
-        return this.previewApIsClient.get();
+    public PreviewApisClient previewApis() {
+        return this.previewApisClient.get();
     }
 
     public RouteEventsClient routeEvents() {
@@ -423,10 +419,6 @@ public class SamsaraApiClient {
 
     public UsersClient users() {
         return this.usersClient.get();
-    }
-
-    public LegacyClient legacy() {
-        return this.legacyClient.get();
     }
 
     public MessagesClient messages() {

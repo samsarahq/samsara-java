@@ -33,9 +33,9 @@ public class RawVehicleLocationsClient {
     /**
      * <em><strong>NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new <a href="ref:getvehiclestats">Vehicle Stats API</a> instead.</strong></em>
      * <p>Returns the last known location of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used. This can be optionally filtered by tags or specific vehicle IDs.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsResponse> getVehicleLocations() {
         return getVehicleLocations(GetVehicleLocationsRequest.builder().build());
@@ -44,9 +44,9 @@ public class RawVehicleLocationsClient {
     /**
      * <em><strong>NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new <a href="ref:getvehiclestats">Vehicle Stats API</a> instead.</strong></em>
      * <p>Returns the last known location of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used. This can be optionally filtered by tags or specific vehicle IDs.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsResponse> getVehicleLocations(RequestOptions requestOptions) {
         return getVehicleLocations(GetVehicleLocationsRequest.builder().build(), requestOptions);
@@ -55,9 +55,9 @@ public class RawVehicleLocationsClient {
     /**
      * <em><strong>NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new <a href="ref:getvehiclestats">Vehicle Stats API</a> instead.</strong></em>
      * <p>Returns the last known location of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used. This can be optionally filtered by tags or specific vehicle IDs.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsResponse> getVehicleLocations(GetVehicleLocationsRequest request) {
         return getVehicleLocations(request, null);
@@ -66,9 +66,9 @@ public class RawVehicleLocationsClient {
     /**
      * <em><strong>NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new <a href="ref:getvehiclestats">Vehicle Stats API</a> instead.</strong></em>
      * <p>Returns the last known location of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used. This can be optionally filtered by tags or specific vehicle IDs.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsResponse> getVehicleLocations(
             GetVehicleLocationsRequest request, RequestOptions requestOptions) {
@@ -132,9 +132,9 @@ public class RawVehicleLocationsClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each vehicle and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsListResponse> getVehicleLocationsFeed() {
         return getVehicleLocationsFeed(GetVehicleLocationsFeedRequest.builder().build());
@@ -146,9 +146,9 @@ public class RawVehicleLocationsClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each vehicle and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsListResponse> getVehicleLocationsFeed(RequestOptions requestOptions) {
         return getVehicleLocationsFeed(GetVehicleLocationsFeedRequest.builder().build(), requestOptions);
@@ -160,9 +160,9 @@ public class RawVehicleLocationsClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each vehicle and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsListResponse> getVehicleLocationsFeed(
             GetVehicleLocationsFeedRequest request) {
@@ -175,9 +175,9 @@ public class RawVehicleLocationsClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each vehicle and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsListResponse> getVehicleLocationsFeed(
             GetVehicleLocationsFeedRequest request, RequestOptions requestOptions) {
@@ -234,9 +234,9 @@ public class RawVehicleLocationsClient {
     /**
      * <em><strong>NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new <a href="ref:getvehiclestatshistory">Vehicle Stats API</a> instead.</strong></em>
      * <p>Returns all known vehicle locations during the given time range. This can be optionally filtered by tags or specific vehicle IDs.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsListResponse> getVehicleLocationsHistory(
             GetVehicleLocationsHistoryRequest request) {
@@ -246,9 +246,9 @@ public class RawVehicleLocationsClient {
     /**
      * <em><strong>NOTE: The Vehicle Locations API is an older API that does not combine GPS data with onboard diagnostics. Try our new <a href="ref:getvehiclestatshistory">Vehicle Stats API</a> instead.</strong></em>
      * <p>Returns all known vehicle locations during the given time range. This can be optionally filtered by tags or specific vehicle IDs.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/vehicle-locations-1&quot; target=&quot;_blank&quot;&gt;Vehicle Locations&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/vehicle-locations-1">Vehicle Locations</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicle category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<VehicleLocationsListResponse> getVehicleLocationsHistory(
             GetVehicleLocationsHistoryRequest request, RequestOptions requestOptions) {
