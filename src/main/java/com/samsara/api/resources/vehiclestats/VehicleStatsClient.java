@@ -30,9 +30,9 @@ public class VehicleStatsClient {
 
     /**
      * Returns the last known stats of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsResponse getVehicleStats() {
         return this.rawClient.getVehicleStats().body();
@@ -40,9 +40,9 @@ public class VehicleStatsClient {
 
     /**
      * Returns the last known stats of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsResponse getVehicleStats(RequestOptions requestOptions) {
         return this.rawClient.getVehicleStats(requestOptions).body();
@@ -50,9 +50,9 @@ public class VehicleStatsClient {
 
     /**
      * Returns the last known stats of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsResponse getVehicleStats(GetVehicleStatsRequest request) {
         return this.rawClient.getVehicleStats(request).body();
@@ -60,9 +60,9 @@ public class VehicleStatsClient {
 
     /**
      * Returns the last known stats of all vehicles at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsResponse getVehicleStats(GetVehicleStatsRequest request, RequestOptions requestOptions) {
         return this.rawClient.getVehicleStats(request, requestOptions).body();
@@ -73,9 +73,9 @@ public class VehicleStatsClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each vehicle and an <code>endCursor</code>.</p>
      * <p>You can the provide the <code>endCursor</code> value to the <code>after</code> query parameter to get all updates since the last call you made.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no new data is immediately available. You should wait a minimum of 5 seconds making a subsequent request.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsListResponse getVehicleStatsFeed() {
         return this.rawClient.getVehicleStatsFeed().body();
@@ -86,9 +86,9 @@ public class VehicleStatsClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each vehicle and an <code>endCursor</code>.</p>
      * <p>You can the provide the <code>endCursor</code> value to the <code>after</code> query parameter to get all updates since the last call you made.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no new data is immediately available. You should wait a minimum of 5 seconds making a subsequent request.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsListResponse getVehicleStatsFeed(RequestOptions requestOptions) {
         return this.rawClient.getVehicleStatsFeed(requestOptions).body();
@@ -99,9 +99,9 @@ public class VehicleStatsClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each vehicle and an <code>endCursor</code>.</p>
      * <p>You can the provide the <code>endCursor</code> value to the <code>after</code> query parameter to get all updates since the last call you made.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no new data is immediately available. You should wait a minimum of 5 seconds making a subsequent request.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsListResponse getVehicleStatsFeed(GetVehicleStatsFeedRequest request) {
         return this.rawClient.getVehicleStatsFeed(request).body();
@@ -112,9 +112,9 @@ public class VehicleStatsClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each vehicle and an <code>endCursor</code>.</p>
      * <p>You can the provide the <code>endCursor</code> value to the <code>after</code> query parameter to get all updates since the last call you made.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no new data is immediately available. You should wait a minimum of 5 seconds making a subsequent request.</p>
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsListResponse getVehicleStatsFeed(
             GetVehicleStatsFeedRequest request, RequestOptions requestOptions) {
@@ -123,9 +123,9 @@ public class VehicleStatsClient {
 
     /**
      * Returns vehicle stats during the given time range for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsListResponse getVehicleStatsHistory(GetVehicleStatsHistoryRequest request) {
         return this.rawClient.getVehicleStatsHistory(request).body();
@@ -133,9 +133,9 @@ public class VehicleStatsClient {
 
     /**
      * Returns vehicle stats during the given time range for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.
-     * <p>Related guide: &lt;a href=&quot;/docs/telematics&quot; target=&quot;_blank&quot;&gt;Telematics&lt;/a&gt;.</p>
+     * <p>Related guide: <a href="/docs/telematics">Telematics</a>.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public VehicleStatsListResponse getVehicleStatsHistory(
             GetVehicleStatsHistoryRequest request, RequestOptions requestOptions) {

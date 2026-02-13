@@ -118,7 +118,7 @@ public final class Tag implements ITinyTag, ITagAllOf {
     }
 
     /**
-     * @return The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.
+     * @return The <a href="/docs/external-ids">external IDs</a> for the given object.
      */
     @JsonProperty("externalIds")
     public Optional<TagAllOfExternalIds> getExternalIds() {
@@ -328,7 +328,7 @@ public final class Tag implements ITinyTag, ITagAllOf {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
         public Builder externalIds(Optional<TagAllOfExternalIds> externalIds) {

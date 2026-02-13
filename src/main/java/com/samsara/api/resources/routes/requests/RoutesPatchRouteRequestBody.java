@@ -67,7 +67,7 @@ public final class RoutesPatchRouteRequestBody {
     }
 
     /**
-     * @return ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.
+     * @return ID of the driver. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.
      */
     @JsonProperty("driverId")
     public Optional<String> getDriverId() {
@@ -128,7 +128,7 @@ public final class RoutesPatchRouteRequestBody {
     }
 
     /**
-     * @return ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.
+     * @return ID of the vehicle. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.
      */
     @JsonProperty("vehicleId")
     public Optional<String> getVehicleId() {
@@ -220,7 +220,7 @@ public final class RoutesPatchRouteRequestBody {
         }
 
         /**
-         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          */
         @JsonSetter(value = "driverId", nulls = Nulls.SKIP)
         public Builder driverId(Optional<String> driverId) {
@@ -329,7 +329,7 @@ public final class RoutesPatchRouteRequestBody {
         }
 
         /**
-         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          */
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
         public Builder vehicleId(Optional<String> vehicleId) {

@@ -40,7 +40,7 @@ public final class DvirTrailerDefectsItemsVehicle {
     }
 
     /**
-     * @return The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.
+     * @return The <a href="/docs/external-ids">external IDs</a> for the given object.
      */
     @JsonProperty("ExternalIds")
     public Optional<Map<String, String>> getExternalIds() {
@@ -113,7 +113,7 @@ public final class DvirTrailerDefectsItemsVehicle {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         @JsonSetter(value = "ExternalIds", nulls = Nulls.SKIP)
         public Builder externalIds(Optional<Map<String, String>> externalIds) {

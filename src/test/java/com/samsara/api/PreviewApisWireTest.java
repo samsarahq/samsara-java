@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PreviewApIsWireTest {
+public class PreviewApisWireTest {
     private MockWebServer server;
     private SamsaraApiClient client;
     private ObjectMapper objectMapper = ObjectMappers.JSON_MAPPER;
@@ -40,7 +40,7 @@ public class PreviewApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"expirationTime\":1710000000000,\"token\":\"ZmFrZVRva2VuXzMyQnl0ZXNMb25nRm9yVGVzdA\"}}"));
-        DriversAuthTokenCreateDriverAuthTokenResponseBody response = client.previewApIs()
+        DriversAuthTokenCreateDriverAuthTokenResponseBody response = client.previewApis()
                 .createDriverAuthToken(DriversAuthTokenCreateDriverAuthTokenRequestBody.builder()
                         .code("dp[gZc1wAigz4uGa0Hh")
                         .build());
@@ -121,7 +121,7 @@ public class PreviewApIsWireTest {
     @Test
     public void testLockVehicle() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.previewApIs().lockVehicle("id");
+        client.previewApis().lockVehicle("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("PUT", request.getMethod());
@@ -130,7 +130,7 @@ public class PreviewApIsWireTest {
     @Test
     public void testUnlockVehicle() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.previewApIs().unlockVehicle("id");
+        client.previewApis().unlockVehicle("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

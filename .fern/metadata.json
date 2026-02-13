@@ -6,5 +6,5 @@
     "package-prefix": "com.samsara.api",
     "enable-wire-tests": true
   },
-  "sdkVersion": "5.4.3"
+  "sdkVersion": "5.4.4"
 }

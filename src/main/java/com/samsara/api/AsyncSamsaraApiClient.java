@@ -10,7 +10,7 @@ import com.samsara.api.resources.alerts.AsyncAlertsClient;
 import com.samsara.api.resources.assets.AsyncAssetsClient;
 import com.samsara.api.resources.attributes.AsyncAttributesClient;
 import com.samsara.api.resources.authtokenfordriver.AsyncAuthTokenForDriverClient;
-import com.samsara.api.resources.betaapis.AsyncBetaApIsClient;
+import com.samsara.api.resources.betaapis.AsyncBetaApisClient;
 import com.samsara.api.resources.carrierproposedassignments.AsyncCarrierProposedAssignmentsClient;
 import com.samsara.api.resources.coaching.AsyncCoachingClient;
 import com.samsara.api.resources.contacts.AsyncContactsClient;
@@ -30,8 +30,7 @@ import com.samsara.api.resources.idling.AsyncIdlingClient;
 import com.samsara.api.resources.ifta.AsyncIftaClient;
 import com.samsara.api.resources.industrial.AsyncIndustrialClient;
 import com.samsara.api.resources.issues.AsyncIssuesClient;
-import com.samsara.api.resources.legacy.AsyncLegacyClient;
-import com.samsara.api.resources.legacyapis.AsyncLegacyApIsClient;
+import com.samsara.api.resources.legacyapis.AsyncLegacyApisClient;
 import com.samsara.api.resources.livesharinglinks.AsyncLiveSharingLinksClient;
 import com.samsara.api.resources.locationandspeed.AsyncLocationAndSpeedClient;
 import com.samsara.api.resources.maintenance.AsyncMaintenanceClient;
@@ -39,7 +38,7 @@ import com.samsara.api.resources.media.AsyncMediaClient;
 import com.samsara.api.resources.messages.AsyncMessagesClient;
 import com.samsara.api.resources.organizationinfo.AsyncOrganizationInfoClient;
 import com.samsara.api.resources.plans.AsyncPlansClient;
-import com.samsara.api.resources.previewapis.AsyncPreviewApIsClient;
+import com.samsara.api.resources.previewapis.AsyncPreviewApisClient;
 import com.samsara.api.resources.routeevents.AsyncRouteEventsClient;
 import com.samsara.api.resources.routes.AsyncRoutesClient;
 import com.samsara.api.resources.safety.AsyncSafetyClient;
@@ -70,7 +69,7 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncAssetsClient> assetsClient;
 
-    protected final Supplier<AsyncBetaApIsClient> betaApIsClient;
+    protected final Supplier<AsyncBetaApisClient> betaApisClient;
 
     protected final Supplier<AsyncLocationAndSpeedClient> locationAndSpeedClient;
 
@@ -92,7 +91,7 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncCarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
 
-    protected final Supplier<AsyncLegacyApIsClient> legacyApIsClient;
+    protected final Supplier<AsyncLegacyApisClient> legacyApisClient;
 
     protected final Supplier<AsyncDocumentsClient> documentsClient;
 
@@ -142,7 +141,7 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncOrganizationInfoClient> organizationInfoClient;
 
-    protected final Supplier<AsyncPreviewApIsClient> previewApIsClient;
+    protected final Supplier<AsyncPreviewApisClient> previewApisClient;
 
     protected final Supplier<AsyncRouteEventsClient> routeEventsClient;
 
@@ -160,8 +159,6 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncUsersClient> usersClient;
 
-    protected final Supplier<AsyncLegacyClient> legacyClient;
-
     protected final Supplier<AsyncMessagesClient> messagesClient;
 
     protected final Supplier<AsyncTrailerAssignmentsClient> trailerAssignmentsClient;
@@ -177,7 +174,7 @@ public class AsyncSamsaraApiClient {
         this.addressesClient = Suppliers.memoize(() -> new AsyncAddressesClient(clientOptions));
         this.alertsClient = Suppliers.memoize(() -> new AsyncAlertsClient(clientOptions));
         this.assetsClient = Suppliers.memoize(() -> new AsyncAssetsClient(clientOptions));
-        this.betaApIsClient = Suppliers.memoize(() -> new AsyncBetaApIsClient(clientOptions));
+        this.betaApisClient = Suppliers.memoize(() -> new AsyncBetaApisClient(clientOptions));
         this.locationAndSpeedClient = Suppliers.memoize(() -> new AsyncLocationAndSpeedClient(clientOptions));
         this.attributesClient = Suppliers.memoize(() -> new AsyncAttributesClient(clientOptions));
         this.mediaClient = Suppliers.memoize(() -> new AsyncMediaClient(clientOptions));
@@ -190,7 +187,7 @@ public class AsyncSamsaraApiClient {
         this.driverQrCodesClient = Suppliers.memoize(() -> new AsyncDriverQrCodesClient(clientOptions));
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncCarrierProposedAssignmentsClient(clientOptions));
-        this.legacyApIsClient = Suppliers.memoize(() -> new AsyncLegacyApIsClient(clientOptions));
+        this.legacyApisClient = Suppliers.memoize(() -> new AsyncLegacyApisClient(clientOptions));
         this.documentsClient = Suppliers.memoize(() -> new AsyncDocumentsClient(clientOptions));
         this.driverVehicleAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncDriverVehicleAssignmentsClient(clientOptions));
@@ -216,7 +213,7 @@ public class AsyncSamsaraApiClient {
         this.liveSharingLinksClient = Suppliers.memoize(() -> new AsyncLiveSharingLinksClient(clientOptions));
         this.workOrdersClient = Suppliers.memoize(() -> new AsyncWorkOrdersClient(clientOptions));
         this.organizationInfoClient = Suppliers.memoize(() -> new AsyncOrganizationInfoClient(clientOptions));
-        this.previewApIsClient = Suppliers.memoize(() -> new AsyncPreviewApIsClient(clientOptions));
+        this.previewApisClient = Suppliers.memoize(() -> new AsyncPreviewApisClient(clientOptions));
         this.routeEventsClient = Suppliers.memoize(() -> new AsyncRouteEventsClient(clientOptions));
         this.safetyClient = Suppliers.memoize(() -> new AsyncSafetyClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new AsyncSpeedingIntervalsClient(clientOptions));
@@ -225,7 +222,6 @@ public class AsyncSamsaraApiClient {
         this.trainingCoursesClient = Suppliers.memoize(() -> new AsyncTrainingCoursesClient(clientOptions));
         this.tripsClient = Suppliers.memoize(() -> new AsyncTripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new AsyncUsersClient(clientOptions));
-        this.legacyClient = Suppliers.memoize(() -> new AsyncLegacyClient(clientOptions));
         this.messagesClient = Suppliers.memoize(() -> new AsyncMessagesClient(clientOptions));
         this.trailerAssignmentsClient = Suppliers.memoize(() -> new AsyncTrailerAssignmentsClient(clientOptions));
         this.sensorsClient = Suppliers.memoize(() -> new AsyncSensorsClient(clientOptions));
@@ -245,8 +241,8 @@ public class AsyncSamsaraApiClient {
         return this.assetsClient.get();
     }
 
-    public AsyncBetaApIsClient betaApIs() {
-        return this.betaApIsClient.get();
+    public AsyncBetaApisClient betaApis() {
+        return this.betaApisClient.get();
     }
 
     public AsyncLocationAndSpeedClient locationAndSpeed() {
@@ -289,8 +285,8 @@ public class AsyncSamsaraApiClient {
         return this.carrierProposedAssignmentsClient.get();
     }
 
-    public AsyncLegacyApIsClient legacyApIs() {
-        return this.legacyApIsClient.get();
+    public AsyncLegacyApisClient legacyApis() {
+        return this.legacyApisClient.get();
     }
 
     public AsyncDocumentsClient documents() {
@@ -389,8 +385,8 @@ public class AsyncSamsaraApiClient {
         return this.organizationInfoClient.get();
     }
 
-    public AsyncPreviewApIsClient previewApIs() {
-        return this.previewApIsClient.get();
+    public AsyncPreviewApisClient previewApis() {
+        return this.previewApisClient.get();
     }
 
     public AsyncRouteEventsClient routeEvents() {
@@ -423,10 +419,6 @@ public class AsyncSamsaraApiClient {
 
     public AsyncUsersClient users() {
         return this.usersClient.get();
-    }
-
-    public AsyncLegacyClient legacy() {
-        return this.legacyClient.get();
     }
 
     public AsyncMessagesClient messages() {

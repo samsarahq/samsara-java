@@ -47,7 +47,7 @@ public final class VehicleStatsEngineImmobilizer {
     }
 
     /**
-     * @return The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;https://developers.samsara.com/reference/getengineimmobilizerstates&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).
+     * @return The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;/api-reference/future/beta-apis/get-engine-immobilizer-states&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).
      */
     @JsonProperty("state")
     public VehicleStatsEngineImmobilizerState getState() {
@@ -99,7 +99,7 @@ public final class VehicleStatsEngineImmobilizer {
 
     public interface StateStage {
         /**
-         * <p>The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;https://developers.samsara.com/reference/getengineimmobilizerstates&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).</p>
+         * <p>The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;/api-reference/future/beta-apis/get-engine-immobilizer-states&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).</p>
          */
         TimeStage state(@NotNull VehicleStatsEngineImmobilizerState state);
     }
@@ -146,8 +146,8 @@ public final class VehicleStatsEngineImmobilizer {
         }
 
         /**
-         * <p>The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;https://developers.samsara.com/reference/getengineimmobilizerstates&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).</p>
-         * <p>The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;https://developers.samsara.com/reference/getengineimmobilizerstates&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).</p>
+         * <p>The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;/api-reference/future/beta-apis/get-engine-immobilizer-states&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).</p>
+         * <p>The state of the engine immobilizer. Valid values: <code>ignition_disabled</code>, <code>ignition_enabled</code>. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href=&quot;/api-reference/future/beta-apis/get-engine-immobilizer-states&quot; target=&quot;_blank&quot;&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

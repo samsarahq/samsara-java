@@ -73,7 +73,7 @@ public final class IssuesPatchIssueRequestBody {
     }
 
     /**
-     * @return ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.
+     * @return ID of the issue. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the issue.
      */
     @JsonProperty("id")
     public String getId() {
@@ -123,7 +123,7 @@ public final class IssuesPatchIssueRequestBody {
 
     public interface IdStage {
         /**
-         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
+         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the issue.</p>
          */
         _FinalStage id(@NotNull String id);
 
@@ -187,8 +187,8 @@ public final class IssuesPatchIssueRequestBody {
         }
 
         /**
-         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
-         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
+         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the issue.</p>
+         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the issue.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
