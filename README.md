@@ -47,7 +47,7 @@ Add the dependency in your `pom.xml` file:
 <dependency>
   <groupId>com.samsara</groupId>
   <artifactId>samsara-java-sdk</artifactId>
-  <version>5.4.2</version>
+  <version>5.4.3</version>
 </dependency>
 ```
 
@@ -63,7 +63,8 @@ Instantiate and use the client with the following:
 package com.example.usage;
 
 import com.samsara.api.SamsaraApiClient;
-import com.samsara.api.resources.vehicles.requests.ListVehiclesRequest;
+import com.samsara.api.resources.addresses.requests.CreateAddressRequest;
+import com.samsara.api.types.CreateAddressRequestGeofence;
 
 public class Example {
     public static void main(String[] args) {
@@ -72,9 +73,16 @@ public class Example {
             .token("<token>")
             .build();
 
-        client.vehicles().list(
-            ListVehiclesRequest
+        client.addresses().create(
+            CreateAddressRequest
                 .builder()
+                .formattedAddress("350 Rhode Island St, San Francisco, CA")
+                .geofence(
+                    CreateAddressRequestGeofence
+                        .builder()
+                        .build()
+                )
+                .name("Samsara HQ")
                 .build()
         );
     }
@@ -156,7 +164,7 @@ When the API returns a non-success status code (4xx or 5xx response), an API exc
 import com.samsara.api.core.SamsaraApiApiException;
 
 try{
-    client.vehicles().list(...);
+    client.addresses().create(...);
 } catch (SamsaraApiApiException e){
     // Do something with the API exception...
 }
@@ -220,7 +228,7 @@ SamsaraApiClient client = SamsaraApiClient
     .build();
 
 // Request level
-client.vehicles().list(
+client.addresses().create(
     ...,
     RequestOptions
         .builder()
@@ -246,7 +254,7 @@ SamsaraApiClient client = SamsaraApiClient
 ;
 
 // Request level
-client.vehicles().list(
+client.addresses().create(
     ...,
     RequestOptions
         .builder()
@@ -262,7 +270,7 @@ The `withRawResponse()` method returns a raw client that wraps all responses wit
 (A normal client's `response` is identical to a raw client's `response.body()`.)
 
 ```java
-ListHttpResponse response = client.vehicles().withRawResponse().list(...);
+CreateHttpResponse response = client.addresses().withRawResponse().create(...);
 
 System.out.println(response.body());
 System.out.println(response.headers().get("X-My-Header"));

@@ -26,9 +26,7 @@ import com.samsara.api.errors.UnauthorizedError;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
-import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
-import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAllAssetCurrentLocationsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
@@ -147,6 +145,11 @@ public class AsyncRawAssetsClient {
         if (request.getAttributes().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "attributes", request.getAttributes().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -296,10 +299,14 @@ public class AsyncRawAssetsClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<AssetsCreateAssetResponseBody>> createAsset(
             AssetsCreateAssetRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("assets")
-                .build();
+                .addPathSegments("assets");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -308,7 +315,7 @@ public class AsyncRawAssetsClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -421,6 +428,11 @@ public class AsyncRawAssetsClient {
                 .newBuilder()
                 .addPathSegments("assets");
         QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
@@ -532,6 +544,11 @@ public class AsyncRawAssetsClient {
                 .newBuilder()
                 .addPathSegments("assets");
         QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -708,6 +725,11 @@ public class AsyncRawAssetsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "limit", request.getLimit().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -793,6 +815,11 @@ public class AsyncRawAssetsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "limit", request.getLimit().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -868,6 +895,11 @@ public class AsyncRawAssetsClient {
                 .addPathSegments("locations");
         QueryStringMapper.addQueryParameter(httpUrl, "startMs", request.getStartMs(), false);
         QueryStringMapper.addQueryParameter(httpUrl, "endMs", request.getEndMs(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -944,6 +976,11 @@ public class AsyncRawAssetsClient {
                 .addPathSegments("reefer");
         QueryStringMapper.addQueryParameter(httpUrl, "startMs", request.getStartMs(), false);
         QueryStringMapper.addQueryParameter(httpUrl, "endMs", request.getEndMs(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -984,29 +1021,24 @@ public class AsyncRawAssetsClient {
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> get(String id) {
-        return get(id, GetAssetsRequest.builder().build());
+        return get(id, null);
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> get(String id, RequestOptions requestOptions) {
-        return get(id, GetAssetsRequest.builder().build(), requestOptions);
-    }
-
-    public CompletableFuture<SamsaraApiHttpResponse<Void>> get(String id, GetAssetsRequest request) {
-        return get(id, request, null);
-    }
-
-    public CompletableFuture<SamsaraApiHttpResponse<Void>> get(
-            String id, GetAssetsRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("assets")
-                .addPathSegment(id)
-                .build();
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegment(id);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)));
-        Request okhttpRequest = _requestBuilder.build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -1039,29 +1071,24 @@ public class AsyncRawAssetsClient {
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id) {
-        return update(id, UpdateAssetsRequest.builder().build());
+        return update(id, null);
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id, RequestOptions requestOptions) {
-        return update(id, UpdateAssetsRequest.builder().build(), requestOptions);
-    }
-
-    public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id, UpdateAssetsRequest request) {
-        return update(id, request, null);
-    }
-
-    public CompletableFuture<SamsaraApiHttpResponse<Void>> update(
-            String id, UpdateAssetsRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("assets")
-                .addPathSegment(id)
-                .build();
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegment(id);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
                 .method("PATCH", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)));
-        Request okhttpRequest = _requestBuilder.build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

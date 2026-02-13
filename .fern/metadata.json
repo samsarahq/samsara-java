@@ -1,9 +1,10 @@
 {
-  "cliVersion": "3.48.2",
+  "cliVersion": "3.75.0",
   "generatorName": "fernapi/fern-java-sdk",
-  "generatorVersion": "3.28.2",
+  "generatorVersion": "3.34.8",
   "generatorConfig": {
-    "package-prefix": "com.samsara.api"
+    "package-prefix": "com.samsara.api",
+    "enable-wire-tests": true
   },
-  "sdkVersion": "5.4.2"
+  "sdkVersion": "5.4.3"
 }

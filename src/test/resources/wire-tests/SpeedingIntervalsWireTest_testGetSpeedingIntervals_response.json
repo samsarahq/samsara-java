@@ -1,0 +1,132 @@
+{
+  "data": [
+    {
+      "asset": {
+        "id": "id",
+        "name": "name",
+        "type": "uncategorized",
+        "vin": "vin"
+      },
+      "createdAtTime": "createdAtTime",
+      "driverId": "driverId",
+      "intervals": [
+        {
+          "endTime": "endTime",
+          "isDismissed": true,
+          "location": {
+            "accuracyMeters": 1.1,
+            "address": {
+              "city": "city",
+              "country": "country",
+              "neighborhood": "neighborhood",
+              "pointOfInterest": "pointOfInterest",
+              "postalCode": "postalCode",
+              "state": "state",
+              "street": "street",
+              "streetNumber": "streetNumber"
+            },
+            "headingDegrees": 1000000,
+            "latitude": 1.1,
+            "longitude": 1.1
+          },
+          "maxSpeedKilometersPerHour": 1.1,
+          "postedSpeedLimitKilometersPerHour": 1.1,
+          "severityLevel": "light",
+          "startTime": "startTime"
+        },
+        {
+          "endTime": "endTime",
+          "isDismissed": true,
+          "location": {
+            "accuracyMeters": 1.1,
+            "address": {
+              "city": "city",
+              "country": "country",
+              "neighborhood": "neighborhood",
+              "pointOfInterest": "pointOfInterest",
+              "postalCode": "postalCode",
+              "state": "state",
+              "street": "street",
+              "streetNumber": "streetNumber"
+            },
+            "headingDegrees": 1000000,
+            "latitude": 1.1,
+            "longitude": 1.1
+          },
+          "maxSpeedKilometersPerHour": 1.1,
+          "postedSpeedLimitKilometersPerHour": 1.1,
+          "severityLevel": "light",
+          "startTime": "startTime"
+        }
+      ],
+      "tripStartTime": "tripStartTime",
+      "updatedAtTime": "updatedAtTime"
+    },
+    {
+      "asset": {
+        "id": "id",
+        "name": "name",
+        "type": "uncategorized",
+        "vin": "vin"
+      },
+      "createdAtTime": "createdAtTime",
+      "driverId": "driverId",
+      "intervals": [
+        {
+          "endTime": "endTime",
+          "isDismissed": true,
+          "location": {
+            "accuracyMeters": 1.1,
+            "address": {
+              "city": "city",
+              "country": "country",
+              "neighborhood": "neighborhood",
+              "pointOfInterest": "pointOfInterest",
+              "postalCode": "postalCode",
+              "state": "state",
+              "street": "street",
+              "streetNumber": "streetNumber"
+            },
+            "headingDegrees": 1000000,
+            "latitude": 1.1,
+            "longitude": 1.1
+          },
+          "maxSpeedKilometersPerHour": 1.1,
+          "postedSpeedLimitKilometersPerHour": 1.1,
+          "severityLevel": "light",
+          "startTime": "startTime"
+        },
+        {
+          "endTime": "endTime",
+          "isDismissed": true,
+          "location": {
+            "accuracyMeters": 1.1,
+            "address": {
+              "city": "city",
+              "country": "country",
+              "neighborhood": "neighborhood",
+              "pointOfInterest": "pointOfInterest",
+              "postalCode": "postalCode",
+              "state": "state",
+              "street": "street",
+              "streetNumber": "streetNumber"
+            },
+            "headingDegrees": 1000000,
+            "latitude": 1.1,
+            "longitude": 1.1
+          },
+          "maxSpeedKilometersPerHour": 1.1,
+          "postedSpeedLimitKilometersPerHour": 1.1,
+          "severityLevel": "light",
+          "startTime": "startTime"
+        }
+      ],
+      "tripStartTime": "tripStartTime",
+      "updatedAtTime": "updatedAtTime"
+    }
+  ],
+  "pagination": {
+    "endCursor": "endCursor",
+    "hasNextPage": true
+  }
+}

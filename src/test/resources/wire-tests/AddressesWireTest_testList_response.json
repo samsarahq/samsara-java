@@ -1,0 +1,57 @@
+{
+  "data": [
+    {
+      "addressTypes": [
+        "yard"
+      ],
+      "contacts": [
+        {
+          "firstName": "Jane",
+          "id": "22408",
+          "lastName": "Jones"
+        }
+      ],
+      "createdAtTime": "2019-05-18T20:27:35Z",
+      "formattedAddress": "350 Rhode Island St, San Francisco, CA",
+      "geofence": {
+        "circle": {
+          "latitude": 37.765363,
+          "longitude": -122.4029238,
+          "radiusMeters": 25
+        },
+        "polygon": {
+          "vertices": [
+            {
+              "latitude": 37.765363,
+              "longitude": -122.403098
+            },
+            {
+              "latitude": 38.765363,
+              "longitude": -122.403098
+            },
+            {
+              "latitude": 37.765363,
+              "longitude": -123.403098
+            }
+          ]
+        }
+      },
+      "id": "22408",
+      "latitude": 37.765363,
+      "longitude": -122.4029238,
+      "name": "Samsara HQ",
+      "notes": "Hours of operation: 8am - 6pm; Truck entrance on the Rhode Island street side.",
+      "tags": [
+        {
+          "id": "3914",
+          "name": "East Coast",
+          "parentTagId": "4815"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "endCursor": "MjkY",
+    "hasNextPage": true
+  }
+}

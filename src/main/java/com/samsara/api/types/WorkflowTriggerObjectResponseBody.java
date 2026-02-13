@@ -65,7 +65,6 @@ public final class WorkflowTriggerObjectResponseBody {
      * Vehicle Engine Idle = 1019
      * Asset Engine On = 1021
      * Asset Engine Off = 1022
-     * Harsh Event = 1023
      * Scheduled Maintenance = 1024
      * Scheduled Maintenance by Odometer = 1025
      * Scheduled Maintenance by Engine Hours = 1026
@@ -87,6 +86,8 @@ public final class WorkflowTriggerObjectResponseBody {
      * A safety event occurred with a driver assigned = 5033
      * A safety event occurred = 5039
      * Scheduled Date And Time = 8001</p>
+     * <p>The following trigger types are Deprecated:
+     * Harsh Event = 1023</p>
      */
     @JsonProperty("triggerTypeId")
     public int getTriggerTypeId() {
@@ -148,7 +149,6 @@ public final class WorkflowTriggerObjectResponseBody {
          * Vehicle Engine Idle = 1019
          * Asset Engine On = 1021
          * Asset Engine Off = 1022
-         * Harsh Event = 1023
          * Scheduled Maintenance = 1024
          * Scheduled Maintenance by Odometer = 1025
          * Scheduled Maintenance by Engine Hours = 1026
@@ -170,6 +170,8 @@ public final class WorkflowTriggerObjectResponseBody {
          * A safety event occurred with a driver assigned = 5033
          * A safety event occurred = 5039
          * Scheduled Date And Time = 8001</p>
+         * <p>The following trigger types are Deprecated:
+         * Harsh Event = 1023</p>
          */
         _FinalStage triggerTypeId(int triggerTypeId);
 
@@ -227,7 +229,6 @@ public final class WorkflowTriggerObjectResponseBody {
          * Vehicle Engine Idle = 1019
          * Asset Engine On = 1021
          * Asset Engine Off = 1022
-         * Harsh Event = 1023
          * Scheduled Maintenance = 1024
          * Scheduled Maintenance by Odometer = 1025
          * Scheduled Maintenance by Engine Hours = 1026
@@ -249,6 +250,8 @@ public final class WorkflowTriggerObjectResponseBody {
          * A safety event occurred with a driver assigned = 5033
          * A safety event occurred = 5039
          * Scheduled Date And Time = 8001</p>
+         * <p>The following trigger types are Deprecated:
+         * Harsh Event = 1023</p>
          * <p>The id of the trigger type. Reference the following list for the ids:</p>
          * <p>Ambient Temperature = 1003
          * Asset Reading = 1062
@@ -273,7 +276,6 @@ public final class WorkflowTriggerObjectResponseBody {
          * Vehicle Engine Idle = 1019
          * Asset Engine On = 1021
          * Asset Engine Off = 1022
-         * Harsh Event = 1023
          * Scheduled Maintenance = 1024
          * Scheduled Maintenance by Odometer = 1025
          * Scheduled Maintenance by Engine Hours = 1026
@@ -295,6 +297,8 @@ public final class WorkflowTriggerObjectResponseBody {
          * A safety event occurred with a driver assigned = 5033
          * A safety event occurred = 5039
          * Scheduled Date And Time = 8001</p>
+         * <p>The following trigger types are Deprecated:
+         * Harsh Event = 1023</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

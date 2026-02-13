@@ -16,23 +16,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FormsApprovalConfigObjectResponseBody.Builder.class)
 public final class FormsApprovalConfigObjectResponseBody {
     private final Optional<FormsSingleApprovalConfigObjectResponseBody> singleApprovalConfig;
 
-    private final FormsApprovalConfigObjectResponseBodyType type;
-
     private final Map<String, Object> additionalProperties;
 
     private FormsApprovalConfigObjectResponseBody(
             Optional<FormsSingleApprovalConfigObjectResponseBody> singleApprovalConfig,
-            FormsApprovalConfigObjectResponseBodyType type,
             Map<String, Object> additionalProperties) {
         this.singleApprovalConfig = singleApprovalConfig;
-        this.type = type;
         this.additionalProperties = additionalProperties;
     }
 
@@ -45,8 +40,8 @@ public final class FormsApprovalConfigObjectResponseBody {
      * @return Type of approval.  Valid values: <code>singleApproval</code>
      */
     @JsonProperty("type")
-    public FormsApprovalConfigObjectResponseBodyType getType() {
-        return type;
+    public String getType() {
+        return "singleApproval";
     }
 
     @java.lang.Override
@@ -62,12 +57,12 @@ public final class FormsApprovalConfigObjectResponseBody {
     }
 
     private boolean equalTo(FormsApprovalConfigObjectResponseBody other) {
-        return singleApprovalConfig.equals(other.singleApprovalConfig) && type.equals(other.type);
+        return singleApprovalConfig.equals(other.singleApprovalConfig);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.singleApprovalConfig, this.type);
+        return Objects.hash(this.singleApprovalConfig);
     }
 
     @java.lang.Override
@@ -75,31 +70,12 @@ public final class FormsApprovalConfigObjectResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static TypeStage builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public interface TypeStage {
-        /**
-         * <p>Type of approval.  Valid values: <code>singleApproval</code></p>
-         */
-        _FinalStage type(@NotNull FormsApprovalConfigObjectResponseBodyType type);
-
-        Builder from(FormsApprovalConfigObjectResponseBody other);
-    }
-
-    public interface _FinalStage {
-        FormsApprovalConfigObjectResponseBody build();
-
-        _FinalStage singleApprovalConfig(Optional<FormsSingleApprovalConfigObjectResponseBody> singleApprovalConfig);
-
-        _FinalStage singleApprovalConfig(FormsSingleApprovalConfigObjectResponseBody singleApprovalConfig);
-    }
-
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements TypeStage, _FinalStage {
-        private FormsApprovalConfigObjectResponseBodyType type;
-
+    public static final class Builder {
         private Optional<FormsSingleApprovalConfigObjectResponseBody> singleApprovalConfig = Optional.empty();
 
         @JsonAnySetter
@@ -107,42 +83,25 @@ public final class FormsApprovalConfigObjectResponseBody {
 
         private Builder() {}
 
-        @java.lang.Override
         public Builder from(FormsApprovalConfigObjectResponseBody other) {
             singleApprovalConfig(other.getSingleApprovalConfig());
-            type(other.getType());
             return this;
         }
 
-        /**
-         * <p>Type of approval.  Valid values: <code>singleApproval</code></p>
-         * <p>Type of approval.  Valid values: <code>singleApproval</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("type")
-        public _FinalStage type(@NotNull FormsApprovalConfigObjectResponseBodyType type) {
-            this.type = Objects.requireNonNull(type, "type must not be null");
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage singleApprovalConfig(FormsSingleApprovalConfigObjectResponseBody singleApprovalConfig) {
-            this.singleApprovalConfig = Optional.ofNullable(singleApprovalConfig);
-            return this;
-        }
-
-        @java.lang.Override
         @JsonSetter(value = "singleApprovalConfig", nulls = Nulls.SKIP)
-        public _FinalStage singleApprovalConfig(
+        public Builder singleApprovalConfig(
                 Optional<FormsSingleApprovalConfigObjectResponseBody> singleApprovalConfig) {
             this.singleApprovalConfig = singleApprovalConfig;
             return this;
         }
 
-        @java.lang.Override
+        public Builder singleApprovalConfig(FormsSingleApprovalConfigObjectResponseBody singleApprovalConfig) {
+            this.singleApprovalConfig = Optional.ofNullable(singleApprovalConfig);
+            return this;
+        }
+
         public FormsApprovalConfigObjectResponseBody build() {
-            return new FormsApprovalConfigObjectResponseBody(singleApprovalConfig, type, additionalProperties);
+            return new FormsApprovalConfigObjectResponseBody(singleApprovalConfig, additionalProperties);
         }
     }
 }

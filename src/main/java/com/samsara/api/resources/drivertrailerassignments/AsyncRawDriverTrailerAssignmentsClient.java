@@ -108,6 +108,11 @@ public class AsyncRawDriverTrailerAssignmentsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverIds", request.getDriverIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -221,10 +226,14 @@ public class AsyncRawDriverTrailerAssignmentsClient {
     public CompletableFuture<SamsaraApiHttpResponse<TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody>>
             createDriverTrailerAssignment(
                     TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("driver-trailer-assignments")
-                .build();
+                .addPathSegments("driver-trailer-assignments");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -233,7 +242,7 @@ public class AsyncRawDriverTrailerAssignmentsClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -350,6 +359,11 @@ public class AsyncRawDriverTrailerAssignmentsClient {
                 .newBuilder()
                 .addPathSegments("driver-trailer-assignments");
         QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(

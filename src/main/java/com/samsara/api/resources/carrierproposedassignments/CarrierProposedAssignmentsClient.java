@@ -6,7 +6,6 @@ package com.samsara.api.resources.carrierproposedassignments;
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.carrierproposedassignments.requests.CreateCarrierProposedAssignmentRequest;
-import com.samsara.api.resources.carrierproposedassignments.requests.DeleteCarrierProposedAssignmentRequest;
 import com.samsara.api.resources.carrierproposedassignments.requests.ListCarrierProposedAssignmentsRequest;
 import com.samsara.api.types.CarrierProposedAssignmentResponse;
 import com.samsara.api.types.ListCarrierProposedAssignmentResponse;
@@ -87,47 +86,6 @@ public class CarrierProposedAssignmentsClient {
             CreateCarrierProposedAssignmentRequest request, RequestOptions requestOptions) {
         return this.rawClient
                 .createCarrierProposedAssignment(request, requestOptions)
-                .body();
-    }
-
-    /**
-     * Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Carrier-Proposed Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteCarrierProposedAssignment(String id) {
-        return this.rawClient.deleteCarrierProposedAssignment(id).body();
-    }
-
-    /**
-     * Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Carrier-Proposed Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteCarrierProposedAssignment(String id, RequestOptions requestOptions) {
-        return this.rawClient
-                .deleteCarrierProposedAssignment(id, requestOptions)
-                .body();
-    }
-
-    /**
-     * Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Carrier-Proposed Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteCarrierProposedAssignment(String id, DeleteCarrierProposedAssignmentRequest request) {
-        return this.rawClient.deleteCarrierProposedAssignment(id, request).body();
-    }
-
-    /**
-     * Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Carrier-Proposed Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public String deleteCarrierProposedAssignment(
-            String id, DeleteCarrierProposedAssignmentRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .deleteCarrierProposedAssignment(id, request, requestOptions)
                 .body();
     }
 }

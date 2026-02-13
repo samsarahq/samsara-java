@@ -117,6 +117,11 @@ public class RawTrailerAssignmentsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "endingBefore", request.getEndingBefore().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -220,6 +225,11 @@ public class RawTrailerAssignmentsClient {
         if (request.getEndMs().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "endMs", request.getEndMs().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

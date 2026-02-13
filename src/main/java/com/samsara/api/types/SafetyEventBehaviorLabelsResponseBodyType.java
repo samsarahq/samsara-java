@@ -22,6 +22,9 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
     public static final SafetyEventBehaviorLabelsResponseBodyType HARSH_TURN =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.HARSH_TURN, "HarshTurn");
 
+    public static final SafetyEventBehaviorLabelsResponseBodyType OPERATIONAL_EVENT =
+            new SafetyEventBehaviorLabelsResponseBodyType(Value.OPERATIONAL_EVENT, "OperationalEvent");
+
     public static final SafetyEventBehaviorLabelsResponseBodyType SPEEDING =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.SPEEDING, "Speeding");
 
@@ -169,6 +172,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitNearCollison();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
+            case OPERATIONAL_EVENT:
+                return visitor.visitOperationalEvent();
             case SPEEDING:
                 return visitor.visitSpeeding();
             case DRINKING:
@@ -254,6 +259,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return NEAR_COLLISON;
             case "HarshTurn":
                 return HARSH_TURN;
+            case "OperationalEvent":
+                return OPERATIONAL_EVENT;
             case "Speeding":
                 return SPEEDING;
             case "Drinking":
@@ -378,6 +385,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         OBSTRUCTED_CAMERA,
 
+        OPERATIONAL_EVENT,
+
         PASSENGER,
 
         POLICY_VIOLATION_MASK,
@@ -457,6 +466,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         T visitNoSeatbelt();
 
         T visitObstructedCamera();
+
+        T visitOperationalEvent();
 
         T visitPassenger();
 

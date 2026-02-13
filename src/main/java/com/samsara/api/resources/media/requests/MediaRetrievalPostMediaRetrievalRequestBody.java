@@ -68,7 +68,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
     }
 
     /**
-     * @return The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>
+     * @return The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code>
      */
     @JsonProperty("mediaType")
     public MediaRetrievalPostMediaRetrievalRequestBodyMediaType getMediaType() {
@@ -136,7 +136,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
 
     public interface MediaTypeStage {
         /**
-         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code></p>
+         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code></p>
          */
         StartTimeStage mediaType(@NotNull MediaRetrievalPostMediaRetrievalRequestBodyMediaType mediaType);
     }
@@ -209,8 +209,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
         }
 
         /**
-         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code></p>
-         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code></p>
+         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code></p>
+         * <p>The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: <code>image</code>, <code>videoHighRes</code>, <code>videoLowRes</code>, <code>hyperlapse</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

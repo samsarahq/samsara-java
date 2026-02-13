@@ -84,6 +84,11 @@ public class RawTripsClient {
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -177,6 +182,11 @@ public class RawTripsClient {
         QueryStringMapper.addQueryParameter(httpUrl, "vehicleId", request.getVehicleId(), false);
         QueryStringMapper.addQueryParameter(httpUrl, "startMs", request.getStartMs(), false);
         QueryStringMapper.addQueryParameter(httpUrl, "endMs", request.getEndMs(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)

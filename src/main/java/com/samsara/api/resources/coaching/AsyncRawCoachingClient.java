@@ -111,6 +111,11 @@ public class AsyncRawCoachingClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "coachIds", request.getCoachIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -230,6 +235,11 @@ public class AsyncRawCoachingClient {
         if (request.getCoachId().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "coachId", request.getCoachId().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -380,6 +390,11 @@ public class AsyncRawCoachingClient {
         if (request.getSessionStatuses().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "sessionStatuses", request.getSessionStatuses().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

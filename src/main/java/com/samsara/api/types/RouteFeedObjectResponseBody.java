@@ -32,8 +32,6 @@ public final class RouteFeedObjectResponseBody {
 
     private final OffsetDateTime time;
 
-    private final RouteFeedObjectResponseBodyType type;
-
     private final Map<String, Object> additionalProperties;
 
     private RouteFeedObjectResponseBody(
@@ -42,14 +40,12 @@ public final class RouteFeedObjectResponseBody {
             BaseRouteResponseObjectResponseBody route,
             RouteFeedObjectResponseBodySource source,
             OffsetDateTime time,
-            RouteFeedObjectResponseBodyType type,
             Map<String, Object> additionalProperties) {
         this.changes = changes;
         this.operation = operation;
         this.route = route;
         this.source = source;
         this.time = time;
-        this.type = type;
         this.additionalProperties = additionalProperties;
     }
 
@@ -91,8 +87,8 @@ public final class RouteFeedObjectResponseBody {
      * @return The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code>
      */
     @JsonProperty("type")
-    public RouteFeedObjectResponseBodyType getType() {
-        return type;
+    public String getType() {
+        return "route tracking";
     }
 
     @java.lang.Override
@@ -111,13 +107,12 @@ public final class RouteFeedObjectResponseBody {
                 && operation.equals(other.operation)
                 && route.equals(other.route)
                 && source.equals(other.source)
-                && time.equals(other.time)
-                && type.equals(other.type);
+                && time.equals(other.time);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.changes, this.operation, this.route, this.source, this.time, this.type);
+        return Objects.hash(this.changes, this.operation, this.route, this.source, this.time);
     }
 
     @java.lang.Override
@@ -150,14 +145,7 @@ public final class RouteFeedObjectResponseBody {
         /**
          * <p>The timestamp of the route in RFC 3339 format.</p>
          */
-        TypeStage time(@NotNull OffsetDateTime time);
-    }
-
-    public interface TypeStage {
-        /**
-         * <p>The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code></p>
-         */
-        _FinalStage type(@NotNull RouteFeedObjectResponseBodyType type);
+        _FinalStage time(@NotNull OffsetDateTime time);
     }
 
     public interface _FinalStage {
@@ -172,8 +160,7 @@ public final class RouteFeedObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder
-            implements ChangesStage, RouteStage, SourceStage, TimeStage, TypeStage, _FinalStage {
+    public static final class Builder implements ChangesStage, RouteStage, SourceStage, TimeStage, _FinalStage {
         private RouteChangesResponseBody changes;
 
         private BaseRouteResponseObjectResponseBody route;
@@ -181,8 +168,6 @@ public final class RouteFeedObjectResponseBody {
         private RouteFeedObjectResponseBodySource source;
 
         private OffsetDateTime time;
-
-        private RouteFeedObjectResponseBodyType type;
 
         private Optional<RouteFeedObjectResponseBodyOperation> operation = Optional.empty();
 
@@ -198,7 +183,6 @@ public final class RouteFeedObjectResponseBody {
             route(other.getRoute());
             source(other.getSource());
             time(other.getTime());
-            type(other.getType());
             return this;
         }
 
@@ -235,20 +219,8 @@ public final class RouteFeedObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("time")
-        public TypeStage time(@NotNull OffsetDateTime time) {
+        public _FinalStage time(@NotNull OffsetDateTime time) {
             this.time = Objects.requireNonNull(time, "time must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code></p>
-         * <p>The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("type")
-        public _FinalStage type(@NotNull RouteFeedObjectResponseBodyType type) {
-            this.type = Objects.requireNonNull(type, "type must not be null");
             return this;
         }
 
@@ -274,7 +246,7 @@ public final class RouteFeedObjectResponseBody {
 
         @java.lang.Override
         public RouteFeedObjectResponseBody build() {
-            return new RouteFeedObjectResponseBody(changes, operation, route, source, time, type, additionalProperties);
+            return new RouteFeedObjectResponseBody(changes, operation, route, source, time, additionalProperties);
         }
     }
 }

@@ -25,7 +25,6 @@ import com.samsara.api.errors.UnauthorizedError;
 import com.samsara.api.resources.industrial.requests.AssetCreate;
 import com.samsara.api.resources.industrial.requests.AssetDataOutputsPatchAssetDataOutputsRequestBody;
 import com.samsara.api.resources.industrial.requests.AssetPatch;
-import com.samsara.api.resources.industrial.requests.DeleteIndustrialAssetRequest;
 import com.samsara.api.resources.industrial.requests.GetDataInputDataFeedRequest;
 import com.samsara.api.resources.industrial.requests.GetDataInputDataHistoryRequest;
 import com.samsara.api.resources.industrial.requests.GetDataInputDataSnapshotRequest;
@@ -34,7 +33,6 @@ import com.samsara.api.resources.industrial.requests.GetIndustrialAssetsRequest;
 import com.samsara.api.resources.industrial.requests.GetVisionRunsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.InlineObject3;
 import com.samsara.api.resources.industrial.requests.V1GetVisionLatestRunCameraRequest;
-import com.samsara.api.resources.industrial.requests.V1GetVisionProgramsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsByCameraAndProgramRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsRequest;
 import com.samsara.api.types.AssetDataOutputsPatchAssetDataOutputsResponseBody;
@@ -126,6 +124,11 @@ public class RawIndustrialClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assetIds", request.getAssetIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -168,10 +171,14 @@ public class RawIndustrialClient {
      */
     public SamsaraApiHttpResponse<InlineResponse200> createIndustrialAsset(
             AssetCreate request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("industrial/assets")
-                .build();
+                .addPathSegments("industrial/assets");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -180,7 +187,7 @@ public class RawIndustrialClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -196,70 +203,6 @@ public class RawIndustrialClient {
             if (response.isSuccessful()) {
                 return new SamsaraApiHttpResponse<>(
                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InlineResponse200.class), response);
-            }
-            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-            throw new SamsaraApiApiException(
-                    "Error with status code " + response.code(), response.code(), errorBody, response);
-        } catch (IOException e) {
-            throw new SamsaraApiException("Network error executing HTTP request", e);
-        }
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public SamsaraApiHttpResponse<String> deleteIndustrialAsset(String id) {
-        return deleteIndustrialAsset(id, DeleteIndustrialAssetRequest.builder().build());
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public SamsaraApiHttpResponse<String> deleteIndustrialAsset(String id, RequestOptions requestOptions) {
-        return deleteIndustrialAsset(id, DeleteIndustrialAssetRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public SamsaraApiHttpResponse<String> deleteIndustrialAsset(String id, DeleteIndustrialAssetRequest request) {
-        return deleteIndustrialAsset(id, request, null);
-    }
-
-    /**
-     * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public SamsaraApiHttpResponse<String> deleteIndustrialAsset(
-            String id, DeleteIndustrialAssetRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("industrial/assets")
-                .addPathSegment(id)
-                .build();
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
-                .method("DELETE", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            if (response.isSuccessful()) {
-                return new SamsaraApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, String.class), response);
             }
             Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
             throw new SamsaraApiApiException(
@@ -303,11 +246,15 @@ public class RawIndustrialClient {
      */
     public SamsaraApiHttpResponse<InlineResponse200> patchIndustrialAsset(
             String id, AssetPatch request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("industrial/assets")
-                .addPathSegment(id)
-                .build();
+                .addPathSegment(id);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -316,7 +263,7 @@ public class RawIndustrialClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -360,12 +307,16 @@ public class RawIndustrialClient {
      */
     public SamsaraApiHttpResponse<AssetDataOutputsPatchAssetDataOutputsResponseBody> patchAssetDataOutputs(
             String id, AssetDataOutputsPatchAssetDataOutputsRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("industrial/assets")
                 .addPathSegment(id)
-                .addPathSegments("data-outputs")
-                .build();
+                .addPathSegments("data-outputs");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -374,7 +325,7 @@ public class RawIndustrialClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -491,6 +442,11 @@ public class RawIndustrialClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assetIds", request.getAssetIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -576,6 +532,11 @@ public class RawIndustrialClient {
         if (request.getAssetIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assetIds", request.getAssetIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -672,6 +633,11 @@ public class RawIndustrialClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assetIds", request.getAssetIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -739,6 +705,11 @@ public class RawIndustrialClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assetIds", request.getAssetIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -791,12 +762,16 @@ public class RawIndustrialClient {
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<List<V1VisionCamerasResponseItem>> v1GetCameras(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("v1/industrial/vision/cameras")
-                .build();
+                .addPathSegments("v1/industrial/vision/cameras");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json")
@@ -834,8 +809,7 @@ public class RawIndustrialClient {
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(long cameraId) {
-        return v1GetVisionProgramsByCamera(
-                cameraId, V1GetVisionProgramsByCameraRequest.builder().build());
+        return v1GetVisionProgramsByCamera(cameraId, null);
     }
 
     /**
@@ -851,51 +825,22 @@ public class RawIndustrialClient {
      */
     public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
             long cameraId, RequestOptions requestOptions) {
-        return v1GetVisionProgramsByCamera(
-                cameraId, V1GetVisionProgramsByCameraRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
-            long cameraId, V1GetVisionProgramsByCameraRequest request) {
-        return v1GetVisionProgramsByCamera(cameraId, request, null);
-    }
-
-    /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
-            long cameraId, V1GetVisionProgramsByCameraRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("v1/industrial/vision/cameras")
                 .addPathSegment(Long.toString(cameraId))
-                .addPathSegments("programs")
-                .build();
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegments("programs");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
+                .addHeader("Accept", "application/json")
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -975,6 +920,11 @@ public class RawIndustrialClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "limit", request.getLimit().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -1036,6 +986,11 @@ public class RawIndustrialClient {
         if (request.getEndMs().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "endMs", request.getEndMs().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -1099,6 +1054,11 @@ public class RawIndustrialClient {
         if (request.getEndMs().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "endMs", request.getEndMs().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -1211,6 +1171,11 @@ public class RawIndustrialClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "include", request.getInclude().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -1266,10 +1231,14 @@ public class RawIndustrialClient {
      */
     public SamsaraApiHttpResponse<V1MachineHistoryResponse> v1GetMachinesHistory(
             InlineObject3 request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("v1/machines/history")
-                .build();
+                .addPathSegments("v1/machines/history");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -1278,7 +1247,7 @@ public class RawIndustrialClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -1331,12 +1300,16 @@ public class RawIndustrialClient {
      * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<InlineResponse2008> v1GetMachines(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("v1/machines/list")
-                .build();
+                .addPathSegments("v1/machines/list");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", RequestBody.create("", null))
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Accept", "application/json")

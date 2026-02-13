@@ -97,6 +97,11 @@ public class AsyncRawFuelAndEnergyClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "dataFormats", request.getDataFormats().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -236,6 +241,11 @@ public class AsyncRawFuelAndEnergyClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "dataFormats", request.getDataFormats().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -368,6 +378,11 @@ public class AsyncRawFuelAndEnergyClient {
         if (request.getDriverIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverIds", request.getDriverIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -505,6 +520,11 @@ public class AsyncRawFuelAndEnergyClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "after", request.getAfter().get(), false);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -616,10 +636,14 @@ public class AsyncRawFuelAndEnergyClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<FuelPurchasePostFuelPurchaseResponseBody>> postFuelPurchase(
             FuelPurchasePostFuelPurchaseRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fuel-purchase")
-                .build();
+                .addPathSegments("fuel-purchase");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -628,7 +652,7 @@ public class AsyncRawFuelAndEnergyClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")

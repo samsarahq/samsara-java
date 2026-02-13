@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "completedAtTime": "2024-01-15T09:30:00Z",
+      "course": {
+        "id": "id",
+        "revisionId": "revisionId"
+      },
+      "createdAtTime": "2024-01-15T09:30:00Z",
+      "createdById": "createdById",
+      "deletedAtTime": "2024-01-15T09:30:00Z",
+      "dueAtTime": "2024-01-15T09:30:00Z",
+      "durationMinutes": 1000000,
+      "id": "id",
+      "isCompletedLate": true,
+      "isOverdue": true,
+      "learner": {
+        "id": "id",
+        "type": "driver"
+      },
+      "scorePercent": 1.1,
+      "startedAtTime": "2024-01-15T09:30:00Z",
+      "status": "notStarted",
+      "updatedAtTime": "2024-01-15T09:30:00Z",
+      "updatedById": "updatedById"
+    },
+    {
+      "completedAtTime": "2024-01-15T09:30:00Z",
+      "course": {
+        "id": "id",
+        "revisionId": "revisionId"
+      },
+      "createdAtTime": "2024-01-15T09:30:00Z",
+      "createdById": "createdById",
+      "deletedAtTime": "2024-01-15T09:30:00Z",
+      "dueAtTime": "2024-01-15T09:30:00Z",
+      "durationMinutes": 1000000,
+      "id": "id",
+      "isCompletedLate": true,
+      "isOverdue": true,
+      "learner": {
+        "id": "id",
+        "type": "driver"
+      },
+      "scorePercent": 1.1,
+      "startedAtTime": "2024-01-15T09:30:00Z",
+      "status": "notStarted",
+      "updatedAtTime": "2024-01-15T09:30:00Z",
+      "updatedById": "updatedById"
+    }
+  ]
+}

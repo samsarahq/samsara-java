@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "behaviors": [
+        {
+          "behaviorType": "acceleration",
+          "count": 1000000,
+          "scoreImpact": 1.1
+        },
+        {
+          "behaviorType": "acceleration",
+          "count": 1000000,
+          "scoreImpact": 1.1
+        }
+      ],
+      "driveDistanceMeters": 1000000,
+      "driverId": "driverId",
+      "speeding": [
+        {
+          "durationMilliseconds": 1000000,
+          "scoreImpact": 1.1,
+          "speedingType": "light"
+        },
+        {
+          "durationMilliseconds": 1000000,
+          "scoreImpact": 1.1,
+          "speedingType": "light"
+        }
+      ],
+      "tripEndTime": "tripEndTime",
+      "tripScoreImpact": 1.1,
+      "tripStartTime": "tripStartTime",
+      "vehicleId": "vehicleId"
+    },
+    {
+      "behaviors": [
+        {
+          "behaviorType": "acceleration",
+          "count": 1000000,
+          "scoreImpact": 1.1
+        },
+        {
+          "behaviorType": "acceleration",
+          "count": 1000000,
+          "scoreImpact": 1.1
+        }
+      ],
+      "driveDistanceMeters": 1000000,
+      "driverId": "driverId",
+      "speeding": [
+        {
+          "durationMilliseconds": 1000000,
+          "scoreImpact": 1.1,
+          "speedingType": "light"
+        },
+        {
+          "durationMilliseconds": 1000000,
+          "scoreImpact": 1.1,
+          "speedingType": "light"
+        }
+      ],
+      "tripEndTime": "tripEndTime",
+      "tripScoreImpact": 1.1,
+      "tripStartTime": "tripStartTime",
+      "vehicleId": "vehicleId"
+    }
+  ],
+  "pagination": {
+    "endCursor": "endCursor",
+    "hasNextPage": true
+  }
+}

@@ -75,6 +75,11 @@ public class AsyncRawTrainingAssignmentsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "learnerIds", request.getLearnerIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("POST", RequestBody.create("", null))
@@ -215,6 +220,11 @@ public class AsyncRawTrainingAssignmentsClient {
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
@@ -328,6 +338,11 @@ public class AsyncRawTrainingAssignmentsClient {
         QueryStringMapper.addQueryParameter(httpUrl, "dueAtTime", request.getDueAtTime(), false);
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -472,6 +487,11 @@ public class AsyncRawTrainingAssignmentsClient {
         if (request.getCategoryIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "categoryIds", request.getCategoryIds().get(), true);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

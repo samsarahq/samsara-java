@@ -6,16 +6,25 @@ package com.samsara.api.resources.fleet;
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.Suppliers;
 import com.samsara.api.resources.fleet.attributes.AsyncAttributesClient;
+import com.samsara.api.resources.fleet.carrierproposedassignments.AsyncCarrierProposedAssignmentsClient;
 import java.util.function.Supplier;
 
 public class AsyncFleetClient {
     protected final ClientOptions clientOptions;
 
+    protected final Supplier<AsyncCarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
+
     protected final Supplier<AsyncAttributesClient> attributesClient;
 
     public AsyncFleetClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.carrierProposedAssignmentsClient =
+                Suppliers.memoize(() -> new AsyncCarrierProposedAssignmentsClient(clientOptions));
         this.attributesClient = Suppliers.memoize(() -> new AsyncAttributesClient(clientOptions));
+    }
+
+    public AsyncCarrierProposedAssignmentsClient carrierProposedAssignments() {
+        return this.carrierProposedAssignmentsClient.get();
     }
 
     public AsyncAttributesClient attributes() {

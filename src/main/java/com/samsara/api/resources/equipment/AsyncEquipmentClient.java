@@ -8,7 +8,6 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsFeedRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsRequest;
-import com.samsara.api.resources.equipment.requests.GetEquipmentRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsFeedRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsRequest;
@@ -308,24 +307,5 @@ public class AsyncEquipmentClient {
      */
     public CompletableFuture<EquipmentResponse> getEquipment(String id, RequestOptions requestOptions) {
         return this.rawClient.getEquipment(id, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Retrieves the unit of equipment with the given Samsara ID.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<EquipmentResponse> getEquipment(String id, GetEquipmentRequest request) {
-        return this.rawClient.getEquipment(id, request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Retrieves the unit of equipment with the given Samsara ID.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<EquipmentResponse> getEquipment(
-            String id, GetEquipmentRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getEquipment(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

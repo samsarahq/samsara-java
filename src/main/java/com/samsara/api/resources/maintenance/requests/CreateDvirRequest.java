@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.maintenance.types.CreateDvirRequestSafetyStatus;
-import com.samsara.api.resources.maintenance.types.CreateDvirRequestType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,8 +39,6 @@ public final class CreateDvirRequest {
 
     private final Optional<String> trailerId;
 
-    private final CreateDvirRequestType type;
-
     private final Optional<String> vehicleId;
 
     private final Map<String, Object> additionalProperties;
@@ -55,7 +52,6 @@ public final class CreateDvirRequest {
             Optional<List<String>> resolvedDefectIds,
             CreateDvirRequestSafetyStatus safetyStatus,
             Optional<String> trailerId,
-            CreateDvirRequestType type,
             Optional<String> vehicleId,
             Map<String, Object> additionalProperties) {
         this.authorId = authorId;
@@ -66,7 +62,6 @@ public final class CreateDvirRequest {
         this.resolvedDefectIds = resolvedDefectIds;
         this.safetyStatus = safetyStatus;
         this.trailerId = trailerId;
-        this.type = type;
         this.vehicleId = vehicleId;
         this.additionalProperties = additionalProperties;
     }
@@ -139,8 +134,8 @@ public final class CreateDvirRequest {
      * @return Only type 'mechanic' is currently accepted.
      */
     @JsonProperty("type")
-    public CreateDvirRequestType getType() {
-        return type;
+    public String getType() {
+        return "mechanic";
     }
 
     /**
@@ -171,7 +166,6 @@ public final class CreateDvirRequest {
                 && resolvedDefectIds.equals(other.resolvedDefectIds)
                 && safetyStatus.equals(other.safetyStatus)
                 && trailerId.equals(other.trailerId)
-                && type.equals(other.type)
                 && vehicleId.equals(other.vehicleId);
     }
 
@@ -186,7 +180,6 @@ public final class CreateDvirRequest {
                 this.resolvedDefectIds,
                 this.safetyStatus,
                 this.trailerId,
-                this.type,
                 this.vehicleId);
     }
 
@@ -212,14 +205,7 @@ public final class CreateDvirRequest {
         /**
          * <p>Whether or not this vehicle or trailer is safe to drive.</p>
          */
-        TypeStage safetyStatus(@NotNull CreateDvirRequestSafetyStatus safetyStatus);
-    }
-
-    public interface TypeStage {
-        /**
-         * <p>Only type 'mechanic' is currently accepted.</p>
-         */
-        _FinalStage type(@NotNull CreateDvirRequestType type);
+        _FinalStage safetyStatus(@NotNull CreateDvirRequestSafetyStatus safetyStatus);
     }
 
     public interface _FinalStage {
@@ -276,12 +262,10 @@ public final class CreateDvirRequest {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AuthorIdStage, SafetyStatusStage, TypeStage, _FinalStage {
+    public static final class Builder implements AuthorIdStage, SafetyStatusStage, _FinalStage {
         private String authorId;
 
         private CreateDvirRequestSafetyStatus safetyStatus;
-
-        private CreateDvirRequestType type;
 
         private Optional<String> vehicleId = Optional.empty();
 
@@ -312,7 +296,6 @@ public final class CreateDvirRequest {
             resolvedDefectIds(other.getResolvedDefectIds());
             safetyStatus(other.getSafetyStatus());
             trailerId(other.getTrailerId());
-            type(other.getType());
             vehicleId(other.getVehicleId());
             return this;
         }
@@ -336,20 +319,8 @@ public final class CreateDvirRequest {
          */
         @java.lang.Override
         @JsonSetter("safetyStatus")
-        public TypeStage safetyStatus(@NotNull CreateDvirRequestSafetyStatus safetyStatus) {
+        public _FinalStage safetyStatus(@NotNull CreateDvirRequestSafetyStatus safetyStatus) {
             this.safetyStatus = Objects.requireNonNull(safetyStatus, "safetyStatus must not be null");
-            return this;
-        }
-
-        /**
-         * <p>Only type 'mechanic' is currently accepted.</p>
-         * <p>Only type 'mechanic' is currently accepted.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("type")
-        public _FinalStage type(@NotNull CreateDvirRequestType type) {
-            this.type = Objects.requireNonNull(type, "type must not be null");
             return this;
         }
 
@@ -504,7 +475,6 @@ public final class CreateDvirRequest {
                     resolvedDefectIds,
                     safetyStatus,
                     trailerId,
-                    type,
                     vehicleId,
                     additionalProperties);
         }

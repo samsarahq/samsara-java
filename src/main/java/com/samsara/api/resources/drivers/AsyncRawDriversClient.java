@@ -23,9 +23,7 @@ import com.samsara.api.errors.ServiceUnavailableError;
 import com.samsara.api.errors.TooManyRequestsError;
 import com.samsara.api.errors.UnauthorizedError;
 import com.samsara.api.resources.drivers.requests.CreateDriverRequest;
-import com.samsara.api.resources.drivers.requests.DeleteDriversRequest;
 import com.samsara.api.resources.drivers.requests.DriverRemoteSignoutPostDriverRemoteSignoutRequestBody;
-import com.samsara.api.resources.drivers.requests.GetDriversRequest;
 import com.samsara.api.resources.drivers.requests.ListDriversRequest;
 import com.samsara.api.resources.drivers.requests.UpdateDriverRequest;
 import com.samsara.api.types.Driver;
@@ -133,6 +131,11 @@ public class AsyncRawDriversClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "attributes", request.getAttributes().get(), true);
         }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -206,10 +209,14 @@ public class AsyncRawDriversClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> create(
             CreateDriverRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/drivers")
-                .build();
+                .addPathSegments("fleet/drivers");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -218,7 +225,7 @@ public class AsyncRawDriversClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -281,10 +288,14 @@ public class AsyncRawDriversClient {
     public CompletableFuture<SamsaraApiHttpResponse<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>>
             postDriverRemoteSignout(
                     DriverRemoteSignoutPostDriverRemoteSignoutRequestBody request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("fleet/drivers/remote-sign-out")
-                .build();
+                .addPathSegments("fleet/drivers/remote-sign-out");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -293,7 +304,7 @@ public class AsyncRawDriversClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
@@ -392,7 +403,7 @@ public class AsyncRawDriversClient {
      * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> get(String id) {
-        return get(id, GetDriversRequest.builder().build());
+        return get(id, null);
     }
 
     /**
@@ -401,36 +412,21 @@ public class AsyncRawDriversClient {
      * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> get(String id, RequestOptions requestOptions) {
-        return get(id, GetDriversRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * Get information about a driver.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> get(String id, GetDriversRequest request) {
-        return get(id, request, null);
-    }
-
-    /**
-     * Get information about a driver.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     */
-    public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> get(
-            String id, GetDriversRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/drivers")
-                .addPathSegment(id)
-                .build();
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegment(id);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
+                .addHeader("Accept", "application/json")
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -465,29 +461,24 @@ public class AsyncRawDriversClient {
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id) {
-        return delete(id, DeleteDriversRequest.builder().build());
+        return delete(id, null);
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, RequestOptions requestOptions) {
-        return delete(id, DeleteDriversRequest.builder().build(), requestOptions);
-    }
-
-    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, DeleteDriversRequest request) {
-        return delete(id, request, null);
-    }
-
-    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(
-            String id, DeleteDriversRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/drivers")
-                .addPathSegment(id)
-                .build();
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegment(id);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
                 .method("DELETE", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)));
-        Request okhttpRequest = _requestBuilder.build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -553,11 +544,15 @@ public class AsyncRawDriversClient {
      */
     public CompletableFuture<SamsaraApiHttpResponse<DriverResponse>> update(
             String id, UpdateDriverRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/drivers")
-                .addPathSegment(id)
-                .build();
+                .addPathSegment(id);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
         RequestBody body;
         try {
             body = RequestBody.create(
@@ -566,7 +561,7 @@ public class AsyncRawDriversClient {
             throw new SamsaraApiException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .url(httpUrl.build())
                 .method("PATCH", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
