@@ -5,6 +5,7 @@ package com.samsara.api.resources.fleet.attributes;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.fleet.attributes.requests.UpdateAttributesRequest;
 
 public class AttributesClient {
     protected final ClientOptions clientOptions;
@@ -29,5 +30,13 @@ public class AttributesClient {
 
     public void update(String id, RequestOptions requestOptions) {
         this.rawClient.update(id, requestOptions).body();
+    }
+
+    public void update(String id, UpdateAttributesRequest request) {
+        this.rawClient.update(id, request).body();
+    }
+
+    public void update(String id, UpdateAttributesRequest request, RequestOptions requestOptions) {
+        this.rawClient.update(id, request, requestOptions).body();
     }
 }

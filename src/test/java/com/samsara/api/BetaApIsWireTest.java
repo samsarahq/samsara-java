@@ -7,6 +7,7 @@ import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
+import com.samsara.api.resources.betaapis.requests.GetAempEquipmentListRequest;
 import com.samsara.api.resources.betaapis.requests.GetAssetsInputsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDatasetsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDepreciationTransactionsRequest;
@@ -84,6 +85,7 @@ import com.samsara.api.types.QualificationsGetQualificationTypesResponseBody;
 import com.samsara.api.types.QualificationsPatchQualificationRecordResponseBody;
 import com.samsara.api.types.QualificationsPostQualificationRecordResponseBody;
 import com.samsara.api.types.ReadingDatapointRequestBody;
+import com.samsara.api.types.ReadingDatapointRequestBodyEntityType;
 import com.samsara.api.types.ReadingsGetReadingsHistoryResponseBody;
 import com.samsara.api.types.ReadingsGetReadingsSnapshotResponseBody;
 import com.samsara.api.types.ReadingsListReadingsDefinitionsResponseBody;
@@ -263,8 +265,9 @@ public class BetaApIsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"Fleet\":{\"Equipment\":[{\"EquipmentHeader\":{\"EquipmentID\":\"494123\",\"Model\":\"S630 T4\",\"OEMName\":\"Bobcat\",\"PIN\":\"8V8WD530FLN016251\",\"SerialNumber\":\"8V8WD530FLN016251\",\"UnitInstallDateTime\":\"2019-06-13T19:08:25Z\"},\"Location\":{\"Latitude\":12.34,\"Longitude\":12.34,\"datetime\":\"2019-06-13T19:08:25Z\"}}],\"Links\":[{\"href\":\"https://api.samsara.com/aemp/Fleet/1\",\"rel\":\"self\"}],\"snapshotTime\":\"2019-06-13T19:08:25Z\",\"version\":\"1\"}}"));
-        AempEquipmentGetAempEquipmentListResponseBody response =
-                client.betaApIs().getAempEquipmentList("pageNumber");
+        AempEquipmentGetAempEquipmentListResponseBody response = client.betaApIs()
+                .getAempEquipmentList(
+                        "pageNumber", GetAempEquipmentListRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -2244,6 +2247,7 @@ public class BetaApIsWireTest {
                 .postReadings(ReadingsPostReadingsRequestBody.builder()
                         .data(Arrays.asList(ReadingDatapointRequestBody.builder()
                                 .entityId("123451234512345")
+                                .entityType(ReadingDatapointRequestBodyEntityType.ASSET)
                                 .happenedAtTime("2023-10-27T10:00:00Z")
                                 .readingId("airInletPressure")
                                 .value(new HashMap<String, Object>() {

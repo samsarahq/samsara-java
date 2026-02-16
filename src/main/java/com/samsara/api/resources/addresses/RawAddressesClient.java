@@ -14,6 +14,8 @@ import com.samsara.api.core.SamsaraApiException;
 import com.samsara.api.core.SamsaraApiHttpResponse;
 import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.addresses.requests.CreateAddressRequest;
+import com.samsara.api.resources.addresses.requests.DeleteAddressesRequest;
+import com.samsara.api.resources.addresses.requests.GetAddressesRequest;
 import com.samsara.api.resources.addresses.requests.ListAddressesRequest;
 import com.samsara.api.resources.addresses.requests.UpdateAddressRequest;
 import com.samsara.api.types.Address;
@@ -196,7 +198,7 @@ public class RawAddressesClient {
      * <p>To use this endpoint, select <strong>Read Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<AddressResponse> get(String id) {
-        return get(id, null);
+        return get(id, GetAddressesRequest.builder().build());
     }
 
     /**
@@ -205,6 +207,25 @@ public class RawAddressesClient {
      * <p>To use this endpoint, select <strong>Read Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<AddressResponse> get(String id, RequestOptions requestOptions) {
+        return get(id, GetAddressesRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Returns a specific address.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<AddressResponse> get(String id, GetAddressesRequest request) {
+        return get(id, request, null);
+    }
+
+    /**
+     * Returns a specific address.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<AddressResponse> get(
+            String id, GetAddressesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("addresses")
@@ -214,12 +235,12 @@ public class RawAddressesClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -245,7 +266,7 @@ public class RawAddressesClient {
      * <p>To use this endpoint, select <strong>Write Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<String> delete(String id) {
-        return delete(id, null);
+        return delete(id, DeleteAddressesRequest.builder().build());
     }
 
     /**
@@ -254,6 +275,25 @@ public class RawAddressesClient {
      * <p>To use this endpoint, select <strong>Write Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
      */
     public SamsaraApiHttpResponse<String> delete(String id, RequestOptions requestOptions) {
+        return delete(id, DeleteAddressesRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Delete a specific address.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<String> delete(String id, DeleteAddressesRequest request) {
+        return delete(id, request, null);
+    }
+
+    /**
+     * Delete a specific address.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Addresses</strong> under the Addresses category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     */
+    public SamsaraApiHttpResponse<String> delete(
+            String id, DeleteAddressesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("addresses")
@@ -263,12 +303,12 @@ public class RawAddressesClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

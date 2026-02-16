@@ -9,7 +9,9 @@ import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
+import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
+import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAllAssetCurrentLocationsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
@@ -332,11 +334,27 @@ public class AsyncAssetsClient {
         return this.rawClient.get(id, requestOptions).thenApply(response -> response.body());
     }
 
+    public CompletableFuture<Void> get(String id, GetAssetsRequest request) {
+        return this.rawClient.get(id, request).thenApply(response -> response.body());
+    }
+
+    public CompletableFuture<Void> get(String id, GetAssetsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.get(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
     public CompletableFuture<Void> update(String id) {
         return this.rawClient.update(id).thenApply(response -> response.body());
     }
 
     public CompletableFuture<Void> update(String id, RequestOptions requestOptions) {
         return this.rawClient.update(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    public CompletableFuture<Void> update(String id, UpdateAssetsRequest request) {
+        return this.rawClient.update(id, request).thenApply(response -> response.body());
+    }
+
+    public CompletableFuture<Void> update(String id, UpdateAssetsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.update(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

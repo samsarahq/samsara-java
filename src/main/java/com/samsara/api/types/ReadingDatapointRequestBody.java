@@ -23,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 public final class ReadingDatapointRequestBody {
     private final String entityId;
 
+    private final ReadingDatapointRequestBodyEntityType entityType;
+
     private final String happenedAtTime;
 
     private final String readingId;
@@ -33,11 +35,13 @@ public final class ReadingDatapointRequestBody {
 
     private ReadingDatapointRequestBody(
             String entityId,
+            ReadingDatapointRequestBodyEntityType entityType,
             String happenedAtTime,
             String readingId,
             Map<String, Object> value,
             Map<String, Object> additionalProperties) {
         this.entityId = entityId;
+        this.entityType = entityType;
         this.happenedAtTime = happenedAtTime;
         this.readingId = readingId;
         this.value = value;
@@ -56,8 +60,8 @@ public final class ReadingDatapointRequestBody {
      * @return The type of the entity (e.g., asset).  Valid values: <code>asset</code>
      */
     @JsonProperty("entityType")
-    public String getEntityType() {
-        return "asset";
+    public ReadingDatapointRequestBodyEntityType getEntityType() {
+        return entityType;
     }
 
     /**
@@ -97,6 +101,7 @@ public final class ReadingDatapointRequestBody {
 
     private boolean equalTo(ReadingDatapointRequestBody other) {
         return entityId.equals(other.entityId)
+                && entityType.equals(other.entityType)
                 && happenedAtTime.equals(other.happenedAtTime)
                 && readingId.equals(other.readingId)
                 && value.equals(other.value);
@@ -104,7 +109,7 @@ public final class ReadingDatapointRequestBody {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.entityId, this.happenedAtTime, this.readingId, this.value);
+        return Objects.hash(this.entityId, this.entityType, this.happenedAtTime, this.readingId, this.value);
     }
 
     @java.lang.Override
@@ -120,9 +125,16 @@ public final class ReadingDatapointRequestBody {
         /**
          * <p>Samsara entity ID. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
          */
-        HappenedAtTimeStage entityId(@NotNull String entityId);
+        EntityTypeStage entityId(@NotNull String entityId);
 
         Builder from(ReadingDatapointRequestBody other);
+    }
+
+    public interface EntityTypeStage {
+        /**
+         * <p>The type of the entity (e.g., asset).  Valid values: <code>asset</code></p>
+         */
+        HappenedAtTimeStage entityType(@NotNull ReadingDatapointRequestBodyEntityType entityType);
     }
 
     public interface HappenedAtTimeStage {
@@ -153,8 +165,11 @@ public final class ReadingDatapointRequestBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements EntityIdStage, HappenedAtTimeStage, ReadingIdStage, _FinalStage {
+    public static final class Builder
+            implements EntityIdStage, EntityTypeStage, HappenedAtTimeStage, ReadingIdStage, _FinalStage {
         private String entityId;
+
+        private ReadingDatapointRequestBodyEntityType entityType;
 
         private String happenedAtTime;
 
@@ -170,6 +185,7 @@ public final class ReadingDatapointRequestBody {
         @java.lang.Override
         public Builder from(ReadingDatapointRequestBody other) {
             entityId(other.getEntityId());
+            entityType(other.getEntityType());
             happenedAtTime(other.getHappenedAtTime());
             readingId(other.getReadingId());
             value(other.getValue());
@@ -183,8 +199,20 @@ public final class ReadingDatapointRequestBody {
          */
         @java.lang.Override
         @JsonSetter("entityId")
-        public HappenedAtTimeStage entityId(@NotNull String entityId) {
+        public EntityTypeStage entityId(@NotNull String entityId) {
             this.entityId = Objects.requireNonNull(entityId, "entityId must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The type of the entity (e.g., asset).  Valid values: <code>asset</code></p>
+         * <p>The type of the entity (e.g., asset).  Valid values: <code>asset</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("entityType")
+        public HappenedAtTimeStage entityType(@NotNull ReadingDatapointRequestBodyEntityType entityType) {
+            this.entityType = Objects.requireNonNull(entityType, "entityType must not be null");
             return this;
         }
 
@@ -249,7 +277,8 @@ public final class ReadingDatapointRequestBody {
 
         @java.lang.Override
         public ReadingDatapointRequestBody build() {
-            return new ReadingDatapointRequestBody(entityId, happenedAtTime, readingId, value, additionalProperties);
+            return new ReadingDatapointRequestBody(
+                    entityId, entityType, happenedAtTime, readingId, value, additionalProperties);
         }
     }
 }
