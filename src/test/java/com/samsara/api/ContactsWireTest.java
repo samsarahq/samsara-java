@@ -246,23 +246,11 @@ public class ContactsWireTest {
 
     @Test
     public void testDelete() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"id\":\"test-id\",\"name\":\"test-name\",\"value\":\"test-value\",\"success\":true,\"data\":{}}"));
-        String response =
-                client.contacts().delete("id", DeleteContactsRequest.builder().build());
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.contacts().delete("id", DeleteContactsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
-
-        // Validate response deserialization
-        Assertions.assertNotNull(response, "Response should not be null");
-        // Verify the response can be serialized back to JSON
-        String responseJson = objectMapper.writeValueAsString(response);
-        Assertions.assertNotNull(responseJson);
-        Assertions.assertFalse(responseJson.isEmpty());
     }
 
     @Test

@@ -298,7 +298,7 @@ client.addresses().get(
 </dl>
 </details>
 
-<details><summary><code>client.addresses.delete(id) -> String</code></summary>
+<details><summary><code>client.addresses.delete(id)</code></summary>
 <dl>
 <dd>
 
@@ -6819,7 +6819,7 @@ client.attributes().getAttribute(
 </dl>
 </details>
 
-<details><summary><code>client.attributes.delete(id) -> String</code></summary>
+<details><summary><code>client.attributes.delete(id)</code></summary>
 <dl>
 <dd>
 
@@ -7804,7 +7804,7 @@ client.contacts().getContact(
 </dl>
 </details>
 
-<details><summary><code>client.contacts.delete(id) -> String</code></summary>
+<details><summary><code>client.contacts.delete(id)</code></summary>
 <dl>
 <dd>
 
@@ -24207,7 +24207,7 @@ client.tags().replaceTag(
 </dl>
 </details>
 
-<details><summary><code>client.tags.delete(id) -> String</code></summary>
+<details><summary><code>client.tags.delete(id)</code></summary>
 <dl>
 <dd>
 
@@ -25357,7 +25357,7 @@ client.users().getUser(
 </dl>
 </details>
 
-<details><summary><code>client.users.delete(id) -> String</code></summary>
+<details><summary><code>client.users.delete(id)</code></summary>
 <dl>
 <dd>
 
@@ -26782,7 +26782,7 @@ client.webhooks().patchWebhook(
 </details>
 
 ## Fleet CarrierProposedAssignments
-<details><summary><code>client.fleet.carrierProposedAssignments.delete(id) -> String</code></summary>
+<details><summary><code>client.fleet.carrierProposedAssignments.delete(id)</code></summary>
 <dl>
 <dd>
 
@@ -26892,7 +26892,7 @@ client.fleet().attributes().update(
 </details>
 
 ## Industrial Assets
-<details><summary><code>client.industrial.assets.delete(id) -> String</code></summary>
+<details><summary><code>client.industrial.assets.delete(id)</code></summary>
 <dl>
 <dd>
 
