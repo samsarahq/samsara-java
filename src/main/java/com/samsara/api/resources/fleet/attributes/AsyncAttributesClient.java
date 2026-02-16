@@ -5,6 +5,7 @@ package com.samsara.api.resources.fleet.attributes;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.fleet.attributes.requests.UpdateAttributesRequest;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAttributesClient {
@@ -30,5 +31,13 @@ public class AsyncAttributesClient {
 
     public CompletableFuture<Void> update(String id, RequestOptions requestOptions) {
         return this.rawClient.update(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    public CompletableFuture<Void> update(String id, UpdateAttributesRequest request) {
+        return this.rawClient.update(id, request).thenApply(response -> response.body());
+    }
+
+    public CompletableFuture<Void> update(String id, UpdateAttributesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.update(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

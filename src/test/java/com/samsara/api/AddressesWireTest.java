@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.addresses.requests.CreateAddressRequest;
+import com.samsara.api.resources.addresses.requests.DeleteAddressesRequest;
+import com.samsara.api.resources.addresses.requests.GetAddressesRequest;
 import com.samsara.api.resources.addresses.requests.ListAddressesRequest;
 import com.samsara.api.resources.addresses.requests.UpdateAddressRequest;
 import com.samsara.api.types.Address;
@@ -145,7 +147,8 @@ public class AddressesWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/AddressesWireTest_testGet_response.json")));
-        AddressResponse response = client.addresses().get("id");
+        AddressResponse response =
+                client.addresses().get("id", GetAddressesRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -192,7 +195,8 @@ public class AddressesWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"id\":\"test-id\",\"name\":\"test-name\",\"value\":\"test-value\",\"success\":true,\"data\":{}}"));
-        String response = client.addresses().delete("id");
+        String response =
+                client.addresses().delete("id", DeleteAddressesRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

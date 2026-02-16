@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.drivers.requests.CreateDriverRequest;
+import com.samsara.api.resources.drivers.requests.DeleteDriversRequest;
 import com.samsara.api.resources.drivers.requests.DriverRemoteSignoutPostDriverRemoteSignoutRequestBody;
+import com.samsara.api.resources.drivers.requests.GetDriversRequest;
 import com.samsara.api.resources.drivers.requests.ListDriversRequest;
 import com.samsara.api.resources.drivers.requests.UpdateDriverRequest;
 import com.samsara.api.types.Driver;
@@ -221,7 +223,8 @@ public class DriversWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/DriversWireTest_testGet_response.json")));
-        DriverResponse response = client.drivers().get("id");
+        DriverResponse response =
+                client.drivers().get("id", GetDriversRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -264,7 +267,7 @@ public class DriversWireTest {
     @Test
     public void testDelete() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.drivers().delete("id");
+        client.drivers().delete("id", DeleteDriversRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

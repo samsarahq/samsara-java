@@ -9,6 +9,7 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.core.SamsaraApiApiException;
 import com.samsara.api.core.SamsaraApiException;
 import com.samsara.api.core.SamsaraApiHttpResponse;
+import com.samsara.api.resources.fleet.attributes.requests.UpdateAttributesRequest;
 import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -25,10 +26,19 @@ public class RawAttributesClient {
     }
 
     public SamsaraApiHttpResponse<Void> update(String id) {
-        return update(id, null);
+        return update(id, UpdateAttributesRequest.builder().build());
     }
 
     public SamsaraApiHttpResponse<Void> update(String id, RequestOptions requestOptions) {
+        return update(id, UpdateAttributesRequest.builder().build(), requestOptions);
+    }
+
+    public SamsaraApiHttpResponse<Void> update(String id, UpdateAttributesRequest request) {
+        return update(id, request, null);
+    }
+
+    public SamsaraApiHttpResponse<Void> update(
+            String id, UpdateAttributesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/attributes")
@@ -38,11 +48,11 @@ public class RawAttributesClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("PATCH", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

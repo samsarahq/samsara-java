@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.contacts.requests.CreateContactRequest;
+import com.samsara.api.resources.contacts.requests.DeleteContactsRequest;
+import com.samsara.api.resources.contacts.requests.GetContactRequest;
 import com.samsara.api.resources.contacts.requests.ListContactsRequest;
 import com.samsara.api.resources.contacts.requests.UpdateContactRequest;
 import com.samsara.api.types.ContactResponse;
@@ -192,7 +194,8 @@ public class ContactsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"email\":\"jane.jones@yahoo.com\",\"firstName\":\"Jane\",\"id\":\"22408\",\"lastName\":\"Jones\",\"phone\":\"111-222-3344\"}}"));
-        ContactResponse response = client.contacts().getContact("id");
+        ContactResponse response =
+                client.contacts().getContact("id", GetContactRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -248,7 +251,8 @@ public class ContactsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"id\":\"test-id\",\"name\":\"test-name\",\"value\":\"test-value\",\"success\":true,\"data\":{}}"));
-        String response = client.contacts().delete("id");
+        String response =
+                client.contacts().delete("id", DeleteContactsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

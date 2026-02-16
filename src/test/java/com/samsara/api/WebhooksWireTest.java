@@ -3,6 +3,8 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.webhooks.requests.DeleteWebhookRequest;
+import com.samsara.api.resources.webhooks.requests.GetWebhookRequest;
 import com.samsara.api.resources.webhooks.requests.ListWebhooksRequest;
 import com.samsara.api.resources.webhooks.requests.WebhooksPatchWebhookRequestBody;
 import com.samsara.api.resources.webhooks.requests.WebhooksPostWebhooksRequestBody;
@@ -223,7 +225,8 @@ public class WebhooksWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
-        WebhooksGetWebhookResponseBody response = client.webhooks().getWebhook("id");
+        WebhooksGetWebhookResponseBody response =
+                client.webhooks().getWebhook("id", GetWebhookRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -285,7 +288,7 @@ public class WebhooksWireTest {
     @Test
     public void testDeleteWebhook() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.webhooks().deleteWebhook("id");
+        client.webhooks().deleteWebhook("id", DeleteWebhookRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

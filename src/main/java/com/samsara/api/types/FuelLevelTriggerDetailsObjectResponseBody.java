@@ -14,6 +14,7 @@ import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FuelLevelTriggerDetailsObjectResponseBody.Builder.class)
@@ -22,12 +23,18 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
 
     private final long minDurationMilliseconds;
 
+    private final FuelLevelTriggerDetailsObjectResponseBodyOperation operation;
+
     private final Map<String, Object> additionalProperties;
 
     private FuelLevelTriggerDetailsObjectResponseBody(
-            long fuelLevelPercent, long minDurationMilliseconds, Map<String, Object> additionalProperties) {
+            long fuelLevelPercent,
+            long minDurationMilliseconds,
+            FuelLevelTriggerDetailsObjectResponseBodyOperation operation,
+            Map<String, Object> additionalProperties) {
         this.fuelLevelPercent = fuelLevelPercent;
         this.minDurationMilliseconds = minDurationMilliseconds;
+        this.operation = operation;
         this.additionalProperties = additionalProperties;
     }
 
@@ -51,8 +58,8 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
      * @return How to evaluate the threshold.  Valid values: <code>LESS</code>
      */
     @JsonProperty("operation")
-    public String getOperation() {
-        return "LESS";
+    public FuelLevelTriggerDetailsObjectResponseBodyOperation getOperation() {
+        return operation;
     }
 
     @java.lang.Override
@@ -68,12 +75,14 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
     }
 
     private boolean equalTo(FuelLevelTriggerDetailsObjectResponseBody other) {
-        return fuelLevelPercent == other.fuelLevelPercent && minDurationMilliseconds == other.minDurationMilliseconds;
+        return fuelLevelPercent == other.fuelLevelPercent
+                && minDurationMilliseconds == other.minDurationMilliseconds
+                && operation.equals(other.operation);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.fuelLevelPercent, this.minDurationMilliseconds);
+        return Objects.hash(this.fuelLevelPercent, this.minDurationMilliseconds, this.operation);
     }
 
     @java.lang.Override
@@ -98,7 +107,14 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
         /**
          * <p>The number of milliseconds the trigger needs to stay active before alerting.</p>
          */
-        _FinalStage minDurationMilliseconds(long minDurationMilliseconds);
+        OperationStage minDurationMilliseconds(long minDurationMilliseconds);
+    }
+
+    public interface OperationStage {
+        /**
+         * <p>How to evaluate the threshold.  Valid values: <code>LESS</code></p>
+         */
+        _FinalStage operation(@NotNull FuelLevelTriggerDetailsObjectResponseBodyOperation operation);
     }
 
     public interface _FinalStage {
@@ -106,10 +122,13 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements FuelLevelPercentStage, MinDurationMillisecondsStage, _FinalStage {
+    public static final class Builder
+            implements FuelLevelPercentStage, MinDurationMillisecondsStage, OperationStage, _FinalStage {
         private long fuelLevelPercent;
 
         private long minDurationMilliseconds;
+
+        private FuelLevelTriggerDetailsObjectResponseBodyOperation operation;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -120,6 +139,7 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
         public Builder from(FuelLevelTriggerDetailsObjectResponseBody other) {
             fuelLevelPercent(other.getFuelLevelPercent());
             minDurationMilliseconds(other.getMinDurationMilliseconds());
+            operation(other.getOperation());
             return this;
         }
 
@@ -142,15 +162,27 @@ public final class FuelLevelTriggerDetailsObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("minDurationMilliseconds")
-        public _FinalStage minDurationMilliseconds(long minDurationMilliseconds) {
+        public OperationStage minDurationMilliseconds(long minDurationMilliseconds) {
             this.minDurationMilliseconds = minDurationMilliseconds;
+            return this;
+        }
+
+        /**
+         * <p>How to evaluate the threshold.  Valid values: <code>LESS</code></p>
+         * <p>How to evaluate the threshold.  Valid values: <code>LESS</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("operation")
+        public _FinalStage operation(@NotNull FuelLevelTriggerDetailsObjectResponseBodyOperation operation) {
+            this.operation = Objects.requireNonNull(operation, "operation must not be null");
             return this;
         }
 
         @java.lang.Override
         public FuelLevelTriggerDetailsObjectResponseBody build() {
             return new FuelLevelTriggerDetailsObjectResponseBody(
-                    fuelLevelPercent, minDurationMilliseconds, additionalProperties);
+                    fuelLevelPercent, minDurationMilliseconds, operation, additionalProperties);
         }
     }
 }

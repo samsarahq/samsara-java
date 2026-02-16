@@ -3,6 +3,7 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.fleet.carrierproposedassignments.requests.DeleteCarrierProposedAssignmentsRequest;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -38,7 +39,9 @@ public class FleetCarrierProposedAssignmentsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"id\":\"test-id\",\"name\":\"test-name\",\"value\":\"test-value\",\"success\":true,\"data\":{}}"));
-        String response = client.fleet().carrierProposedAssignments().delete("id");
+        String response = client.fleet()
+                .carrierProposedAssignments()
+                .delete("id", DeleteCarrierProposedAssignmentsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

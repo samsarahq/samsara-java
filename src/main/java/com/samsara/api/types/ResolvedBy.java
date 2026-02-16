@@ -21,10 +21,13 @@ import org.jetbrains.annotations.NotNull;
 public final class ResolvedBy {
     private final String id;
 
+    private final ResolvedByType type;
+
     private final Map<String, Object> additionalProperties;
 
-    private ResolvedBy(String id, Map<String, Object> additionalProperties) {
+    private ResolvedBy(String id, ResolvedByType type, Map<String, Object> additionalProperties) {
         this.id = id;
+        this.type = type;
         this.additionalProperties = additionalProperties;
     }
 
@@ -40,8 +43,8 @@ public final class ResolvedBy {
      * @return The type of user who is resolving the defect. Must be &quot;mechanic&quot;.
      */
     @JsonProperty("type")
-    public String getType() {
-        return "mechanic";
+    public ResolvedByType getType() {
+        return type;
     }
 
     @java.lang.Override
@@ -56,12 +59,12 @@ public final class ResolvedBy {
     }
 
     private boolean equalTo(ResolvedBy other) {
-        return id.equals(other.id);
+        return id.equals(other.id) && type.equals(other.type);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.id, this.type);
     }
 
     @java.lang.Override
@@ -77,9 +80,16 @@ public final class ResolvedBy {
         /**
          * <p>The Id of user who is resolving the defect.</p>
          */
-        _FinalStage id(@NotNull String id);
+        TypeStage id(@NotNull String id);
 
         Builder from(ResolvedBy other);
+    }
+
+    public interface TypeStage {
+        /**
+         * <p>The type of user who is resolving the defect. Must be &quot;mechanic&quot;.</p>
+         */
+        _FinalStage type(@NotNull ResolvedByType type);
     }
 
     public interface _FinalStage {
@@ -87,8 +97,10 @@ public final class ResolvedBy {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements IdStage, _FinalStage {
+    public static final class Builder implements IdStage, TypeStage, _FinalStage {
         private String id;
+
+        private ResolvedByType type;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -98,6 +110,7 @@ public final class ResolvedBy {
         @java.lang.Override
         public Builder from(ResolvedBy other) {
             id(other.getId());
+            type(other.getType());
             return this;
         }
 
@@ -108,14 +121,26 @@ public final class ResolvedBy {
          */
         @java.lang.Override
         @JsonSetter("id")
-        public _FinalStage id(@NotNull String id) {
+        public TypeStage id(@NotNull String id) {
             this.id = Objects.requireNonNull(id, "id must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The type of user who is resolving the defect. Must be &quot;mechanic&quot;.</p>
+         * <p>The type of user who is resolving the defect. Must be &quot;mechanic&quot;.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("type")
+        public _FinalStage type(@NotNull ResolvedByType type) {
+            this.type = Objects.requireNonNull(type, "type must not be null");
             return this;
         }
 
         @java.lang.Override
         public ResolvedBy build() {
-            return new ResolvedBy(id, additionalProperties);
+            return new ResolvedBy(id, type, additionalProperties);
         }
     }
 }

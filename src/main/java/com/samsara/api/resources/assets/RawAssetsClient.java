@@ -26,7 +26,9 @@ import com.samsara.api.errors.UnauthorizedError;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
+import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
+import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAllAssetCurrentLocationsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
@@ -820,10 +822,18 @@ public class RawAssetsClient {
     }
 
     public SamsaraApiHttpResponse<Void> get(String id) {
-        return get(id, null);
+        return get(id, GetAssetsRequest.builder().build());
     }
 
     public SamsaraApiHttpResponse<Void> get(String id, RequestOptions requestOptions) {
+        return get(id, GetAssetsRequest.builder().build(), requestOptions);
+    }
+
+    public SamsaraApiHttpResponse<Void> get(String id, GetAssetsRequest request) {
+        return get(id, request, null);
+    }
+
+    public SamsaraApiHttpResponse<Void> get(String id, GetAssetsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("assets")
@@ -833,11 +843,11 @@ public class RawAssetsClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -857,10 +867,18 @@ public class RawAssetsClient {
     }
 
     public SamsaraApiHttpResponse<Void> update(String id) {
-        return update(id, null);
+        return update(id, UpdateAssetsRequest.builder().build());
     }
 
     public SamsaraApiHttpResponse<Void> update(String id, RequestOptions requestOptions) {
+        return update(id, UpdateAssetsRequest.builder().build(), requestOptions);
+    }
+
+    public SamsaraApiHttpResponse<Void> update(String id, UpdateAssetsRequest request) {
+        return update(id, request, null);
+    }
+
+    public SamsaraApiHttpResponse<Void> update(String id, UpdateAssetsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("assets")
@@ -870,11 +888,11 @@ public class RawAssetsClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("PATCH", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

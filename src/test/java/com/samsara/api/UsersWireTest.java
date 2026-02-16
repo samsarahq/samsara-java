@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.users.requests.CreateUserRequest;
+import com.samsara.api.resources.users.requests.DeleteUsersRequest;
+import com.samsara.api.resources.users.requests.GetUserRequest;
 import com.samsara.api.resources.users.requests.ListUserRolesRequest;
 import com.samsara.api.resources.users.requests.ListUsersRequest;
 import com.samsara.api.resources.users.requests.UpdateUserRequest;
@@ -282,7 +284,8 @@ public class UsersWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\"}]}}"));
-        UserResponse response = client.users().getUser("id");
+        UserResponse response =
+                client.users().getUser("id", GetUserRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -342,7 +345,8 @@ public class UsersWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"id\":\"test-id\",\"name\":\"test-name\",\"value\":\"test-value\",\"success\":true,\"data\":{}}"));
-        String response = client.users().delete("id");
+        String response =
+                client.users().delete("id", DeleteUsersRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

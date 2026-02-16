@@ -266,7 +266,12 @@ To use this endpoint, select **Read Addresses** under the Addresses category whe
 <dd>
 
 ```java
-client.addresses().get("id");
+client.addresses().get(
+    "id",
+    GetAddressesRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -324,7 +329,12 @@ To use this endpoint, select **Write Addresses** under the Addresses category wh
 <dd>
 
 ```java
-client.addresses().delete("id");
+client.addresses().delete(
+    "id",
+    DeleteAddressesRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -1941,7 +1951,12 @@ client.assets().v1GetAssetReefer(
 <dd>
 
 ```java
-client.assets().get("id");
+client.assets().get(
+    "id",
+    GetAssetsRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -1981,7 +1996,12 @@ client.assets().get("id");
 <dd>
 
 ```java
-client.assets().update("id");
+client.assets().update(
+    "id",
+    UpdateAssetsRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -2255,7 +2275,12 @@ To use this endpoint, select **Read AEMP** under the Equipment category when cre
 <dd>
 
 ```java
-client.betaApIs().getAempEquipmentList("pageNumber");
+client.betaApIs().getAempEquipmentList(
+    "pageNumber",
+    GetAempEquipmentListRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -5066,6 +5091,7 @@ client.betaApIs().postReadings(
                 ReadingDatapointRequestBody
                     .builder()
                     .entityId("123451234512345")
+                    .entityType(ReadingDatapointRequestBodyEntityType.ASSET)
                     .happenedAtTime("2023-10-27T10:00:00Z")
                     .readingId("airInletPressure")
                     .value(
@@ -7746,7 +7772,12 @@ To use this endpoint, select **Read Alert Contacts** under the Setup & Administr
 <dd>
 
 ```java
-client.contacts().getContact("id");
+client.contacts().getContact(
+    "id",
+    GetContactRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -7804,7 +7835,12 @@ To use this endpoint, select **Write Alert Contacts** under the Setup & Administ
 <dd>
 
 ```java
-client.contacts().delete("id");
+client.contacts().delete(
+    "id",
+    DeleteContactsRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -8499,6 +8535,7 @@ client.maintenance().createDvir(
         .builder()
         .authorId("11")
         .safetyStatus(CreateDvirRequestSafetyStatus.SAFE)
+        .type(CreateDvirRequestType.MECHANIC)
         .build()
 );
 ```
@@ -8579,7 +8616,7 @@ client.maintenance().createDvir(
 <dl>
 <dd>
 
-**type:** `String` — Only type 'mechanic' is currently accepted.
+**type:** `CreateDvirRequestType` — Only type 'mechanic' is currently accepted.
     
 </dd>
 </dl>
@@ -11198,7 +11235,12 @@ To use this endpoint, select **Read Documents** under the Driver Workflow catego
 <dd>
 
 ```java
-client.documents().getDocumentPdf("id");
+client.documents().getDocumentPdf(
+    "id",
+    GetDocumentPdfRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -11259,7 +11301,12 @@ To use this endpoint, select **Read Documents** under the Driver Workflow catego
 <dd>
 
 ```java
-client.documents().getDocument("id");
+client.documents().getDocument(
+    "id",
+    GetDocumentRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -11320,7 +11367,12 @@ To use this endpoint, select **Write Documents** under the Driver Workflow categ
 <dd>
 
 ```java
-client.documents().deleteDocument("id");
+client.documents().deleteDocument(
+    "id",
+    DeleteDocumentRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -12348,7 +12400,12 @@ To use this endpoint, select **Read Drivers** under the Drivers category when cr
 <dd>
 
 ```java
-client.drivers().get("id");
+client.drivers().get(
+    "id",
+    GetDriversRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -12388,7 +12445,12 @@ client.drivers().get("id");
 <dd>
 
 ```java
-client.drivers().delete("id");
+client.drivers().delete(
+    "id",
+    DeleteDriversRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -13911,7 +13973,12 @@ To use this endpoint, select **Read Equipment** under the Equipment category whe
 <dd>
 
 ```java
-client.equipment().getEquipment("id");
+client.equipment().getEquipment(
+    "id",
+    GetEquipmentRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -14150,7 +14217,7 @@ client.hoursOfService().getHosDailyLogs(
 <dl>
 <dd>
 
-**expand:** `Optional<String>` 
+**expand:** `Optional<GetHosDailyLogsRequestExpand>` 
 
 Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.
 
@@ -14984,7 +15051,12 @@ To use this endpoint, select **Read IFTA (US)** under the Compliance category wh
 <dd>
 
 ```java
-client.ifta().getIftaDetailJob("id");
+client.ifta().getIftaDetailJob(
+    "id",
+    GetIftaDetailJobRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -15311,7 +15383,7 @@ client.routes().getRoutesFeed(
 <dl>
 <dd>
 
-**expand:** `Optional<String>` 
+**expand:** `Optional<GetRoutesFeedRequestExpand>` 
 
 Expands the specified value(s) in the response object. Expansion populates additional fields in an object, if supported. Unsupported fields are ignored. To expand multiple fields, input a comma-separated list.
 
@@ -15435,7 +15507,12 @@ To use this endpoint, select **Write Routes** under the Driver Workflow category
 <dd>
 
 ```java
-client.routes().deleteRoute("id");
+client.routes().deleteRoute(
+    "id",
+    DeleteRouteRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -16415,7 +16492,12 @@ To use this endpoint, select **Read Trailers** under the Trailers category when 
 <dd>
 
 ```java
-client.trailers().getTrailer("id");
+client.trailers().getTrailer(
+    "id",
+    GetTrailerRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -16476,7 +16558,12 @@ To use this endpoint, select **Write Trailers** under the Trailers category when
 <dd>
 
 ```java
-client.trailers().deleteTrailer("id");
+client.trailers().deleteTrailer(
+    "id",
+    DeleteTrailerRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -16796,7 +16883,12 @@ To use this endpoint, select **Read Vehicles** under the Vehicles category when 
 <dd>
 
 ```java
-client.vehicles().get("id");
+client.vehicles().get(
+    "id",
+    GetVehiclesRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -18160,6 +18252,7 @@ client.forms().postFormSubmission(
                 .revisionId("1214a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                 .build()
         )
+        .status(FormSubmissionsPostFormSubmissionRequestBodyStatus.NOT_STARTED)
         .build()
 );
 ```
@@ -18224,7 +18317,7 @@ client.forms().postFormSubmission(
 <dl>
 <dd>
 
-**status:** `String` — Status of the form submission.  Valid values: `notStarted`
+**status:** `FormSubmissionsPostFormSubmissionRequestBodyStatus` — Status of the form submission.  Valid values: `notStarted`
     
 </dd>
 </dl>
@@ -18868,7 +18961,12 @@ To use this endpoint, select **Write Gateways** under the Setup & Administration
 <dd>
 
 ```java
-client.gateways().deleteGateway("id");
+client.gateways().deleteGateway(
+    "id",
+    DeleteGatewayRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -20823,7 +20921,12 @@ To use this endpoint, select **Read Industrial** under the Industrial category w
 <dd>
 
 ```java
-client.industrial().v1GetVisionProgramsByCamera(1000000L);
+client.industrial().v1GetVisionProgramsByCamera(
+    1000000L,
+    V1GetVisionProgramsByCameraRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -22959,7 +23062,12 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```java
-client.previewApIs().lockVehicle("id");
+client.previewApIs().lockVehicle(
+    "id",
+    LockVehicleRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -23026,7 +23134,12 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```java
-client.previewApIs().unlockVehicle("id");
+client.previewApIs().unlockVehicle(
+    "id",
+    UnlockVehicleRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -23935,7 +24048,12 @@ To use this endpoint, select **Read Tags** under the Setup & Administration cate
 <dd>
 
 ```java
-client.tags().getTag("id");
+client.tags().getTag(
+    "id",
+    GetTagRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -24120,7 +24238,12 @@ To use this endpoint, select **Write Tags** under the Setup & Administration cat
 <dd>
 
 ```java
-client.tags().delete("id");
+client.tags().delete(
+    "id",
+    DeleteTagsRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -25202,7 +25325,12 @@ To use this endpoint, select **Read Users** under the Setup & Administration cat
 <dd>
 
 ```java
-client.users().getUser("id");
+client.users().getUser(
+    "id",
+    GetUserRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -25260,7 +25388,12 @@ To use this endpoint, select **Write Users** under the Setup & Administration ca
 <dd>
 
 ```java
-client.users().delete("id");
+client.users().delete(
+    "id",
+    DeleteUsersRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -26450,7 +26583,12 @@ To use this endpoint, select **Read Webhooks** under the Setup & Administration 
 <dd>
 
 ```java
-client.webhooks().getWebhook("id");
+client.webhooks().getWebhook(
+    "id",
+    GetWebhookRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -26511,7 +26649,12 @@ To use this endpoint, select **Write Webhooks** under the Setup & Administration
 <dd>
 
 ```java
-client.webhooks().deleteWebhook("id");
+client.webhooks().deleteWebhook(
+    "id",
+    DeleteWebhookRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -26670,7 +26813,12 @@ To use this endpoint, select **Write Carrier-Proposed Assignments** under the As
 <dd>
 
 ```java
-client.fleet().carrierProposedAssignments().delete("id");
+client.fleet().carrierProposedAssignments().delete(
+    "id",
+    DeleteCarrierProposedAssignmentsRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -26711,7 +26859,12 @@ client.fleet().carrierProposedAssignments().delete("id");
 <dd>
 
 ```java
-client.fleet().attributes().update("id");
+client.fleet().attributes().update(
+    "id",
+    UpdateAttributesRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>
@@ -26770,7 +26923,12 @@ To use this endpoint, select **Write Equipment** under the Equipment category wh
 <dd>
 
 ```java
-client.industrial().assets().delete("id");
+client.industrial().assets().delete(
+    "id",
+    DeleteAssetsRequest
+        .builder()
+        .build()
+);
 ```
 </dd>
 </dl>

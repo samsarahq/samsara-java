@@ -32,6 +32,8 @@ public final class RouteStopDetailsObjectResponseBody {
 
     private final OffsetDateTime time;
 
+    private final RouteStopDetailsObjectResponseBodyType type;
+
     private final Optional<VehicleWithGatewayTinyResponseResponseBody> vehicle;
 
     private final Map<String, Object> additionalProperties;
@@ -42,6 +44,7 @@ public final class RouteStopDetailsObjectResponseBody {
             WebhookRouteResponseObjectResponseBody route,
             MinimalRouteStopResponseBody routeStopDetails,
             OffsetDateTime time,
+            RouteStopDetailsObjectResponseBodyType type,
             Optional<VehicleWithGatewayTinyResponseResponseBody> vehicle,
             Map<String, Object> additionalProperties) {
         this.driver = driver;
@@ -49,6 +52,7 @@ public final class RouteStopDetailsObjectResponseBody {
         this.route = route;
         this.routeStopDetails = routeStopDetails;
         this.time = time;
+        this.type = type;
         this.vehicle = vehicle;
         this.additionalProperties = additionalProperties;
     }
@@ -88,8 +92,8 @@ public final class RouteStopDetailsObjectResponseBody {
      * @return The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code>
      */
     @JsonProperty("type")
-    public String getType() {
-        return "route tracking";
+    public RouteStopDetailsObjectResponseBodyType getType() {
+        return type;
     }
 
     @JsonProperty("vehicle")
@@ -115,12 +119,14 @@ public final class RouteStopDetailsObjectResponseBody {
                 && route.equals(other.route)
                 && routeStopDetails.equals(other.routeStopDetails)
                 && time.equals(other.time)
+                && type.equals(other.type)
                 && vehicle.equals(other.vehicle);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.driver, this.operation, this.route, this.routeStopDetails, this.time, this.vehicle);
+        return Objects.hash(
+                this.driver, this.operation, this.route, this.routeStopDetails, this.time, this.type, this.vehicle);
     }
 
     @java.lang.Override
@@ -146,7 +152,14 @@ public final class RouteStopDetailsObjectResponseBody {
         /**
          * <p>The timestamp of the route in RFC 3339 format.</p>
          */
-        _FinalStage time(@NotNull OffsetDateTime time);
+        TypeStage time(@NotNull OffsetDateTime time);
+    }
+
+    public interface TypeStage {
+        /**
+         * <p>The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code></p>
+         */
+        _FinalStage type(@NotNull RouteStopDetailsObjectResponseBodyType type);
     }
 
     public interface _FinalStage {
@@ -169,12 +182,14 @@ public final class RouteStopDetailsObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements RouteStage, RouteStopDetailsStage, TimeStage, _FinalStage {
+    public static final class Builder implements RouteStage, RouteStopDetailsStage, TimeStage, TypeStage, _FinalStage {
         private WebhookRouteResponseObjectResponseBody route;
 
         private MinimalRouteStopResponseBody routeStopDetails;
 
         private OffsetDateTime time;
+
+        private RouteStopDetailsObjectResponseBodyType type;
 
         private Optional<VehicleWithGatewayTinyResponseResponseBody> vehicle = Optional.empty();
 
@@ -194,6 +209,7 @@ public final class RouteStopDetailsObjectResponseBody {
             route(other.getRoute());
             routeStopDetails(other.getRouteStopDetails());
             time(other.getTime());
+            type(other.getType());
             vehicle(other.getVehicle());
             return this;
         }
@@ -219,8 +235,20 @@ public final class RouteStopDetailsObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("time")
-        public _FinalStage time(@NotNull OffsetDateTime time) {
+        public TypeStage time(@NotNull OffsetDateTime time) {
             this.time = Objects.requireNonNull(time, "time must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code></p>
+         * <p>The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: <code>route tracking</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("type")
+        public _FinalStage type(@NotNull RouteStopDetailsObjectResponseBodyType type) {
+            this.type = Objects.requireNonNull(type, "type must not be null");
             return this;
         }
 
@@ -273,7 +301,7 @@ public final class RouteStopDetailsObjectResponseBody {
         @java.lang.Override
         public RouteStopDetailsObjectResponseBody build() {
             return new RouteStopDetailsObjectResponseBody(
-                    driver, operation, route, routeStopDetails, time, vehicle, additionalProperties);
+                    driver, operation, route, routeStopDetails, time, type, vehicle, additionalProperties);
         }
     }
 }
