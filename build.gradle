@@ -31,6 +31,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:5.2.1'
 }
 
 
@@ -122,7 +123,7 @@ tasks.withType(Sign).configureEach {
 // Task to create the publication bundle for Central Portal upload
 tasks.register('createPublicationBundle', Zip) {
     dependsOn 'publishMavenJavaPublicationToMavenLocal'
-    
+
     from("${System.getProperty('user.home')}/.m2/repository/com/samsara/samsara-java-sdk/${version}") {
         include '*.jar'
         include '*.pom'
@@ -130,7 +131,7 @@ tasks.register('createPublicationBundle', Zip) {
         include '*.md5'
         include '*.sha1'
     }
-    
+
     archiveFileName = "samsara-java-sdk-${version}-bundle.zip"
     destinationDirectory = layout.buildDirectory.dir('publications')
 }
@@ -138,20 +139,20 @@ tasks.register('createPublicationBundle', Zip) {
 // Task to publish to Central Portal via REST API
 tasks.register('publishToCentralPortal') {
     dependsOn 'createPublicationBundle'
-    
+
     doLast {
         def bundleFile = file("${layout.buildDirectory.get()}/publications/samsara-java-sdk-${version}-bundle.zip")
         def username = System.getenv('MAVEN_CENTRAL_USERNAME')
         def password = System.getenv('MAVEN_CENTRAL_PASSWORD')
-        
+
         if (!bundleFile.exists()) {
             throw new GradleException("Bundle file not found: ${bundleFile}")
         }
-        
+
         println "Uploading bundle to Central Portal..."
         println "Bundle: ${bundleFile}"
         println "Size: ${bundleFile.length()} bytes"
-        
+
         // The actual upload will be done via curl in the workflow
         // This task just prepares the bundle
     }
