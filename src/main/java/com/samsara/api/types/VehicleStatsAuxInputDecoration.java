@@ -32,7 +32,7 @@ public final class VehicleStatsAuxInputDecoration {
     }
 
     /**
-     * @return The type of &lt;a href=&quot;https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs&quot; target=&quot;_blank&quot;&gt;auxiliary input&lt;/a&gt; configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.
+     * @return The type of <a href="https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs" target="_blank">auxiliary input</a> configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.
      */
     @JsonProperty("name")
     public String getName() {
@@ -75,7 +75,7 @@ public final class VehicleStatsAuxInputDecoration {
 
     public interface NameStage {
         /**
-         * <p>The type of &lt;a href=&quot;https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs&quot; target=&quot;_blank&quot;&gt;auxiliary input&lt;/a&gt; configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.</p>
+         * <p>The type of <a href="https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs" target="_blank">auxiliary input</a> configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.</p>
          */
         ValueStage name(@NotNull String name);
 
@@ -109,8 +109,8 @@ public final class VehicleStatsAuxInputDecoration {
         }
 
         /**
-         * <p>The type of &lt;a href=&quot;https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs&quot; target=&quot;_blank&quot;&gt;auxiliary input&lt;/a&gt; configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.</p>
-         * <p>The type of &lt;a href=&quot;https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs&quot; target=&quot;_blank&quot;&gt;auxiliary input&lt;/a&gt; configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.</p>
+         * <p>The type of <a href="https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs" target="_blank">auxiliary input</a> configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.</p>
+         * <p>The type of <a href="https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs" target="_blank">auxiliary input</a> configured for this Vehicle. Once configured, these inputs will generate dynamic, time-series data that will be available to view in the Samsara Dashboard. <strong>By default</strong>: empty. This can be set or updated through the Samsara Dashboard or the API at any time. Inputs 3-13 are only available on gateways with an attached aux expander. The value returned will match what is configured in the dashboard per vehicle.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

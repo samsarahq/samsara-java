@@ -33,9 +33,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Returns all non-expired Live Sharing Links.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksGetLiveSharingLinksResponseBody> getLiveSharingLinks() {
         return this.rawClient.getLiveSharingLinks().thenApply(response -> response.body());
@@ -43,9 +43,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Returns all non-expired Live Sharing Links.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksGetLiveSharingLinksResponseBody> getLiveSharingLinks(
             RequestOptions requestOptions) {
@@ -54,9 +54,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Returns all non-expired Live Sharing Links.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksGetLiveSharingLinksResponseBody> getLiveSharingLinks(
             GetLiveSharingLinksRequest request) {
@@ -65,9 +65,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Returns all non-expired Live Sharing Links.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksGetLiveSharingLinksResponseBody> getLiveSharingLinks(
             GetLiveSharingLinksRequest request, RequestOptions requestOptions) {
@@ -76,9 +76,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Create Live Sharing Link.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksCreateLiveSharingLinkResponseBody> createLiveSharingLink(
             LiveSharingLinksCreateLiveSharingLinkRequestBody request) {
@@ -87,9 +87,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Create Live Sharing Link.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksCreateLiveSharingLinkResponseBody> createLiveSharingLink(
             LiveSharingLinksCreateLiveSharingLinkRequestBody request, RequestOptions requestOptions) {
@@ -98,9 +98,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Delete Live Sharing Link.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<Void> deleteLiveSharingLink(DeleteLiveSharingLinkRequest request) {
         return this.rawClient.deleteLiveSharingLink(request).thenApply(response -> response.body());
@@ -108,9 +108,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Delete Live Sharing Link.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<Void> deleteLiveSharingLink(
             DeleteLiveSharingLinkRequest request, RequestOptions requestOptions) {
@@ -119,9 +119,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Update Live Sharing Link.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksUpdateLiveSharingLinkResponseBody> updateLiveSharingLink(
             LiveSharingLinksUpdateLiveSharingLinkRequestBody request) {
@@ -130,9 +130,9 @@ public class AsyncLiveSharingLinksClient {
 
     /**
      * Update Live Sharing Link.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Live Sharing Links</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<LiveSharingLinksUpdateLiveSharingLinkResponseBody> updateLiveSharingLink(
             LiveSharingLinksUpdateLiveSharingLinkRequestBody request, RequestOptions requestOptions) {

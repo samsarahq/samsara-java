@@ -42,8 +42,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Return all of the tags for an organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<ListTagsResponse>> listTags() {
         return listTags(ListTagsRequest.builder().build());
@@ -51,8 +51,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Return all of the tags for an organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<ListTagsResponse>> listTags(RequestOptions requestOptions) {
         return listTags(ListTagsRequest.builder().build(), requestOptions);
@@ -60,8 +60,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Return all of the tags for an organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<ListTagsResponse>> listTags(ListTagsRequest request) {
         return listTags(request, null);
@@ -69,8 +69,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Return all of the tags for an organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<ListTagsResponse>> listTags(
             ListTagsRequest request, RequestOptions requestOptions) {
@@ -131,8 +131,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Create a new tag for the organization. This may include up to 20,000 tagged entities.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> createTag(CreateTagRequest request) {
         return createTag(request, null);
@@ -140,8 +140,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Create a new tag for the organization. This may include up to 20,000 tagged entities.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> createTag(
             CreateTagRequest request, RequestOptions requestOptions) {
@@ -201,8 +201,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Fetch a tag by id.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> getTag(String id) {
         return getTag(id, GetTagRequest.builder().build());
@@ -210,8 +210,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Fetch a tag by id.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> getTag(String id, RequestOptions requestOptions) {
         return getTag(id, GetTagRequest.builder().build(), requestOptions);
@@ -219,8 +219,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Fetch a tag by id.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> getTag(String id, GetTagRequest request) {
         return getTag(id, request, null);
@@ -228,8 +228,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Fetch a tag by id.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> getTag(
             String id, GetTagRequest request, RequestOptions requestOptions) {
@@ -282,8 +282,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> replaceTag(String id) {
         return replaceTag(id, ReplaceTagRequest.builder().build());
@@ -291,8 +291,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> replaceTag(String id, RequestOptions requestOptions) {
         return replaceTag(id, ReplaceTagRequest.builder().build(), requestOptions);
@@ -300,8 +300,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> replaceTag(String id, ReplaceTagRequest request) {
         return replaceTag(id, request, null);
@@ -309,8 +309,8 @@ public class AsyncRawTagsClient {
 
     /**
      * Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> replaceTag(
             String id, ReplaceTagRequest request, RequestOptions requestOptions) {
@@ -371,37 +371,37 @@ public class AsyncRawTagsClient {
 
     /**
      * Permanently deletes a tag.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
-    public CompletableFuture<SamsaraApiHttpResponse<String>> delete(String id) {
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id) {
         return delete(id, DeleteTagsRequest.builder().build());
     }
 
     /**
      * Permanently deletes a tag.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
-    public CompletableFuture<SamsaraApiHttpResponse<String>> delete(String id, RequestOptions requestOptions) {
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, RequestOptions requestOptions) {
         return delete(id, DeleteTagsRequest.builder().build(), requestOptions);
     }
 
     /**
      * Permanently deletes a tag.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
-    public CompletableFuture<SamsaraApiHttpResponse<String>> delete(String id, DeleteTagsRequest request) {
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, DeleteTagsRequest request) {
         return delete(id, request, null);
     }
 
     /**
      * Permanently deletes a tag.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
-    public CompletableFuture<SamsaraApiHttpResponse<String>> delete(
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(
             String id, DeleteTagsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -415,24 +415,22 @@ public class AsyncRawTagsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
-        CompletableFuture<SamsaraApiHttpResponse<String>> future = new CompletableFuture<>();
+        CompletableFuture<SamsaraApiHttpResponse<Void>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                        future.complete(new SamsaraApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, String.class), response));
+                        future.complete(new SamsaraApiHttpResponse<>(null, response));
                         return;
                     }
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new SamsaraApiApiException(
                             "Error with status code " + response.code(), response.code(), errorBody, response));
@@ -454,8 +452,8 @@ public class AsyncRawTagsClient {
      * Update an existing tag. <strong>Note</strong> this implementation of patch uses <a href="https://tools.ietf.org/html/rfc7396">the JSON merge patch</a> proposed standard.
      * <p>This means that any fields included in the patch request will <em>overwrite</em> fields which exist on the target resource.</p>
      * <p>For arrays, this means any array included in the request will <em>replace</em> the array that exists at the specified path, it will not <em>add</em> to the existing array.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> patchTag(String id) {
         return patchTag(id, PatchTagRequest.builder().build());
@@ -465,8 +463,8 @@ public class AsyncRawTagsClient {
      * Update an existing tag. <strong>Note</strong> this implementation of patch uses <a href="https://tools.ietf.org/html/rfc7396">the JSON merge patch</a> proposed standard.
      * <p>This means that any fields included in the patch request will <em>overwrite</em> fields which exist on the target resource.</p>
      * <p>For arrays, this means any array included in the request will <em>replace</em> the array that exists at the specified path, it will not <em>add</em> to the existing array.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> patchTag(String id, RequestOptions requestOptions) {
         return patchTag(id, PatchTagRequest.builder().build(), requestOptions);
@@ -476,8 +474,8 @@ public class AsyncRawTagsClient {
      * Update an existing tag. <strong>Note</strong> this implementation of patch uses <a href="https://tools.ietf.org/html/rfc7396">the JSON merge patch</a> proposed standard.
      * <p>This means that any fields included in the patch request will <em>overwrite</em> fields which exist on the target resource.</p>
      * <p>For arrays, this means any array included in the request will <em>replace</em> the array that exists at the specified path, it will not <em>add</em> to the existing array.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> patchTag(String id, PatchTagRequest request) {
         return patchTag(id, request, null);
@@ -487,8 +485,8 @@ public class AsyncRawTagsClient {
      * Update an existing tag. <strong>Note</strong> this implementation of patch uses <a href="https://tools.ietf.org/html/rfc7396">the JSON merge patch</a> proposed standard.
      * <p>This means that any fields included in the patch request will <em>overwrite</em> fields which exist on the target resource.</p>
      * <p>For arrays, this means any array included in the request will <em>replace</em> the array that exists at the specified path, it will not <em>add</em> to the existing array.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Tags</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<TagResponse>> patchTag(
             String id, PatchTagRequest request, RequestOptions requestOptions) {

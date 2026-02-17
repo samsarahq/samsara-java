@@ -55,9 +55,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve capacity types for a specific hub.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubCapacitiesListHubCapacitiesResponseBody>> listHubCapacities(
             ListHubCapacitiesRequest request) {
@@ -66,9 +66,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve capacity types for a specific hub.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubCapacitiesListHubCapacitiesResponseBody>> listHubCapacities(
             ListHubCapacitiesRequest request, RequestOptions requestOptions) {
@@ -199,9 +199,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Update existing location by ID.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubLocationsUpdateHubLocationResponseBody>> updateHubLocation(
             String id, HubLocationsUpdateHubLocationRequestBody request) {
@@ -210,9 +210,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Update existing location by ID.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubLocationsUpdateHubLocationResponseBody>> updateHubLocation(
             String id, HubLocationsUpdateHubLocationRequestBody request, RequestOptions requestOptions) {
@@ -327,9 +327,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve locations for a specific hub.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubLocationsListHubLocationsResponseBody>> listHubLocations(
             ListHubLocationsRequest request) {
@@ -338,9 +338,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve locations for a specific hub.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubLocationsListHubLocationsResponseBody>> listHubLocations(
             ListHubLocationsRequest request, RequestOptions requestOptions) {
@@ -474,9 +474,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Create new locations.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubLocationsCreateHubLocationsResponseBody>> createHubLocations(
             HubLocationsCreateHubLocationsRequestBody request) {
@@ -485,9 +485,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Create new locations.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubLocationsCreateHubLocationsResponseBody>> createHubLocations(
             HubLocationsCreateHubLocationsRequestBody request, RequestOptions requestOptions) {
@@ -601,9 +601,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve skills for a specific hub.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubSkillsListHubSkillsResponseBody>> listHubSkills(
             ListHubSkillsRequest request) {
@@ -612,9 +612,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve skills for a specific hub.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubSkillsListHubSkillsResponseBody>> listHubSkills(
             ListHubSkillsRequest request, RequestOptions requestOptions) {
@@ -745,9 +745,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve all hubs (planners) in the organization. This endpoint supports pagination and filtering based on hub IDs and update times.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubsListHubsResponseBody>> listHubs() {
         return listHubs(ListHubsRequest.builder().build());
@@ -755,9 +755,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve all hubs (planners) in the organization. This endpoint supports pagination and filtering based on hub IDs and update times.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubsListHubsResponseBody>> listHubs(RequestOptions requestOptions) {
         return listHubs(ListHubsRequest.builder().build(), requestOptions);
@@ -765,9 +765,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve all hubs (planners) in the organization. This endpoint supports pagination and filtering based on hub IDs and update times.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubsListHubsResponseBody>> listHubs(ListHubsRequest request) {
         return listHubs(request, null);
@@ -775,9 +775,9 @@ public class AsyncRawHubsClient {
 
     /**
      * Retrieve all hubs (planners) in the organization. This endpoint supports pagination and filtering based on hub IDs and update times.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<HubsListHubsResponseBody>> listHubs(
             ListHubsRequest request, RequestOptions requestOptions) {

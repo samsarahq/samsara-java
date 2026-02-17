@@ -45,9 +45,9 @@ public class AsyncAssetsClient {
 
     /**
      * List all assets. Up to 300 assets will be returned per page.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SyncPagingIterable<AssetResponseBody>> list() {
         return this.rawClient.list().thenApply(response -> response.body());
@@ -55,9 +55,9 @@ public class AsyncAssetsClient {
 
     /**
      * List all assets. Up to 300 assets will be returned per page.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SyncPagingIterable<AssetResponseBody>> list(RequestOptions requestOptions) {
         return this.rawClient.list(requestOptions).thenApply(response -> response.body());
@@ -65,9 +65,9 @@ public class AsyncAssetsClient {
 
     /**
      * List all assets. Up to 300 assets will be returned per page.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SyncPagingIterable<AssetResponseBody>> list(ListAssetsRequest request) {
         return this.rawClient.list(request).thenApply(response -> response.body());
@@ -75,9 +75,9 @@ public class AsyncAssetsClient {
 
     /**
      * List all assets. Up to 300 assets will be returned per page.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<SyncPagingIterable<AssetResponseBody>> list(
             ListAssetsRequest request, RequestOptions requestOptions) {
@@ -86,9 +86,9 @@ public class AsyncAssetsClient {
 
     /**
      * Create a new asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<AssetsCreateAssetResponseBody> createAsset() {
         return this.rawClient.createAsset().thenApply(response -> response.body());
@@ -96,9 +96,9 @@ public class AsyncAssetsClient {
 
     /**
      * Create a new asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<AssetsCreateAssetResponseBody> createAsset(RequestOptions requestOptions) {
         return this.rawClient.createAsset(requestOptions).thenApply(response -> response.body());
@@ -106,9 +106,9 @@ public class AsyncAssetsClient {
 
     /**
      * Create a new asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<AssetsCreateAssetResponseBody> createAsset(AssetsCreateAssetRequestBody request) {
         return this.rawClient.createAsset(request).thenApply(response -> response.body());
@@ -116,9 +116,9 @@ public class AsyncAssetsClient {
 
     /**
      * Create a new asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<AssetsCreateAssetResponseBody> createAsset(
             AssetsCreateAssetRequestBody request, RequestOptions requestOptions) {
@@ -127,9 +127,9 @@ public class AsyncAssetsClient {
 
     /**
      * Delete an existing asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<Void> deleteAsset(DeleteAssetRequest request) {
         return this.rawClient.deleteAsset(request).thenApply(response -> response.body());
@@ -137,9 +137,9 @@ public class AsyncAssetsClient {
 
     /**
      * Delete an existing asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<Void> deleteAsset(DeleteAssetRequest request, RequestOptions requestOptions) {
         return this.rawClient.deleteAsset(request, requestOptions).thenApply(response -> response.body());
@@ -147,9 +147,9 @@ public class AsyncAssetsClient {
 
     /**
      * Update an existing asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<AssetsUpdateAssetResponseBody> updateAsset(AssetsUpdateAssetRequestBody request) {
         return this.rawClient.updateAsset(request).thenApply(response -> response.body());
@@ -157,9 +157,9 @@ public class AsyncAssetsClient {
 
     /**
      * Update an existing asset.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public CompletableFuture<AssetsUpdateAssetResponseBody> updateAsset(
             AssetsUpdateAssetRequestBody request, RequestOptions requestOptions) {
@@ -169,13 +169,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch current locations of all assets.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<InlineResponse2002> v1GetAllAssetCurrentLocations() {
         return this.rawClient.v1GetAllAssetCurrentLocations().thenApply(response -> response.body());
@@ -184,13 +184,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch current locations of all assets.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<InlineResponse2002> v1GetAllAssetCurrentLocations(RequestOptions requestOptions) {
         return this.rawClient.v1GetAllAssetCurrentLocations(requestOptions).thenApply(response -> response.body());
@@ -199,13 +199,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch current locations of all assets.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<InlineResponse2002> v1GetAllAssetCurrentLocations(
             V1GetAllAssetCurrentLocationsRequest request) {
@@ -215,13 +215,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch current locations of all assets.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<InlineResponse2002> v1GetAllAssetCurrentLocations(
             V1GetAllAssetCurrentLocationsRequest request, RequestOptions requestOptions) {
@@ -233,13 +233,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetches all reefers and reefer-specific stats.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<InlineResponse2003> v1GetAssetsReefers(V1GetAssetsReefersRequest request) {
         return this.rawClient.v1GetAssetsReefers(request).thenApply(response -> response.body());
@@ -248,13 +248,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetches all reefers and reefer-specific stats.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<InlineResponse2003> v1GetAssetsReefers(
             V1GetAssetsReefersRequest request, RequestOptions requestOptions) {
@@ -264,13 +264,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * List historical locations for a given asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<List<V1AssetLocationResponseItem>> v1GetAssetLocation(
             long assetId, V1GetAssetLocationRequest request) {
@@ -280,13 +280,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * List historical locations for a given asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<List<V1AssetLocationResponseItem>> v1GetAssetLocation(
             long assetId, V1GetAssetLocationRequest request, RequestOptions requestOptions) {
@@ -298,13 +298,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch the reefer-specific stats of an asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<V1AssetReeferResponse> v1GetAssetReefer(long assetId, V1GetAssetReeferRequest request) {
         return this.rawClient.v1GetAssetReefer(assetId, request).thenApply(response -> response.body());
@@ -313,13 +313,13 @@ public class AsyncAssetsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch the reefer-specific stats of an asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<V1AssetReeferResponse> v1GetAssetReefer(
             long assetId, V1GetAssetReeferRequest request, RequestOptions requestOptions) {

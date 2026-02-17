@@ -32,8 +32,8 @@ public class AsyncRawLegacyClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/listassets">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Fetch all powered and unpowered equipment.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<InlineResponse2001>> v1GetAllAssets() {
         return v1GetAllAssets(null);
@@ -42,8 +42,8 @@ public class AsyncRawLegacyClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/listassets">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Fetch all powered and unpowered equipment.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public CompletableFuture<SamsaraApiHttpResponse<InlineResponse2001>> v1GetAllAssets(RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())

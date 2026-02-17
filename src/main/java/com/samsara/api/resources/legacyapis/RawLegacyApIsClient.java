@@ -54,8 +54,8 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/streamdefects">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Defects</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Defects</strong> under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DefectsResponse> getDvirDefects(GetDvirDefectsRequest request) {
         return getDvirDefects(request, null);
@@ -64,8 +64,8 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/streamdefects">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Defects</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Defects</strong> under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DefectsResponse> getDvirDefects(
             GetDvirDefectsRequest request, RequestOptions requestOptions) {
@@ -118,9 +118,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody>
             getDriversVehicleAssignments() {
@@ -130,9 +130,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody>
             getDriversVehicleAssignments(RequestOptions requestOptions) {
@@ -142,9 +142,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody>
             getDriversVehicleAssignments(GetDriversVehicleAssignmentsRequest request) {
@@ -153,9 +153,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody>
             getDriversVehicleAssignments(GetDriversVehicleAssignmentsRequest request, RequestOptions requestOptions) {
@@ -262,8 +262,8 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdvirs">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Returns a list of all DVIRs in an organization.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DvirsListResponse> getDvirHistory(GetDvirHistoryRequest request) {
         return getDvirHistory(request, null);
@@ -272,8 +272,8 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdvirs">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Returns a list of all DVIRs in an organization.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DvirsListResponse> getDvirHistory(
             GetDvirHistoryRequest request, RequestOptions requestOptions) {
@@ -330,9 +330,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getidlingevents">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle idling reports for the requested time duration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<IdlingReportsGetVehicleIdlingReportsResponseBody> getVehicleIdlingReports(
             GetVehicleIdlingReportsRequest request) {
@@ -341,9 +341,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getidlingevents">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all vehicle idling reports for the requested time duration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<IdlingReportsGetVehicleIdlingReportsResponseBody> getVehicleIdlingReports(
             GetVehicleIdlingReportsRequest request, RequestOptions requestOptions) {
@@ -451,8 +451,8 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Fetch safety events for the organization in a given time period.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<SafetyEventsListResponse> getSafetyEvents(GetSafetyEventsRequest request) {
         return getSafetyEvents(request, null);
@@ -461,8 +461,8 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong>
      * <p>Fetch safety events for the organization in a given time period.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<SafetyEventsListResponse> getSafetyEvents(
             GetSafetyEventsRequest request, RequestOptions requestOptions) {
@@ -526,9 +526,9 @@ public class RawLegacyApIsClient {
      * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
      * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
      * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed() {
         return getSafetyActivityEventFeed(
@@ -543,9 +543,9 @@ public class RawLegacyApIsClient {
      * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
      * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
      * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
             RequestOptions requestOptions) {
@@ -561,9 +561,9 @@ public class RawLegacyApIsClient {
      * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
      * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
      * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
             GetSafetyActivityEventFeedRequest request) {
@@ -578,9 +578,9 @@ public class RawLegacyApIsClient {
      * | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
      * | BehaviorLabelActivityType     | a label is added or removed from a safety event |
      * | CoachingStateActivityType     | a safety event coaching state is updated        |</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<SafetyEventsGetSafetyActivityEventFeedResponseBody> getSafetyActivityEventFeed(
             GetSafetyActivityEventFeedRequest request, RequestOptions requestOptions) {
@@ -662,9 +662,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>
             getVehiclesDriverAssignments() {
@@ -674,9 +674,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>
             getVehiclesDriverAssignments(RequestOptions requestOptions) {
@@ -686,9 +686,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>
             getVehiclesDriverAssignments(GetVehiclesDriverAssignmentsRequest request) {
@@ -697,9 +697,9 @@ public class RawLegacyApIsClient {
 
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getdrivervehicleassignments">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href=&quot;https://developers.samsara.com/docs/rate-limits&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>
             getVehiclesDriverAssignments(GetVehiclesDriverAssignmentsRequest request, RequestOptions requestOptions) {
@@ -799,13 +799,13 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> &lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;
      * <p>Fetch harsh event details for a vehicle.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VehicleHarshEventResponse> v1GetVehicleHarshEvent(
             long vehicleId, V1GetVehicleHarshEventRequest request) {
@@ -815,13 +815,13 @@ public class RawLegacyApIsClient {
     /**
      * <strong>Note: This is a legacy endpoint, consider using <a href="https://developers.samsara.com/reference/getsafetyeventsv2stream">this endpoint</a> instead. The endpoint will continue to function as documented.</strong> &lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;
      * <p>Fetch harsh event details for a vehicle.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. &lt;a href=&quot;https://developers.samsara.com/docs/authentication#scopes-for-api-tokens&quot; target=&quot;_blank&quot;&gt;Learn More.&lt;/a&gt;</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VehicleHarshEventResponse> v1GetVehicleHarshEvent(
             long vehicleId, V1GetVehicleHarshEventRequest request, RequestOptions requestOptions) {
