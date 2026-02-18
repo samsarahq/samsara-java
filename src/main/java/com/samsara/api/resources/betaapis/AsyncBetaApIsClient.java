@@ -6,6 +6,7 @@ package com.samsara.api.resources.betaapis;
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
@@ -29,6 +30,7 @@ import com.samsara.api.resources.betaapis.requests.GetReadingsSnapshotRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportConfigsRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
+import com.samsara.api.resources.betaapis.requests.GetRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.GetTagGroupSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetTagSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsFeedRequest;
@@ -41,6 +43,7 @@ import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
+import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsDeleteQualificationRecordRequestBody;
@@ -49,6 +52,8 @@ import com.samsara.api.resources.betaapis.requests.QualificationsPostQualificati
 import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
+import com.samsara.api.resources.betaapis.requests.RidershipAccountsCreateRidershipAccountRequestBody;
+import com.samsara.api.resources.betaapis.requests.RidershipAccountsUpdateRidershipAccountRequestBody;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
@@ -79,6 +84,10 @@ import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
 import com.samsara.api.types.ReportsGetReportRunDataResponseBody;
 import com.samsara.api.types.ReportsGetReportRunsResponseBody;
+import com.samsara.api.types.RidershipAccountsCreateRidershipAccountResponseBody;
+import com.samsara.api.types.RidershipAccountsGetRidershipAccountResponseBody;
+import com.samsara.api.types.RidershipAccountsListRidershipAccountsResponseBody;
+import com.samsara.api.types.RidershipAccountsUpdateRidershipAccountResponseBody;
 import com.samsara.api.types.SafetyScoresGetDriverSafetyScoreTripsResponseBody;
 import com.samsara.api.types.SafetyScoresGetDriverSafetyScoresResponseBody;
 import com.samsara.api.types.SafetyScoresGetTagGroupSafetyScoresResponseBody;
@@ -1185,6 +1194,157 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<ReportsGetReportRunDataResponseBody> getReportRunData(
             GetReportRunDataRequest request, RequestOptions requestOptions) {
         return this.rawClient.getReportRunData(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all ridership accounts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsListRidershipAccountsResponseBody> listRidershipAccounts() {
+        return this.rawClient.listRidershipAccounts().thenApply(response -> response.body());
+    }
+
+    /**
+     * List all ridership accounts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsListRidershipAccountsResponseBody> listRidershipAccounts(
+            RequestOptions requestOptions) {
+        return this.rawClient.listRidershipAccounts(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all ridership accounts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsListRidershipAccountsResponseBody> listRidershipAccounts(
+            ListRidershipAccountsRequest request) {
+        return this.rawClient.listRidershipAccounts(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all ridership accounts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsListRidershipAccountsResponseBody> listRidershipAccounts(
+            ListRidershipAccountsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listRidershipAccounts(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Create a new ridership account.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsCreateRidershipAccountResponseBody> createRidershipAccount(
+            RidershipAccountsCreateRidershipAccountRequestBody request) {
+        return this.rawClient.createRidershipAccount(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Create a new ridership account.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsCreateRidershipAccountResponseBody> createRidershipAccount(
+            RidershipAccountsCreateRidershipAccountRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createRidershipAccount(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update a ridership account by Samsara ID. All provided fields will overwrite existing values (PUT semantics).
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsUpdateRidershipAccountResponseBody> updateRidershipAccount(
+            RidershipAccountsUpdateRidershipAccountRequestBody request) {
+        return this.rawClient.updateRidershipAccount(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update a ridership account by Samsara ID. All provided fields will overwrite existing values (PUT semantics).
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsUpdateRidershipAccountResponseBody> updateRidershipAccount(
+            RidershipAccountsUpdateRidershipAccountRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateRidershipAccount(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a ridership account by Samsara ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteRidershipAccount(DeleteRidershipAccountRequest request) {
+        return this.rawClient.deleteRidershipAccount(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a ridership account by Samsara ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteRidershipAccount(
+            DeleteRidershipAccountRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteRidershipAccount(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single ridership account by ID. The ID can be a Samsara UUID or an external ID in <code>key:value</code> format.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsGetRidershipAccountResponseBody> getRidershipAccount(String id) {
+        return this.rawClient.getRidershipAccount(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single ridership account by ID. The ID can be a Samsara UUID or an external ID in <code>key:value</code> format.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsGetRidershipAccountResponseBody> getRidershipAccount(
+            String id, RequestOptions requestOptions) {
+        return this.rawClient.getRidershipAccount(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single ridership account by ID. The ID can be a Samsara UUID or an external ID in <code>key:value</code> format.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsGetRidershipAccountResponseBody> getRidershipAccount(
+            String id, GetRidershipAccountRequest request) {
+        return this.rawClient.getRidershipAccount(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single ridership account by ID. The ID can be a Samsara UUID or an external ID in <code>key:value</code> format.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ridership</strong> under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<RidershipAccountsGetRidershipAccountResponseBody> getRidershipAccount(
+            String id, GetRidershipAccountRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getRidershipAccount(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
