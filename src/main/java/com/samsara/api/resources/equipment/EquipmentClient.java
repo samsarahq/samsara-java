@@ -8,7 +8,6 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsFeedRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsRequest;
-import com.samsara.api.resources.equipment.requests.GetEquipmentRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsFeedRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsRequest;
@@ -67,8 +66,8 @@ public class EquipmentClient {
 
     /**
      * Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsResponse getEquipmentLocations() {
         return this.rawClient.getEquipmentLocations().body();
@@ -76,8 +75,8 @@ public class EquipmentClient {
 
     /**
      * Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsResponse getEquipmentLocations(RequestOptions requestOptions) {
         return this.rawClient.getEquipmentLocations(requestOptions).body();
@@ -85,8 +84,8 @@ public class EquipmentClient {
 
     /**
      * Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsResponse getEquipmentLocations(GetEquipmentLocationsRequest request) {
         return this.rawClient.getEquipmentLocations(request).body();
@@ -94,8 +93,8 @@ public class EquipmentClient {
 
     /**
      * Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsResponse getEquipmentLocations(
             GetEquipmentLocationsRequest request, RequestOptions requestOptions) {
@@ -107,8 +106,8 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsListResponse getEquipmentLocationsFeed() {
         return this.rawClient.getEquipmentLocationsFeed().body();
@@ -119,8 +118,8 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsListResponse getEquipmentLocationsFeed(RequestOptions requestOptions) {
         return this.rawClient.getEquipmentLocationsFeed(requestOptions).body();
@@ -131,8 +130,8 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsListResponse getEquipmentLocationsFeed(GetEquipmentLocationsFeedRequest request) {
         return this.rawClient.getEquipmentLocationsFeed(request).body();
@@ -143,8 +142,8 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment location updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsListResponse getEquipmentLocationsFeed(
             GetEquipmentLocationsFeedRequest request, RequestOptions requestOptions) {
@@ -153,8 +152,8 @@ public class EquipmentClient {
 
     /**
      * Returns historical equipment locations during the given time range. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsListResponse getEquipmentLocationsHistory(GetEquipmentLocationsHistoryRequest request) {
         return this.rawClient.getEquipmentLocationsHistory(request).body();
@@ -162,8 +161,8 @@ public class EquipmentClient {
 
     /**
      * Returns historical equipment locations during the given time range. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentLocationsListResponse getEquipmentLocationsHistory(
             GetEquipmentLocationsHistoryRequest request, RequestOptions requestOptions) {
@@ -174,9 +173,9 @@ public class EquipmentClient {
 
     /**
      * Returns the last known stats for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsResponse getEquipmentStats() {
         return this.rawClient.getEquipmentStats().body();
@@ -184,9 +183,9 @@ public class EquipmentClient {
 
     /**
      * Returns the last known stats for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsResponse getEquipmentStats(RequestOptions requestOptions) {
         return this.rawClient.getEquipmentStats(requestOptions).body();
@@ -194,9 +193,9 @@ public class EquipmentClient {
 
     /**
      * Returns the last known stats for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsResponse getEquipmentStats(GetEquipmentStatsRequest request) {
         return this.rawClient.getEquipmentStats(request).body();
@@ -204,9 +203,9 @@ public class EquipmentClient {
 
     /**
      * Returns the last known stats for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsResponse getEquipmentStats(GetEquipmentStatsRequest request, RequestOptions requestOptions) {
         return this.rawClient.getEquipmentStats(request, requestOptions).body();
@@ -217,9 +216,9 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment stats updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsListResponse getEquipmentStatsFeed() {
         return this.rawClient.getEquipmentStatsFeed().body();
@@ -230,9 +229,9 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment stats updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsListResponse getEquipmentStatsFeed(RequestOptions requestOptions) {
         return this.rawClient.getEquipmentStatsFeed(requestOptions).body();
@@ -243,9 +242,9 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment stats updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsListResponse getEquipmentStatsFeed(GetEquipmentStatsFeedRequest request) {
         return this.rawClient.getEquipmentStatsFeed(request).body();
@@ -256,9 +255,9 @@ public class EquipmentClient {
      * <p>Your first call to this endpoint will provide you with the most recent stats for each unit of equipment and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to subsequent calls via the <code>after</code> parameter. The response will contain any equipment stats updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. Each stat type has a different refresh rate, but in general we'd suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsListResponse getEquipmentStatsFeed(
             GetEquipmentStatsFeedRequest request, RequestOptions requestOptions) {
@@ -267,9 +266,9 @@ public class EquipmentClient {
 
     /**
      * Returns historical equipment status during the given time range. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsListResponse getEquipmentStatsHistory(GetEquipmentStatsHistoryRequest request) {
         return this.rawClient.getEquipmentStatsHistory(request).body();
@@ -277,9 +276,9 @@ public class EquipmentClient {
 
     /**
      * Returns historical equipment status during the given time range. This can be optionally filtered by tags or specific equipment IDs.
-     * <p><b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 150 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentStatsListResponse getEquipmentStatsHistory(
             GetEquipmentStatsHistoryRequest request, RequestOptions requestOptions) {
@@ -288,8 +287,8 @@ public class EquipmentClient {
 
     /**
      * Retrieves the unit of equipment with the given Samsara ID.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentResponse getEquipment(String id) {
         return this.rawClient.getEquipment(id).body();
@@ -297,28 +296,10 @@ public class EquipmentClient {
 
     /**
      * Retrieves the unit of equipment with the given Samsara ID.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public EquipmentResponse getEquipment(String id, RequestOptions requestOptions) {
         return this.rawClient.getEquipment(id, requestOptions).body();
-    }
-
-    /**
-     * Retrieves the unit of equipment with the given Samsara ID.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     */
-    public EquipmentResponse getEquipment(String id, GetEquipmentRequest request) {
-        return this.rawClient.getEquipment(id, request).body();
-    }
-
-    /**
-     * Retrieves the unit of equipment with the given Samsara ID.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     */
-    public EquipmentResponse getEquipment(String id, GetEquipmentRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getEquipment(id, request, requestOptions).body();
     }
 }

@@ -21,11 +21,8 @@ import com.samsara.api.errors.NotImplementedError;
 import com.samsara.api.errors.ServiceUnavailableError;
 import com.samsara.api.errors.TooManyRequestsError;
 import com.samsara.api.errors.UnauthorizedError;
-import com.samsara.api.resources.documents.requests.DeleteDocumentRequest;
 import com.samsara.api.resources.documents.requests.DocumentPdfGenerationRequest;
 import com.samsara.api.resources.documents.requests.DocumentsPostDocumentRequestBody;
-import com.samsara.api.resources.documents.requests.GetDocumentPdfRequest;
-import com.samsara.api.resources.documents.requests.GetDocumentRequest;
 import com.samsara.api.resources.documents.requests.GetDocumentTypesRequest;
 import com.samsara.api.resources.documents.requests.GetDocumentsRequest;
 import com.samsara.api.types.DocumentPdfGenerationResponse;
@@ -52,9 +49,9 @@ public class RawDocumentsClient {
 
     /**
      * Returns a list of the organization document types. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentTypesByOrgId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentTypesGetDocumentTypesResponseBody> getDocumentTypes() {
         return getDocumentTypes(GetDocumentTypesRequest.builder().build());
@@ -62,9 +59,9 @@ public class RawDocumentsClient {
 
     /**
      * Returns a list of the organization document types. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentTypesByOrgId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentTypesGetDocumentTypesResponseBody> getDocumentTypes(
             RequestOptions requestOptions) {
@@ -73,9 +70,9 @@ public class RawDocumentsClient {
 
     /**
      * Returns a list of the organization document types. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentTypesByOrgId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentTypesGetDocumentTypesResponseBody> getDocumentTypes(
             GetDocumentTypesRequest request) {
@@ -84,9 +81,9 @@ public class RawDocumentsClient {
 
     /**
      * Returns a list of the organization document types. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentTypesByOrgId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentTypesGetDocumentTypesResponseBody> getDocumentTypes(
             GetDocumentTypesRequest request, RequestOptions requestOptions) {
@@ -164,9 +161,9 @@ public class RawDocumentsClient {
 
     /**
      * Get all documents for the given time range. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentsByOrgId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentsGetDocumentsResponseBody> getDocuments(GetDocumentsRequest request) {
         return getDocuments(request, null);
@@ -174,9 +171,9 @@ public class RawDocumentsClient {
 
     /**
      * Get all documents for the given time range. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentsByOrgId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentsGetDocumentsResponseBody> getDocuments(
             GetDocumentsRequest request, RequestOptions requestOptions) {
@@ -264,9 +261,9 @@ public class RawDocumentsClient {
 
     /**
      * Creates a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/createDriverDocument">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentsPostDocumentResponseBody> postDocument(
             DocumentsPostDocumentRequestBody request) {
@@ -275,9 +272,9 @@ public class RawDocumentsClient {
 
     /**
      * Creates a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/createDriverDocument">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentsPostDocumentResponseBody> postDocument(
             DocumentsPostDocumentRequestBody request, RequestOptions requestOptions) {
@@ -359,8 +356,8 @@ public class RawDocumentsClient {
 
     /**
      * Request creation of a document PDF.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DocumentPdfGenerationResponse> generateDocumentPdf(
             DocumentPdfGenerationRequest request) {
@@ -369,8 +366,8 @@ public class RawDocumentsClient {
 
     /**
      * Request creation of a document PDF.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DocumentPdfGenerationResponse> generateDocumentPdf(
             DocumentPdfGenerationRequest request, RequestOptions requestOptions) {
@@ -418,38 +415,19 @@ public class RawDocumentsClient {
 
     /**
      * Returns generation job status and download URL for a PDF.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DocumentPdfQueryResponse> getDocumentPdf(String id) {
-        return getDocumentPdf(id, GetDocumentPdfRequest.builder().build());
+        return getDocumentPdf(id, null);
     }
 
     /**
      * Returns generation job status and download URL for a PDF.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DocumentPdfQueryResponse> getDocumentPdf(String id, RequestOptions requestOptions) {
-        return getDocumentPdf(id, GetDocumentPdfRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * Returns generation job status and download URL for a PDF.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     */
-    public SamsaraApiHttpResponse<DocumentPdfQueryResponse> getDocumentPdf(String id, GetDocumentPdfRequest request) {
-        return getDocumentPdf(id, request, null);
-    }
-
-    /**
-     * Returns generation job status and download URL for a PDF.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     */
-    public SamsaraApiHttpResponse<DocumentPdfQueryResponse> getDocumentPdf(
-            String id, GetDocumentPdfRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/documents/pdfs")
@@ -459,12 +437,12 @@ public class RawDocumentsClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request.Builder _requestBuilder = new Request.Builder()
+        Request okhttpRequest = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
+                .addHeader("Accept", "application/json")
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -487,43 +465,22 @@ public class RawDocumentsClient {
 
     /**
      * Returns a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentsGetDocumentResponseBody> getDocument(String id) {
-        return getDocument(id, GetDocumentRequest.builder().build());
+        return getDocument(id, null);
     }
 
     /**
      * Returns a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<DocumentsGetDocumentResponseBody> getDocument(
             String id, RequestOptions requestOptions) {
-        return getDocument(id, GetDocumentRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * Returns a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<DocumentsGetDocumentResponseBody> getDocument(String id, GetDocumentRequest request) {
-        return getDocument(id, request, null);
-    }
-
-    /**
-     * Returns a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/getDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<DocumentsGetDocumentResponseBody> getDocument(
-            String id, GetDocumentRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/documents")
@@ -533,12 +490,12 @@ public class RawDocumentsClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request.Builder _requestBuilder = new Request.Builder()
+        Request okhttpRequest = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
+                .addHeader("Accept", "application/json")
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -594,42 +551,21 @@ public class RawDocumentsClient {
 
     /**
      * Deletes a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/deleteDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<Void> deleteDocument(String id) {
-        return deleteDocument(id, DeleteDocumentRequest.builder().build());
+        return deleteDocument(id, null);
     }
 
     /**
      * Deletes a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/deleteDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public SamsaraApiHttpResponse<Void> deleteDocument(String id, RequestOptions requestOptions) {
-        return deleteDocument(id, DeleteDocumentRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * Deletes a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/deleteDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<Void> deleteDocument(String id, DeleteDocumentRequest request) {
-        return deleteDocument(id, request, null);
-    }
-
-    /**
-     * Deletes a single document. The legacy version of this endpoint can be found at <a href="https://www.samsara.com/api-legacy#operation/deleteDriverDocumentByIdAndDriverId">samsara.com/api-legacy</a>.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Documents</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<Void> deleteDocument(
-            String id, DeleteDocumentRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/documents")
@@ -639,12 +575,12 @@ public class RawDocumentsClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request.Builder _requestBuilder = new Request.Builder()
+        Request okhttpRequest = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
+                .addHeader("Accept", "application/json")
+                .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

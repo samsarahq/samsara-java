@@ -45,8 +45,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
 
     private final Optional<IdlingEventOperatorObjectResponseBody> operator;
 
-    private final IdlingEventObjectV20251023ResponseBodyPtoState ptoState;
-
     private final String startTime;
 
     private final Map<String, Object> additionalProperties;
@@ -64,7 +62,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
             Optional<Double> latitude,
             Optional<Double> longitude,
             Optional<IdlingEventOperatorObjectResponseBody> operator,
-            IdlingEventObjectV20251023ResponseBodyPtoState ptoState,
             String startTime,
             Map<String, Object> additionalProperties) {
         this.address = address;
@@ -79,7 +76,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
         this.latitude = latitude;
         this.longitude = longitude;
         this.operator = operator;
-        this.ptoState = ptoState;
         this.startTime = startTime;
         this.additionalProperties = additionalProperties;
     }
@@ -169,8 +165,8 @@ public final class IdlingEventObjectV20251023ResponseBody {
      * @return The PTO (Power Take-Off) state during the idling event.  Valid values: <code>active, inactive</code>
      */
     @JsonProperty("ptoState")
-    public IdlingEventObjectV20251023ResponseBodyPtoState getPtoState() {
-        return ptoState;
+    public String getPtoState() {
+        return "active, inactive";
     }
 
     /**
@@ -206,7 +202,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
                 && latitude.equals(other.latitude)
                 && longitude.equals(other.longitude)
                 && operator.equals(other.operator)
-                && ptoState.equals(other.ptoState)
                 && startTime.equals(other.startTime);
     }
 
@@ -225,7 +220,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
                 this.latitude,
                 this.longitude,
                 this.operator,
-                this.ptoState,
                 this.startTime);
     }
 
@@ -277,14 +271,7 @@ public final class IdlingEventObjectV20251023ResponseBody {
     }
 
     public interface GaseousFuelCostStage {
-        PtoStateStage gaseousFuelCost(@NotNull GaseousFuelCostObjectResponseBody gaseousFuelCost);
-    }
-
-    public interface PtoStateStage {
-        /**
-         * <p>The PTO (Power Take-Off) state during the idling event.  Valid values: <code>active, inactive</code></p>
-         */
-        StartTimeStage ptoState(@NotNull IdlingEventObjectV20251023ResponseBodyPtoState ptoState);
+        StartTimeStage gaseousFuelCost(@NotNull GaseousFuelCostObjectResponseBody gaseousFuelCost);
     }
 
     public interface StartTimeStage {
@@ -336,7 +323,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
                     FuelCostStage,
                     GaseousFuelConsumedGramsStage,
                     GaseousFuelCostStage,
-                    PtoStateStage,
                     StartTimeStage,
                     _FinalStage {
         private IdlingEventAssetObjectResponseBody asset;
@@ -352,8 +338,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
         private double gaseousFuelConsumedGrams;
 
         private GaseousFuelCostObjectResponseBody gaseousFuelCost;
-
-        private IdlingEventObjectV20251023ResponseBodyPtoState ptoState;
 
         private String startTime;
 
@@ -386,7 +370,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
             latitude(other.getLatitude());
             longitude(other.getLongitude());
             operator(other.getOperator());
-            ptoState(other.getPtoState());
             startTime(other.getStartTime());
             return this;
         }
@@ -455,20 +438,8 @@ public final class IdlingEventObjectV20251023ResponseBody {
 
         @java.lang.Override
         @JsonSetter("gaseousFuelCost")
-        public PtoStateStage gaseousFuelCost(@NotNull GaseousFuelCostObjectResponseBody gaseousFuelCost) {
+        public StartTimeStage gaseousFuelCost(@NotNull GaseousFuelCostObjectResponseBody gaseousFuelCost) {
             this.gaseousFuelCost = Objects.requireNonNull(gaseousFuelCost, "gaseousFuelCost must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The PTO (Power Take-Off) state during the idling event.  Valid values: <code>active, inactive</code></p>
-         * <p>The PTO (Power Take-Off) state during the idling event.  Valid values: <code>active, inactive</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("ptoState")
-        public StartTimeStage ptoState(@NotNull IdlingEventObjectV20251023ResponseBodyPtoState ptoState) {
-            this.ptoState = Objects.requireNonNull(ptoState, "ptoState must not be null");
             return this;
         }
 
@@ -585,7 +556,6 @@ public final class IdlingEventObjectV20251023ResponseBody {
                     latitude,
                     longitude,
                     operator,
-                    ptoState,
                     startTime,
                     additionalProperties);
         }

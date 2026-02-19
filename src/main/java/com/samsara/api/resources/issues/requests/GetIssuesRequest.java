@@ -36,7 +36,7 @@ public final class GetIssuesRequest {
     }
 
     /**
-     * @return A comma-separated list containing up to 100 issue IDs to filter on. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.
+     * @return A comma-separated list containing up to 100 issue IDs to filter on. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the issue.
      */
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
@@ -98,7 +98,7 @@ public final class GetIssuesRequest {
         }
 
         /**
-         * <p>A comma-separated list containing up to 100 issue IDs to filter on. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
+         * <p>A comma-separated list containing up to 100 issue IDs to filter on. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the issue.</p>
          */
         @JsonSetter(value = "ids", nulls = Nulls.SKIP)
         public Builder ids(Optional<List<String>> ids) {

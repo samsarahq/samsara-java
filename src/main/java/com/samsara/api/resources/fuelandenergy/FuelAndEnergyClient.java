@@ -35,10 +35,10 @@ public class FuelAndEnergyClient {
 
     /**
      * This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="/api-reference/future/beta-apis/get-driver-efficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public DriverEfficiencyGetDriverEfficiencyByDriversResponseBody getDriverEfficiencyByDrivers(
             GetDriverEfficiencyByDriversRequest request) {
@@ -47,10 +47,10 @@ public class FuelAndEnergyClient {
 
     /**
      * This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="/api-reference/future/beta-apis/get-driver-efficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public DriverEfficiencyGetDriverEfficiencyByDriversResponseBody getDriverEfficiencyByDrivers(
             GetDriverEfficiencyByDriversRequest request, RequestOptions requestOptions) {
@@ -61,10 +61,10 @@ public class FuelAndEnergyClient {
 
     /**
      * This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="/api-reference/future/beta-apis/get-driver-efficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody getDriverEfficiencyByVehicles(
             GetDriverEfficiencyByVehiclesRequest request) {
@@ -73,10 +73,10 @@ public class FuelAndEnergyClient {
 
     /**
      * This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="/api-reference/future/beta-apis/get-driver-efficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody getDriverEfficiencyByVehicles(
             GetDriverEfficiencyByVehiclesRequest request, RequestOptions requestOptions) {
@@ -87,9 +87,9 @@ public class FuelAndEnergyClient {
 
     /**
      * Get fuel and energy efficiency driver reports for the requested time range.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public FuelEnergyGetFuelEnergyDriverReportsResponseBody getFuelEnergyDriverReports(
             GetFuelEnergyDriverReportsRequest request) {
@@ -98,9 +98,9 @@ public class FuelAndEnergyClient {
 
     /**
      * Get fuel and energy efficiency driver reports for the requested time range.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public FuelEnergyGetFuelEnergyDriverReportsResponseBody getFuelEnergyDriverReports(
             GetFuelEnergyDriverReportsRequest request, RequestOptions requestOptions) {
@@ -111,9 +111,9 @@ public class FuelAndEnergyClient {
 
     /**
      * Get fuel and energy efficiency vehicle reports for the requested time range.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public FuelEnergyGetFuelEnergyVehicleReportsResponseBody getFuelEnergyVehicleReports(
             GetFuelEnergyVehicleReportsRequest request) {
@@ -122,9 +122,9 @@ public class FuelAndEnergyClient {
 
     /**
      * Get fuel and energy efficiency vehicle reports for the requested time range.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel &amp; Energy</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public FuelEnergyGetFuelEnergyVehicleReportsResponseBody getFuelEnergyVehicleReports(
             GetFuelEnergyVehicleReportsRequest request, RequestOptions requestOptions) {
@@ -135,9 +135,9 @@ public class FuelAndEnergyClient {
 
     /**
      * Create a fuel purchase transaction.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public FuelPurchasePostFuelPurchaseResponseBody postFuelPurchase(FuelPurchasePostFuelPurchaseRequestBody request) {
         return this.rawClient.postFuelPurchase(request).body();
@@ -145,9 +145,9 @@ public class FuelAndEnergyClient {
 
     /**
      * Create a fuel purchase transaction.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
      */
     public FuelPurchasePostFuelPurchaseResponseBody postFuelPurchase(
             FuelPurchasePostFuelPurchaseRequestBody request, RequestOptions requestOptions) {

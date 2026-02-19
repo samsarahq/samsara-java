@@ -67,8 +67,6 @@ public final class WorkOrderObjectResponseBody {
 
     private final Optional<WorkOrderTaxObjectResponseBody> tax;
 
-    private final Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor;
-
     private final OffsetDateTime updatedAtTime;
 
     private final Optional<String> vendorUuid;
@@ -98,7 +96,6 @@ public final class WorkOrderObjectResponseBody {
             Optional<List<ServiceTaskInstanceObjectResponseBody>> serviceTaskInstances,
             WorkOrderObjectResponseBodyStatus status,
             Optional<WorkOrderTaxObjectResponseBody> tax,
-            Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor,
             OffsetDateTime updatedAtTime,
             Optional<String> vendorUuid,
             Map<String, Object> additionalProperties) {
@@ -124,7 +121,6 @@ public final class WorkOrderObjectResponseBody {
         this.serviceTaskInstances = serviceTaskInstances;
         this.status = status;
         this.tax = tax;
-        this.unallocatedLabor = unallocatedLabor;
         this.updatedAtTime = updatedAtTime;
         this.vendorUuid = vendorUuid;
         this.additionalProperties = additionalProperties;
@@ -300,11 +296,6 @@ public final class WorkOrderObjectResponseBody {
         return tax;
     }
 
-    @JsonProperty("unallocatedLabor")
-    public Optional<WorkOrderUnallocatedLaborObjectResponseBody> getUnallocatedLabor() {
-        return unallocatedLabor;
-    }
-
     /**
      * @return The time the work order was last updated in RFC 3339 format.
      */
@@ -355,7 +346,6 @@ public final class WorkOrderObjectResponseBody {
                 && serviceTaskInstances.equals(other.serviceTaskInstances)
                 && status.equals(other.status)
                 && tax.equals(other.tax)
-                && unallocatedLabor.equals(other.unallocatedLabor)
                 && updatedAtTime.equals(other.updatedAtTime)
                 && vendorUuid.equals(other.vendorUuid);
     }
@@ -385,7 +375,6 @@ public final class WorkOrderObjectResponseBody {
                 this.serviceTaskInstances,
                 this.status,
                 this.tax,
-                this.unallocatedLabor,
                 this.updatedAtTime,
                 this.vendorUuid);
     }
@@ -559,10 +548,6 @@ public final class WorkOrderObjectResponseBody {
 
         _FinalStage tax(WorkOrderTaxObjectResponseBody tax);
 
-        _FinalStage unallocatedLabor(Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor);
-
-        _FinalStage unallocatedLabor(WorkOrderUnallocatedLaborObjectResponseBody unallocatedLabor);
-
         /**
          * <p>The vendor UUID for the work order.</p>
          */
@@ -585,8 +570,6 @@ public final class WorkOrderObjectResponseBody {
         private OffsetDateTime updatedAtTime;
 
         private Optional<String> vendorUuid = Optional.empty();
-
-        private Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor = Optional.empty();
 
         private Optional<WorkOrderTaxObjectResponseBody> tax = Optional.empty();
 
@@ -653,7 +636,6 @@ public final class WorkOrderObjectResponseBody {
             serviceTaskInstances(other.getServiceTaskInstances());
             status(other.getStatus());
             tax(other.getTax());
-            unallocatedLabor(other.getUnallocatedLabor());
             updatedAtTime(other.getUpdatedAtTime());
             vendorUuid(other.getVendorUuid());
             return this;
@@ -736,19 +718,6 @@ public final class WorkOrderObjectResponseBody {
         @JsonSetter(value = "vendorUuid", nulls = Nulls.SKIP)
         public _FinalStage vendorUuid(Optional<String> vendorUuid) {
             this.vendorUuid = vendorUuid;
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage unallocatedLabor(WorkOrderUnallocatedLaborObjectResponseBody unallocatedLabor) {
-            this.unallocatedLabor = Optional.ofNullable(unallocatedLabor);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "unallocatedLabor", nulls = Nulls.SKIP)
-        public _FinalStage unallocatedLabor(Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor) {
-            this.unallocatedLabor = unallocatedLabor;
             return this;
         }
 
@@ -1124,7 +1093,6 @@ public final class WorkOrderObjectResponseBody {
                     serviceTaskInstances,
                     status,
                     tax,
-                    unallocatedLabor,
                     updatedAtTime,
                     vendorUuid,
                     additionalProperties);

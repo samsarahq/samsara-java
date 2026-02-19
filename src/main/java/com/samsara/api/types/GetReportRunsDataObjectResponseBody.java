@@ -50,7 +50,7 @@ public final class GetReportRunsDataObjectResponseBody {
     }
 
     /**
-     * @return Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.
+     * @return Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: float64, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.
      */
     @JsonProperty("rows")
     public List<List<Map<String, Object>>> getRows() {
@@ -117,7 +117,7 @@ public final class GetReportRunsDataObjectResponseBody {
         _FinalStage addAllColumns(List<ReportColumnsObjectResponseBody> columns);
 
         /**
-         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
+         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: float64, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
          */
         _FinalStage rows(List<List<Map<String, Object>>> rows);
 
@@ -160,7 +160,7 @@ public final class GetReportRunsDataObjectResponseBody {
         }
 
         /**
-         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
+         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: float64, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -172,7 +172,7 @@ public final class GetReportRunsDataObjectResponseBody {
         }
 
         /**
-         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
+         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: float64, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -182,7 +182,7 @@ public final class GetReportRunsDataObjectResponseBody {
         }
 
         /**
-         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
+         * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: float64, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "rows", nulls = Nulls.SKIP)

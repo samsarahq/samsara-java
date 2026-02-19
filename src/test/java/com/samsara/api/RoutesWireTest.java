@@ -3,7 +3,6 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.routes.requests.DeleteRouteRequest;
 import com.samsara.api.resources.routes.requests.FetchRouteRequest;
 import com.samsara.api.resources.routes.requests.FetchRoutesRequest;
 import com.samsara.api.resources.routes.requests.GetRoutesFeedRequest;
@@ -275,7 +274,7 @@ public class RoutesWireTest {
     @Test
     public void testDeleteRoute() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.routes().deleteRoute("id", DeleteRouteRequest.builder().build());
+        client.routes().deleteRoute("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

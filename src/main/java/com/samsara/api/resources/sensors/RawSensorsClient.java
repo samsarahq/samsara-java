@@ -41,13 +41,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get cargo monitor status (empty / full) for requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1CargoResponse> v1GetSensorsCargo(InlineObject4 request) {
         return v1GetSensorsCargo(request, null);
@@ -56,13 +56,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get cargo monitor status (empty / full) for requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1CargoResponse> v1GetSensorsCargo(
             InlineObject4 request, RequestOptions requestOptions) {
@@ -110,13 +110,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get door monitor status (closed / open) for requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1DoorResponse> v1GetSensorsDoor(InlineObject5 request) {
         return v1GetSensorsDoor(request, null);
@@ -125,13 +125,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get door monitor status (closed / open) for requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1DoorResponse> v1GetSensorsDoor(
             InlineObject5 request, RequestOptions requestOptions) {
@@ -179,14 +179,14 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1SensorHistoryResponse> v1GetSensorsHistory(InlineObject6 request) {
         return v1GetSensorsHistory(request, null);
@@ -195,14 +195,14 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get historical data for specified sensors. This method returns a set of historical data for the specified sensors in the specified time range and at the specified time resolution.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1SensorHistoryResponse> v1GetSensorsHistory(
             InlineObject6 request, RequestOptions requestOptions) {
@@ -251,13 +251,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1HumidityResponse> v1GetSensorsHumidity(InlineObject7 request) {
         return v1GetSensorsHumidity(request, null);
@@ -266,13 +266,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get humidity for requested sensors. This method returns the current relative humidity for the requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1HumidityResponse> v1GetSensorsHumidity(
             InlineObject7 request, RequestOptions requestOptions) {
@@ -320,13 +320,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse2009> v1GetSensors() {
         return v1GetSensors(null);
@@ -335,13 +335,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get sensor objects. This method returns a list of the sensor objects in the Samsara Cloud and information about them.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse2009> v1GetSensors(RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
@@ -380,13 +380,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1TemperatureResponse> v1GetSensorsTemperature(InlineObject8 request) {
         return v1GetSensorsTemperature(request, null);
@@ -395,13 +395,13 @@ public class RawSensorsClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
+     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get temperature for requested sensors. This method returns the current ambient temperature (and probe temperature if applicable) for the requested sensors.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Sensors</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1TemperatureResponse> v1GetSensorsTemperature(
             InlineObject8 request, RequestOptions requestOptions) {
