@@ -14,7 +14,6 @@ import com.samsara.api.resources.industrial.requests.GetIndustrialAssetsRequest;
 import com.samsara.api.resources.industrial.requests.GetVisionRunsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.InlineObject3;
 import com.samsara.api.resources.industrial.requests.V1GetVisionLatestRunCameraRequest;
-import com.samsara.api.resources.industrial.requests.V1GetVisionProgramsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsByCameraAndProgramRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsRequest;
 import com.samsara.api.types.AssetDataOutputsPatchAssetDataOutputsResponseBody;
@@ -876,9 +875,7 @@ public class IndustrialWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody("[{\"programId\":1,\"programName\":\"Barcode verification program\"}]"));
-        List<V1ProgramsForTheCameraResponseItem> response = client.industrial()
-                .v1GetVisionProgramsByCamera(
-                        1000000L, V1GetVisionProgramsByCameraRequest.builder().build());
+        List<V1ProgramsForTheCameraResponseItem> response = client.industrial().v1GetVisionProgramsByCamera(1000000L);
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());

@@ -40,7 +40,7 @@ public final class CarrierProposedAssignmentVehicle implements IVehicleTinyRespo
     }
 
     /**
-     * @return The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.
+     * @return The <a href="/docs/external-ids">external IDs</a> for the given object.
      */
     @JsonProperty("ExternalIds")
     @java.lang.Override
@@ -116,7 +116,7 @@ public final class CarrierProposedAssignmentVehicle implements IVehicleTinyRespo
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         @JsonSetter(value = "ExternalIds", nulls = Nulls.SKIP)
         public Builder externalIds(Optional<Map<String, String>> externalIds) {

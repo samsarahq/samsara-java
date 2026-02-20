@@ -36,7 +36,7 @@ public final class GetFormSubmissionsRequest {
     }
 
     /**
-     * @return A comma-separated list containing up to 100 form submission IDs to filter on. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the form submission.
+     * @return A comma-separated list containing up to 100 form submission IDs to filter on. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the form submission.
      */
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
@@ -98,7 +98,7 @@ public final class GetFormSubmissionsRequest {
         }
 
         /**
-         * <p>A comma-separated list containing up to 100 form submission IDs to filter on. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the form submission.</p>
+         * <p>A comma-separated list containing up to 100 form submission IDs to filter on. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the form submission.</p>
          */
         @JsonSetter(value = "ids", nulls = Nulls.SKIP)
         public Builder ids(Optional<List<String>> ids) {

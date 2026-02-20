@@ -81,7 +81,7 @@ public final class DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsReque
     }
 
     /**
-     * @return ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.
+     * @return ID of the vehicle. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.
      */
     @JsonProperty("vehicleId")
     public String getVehicleId() {
@@ -124,7 +124,7 @@ public final class DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsReque
 
     public interface VehicleIdStage {
         /**
-         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          */
         _FinalStage vehicleId(@NotNull String vehicleId);
 
@@ -191,8 +191,8 @@ public final class DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsReque
         }
 
         /**
-         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
-         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

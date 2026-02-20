@@ -69,7 +69,7 @@ public final class RoutesCreateRouteRequestBody {
     }
 
     /**
-     * @return ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.
+     * @return ID of the driver. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.
      */
     @JsonProperty("driverId")
     public Optional<String> getDriverId() {
@@ -130,7 +130,7 @@ public final class RoutesCreateRouteRequestBody {
     }
 
     /**
-     * @return ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.
+     * @return ID of the vehicle. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.
      */
     @JsonProperty("vehicleId")
     public Optional<String> getVehicleId() {
@@ -196,7 +196,7 @@ public final class RoutesCreateRouteRequestBody {
         RoutesCreateRouteRequestBody build();
 
         /**
-         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          */
         _FinalStage driverId(Optional<String> driverId);
 
@@ -244,7 +244,7 @@ public final class RoutesCreateRouteRequestBody {
         _FinalStage tagIds(List<String> tagIds);
 
         /**
-         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          */
         _FinalStage vehicleId(Optional<String> vehicleId);
 
@@ -303,7 +303,7 @@ public final class RoutesCreateRouteRequestBody {
         }
 
         /**
-         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -313,7 +313,7 @@ public final class RoutesCreateRouteRequestBody {
         }
 
         /**
-         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
@@ -451,7 +451,7 @@ public final class RoutesCreateRouteRequestBody {
         }
 
         /**
-         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -461,7 +461,7 @@ public final class RoutesCreateRouteRequestBody {
         }
 
         /**
-         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "driverId", nulls = Nulls.SKIP)

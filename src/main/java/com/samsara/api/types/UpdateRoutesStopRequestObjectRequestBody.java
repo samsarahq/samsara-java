@@ -73,7 +73,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
     }
 
     /**
-     * @return ID of the address. An address <a href="https://developers.samsara.com/docs/external-ids#using-external-ids">externalId</a> can also be used interchangeably here.
+     * @return ID of the address. An address <a href="/docs/external-ids#using-external-ids">externalId</a> can also be used interchangeably here.
      */
     @JsonProperty("addressId")
     public Optional<String> getAddressId() {
@@ -253,7 +253,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         }
 
         /**
-         * <p>ID of the address. An address <a href="https://developers.samsara.com/docs/external-ids#using-external-ids">externalId</a> can also be used interchangeably here.</p>
+         * <p>ID of the address. An address <a href="/docs/external-ids#using-external-ids">externalId</a> can also be used interchangeably here.</p>
          */
         @JsonSetter(value = "addressId", nulls = Nulls.SKIP)
         public Builder addressId(Optional<String> addressId) {

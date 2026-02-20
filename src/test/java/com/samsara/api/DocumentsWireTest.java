@@ -3,11 +3,8 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.documents.requests.DeleteDocumentRequest;
 import com.samsara.api.resources.documents.requests.DocumentPdfGenerationRequest;
 import com.samsara.api.resources.documents.requests.DocumentsPostDocumentRequestBody;
-import com.samsara.api.resources.documents.requests.GetDocumentPdfRequest;
-import com.samsara.api.resources.documents.requests.GetDocumentRequest;
 import com.samsara.api.resources.documents.requests.GetDocumentTypesRequest;
 import com.samsara.api.resources.documents.requests.GetDocumentsRequest;
 import com.samsara.api.types.DocumentPdfGenerationResponse;
@@ -317,8 +314,7 @@ public class DocumentsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"completedAtTime\":\"2020-01-02T15:04:06+07:00\",\"documentId\":\"6c8c0c01-206a-41a4-9d21-15b9978d04cb\",\"downloadDocumentPdfUrl\":\"https://samsara-driver-document-pdfs.s3.us-west-2.amazonaws.com/org/38487/42a4cffc-409d-4ddf-ba1c-5e3bbb961cba?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASI...&X-Amz-Date=20200423T162507Z&X-Amz-Expires=86400&X-Amz-Security-Token=IQoJ...-Amz-SignedHeaders=host&response-expires=2020-04-24T16%3A25%3A07Z&X-Amz-Signature=1c6fe87...\",\"id\":\"5c8c0c01-206a-41a4-9d21-15b9978d04cb\",\"jobStatus\":\"requested\",\"requestedAtTime\":\"2020-01-02T15:04:05+07:00\"}}"));
-        DocumentPdfQueryResponse response = client.documents()
-                .getDocumentPdf("id", GetDocumentPdfRequest.builder().build());
+        DocumentPdfQueryResponse response = client.documents().getDocumentPdf("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -373,8 +369,7 @@ public class DocumentsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/DocumentsWireTest_testGetDocument_response.json")));
-        DocumentsGetDocumentResponseBody response = client.documents()
-                .getDocument("id", GetDocumentRequest.builder().build());
+        DocumentsGetDocumentResponseBody response = client.documents().getDocument("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -418,7 +413,7 @@ public class DocumentsWireTest {
     @Test
     public void testDeleteDocument() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.documents().deleteDocument("id", DeleteDocumentRequest.builder().build());
+        client.documents().deleteDocument("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

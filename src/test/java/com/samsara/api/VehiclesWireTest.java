@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.core.pagination.SyncPagingIterable;
-import com.samsara.api.resources.vehicles.requests.GetVehiclesRequest;
 import com.samsara.api.resources.vehicles.requests.ListVehiclesRequest;
 import com.samsara.api.resources.vehicles.requests.UpdateVehicleRequest;
 import com.samsara.api.types.VehicleResponse;
@@ -59,8 +58,7 @@ public class VehiclesWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/VehiclesWireTest_testGet_response.json")));
-        VehicleResponse response =
-                client.vehicles().get("id", GetVehiclesRequest.builder().build());
+        VehicleResponse response = client.vehicles().get("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());

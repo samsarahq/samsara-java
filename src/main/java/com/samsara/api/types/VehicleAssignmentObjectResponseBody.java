@@ -21,8 +21,6 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = VehicleAssignmentObjectResponseBody.Builder.class)
 public final class VehicleAssignmentObjectResponseBody {
-    private final VehicleAssignmentObjectResponseBodyAssignmentType assignmentType;
-
     private final Optional<String> endTime;
 
     private final boolean isPassenger;
@@ -34,13 +32,11 @@ public final class VehicleAssignmentObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private VehicleAssignmentObjectResponseBody(
-            VehicleAssignmentObjectResponseBodyAssignmentType assignmentType,
             Optional<String> endTime,
             boolean isPassenger,
             String startTime,
             GoaVehicleTinyResponseResponseBody vehicle,
             Map<String, Object> additionalProperties) {
-        this.assignmentType = assignmentType;
         this.endTime = endTime;
         this.isPassenger = isPassenger;
         this.startTime = startTime;
@@ -52,8 +48,8 @@ public final class VehicleAssignmentObjectResponseBody {
      * @return Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is <code>driverApp</code> assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: <code>driverApp</code>
      */
     @JsonProperty("assignmentType")
-    public VehicleAssignmentObjectResponseBodyAssignmentType getAssignmentType() {
-        return assignmentType;
+    public String getAssignmentType() {
+        return "driverApp";
     }
 
     /**
@@ -98,8 +94,7 @@ public final class VehicleAssignmentObjectResponseBody {
     }
 
     private boolean equalTo(VehicleAssignmentObjectResponseBody other) {
-        return assignmentType.equals(other.assignmentType)
-                && endTime.equals(other.endTime)
+        return endTime.equals(other.endTime)
                 && isPassenger == other.isPassenger
                 && startTime.equals(other.startTime)
                 && vehicle.equals(other.vehicle);
@@ -107,7 +102,7 @@ public final class VehicleAssignmentObjectResponseBody {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.assignmentType, this.endTime, this.isPassenger, this.startTime, this.vehicle);
+        return Objects.hash(this.endTime, this.isPassenger, this.startTime, this.vehicle);
     }
 
     @java.lang.Override
@@ -115,17 +110,8 @@ public final class VehicleAssignmentObjectResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static AssignmentTypeStage builder() {
+    public static IsPassengerStage builder() {
         return new Builder();
-    }
-
-    public interface AssignmentTypeStage {
-        /**
-         * <p>Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is <code>driverApp</code> assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: <code>driverApp</code></p>
-         */
-        IsPassengerStage assignmentType(@NotNull VehicleAssignmentObjectResponseBodyAssignmentType assignmentType);
-
-        Builder from(VehicleAssignmentObjectResponseBody other);
     }
 
     public interface IsPassengerStage {
@@ -133,6 +119,8 @@ public final class VehicleAssignmentObjectResponseBody {
          * <p>Boolean indicating whether the driver is a passenger.</p>
          */
         StartTimeStage isPassenger(boolean isPassenger);
+
+        Builder from(VehicleAssignmentObjectResponseBody other);
     }
 
     public interface StartTimeStage {
@@ -158,10 +146,7 @@ public final class VehicleAssignmentObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder
-            implements AssignmentTypeStage, IsPassengerStage, StartTimeStage, VehicleStage, _FinalStage {
-        private VehicleAssignmentObjectResponseBodyAssignmentType assignmentType;
-
+    public static final class Builder implements IsPassengerStage, StartTimeStage, VehicleStage, _FinalStage {
         private boolean isPassenger;
 
         private String startTime;
@@ -177,24 +162,10 @@ public final class VehicleAssignmentObjectResponseBody {
 
         @java.lang.Override
         public Builder from(VehicleAssignmentObjectResponseBody other) {
-            assignmentType(other.getAssignmentType());
             endTime(other.getEndTime());
             isPassenger(other.getIsPassenger());
             startTime(other.getStartTime());
             vehicle(other.getVehicle());
-            return this;
-        }
-
-        /**
-         * <p>Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is <code>driverApp</code> assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: <code>driverApp</code></p>
-         * <p>Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is <code>driverApp</code> assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: <code>driverApp</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("assignmentType")
-        public IsPassengerStage assignmentType(
-                @NotNull VehicleAssignmentObjectResponseBodyAssignmentType assignmentType) {
-            this.assignmentType = Objects.requireNonNull(assignmentType, "assignmentType must not be null");
             return this;
         }
 
@@ -252,7 +223,7 @@ public final class VehicleAssignmentObjectResponseBody {
         @java.lang.Override
         public VehicleAssignmentObjectResponseBody build() {
             return new VehicleAssignmentObjectResponseBody(
-                    assignmentType, endTime, isPassenger, startTime, vehicle, additionalProperties);
+                    endTime, isPassenger, startTime, vehicle, additionalProperties);
         }
     }
 }

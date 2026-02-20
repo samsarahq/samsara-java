@@ -72,7 +72,7 @@ public final class DocumentsPostDocumentRequestBody {
     }
 
     /**
-     * @return ID of the driver. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.
+     * @return ID of the driver. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.
      */
     @JsonProperty("driverId")
     public String getDriverId() {
@@ -104,7 +104,7 @@ public final class DocumentsPostDocumentRequestBody {
     }
 
     /**
-     * @return ID of the route stop. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the route stop.
+     * @return ID of the route stop. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the route stop.
      */
     @JsonProperty("routeStopId")
     public Optional<String> getRouteStopId() {
@@ -120,7 +120,7 @@ public final class DocumentsPostDocumentRequestBody {
     }
 
     /**
-     * @return ID of the vehicle. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.
+     * @return ID of the vehicle. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.
      */
     @JsonProperty("vehicleId")
     public Optional<String> getVehicleId() {
@@ -182,7 +182,7 @@ public final class DocumentsPostDocumentRequestBody {
 
     public interface DriverIdStage {
         /**
-         * <p>ID of the driver. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          */
         _FinalStage driverId(@NotNull String driverId);
     }
@@ -212,7 +212,7 @@ public final class DocumentsPostDocumentRequestBody {
         _FinalStage notes(String notes);
 
         /**
-         * <p>ID of the route stop. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the route stop.</p>
+         * <p>ID of the route stop. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the route stop.</p>
          */
         _FinalStage routeStopId(Optional<String> routeStopId);
 
@@ -226,7 +226,7 @@ public final class DocumentsPostDocumentRequestBody {
         _FinalStage state(DocumentsPostDocumentRequestBodyState state);
 
         /**
-         * <p>ID of the vehicle. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          */
         _FinalStage vehicleId(Optional<String> vehicleId);
 
@@ -282,8 +282,8 @@ public final class DocumentsPostDocumentRequestBody {
         }
 
         /**
-         * <p>ID of the driver. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
-         * <p>ID of the driver. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the driver.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -294,7 +294,7 @@ public final class DocumentsPostDocumentRequestBody {
         }
 
         /**
-         * <p>ID of the vehicle. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -304,7 +304,7 @@ public final class DocumentsPostDocumentRequestBody {
         }
 
         /**
-         * <p>ID of the vehicle. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the vehicle.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
@@ -334,7 +334,7 @@ public final class DocumentsPostDocumentRequestBody {
         }
 
         /**
-         * <p>ID of the route stop. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the route stop.</p>
+         * <p>ID of the route stop. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the route stop.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -344,7 +344,7 @@ public final class DocumentsPostDocumentRequestBody {
         }
 
         /**
-         * <p>ID of the route stop. Can be either unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the route stop.</p>
+         * <p>ID of the route stop. Can be either unique Samsara ID or an <a href="/docs/external-ids">external ID</a> for the route stop.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "routeStopId", nulls = Nulls.SKIP)

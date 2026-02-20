@@ -3,7 +3,6 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.gateways.requests.DeleteGatewayRequest;
 import com.samsara.api.resources.gateways.requests.GatewaysPostGatewayRequestBody;
 import com.samsara.api.resources.gateways.requests.GetGatewaysRequest;
 import com.samsara.api.types.GatewaysGetGatewaysResponseBody;
@@ -220,7 +219,7 @@ public class GatewaysWireTest {
     @Test
     public void testDeleteGateway() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.gateways().deleteGateway("id", DeleteGatewayRequest.builder().build());
+        client.gateways().deleteGateway("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

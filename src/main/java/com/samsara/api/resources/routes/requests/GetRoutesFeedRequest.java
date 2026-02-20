@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.routes.types.GetRoutesFeedRequestExpand;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -23,14 +22,12 @@ import java.util.Optional;
 public final class GetRoutesFeedRequest {
     private final Optional<String> after;
 
-    private final Optional<GetRoutesFeedRequestExpand> expand;
+    private final Optional<String> expand;
 
     private final Map<String, Object> additionalProperties;
 
     private GetRoutesFeedRequest(
-            Optional<String> after,
-            Optional<GetRoutesFeedRequestExpand> expand,
-            Map<String, Object> additionalProperties) {
+            Optional<String> after, Optional<String> expand, Map<String, Object> additionalProperties) {
         this.after = after;
         this.expand = expand;
         this.additionalProperties = additionalProperties;
@@ -49,7 +46,7 @@ public final class GetRoutesFeedRequest {
      * <p>Valid value: <code>route</code>  Valid values: <code>route</code></p>
      */
     @JsonProperty("expand")
-    public Optional<GetRoutesFeedRequestExpand> getExpand() {
+    public Optional<String> getExpand() {
         return expand;
     }
 
@@ -86,7 +83,7 @@ public final class GetRoutesFeedRequest {
     public static final class Builder {
         private Optional<String> after = Optional.empty();
 
-        private Optional<GetRoutesFeedRequestExpand> expand = Optional.empty();
+        private Optional<String> expand = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -118,12 +115,12 @@ public final class GetRoutesFeedRequest {
          * <p>Valid value: <code>route</code>  Valid values: <code>route</code></p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<GetRoutesFeedRequestExpand> expand) {
+        public Builder expand(Optional<String> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(GetRoutesFeedRequestExpand expand) {
+        public Builder expand(String expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }

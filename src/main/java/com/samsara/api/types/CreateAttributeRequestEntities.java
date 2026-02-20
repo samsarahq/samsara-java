@@ -65,7 +65,7 @@ public final class CreateAttributeRequestEntities {
     }
 
     /**
-     * @return The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.
+     * @return The <a href="/docs/external-ids">external IDs</a> for the given object.
      */
     @JsonProperty("externalIds")
     public Optional<Map<String, String>> getExternalIds() {
@@ -176,7 +176,7 @@ public final class CreateAttributeRequestEntities {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
         public Builder externalIds(Optional<Map<String, String>> externalIds) {

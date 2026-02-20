@@ -12,7 +12,6 @@ import com.samsara.api.resources.maintenance.requests.GetDvirsRequest;
 import com.samsara.api.resources.maintenance.requests.StreamDefectsRequest;
 import com.samsara.api.resources.maintenance.requests.UpdateDvirRequest;
 import com.samsara.api.resources.maintenance.types.CreateDvirRequestSafetyStatus;
-import com.samsara.api.resources.maintenance.types.CreateDvirRequestType;
 import com.samsara.api.types.DefectResponse;
 import com.samsara.api.types.DvirDefectGetDefectResponseBody;
 import com.samsara.api.types.DvirDefectStreamDefectsResponseBody;
@@ -487,7 +486,6 @@ public class MaintenanceWireTest {
                 .createDvir(CreateDvirRequest.builder()
                         .authorId("11")
                         .safetyStatus(CreateDvirRequestSafetyStatus.SAFE)
-                        .type(CreateDvirRequestType.MECHANIC)
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);

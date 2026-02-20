@@ -237,7 +237,7 @@ public final class CreateDriverRequest {
     }
 
     /**
-     * @return The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.
+     * @return The <a href="/docs/external-ids">external IDs</a> for the given object.
      */
     @JsonProperty("externalIds")
     public Optional<Map<String, String>> getExternalIds() {
@@ -577,7 +577,7 @@ public final class CreateDriverRequest {
         _FinalStage eldYmEnabled(Boolean eldYmEnabled);
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         _FinalStage externalIds(Optional<Map<String, String>> externalIds);
 
@@ -1155,7 +1155,7 @@ public final class CreateDriverRequest {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1165,7 +1165,7 @@ public final class CreateDriverRequest {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)

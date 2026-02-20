@@ -103,7 +103,7 @@ public final class Address {
     }
 
     /**
-     * @return The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.
+     * @return The <a href="/docs/external-ids">external IDs</a> for the given object.
      */
     @JsonProperty("externalIds")
     public Optional<AddressExternalIds> getExternalIds() {
@@ -275,7 +275,7 @@ public final class Address {
         _FinalStage createdAtTime(OffsetDateTime createdAtTime);
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         _FinalStage externalIds(Optional<AddressExternalIds> externalIds);
 
@@ -482,7 +482,7 @@ public final class Address {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -492,7 +492,7 @@ public final class Address {
         }
 
         /**
-         * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
+         * <p>The <a href="/docs/external-ids">external IDs</a> for the given object.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)

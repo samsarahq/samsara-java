@@ -3,7 +3,6 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.fleet.attributes.requests.UpdateAttributesRequest;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -35,9 +34,7 @@ public class FleetAttributesWireTest {
     @Test
     public void testUpdate() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.fleet()
-                .attributes()
-                .update("id", UpdateAttributesRequest.builder().build());
+        client.fleet().attributes().update("id");
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("PATCH", request.getMethod());
