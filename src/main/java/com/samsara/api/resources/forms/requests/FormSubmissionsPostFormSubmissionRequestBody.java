@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.forms.types.FormSubmissionsPostFormSubmissionRequestBodyStatus;
 import com.samsara.api.types.FormSubmissionRequestAssignedToRequestBody;
 import com.samsara.api.types.FormSubmissionRequestFieldInputObjectRequestBody;
 import com.samsara.api.types.FormTemplateRequestObjectRequestBody;
@@ -38,6 +39,8 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
 
     private final Optional<String> routeStopId;
 
+    private final FormSubmissionsPostFormSubmissionRequestBodyStatus status;
+
     private final Optional<String> title;
 
     private final Map<String, Object> additionalProperties;
@@ -49,6 +52,7 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
             FormTemplateRequestObjectRequestBody formTemplate,
             Optional<Boolean> isRequired,
             Optional<String> routeStopId,
+            FormSubmissionsPostFormSubmissionRequestBodyStatus status,
             Optional<String> title,
             Map<String, Object> additionalProperties) {
         this.assignedTo = assignedTo;
@@ -57,6 +61,7 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
         this.formTemplate = formTemplate;
         this.isRequired = isRequired;
         this.routeStopId = routeStopId;
+        this.status = status;
         this.title = title;
         this.additionalProperties = additionalProperties;
     }
@@ -107,8 +112,8 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
      * @return Status of the form submission.  Valid values: <code>notStarted</code>
      */
     @JsonProperty("status")
-    public String getStatus() {
-        return "notStarted";
+    public FormSubmissionsPostFormSubmissionRequestBodyStatus getStatus() {
+        return status;
     }
 
     /**
@@ -138,6 +143,7 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
                 && formTemplate.equals(other.formTemplate)
                 && isRequired.equals(other.isRequired)
                 && routeStopId.equals(other.routeStopId)
+                && status.equals(other.status)
                 && title.equals(other.title);
     }
 
@@ -150,6 +156,7 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
                 this.formTemplate,
                 this.isRequired,
                 this.routeStopId,
+                this.status,
                 this.title);
     }
 
@@ -163,9 +170,16 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
     }
 
     public interface FormTemplateStage {
-        _FinalStage formTemplate(@NotNull FormTemplateRequestObjectRequestBody formTemplate);
+        StatusStage formTemplate(@NotNull FormTemplateRequestObjectRequestBody formTemplate);
 
         Builder from(FormSubmissionsPostFormSubmissionRequestBody other);
+    }
+
+    public interface StatusStage {
+        /**
+         * <p>Status of the form submission.  Valid values: <code>notStarted</code></p>
+         */
+        _FinalStage status(@NotNull FormSubmissionsPostFormSubmissionRequestBodyStatus status);
     }
 
     public interface _FinalStage {
@@ -212,8 +226,10 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements FormTemplateStage, _FinalStage {
+    public static final class Builder implements FormTemplateStage, StatusStage, _FinalStage {
         private FormTemplateRequestObjectRequestBody formTemplate;
+
+        private FormSubmissionsPostFormSubmissionRequestBodyStatus status;
 
         private Optional<String> title = Optional.empty();
 
@@ -240,14 +256,27 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
             formTemplate(other.getFormTemplate());
             isRequired(other.getIsRequired());
             routeStopId(other.getRouteStopId());
+            status(other.getStatus());
             title(other.getTitle());
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("formTemplate")
-        public _FinalStage formTemplate(@NotNull FormTemplateRequestObjectRequestBody formTemplate) {
+        public StatusStage formTemplate(@NotNull FormTemplateRequestObjectRequestBody formTemplate) {
             this.formTemplate = Objects.requireNonNull(formTemplate, "formTemplate must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Status of the form submission.  Valid values: <code>notStarted</code></p>
+         * <p>Status of the form submission.  Valid values: <code>notStarted</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("status")
+        public _FinalStage status(@NotNull FormSubmissionsPostFormSubmissionRequestBodyStatus status) {
+            this.status = Objects.requireNonNull(status, "status must not be null");
             return this;
         }
 
@@ -367,7 +396,15 @@ public final class FormSubmissionsPostFormSubmissionRequestBody {
         @java.lang.Override
         public FormSubmissionsPostFormSubmissionRequestBody build() {
             return new FormSubmissionsPostFormSubmissionRequestBody(
-                    assignedTo, dueAtTime, fields, formTemplate, isRequired, routeStopId, title, additionalProperties);
+                    assignedTo,
+                    dueAtTime,
+                    fields,
+                    formTemplate,
+                    isRequired,
+                    routeStopId,
+                    status,
+                    title,
+                    additionalProperties);
         }
     }
 }

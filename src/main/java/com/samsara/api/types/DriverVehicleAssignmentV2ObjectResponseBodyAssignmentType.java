@@ -7,17 +7,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
-    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType TACHOGRAPH =
-            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.TACHOGRAPH, "tachograph");
-
-    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType STATIC =
-            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.STATIC, "static");
-
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType SAFETY_MANUAL =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.SAFETY_MANUAL, "safetyManual");
-
-    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType INVALID =
-            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.INVALID, "invalid");
 
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType FACE_ID =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.FACE_ID, "faceId");
@@ -25,23 +16,35 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType UNKNOWN =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.UNKNOWN, "unknown");
 
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType ID_CARD =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.ID_CARD, "idCard");
+
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType RFID =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.RFID, "RFID");
+
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType TACHOGRAPH =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.TACHOGRAPH, "tachograph");
+
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType STATIC =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.STATIC, "static");
+
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType INVALID =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.INVALID, "invalid");
+
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType DRIVER_APP =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.DRIVER_APP, "driverApp");
+
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType EXTERNAL =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.EXTERNAL, "external");
 
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType HOS =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.HOS, "HOS");
 
-    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType ID_CARD =
-            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.ID_CARD, "idCard");
-
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType TRAILER =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.TRAILER, "trailer");
 
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType QR_CODE =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.QR_CODE, "qrCode");
-
-    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType RFID =
-            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.RFID, "RFID");
 
     private final Value value;
 
@@ -77,30 +80,32 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
-            case TACHOGRAPH:
-                return visitor.visitTachograph();
-            case STATIC:
-                return visitor.visitStatic();
             case SAFETY_MANUAL:
                 return visitor.visitSafetyManual();
-            case INVALID:
-                return visitor.visitInvalid();
             case FACE_ID:
                 return visitor.visitFaceId();
             case UNKNOWN:
                 return visitor.visitUnknown();
+            case ID_CARD:
+                return visitor.visitIdCard();
+            case RFID:
+                return visitor.visitRfid();
+            case TACHOGRAPH:
+                return visitor.visitTachograph();
+            case STATIC:
+                return visitor.visitStatic();
+            case INVALID:
+                return visitor.visitInvalid();
+            case DRIVER_APP:
+                return visitor.visitDriverApp();
             case EXTERNAL:
                 return visitor.visitExternal();
             case HOS:
                 return visitor.visitHos();
-            case ID_CARD:
-                return visitor.visitIdCard();
             case TRAILER:
                 return visitor.visitTrailer();
             case QR_CODE:
                 return visitor.visitQrCode();
-            case RFID:
-                return visitor.visitRfid();
             case _UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -110,30 +115,32 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType valueOf(String value) {
         switch (value) {
-            case "tachograph":
-                return TACHOGRAPH;
-            case "static":
-                return STATIC;
             case "safetyManual":
                 return SAFETY_MANUAL;
-            case "invalid":
-                return INVALID;
             case "faceId":
                 return FACE_ID;
             case "unknown":
                 return UNKNOWN;
+            case "idCard":
+                return ID_CARD;
+            case "RFID":
+                return RFID;
+            case "tachograph":
+                return TACHOGRAPH;
+            case "static":
+                return STATIC;
+            case "invalid":
+                return INVALID;
+            case "driverApp":
+                return DRIVER_APP;
             case "external":
                 return EXTERNAL;
             case "HOS":
                 return HOS;
-            case "idCard":
-                return ID_CARD;
             case "trailer":
                 return TRAILER;
             case "qrCode":
                 return QR_CODE;
-            case "RFID":
-                return RFID;
             default:
                 return new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value._UNKNOWN, value);
         }
@@ -164,6 +171,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
 
         QR_CODE,
 
+        DRIVER_APP,
+
         _UNKNOWN
     }
 
@@ -191,6 +200,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
         T visitExternal();
 
         T visitQrCode();
+
+        T visitDriverApp();
 
         T visitUnknown(String unknownType);
     }

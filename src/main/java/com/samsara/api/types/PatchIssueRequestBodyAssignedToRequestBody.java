@@ -21,10 +21,14 @@ import org.jetbrains.annotations.NotNull;
 public final class PatchIssueRequestBodyAssignedToRequestBody {
     private final String id;
 
+    private final PatchIssueRequestBodyAssignedToRequestBodyType type;
+
     private final Map<String, Object> additionalProperties;
 
-    private PatchIssueRequestBodyAssignedToRequestBody(String id, Map<String, Object> additionalProperties) {
+    private PatchIssueRequestBodyAssignedToRequestBody(
+            String id, PatchIssueRequestBodyAssignedToRequestBodyType type, Map<String, Object> additionalProperties) {
         this.id = id;
+        this.type = type;
         this.additionalProperties = additionalProperties;
     }
 
@@ -40,8 +44,8 @@ public final class PatchIssueRequestBodyAssignedToRequestBody {
      * @return Type of the issue assignee.  Valid values: <code>user</code>
      */
     @JsonProperty("type")
-    public String getType() {
-        return "user";
+    public PatchIssueRequestBodyAssignedToRequestBodyType getType() {
+        return type;
     }
 
     @java.lang.Override
@@ -57,12 +61,12 @@ public final class PatchIssueRequestBodyAssignedToRequestBody {
     }
 
     private boolean equalTo(PatchIssueRequestBodyAssignedToRequestBody other) {
-        return id.equals(other.id);
+        return id.equals(other.id) && type.equals(other.type);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.id, this.type);
     }
 
     @java.lang.Override
@@ -78,9 +82,16 @@ public final class PatchIssueRequestBodyAssignedToRequestBody {
         /**
          * <p>ID of the issue assignee.</p>
          */
-        _FinalStage id(@NotNull String id);
+        TypeStage id(@NotNull String id);
 
         Builder from(PatchIssueRequestBodyAssignedToRequestBody other);
+    }
+
+    public interface TypeStage {
+        /**
+         * <p>Type of the issue assignee.  Valid values: <code>user</code></p>
+         */
+        _FinalStage type(@NotNull PatchIssueRequestBodyAssignedToRequestBodyType type);
     }
 
     public interface _FinalStage {
@@ -88,8 +99,10 @@ public final class PatchIssueRequestBodyAssignedToRequestBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements IdStage, _FinalStage {
+    public static final class Builder implements IdStage, TypeStage, _FinalStage {
         private String id;
+
+        private PatchIssueRequestBodyAssignedToRequestBodyType type;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -99,6 +112,7 @@ public final class PatchIssueRequestBodyAssignedToRequestBody {
         @java.lang.Override
         public Builder from(PatchIssueRequestBodyAssignedToRequestBody other) {
             id(other.getId());
+            type(other.getType());
             return this;
         }
 
@@ -109,14 +123,26 @@ public final class PatchIssueRequestBodyAssignedToRequestBody {
          */
         @java.lang.Override
         @JsonSetter("id")
-        public _FinalStage id(@NotNull String id) {
+        public TypeStage id(@NotNull String id) {
             this.id = Objects.requireNonNull(id, "id must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Type of the issue assignee.  Valid values: <code>user</code></p>
+         * <p>Type of the issue assignee.  Valid values: <code>user</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("type")
+        public _FinalStage type(@NotNull PatchIssueRequestBodyAssignedToRequestBodyType type) {
+            this.type = Objects.requireNonNull(type, "type must not be null");
             return this;
         }
 
         @java.lang.Override
         public PatchIssueRequestBodyAssignedToRequestBody build() {
-            return new PatchIssueRequestBodyAssignedToRequestBody(id, additionalProperties);
+            return new PatchIssueRequestBodyAssignedToRequestBody(id, type, additionalProperties);
         }
     }
 }

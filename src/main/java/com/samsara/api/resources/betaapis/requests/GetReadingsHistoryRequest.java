@@ -74,6 +74,204 @@ public final class GetReadingsHistoryRequest {
 
     /**
      * @return The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
+     * <p>Available reading IDs (by category):</p>
+     * <p><strong>diagnostic</strong></p>
+     * <ul>
+     * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
+     * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
+     * <li><code>altitude</code> (Altitude): The altitude of the asset (meter)</li>
+     * <li><code>altitudeAccuracy</code> (Altitude Uncertainty): The uncertainty of the asset's GPS-based altitude. (meter)</li>
+     * <li><code>assetStatus</code> (Status): Combined movement and equipment status derived from location &amp; Digio events. (values: movementStart | movementEnd | stopped | none | equipmentOn | equipmentOff)</li>
+     * <li><code>averageACCurrent</code> (Average AC Current): Average AC current in amperes. (ampere)</li>
+     * <li><code>averageACFrequency</code> (Average AC Frequency): Average AC frequency in Hertz. (hertz)</li>
+     * <li><code>averageLineToLineACRMSVoltage</code> (Average Line-to-Line Voltage): Average RMS voltage between AC lines in volts. (volt)</li>
+     * <li><code>averageLineToNeutralACRMSVoltage</code> (Average Line-to-Neutral Voltage): Average RMS voltage from AC line to neutral in volts. (volt)</li>
+     * <li><code>barometerPressure</code> (Barometric Pressure): Atmospheric pressure as measured by the barometer. (kilopascal)</li>
+     * <li><code>batteryPotentialSwitched</code> (Battery Potential (Switched)): Switched battery potential in volts. (volt)</li>
+     * <li><code>batteryVoltage</code> (Battery Voltage): Voltage of the asset's battery. (volt)</li>
+     * <li><code>boostPressureEngineTurbocharger1</code> (Engine Turbocharger 1 Boost Pressure): Represents the boost pressure for engine turbocharger 1. (kilopascal)</li>
+     * <li><code>boostPressurePa</code> (Boost Pressure): Represents the boost pressure. (kilopascal)</li>
+     * <li><code>boostPressureTurbocharger2</code> (Boost Pressure (Turbocharger 2)): Boost pressure from the second turbocharger in kPa. (kilopascal)</li>
+     * <li><code>canBusType</code> (CAN Bus Status): Indicates whether the CAN Bus system is active or provides an invalid reading. (values: invalid | active)</li>
+     * <li><code>checkEngineLightJ1939Emissions</code> (Check Engine Light (J1939) - Emissions): Indicates whether the J1939 check engine light emissions indicator is active or inactive. (values: off | on)</li>
+     * <li><code>checkEngineLightJ1939Protect</code> (Check Engine Light (J1939) - Protect): Indicates whether the J1939 check engine light protect indicator is active or inactive. (values: off | on)</li>
+     * <li><code>checkEngineLightJ1939Stop</code> (Check Engine Light (J1939) - Stop): Indicates whether the J1939 check engine light stop indicator is active or inactive. (values: off | on)</li>
+     * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
+     * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
+     * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+     * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
+     * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
+     * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
+     * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
+     * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
+     * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
+     * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+     * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
+     * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
+     * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+     * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
+     * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+     * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+     * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
+     * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+     * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+     * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
+     * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
+     * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
+     * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+     * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
+     * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+     * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+     * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+     * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
+     * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
+     * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+     * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+     * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
+     * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
+     * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
+     * <li><code>location</code> (Location): Represents the current address of the asset.</li>
+     * <li><code>longitude</code> (Longitude): Longitude coordinate of the asset's location. (decimaldegrees)</li>
+     * <li><code>mnfldTemp</code> (Intake Manifold Temp): Represents the intake manifold temperature. (celsius)</li>
+     * <li><code>ngFuelPressure</code> (NG Fuel Pressure): Represents the natural gas fuel pressure. (kilopascal)</li>
+     * <li><code>odometerEcu</code> (Odometer (ECU)): Represents the total distance traveled as recorded by the ECU. (meter)</li>
+     * <li><code>odometerGps</code> (Odometer (GPS)): Represents the total distance traveled as determined by GPS. (meter)</li>
+     * <li><code>oilPressure</code> (Engine Oil Pressure): Represents the oil pressure in the engine. (kilopascal)</li>
+     * <li><code>phaseAACFrequency</code> (Phase A AC Frequency): AC frequency for Phase A in Hertz. (hertz)</li>
+     * <li><code>phaseAAmpsRms</code> (Phase A Current (RMS)): RMS current for Phase A in amperes. (ampere)</li>
+     * <li><code>phaseALLVolts</code> (Phase A Line-to-Line Voltage): Line-to-line voltage for Phase A in volts. (volt)</li>
+     * <li><code>phaseALNVolts</code> (Phase A Line-to-Neutral Voltage): Line-to-neutral voltage for Phase A in volts. (volt)</li>
+     * <li><code>phaseBAmpsRms</code> (Phase B Current (RMS)): RMS current for Phase B in amperes. (ampere)</li>
+     * <li><code>phaseBLLVolts</code> (Phase B Line-to-Line Voltage): Line-to-line voltage for Phase B in volts. (volt)</li>
+     * <li><code>phaseBLNVolts</code> (Phase B Line-to-Neutral Voltage): Line-to-neutral voltage for Phase B in volts. (volt)</li>
+     * <li><code>phaseCAmpsRms</code> (Phase C Current (RMS)): RMS current for Phase C in amperes. (ampere)</li>
+     * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
+     * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
+     * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+     * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
+     * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
+     * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
+     * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
+     * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
+     * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+     * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+     * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+     * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
+     * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
+     * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
+     * <li><code>tirePressuresFrontRight</code> (Tire pressure, front right): Represents the tire pressure for the front-right tire. (kilopascal)</li>
+     * <li><code>torquePercent</code> (Torque): Engine torque as a percentage. (percent)</li>
+     * <li><code>totalApparentPower</code> (Total Apparent Power): Total apparent power in volt-amperes. (voltAmpere)</li>
+     * <li><code>totalEnergyExported</code> (Total Energy Exported): Represents the total energy exported in kilowatt-hours (kWh). (kilowatthour)</li>
+     * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
+     * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
+     * </ul>
+     * <p><strong>levelMonitoring</strong></p>
+     * <ul>
+     * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
+     * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
+     * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+     * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
+     * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
+     * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+     * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+     * </ul>
+     * <p><strong>obd</strong></p>
+     * <ul>
+     * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
+     * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
+     * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
+     * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
+     * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
+     * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
+     * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
+     * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
+     * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
+     * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
+     * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
+     * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
+     * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
+     * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
+     * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
+     * <li><code>imminentLeftLaneDeparture</code> (Imminent Left Lane Departure): State of the Imminent Left Lane Departure detection. (values: notImminent | imminent)</li>
+     * <li><code>imminentRightLaneDeparture</code> (Imminent Right Lane Departure): State of the Imminent Right Lane Departure detection. (values: notImminent | imminent)</li>
+     * <li><code>laneCenteringSystemState</code> (Lane Centering State): State of the Lane Centering System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+     * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
+     * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
+     * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+     * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
+     * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
+     * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
+     * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
+     * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
+     * <li><code>tractionControlOverrideSwitch</code> (Traction Control Override Switch): When the switch is on, the automatic traction control function is disabled by the driver. (values: off | on | error)</li>
+     * <li><code>turnSignal</code> (Turn Signal): State of the turn signal switch (blinker). (values: off | left | right)</li>
+     * <li><code>vdcFullyOperational</code> (VDC Fully Operational): Indicates whether the Vehicle Dynamic Stability Control (VDC) system is fully operational. (values: notFullyOperational | fullyOperational)</li>
+     * <li><code>vehicleGear</code> (Vehicle Gear): The gear of the vehicle that is currently selected. (values: unknown | park | neutral | reverse | drive)</li>
+     * <li><code>xbrActiveControlMode</code> (Emergency Self-Braking System Mode): Current mode of the emergency self-braking system. (values: noBrakeDemand | driverBrakeDemand | additionMode | maximumMode | brakeHold)</li>
+     * <li><code>xbrSystemState</code> (Emergency Self-Braking System Operational State): State of the emergency self-braking system. (values: fullyOperational | highestPriorityOnly | noRequestsAccepted)</li>
+     * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
+     * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
+     * </ul>
+     * <p><strong>pressureVesselHealth</strong></p>
+     * <ul>
+     * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
+     * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
+     * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
+     * </ul>
+     * <p><strong>reefer</strong></p>
+     * <ul>
+     * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
+     * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
+     * <li><code>reeferAmbientAir</code> (Reefer Ambient Air Temperature): External environment temperature for the reefer (celsius)</li>
+     * <li><code>reeferBatteryVoltage</code> (Reefer Battery Voltage): The voltage of the Refrigeration Unit's battery. (volt)</li>
+     * <li><code>reeferDoorOpenZone1</code> (Reefer Door Open (Zone 1)): Status indicating whether the reefer's door (zone 1) is closed or open (values: closed | open)</li>
+     * <li><code>reeferDoorOpenZone2</code> (Reefer Door Open (Zone 2)): Status indicating whether the reefer's door (zone 2) is closed or open (values: closed | open)</li>
+     * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
+     * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
+     * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+     * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
+     * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
+     * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
+     * <li><code>reeferReturnAirZone3</code> (Reefer Return Air Temperature (Zone 3)): Return air temperature for the reefer's zone 3 (celsius)</li>
+     * <li><code>reeferRunMode</code> (Reefer Run Mode): The run mode of the refrigeration unit (Continuous or Start/Stop) (values: continuous | startStop)</li>
+     * <li><code>reeferSetPointZone1</code> (Reefer Set Point (Zone 1)): Current set point for the reefer's zone 1 (celsius)</li>
+     * <li><code>reeferSetPointZone2</code> (Reefer Set Point (Zone 2)): Current set point for the reefer's zone 2 (celsius)</li>
+     * <li><code>reeferSetPointZone3</code> (Reefer Set Point (Zone 3)): Current set point for the reefer's zone 3 (celsius)</li>
+     * <li><code>reeferState</code> (Reefer State): The on/off state of the refrigeration unit (values: off | active | error | inactive)</li>
+     * <li><code>reeferStateZone1</code> (Reefer State (Zone 1)): The on/off state of the refrigeration unit (Zone 1) (values: off | active | error | inactive)</li>
+     * <li><code>reeferStateZone2</code> (Reefer State (Zone 2)): The on/off state of the refrigeration unit (Zone 2) (values: off | active | error | inactive)</li>
+     * <li><code>reeferStateZone3</code> (Reefer State (Zone 3)): The on/off state of the refrigeration unit (Zone 3) (values: off | active | error | inactive)</li>
+     * <li><code>reeferSupplyAirZone1</code> (Reefer Supply Air Temperature (Zone 1)): Supply air temperature for the reefer's zone 1 (celsius)</li>
+     * <li><code>reeferSupplyAirZone2</code> (Reefer Supply Air Temperature (Zone 2)): Supply air temperature for the reefer's zone 2 (celsius)</li>
+     * <li><code>reeferSupplyAirZone3</code> (Reefer Supply Air Temperature (Zone 3)): Supply air temperature for the reefer's zone 3 (celsius)</li>
+     * <li><code>reeferTemperatureRecorder1</code> (Reefer Temperature Recorder (Zone 1)): Temperature recorder reading for reefer zone 1 (celsius)</li>
+     * <li><code>reeferTemperatureRecorder2</code> (Reefer Temperature Recorder (Zone 2)): Temperature recorder reading for reefer zone 2 (celsius)</li>
+     * <li><code>reeferTemperatureRecorder3</code> (Reefer Temperature Recorder (Zone 3)): Temperature recorder reading for reefer zone 3 (celsius)</li>
+     * <li><code>reeferTemperatureRecorder4</code> (Reefer Temperature Recorder (Zone 4)): Temperature recorder reading for reefer zone 4 (celsius)</li>
+     * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
+     * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
+     * </ul>
+     * <p><strong>smartTrailer</strong></p>
+     * <ul>
+     * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
+     * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
+     * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+     * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
+     * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
+     * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+     * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
+     * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
+     * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
+     * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+     * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+     * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+     * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
+     * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
+     * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
+     * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
+     * </ul>
+     * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
      */
     @JsonProperty("readingId")
     public String getReadingId() {
@@ -185,6 +383,204 @@ public final class GetReadingsHistoryRequest {
     public interface ReadingIdStage {
         /**
          * <p>The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
+         * <p>Available reading IDs (by category):</p>
+         * <p><strong>diagnostic</strong></p>
+         * <ul>
+         * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
+         * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
+         * <li><code>altitude</code> (Altitude): The altitude of the asset (meter)</li>
+         * <li><code>altitudeAccuracy</code> (Altitude Uncertainty): The uncertainty of the asset's GPS-based altitude. (meter)</li>
+         * <li><code>assetStatus</code> (Status): Combined movement and equipment status derived from location &amp; Digio events. (values: movementStart | movementEnd | stopped | none | equipmentOn | equipmentOff)</li>
+         * <li><code>averageACCurrent</code> (Average AC Current): Average AC current in amperes. (ampere)</li>
+         * <li><code>averageACFrequency</code> (Average AC Frequency): Average AC frequency in Hertz. (hertz)</li>
+         * <li><code>averageLineToLineACRMSVoltage</code> (Average Line-to-Line Voltage): Average RMS voltage between AC lines in volts. (volt)</li>
+         * <li><code>averageLineToNeutralACRMSVoltage</code> (Average Line-to-Neutral Voltage): Average RMS voltage from AC line to neutral in volts. (volt)</li>
+         * <li><code>barometerPressure</code> (Barometric Pressure): Atmospheric pressure as measured by the barometer. (kilopascal)</li>
+         * <li><code>batteryPotentialSwitched</code> (Battery Potential (Switched)): Switched battery potential in volts. (volt)</li>
+         * <li><code>batteryVoltage</code> (Battery Voltage): Voltage of the asset's battery. (volt)</li>
+         * <li><code>boostPressureEngineTurbocharger1</code> (Engine Turbocharger 1 Boost Pressure): Represents the boost pressure for engine turbocharger 1. (kilopascal)</li>
+         * <li><code>boostPressurePa</code> (Boost Pressure): Represents the boost pressure. (kilopascal)</li>
+         * <li><code>boostPressureTurbocharger2</code> (Boost Pressure (Turbocharger 2)): Boost pressure from the second turbocharger in kPa. (kilopascal)</li>
+         * <li><code>canBusType</code> (CAN Bus Status): Indicates whether the CAN Bus system is active or provides an invalid reading. (values: invalid | active)</li>
+         * <li><code>checkEngineLightJ1939Emissions</code> (Check Engine Light (J1939) - Emissions): Indicates whether the J1939 check engine light emissions indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Protect</code> (Check Engine Light (J1939) - Protect): Indicates whether the J1939 check engine light protect indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Stop</code> (Check Engine Light (J1939) - Stop): Indicates whether the J1939 check engine light stop indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
+         * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+         * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
+         * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
+         * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
+         * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
+         * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
+         * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
+         * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
+         * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
+         * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+         * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
+         * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+         * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+         * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
+         * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+         * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
+         * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
+         * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
+         * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
+         * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+         * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+         * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
+         * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
+         * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+         * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+         * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
+         * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
+         * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
+         * <li><code>location</code> (Location): Represents the current address of the asset.</li>
+         * <li><code>longitude</code> (Longitude): Longitude coordinate of the asset's location. (decimaldegrees)</li>
+         * <li><code>mnfldTemp</code> (Intake Manifold Temp): Represents the intake manifold temperature. (celsius)</li>
+         * <li><code>ngFuelPressure</code> (NG Fuel Pressure): Represents the natural gas fuel pressure. (kilopascal)</li>
+         * <li><code>odometerEcu</code> (Odometer (ECU)): Represents the total distance traveled as recorded by the ECU. (meter)</li>
+         * <li><code>odometerGps</code> (Odometer (GPS)): Represents the total distance traveled as determined by GPS. (meter)</li>
+         * <li><code>oilPressure</code> (Engine Oil Pressure): Represents the oil pressure in the engine. (kilopascal)</li>
+         * <li><code>phaseAACFrequency</code> (Phase A AC Frequency): AC frequency for Phase A in Hertz. (hertz)</li>
+         * <li><code>phaseAAmpsRms</code> (Phase A Current (RMS)): RMS current for Phase A in amperes. (ampere)</li>
+         * <li><code>phaseALLVolts</code> (Phase A Line-to-Line Voltage): Line-to-line voltage for Phase A in volts. (volt)</li>
+         * <li><code>phaseALNVolts</code> (Phase A Line-to-Neutral Voltage): Line-to-neutral voltage for Phase A in volts. (volt)</li>
+         * <li><code>phaseBAmpsRms</code> (Phase B Current (RMS)): RMS current for Phase B in amperes. (ampere)</li>
+         * <li><code>phaseBLLVolts</code> (Phase B Line-to-Line Voltage): Line-to-line voltage for Phase B in volts. (volt)</li>
+         * <li><code>phaseBLNVolts</code> (Phase B Line-to-Neutral Voltage): Line-to-neutral voltage for Phase B in volts. (volt)</li>
+         * <li><code>phaseCAmpsRms</code> (Phase C Current (RMS)): RMS current for Phase C in amperes. (ampere)</li>
+         * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
+         * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
+         * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+         * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
+         * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
+         * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
+         * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
+         * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
+         * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+         * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+         * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+         * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
+         * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
+         * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
+         * <li><code>tirePressuresFrontRight</code> (Tire pressure, front right): Represents the tire pressure for the front-right tire. (kilopascal)</li>
+         * <li><code>torquePercent</code> (Torque): Engine torque as a percentage. (percent)</li>
+         * <li><code>totalApparentPower</code> (Total Apparent Power): Total apparent power in volt-amperes. (voltAmpere)</li>
+         * <li><code>totalEnergyExported</code> (Total Energy Exported): Represents the total energy exported in kilowatt-hours (kWh). (kilowatthour)</li>
+         * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
+         * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
+         * </ul>
+         * <p><strong>levelMonitoring</strong></p>
+         * <ul>
+         * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
+         * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
+         * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+         * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
+         * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
+         * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+         * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+         * </ul>
+         * <p><strong>obd</strong></p>
+         * <ul>
+         * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
+         * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
+         * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
+         * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
+         * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
+         * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
+         * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
+         * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
+         * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
+         * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
+         * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
+         * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
+         * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
+         * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
+         * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
+         * <li><code>imminentLeftLaneDeparture</code> (Imminent Left Lane Departure): State of the Imminent Left Lane Departure detection. (values: notImminent | imminent)</li>
+         * <li><code>imminentRightLaneDeparture</code> (Imminent Right Lane Departure): State of the Imminent Right Lane Departure detection. (values: notImminent | imminent)</li>
+         * <li><code>laneCenteringSystemState</code> (Lane Centering State): State of the Lane Centering System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+         * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
+         * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
+         * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+         * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
+         * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
+         * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
+         * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
+         * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
+         * <li><code>tractionControlOverrideSwitch</code> (Traction Control Override Switch): When the switch is on, the automatic traction control function is disabled by the driver. (values: off | on | error)</li>
+         * <li><code>turnSignal</code> (Turn Signal): State of the turn signal switch (blinker). (values: off | left | right)</li>
+         * <li><code>vdcFullyOperational</code> (VDC Fully Operational): Indicates whether the Vehicle Dynamic Stability Control (VDC) system is fully operational. (values: notFullyOperational | fullyOperational)</li>
+         * <li><code>vehicleGear</code> (Vehicle Gear): The gear of the vehicle that is currently selected. (values: unknown | park | neutral | reverse | drive)</li>
+         * <li><code>xbrActiveControlMode</code> (Emergency Self-Braking System Mode): Current mode of the emergency self-braking system. (values: noBrakeDemand | driverBrakeDemand | additionMode | maximumMode | brakeHold)</li>
+         * <li><code>xbrSystemState</code> (Emergency Self-Braking System Operational State): State of the emergency self-braking system. (values: fullyOperational | highestPriorityOnly | noRequestsAccepted)</li>
+         * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
+         * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
+         * </ul>
+         * <p><strong>pressureVesselHealth</strong></p>
+         * <ul>
+         * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
+         * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
+         * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
+         * </ul>
+         * <p><strong>reefer</strong></p>
+         * <ul>
+         * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
+         * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
+         * <li><code>reeferAmbientAir</code> (Reefer Ambient Air Temperature): External environment temperature for the reefer (celsius)</li>
+         * <li><code>reeferBatteryVoltage</code> (Reefer Battery Voltage): The voltage of the Refrigeration Unit's battery. (volt)</li>
+         * <li><code>reeferDoorOpenZone1</code> (Reefer Door Open (Zone 1)): Status indicating whether the reefer's door (zone 1) is closed or open (values: closed | open)</li>
+         * <li><code>reeferDoorOpenZone2</code> (Reefer Door Open (Zone 2)): Status indicating whether the reefer's door (zone 2) is closed or open (values: closed | open)</li>
+         * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
+         * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
+         * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+         * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
+         * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferReturnAirZone3</code> (Reefer Return Air Temperature (Zone 3)): Return air temperature for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferRunMode</code> (Reefer Run Mode): The run mode of the refrigeration unit (Continuous or Start/Stop) (values: continuous | startStop)</li>
+         * <li><code>reeferSetPointZone1</code> (Reefer Set Point (Zone 1)): Current set point for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferSetPointZone2</code> (Reefer Set Point (Zone 2)): Current set point for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferSetPointZone3</code> (Reefer Set Point (Zone 3)): Current set point for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferState</code> (Reefer State): The on/off state of the refrigeration unit (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone1</code> (Reefer State (Zone 1)): The on/off state of the refrigeration unit (Zone 1) (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone2</code> (Reefer State (Zone 2)): The on/off state of the refrigeration unit (Zone 2) (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone3</code> (Reefer State (Zone 3)): The on/off state of the refrigeration unit (Zone 3) (values: off | active | error | inactive)</li>
+         * <li><code>reeferSupplyAirZone1</code> (Reefer Supply Air Temperature (Zone 1)): Supply air temperature for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferSupplyAirZone2</code> (Reefer Supply Air Temperature (Zone 2)): Supply air temperature for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferSupplyAirZone3</code> (Reefer Supply Air Temperature (Zone 3)): Supply air temperature for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder1</code> (Reefer Temperature Recorder (Zone 1)): Temperature recorder reading for reefer zone 1 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder2</code> (Reefer Temperature Recorder (Zone 2)): Temperature recorder reading for reefer zone 2 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder3</code> (Reefer Temperature Recorder (Zone 3)): Temperature recorder reading for reefer zone 3 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder4</code> (Reefer Temperature Recorder (Zone 4)): Temperature recorder reading for reefer zone 4 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
+         * </ul>
+         * <p><strong>smartTrailer</strong></p>
+         * <ul>
+         * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
+         * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
+         * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+         * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
+         * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
+         * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+         * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
+         * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
+         * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
+         * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+         * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+         * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+         * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
+         * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
+         * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
+         * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
+         * </ul>
+         * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          */
         EntityTypeStage readingId(@NotNull String readingId);
 
@@ -292,7 +688,403 @@ public final class GetReadingsHistoryRequest {
 
         /**
          * <p>The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
+         * <p>Available reading IDs (by category):</p>
+         * <p><strong>diagnostic</strong></p>
+         * <ul>
+         * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
+         * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
+         * <li><code>altitude</code> (Altitude): The altitude of the asset (meter)</li>
+         * <li><code>altitudeAccuracy</code> (Altitude Uncertainty): The uncertainty of the asset's GPS-based altitude. (meter)</li>
+         * <li><code>assetStatus</code> (Status): Combined movement and equipment status derived from location &amp; Digio events. (values: movementStart | movementEnd | stopped | none | equipmentOn | equipmentOff)</li>
+         * <li><code>averageACCurrent</code> (Average AC Current): Average AC current in amperes. (ampere)</li>
+         * <li><code>averageACFrequency</code> (Average AC Frequency): Average AC frequency in Hertz. (hertz)</li>
+         * <li><code>averageLineToLineACRMSVoltage</code> (Average Line-to-Line Voltage): Average RMS voltage between AC lines in volts. (volt)</li>
+         * <li><code>averageLineToNeutralACRMSVoltage</code> (Average Line-to-Neutral Voltage): Average RMS voltage from AC line to neutral in volts. (volt)</li>
+         * <li><code>barometerPressure</code> (Barometric Pressure): Atmospheric pressure as measured by the barometer. (kilopascal)</li>
+         * <li><code>batteryPotentialSwitched</code> (Battery Potential (Switched)): Switched battery potential in volts. (volt)</li>
+         * <li><code>batteryVoltage</code> (Battery Voltage): Voltage of the asset's battery. (volt)</li>
+         * <li><code>boostPressureEngineTurbocharger1</code> (Engine Turbocharger 1 Boost Pressure): Represents the boost pressure for engine turbocharger 1. (kilopascal)</li>
+         * <li><code>boostPressurePa</code> (Boost Pressure): Represents the boost pressure. (kilopascal)</li>
+         * <li><code>boostPressureTurbocharger2</code> (Boost Pressure (Turbocharger 2)): Boost pressure from the second turbocharger in kPa. (kilopascal)</li>
+         * <li><code>canBusType</code> (CAN Bus Status): Indicates whether the CAN Bus system is active or provides an invalid reading. (values: invalid | active)</li>
+         * <li><code>checkEngineLightJ1939Emissions</code> (Check Engine Light (J1939) - Emissions): Indicates whether the J1939 check engine light emissions indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Protect</code> (Check Engine Light (J1939) - Protect): Indicates whether the J1939 check engine light protect indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Stop</code> (Check Engine Light (J1939) - Stop): Indicates whether the J1939 check engine light stop indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
+         * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+         * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
+         * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
+         * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
+         * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
+         * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
+         * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
+         * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
+         * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
+         * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+         * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
+         * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+         * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+         * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
+         * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+         * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
+         * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
+         * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
+         * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
+         * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+         * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+         * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
+         * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
+         * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+         * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+         * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
+         * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
+         * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
+         * <li><code>location</code> (Location): Represents the current address of the asset.</li>
+         * <li><code>longitude</code> (Longitude): Longitude coordinate of the asset's location. (decimaldegrees)</li>
+         * <li><code>mnfldTemp</code> (Intake Manifold Temp): Represents the intake manifold temperature. (celsius)</li>
+         * <li><code>ngFuelPressure</code> (NG Fuel Pressure): Represents the natural gas fuel pressure. (kilopascal)</li>
+         * <li><code>odometerEcu</code> (Odometer (ECU)): Represents the total distance traveled as recorded by the ECU. (meter)</li>
+         * <li><code>odometerGps</code> (Odometer (GPS)): Represents the total distance traveled as determined by GPS. (meter)</li>
+         * <li><code>oilPressure</code> (Engine Oil Pressure): Represents the oil pressure in the engine. (kilopascal)</li>
+         * <li><code>phaseAACFrequency</code> (Phase A AC Frequency): AC frequency for Phase A in Hertz. (hertz)</li>
+         * <li><code>phaseAAmpsRms</code> (Phase A Current (RMS)): RMS current for Phase A in amperes. (ampere)</li>
+         * <li><code>phaseALLVolts</code> (Phase A Line-to-Line Voltage): Line-to-line voltage for Phase A in volts. (volt)</li>
+         * <li><code>phaseALNVolts</code> (Phase A Line-to-Neutral Voltage): Line-to-neutral voltage for Phase A in volts. (volt)</li>
+         * <li><code>phaseBAmpsRms</code> (Phase B Current (RMS)): RMS current for Phase B in amperes. (ampere)</li>
+         * <li><code>phaseBLLVolts</code> (Phase B Line-to-Line Voltage): Line-to-line voltage for Phase B in volts. (volt)</li>
+         * <li><code>phaseBLNVolts</code> (Phase B Line-to-Neutral Voltage): Line-to-neutral voltage for Phase B in volts. (volt)</li>
+         * <li><code>phaseCAmpsRms</code> (Phase C Current (RMS)): RMS current for Phase C in amperes. (ampere)</li>
+         * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
+         * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
+         * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+         * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
+         * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
+         * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
+         * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
+         * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
+         * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+         * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+         * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+         * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
+         * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
+         * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
+         * <li><code>tirePressuresFrontRight</code> (Tire pressure, front right): Represents the tire pressure for the front-right tire. (kilopascal)</li>
+         * <li><code>torquePercent</code> (Torque): Engine torque as a percentage. (percent)</li>
+         * <li><code>totalApparentPower</code> (Total Apparent Power): Total apparent power in volt-amperes. (voltAmpere)</li>
+         * <li><code>totalEnergyExported</code> (Total Energy Exported): Represents the total energy exported in kilowatt-hours (kWh). (kilowatthour)</li>
+         * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
+         * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
+         * </ul>
+         * <p><strong>levelMonitoring</strong></p>
+         * <ul>
+         * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
+         * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
+         * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+         * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
+         * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
+         * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+         * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+         * </ul>
+         * <p><strong>obd</strong></p>
+         * <ul>
+         * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
+         * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
+         * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
+         * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
+         * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
+         * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
+         * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
+         * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
+         * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
+         * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
+         * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
+         * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
+         * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
+         * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
+         * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
+         * <li><code>imminentLeftLaneDeparture</code> (Imminent Left Lane Departure): State of the Imminent Left Lane Departure detection. (values: notImminent | imminent)</li>
+         * <li><code>imminentRightLaneDeparture</code> (Imminent Right Lane Departure): State of the Imminent Right Lane Departure detection. (values: notImminent | imminent)</li>
+         * <li><code>laneCenteringSystemState</code> (Lane Centering State): State of the Lane Centering System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+         * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
+         * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
+         * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+         * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
+         * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
+         * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
+         * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
+         * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
+         * <li><code>tractionControlOverrideSwitch</code> (Traction Control Override Switch): When the switch is on, the automatic traction control function is disabled by the driver. (values: off | on | error)</li>
+         * <li><code>turnSignal</code> (Turn Signal): State of the turn signal switch (blinker). (values: off | left | right)</li>
+         * <li><code>vdcFullyOperational</code> (VDC Fully Operational): Indicates whether the Vehicle Dynamic Stability Control (VDC) system is fully operational. (values: notFullyOperational | fullyOperational)</li>
+         * <li><code>vehicleGear</code> (Vehicle Gear): The gear of the vehicle that is currently selected. (values: unknown | park | neutral | reverse | drive)</li>
+         * <li><code>xbrActiveControlMode</code> (Emergency Self-Braking System Mode): Current mode of the emergency self-braking system. (values: noBrakeDemand | driverBrakeDemand | additionMode | maximumMode | brakeHold)</li>
+         * <li><code>xbrSystemState</code> (Emergency Self-Braking System Operational State): State of the emergency self-braking system. (values: fullyOperational | highestPriorityOnly | noRequestsAccepted)</li>
+         * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
+         * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
+         * </ul>
+         * <p><strong>pressureVesselHealth</strong></p>
+         * <ul>
+         * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
+         * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
+         * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
+         * </ul>
+         * <p><strong>reefer</strong></p>
+         * <ul>
+         * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
+         * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
+         * <li><code>reeferAmbientAir</code> (Reefer Ambient Air Temperature): External environment temperature for the reefer (celsius)</li>
+         * <li><code>reeferBatteryVoltage</code> (Reefer Battery Voltage): The voltage of the Refrigeration Unit's battery. (volt)</li>
+         * <li><code>reeferDoorOpenZone1</code> (Reefer Door Open (Zone 1)): Status indicating whether the reefer's door (zone 1) is closed or open (values: closed | open)</li>
+         * <li><code>reeferDoorOpenZone2</code> (Reefer Door Open (Zone 2)): Status indicating whether the reefer's door (zone 2) is closed or open (values: closed | open)</li>
+         * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
+         * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
+         * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+         * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
+         * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferReturnAirZone3</code> (Reefer Return Air Temperature (Zone 3)): Return air temperature for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferRunMode</code> (Reefer Run Mode): The run mode of the refrigeration unit (Continuous or Start/Stop) (values: continuous | startStop)</li>
+         * <li><code>reeferSetPointZone1</code> (Reefer Set Point (Zone 1)): Current set point for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferSetPointZone2</code> (Reefer Set Point (Zone 2)): Current set point for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferSetPointZone3</code> (Reefer Set Point (Zone 3)): Current set point for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferState</code> (Reefer State): The on/off state of the refrigeration unit (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone1</code> (Reefer State (Zone 1)): The on/off state of the refrigeration unit (Zone 1) (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone2</code> (Reefer State (Zone 2)): The on/off state of the refrigeration unit (Zone 2) (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone3</code> (Reefer State (Zone 3)): The on/off state of the refrigeration unit (Zone 3) (values: off | active | error | inactive)</li>
+         * <li><code>reeferSupplyAirZone1</code> (Reefer Supply Air Temperature (Zone 1)): Supply air temperature for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferSupplyAirZone2</code> (Reefer Supply Air Temperature (Zone 2)): Supply air temperature for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferSupplyAirZone3</code> (Reefer Supply Air Temperature (Zone 3)): Supply air temperature for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder1</code> (Reefer Temperature Recorder (Zone 1)): Temperature recorder reading for reefer zone 1 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder2</code> (Reefer Temperature Recorder (Zone 2)): Temperature recorder reading for reefer zone 2 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder3</code> (Reefer Temperature Recorder (Zone 3)): Temperature recorder reading for reefer zone 3 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder4</code> (Reefer Temperature Recorder (Zone 4)): Temperature recorder reading for reefer zone 4 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
+         * </ul>
+         * <p><strong>smartTrailer</strong></p>
+         * <ul>
+         * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
+         * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
+         * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+         * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
+         * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
+         * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+         * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
+         * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
+         * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
+         * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+         * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+         * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+         * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
+         * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
+         * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
+         * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
+         * </ul>
+         * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          * <p>The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
+         * <p>Available reading IDs (by category):</p>
+         * <p><strong>diagnostic</strong></p>
+         * <ul>
+         * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
+         * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
+         * <li><code>altitude</code> (Altitude): The altitude of the asset (meter)</li>
+         * <li><code>altitudeAccuracy</code> (Altitude Uncertainty): The uncertainty of the asset's GPS-based altitude. (meter)</li>
+         * <li><code>assetStatus</code> (Status): Combined movement and equipment status derived from location &amp; Digio events. (values: movementStart | movementEnd | stopped | none | equipmentOn | equipmentOff)</li>
+         * <li><code>averageACCurrent</code> (Average AC Current): Average AC current in amperes. (ampere)</li>
+         * <li><code>averageACFrequency</code> (Average AC Frequency): Average AC frequency in Hertz. (hertz)</li>
+         * <li><code>averageLineToLineACRMSVoltage</code> (Average Line-to-Line Voltage): Average RMS voltage between AC lines in volts. (volt)</li>
+         * <li><code>averageLineToNeutralACRMSVoltage</code> (Average Line-to-Neutral Voltage): Average RMS voltage from AC line to neutral in volts. (volt)</li>
+         * <li><code>barometerPressure</code> (Barometric Pressure): Atmospheric pressure as measured by the barometer. (kilopascal)</li>
+         * <li><code>batteryPotentialSwitched</code> (Battery Potential (Switched)): Switched battery potential in volts. (volt)</li>
+         * <li><code>batteryVoltage</code> (Battery Voltage): Voltage of the asset's battery. (volt)</li>
+         * <li><code>boostPressureEngineTurbocharger1</code> (Engine Turbocharger 1 Boost Pressure): Represents the boost pressure for engine turbocharger 1. (kilopascal)</li>
+         * <li><code>boostPressurePa</code> (Boost Pressure): Represents the boost pressure. (kilopascal)</li>
+         * <li><code>boostPressureTurbocharger2</code> (Boost Pressure (Turbocharger 2)): Boost pressure from the second turbocharger in kPa. (kilopascal)</li>
+         * <li><code>canBusType</code> (CAN Bus Status): Indicates whether the CAN Bus system is active or provides an invalid reading. (values: invalid | active)</li>
+         * <li><code>checkEngineLightJ1939Emissions</code> (Check Engine Light (J1939) - Emissions): Indicates whether the J1939 check engine light emissions indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Protect</code> (Check Engine Light (J1939) - Protect): Indicates whether the J1939 check engine light protect indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Stop</code> (Check Engine Light (J1939) - Stop): Indicates whether the J1939 check engine light stop indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
+         * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
+         * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+         * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
+         * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
+         * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
+         * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
+         * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
+         * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
+         * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
+         * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
+         * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+         * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
+         * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+         * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+         * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
+         * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+         * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
+         * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
+         * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
+         * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
+         * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+         * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+         * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
+         * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
+         * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+         * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+         * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
+         * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
+         * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
+         * <li><code>location</code> (Location): Represents the current address of the asset.</li>
+         * <li><code>longitude</code> (Longitude): Longitude coordinate of the asset's location. (decimaldegrees)</li>
+         * <li><code>mnfldTemp</code> (Intake Manifold Temp): Represents the intake manifold temperature. (celsius)</li>
+         * <li><code>ngFuelPressure</code> (NG Fuel Pressure): Represents the natural gas fuel pressure. (kilopascal)</li>
+         * <li><code>odometerEcu</code> (Odometer (ECU)): Represents the total distance traveled as recorded by the ECU. (meter)</li>
+         * <li><code>odometerGps</code> (Odometer (GPS)): Represents the total distance traveled as determined by GPS. (meter)</li>
+         * <li><code>oilPressure</code> (Engine Oil Pressure): Represents the oil pressure in the engine. (kilopascal)</li>
+         * <li><code>phaseAACFrequency</code> (Phase A AC Frequency): AC frequency for Phase A in Hertz. (hertz)</li>
+         * <li><code>phaseAAmpsRms</code> (Phase A Current (RMS)): RMS current for Phase A in amperes. (ampere)</li>
+         * <li><code>phaseALLVolts</code> (Phase A Line-to-Line Voltage): Line-to-line voltage for Phase A in volts. (volt)</li>
+         * <li><code>phaseALNVolts</code> (Phase A Line-to-Neutral Voltage): Line-to-neutral voltage for Phase A in volts. (volt)</li>
+         * <li><code>phaseBAmpsRms</code> (Phase B Current (RMS)): RMS current for Phase B in amperes. (ampere)</li>
+         * <li><code>phaseBLLVolts</code> (Phase B Line-to-Line Voltage): Line-to-line voltage for Phase B in volts. (volt)</li>
+         * <li><code>phaseBLNVolts</code> (Phase B Line-to-Neutral Voltage): Line-to-neutral voltage for Phase B in volts. (volt)</li>
+         * <li><code>phaseCAmpsRms</code> (Phase C Current (RMS)): RMS current for Phase C in amperes. (ampere)</li>
+         * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
+         * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
+         * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+         * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
+         * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
+         * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
+         * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
+         * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
+         * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+         * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
+         * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+         * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
+         * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
+         * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
+         * <li><code>tirePressuresFrontRight</code> (Tire pressure, front right): Represents the tire pressure for the front-right tire. (kilopascal)</li>
+         * <li><code>torquePercent</code> (Torque): Engine torque as a percentage. (percent)</li>
+         * <li><code>totalApparentPower</code> (Total Apparent Power): Total apparent power in volt-amperes. (voltAmpere)</li>
+         * <li><code>totalEnergyExported</code> (Total Energy Exported): Represents the total energy exported in kilowatt-hours (kWh). (kilowatthour)</li>
+         * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
+         * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
+         * </ul>
+         * <p><strong>levelMonitoring</strong></p>
+         * <ul>
+         * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
+         * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
+         * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+         * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
+         * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
+         * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+         * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+         * </ul>
+         * <p><strong>obd</strong></p>
+         * <ul>
+         * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
+         * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
+         * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
+         * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
+         * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
+         * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
+         * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
+         * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
+         * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
+         * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
+         * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
+         * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
+         * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
+         * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
+         * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
+         * <li><code>imminentLeftLaneDeparture</code> (Imminent Left Lane Departure): State of the Imminent Left Lane Departure detection. (values: notImminent | imminent)</li>
+         * <li><code>imminentRightLaneDeparture</code> (Imminent Right Lane Departure): State of the Imminent Right Lane Departure detection. (values: notImminent | imminent)</li>
+         * <li><code>laneCenteringSystemState</code> (Lane Centering State): State of the Lane Centering System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+         * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
+         * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
+         * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
+         * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
+         * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
+         * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
+         * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
+         * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
+         * <li><code>tractionControlOverrideSwitch</code> (Traction Control Override Switch): When the switch is on, the automatic traction control function is disabled by the driver. (values: off | on | error)</li>
+         * <li><code>turnSignal</code> (Turn Signal): State of the turn signal switch (blinker). (values: off | left | right)</li>
+         * <li><code>vdcFullyOperational</code> (VDC Fully Operational): Indicates whether the Vehicle Dynamic Stability Control (VDC) system is fully operational. (values: notFullyOperational | fullyOperational)</li>
+         * <li><code>vehicleGear</code> (Vehicle Gear): The gear of the vehicle that is currently selected. (values: unknown | park | neutral | reverse | drive)</li>
+         * <li><code>xbrActiveControlMode</code> (Emergency Self-Braking System Mode): Current mode of the emergency self-braking system. (values: noBrakeDemand | driverBrakeDemand | additionMode | maximumMode | brakeHold)</li>
+         * <li><code>xbrSystemState</code> (Emergency Self-Braking System Operational State): State of the emergency self-braking system. (values: fullyOperational | highestPriorityOnly | noRequestsAccepted)</li>
+         * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
+         * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
+         * </ul>
+         * <p><strong>pressureVesselHealth</strong></p>
+         * <ul>
+         * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
+         * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
+         * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
+         * </ul>
+         * <p><strong>reefer</strong></p>
+         * <ul>
+         * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
+         * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
+         * <li><code>reeferAmbientAir</code> (Reefer Ambient Air Temperature): External environment temperature for the reefer (celsius)</li>
+         * <li><code>reeferBatteryVoltage</code> (Reefer Battery Voltage): The voltage of the Refrigeration Unit's battery. (volt)</li>
+         * <li><code>reeferDoorOpenZone1</code> (Reefer Door Open (Zone 1)): Status indicating whether the reefer's door (zone 1) is closed or open (values: closed | open)</li>
+         * <li><code>reeferDoorOpenZone2</code> (Reefer Door Open (Zone 2)): Status indicating whether the reefer's door (zone 2) is closed or open (values: closed | open)</li>
+         * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
+         * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
+         * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+         * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
+         * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferReturnAirZone3</code> (Reefer Return Air Temperature (Zone 3)): Return air temperature for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferRunMode</code> (Reefer Run Mode): The run mode of the refrigeration unit (Continuous or Start/Stop) (values: continuous | startStop)</li>
+         * <li><code>reeferSetPointZone1</code> (Reefer Set Point (Zone 1)): Current set point for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferSetPointZone2</code> (Reefer Set Point (Zone 2)): Current set point for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferSetPointZone3</code> (Reefer Set Point (Zone 3)): Current set point for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferState</code> (Reefer State): The on/off state of the refrigeration unit (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone1</code> (Reefer State (Zone 1)): The on/off state of the refrigeration unit (Zone 1) (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone2</code> (Reefer State (Zone 2)): The on/off state of the refrigeration unit (Zone 2) (values: off | active | error | inactive)</li>
+         * <li><code>reeferStateZone3</code> (Reefer State (Zone 3)): The on/off state of the refrigeration unit (Zone 3) (values: off | active | error | inactive)</li>
+         * <li><code>reeferSupplyAirZone1</code> (Reefer Supply Air Temperature (Zone 1)): Supply air temperature for the reefer's zone 1 (celsius)</li>
+         * <li><code>reeferSupplyAirZone2</code> (Reefer Supply Air Temperature (Zone 2)): Supply air temperature for the reefer's zone 2 (celsius)</li>
+         * <li><code>reeferSupplyAirZone3</code> (Reefer Supply Air Temperature (Zone 3)): Supply air temperature for the reefer's zone 3 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder1</code> (Reefer Temperature Recorder (Zone 1)): Temperature recorder reading for reefer zone 1 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder2</code> (Reefer Temperature Recorder (Zone 2)): Temperature recorder reading for reefer zone 2 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder3</code> (Reefer Temperature Recorder (Zone 3)): Temperature recorder reading for reefer zone 3 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder4</code> (Reefer Temperature Recorder (Zone 4)): Temperature recorder reading for reefer zone 4 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
+         * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
+         * </ul>
+         * <p><strong>smartTrailer</strong></p>
+         * <ul>
+         * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
+         * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
+         * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+         * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
+         * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
+         * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+         * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
+         * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
+         * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
+         * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+         * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+         * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+         * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
+         * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
+         * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
+         * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
+         * </ul>
+         * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

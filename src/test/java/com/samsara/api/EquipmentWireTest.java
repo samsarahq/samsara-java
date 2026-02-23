@@ -6,6 +6,7 @@ import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsFeedRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentLocationsRequest;
+import com.samsara.api.resources.equipment.requests.GetEquipmentRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsFeedRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsRequest;
@@ -483,7 +484,8 @@ public class EquipmentWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"assetSerial\":\"1FUJA6BD31LJ09646\",\"externalIds\":{\"maintenanceId\":\"250020\",\"payrollId\":\"ABFS18600\"},\"id\":\"112\",\"installedGateway\":{\"model\":\"Ag26\",\"serial\":\"serial\"},\"name\":\"Crane A7\",\"notes\":\"These are notes about this given equipment.\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]}}"));
-        EquipmentResponse response = client.equipment().getEquipment("id");
+        EquipmentResponse response = client.equipment()
+                .getEquipment("id", GetEquipmentRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());

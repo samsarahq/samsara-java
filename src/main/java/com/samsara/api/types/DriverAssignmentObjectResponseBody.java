@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DriverAssignmentObjectResponseBody.Builder.class)
 public final class DriverAssignmentObjectResponseBody {
-    private final Optional<String> assignmentType;
+    private final Optional<DriverAssignmentObjectResponseBodyAssignmentType> assignmentType;
 
     private final Optional<GoaDriverTinyResponseResponseBody> driver;
 
@@ -33,7 +33,7 @@ public final class DriverAssignmentObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private DriverAssignmentObjectResponseBody(
-            Optional<String> assignmentType,
+            Optional<DriverAssignmentObjectResponseBodyAssignmentType> assignmentType,
             Optional<GoaDriverTinyResponseResponseBody> driver,
             Optional<String> endTime,
             Optional<Boolean> isPassenger,
@@ -51,7 +51,7 @@ public final class DriverAssignmentObjectResponseBody {
      * @return Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is <code>driverApp</code> assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: <code>driverApp</code>
      */
     @JsonProperty("assignmentType")
-    public Optional<String> getAssignmentType() {
+    public Optional<DriverAssignmentObjectResponseBodyAssignmentType> getAssignmentType() {
         return assignmentType;
     }
 
@@ -120,7 +120,7 @@ public final class DriverAssignmentObjectResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> assignmentType = Optional.empty();
+        private Optional<DriverAssignmentObjectResponseBodyAssignmentType> assignmentType = Optional.empty();
 
         private Optional<GoaDriverTinyResponseResponseBody> driver = Optional.empty();
 
@@ -148,12 +148,12 @@ public final class DriverAssignmentObjectResponseBody {
          * <p>Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is <code>driverApp</code> assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: <code>driverApp</code></p>
          */
         @JsonSetter(value = "assignmentType", nulls = Nulls.SKIP)
-        public Builder assignmentType(Optional<String> assignmentType) {
+        public Builder assignmentType(Optional<DriverAssignmentObjectResponseBodyAssignmentType> assignmentType) {
             this.assignmentType = assignmentType;
             return this;
         }
 
-        public Builder assignmentType(String assignmentType) {
+        public Builder assignmentType(DriverAssignmentObjectResponseBodyAssignmentType assignmentType) {
             this.assignmentType = Optional.ofNullable(assignmentType);
             return this;
         }
