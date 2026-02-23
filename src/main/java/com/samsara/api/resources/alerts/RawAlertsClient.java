@@ -93,9 +93,9 @@ public class RawAlertsClient {
      * Scheduled Date And Time
      * Training Assignment Due Soon
      * Training Assignment Past Due</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsGetConfigurationsResponseBody> getConfigurations() {
         return getConfigurations(GetConfigurationsRequest.builder().build());
@@ -148,9 +148,9 @@ public class RawAlertsClient {
      * Scheduled Date And Time
      * Training Assignment Due Soon
      * Training Assignment Past Due</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsGetConfigurationsResponseBody> getConfigurations(
             RequestOptions requestOptions) {
@@ -204,9 +204,9 @@ public class RawAlertsClient {
      * Scheduled Date And Time
      * Training Assignment Due Soon
      * Training Assignment Past Due</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsGetConfigurationsResponseBody> getConfigurations(
             GetConfigurationsRequest request) {
@@ -260,9 +260,9 @@ public class RawAlertsClient {
      * Scheduled Date And Time
      * Training Assignment Due Soon
      * Training Assignment Past Due</p>
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsGetConfigurationsResponseBody> getConfigurations(
             GetConfigurationsRequest request, RequestOptions requestOptions) {
@@ -354,9 +354,9 @@ public class RawAlertsClient {
 
     /**
      * Creates an alert configuration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsPostConfigurationsResponseBody> postConfigurations(
             AlertsPostConfigurationsRequestBody request) {
@@ -365,9 +365,9 @@ public class RawAlertsClient {
 
     /**
      * Creates an alert configuration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsPostConfigurationsResponseBody> postConfigurations(
             AlertsPostConfigurationsRequestBody request, RequestOptions requestOptions) {
@@ -449,9 +449,9 @@ public class RawAlertsClient {
 
     /**
      * Delete an alert configuration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<Void> deleteConfigurations(DeleteConfigurationsRequest request) {
         return deleteConfigurations(request, null);
@@ -459,9 +459,9 @@ public class RawAlertsClient {
 
     /**
      * Delete an alert configuration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<Void> deleteConfigurations(
             DeleteConfigurationsRequest request, RequestOptions requestOptions) {
@@ -533,9 +533,9 @@ public class RawAlertsClient {
 
     /**
      * Updates an alert configuration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsPatchConfigurationsResponseBody> patchConfigurations(
             AlertsPatchConfigurationsRequestBody request) {
@@ -544,9 +544,9 @@ public class RawAlertsClient {
 
     /**
      * Updates an alert configuration.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsPatchConfigurationsResponseBody> patchConfigurations(
             AlertsPatchConfigurationsRequestBody request, RequestOptions requestOptions) {
@@ -628,9 +628,9 @@ public class RawAlertsClient {
 
     /**
      * Get Alert Incidents for specific Alert Configurations over a specified period of time.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsGetIncidentsResponseBody> getIncidents(GetIncidentsRequest request) {
         return getIncidents(request, null);
@@ -638,9 +638,9 @@ public class RawAlertsClient {
 
     /**
      * Get Alert Incidents for specific Alert Configurations over a specified period of time.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Alerts</strong> under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AlertsGetIncidentsResponseBody> getIncidents(
             GetIncidentsRequest request, RequestOptions requestOptions) {

@@ -33,6 +33,7 @@ import com.samsara.api.resources.industrial.requests.GetIndustrialAssetsRequest;
 import com.samsara.api.resources.industrial.requests.GetVisionRunsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.InlineObject3;
 import com.samsara.api.resources.industrial.requests.V1GetVisionLatestRunCameraRequest;
+import com.samsara.api.resources.industrial.requests.V1GetVisionProgramsByCameraRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsByCameraAndProgramRequest;
 import com.samsara.api.resources.industrial.requests.V1GetVisionRunsRequest;
 import com.samsara.api.types.AssetDataOutputsPatchAssetDataOutputsResponseBody;
@@ -68,8 +69,8 @@ public class RawIndustrialClient {
 
     /**
      * List all assets in the organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<ListIndustrialAssetsResponse> getIndustrialAssets() {
         return getIndustrialAssets(GetIndustrialAssetsRequest.builder().build());
@@ -77,8 +78,8 @@ public class RawIndustrialClient {
 
     /**
      * List all assets in the organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<ListIndustrialAssetsResponse> getIndustrialAssets(RequestOptions requestOptions) {
         return getIndustrialAssets(GetIndustrialAssetsRequest.builder().build(), requestOptions);
@@ -86,8 +87,8 @@ public class RawIndustrialClient {
 
     /**
      * List all assets in the organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<ListIndustrialAssetsResponse> getIndustrialAssets(
             GetIndustrialAssetsRequest request) {
@@ -96,8 +97,8 @@ public class RawIndustrialClient {
 
     /**
      * List all assets in the organization.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<ListIndustrialAssetsResponse> getIndustrialAssets(
             GetIndustrialAssetsRequest request, RequestOptions requestOptions) {
@@ -157,8 +158,8 @@ public class RawIndustrialClient {
 
     /**
      * Create an asset with optional configuration parameters.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse200> createIndustrialAsset(AssetCreate request) {
         return createIndustrialAsset(request, null);
@@ -166,8 +167,8 @@ public class RawIndustrialClient {
 
     /**
      * Create an asset with optional configuration parameters.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse200> createIndustrialAsset(
             AssetCreate request, RequestOptions requestOptions) {
@@ -214,8 +215,8 @@ public class RawIndustrialClient {
 
     /**
      * Update an existing asset. Only the provided fields will be updated.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse200> patchIndustrialAsset(String id) {
         return patchIndustrialAsset(id, AssetPatch.builder().build());
@@ -223,8 +224,8 @@ public class RawIndustrialClient {
 
     /**
      * Update an existing asset. Only the provided fields will be updated.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse200> patchIndustrialAsset(String id, RequestOptions requestOptions) {
         return patchIndustrialAsset(id, AssetPatch.builder().build(), requestOptions);
@@ -232,8 +233,8 @@ public class RawIndustrialClient {
 
     /**
      * Update an existing asset. Only the provided fields will be updated.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse200> patchIndustrialAsset(String id, AssetPatch request) {
         return patchIndustrialAsset(id, request, null);
@@ -241,8 +242,8 @@ public class RawIndustrialClient {
 
     /**
      * Update an existing asset. Only the provided fields will be updated.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse200> patchIndustrialAsset(
             String id, AssetPatch request, RequestOptions requestOptions) {
@@ -290,9 +291,9 @@ public class RawIndustrialClient {
 
     /**
      * Writes values to multiple data outputs on an asset simultaneously. Only the provided data outputs will be updated.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AssetDataOutputsPatchAssetDataOutputsResponseBody> patchAssetDataOutputs(
             String id, AssetDataOutputsPatchAssetDataOutputsRequestBody request) {
@@ -301,9 +302,9 @@ public class RawIndustrialClient {
 
     /**
      * Writes values to multiple data outputs on an asset simultaneously. Only the provided data outputs will be updated.
-     * <p>&lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits <a href="/docs/rate-limits">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<AssetDataOutputsPatchAssetDataOutputsResponseBody> patchAssetDataOutputs(
             String id, AssetDataOutputsPatchAssetDataOutputsRequestBody request, RequestOptions requestOptions) {
@@ -387,8 +388,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns all data inputs, optionally filtered by tags or asset ids.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputsTinyResponse> getDataInputs() {
         return getDataInputs(GetDataInputsRequest.builder().build());
@@ -396,8 +397,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns all data inputs, optionally filtered by tags or asset ids.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputsTinyResponse> getDataInputs(RequestOptions requestOptions) {
         return getDataInputs(GetDataInputsRequest.builder().build(), requestOptions);
@@ -405,8 +406,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns all data inputs, optionally filtered by tags or asset ids.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputsTinyResponse> getDataInputs(GetDataInputsRequest request) {
         return getDataInputs(request, null);
@@ -414,8 +415,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns all data inputs, optionally filtered by tags or asset ids.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputsTinyResponse> getDataInputs(
             GetDataInputsRequest request, RequestOptions requestOptions) {
@@ -475,8 +476,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputSnapshotResponse> getDataInputDataSnapshot() {
         return getDataInputDataSnapshot(
@@ -485,8 +486,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputSnapshotResponse> getDataInputDataSnapshot(RequestOptions requestOptions) {
         return getDataInputDataSnapshot(
@@ -495,8 +496,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputSnapshotResponse> getDataInputDataSnapshot(
             GetDataInputDataSnapshotRequest request) {
@@ -505,8 +506,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputSnapshotResponse> getDataInputDataSnapshot(
             GetDataInputDataSnapshotRequest request, RequestOptions requestOptions) {
@@ -569,8 +570,8 @@ public class RawIndustrialClient {
      * <p>Your first call to this endpoint will provide you with the most recent data points for each data input and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get data point updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputListResponse> getDataInputDataFeed() {
         return getDataInputDataFeed(GetDataInputDataFeedRequest.builder().build());
@@ -581,8 +582,8 @@ public class RawIndustrialClient {
      * <p>Your first call to this endpoint will provide you with the most recent data points for each data input and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get data point updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputListResponse> getDataInputDataFeed(RequestOptions requestOptions) {
         return getDataInputDataFeed(GetDataInputDataFeedRequest.builder().build(), requestOptions);
@@ -593,8 +594,8 @@ public class RawIndustrialClient {
      * <p>Your first call to this endpoint will provide you with the most recent data points for each data input and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get data point updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputListResponse> getDataInputDataFeed(GetDataInputDataFeedRequest request) {
         return getDataInputDataFeed(request, null);
@@ -605,8 +606,8 @@ public class RawIndustrialClient {
      * <p>Your first call to this endpoint will provide you with the most recent data points for each data input and a <code>pagination</code> object that contains an <code>endCursor</code>.</p>
      * <p>You can provide the <code>endCursor</code> to the <code>after</code> parameter of this endpoint to get data point updates since that <code>endCursor</code>.</p>
      * <p>If <code>hasNextPage</code> is <code>false</code>, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.</p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputListResponse> getDataInputDataFeed(
             GetDataInputDataFeedRequest request, RequestOptions requestOptions) {
@@ -665,8 +666,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns all known data points during the given time range for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputListResponse> getDataInputDataHistory(
             GetDataInputDataHistoryRequest request) {
@@ -675,8 +676,8 @@ public class RawIndustrialClient {
 
     /**
      * Returns all known data points during the given time range for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<DataInputListResponse> getDataInputDataHistory(
             GetDataInputDataHistoryRequest request, RequestOptions requestOptions) {
@@ -738,13 +739,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch all cameras.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<List<V1VisionCamerasResponseItem>> v1GetCameras() {
         return v1GetCameras(null);
@@ -753,13 +754,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch all cameras.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<List<V1VisionCamerasResponseItem>> v1GetCameras(RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
@@ -800,31 +801,65 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch configured programs on the camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(long cameraId) {
-        return v1GetVisionProgramsByCamera(cameraId, null);
+        return v1GetVisionProgramsByCamera(
+                cameraId, V1GetVisionProgramsByCameraRequest.builder().build());
     }
 
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch configured programs on the camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
             long cameraId, RequestOptions requestOptions) {
+        return v1GetVisionProgramsByCamera(
+                cameraId, V1GetVisionProgramsByCameraRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * <p>&lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * <i class="fa fa-exclamation-circle"></i>
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;</p>
+     * Fetch configured programs on the camera.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     */
+    public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
+            long cameraId, V1GetVisionProgramsByCameraRequest request) {
+        return v1GetVisionProgramsByCamera(cameraId, request, null);
+    }
+
+    /**
+     * <p>&lt;n class=&quot;warning&quot;&gt;
+     * &lt;nh&gt;
+     * <i class="fa fa-exclamation-circle"></i>
+     * This endpoint is still on our legacy API.
+     * &lt;/nh&gt;
+     * &lt;/n&gt;</p>
+     * Fetch configured programs on the camera.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     */
+    public SamsaraApiHttpResponse<List<V1ProgramsForTheCameraResponseItem>> v1GetVisionProgramsByCamera(
+            long cameraId, V1GetVisionProgramsByCameraRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("v1/industrial/vision/cameras")
@@ -835,12 +870,12 @@ public class RawIndustrialClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -864,8 +899,8 @@ public class RawIndustrialClient {
 
     /**
      * Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunByCameraResponse> v1GetVisionLatestRunCamera(long cameraId) {
         return v1GetVisionLatestRunCamera(
@@ -874,8 +909,8 @@ public class RawIndustrialClient {
 
     /**
      * Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunByCameraResponse> v1GetVisionLatestRunCamera(
             long cameraId, RequestOptions requestOptions) {
@@ -885,8 +920,8 @@ public class RawIndustrialClient {
 
     /**
      * Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunByCameraResponse> v1GetVisionLatestRunCamera(
             long cameraId, V1GetVisionLatestRunCameraRequest request) {
@@ -895,8 +930,8 @@ public class RawIndustrialClient {
 
     /**
      * Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunByCameraResponse> v1GetVisionLatestRunCamera(
             long cameraId, V1GetVisionLatestRunCameraRequest request, RequestOptions requestOptions) {
@@ -954,13 +989,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunsResponse> v1GetVisionRuns(V1GetVisionRunsRequest request) {
         return v1GetVisionRuns(request, null);
@@ -969,13 +1004,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunsResponse> v1GetVisionRuns(
             V1GetVisionRunsRequest request, RequestOptions requestOptions) {
@@ -1020,13 +1055,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs by camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<List<V1VisionRunsByCameraResponseItem>> getVisionRunsByCamera(
             long cameraId, GetVisionRunsByCameraRequest request) {
@@ -1036,13 +1071,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs by camera.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<List<V1VisionRunsByCameraResponseItem>> getVisionRunsByCamera(
             long cameraId, GetVisionRunsByCameraRequest request, RequestOptions requestOptions) {
@@ -1090,13 +1125,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs by camera and program.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunsByCameraAndProgramResponse> v1GetVisionRunsByCameraAndProgram(
             long cameraId, long programId, long startedAtMs) {
@@ -1110,13 +1145,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs by camera and program.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunsByCameraAndProgramResponse> v1GetVisionRunsByCameraAndProgram(
             long cameraId, long programId, long startedAtMs, RequestOptions requestOptions) {
@@ -1131,13 +1166,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs by camera and program.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunsByCameraAndProgramResponse> v1GetVisionRunsByCameraAndProgram(
             long cameraId, long programId, long startedAtMs, V1GetVisionRunsByCameraAndProgramRequest request) {
@@ -1147,13 +1182,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Fetch runs by camera and program.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1VisionRunsByCameraAndProgramResponse> v1GetVisionRunsByCameraAndProgram(
             long cameraId,
@@ -1206,13 +1241,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get historical data for machine objects. This method returns a set of historical data for all machines.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1MachineHistoryResponse> v1GetMachinesHistory(InlineObject3 request) {
         return v1GetMachinesHistory(request, null);
@@ -1221,13 +1256,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get historical data for machine objects. This method returns a set of historical data for all machines.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<V1MachineHistoryResponse> v1GetMachinesHistory(
             InlineObject3 request, RequestOptions requestOptions) {
@@ -1276,13 +1311,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse2008> v1GetMachines() {
         return v1GetMachines(null);
@@ -1291,13 +1326,13 @@ public class RawIndustrialClient {
     /**
      * <p>&lt;n class=&quot;warning&quot;&gt;
      * &lt;nh&gt;
-     * &lt;i class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;
+     * <i class="fa fa-exclamation-circle"></i>
      * This endpoint is still on our legacy API.
      * &lt;/nh&gt;
      * &lt;/n&gt;</p>
      * Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
     public SamsaraApiHttpResponse<InlineResponse2008> v1GetMachines(RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())

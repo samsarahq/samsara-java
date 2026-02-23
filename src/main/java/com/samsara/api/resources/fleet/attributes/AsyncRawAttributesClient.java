@@ -9,6 +9,7 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.core.SamsaraApiApiException;
 import com.samsara.api.core.SamsaraApiException;
 import com.samsara.api.core.SamsaraApiHttpResponse;
+import com.samsara.api.resources.fleet.attributes.requests.UpdateAttributesRequest;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import okhttp3.Call;
@@ -17,6 +18,7 @@ import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
@@ -29,10 +31,19 @@ public class AsyncRawAttributesClient {
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id) {
-        return update(id, null);
+        return update(id, UpdateAttributesRequest.builder().build());
     }
 
     public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id, RequestOptions requestOptions) {
+        return update(id, UpdateAttributesRequest.builder().build(), requestOptions);
+    }
+
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> update(String id, UpdateAttributesRequest request) {
+        return update(id, request, null);
+    }
+
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> update(
+            String id, UpdateAttributesRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("fleet/attributes")
@@ -42,11 +53,11 @@ public class AsyncRawAttributesClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
-                .method("PATCH", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .build();
+                .method("PATCH", RequestBody.create("", null))
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

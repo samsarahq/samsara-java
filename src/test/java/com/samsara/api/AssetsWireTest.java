@@ -7,7 +7,9 @@ import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
+import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
+import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAllAssetCurrentLocationsRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
@@ -589,7 +591,7 @@ public class AssetsWireTest {
     @Test
     public void testGet() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.assets().get("id");
+        client.assets().get("id", GetAssetsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -598,7 +600,7 @@ public class AssetsWireTest {
     @Test
     public void testUpdate() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.assets().update("id");
+        client.assets().update("id", UpdateAssetsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("PATCH", request.getMethod());

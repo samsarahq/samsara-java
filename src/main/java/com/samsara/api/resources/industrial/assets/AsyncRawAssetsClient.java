@@ -9,6 +9,7 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.core.SamsaraApiApiException;
 import com.samsara.api.core.SamsaraApiException;
 import com.samsara.api.core.SamsaraApiHttpResponse;
+import com.samsara.api.resources.industrial.assets.requests.DeleteAssetsRequest;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import okhttp3.Call;
@@ -30,19 +31,38 @@ public class AsyncRawAssetsClient {
 
     /**
      * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
-    public CompletableFuture<SamsaraApiHttpResponse<String>> delete(String id) {
-        return delete(id, null);
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id) {
+        return delete(id, DeleteAssetsRequest.builder().build());
     }
 
     /**
      * Delete asset.
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href=&quot;https://forms.gle/zkD4NCH7HjKb7mm69&quot; target=&quot;_blank&quot;&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href=&quot;https://www.samsara.com/help&quot; target=&quot;_blank&quot;&gt;submit a case&lt;/a&gt; to our support team.</p>
-     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="/docs/authentication#scopes-for-api-tokens">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
-    public CompletableFuture<SamsaraApiHttpResponse<String>> delete(String id, RequestOptions requestOptions) {
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, RequestOptions requestOptions) {
+        return delete(id, DeleteAssetsRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Delete asset.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(String id, DeleteAssetsRequest request) {
+        return delete(id, request, null);
+    }
+
+    /**
+     * Delete asset.
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     * <p>To use this endpoint, select <strong>Write Equipment</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<Void>> delete(
+            String id, DeleteAssetsRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("industrial/assets")
@@ -52,27 +72,25 @@ public class AsyncRawAssetsClient {
                 httpUrl.addQueryParameter(_key, _value);
             });
         }
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("DELETE", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
-        CompletableFuture<SamsaraApiHttpResponse<String>> future = new CompletableFuture<>();
+        CompletableFuture<SamsaraApiHttpResponse<Void>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                        future.complete(new SamsaraApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, String.class), response));
+                        future.complete(new SamsaraApiHttpResponse<>(null, response));
                         return;
                     }
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new SamsaraApiApiException(
                             "Error with status code " + response.code(), response.code(), errorBody, response));

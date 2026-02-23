@@ -3,6 +3,8 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.trailers.requests.DeleteTrailerRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerRequest;
 import com.samsara.api.resources.trailers.requests.ListTrailersRequest;
 import com.samsara.api.resources.trailers.requests.TrailersCreateTrailerRequestBody;
 import com.samsara.api.resources.trailers.requests.TrailersUpdateTrailerRequestBody;
@@ -244,7 +246,8 @@ public class TrailersWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"enabledForMobile\":true,\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\",\"installedGateway\":{\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"},\"licensePlate\":\"7TYP290\",\"name\":\"Trailer-123\",\"notes\":\"These are my trailer notes\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"trailerSerialNumber\":\"8V8WD530FLN016251\"}}"));
-        TrailersGetTrailerResponseBody response = client.trailers().getTrailer("id");
+        TrailersGetTrailerResponseBody response =
+                client.trailers().getTrailer("id", GetTrailerRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -329,7 +332,7 @@ public class TrailersWireTest {
     @Test
     public void testDeleteTrailer() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.trailers().deleteTrailer("id");
+        client.trailers().deleteTrailer("id", DeleteTrailerRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());

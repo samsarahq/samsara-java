@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.tags.requests.CreateTagRequest;
+import com.samsara.api.resources.tags.requests.DeleteTagsRequest;
+import com.samsara.api.resources.tags.requests.GetTagRequest;
 import com.samsara.api.resources.tags.requests.ListTagsRequest;
 import com.samsara.api.resources.tags.requests.PatchTagRequest;
 import com.samsara.api.resources.tags.requests.ReplaceTagRequest;
@@ -214,7 +216,8 @@ public class TagsWireTest {
                         .setResponseCode(200)
                         .setBody(
                                 "{\"data\":{\"addresses\":[{\"id\":\"23502866574\",\"name\":\"Driver Don\"}],\"assets\":[{\"id\":\"23502866574\",\"name\":\"Driver Don\"}],\"drivers\":[{\"id\":\"23502866574\",\"name\":\"Driver Don\"}],\"machines\":[{\"id\":\"23502866574\",\"name\":\"Driver Don\"}],\"parentTag\":{\"id\":\"23502866574\",\"name\":\"US West Vehicles\"},\"sensors\":[{\"id\":\"23502866574\",\"name\":\"Driver Don\"}],\"vehicles\":[{\"id\":\"23502866574\",\"name\":\"Driver Don\"}],\"id\":\"342417\",\"name\":\"California\",\"parentTagId\":\"4815\"}}"));
-        TagResponse response = client.tags().getTag("id");
+        TagResponse response =
+                client.tags().getTag("id", GetTagRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -427,22 +430,11 @@ public class TagsWireTest {
 
     @Test
     public void testDelete() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"id\":\"test-id\",\"name\":\"test-name\",\"value\":\"test-value\",\"success\":true,\"data\":{}}"));
-        String response = client.tags().delete("id");
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.tags().delete("id", DeleteTagsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
-
-        // Validate response deserialization
-        Assertions.assertNotNull(response, "Response should not be null");
-        // Verify the response can be serialized back to JSON
-        String responseJson = objectMapper.writeValueAsString(response);
-        Assertions.assertNotNull(responseJson);
-        Assertions.assertFalse(responseJson.isEmpty());
     }
 
     @Test

@@ -11,6 +11,7 @@ import com.samsara.api.resources.forms.requests.GetFormSubmissionsStreamRequest;
 import com.samsara.api.resources.forms.requests.GetFormTemplatesRequest;
 import com.samsara.api.resources.forms.requests.PostFormSubmissionsPdfExportsRequest;
 import com.samsara.api.resources.forms.types.FormSubmissionsPatchFormSubmissionRequestBodyStatus;
+import com.samsara.api.resources.forms.types.FormSubmissionsPostFormSubmissionRequestBodyStatus;
 import com.samsara.api.types.FormSubmissionsGetFormSubmissionsPdfExportsResponseBody;
 import com.samsara.api.types.FormSubmissionsGetFormSubmissionsResponseBody;
 import com.samsara.api.types.FormSubmissionsGetFormSubmissionsStreamResponseBody;
@@ -105,6 +106,7 @@ public class FormsWireTest {
                                 .id("9814a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                                 .revisionId("1214a1fa-f0c6-408b-bf85-51dc3bc71ac7")
                                 .build())
+                        .status(FormSubmissionsPostFormSubmissionRequestBodyStatus.NOT_STARTED)
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);

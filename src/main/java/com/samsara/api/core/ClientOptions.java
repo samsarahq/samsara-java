@@ -44,10 +44,10 @@ public final class ClientOptions {
         this.headers.putAll(headers);
         this.headers.putAll(new HashMap<String, String>() {
             {
-                put("User-Agent", "com.samsara:samsara-java-sdk/5.7.2");
+                put("User-Agent", "com.samsara:samsara-java-sdk/5.8.0");
                 put("X-Fern-Language", "JAVA");
                 put("X-Fern-SDK-Name", "com.samsara.fern:api-sdk");
-                put("X-Fern-SDK-Version", "5.7.2");
+                put("X-Fern-SDK-Version", "5.8.0");
             }
         });
         this.headerSuppliers = headerSuppliers;

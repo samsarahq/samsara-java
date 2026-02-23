@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.hoursofservice.types.GetHosDailyLogsRequestDriverActivationStatus;
+import com.samsara.api.resources.hoursofservice.types.GetHosDailyLogsRequestExpand;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public final class GetHosDailyLogsRequest {
 
     private final Optional<String> after;
 
-    private final Optional<String> expand;
+    private final Optional<GetHosDailyLogsRequestExpand> expand;
 
     private final Map<String, Object> additionalProperties;
 
@@ -49,7 +50,7 @@ public final class GetHosDailyLogsRequest {
             Optional<String> parentTagIds,
             Optional<GetHosDailyLogsRequestDriverActivationStatus> driverActivationStatus,
             Optional<String> after,
-            Optional<String> expand,
+            Optional<GetHosDailyLogsRequestExpand> expand,
             Map<String, Object> additionalProperties) {
         this.driverIds = driverIds;
         this.startDate = startDate;
@@ -123,7 +124,7 @@ public final class GetHosDailyLogsRequest {
      * <p>Valid value: <code>vehicle</code>  Valid values: <code>vehicle</code></p>
      */
     @JsonProperty("expand")
-    public Optional<String> getExpand() {
+    public Optional<GetHosDailyLogsRequestExpand> getExpand() {
         return expand;
     }
 
@@ -187,7 +188,7 @@ public final class GetHosDailyLogsRequest {
 
         private Optional<String> after = Optional.empty();
 
-        private Optional<String> expand = Optional.empty();
+        private Optional<GetHosDailyLogsRequestExpand> expand = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -315,12 +316,12 @@ public final class GetHosDailyLogsRequest {
          * <p>Valid value: <code>vehicle</code>  Valid values: <code>vehicle</code></p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
+        public Builder expand(Optional<GetHosDailyLogsRequestExpand> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(GetHosDailyLogsRequestExpand expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }

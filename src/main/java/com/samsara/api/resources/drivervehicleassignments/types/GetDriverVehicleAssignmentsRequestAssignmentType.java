@@ -19,6 +19,9 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
     public static final GetDriverVehicleAssignmentsRequestAssignmentType FACE_ID =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.FACE_ID, "faceId");
 
+    public static final GetDriverVehicleAssignmentsRequestAssignmentType DRIVER_APP =
+            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.DRIVER_APP, "driverApp");
+
     public static final GetDriverVehicleAssignmentsRequestAssignmentType EXTERNAL =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.EXTERNAL, "external");
 
@@ -78,6 +81,8 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
                 return visitor.visitSafetyManual();
             case FACE_ID:
                 return visitor.visitFaceId();
+            case DRIVER_APP:
+                return visitor.visitDriverApp();
             case EXTERNAL:
                 return visitor.visitExternal();
             case HOS:
@@ -107,6 +112,8 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
                 return SAFETY_MANUAL;
             case "faceId":
                 return FACE_ID;
+            case "driverApp":
+                return DRIVER_APP;
             case "external":
                 return EXTERNAL;
             case "HOS":
@@ -145,6 +152,8 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
 
         QR_CODE,
 
+        DRIVER_APP,
+
         UNKNOWN
     }
 
@@ -168,6 +177,8 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
         T visitExternal();
 
         T visitQrCode();
+
+        T visitDriverApp();
 
         T visitUnknown(String unknownType);
     }
