@@ -75,7 +75,8 @@ public final class GetReadingsHistoryRequest {
     /**
      * @return The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
      * <p>Available reading IDs (by category):</p>
-     * <p><strong>diagnostic</strong></p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
      * <ul>
      * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
      * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
@@ -148,6 +149,7 @@ public final class GetReadingsHistoryRequest {
      * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
      * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
      * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+     * <li><code>rfidCardIdScan</code> (RFID Card Scan): The card number from RFID Card scans used for identification. When a user taps their RFID card on the reader, this captures the unique card code.</li>
      * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
      * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
      * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
@@ -166,7 +168,9 @@ public final class GetReadingsHistoryRequest {
      * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
      * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
      * </ul>
-     * <p><strong>levelMonitoring</strong></p>
+     * <p>&lt;/details&gt;</p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>levelMonitoring</strong>&lt;/summary&gt;</p>
      * <ul>
      * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
      * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
@@ -176,7 +180,9 @@ public final class GetReadingsHistoryRequest {
      * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
      * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
      * </ul>
-     * <p><strong>obd</strong></p>
+     * <p>&lt;/details&gt;</p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>obd</strong>&lt;/summary&gt;</p>
      * <ul>
      * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
      * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
@@ -213,13 +219,17 @@ public final class GetReadingsHistoryRequest {
      * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
      * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
      * </ul>
-     * <p><strong>pressureVesselHealth</strong></p>
+     * <p>&lt;/details&gt;</p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>pressureVesselHealth</strong>&lt;/summary&gt;</p>
      * <ul>
      * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
      * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
      * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
      * </ul>
-     * <p><strong>reefer</strong></p>
+     * <p>&lt;/details&gt;</p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>reefer</strong>&lt;/summary&gt;</p>
      * <ul>
      * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
      * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
@@ -252,7 +262,9 @@ public final class GetReadingsHistoryRequest {
      * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
      * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
      * </ul>
-     * <p><strong>smartTrailer</strong></p>
+     * <p>&lt;/details&gt;</p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>smartTrailer</strong>&lt;/summary&gt;</p>
      * <ul>
      * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
      * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
@@ -271,6 +283,7 @@ public final class GetReadingsHistoryRequest {
      * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
      * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
      * </ul>
+     * <p>&lt;/details&gt;</p>
      * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
      */
     @JsonProperty("readingId")
@@ -384,7 +397,8 @@ public final class GetReadingsHistoryRequest {
         /**
          * <p>The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
-         * <p><strong>diagnostic</strong></p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
          * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
@@ -457,6 +471,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
          * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
          * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+         * <li><code>rfidCardIdScan</code> (RFID Card Scan): The card number from RFID Card scans used for identification. When a user taps their RFID card on the reader, this captures the unique card code.</li>
          * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
          * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
          * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
@@ -475,7 +490,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
          * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
          * </ul>
-         * <p><strong>levelMonitoring</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>levelMonitoring</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
          * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
@@ -485,7 +502,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
          * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
          * </ul>
-         * <p><strong>obd</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>obd</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
          * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
@@ -522,13 +541,17 @@ public final class GetReadingsHistoryRequest {
          * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
          * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
          * </ul>
-         * <p><strong>pressureVesselHealth</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>pressureVesselHealth</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
          * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
          * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
          * </ul>
-         * <p><strong>reefer</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>reefer</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
          * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
@@ -561,7 +584,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
          * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
          * </ul>
-         * <p><strong>smartTrailer</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>smartTrailer</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
@@ -580,6 +605,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
          * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
          * </ul>
+         * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          */
         EntityTypeStage readingId(@NotNull String readingId);
@@ -689,7 +715,8 @@ public final class GetReadingsHistoryRequest {
         /**
          * <p>The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
-         * <p><strong>diagnostic</strong></p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
          * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
@@ -762,6 +789,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
          * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
          * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+         * <li><code>rfidCardIdScan</code> (RFID Card Scan): The card number from RFID Card scans used for identification. When a user taps their RFID card on the reader, this captures the unique card code.</li>
          * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
          * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
          * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
@@ -780,7 +808,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
          * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
          * </ul>
-         * <p><strong>levelMonitoring</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>levelMonitoring</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
          * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
@@ -790,7 +820,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
          * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
          * </ul>
-         * <p><strong>obd</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>obd</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
          * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
@@ -827,13 +859,17 @@ public final class GetReadingsHistoryRequest {
          * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
          * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
          * </ul>
-         * <p><strong>pressureVesselHealth</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>pressureVesselHealth</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
          * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
          * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
          * </ul>
-         * <p><strong>reefer</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>reefer</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
          * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
@@ -866,7 +902,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
          * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
          * </ul>
-         * <p><strong>smartTrailer</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>smartTrailer</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
@@ -885,10 +923,12 @@ public final class GetReadingsHistoryRequest {
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
          * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
          * </ul>
+         * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          * <p>The reading ID to retrieve data for. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
-         * <p><strong>diagnostic</strong></p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>airInletPressure</code> (Air Inlet Pressure): Air inlet pressure. (kilopascal)</li>
          * <li><code>airTemp</code> (Air Inlet (Ambient Air) Temp): Air inlet (ambient air) temperature. (celsius)</li>
@@ -961,6 +1001,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>phaseCLLVolts</code> (Phase C Line-to-Line Voltage): Line-to-line voltage for Phase C in volts. (volt)</li>
          * <li><code>phaseCLNVolts</code> (Phase C Line-to-Neutral Voltage): Line-to-neutral voltage for Phase C in volts. (volt)</li>
          * <li><code>powerFactorRatio</code> (Power Factor Ratio): Represents the power factor ratio. (percent)</li>
+         * <li><code>rfidCardIdScan</code> (RFID Card Scan): The card number from RFID Card scans used for identification. When a user taps their RFID card on the reader, this captures the unique card code.</li>
          * <li><code>samsaraEngineHours</code> (Samsara Engine Hours): Samsara's intelligent engine hours calculation that combines ECU data, synthetic calculations, and manual overrides with automatic fallbacks for optimal accuracy across all asset types. (millisecond)</li>
          * <li><code>samsaraEngineHoursWithSource</code> (Samsara Engine Hours with Source): Samsara's intelligent engine hours calculation including detailed source metadata to indicate the origin of the data (ECU, synthetic, or manual override). Useful for debugging and understanding data provenance.</li>
          * <li><code>samsaraOdometer</code> (Samsara Odometer): Samsara automatically pulls odometer readings from a vehicle's engine control unit (ECU). If the reading isn't available and the vehicle is unregulated, you can manually enter the odometer value for maintenance tracking—this value will then update based on GPS trip data. (kilometer)</li>
@@ -979,7 +1020,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>totalReactivePower</code> (Total Reactive Power): Total reactive power in volt-amperes reactive. (voltAmpereReactive)</li>
          * <li><code>totalRealPower</code> (Total Real Power): Total real power in watts. (watt)</li>
          * </ul>
-         * <p><strong>levelMonitoring</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>levelMonitoring</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
          * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
@@ -989,7 +1032,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
          * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
          * </ul>
-         * <p><strong>obd</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>obd</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
          * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
@@ -1026,13 +1071,17 @@ public final class GetReadingsHistoryRequest {
          * <li><code>ycBrakeControlActive</code> (YC Brake Control Active): Indicates whether Yaw Control (YC) has activated brake control. (values: passive | active)</li>
          * <li><code>ycEngineControlActive</code> (YC Engine Control Active): Indicates whether Yaw Control (YC) has commanded engine control to be active. (values: passive | active)</li>
          * </ul>
-         * <p><strong>pressureVesselHealth</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>pressureVesselHealth</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>pressureVesselBatteryLevelPercentage</code> (Pressure Vessel Battery Level Percentage): Battery level percentage of the pressure vessel. (percent)</li>
          * <li><code>pressureVesselPressure</code> (Pressure Vessel Pressure): Pressure of the pressure vessel. (kilopascal)</li>
          * <li><code>pressureVesselTemperature</code> (Pressure Vessel Temperature): Temperature of the pressure vessel. (celsius)</li>
          * </ul>
-         * <p><strong>reefer</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>reefer</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>reeferAlarm</code> (Reefer Alarms): Array of active alarm codes for the refrigeration unit with metadata</li>
          * <li><code>reeferAlarmSeverity</code> (Reefer Alarm Severity): Highest severity level across active reefer alarms (green, yellow, red, orange) (values: none | green | yellow | red | orange)</li>
@@ -1065,7 +1114,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>reeferTemperatureRecorder5</code> (Reefer Temperature Recorder (Zone 5)): Temperature recorder reading for reefer zone 5 (celsius)</li>
          * <li><code>reeferTemperatureRecorder6</code> (Reefer Temperature Recorder (Zone 6)): Temperature recorder reading for reefer zone 6 (celsius)</li>
          * </ul>
-         * <p><strong>smartTrailer</strong></p>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>smartTrailer</strong>&lt;/summary&gt;</p>
          * <ul>
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
@@ -1084,6 +1135,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
          * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
          * </ul>
+         * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
