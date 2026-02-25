@@ -151,7 +151,7 @@ client.addresses().create(
 <dl>
 <dd>
 
-**addressTypes:** `Optional<List<CreateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
+**addressTypes:** `Optional<List<CreateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`, `vendor`, `inventory`.
     
 </dd>
 </dl>
@@ -420,7 +420,7 @@ client.addresses().update(
 <dl>
 <dd>
 
-**addressTypes:** `Optional<List<UpdateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
+**addressTypes:** `Optional<List<UpdateAddressRequestAddressTypesItem>>` — Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`, `vendor`, `inventory`.
     
 </dd>
 </dl>

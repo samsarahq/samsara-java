@@ -13,20 +13,26 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
     public static final IdlingEventAddressObjectResponseBodyAddressTypesItem UNAUTHORIZED_ZONE =
             new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
 
-    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem INDUSTRIAL_SITE =
-            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
+    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem INVENTORY =
+            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.INVENTORY, "inventory");
 
     public static final IdlingEventAddressObjectResponseBodyAddressTypesItem AVOIDANCE_ZONE =
             new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.AVOIDANCE_ZONE, "avoidanceZone");
+
+    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem VENDOR =
+            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.VENDOR, "vendor");
+
+    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem SHORT_HAUL =
+            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.SHORT_HAUL, "shortHaul");
+
+    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem INDUSTRIAL_SITE =
+            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
     public static final IdlingEventAddressObjectResponseBodyAddressTypesItem ALERTS_ONLY =
             new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.ALERTS_ONLY, "alertsOnly");
 
     public static final IdlingEventAddressObjectResponseBodyAddressTypesItem RISK_ZONE =
             new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.RISK_ZONE, "riskZone");
-
-    public static final IdlingEventAddressObjectResponseBodyAddressTypesItem SHORT_HAUL =
-            new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.SHORT_HAUL, "shortHaul");
 
     public static final IdlingEventAddressObjectResponseBodyAddressTypesItem UNDEFINED =
             new IdlingEventAddressObjectResponseBodyAddressTypesItem(Value.UNDEFINED, "undefined");
@@ -81,16 +87,20 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
                 return visitor.visitAuthorizedZone();
             case UNAUTHORIZED_ZONE:
                 return visitor.visitUnauthorizedZone();
-            case INDUSTRIAL_SITE:
-                return visitor.visitIndustrialSite();
+            case INVENTORY:
+                return visitor.visitInventory();
             case AVOIDANCE_ZONE:
                 return visitor.visitAvoidanceZone();
+            case VENDOR:
+                return visitor.visitVendor();
+            case SHORT_HAUL:
+                return visitor.visitShortHaul();
+            case INDUSTRIAL_SITE:
+                return visitor.visitIndustrialSite();
             case ALERTS_ONLY:
                 return visitor.visitAlertsOnly();
             case RISK_ZONE:
                 return visitor.visitRiskZone();
-            case SHORT_HAUL:
-                return visitor.visitShortHaul();
             case UNDEFINED:
                 return visitor.visitUndefined();
             case AGRICULTURE_SOURCE:
@@ -114,16 +124,20 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
                 return AUTHORIZED_ZONE;
             case "unauthorizedZone":
                 return UNAUTHORIZED_ZONE;
-            case "industrialSite":
-                return INDUSTRIAL_SITE;
+            case "inventory":
+                return INVENTORY;
             case "avoidanceZone":
                 return AVOIDANCE_ZONE;
+            case "vendor":
+                return VENDOR;
+            case "shortHaul":
+                return SHORT_HAUL;
+            case "industrialSite":
+                return INDUSTRIAL_SITE;
             case "alertsOnly":
                 return ALERTS_ONLY;
             case "riskZone":
                 return RISK_ZONE;
-            case "shortHaul":
-                return SHORT_HAUL;
             case "undefined":
                 return UNDEFINED;
             case "agricultureSource":
@@ -150,6 +164,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
 
         INDUSTRIAL_SITE,
 
+        INVENTORY,
+
         KNOWN_GPS_JAMMING_ZONE,
 
         RISK_ZONE,
@@ -159,6 +175,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
         UNAUTHORIZED_ZONE,
 
         UNDEFINED,
+
+        VENDOR,
 
         WORKFORCE_SITE,
 
@@ -178,6 +196,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
 
         T visitIndustrialSite();
 
+        T visitInventory();
+
         T visitKnownGpsJammingZone();
 
         T visitRiskZone();
@@ -187,6 +207,8 @@ public final class IdlingEventAddressObjectResponseBodyAddressTypesItem {
         T visitUnauthorizedZone();
 
         T visitUndefined();
+
+        T visitVendor();
 
         T visitWorkforceSite();
 

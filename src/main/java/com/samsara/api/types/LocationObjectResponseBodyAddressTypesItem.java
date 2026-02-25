@@ -13,20 +13,26 @@ public final class LocationObjectResponseBodyAddressTypesItem {
     public static final LocationObjectResponseBodyAddressTypesItem UNAUTHORIZED_ZONE =
             new LocationObjectResponseBodyAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
 
-    public static final LocationObjectResponseBodyAddressTypesItem INDUSTRIAL_SITE =
-            new LocationObjectResponseBodyAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
+    public static final LocationObjectResponseBodyAddressTypesItem INVENTORY =
+            new LocationObjectResponseBodyAddressTypesItem(Value.INVENTORY, "inventory");
 
     public static final LocationObjectResponseBodyAddressTypesItem AVOIDANCE_ZONE =
             new LocationObjectResponseBodyAddressTypesItem(Value.AVOIDANCE_ZONE, "avoidanceZone");
+
+    public static final LocationObjectResponseBodyAddressTypesItem VENDOR =
+            new LocationObjectResponseBodyAddressTypesItem(Value.VENDOR, "vendor");
+
+    public static final LocationObjectResponseBodyAddressTypesItem SHORT_HAUL =
+            new LocationObjectResponseBodyAddressTypesItem(Value.SHORT_HAUL, "shortHaul");
+
+    public static final LocationObjectResponseBodyAddressTypesItem INDUSTRIAL_SITE =
+            new LocationObjectResponseBodyAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
     public static final LocationObjectResponseBodyAddressTypesItem ALERTS_ONLY =
             new LocationObjectResponseBodyAddressTypesItem(Value.ALERTS_ONLY, "alertsOnly");
 
     public static final LocationObjectResponseBodyAddressTypesItem RISK_ZONE =
             new LocationObjectResponseBodyAddressTypesItem(Value.RISK_ZONE, "riskZone");
-
-    public static final LocationObjectResponseBodyAddressTypesItem SHORT_HAUL =
-            new LocationObjectResponseBodyAddressTypesItem(Value.SHORT_HAUL, "shortHaul");
 
     public static final LocationObjectResponseBodyAddressTypesItem UNDEFINED =
             new LocationObjectResponseBodyAddressTypesItem(Value.UNDEFINED, "undefined");
@@ -80,16 +86,20 @@ public final class LocationObjectResponseBodyAddressTypesItem {
                 return visitor.visitAuthorizedZone();
             case UNAUTHORIZED_ZONE:
                 return visitor.visitUnauthorizedZone();
-            case INDUSTRIAL_SITE:
-                return visitor.visitIndustrialSite();
+            case INVENTORY:
+                return visitor.visitInventory();
             case AVOIDANCE_ZONE:
                 return visitor.visitAvoidanceZone();
+            case VENDOR:
+                return visitor.visitVendor();
+            case SHORT_HAUL:
+                return visitor.visitShortHaul();
+            case INDUSTRIAL_SITE:
+                return visitor.visitIndustrialSite();
             case ALERTS_ONLY:
                 return visitor.visitAlertsOnly();
             case RISK_ZONE:
                 return visitor.visitRiskZone();
-            case SHORT_HAUL:
-                return visitor.visitShortHaul();
             case UNDEFINED:
                 return visitor.visitUndefined();
             case AGRICULTURE_SOURCE:
@@ -113,16 +123,20 @@ public final class LocationObjectResponseBodyAddressTypesItem {
                 return AUTHORIZED_ZONE;
             case "unauthorizedZone":
                 return UNAUTHORIZED_ZONE;
-            case "industrialSite":
-                return INDUSTRIAL_SITE;
+            case "inventory":
+                return INVENTORY;
             case "avoidanceZone":
                 return AVOIDANCE_ZONE;
+            case "vendor":
+                return VENDOR;
+            case "shortHaul":
+                return SHORT_HAUL;
+            case "industrialSite":
+                return INDUSTRIAL_SITE;
             case "alertsOnly":
                 return ALERTS_ONLY;
             case "riskZone":
                 return RISK_ZONE;
-            case "shortHaul":
-                return SHORT_HAUL;
             case "undefined":
                 return UNDEFINED;
             case "agricultureSource":
@@ -149,6 +163,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
 
         INDUSTRIAL_SITE,
 
+        INVENTORY,
+
         KNOWN_GPS_JAMMING_ZONE,
 
         RISK_ZONE,
@@ -158,6 +174,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
         UNAUTHORIZED_ZONE,
 
         UNDEFINED,
+
+        VENDOR,
 
         WORKFORCE_SITE,
 
@@ -177,6 +195,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
 
         T visitIndustrialSite();
 
+        T visitInventory();
+
         T visitKnownGpsJammingZone();
 
         T visitRiskZone();
@@ -186,6 +206,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
         T visitUnauthorizedZone();
 
         T visitUndefined();
+
+        T visitVendor();
 
         T visitWorkforceSite();
 

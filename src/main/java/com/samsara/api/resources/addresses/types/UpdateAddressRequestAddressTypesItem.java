@@ -13,14 +13,20 @@ public final class UpdateAddressRequestAddressTypesItem {
     public static final UpdateAddressRequestAddressTypesItem UNAUTHORIZED_ZONE =
             new UpdateAddressRequestAddressTypesItem(Value.UNAUTHORIZED_ZONE, "unauthorizedZone");
 
-    public static final UpdateAddressRequestAddressTypesItem INDUSTRIAL_SITE =
-            new UpdateAddressRequestAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
+    public static final UpdateAddressRequestAddressTypesItem INVENTORY =
+            new UpdateAddressRequestAddressTypesItem(Value.INVENTORY, "inventory");
 
     public static final UpdateAddressRequestAddressTypesItem AVOIDANCE_ZONE =
             new UpdateAddressRequestAddressTypesItem(Value.AVOIDANCE_ZONE, "avoidanceZone");
 
+    public static final UpdateAddressRequestAddressTypesItem VENDOR =
+            new UpdateAddressRequestAddressTypesItem(Value.VENDOR, "vendor");
+
     public static final UpdateAddressRequestAddressTypesItem SHORT_HAUL =
             new UpdateAddressRequestAddressTypesItem(Value.SHORT_HAUL, "shortHaul");
+
+    public static final UpdateAddressRequestAddressTypesItem INDUSTRIAL_SITE =
+            new UpdateAddressRequestAddressTypesItem(Value.INDUSTRIAL_SITE, "industrialSite");
 
     public static final UpdateAddressRequestAddressTypesItem RISK_ZONE =
             new UpdateAddressRequestAddressTypesItem(Value.RISK_ZONE, "riskZone");
@@ -77,12 +83,16 @@ public final class UpdateAddressRequestAddressTypesItem {
                 return visitor.visitAuthorizedZone();
             case UNAUTHORIZED_ZONE:
                 return visitor.visitUnauthorizedZone();
-            case INDUSTRIAL_SITE:
-                return visitor.visitIndustrialSite();
+            case INVENTORY:
+                return visitor.visitInventory();
             case AVOIDANCE_ZONE:
                 return visitor.visitAvoidanceZone();
+            case VENDOR:
+                return visitor.visitVendor();
             case SHORT_HAUL:
                 return visitor.visitShortHaul();
+            case INDUSTRIAL_SITE:
+                return visitor.visitIndustrialSite();
             case RISK_ZONE:
                 return visitor.visitRiskZone();
             case ALERTS_ONLY:
@@ -108,12 +118,16 @@ public final class UpdateAddressRequestAddressTypesItem {
                 return AUTHORIZED_ZONE;
             case "unauthorizedZone":
                 return UNAUTHORIZED_ZONE;
-            case "industrialSite":
-                return INDUSTRIAL_SITE;
+            case "inventory":
+                return INVENTORY;
             case "avoidanceZone":
                 return AVOIDANCE_ZONE;
+            case "vendor":
+                return VENDOR;
             case "shortHaul":
                 return SHORT_HAUL;
+            case "industrialSite":
+                return INDUSTRIAL_SITE;
             case "riskZone":
                 return RISK_ZONE;
             case "alertsOnly":
@@ -154,6 +168,10 @@ public final class UpdateAddressRequestAddressTypesItem {
 
         UNAUTHORIZED_ZONE,
 
+        VENDOR,
+
+        INVENTORY,
+
         UNKNOWN
     }
 
@@ -179,6 +197,10 @@ public final class UpdateAddressRequestAddressTypesItem {
         T visitAuthorizedZone();
 
         T visitUnauthorizedZone();
+
+        T visitVendor();
+
+        T visitInventory();
 
         T visitUnknown(String unknownType);
     }
