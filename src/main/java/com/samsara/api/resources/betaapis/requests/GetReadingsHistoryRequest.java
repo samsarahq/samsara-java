@@ -276,7 +276,9 @@ public final class GetReadingsHistoryRequest {
      * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
      * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
      * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+     * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
      * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+     * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
      * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
      * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
      * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
@@ -598,7 +600,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+         * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+         * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
@@ -916,7 +920,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+         * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+         * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
@@ -1128,7 +1134,9 @@ public final class GetReadingsHistoryRequest {
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>environmentMonitorAmbientTemperature</code> (Ambient Temperature): Air temperature at the environmental monitor device (built-in sensor). (celsius)</li>
+         * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
+         * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
