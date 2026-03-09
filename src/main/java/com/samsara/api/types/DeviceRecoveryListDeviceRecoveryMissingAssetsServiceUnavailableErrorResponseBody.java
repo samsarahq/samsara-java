@@ -17,15 +17,16 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody.Builder.class)
-public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody {
+@JsonDeserialize(
+        builder = DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody(
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +52,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorRespo
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody
-                && equalTo((DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +61,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorRespo
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +85,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorRespo
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +96,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorRespo
     }
 
     public interface _FinalStage {
-        DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +111,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorRespo
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +142,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorRespo
         }
 
         @java.lang.Override
-        public DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody build() {
-            return new DeviceRecoveryGetAssetRecoveryStateMethodNotAllowedErrorResponseBody(
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsServiceUnavailableErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

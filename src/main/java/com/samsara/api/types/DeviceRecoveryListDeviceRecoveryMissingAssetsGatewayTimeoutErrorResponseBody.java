@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody.Builder.class)
-public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody {
+@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody(
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBod
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody
-                && equalTo((DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBod
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBod
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBod
     }
 
     public interface _FinalStage {
-        DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBod
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBod
         }
 
         @java.lang.Override
-        public DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody build() {
-            return new DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody(
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

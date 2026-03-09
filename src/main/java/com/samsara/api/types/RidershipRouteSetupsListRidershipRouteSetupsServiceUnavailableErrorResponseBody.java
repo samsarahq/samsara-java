@@ -17,15 +17,16 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody.Builder.class)
-public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody {
+@JsonDeserialize(
+        builder = RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody.Builder.class)
+public final class RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody(
+    private RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +52,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody
-                && equalTo((DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody) other);
+        return other instanceof RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody
+                && equalTo((RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +61,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody 
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody other) {
+    private boolean equalTo(RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +85,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody 
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody other);
+        Builder from(RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +96,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody 
     }
 
     public interface _FinalStage {
-        DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody build();
+        RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +111,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody 
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody other) {
+        public Builder from(RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +142,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody 
         }
 
         @java.lang.Override
-        public DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody build() {
-            return new DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody(
+        public RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody build() {
+            return new RidershipRouteSetupsListRidershipRouteSetupsServiceUnavailableErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

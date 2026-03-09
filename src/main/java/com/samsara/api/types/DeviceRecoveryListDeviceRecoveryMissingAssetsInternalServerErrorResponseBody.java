@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody.Builder.class)
-public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody {
+@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody(
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorRes
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody
-                && equalTo((DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorRes
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorRes
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorRes
     }
 
     public interface _FinalStage {
-        DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorRes
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorRes
         }
 
         @java.lang.Override
-        public DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody build() {
-            return new DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody(
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

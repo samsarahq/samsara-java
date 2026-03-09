@@ -10,6 +10,9 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType SAFETY_MANUAL =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.SAFETY_MANUAL, "safetyManual");
 
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType VOICE_SIGN_IN =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.VOICE_SIGN_IN, "voiceSignIn");
+
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType FACE_ID =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.FACE_ID, "faceId");
 
@@ -82,6 +85,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
         switch (value) {
             case SAFETY_MANUAL:
                 return visitor.visitSafetyManual();
+            case VOICE_SIGN_IN:
+                return visitor.visitVoiceSignIn();
             case FACE_ID:
                 return visitor.visitFaceId();
             case UNKNOWN:
@@ -117,6 +122,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
         switch (value) {
             case "safetyManual":
                 return SAFETY_MANUAL;
+            case "voiceSignIn":
+                return VOICE_SIGN_IN;
             case "faceId":
                 return FACE_ID;
             case "unknown":
@@ -173,6 +180,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
 
         DRIVER_APP,
 
+        VOICE_SIGN_IN,
+
         _UNKNOWN
     }
 
@@ -202,6 +211,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
         T visitQrCode();
 
         T visitDriverApp();
+
+        T visitVoiceSignIn();
 
         T visitUnknown(String unknownType);
     }

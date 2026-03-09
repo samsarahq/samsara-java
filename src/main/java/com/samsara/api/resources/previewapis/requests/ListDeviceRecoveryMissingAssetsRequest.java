@@ -12,38 +12,21 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.previewapis.types.ListDeviceRecoveryAssetsRequestStatusesItem;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = ListDeviceRecoveryAssetsRequest.Builder.class)
-public final class ListDeviceRecoveryAssetsRequest {
-    private final Optional<List<ListDeviceRecoveryAssetsRequestStatusesItem>> statuses;
-
+@JsonDeserialize(builder = ListDeviceRecoveryMissingAssetsRequest.Builder.class)
+public final class ListDeviceRecoveryMissingAssetsRequest {
     private final Optional<String> after;
 
     private final Map<String, Object> additionalProperties;
 
-    private ListDeviceRecoveryAssetsRequest(
-            Optional<List<ListDeviceRecoveryAssetsRequestStatusesItem>> statuses,
-            Optional<String> after,
-            Map<String, Object> additionalProperties) {
-        this.statuses = statuses;
+    private ListDeviceRecoveryMissingAssetsRequest(Optional<String> after, Map<String, Object> additionalProperties) {
         this.after = after;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return Filter by one or more recovery statuses. Only assets matching the specified statuses will be returned. Returns all statuses if not specified.
-     */
-    @JsonProperty("statuses")
-    public Optional<List<ListDeviceRecoveryAssetsRequestStatusesItem>> getStatuses() {
-        return statuses;
     }
 
     /**
@@ -57,7 +40,8 @@ public final class ListDeviceRecoveryAssetsRequest {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof ListDeviceRecoveryAssetsRequest && equalTo((ListDeviceRecoveryAssetsRequest) other);
+        return other instanceof ListDeviceRecoveryMissingAssetsRequest
+                && equalTo((ListDeviceRecoveryMissingAssetsRequest) other);
     }
 
     @JsonAnyGetter
@@ -65,13 +49,13 @@ public final class ListDeviceRecoveryAssetsRequest {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(ListDeviceRecoveryAssetsRequest other) {
-        return statuses.equals(other.statuses) && after.equals(other.after);
+    private boolean equalTo(ListDeviceRecoveryMissingAssetsRequest other) {
+        return after.equals(other.after);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.statuses, this.after);
+        return Objects.hash(this.after);
     }
 
     @java.lang.Override
@@ -85,8 +69,6 @@ public final class ListDeviceRecoveryAssetsRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<ListDeviceRecoveryAssetsRequestStatusesItem>> statuses = Optional.empty();
-
         private Optional<String> after = Optional.empty();
 
         @JsonAnySetter
@@ -94,28 +76,8 @@ public final class ListDeviceRecoveryAssetsRequest {
 
         private Builder() {}
 
-        public Builder from(ListDeviceRecoveryAssetsRequest other) {
-            statuses(other.getStatuses());
+        public Builder from(ListDeviceRecoveryMissingAssetsRequest other) {
             after(other.getAfter());
-            return this;
-        }
-
-        /**
-         * <p>Filter by one or more recovery statuses. Only assets matching the specified statuses will be returned. Returns all statuses if not specified.</p>
-         */
-        @JsonSetter(value = "statuses", nulls = Nulls.SKIP)
-        public Builder statuses(Optional<List<ListDeviceRecoveryAssetsRequestStatusesItem>> statuses) {
-            this.statuses = statuses;
-            return this;
-        }
-
-        public Builder statuses(List<ListDeviceRecoveryAssetsRequestStatusesItem> statuses) {
-            this.statuses = Optional.ofNullable(statuses);
-            return this;
-        }
-
-        public Builder statuses(ListDeviceRecoveryAssetsRequestStatusesItem statuses) {
-            this.statuses = Optional.of(Collections.singletonList(statuses));
             return this;
         }
 
@@ -133,8 +95,8 @@ public final class ListDeviceRecoveryAssetsRequest {
             return this;
         }
 
-        public ListDeviceRecoveryAssetsRequest build() {
-            return new ListDeviceRecoveryAssetsRequest(statuses, after, additionalProperties);
+        public ListDeviceRecoveryMissingAssetsRequest build() {
+            return new ListDeviceRecoveryMissingAssetsRequest(after, additionalProperties);
         }
     }
 }

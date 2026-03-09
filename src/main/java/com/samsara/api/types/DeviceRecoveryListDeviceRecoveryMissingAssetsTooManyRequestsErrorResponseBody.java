@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody.Builder.class)
-public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody {
+@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody(
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorRespon
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody
-                && equalTo((DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorRespon
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorRespon
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorRespon
     }
 
     public interface _FinalStage {
-        DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorRespon
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorRespon
         }
 
         @java.lang.Override
-        public DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody build() {
-            return new DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody(
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

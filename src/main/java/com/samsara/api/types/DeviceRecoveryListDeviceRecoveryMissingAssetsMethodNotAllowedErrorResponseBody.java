@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody.Builder.class)
-public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody {
+@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody(
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorRes
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody
-                && equalTo((DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorRes
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorRes
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorRes
     }
 
     public interface _FinalStage {
-        DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorRes
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorRes
         }
 
         @java.lang.Override
-        public DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody build() {
-            return new DeviceRecoveryGetAssetRecoveryStateServiceUnavailableErrorResponseBody(
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

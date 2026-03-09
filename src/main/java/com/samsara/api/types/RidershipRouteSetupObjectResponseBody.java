@@ -24,20 +24,28 @@ import org.jetbrains.annotations.NotNull;
 public final class RidershipRouteSetupObjectResponseBody {
     private final String accountId;
 
+    private final String createdAtTime;
+
     private final List<RidershipRouteSetupPassengerObjectResponseBody> passengers;
 
     private final String routeId;
+
+    private final String updatedAtTime;
 
     private final Map<String, Object> additionalProperties;
 
     private RidershipRouteSetupObjectResponseBody(
             String accountId,
+            String createdAtTime,
             List<RidershipRouteSetupPassengerObjectResponseBody> passengers,
             String routeId,
+            String updatedAtTime,
             Map<String, Object> additionalProperties) {
         this.accountId = accountId;
+        this.createdAtTime = createdAtTime;
         this.passengers = passengers;
         this.routeId = routeId;
+        this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
     }
 
@@ -47,6 +55,14 @@ public final class RidershipRouteSetupObjectResponseBody {
     @JsonProperty("accountId")
     public String getAccountId() {
         return accountId;
+    }
+
+    /**
+     * @return The time the route setup was created in RFC 3339 format.
+     */
+    @JsonProperty("createdAtTime")
+    public String getCreatedAtTime() {
+        return createdAtTime;
     }
 
     /**
@@ -65,6 +81,14 @@ public final class RidershipRouteSetupObjectResponseBody {
         return routeId;
     }
 
+    /**
+     * @return The time the route setup was last updated in RFC 3339 format.
+     */
+    @JsonProperty("updatedAtTime")
+    public String getUpdatedAtTime() {
+        return updatedAtTime;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -79,13 +103,15 @@ public final class RidershipRouteSetupObjectResponseBody {
 
     private boolean equalTo(RidershipRouteSetupObjectResponseBody other) {
         return accountId.equals(other.accountId)
+                && createdAtTime.equals(other.createdAtTime)
                 && passengers.equals(other.passengers)
-                && routeId.equals(other.routeId);
+                && routeId.equals(other.routeId)
+                && updatedAtTime.equals(other.updatedAtTime);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.accountId, this.passengers, this.routeId);
+        return Objects.hash(this.accountId, this.createdAtTime, this.passengers, this.routeId, this.updatedAtTime);
     }
 
     @java.lang.Override
@@ -101,16 +127,30 @@ public final class RidershipRouteSetupObjectResponseBody {
         /**
          * <p>The Samsara UUID of the ridership account.</p>
          */
-        RouteIdStage accountId(@NotNull String accountId);
+        CreatedAtTimeStage accountId(@NotNull String accountId);
 
         Builder from(RidershipRouteSetupObjectResponseBody other);
+    }
+
+    public interface CreatedAtTimeStage {
+        /**
+         * <p>The time the route setup was created in RFC 3339 format.</p>
+         */
+        RouteIdStage createdAtTime(@NotNull String createdAtTime);
     }
 
     public interface RouteIdStage {
         /**
          * <p>The route ID.</p>
          */
-        _FinalStage routeId(@NotNull String routeId);
+        UpdatedAtTimeStage routeId(@NotNull String routeId);
+    }
+
+    public interface UpdatedAtTimeStage {
+        /**
+         * <p>The time the route setup was last updated in RFC 3339 format.</p>
+         */
+        _FinalStage updatedAtTime(@NotNull String updatedAtTime);
     }
 
     public interface _FinalStage {
@@ -127,10 +167,15 @@ public final class RidershipRouteSetupObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AccountIdStage, RouteIdStage, _FinalStage {
+    public static final class Builder
+            implements AccountIdStage, CreatedAtTimeStage, RouteIdStage, UpdatedAtTimeStage, _FinalStage {
         private String accountId;
 
+        private String createdAtTime;
+
         private String routeId;
+
+        private String updatedAtTime;
 
         private List<RidershipRouteSetupPassengerObjectResponseBody> passengers = new ArrayList<>();
 
@@ -142,8 +187,10 @@ public final class RidershipRouteSetupObjectResponseBody {
         @java.lang.Override
         public Builder from(RidershipRouteSetupObjectResponseBody other) {
             accountId(other.getAccountId());
+            createdAtTime(other.getCreatedAtTime());
             passengers(other.getPassengers());
             routeId(other.getRouteId());
+            updatedAtTime(other.getUpdatedAtTime());
             return this;
         }
 
@@ -154,8 +201,20 @@ public final class RidershipRouteSetupObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("accountId")
-        public RouteIdStage accountId(@NotNull String accountId) {
+        public CreatedAtTimeStage accountId(@NotNull String accountId) {
             this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The time the route setup was created in RFC 3339 format.</p>
+         * <p>The time the route setup was created in RFC 3339 format.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("createdAtTime")
+        public RouteIdStage createdAtTime(@NotNull String createdAtTime) {
+            this.createdAtTime = Objects.requireNonNull(createdAtTime, "createdAtTime must not be null");
             return this;
         }
 
@@ -166,8 +225,20 @@ public final class RidershipRouteSetupObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("routeId")
-        public _FinalStage routeId(@NotNull String routeId) {
+        public UpdatedAtTimeStage routeId(@NotNull String routeId) {
             this.routeId = Objects.requireNonNull(routeId, "routeId must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The time the route setup was last updated in RFC 3339 format.</p>
+         * <p>The time the route setup was last updated in RFC 3339 format.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("updatedAtTime")
+        public _FinalStage updatedAtTime(@NotNull String updatedAtTime) {
+            this.updatedAtTime = Objects.requireNonNull(updatedAtTime, "updatedAtTime must not be null");
             return this;
         }
 
@@ -208,7 +279,8 @@ public final class RidershipRouteSetupObjectResponseBody {
 
         @java.lang.Override
         public RidershipRouteSetupObjectResponseBody build() {
-            return new RidershipRouteSetupObjectResponseBody(accountId, passengers, routeId, additionalProperties);
+            return new RidershipRouteSetupObjectResponseBody(
+                    accountId, createdAtTime, passengers, routeId, updatedAtTime, additionalProperties);
         }
     }
 }

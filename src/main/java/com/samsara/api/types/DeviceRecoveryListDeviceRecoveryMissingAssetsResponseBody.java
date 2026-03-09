@@ -20,16 +20,16 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryAssetsResponseBody.Builder.class)
-public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
-    private final List<DeviceRecoveryStateResponseBody> data;
+@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody {
+    private final List<MissingStateResponseBody> data;
 
     private final GoaPaginationResponseResponseBody pagination;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryListDeviceRecoveryAssetsResponseBody(
-            List<DeviceRecoveryStateResponseBody> data,
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody(
+            List<MissingStateResponseBody> data,
             GoaPaginationResponseResponseBody pagination,
             Map<String, Object> additionalProperties) {
         this.data = data;
@@ -38,10 +38,10 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
     }
 
     /**
-     * @return List of assets with a device recovery state.
+     * @return List of assets currently marked as missing.
      */
     @JsonProperty("data")
-    public List<DeviceRecoveryStateResponseBody> getData() {
+    public List<MissingStateResponseBody> getData() {
         return data;
     }
 
@@ -53,8 +53,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryListDeviceRecoveryAssetsResponseBody
-                && equalTo((DeviceRecoveryListDeviceRecoveryAssetsResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -62,7 +62,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryListDeviceRecoveryAssetsResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody other) {
         return data.equals(other.data) && pagination.equals(other.pagination);
     }
 
@@ -83,27 +83,27 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
     public interface PaginationStage {
         _FinalStage pagination(@NotNull GoaPaginationResponseResponseBody pagination);
 
-        Builder from(DeviceRecoveryListDeviceRecoveryAssetsResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody other);
     }
 
     public interface _FinalStage {
-        DeviceRecoveryListDeviceRecoveryAssetsResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody build();
 
         /**
-         * <p>List of assets with a device recovery state.</p>
+         * <p>List of assets currently marked as missing.</p>
          */
-        _FinalStage data(List<DeviceRecoveryStateResponseBody> data);
+        _FinalStage data(List<MissingStateResponseBody> data);
 
-        _FinalStage addData(DeviceRecoveryStateResponseBody data);
+        _FinalStage addData(MissingStateResponseBody data);
 
-        _FinalStage addAllData(List<DeviceRecoveryStateResponseBody> data);
+        _FinalStage addAllData(List<MissingStateResponseBody> data);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PaginationStage, _FinalStage {
         private GoaPaginationResponseResponseBody pagination;
 
-        private List<DeviceRecoveryStateResponseBody> data = new ArrayList<>();
+        private List<MissingStateResponseBody> data = new ArrayList<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -111,7 +111,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryListDeviceRecoveryAssetsResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody other) {
             data(other.getData());
             pagination(other.getPagination());
             return this;
@@ -125,11 +125,11 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
         }
 
         /**
-         * <p>List of assets with a device recovery state.</p>
+         * <p>List of assets currently marked as missing.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllData(List<DeviceRecoveryStateResponseBody> data) {
+        public _FinalStage addAllData(List<MissingStateResponseBody> data) {
             if (data != null) {
                 this.data.addAll(data);
             }
@@ -137,21 +137,21 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
         }
 
         /**
-         * <p>List of assets with a device recovery state.</p>
+         * <p>List of assets currently marked as missing.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addData(DeviceRecoveryStateResponseBody data) {
+        public _FinalStage addData(MissingStateResponseBody data) {
             this.data.add(data);
             return this;
         }
 
         /**
-         * <p>List of assets with a device recovery state.</p>
+         * <p>List of assets currently marked as missing.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public _FinalStage data(List<DeviceRecoveryStateResponseBody> data) {
+        public _FinalStage data(List<MissingStateResponseBody> data) {
             this.data.clear();
             if (data != null) {
                 this.data.addAll(data);
@@ -160,8 +160,9 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsResponseBody {
         }
 
         @java.lang.Override
-        public DeviceRecoveryListDeviceRecoveryAssetsResponseBody build() {
-            return new DeviceRecoveryListDeviceRecoveryAssetsResponseBody(data, pagination, additionalProperties);
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody(
+                    data, pagination, additionalProperties);
         }
     }
 }

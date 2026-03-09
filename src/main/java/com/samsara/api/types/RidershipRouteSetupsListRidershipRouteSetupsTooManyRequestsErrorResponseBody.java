@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody.Builder.class)
-public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody {
+@JsonDeserialize(builder = RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody.Builder.class)
+public final class RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody(
+    private RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableError
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody
-                && equalTo((DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody) other);
+        return other instanceof RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody
+                && equalTo((RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableError
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody other) {
+    private boolean equalTo(RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableError
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody other);
+        Builder from(RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableError
     }
 
     public interface _FinalStage {
-        DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody build();
+        RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableError
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody other) {
+        public Builder from(RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableError
         }
 
         @java.lang.Override
-        public DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody build() {
-            return new DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody(
+        public RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody build() {
+            return new RidershipRouteSetupsListRidershipRouteSetupsTooManyRequestsErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

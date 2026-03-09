@@ -49,6 +49,7 @@ import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesReques
 import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
+import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsDeleteQualificationRecordRequestBody;
@@ -123,6 +124,7 @@ import com.samsara.api.types.RidershipPassengersUpdateRidershipPassengerResponse
 import com.samsara.api.types.RidershipRouteSetupPassengerInputRequestBody;
 import com.samsara.api.types.RidershipRouteSetupsCreateRidershipRouteSetupResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseBody;
+import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
 import com.samsara.api.types.SafetyScoresGetDriverSafetyScoreTripsResponseBody;
 import com.samsara.api.types.SafetyScoresGetDriverSafetyScoresResponseBody;
@@ -3732,12 +3734,83 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testListRidershipRouteSetups() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        RidershipRouteSetupsListRidershipRouteSetupsResponseBody response = client.betaApIs()
+                .listRidershipRouteSetups(ListRidershipRouteSetupsRequest.builder()
+                        .accountId("accountId")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
+                + "      \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
+                + "      \"passengers\": [\n"
+                + "        {\n"
+                + "          \"dropOffStopId\": \"790\",\n"
+                + "          \"passengerId\": \"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\n"
+                + "          \"pickUpStopId\": \"789\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"routeId\": \"123456\",\n"
+                + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testCreateRidershipRouteSetup() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\"}}"));
+                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipRouteSetupsCreateRidershipRouteSetupResponseBody response = client.betaApIs()
                 .createRidershipRouteSetup(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody.builder()
                         .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
@@ -3795,6 +3868,7 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
+                + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"passengers\": [\n"
                 + "      {\n"
                 + "        \"dropOffStopId\": \"790\",\n"
@@ -3802,7 +3876,8 @@ public class BetaApIsWireTest {
                 + "        \"pickUpStopId\": \"789\"\n"
                 + "      }\n"
                 + "    ],\n"
-                + "    \"routeId\": \"123456\"\n"
+                + "    \"routeId\": \"123456\",\n"
+                + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -3842,7 +3917,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\"}}"));
+                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody response = client.betaApIs()
                 .updateRidershipRouteSetup(RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody.builder()
                         .routeId("routeId")
@@ -3899,6 +3974,7 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
+                + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"passengers\": [\n"
                 + "      {\n"
                 + "        \"dropOffStopId\": \"790\",\n"
@@ -3906,7 +3982,8 @@ public class BetaApIsWireTest {
                 + "        \"pickUpStopId\": \"789\"\n"
                 + "      }\n"
                 + "    ],\n"
-                + "    \"routeId\": \"123456\"\n"
+                + "    \"routeId\": \"123456\",\n"
+                + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -3958,7 +4035,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\"}}"));
+                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipRouteSetupsGetRidershipRouteSetupResponseBody response = client.betaApIs()
                 .getRidershipRouteSetup(
                         "routeId", GetRidershipRouteSetupRequest.builder().build());
@@ -3973,6 +4050,7 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
+                + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"passengers\": [\n"
                 + "      {\n"
                 + "        \"dropOffStopId\": \"790\",\n"
@@ -3980,7 +4058,8 @@ public class BetaApIsWireTest {
                 + "        \"pickUpStopId\": \"789\"\n"
                 + "      }\n"
                 + "    ],\n"
-                + "    \"routeId\": \"123456\"\n"
+                + "    \"routeId\": \"123456\",\n"
+                + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
