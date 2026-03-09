@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody.Builder.class)
-public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody {
+@JsonDeserialize(builder = RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody.Builder.class)
+public final class RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody(
+    private RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorRespons
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody
-                && equalTo((DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody) other);
+        return other instanceof RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody
+                && equalTo((RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorRespons
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody other) {
+    private boolean equalTo(RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorRespons
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody other);
+        Builder from(RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorRespons
     }
 
     public interface _FinalStage {
-        DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody build();
+        RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorRespons
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody other) {
+        public Builder from(RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorRespons
         }
 
         @java.lang.Override
-        public DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody build() {
-            return new DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody(
+        public RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody build() {
+            return new RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

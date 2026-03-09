@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody.Builder.class)
-public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody {
+@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody.Builder.class)
+public final class DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody(
+    private DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseB
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody
-                && equalTo((DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody) other);
+        return other instanceof DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody
+                && equalTo((DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseB
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody other) {
+    private boolean equalTo(DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseB
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody other);
+        Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseB
     }
 
     public interface _FinalStage {
-        DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody build();
+        DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseB
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody other) {
+        public Builder from(DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseB
         }
 
         @java.lang.Override
-        public DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody build() {
-            return new DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody(
+        public DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody build() {
+            return new DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

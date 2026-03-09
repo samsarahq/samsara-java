@@ -17,6 +17,9 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
                     Value.FORWARD_COLLISION_WARNING, "forwardCollisionWarning");
 
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel REVERSING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.REVERSING, "reversing");
+
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel LANE_DEPARTURE =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.LANE_DEPARTURE, "laneDeparture");
 
@@ -151,6 +154,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitBraking();
             case FORWARD_COLLISION_WARNING:
                 return visitor.visitForwardCollisionWarning();
+            case REVERSING:
+                return visitor.visitReversing();
             case LANE_DEPARTURE:
                 return visitor.visitLaneDeparture();
             case SMOKING:
@@ -222,6 +227,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return BRAKING;
             case "forwardCollisionWarning":
                 return FORWARD_COLLISION_WARNING;
+            case "reversing":
+                return REVERSING;
             case "laneDeparture":
                 return LANE_DEPARTURE;
             case "smoking":
@@ -328,6 +335,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         REAR_COLLISION_WARNING,
 
+        REVERSING,
+
         ROLLING_STOP,
 
         ROLLOVER_PROTECTION,
@@ -393,6 +402,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
         T visitRanRedLight();
 
         T visitRearCollisionWarning();
+
+        T visitReversing();
 
         T visitRollingStop();
 

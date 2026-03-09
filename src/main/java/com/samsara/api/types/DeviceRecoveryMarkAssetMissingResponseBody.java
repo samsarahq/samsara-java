@@ -19,18 +19,18 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DeviceRecoveryMarkAssetMissingResponseBody.Builder.class)
 public final class DeviceRecoveryMarkAssetMissingResponseBody {
-    private final DeviceRecoveryStateResponseBody data;
+    private final MissingStateResponseBody data;
 
     private final Map<String, Object> additionalProperties;
 
     private DeviceRecoveryMarkAssetMissingResponseBody(
-            DeviceRecoveryStateResponseBody data, Map<String, Object> additionalProperties) {
+            MissingStateResponseBody data, Map<String, Object> additionalProperties) {
         this.data = data;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public DeviceRecoveryStateResponseBody getData() {
+    public MissingStateResponseBody getData() {
         return data;
     }
 
@@ -65,7 +65,7 @@ public final class DeviceRecoveryMarkAssetMissingResponseBody {
     }
 
     public interface DataStage {
-        _FinalStage data(@NotNull DeviceRecoveryStateResponseBody data);
+        _FinalStage data(@NotNull MissingStateResponseBody data);
 
         Builder from(DeviceRecoveryMarkAssetMissingResponseBody other);
     }
@@ -76,7 +76,7 @@ public final class DeviceRecoveryMarkAssetMissingResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements DataStage, _FinalStage {
-        private DeviceRecoveryStateResponseBody data;
+        private MissingStateResponseBody data;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -91,7 +91,7 @@ public final class DeviceRecoveryMarkAssetMissingResponseBody {
 
         @java.lang.Override
         @JsonSetter("data")
-        public _FinalStage data(@NotNull DeviceRecoveryStateResponseBody data) {
+        public _FinalStage data(@NotNull MissingStateResponseBody data) {
             this.data = Objects.requireNonNull(data, "data must not be null");
             return this;
         }

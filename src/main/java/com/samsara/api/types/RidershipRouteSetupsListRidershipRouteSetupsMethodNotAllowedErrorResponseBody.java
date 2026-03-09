@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody.Builder.class)
-public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody {
+@JsonDeserialize(builder = RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody.Builder.class)
+public final class RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody(
+    private RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorRe
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody
-                && equalTo((DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody) other);
+        return other instanceof RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody
+                && equalTo((RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorRe
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody other) {
+    private boolean equalTo(RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorRe
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody other);
+        Builder from(RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorRe
     }
 
     public interface _FinalStage {
-        DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody build();
+        RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorRe
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody other) {
+        public Builder from(RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorRe
         }
 
         @java.lang.Override
-        public DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody build() {
-            return new DeviceRecoveryListDeviceRecoveryAssetsMethodNotAllowedErrorResponseBody(
+        public RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody build() {
+            return new RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

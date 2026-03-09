@@ -133,7 +133,7 @@ public final class GetDriverVehicleAssignmentsRequest {
     }
 
     /**
-     * @return Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>
+     * @return Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code>
      */
     @JsonProperty("assignmentType")
     public Optional<GetDriverVehicleAssignmentsRequestAssignmentType> getAssignmentType() {
@@ -253,7 +253,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         _FinalStage after(String after);
 
         /**
-         * <p>Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code></p>
+         * <p>Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code></p>
          */
         _FinalStage assignmentType(Optional<GetDriverVehicleAssignmentsRequestAssignmentType> assignmentType);
 
@@ -312,7 +312,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         }
 
         /**
-         * <p>Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code></p>
+         * <p>Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -322,7 +322,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         }
 
         /**
-         * <p>Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code></p>
+         * <p>Specifies which assignment type to filter by.  Valid values: <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "assignmentType", nulls = Nulls.SKIP)

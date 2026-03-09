@@ -20,13 +20,9 @@ import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryStateResponseBody.Builder.class)
-public final class DeviceRecoveryStateResponseBody {
-    private final Optional<String> additionalDetails;
-
+@JsonDeserialize(builder = RecoveryStateResponseBody.Builder.class)
+public final class RecoveryStateResponseBody {
     private final String id;
-
-    private final Optional<String> missingReason;
 
     private final String name;
 
@@ -36,10 +32,6 @@ public final class DeviceRecoveryStateResponseBody {
 
     private final Optional<List<RecoveryPhotoResponseBody>> recoveryPhotos;
 
-    private final Optional<String> recoveryStatus;
-
-    private final DeviceRecoveryStateResponseBodyStatus status;
-
     private final long updatedAtMs;
 
     private final Optional<Long> updatedByUserId;
@@ -48,41 +40,25 @@ public final class DeviceRecoveryStateResponseBody {
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryStateResponseBody(
-            Optional<String> additionalDetails,
+    private RecoveryStateResponseBody(
             String id,
-            Optional<String> missingReason,
             String name,
             Optional<String> note,
             Optional<List<NotificationRecipientResponseBody>> notificationRecipients,
             Optional<List<RecoveryPhotoResponseBody>> recoveryPhotos,
-            Optional<String> recoveryStatus,
-            DeviceRecoveryStateResponseBodyStatus status,
             long updatedAtMs,
             Optional<Long> updatedByUserId,
             String uuid,
             Map<String, Object> additionalProperties) {
-        this.additionalDetails = additionalDetails;
         this.id = id;
-        this.missingReason = missingReason;
         this.name = name;
         this.note = note;
         this.notificationRecipients = notificationRecipients;
         this.recoveryPhotos = recoveryPhotos;
-        this.recoveryStatus = recoveryStatus;
-        this.status = status;
         this.updatedAtMs = updatedAtMs;
         this.updatedByUserId = updatedByUserId;
         this.uuid = uuid;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return Additional details provided during recovery.
-     */
-    @JsonProperty("additional_details")
-    public Optional<String> getAdditionalDetails() {
-        return additionalDetails;
     }
 
     /**
@@ -94,14 +70,6 @@ public final class DeviceRecoveryStateResponseBody {
     }
 
     /**
-     * @return The reason the asset was originally marked as missing.
-     */
-    @JsonProperty("missing_reason")
-    public Optional<String> getMissingReason() {
-        return missingReason;
-    }
-
-    /**
      * @return The human-readable name of the asset.
      */
     @JsonProperty("name")
@@ -110,7 +78,7 @@ public final class DeviceRecoveryStateResponseBody {
     }
 
     /**
-     * @return A note associated with the recovery state.
+     * @return A note associated with the recovery.
      */
     @JsonProperty("note")
     public Optional<String> getNote() {
@@ -131,22 +99,6 @@ public final class DeviceRecoveryStateResponseBody {
     @JsonProperty("recovery_photos")
     public Optional<List<RecoveryPhotoResponseBody>> getRecoveryPhotos() {
         return recoveryPhotos;
-    }
-
-    /**
-     * @return Whether the asset was physically recovered.
-     */
-    @JsonProperty("recovery_status")
-    public Optional<String> getRecoveryStatus() {
-        return recoveryStatus;
-    }
-
-    /**
-     * @return The current recovery status of the asset.  Valid values: <code>UNKNOWN</code>, <code>MISSING</code>, <code>LOCATED</code>, <code>RECOVERED</code>
-     */
-    @JsonProperty("status")
-    public DeviceRecoveryStateResponseBodyStatus getStatus() {
-        return status;
     }
 
     /**
@@ -176,7 +128,7 @@ public final class DeviceRecoveryStateResponseBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryStateResponseBody && equalTo((DeviceRecoveryStateResponseBody) other);
+        return other instanceof RecoveryStateResponseBody && equalTo((RecoveryStateResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -184,16 +136,12 @@ public final class DeviceRecoveryStateResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryStateResponseBody other) {
-        return additionalDetails.equals(other.additionalDetails)
-                && id.equals(other.id)
-                && missingReason.equals(other.missingReason)
+    private boolean equalTo(RecoveryStateResponseBody other) {
+        return id.equals(other.id)
                 && name.equals(other.name)
                 && note.equals(other.note)
                 && notificationRecipients.equals(other.notificationRecipients)
                 && recoveryPhotos.equals(other.recoveryPhotos)
-                && recoveryStatus.equals(other.recoveryStatus)
-                && status.equals(other.status)
                 && updatedAtMs == other.updatedAtMs
                 && updatedByUserId.equals(other.updatedByUserId)
                 && uuid.equals(other.uuid);
@@ -202,15 +150,11 @@ public final class DeviceRecoveryStateResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.additionalDetails,
                 this.id,
-                this.missingReason,
                 this.name,
                 this.note,
                 this.notificationRecipients,
                 this.recoveryPhotos,
-                this.recoveryStatus,
-                this.status,
                 this.updatedAtMs,
                 this.updatedByUserId,
                 this.uuid);
@@ -231,21 +175,14 @@ public final class DeviceRecoveryStateResponseBody {
          */
         NameStage id(@NotNull String id);
 
-        Builder from(DeviceRecoveryStateResponseBody other);
+        Builder from(RecoveryStateResponseBody other);
     }
 
     public interface NameStage {
         /**
          * <p>The human-readable name of the asset.</p>
          */
-        StatusStage name(@NotNull String name);
-    }
-
-    public interface StatusStage {
-        /**
-         * <p>The current recovery status of the asset.  Valid values: <code>UNKNOWN</code>, <code>MISSING</code>, <code>LOCATED</code>, <code>RECOVERED</code></p>
-         */
-        UpdatedAtMsStage status(@NotNull DeviceRecoveryStateResponseBodyStatus status);
+        UpdatedAtMsStage name(@NotNull String name);
     }
 
     public interface UpdatedAtMsStage {
@@ -263,24 +200,10 @@ public final class DeviceRecoveryStateResponseBody {
     }
 
     public interface _FinalStage {
-        DeviceRecoveryStateResponseBody build();
+        RecoveryStateResponseBody build();
 
         /**
-         * <p>Additional details provided during recovery.</p>
-         */
-        _FinalStage additionalDetails(Optional<String> additionalDetails);
-
-        _FinalStage additionalDetails(String additionalDetails);
-
-        /**
-         * <p>The reason the asset was originally marked as missing.</p>
-         */
-        _FinalStage missingReason(Optional<String> missingReason);
-
-        _FinalStage missingReason(String missingReason);
-
-        /**
-         * <p>A note associated with the recovery state.</p>
+         * <p>A note associated with the recovery.</p>
          */
         _FinalStage note(Optional<String> note);
 
@@ -301,13 +224,6 @@ public final class DeviceRecoveryStateResponseBody {
         _FinalStage recoveryPhotos(List<RecoveryPhotoResponseBody> recoveryPhotos);
 
         /**
-         * <p>Whether the asset was physically recovered.</p>
-         */
-        _FinalStage recoveryStatus(Optional<String> recoveryStatus);
-
-        _FinalStage recoveryStatus(String recoveryStatus);
-
-        /**
          * <p>The ID of the user who last updated the recovery state.</p>
          */
         _FinalStage updatedByUserId(Optional<Long> updatedByUserId);
@@ -316,13 +232,10 @@ public final class DeviceRecoveryStateResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder
-            implements IdStage, NameStage, StatusStage, UpdatedAtMsStage, UuidStage, _FinalStage {
+    public static final class Builder implements IdStage, NameStage, UpdatedAtMsStage, UuidStage, _FinalStage {
         private String id;
 
         private String name;
-
-        private DeviceRecoveryStateResponseBodyStatus status;
 
         private long updatedAtMs;
 
@@ -330,17 +243,11 @@ public final class DeviceRecoveryStateResponseBody {
 
         private Optional<Long> updatedByUserId = Optional.empty();
 
-        private Optional<String> recoveryStatus = Optional.empty();
-
         private Optional<List<RecoveryPhotoResponseBody>> recoveryPhotos = Optional.empty();
 
         private Optional<List<NotificationRecipientResponseBody>> notificationRecipients = Optional.empty();
 
         private Optional<String> note = Optional.empty();
-
-        private Optional<String> missingReason = Optional.empty();
-
-        private Optional<String> additionalDetails = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -348,16 +255,12 @@ public final class DeviceRecoveryStateResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryStateResponseBody other) {
-            additionalDetails(other.getAdditionalDetails());
+        public Builder from(RecoveryStateResponseBody other) {
             id(other.getId());
-            missingReason(other.getMissingReason());
             name(other.getName());
             note(other.getNote());
             notificationRecipients(other.getNotificationRecipients());
             recoveryPhotos(other.getRecoveryPhotos());
-            recoveryStatus(other.getRecoveryStatus());
-            status(other.getStatus());
             updatedAtMs(other.getUpdatedAtMs());
             updatedByUserId(other.getUpdatedByUserId());
             uuid(other.getUuid());
@@ -383,20 +286,8 @@ public final class DeviceRecoveryStateResponseBody {
          */
         @java.lang.Override
         @JsonSetter("name")
-        public StatusStage name(@NotNull String name) {
+        public UpdatedAtMsStage name(@NotNull String name) {
             this.name = Objects.requireNonNull(name, "name must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The current recovery status of the asset.  Valid values: <code>UNKNOWN</code>, <code>MISSING</code>, <code>LOCATED</code>, <code>RECOVERED</code></p>
-         * <p>The current recovery status of the asset.  Valid values: <code>UNKNOWN</code>, <code>MISSING</code>, <code>LOCATED</code>, <code>RECOVERED</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("status")
-        public UpdatedAtMsStage status(@NotNull DeviceRecoveryStateResponseBodyStatus status) {
-            this.status = Objects.requireNonNull(status, "status must not be null");
             return this;
         }
 
@@ -445,26 +336,6 @@ public final class DeviceRecoveryStateResponseBody {
         }
 
         /**
-         * <p>Whether the asset was physically recovered.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage recoveryStatus(String recoveryStatus) {
-            this.recoveryStatus = Optional.ofNullable(recoveryStatus);
-            return this;
-        }
-
-        /**
-         * <p>Whether the asset was physically recovered.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "recovery_status", nulls = Nulls.SKIP)
-        public _FinalStage recoveryStatus(Optional<String> recoveryStatus) {
-            this.recoveryStatus = recoveryStatus;
-            return this;
-        }
-
-        /**
          * <p>Photos associated with the recovery event. URLs are temporary and expire at url_expires_at_ms.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -506,7 +377,7 @@ public final class DeviceRecoveryStateResponseBody {
         }
 
         /**
-         * <p>A note associated with the recovery state.</p>
+         * <p>A note associated with the recovery.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -516,7 +387,7 @@ public final class DeviceRecoveryStateResponseBody {
         }
 
         /**
-         * <p>A note associated with the recovery state.</p>
+         * <p>A note associated with the recovery.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "note", nulls = Nulls.SKIP)
@@ -525,58 +396,14 @@ public final class DeviceRecoveryStateResponseBody {
             return this;
         }
 
-        /**
-         * <p>The reason the asset was originally marked as missing.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @java.lang.Override
-        public _FinalStage missingReason(String missingReason) {
-            this.missingReason = Optional.ofNullable(missingReason);
-            return this;
-        }
-
-        /**
-         * <p>The reason the asset was originally marked as missing.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "missing_reason", nulls = Nulls.SKIP)
-        public _FinalStage missingReason(Optional<String> missingReason) {
-            this.missingReason = missingReason;
-            return this;
-        }
-
-        /**
-         * <p>Additional details provided during recovery.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage additionalDetails(String additionalDetails) {
-            this.additionalDetails = Optional.ofNullable(additionalDetails);
-            return this;
-        }
-
-        /**
-         * <p>Additional details provided during recovery.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "additional_details", nulls = Nulls.SKIP)
-        public _FinalStage additionalDetails(Optional<String> additionalDetails) {
-            this.additionalDetails = additionalDetails;
-            return this;
-        }
-
-        @java.lang.Override
-        public DeviceRecoveryStateResponseBody build() {
-            return new DeviceRecoveryStateResponseBody(
-                    additionalDetails,
+        public RecoveryStateResponseBody build() {
+            return new RecoveryStateResponseBody(
                     id,
-                    missingReason,
                     name,
                     note,
                     notificationRecipients,
                     recoveryPhotos,
-                    recoveryStatus,
-                    status,
                     updatedAtMs,
                     updatedByUserId,
                     uuid,

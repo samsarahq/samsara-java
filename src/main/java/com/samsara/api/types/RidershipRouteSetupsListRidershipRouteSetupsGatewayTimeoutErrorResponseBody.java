@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody.Builder.class)
-public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody {
+@JsonDeserialize(builder = RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody.Builder.class)
+public final class RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody {
     private final String message;
 
     private final String requestId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody(
+    private RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody(
             String message, String requestId, Map<String, Object> additionalProperties) {
         this.message = message;
         this.requestId = requestId;
@@ -51,8 +51,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResp
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody
-                && equalTo((DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody) other);
+        return other instanceof RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody
+                && equalTo((RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -60,7 +60,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResp
         return this.additionalProperties;
     }
 
-    private boolean equalTo(DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody other) {
+    private boolean equalTo(RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody other) {
         return message.equals(other.message) && requestId.equals(other.requestId);
     }
 
@@ -84,7 +84,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResp
          */
         RequestIdStage message(@NotNull String message);
 
-        Builder from(DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody other);
+        Builder from(RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody other);
     }
 
     public interface RequestIdStage {
@@ -95,7 +95,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResp
     }
 
     public interface _FinalStage {
-        DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody build();
+        RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,7 +110,7 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResp
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody other) {
+        public Builder from(RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody other) {
             message(other.getMessage());
             requestId(other.getRequestId());
             return this;
@@ -141,8 +141,8 @@ public final class DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResp
         }
 
         @java.lang.Override
-        public DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody build() {
-            return new DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody(
+        public RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody build() {
+            return new RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody(
                     message, requestId, additionalProperties);
         }
     }

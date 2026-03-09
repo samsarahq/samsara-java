@@ -100,6 +100,7 @@ public final class GetReadingsHistoryRequest {
      * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
      * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
      * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+     * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
      * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
      * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
      * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
@@ -107,27 +108,41 @@ public final class GetReadingsHistoryRequest {
      * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
      * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
      * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+     * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
      * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
      * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
      * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+     * <li><code>engineImmobilizer</code> (Engine Immobilizer): The state of the engine immobilizer. Valid values: ignition_disabled, ignition_enabled.</li>
      * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
      * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+     * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
      * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+     * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
      * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
      * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+     * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
+     * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
      * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+     * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
+     * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
+     * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
+     * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
      * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
      * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
      * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
      * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
      * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
      * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+     * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
      * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+     * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
      * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
      * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
      * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
      * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+     * <li><code>gpsDistance</code> (GPS Distance): The distance the vehicle has traveled since the gateway was installed based on GPS calculations. (meter)</li>
      * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+     * <li><code>idlingDuration</code> (Cumulative Idling Duration): The cumulative idling duration. Cumulative values always increase. (millisecond)</li>
      * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
      * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
      * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
@@ -158,6 +173,7 @@ public final class GetReadingsHistoryRequest {
      * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
      * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
      * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+     * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
      * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
      * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
      * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
@@ -424,6 +440,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
          * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
          * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+         * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
          * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
          * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
          * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
@@ -431,27 +448,41 @@ public final class GetReadingsHistoryRequest {
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
          * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
          * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
          * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
          * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+         * <li><code>engineImmobilizer</code> (Engine Immobilizer): The state of the engine immobilizer. Valid values: ignition_disabled, ignition_enabled.</li>
          * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
          * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+         * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+         * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
+         * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+         * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
+         * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
+         * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
+         * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
          * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
          * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+         * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
          * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
          * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
          * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+         * <li><code>gpsDistance</code> (GPS Distance): The distance the vehicle has traveled since the gateway was installed based on GPS calculations. (meter)</li>
          * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+         * <li><code>idlingDuration</code> (Cumulative Idling Duration): The cumulative idling duration. Cumulative values always increase. (millisecond)</li>
          * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
          * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
          * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
@@ -482,6 +513,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
          * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
          * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+         * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
          * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
          * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
          * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
@@ -744,6 +776,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
          * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
          * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+         * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
          * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
          * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
          * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
@@ -751,27 +784,41 @@ public final class GetReadingsHistoryRequest {
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
          * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
          * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
          * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
          * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+         * <li><code>engineImmobilizer</code> (Engine Immobilizer): The state of the engine immobilizer. Valid values: ignition_disabled, ignition_enabled.</li>
          * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
          * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+         * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+         * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
+         * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+         * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
+         * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
+         * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
+         * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
          * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
          * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+         * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
          * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
          * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
          * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+         * <li><code>gpsDistance</code> (GPS Distance): The distance the vehicle has traveled since the gateway was installed based on GPS calculations. (meter)</li>
          * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+         * <li><code>idlingDuration</code> (Cumulative Idling Duration): The cumulative idling duration. Cumulative values always increase. (millisecond)</li>
          * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
          * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
          * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
@@ -802,6 +849,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
          * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
          * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+         * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
          * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
          * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
          * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>
@@ -958,6 +1006,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>checkEngineLightJ1939Warning</code> (Check Engine Light (J1939) - Warning): Indicates whether the J1939 check engine light warning indicator is active or inactive. (values: off | on)</li>
          * <li><code>checkEngineLightPassenger</code> (Check Engine Light (Passenger)): Indicates whether the passenger check engine light indicator is active or inactive. (values: off | on)</li>
          * <li><code>coolantTemp</code> (Engine Coolant Temp): Represents the engine coolant temperature. (celsius)</li>
+         * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
          * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
          * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
          * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
@@ -965,27 +1014,41 @@ public final class GetReadingsHistoryRequest {
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
          * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
          * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
          * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
          * <li><code>engineHoursEngineStateBased</code> (Engine Hours (Synthetic)): Represents the synthetic total engine runtime in hours based on engine state. (millisecond)</li>
+         * <li><code>engineImmobilizer</code> (Engine Immobilizer): The state of the engine immobilizer. Valid values: ignition_disabled, ignition_enabled.</li>
          * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
          * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
+         * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
+         * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
+         * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
+         * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
+         * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
+         * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
+         * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
          * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
          * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
+         * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
          * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
          * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
          * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
+         * <li><code>gpsDistance</code> (GPS Distance): The distance the vehicle has traveled since the gateway was installed based on GPS calculations. (meter)</li>
          * <li><code>gpsSpeed</code> (GPS Speed): Asset speed measured by the gateway's GPS receiver. (meterspersec)</li>
+         * <li><code>idlingDuration</code> (Cumulative Idling Duration): The cumulative idling duration. Cumulative values always increase. (millisecond)</li>
          * <li><code>ignitionStatus</code> (Ignitions Status): Indicates the current ignition status as a voltage (values: off | on)</li>
          * <li><code>latitude</code> (Latitude): Latitude coordinate of the asset's location. (decimaldegrees)</li>
          * <li><code>lifetimeFuelConsumed</code> (Lifetime Fuel Consumed): Represents the vehicle maintained lifetime fuel consumption as reported by the vehicle. (liter)</li>
@@ -1016,6 +1079,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
          * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
          * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
+         * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
          * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
          * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
          * <li><code>tirePressuresFrontLeft</code> (Tire pressure, front left): Represents the tire pressure for the front-left tire. (kilopascal)</li>

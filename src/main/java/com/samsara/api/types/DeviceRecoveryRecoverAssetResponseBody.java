@@ -19,18 +19,18 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DeviceRecoveryRecoverAssetResponseBody.Builder.class)
 public final class DeviceRecoveryRecoverAssetResponseBody {
-    private final DeviceRecoveryStateResponseBody data;
+    private final RecoveryStateResponseBody data;
 
     private final Map<String, Object> additionalProperties;
 
     private DeviceRecoveryRecoverAssetResponseBody(
-            DeviceRecoveryStateResponseBody data, Map<String, Object> additionalProperties) {
+            RecoveryStateResponseBody data, Map<String, Object> additionalProperties) {
         this.data = data;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public DeviceRecoveryStateResponseBody getData() {
+    public RecoveryStateResponseBody getData() {
         return data;
     }
 
@@ -65,7 +65,7 @@ public final class DeviceRecoveryRecoverAssetResponseBody {
     }
 
     public interface DataStage {
-        _FinalStage data(@NotNull DeviceRecoveryStateResponseBody data);
+        _FinalStage data(@NotNull RecoveryStateResponseBody data);
 
         Builder from(DeviceRecoveryRecoverAssetResponseBody other);
     }
@@ -76,7 +76,7 @@ public final class DeviceRecoveryRecoverAssetResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements DataStage, _FinalStage {
-        private DeviceRecoveryStateResponseBody data;
+        private RecoveryStateResponseBody data;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -91,7 +91,7 @@ public final class DeviceRecoveryRecoverAssetResponseBody {
 
         @java.lang.Override
         @JsonSetter("data")
-        public _FinalStage data(@NotNull DeviceRecoveryStateResponseBody data) {
+        public _FinalStage data(@NotNull RecoveryStateResponseBody data) {
             this.data = Objects.requireNonNull(data, "data must not be null");
             return this;
         }

@@ -6,15 +6,13 @@ import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.previewapis.requests.DeviceRecoveryMarkAssetMissingRequestBody;
 import com.samsara.api.resources.previewapis.requests.DeviceRecoveryRecoverAssetRequestBody;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
-import com.samsara.api.resources.previewapis.requests.GetAssetRecoveryStateRequest;
-import com.samsara.api.resources.previewapis.requests.ListDeviceRecoveryAssetsRequest;
+import com.samsara.api.resources.previewapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.resources.previewapis.types.DeviceRecoveryRecoverAssetRequestBodyMissingReason;
 import com.samsara.api.resources.previewapis.types.DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus;
 import com.samsara.api.resources.previewapis.types.DeviceRecoveryRecoverAssetRequestBodyStatus;
-import com.samsara.api.types.DeviceRecoveryGetAssetRecoveryStateResponseBody;
-import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryAssetsResponseBody;
+import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody;
 import com.samsara.api.types.DeviceRecoveryMarkAssetMissingResponseBody;
 import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
@@ -47,15 +45,15 @@ public class PreviewApIsWireTest {
     }
 
     @Test
-    public void testListDeviceRecoveryAssets() throws Exception {
+    public void testListDeviceRecoveryMissingAssets() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"additional_details\":\"Found in warehouse B\",\"id\":\"12345\",\"missing_reason\":\"MISPLACED\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"recovery_status\":\"YES\",\"status\":\"UNKNOWN\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        DeviceRecoveryListDeviceRecoveryAssetsResponseBody response = client.previewApIs()
-                .listDeviceRecoveryAssets(
-                        ListDeviceRecoveryAssetsRequest.builder().build());
+                                "{\"data\":[{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody response = client.previewApIs()
+                .listDeviceRecoveryMissingAssets(
+                        ListDeviceRecoveryMissingAssetsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -67,9 +65,7 @@ public class PreviewApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"additional_details\": \"Found in warehouse B\",\n"
                 + "      \"id\": \"12345\",\n"
-                + "      \"missing_reason\": \"MISPLACED\",\n"
                 + "      \"name\": \"Trailer-A1234\",\n"
                 + "      \"note\": \"Asset was last seen at warehouse A\",\n"
                 + "      \"notification_recipients\": [\n"
@@ -80,16 +76,6 @@ public class PreviewApIsWireTest {
                 + "          \"user_id\": 1234\n"
                 + "        }\n"
                 + "      ],\n"
-                + "      \"recovery_photos\": [\n"
-                + "        {\n"
-                + "          \"start_ms\": 1609459200000,\n"
-                + "          \"status\": \"EXISTS\",\n"
-                + "          \"url\": \"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\n"
-                + "          \"url_expires_at_ms\": 1609462800000\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"recovery_status\": \"YES\",\n"
-                + "      \"status\": \"UNKNOWN\",\n"
                 + "      \"updated_at_ms\": 1609459200000,\n"
                 + "      \"updated_by_user_id\": 1234,\n"
                 + "      \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
@@ -137,7 +123,7 @@ public class PreviewApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"additional_details\":\"Found in warehouse B\",\"id\":\"12345\",\"missing_reason\":\"MISPLACED\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"recovery_status\":\"YES\",\"status\":\"UNKNOWN\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
+                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
         DeviceRecoveryMarkAssetMissingResponseBody response = client.previewApIs()
                 .markAssetMissing(
                         "id",
@@ -181,9 +167,7 @@ public class PreviewApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"additional_details\": \"Found in warehouse B\",\n"
                 + "    \"id\": \"12345\",\n"
-                + "    \"missing_reason\": \"MISPLACED\",\n"
                 + "    \"name\": \"Trailer-A1234\",\n"
                 + "    \"note\": \"Asset was last seen at warehouse A\",\n"
                 + "    \"notification_recipients\": [\n"
@@ -194,16 +178,6 @@ public class PreviewApIsWireTest {
                 + "        \"user_id\": 1234\n"
                 + "      }\n"
                 + "    ],\n"
-                + "    \"recovery_photos\": [\n"
-                + "      {\n"
-                + "        \"start_ms\": 1609459200000,\n"
-                + "        \"status\": \"EXISTS\",\n"
-                + "        \"url\": \"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\n"
-                + "        \"url_expires_at_ms\": 1609462800000\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"recovery_status\": \"YES\",\n"
-                + "    \"status\": \"UNKNOWN\",\n"
                 + "    \"updated_at_ms\": 1609459200000,\n"
                 + "    \"updated_by_user_id\": 1234,\n"
                 + "    \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
@@ -246,7 +220,7 @@ public class PreviewApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"additional_details\":\"Found in warehouse B\",\"id\":\"12345\",\"missing_reason\":\"MISPLACED\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"recovery_status\":\"YES\",\"status\":\"UNKNOWN\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
+                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
         DeviceRecoveryRecoverAssetResponseBody response = client.previewApIs()
                 .recoverAsset(
                         "id",
@@ -299,9 +273,7 @@ public class PreviewApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"additional_details\": \"Found in warehouse B\",\n"
                 + "    \"id\": \"12345\",\n"
-                + "    \"missing_reason\": \"MISPLACED\",\n"
                 + "    \"name\": \"Trailer-A1234\",\n"
                 + "    \"note\": \"Asset was last seen at warehouse A\",\n"
                 + "    \"notification_recipients\": [\n"
@@ -320,87 +292,6 @@ public class PreviewApIsWireTest {
                 + "        \"url_expires_at_ms\": 1609462800000\n"
                 + "      }\n"
                 + "    ],\n"
-                + "    \"recovery_status\": \"YES\",\n"
-                + "    \"status\": \"UNKNOWN\",\n"
-                + "    \"updated_at_ms\": 1609459200000,\n"
-                + "    \"updated_by_user_id\": 1234,\n"
-                + "    \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetAssetRecoveryState() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"additional_details\":\"Found in warehouse B\",\"id\":\"12345\",\"missing_reason\":\"MISPLACED\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"recovery_status\":\"YES\",\"status\":\"UNKNOWN\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
-        DeviceRecoveryGetAssetRecoveryStateResponseBody response = client.previewApIs()
-                .getAssetRecoveryState(
-                        "id", GetAssetRecoveryStateRequest.builder().build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"additional_details\": \"Found in warehouse B\",\n"
-                + "    \"id\": \"12345\",\n"
-                + "    \"missing_reason\": \"MISPLACED\",\n"
-                + "    \"name\": \"Trailer-A1234\",\n"
-                + "    \"note\": \"Asset was last seen at warehouse A\",\n"
-                + "    \"notification_recipients\": [\n"
-                + "      {\n"
-                + "        \"notification_types\": [\n"
-                + "          \"email\"\n"
-                + "        ],\n"
-                + "        \"user_id\": 1234\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"recovery_photos\": [\n"
-                + "      {\n"
-                + "        \"start_ms\": 1609459200000,\n"
-                + "        \"status\": \"EXISTS\",\n"
-                + "        \"url\": \"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\n"
-                + "        \"url_expires_at_ms\": 1609462800000\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"recovery_status\": \"YES\",\n"
-                + "    \"status\": \"UNKNOWN\",\n"
                 + "    \"updated_at_ms\": 1609459200000,\n"
                 + "    \"updated_by_user_id\": 1234,\n"
                 + "    \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
