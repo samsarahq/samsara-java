@@ -36,6 +36,9 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
             new TireFaultCodeDetailsObjectRequestBodyManufacturer(
                     Value.MANUFACTURER_CONTINENTAL, "MANUFACTURER_CONTINENTAL");
 
+    public static final TireFaultCodeDetailsObjectRequestBodyManufacturer MANUFACTURER_SENSATA =
+            new TireFaultCodeDetailsObjectRequestBodyManufacturer(Value.MANUFACTURER_SENSATA, "MANUFACTURER_SENSATA");
+
     private final Value value;
 
     private final String string;
@@ -85,6 +88,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
                 return visitor.visitManufacturerPressurePro();
             case MANUFACTURER_CONTINENTAL:
                 return visitor.visitManufacturerContinental();
+            case MANUFACTURER_SENSATA:
+                return visitor.visitManufacturerSensata();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -110,6 +115,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
                 return MANUFACTURER_PRESSURE_PRO;
             case "MANUFACTURER_CONTINENTAL":
                 return MANUFACTURER_CONTINENTAL;
+            case "MANUFACTURER_SENSATA":
+                return MANUFACTURER_SENSATA;
             default:
                 return new TireFaultCodeDetailsObjectRequestBodyManufacturer(Value.UNKNOWN, value);
         }
@@ -127,6 +134,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
         MANUFACTURER_INVALID,
 
         MANUFACTURER_PRESSURE_PRO,
+
+        MANUFACTURER_SENSATA,
 
         MANUFACTURER_UNIVERSAL_J1939,
 
@@ -147,6 +156,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
         T visitManufacturerInvalid();
 
         T visitManufacturerPressurePro();
+
+        T visitManufacturerSensata();
 
         T visitManufacturerUniversalJ1939();
 
