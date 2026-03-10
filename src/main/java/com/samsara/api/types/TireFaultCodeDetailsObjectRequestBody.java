@@ -63,7 +63,7 @@ public final class TireFaultCodeDetailsObjectRequestBody {
     }
 
     /**
-     * @return The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code>
+     * @return The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_SENSATA</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code>
      */
     @JsonProperty("manufacturer")
     public TireFaultCodeDetailsObjectRequestBodyManufacturer getManufacturer() {
@@ -117,7 +117,7 @@ public final class TireFaultCodeDetailsObjectRequestBody {
 
     public interface ManufacturerStage {
         /**
-         * <p>The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code></p>
+         * <p>The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_SENSATA</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code></p>
          */
         _FinalStage manufacturer(@NotNull TireFaultCodeDetailsObjectRequestBodyManufacturer manufacturer);
 
@@ -177,8 +177,8 @@ public final class TireFaultCodeDetailsObjectRequestBody {
         }
 
         /**
-         * <p>The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code></p>
-         * <p>The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code></p>
+         * <p>The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_SENSATA</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code></p>
+         * <p>The tire manufacturer.  Valid values: <code>MANUFACTURER_BENDIX</code>, <code>MANUFACTURER_CONTINENTAL</code>, <code>MANUFACTURER_DORAN</code>, <code>MANUFACTURER_HENDRICKSON</code>, <code>MANUFACTURER_INVALID</code>, <code>MANUFACTURER_PRESSURE_PRO</code>, <code>MANUFACTURER_SENSATA</code>, <code>MANUFACTURER_UNIVERSAL_J1939</code>, <code>MANUFACTURER_UNIVERSAL_R141</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
