@@ -46,10 +46,12 @@ import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehicleHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehiclesRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
+import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
+import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsDeleteQualificationRecordRequestBody;
@@ -89,6 +91,8 @@ import com.samsara.api.types.JobsCreateJobResponseBody;
 import com.samsara.api.types.JobsDeleteJobResponseBody;
 import com.samsara.api.types.JobsGetJobsResponseBody;
 import com.samsara.api.types.JobsPatchJobResponseBody;
+import com.samsara.api.types.MaintenanceVendorsListMaintenanceVendorsResponseBody;
+import com.samsara.api.types.MaintenanceVendorsListVendorCategoriesResponseBody;
 import com.samsara.api.types.OrderInputObjectRequestBody;
 import com.samsara.api.types.PatchJobObjectRequestBody;
 import com.samsara.api.types.PlanOrdersCreatePlanOrdersResponseBody;
@@ -1483,6 +1487,135 @@ public class BetaApIsWireTest {
                 + "      \"id\": \"12345\",\n"
                 + "      \"testResult\": \"pass\",\n"
                 + "      \"testResultDetails\": \"Response from CARB CTC: Vehicle PASSED emissions scan.\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListVendorCategories() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"id\":\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"name\":\"Tires\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        MaintenanceVendorsListVendorCategoriesResponseBody response = client.betaApIs()
+                .listVendorCategories(ListVendorCategoriesRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
+                + "      \"name\": \"Tires\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListMaintenanceVendors() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"addressId\":\"281474993384538\",\"categoryIds\":[\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"],\"externalIds\":{\"key\":\"value\"},\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"servicesProvided\":\"Oil changes, tire rotations, brake services\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        MaintenanceVendorsListMaintenanceVendorsResponseBody response = client.betaApIs()
+                .listMaintenanceVendors(ListMaintenanceVendorsRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"addressId\": \"281474993384538\",\n"
+                + "      \"categoryIds\": [\n"
+                + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
+                + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
+                + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n"
+                + "      ],\n"
+                + "      \"externalIds\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "      \"servicesProvided\": \"Oil changes, tire rotations, brake services\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"

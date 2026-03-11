@@ -48,10 +48,12 @@ import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehicleHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehiclesRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
+import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
+import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsDeleteQualificationRecordRequestBody;
@@ -84,6 +86,8 @@ import com.samsara.api.types.JobsCreateJobResponseBody;
 import com.samsara.api.types.JobsDeleteJobResponseBody;
 import com.samsara.api.types.JobsGetJobsResponseBody;
 import com.samsara.api.types.JobsPatchJobResponseBody;
+import com.samsara.api.types.MaintenanceVendorsListMaintenanceVendorsResponseBody;
+import com.samsara.api.types.MaintenanceVendorsListVendorCategoriesResponseBody;
 import com.samsara.api.types.PlanOrdersCreatePlanOrdersResponseBody;
 import com.samsara.api.types.QualificationsGetQualificationRecordsResponseBody;
 import com.samsara.api.types.QualificationsGetQualificationRecordsStreamResponseBody;
@@ -674,6 +678,90 @@ public class BetaApIsClient {
     public CarbCtcListCarbCtcVehicleHistoryResponseBody listCarbCtcVehicleHistory(
             ListCarbCtcVehicleHistoryRequest request, RequestOptions requestOptions) {
         return this.rawClient.listCarbCtcVehicleHistory(request, requestOptions).body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories() {
+        return this.rawClient.listVendorCategories().body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories(RequestOptions requestOptions) {
+        return this.rawClient.listVendorCategories(requestOptions).body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories(
+            ListVendorCategoriesRequest request) {
+        return this.rawClient.listVendorCategories(request).body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories(
+            ListVendorCategoriesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listVendorCategories(request, requestOptions).body();
+    }
+
+    /**
+     * Returns a paginated list of maintenance vendors in the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListMaintenanceVendorsResponseBody listMaintenanceVendors() {
+        return this.rawClient.listMaintenanceVendors().body();
+    }
+
+    /**
+     * Returns a paginated list of maintenance vendors in the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListMaintenanceVendorsResponseBody listMaintenanceVendors(RequestOptions requestOptions) {
+        return this.rawClient.listMaintenanceVendors(requestOptions).body();
+    }
+
+    /**
+     * Returns a paginated list of maintenance vendors in the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListMaintenanceVendorsResponseBody listMaintenanceVendors(
+            ListMaintenanceVendorsRequest request) {
+        return this.rawClient.listMaintenanceVendors(request).body();
+    }
+
+    /**
+     * Returns a paginated list of maintenance vendors in the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListMaintenanceVendorsResponseBody listMaintenanceVendors(
+            ListMaintenanceVendorsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listMaintenanceVendors(request, requestOptions).body();
     }
 
     /**
