@@ -13568,7 +13568,7 @@ client.driverVehicleAssignments().getDriverVehicleAssignments(
 <dl>
 <dd>
 
-**assignmentType:** `Optional<GetDriverVehicleAssignmentsRequestAssignmentType>` — Specifies which assignment type to filter by.  Valid values: `HOS`, `idCard`, `static`, `faceId`, `tachograph`, `safetyManual`, `RFID`, `trailer`, `external`, `qrCode`, `driverApp`, `voiceSignIn`
+**assignmentType:** `Optional<GetDriverVehicleAssignmentsRequestAssignmentType>` — Specifies which assignment type to filter by.  Valid values: `HOS`, `idCard`, `static`, `faceId`, `tachograph`, `safetyManual`, `RFID`, `trailer`, `external`, `qrCode`, `driverApp`, `voiceSignIn`, `smartAssign`
     
 </dd>
 </dl>

@@ -7,12 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class GetDriverVehicleAssignmentsRequestAssignmentType {
-    public static final GetDriverVehicleAssignmentsRequestAssignmentType TACHOGRAPH =
-            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.TACHOGRAPH, "tachograph");
-
-    public static final GetDriverVehicleAssignmentsRequestAssignmentType STATIC =
-            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.STATIC, "static");
-
     public static final GetDriverVehicleAssignmentsRequestAssignmentType SAFETY_MANUAL =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.SAFETY_MANUAL, "safetyManual");
 
@@ -21,6 +15,21 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
 
     public static final GetDriverVehicleAssignmentsRequestAssignmentType FACE_ID =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.FACE_ID, "faceId");
+
+    public static final GetDriverVehicleAssignmentsRequestAssignmentType ID_CARD =
+            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.ID_CARD, "idCard");
+
+    public static final GetDriverVehicleAssignmentsRequestAssignmentType RFID =
+            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.RFID, "RFID");
+
+    public static final GetDriverVehicleAssignmentsRequestAssignmentType TACHOGRAPH =
+            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.TACHOGRAPH, "tachograph");
+
+    public static final GetDriverVehicleAssignmentsRequestAssignmentType STATIC =
+            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.STATIC, "static");
+
+    public static final GetDriverVehicleAssignmentsRequestAssignmentType SMART_ASSIGN =
+            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.SMART_ASSIGN, "smartAssign");
 
     public static final GetDriverVehicleAssignmentsRequestAssignmentType DRIVER_APP =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.DRIVER_APP, "driverApp");
@@ -31,17 +40,11 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
     public static final GetDriverVehicleAssignmentsRequestAssignmentType HOS =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.HOS, "HOS");
 
-    public static final GetDriverVehicleAssignmentsRequestAssignmentType ID_CARD =
-            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.ID_CARD, "idCard");
-
     public static final GetDriverVehicleAssignmentsRequestAssignmentType TRAILER =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.TRAILER, "trailer");
 
     public static final GetDriverVehicleAssignmentsRequestAssignmentType QR_CODE =
             new GetDriverVehicleAssignmentsRequestAssignmentType(Value.QR_CODE, "qrCode");
-
-    public static final GetDriverVehicleAssignmentsRequestAssignmentType RFID =
-            new GetDriverVehicleAssignmentsRequestAssignmentType(Value.RFID, "RFID");
 
     private final Value value;
 
@@ -76,30 +79,32 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
-            case TACHOGRAPH:
-                return visitor.visitTachograph();
-            case STATIC:
-                return visitor.visitStatic();
             case SAFETY_MANUAL:
                 return visitor.visitSafetyManual();
             case VOICE_SIGN_IN:
                 return visitor.visitVoiceSignIn();
             case FACE_ID:
                 return visitor.visitFaceId();
+            case ID_CARD:
+                return visitor.visitIdCard();
+            case RFID:
+                return visitor.visitRfid();
+            case TACHOGRAPH:
+                return visitor.visitTachograph();
+            case STATIC:
+                return visitor.visitStatic();
+            case SMART_ASSIGN:
+                return visitor.visitSmartAssign();
             case DRIVER_APP:
                 return visitor.visitDriverApp();
             case EXTERNAL:
                 return visitor.visitExternal();
             case HOS:
                 return visitor.visitHos();
-            case ID_CARD:
-                return visitor.visitIdCard();
             case TRAILER:
                 return visitor.visitTrailer();
             case QR_CODE:
                 return visitor.visitQrCode();
-            case RFID:
-                return visitor.visitRfid();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -109,30 +114,32 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static GetDriverVehicleAssignmentsRequestAssignmentType valueOf(String value) {
         switch (value) {
-            case "tachograph":
-                return TACHOGRAPH;
-            case "static":
-                return STATIC;
             case "safetyManual":
                 return SAFETY_MANUAL;
             case "voiceSignIn":
                 return VOICE_SIGN_IN;
             case "faceId":
                 return FACE_ID;
+            case "idCard":
+                return ID_CARD;
+            case "RFID":
+                return RFID;
+            case "tachograph":
+                return TACHOGRAPH;
+            case "static":
+                return STATIC;
+            case "smartAssign":
+                return SMART_ASSIGN;
             case "driverApp":
                 return DRIVER_APP;
             case "external":
                 return EXTERNAL;
             case "HOS":
                 return HOS;
-            case "idCard":
-                return ID_CARD;
             case "trailer":
                 return TRAILER;
             case "qrCode":
                 return QR_CODE;
-            case "RFID":
-                return RFID;
             default:
                 return new GetDriverVehicleAssignmentsRequestAssignmentType(Value.UNKNOWN, value);
         }
@@ -163,6 +170,8 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
 
         VOICE_SIGN_IN,
 
+        SMART_ASSIGN,
+
         UNKNOWN
     }
 
@@ -190,6 +199,8 @@ public final class GetDriverVehicleAssignmentsRequestAssignmentType {
         T visitDriverApp();
 
         T visitVoiceSignIn();
+
+        T visitSmartAssign();
 
         T visitUnknown(String unknownType);
     }
