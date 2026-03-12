@@ -34,6 +34,9 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType INVALID =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.INVALID, "invalid");
 
+    public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType SMART_ASSIGN =
+            new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.SMART_ASSIGN, "smartAssign");
+
     public static final DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType DRIVER_APP =
             new DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(Value.DRIVER_APP, "driverApp");
 
@@ -101,6 +104,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
                 return visitor.visitStatic();
             case INVALID:
                 return visitor.visitInvalid();
+            case SMART_ASSIGN:
+                return visitor.visitSmartAssign();
             case DRIVER_APP:
                 return visitor.visitDriverApp();
             case EXTERNAL:
@@ -138,6 +143,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
                 return STATIC;
             case "invalid":
                 return INVALID;
+            case "smartAssign":
+                return SMART_ASSIGN;
             case "driverApp":
                 return DRIVER_APP;
             case "external":
@@ -182,6 +189,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
 
         VOICE_SIGN_IN,
 
+        SMART_ASSIGN,
+
         _UNKNOWN
     }
 
@@ -213,6 +222,8 @@ public final class DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType {
         T visitDriverApp();
 
         T visitVoiceSignIn();
+
+        T visitSmartAssign();
 
         T visitUnknown(String unknownType);
     }

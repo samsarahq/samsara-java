@@ -69,7 +69,7 @@ public final class DriverVehicleAssignmentV2ObjectResponseBody {
     }
 
     /**
-     * @return Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code>
+     * @return Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code>, <code>smartAssign</code>
      */
     @JsonProperty("assignmentType")
     public Optional<DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType> getAssignmentType() {
@@ -195,7 +195,7 @@ public final class DriverVehicleAssignmentV2ObjectResponseBody {
         _FinalStage assignedAtTime(String assignedAtTime);
 
         /**
-         * <p>Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code></p>
+         * <p>Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code>, <code>smartAssign</code></p>
          */
         _FinalStage assignmentType(Optional<DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType> assignmentType);
 
@@ -322,7 +322,7 @@ public final class DriverVehicleAssignmentV2ObjectResponseBody {
         }
 
         /**
-         * <p>Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code></p>
+         * <p>Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code>, <code>smartAssign</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -332,7 +332,7 @@ public final class DriverVehicleAssignmentV2ObjectResponseBody {
         }
 
         /**
-         * <p>Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code></p>
+         * <p>Name of the assigning source for the driver assignment record.  Valid values: <code>invalid</code>, <code>unknown</code>, <code>HOS</code>, <code>idCard</code>, <code>static</code>, <code>faceId</code>, <code>tachograph</code>, <code>safetyManual</code>, <code>RFID</code>, <code>trailer</code>, <code>external</code>, <code>qrCode</code>, <code>driverApp</code>, <code>voiceSignIn</code>, <code>smartAssign</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "assignmentType", nulls = Nulls.SKIP)
