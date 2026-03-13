@@ -28,7 +28,7 @@ public final class RecoveryStateResponseBody {
 
     private final Optional<String> note;
 
-    private final Optional<List<NotificationRecipientResponseBody>> notificationRecipients;
+    private final Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients;
 
     private final Optional<List<RecoveryPhotoResponseBody>> recoveryPhotos;
 
@@ -44,7 +44,7 @@ public final class RecoveryStateResponseBody {
             String id,
             String name,
             Optional<String> note,
-            Optional<List<NotificationRecipientResponseBody>> notificationRecipients,
+            Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients,
             Optional<List<RecoveryPhotoResponseBody>> recoveryPhotos,
             long updatedAtMs,
             Optional<Long> updatedByUserId,
@@ -89,7 +89,7 @@ public final class RecoveryStateResponseBody {
      * @return Users subscribed to location update notifications for this asset.
      */
     @JsonProperty("notification_recipients")
-    public Optional<List<NotificationRecipientResponseBody>> getNotificationRecipients() {
+    public Optional<List<NotificationRecipientResponseResponseBody>> getNotificationRecipients() {
         return notificationRecipients;
     }
 
@@ -212,9 +212,10 @@ public final class RecoveryStateResponseBody {
         /**
          * <p>Users subscribed to location update notifications for this asset.</p>
          */
-        _FinalStage notificationRecipients(Optional<List<NotificationRecipientResponseBody>> notificationRecipients);
+        _FinalStage notificationRecipients(
+                Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients);
 
-        _FinalStage notificationRecipients(List<NotificationRecipientResponseBody> notificationRecipients);
+        _FinalStage notificationRecipients(List<NotificationRecipientResponseResponseBody> notificationRecipients);
 
         /**
          * <p>Photos associated with the recovery event. URLs are temporary and expire at url_expires_at_ms.</p>
@@ -245,7 +246,7 @@ public final class RecoveryStateResponseBody {
 
         private Optional<List<RecoveryPhotoResponseBody>> recoveryPhotos = Optional.empty();
 
-        private Optional<List<NotificationRecipientResponseBody>> notificationRecipients = Optional.empty();
+        private Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients = Optional.empty();
 
         private Optional<String> note = Optional.empty();
 
@@ -360,7 +361,8 @@ public final class RecoveryStateResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage notificationRecipients(List<NotificationRecipientResponseBody> notificationRecipients) {
+        public _FinalStage notificationRecipients(
+                List<NotificationRecipientResponseResponseBody> notificationRecipients) {
             this.notificationRecipients = Optional.ofNullable(notificationRecipients);
             return this;
         }
@@ -371,7 +373,7 @@ public final class RecoveryStateResponseBody {
         @java.lang.Override
         @JsonSetter(value = "notification_recipients", nulls = Nulls.SKIP)
         public _FinalStage notificationRecipients(
-                Optional<List<NotificationRecipientResponseBody>> notificationRecipients) {
+                Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients) {
             this.notificationRecipients = notificationRecipients;
             return this;
         }

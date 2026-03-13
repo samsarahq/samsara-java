@@ -33,6 +33,8 @@ public final class VendorObjectResponseBody {
 
     private final Optional<String> servicesProvided;
 
+    private final Optional<String> vendorId;
+
     private final Map<String, Object> additionalProperties;
 
     private VendorObjectResponseBody(
@@ -41,12 +43,14 @@ public final class VendorObjectResponseBody {
             Optional<Map<String, String>> externalIds,
             String id,
             Optional<String> servicesProvided,
+            Optional<String> vendorId,
             Map<String, Object> additionalProperties) {
         this.addressId = addressId;
         this.categoryIds = categoryIds;
         this.externalIds = externalIds;
         this.id = id;
         this.servicesProvided = servicesProvided;
+        this.vendorId = vendorId;
         this.additionalProperties = additionalProperties;
     }
 
@@ -90,6 +94,14 @@ public final class VendorObjectResponseBody {
         return servicesProvided;
     }
 
+    /**
+     * @return The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.
+     */
+    @JsonProperty("vendorId")
+    public Optional<String> getVendorId() {
+        return vendorId;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -106,12 +118,14 @@ public final class VendorObjectResponseBody {
                 && categoryIds.equals(other.categoryIds)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
-                && servicesProvided.equals(other.servicesProvided);
+                && servicesProvided.equals(other.servicesProvided)
+                && vendorId.equals(other.vendorId);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.addressId, this.categoryIds, this.externalIds, this.id, this.servicesProvided);
+        return Objects.hash(
+                this.addressId, this.categoryIds, this.externalIds, this.id, this.servicesProvided, this.vendorId);
     }
 
     @java.lang.Override
@@ -164,11 +178,20 @@ public final class VendorObjectResponseBody {
         _FinalStage servicesProvided(Optional<String> servicesProvided);
 
         _FinalStage servicesProvided(String servicesProvided);
+
+        /**
+         * <p>The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.</p>
+         */
+        _FinalStage vendorId(Optional<String> vendorId);
+
+        _FinalStage vendorId(String vendorId);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private String id;
+
+        private Optional<String> vendorId = Optional.empty();
 
         private Optional<String> servicesProvided = Optional.empty();
 
@@ -190,6 +213,7 @@ public final class VendorObjectResponseBody {
             externalIds(other.getExternalIds());
             id(other.getId());
             servicesProvided(other.getServicesProvided());
+            vendorId(other.getVendorId());
             return this;
         }
 
@@ -202,6 +226,26 @@ public final class VendorObjectResponseBody {
         @JsonSetter("id")
         public _FinalStage id(@NotNull String id) {
             this.id = Objects.requireNonNull(id, "id must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage vendorId(String vendorId) {
+            this.vendorId = Optional.ofNullable(vendorId);
+            return this;
+        }
+
+        /**
+         * <p>The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "vendorId", nulls = Nulls.SKIP)
+        public _FinalStage vendorId(Optional<String> vendorId) {
+            this.vendorId = vendorId;
             return this;
         }
 
@@ -303,7 +347,7 @@ public final class VendorObjectResponseBody {
         @java.lang.Override
         public VendorObjectResponseBody build() {
             return new VendorObjectResponseBody(
-                    addressId, categoryIds, externalIds, id, servicesProvided, additionalProperties);
+                    addressId, categoryIds, externalIds, id, servicesProvided, vendorId, additionalProperties);
         }
     }
 }

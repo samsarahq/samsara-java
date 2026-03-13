@@ -42,7 +42,7 @@ public final class ListMaintenanceVendorsRequest {
     }
 
     /**
-     * @return A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. The default external ID key is samsara.vendorId (e.g. samsara.vendorId:V-12345). See <a href="https://developers.samsara.com/docs/external-ids">external IDs</a>.
+     * @return A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. See <a href="https://developers.samsara.com/docs/external-ids">external IDs</a>.
      */
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
@@ -117,7 +117,7 @@ public final class ListMaintenanceVendorsRequest {
         }
 
         /**
-         * <p>A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. The default external ID key is samsara.vendorId (e.g. samsara.vendorId:V-12345). See <a href="https://developers.samsara.com/docs/external-ids">external IDs</a>.</p>
+         * <p>A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. See <a href="https://developers.samsara.com/docs/external-ids">external IDs</a>.</p>
          */
         @JsonSetter(value = "ids", nulls = Nulls.SKIP)
         public Builder ids(Optional<List<String>> ids) {
