@@ -3872,6 +3872,254 @@ client.betaApIs().getDevices(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listDeviceRecoveryMissingAssets() -> DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all assets that are currently marked as missing for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listDeviceRecoveryMissingAssets(
+    ListDeviceRecoveryMissingAssetsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.markAssetMissing(id, request) -> DeviceRecoveryMarkAssetMissingResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Mark an asset as missing. Optionally specify a note and notification recipients who will receive email updates.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().markAssetMissing(
+    "id",
+    DeviceRecoveryMarkAssetMissingRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The ID of the asset. This can be a Samsara internal ID or an external ID in the format `key:value`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**note:** `Optional<String>` — Optional note when marking asset as missing.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notificationRecipients:** `Optional<List<NotificationRecipientRequestBody>>` — List of users to notify when asset is marked as missing.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.recoverAsset(id, request) -> DeviceRecoveryRecoverAssetResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Mark a missing asset as recovered. Provide the recovery status, reason for being missing, and optional additional details.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().recoverAsset(
+    "id",
+    DeviceRecoveryRecoverAssetRequestBody
+        .builder()
+        .missingReason(DeviceRecoveryRecoverAssetRequestBodyMissingReason.MISPLACED)
+        .recoveryStatus(DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus.YES)
+        .status(DeviceRecoveryRecoverAssetRequestBodyStatus.RECOVERED)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The ID of the asset. This can be a Samsara internal ID or an external ID in the format `key:value`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**additionalDetails:** `Optional<String>` — Optional additional details about the recovery.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**missingReason:** `DeviceRecoveryRecoverAssetRequestBodyMissingReason` — The reason the asset was marked as missing.  Valid values: `MISPLACED`, `STOLEN`, `NOT_SURE`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recoveryStatus:** `DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus` — Whether the asset has been physically recovered.  Valid values: `YES`, `NO`, `NOT_SURE`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `DeviceRecoveryRecoverAssetRequestBodyStatus` — The recovery status to set for the asset.  Valid values: `RECOVERED`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listCarbCtcVehicles() -> CarbCtcListCarbCtcVehiclesResponseBody</code></summary>
 <dl>
 <dd>
@@ -4169,7 +4417,7 @@ client.betaApIs().listMaintenanceVendors(
 <dl>
 <dd>
 
-**ids:** `Optional<String>` — A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. The default external ID key is samsara.vendorId (e.g. samsara.vendorId:V-12345). See [external IDs](https://developers.samsara.com/docs/external-ids).
+**ids:** `Optional<String>` — A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. See [external IDs](https://developers.samsara.com/docs/external-ids).
     
 </dd>
 </dl>
@@ -24976,272 +25224,6 @@ client.organizationInfo().getOrganizationInfo();
 </details>
 
 ## Preview APIs
-<details><summary><code>client.previewApIs.listDeviceRecoveryMissingAssets() -> DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List all assets that are currently marked as missing for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().listDeviceRecoveryMissingAssets(
-    ListDeviceRecoveryMissingAssetsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.markAssetMissing(id, request) -> DeviceRecoveryMarkAssetMissingResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Mark an asset as missing. Optionally specify a note and notification recipients who will receive email updates.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().markAssetMissing(
-    "id",
-    DeviceRecoveryMarkAssetMissingRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The ID of the asset. This can be a Samsara internal ID or an external ID in the format `key:value`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**note:** `Optional<String>` — Optional note when marking asset as missing.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notificationRecipients:** `Optional<List<NotificationRecipientRequestBody>>` — List of users to notify when asset is marked as missing.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.recoverAsset(id, request) -> DeviceRecoveryRecoverAssetResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Mark a missing asset as recovered. Provide the recovery status, reason for being missing, and optional additional details.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().recoverAsset(
-    "id",
-    DeviceRecoveryRecoverAssetRequestBody
-        .builder()
-        .missingReason(DeviceRecoveryRecoverAssetRequestBodyMissingReason.MISPLACED)
-        .recoveryStatus(DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus.YES)
-        .status(DeviceRecoveryRecoverAssetRequestBodyStatus.RECOVERED)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The ID of the asset. This can be a Samsara internal ID or an external ID in the format `key:value`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**additionalDetails:** `Optional<String>` — Optional additional details about the recovery.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**missingReason:** `DeviceRecoveryRecoverAssetRequestBodyMissingReason` — The reason the asset was marked as missing.  Valid values: `MISPLACED`, `STOLEN`, `NOT_SURE`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**recoveryStatus:** `DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus` — Whether the asset has been physically recovered.  Valid values: `YES`, `NO`, `NOT_SURE`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `DeviceRecoveryRecoverAssetRequestBodyStatus` — The recovery status to set for the asset.  Valid values: `RECOVERED`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.previewApIs.createDriverAuthToken(request) -> DriversAuthTokenCreateDriverAuthTokenResponseBody</code></summary>
 <dl>
 <dd>

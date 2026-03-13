@@ -9,6 +9,8 @@ import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipRouteSetupRequest;
+import com.samsara.api.resources.betaapis.requests.DeviceRecoveryMarkAssetMissingRequestBody;
+import com.samsara.api.resources.betaapis.requests.DeviceRecoveryRecoverAssetRequestBody;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
@@ -47,6 +49,7 @@ import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehicleHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehiclesRequest;
+import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
@@ -74,6 +77,9 @@ import com.samsara.api.types.CarbCtcListCarbCtcVehicleHistoryResponseBody;
 import com.samsara.api.types.CarbCtcListCarbCtcVehiclesResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
+import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody;
+import com.samsara.api.types.DeviceRecoveryMarkAssetMissingResponseBody;
+import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
@@ -625,6 +631,117 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<DevicesGetDevicesResponseBody> getDevices(
             GetDevicesRequest request, RequestOptions requestOptions) {
         return this.rawClient.getDevices(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all assets that are currently marked as missing for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody>
+            listDeviceRecoveryMissingAssets() {
+        return this.rawClient.listDeviceRecoveryMissingAssets().thenApply(response -> response.body());
+    }
+
+    /**
+     * List all assets that are currently marked as missing for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody> listDeviceRecoveryMissingAssets(
+            RequestOptions requestOptions) {
+        return this.rawClient.listDeviceRecoveryMissingAssets(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all assets that are currently marked as missing for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody> listDeviceRecoveryMissingAssets(
+            ListDeviceRecoveryMissingAssetsRequest request) {
+        return this.rawClient.listDeviceRecoveryMissingAssets(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all assets that are currently marked as missing for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody> listDeviceRecoveryMissingAssets(
+            ListDeviceRecoveryMissingAssetsRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .listDeviceRecoveryMissingAssets(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Mark an asset as missing. Optionally specify a note and notification recipients who will receive email updates.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryMarkAssetMissingResponseBody> markAssetMissing(String id) {
+        return this.rawClient.markAssetMissing(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Mark an asset as missing. Optionally specify a note and notification recipients who will receive email updates.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryMarkAssetMissingResponseBody> markAssetMissing(
+            String id, RequestOptions requestOptions) {
+        return this.rawClient.markAssetMissing(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Mark an asset as missing. Optionally specify a note and notification recipients who will receive email updates.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryMarkAssetMissingResponseBody> markAssetMissing(
+            String id, DeviceRecoveryMarkAssetMissingRequestBody request) {
+        return this.rawClient.markAssetMissing(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Mark an asset as missing. Optionally specify a note and notification recipients who will receive email updates.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryMarkAssetMissingResponseBody> markAssetMissing(
+            String id, DeviceRecoveryMarkAssetMissingRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.markAssetMissing(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Mark a missing asset as recovered. Provide the recovery status, reason for being missing, and optional additional details.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryRecoverAssetResponseBody> recoverAsset(
+            String id, DeviceRecoveryRecoverAssetRequestBody request) {
+        return this.rawClient.recoverAsset(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Mark a missing asset as recovered. Provide the recovery status, reason for being missing, and optional additional details.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DeviceRecoveryRecoverAssetResponseBody> recoverAsset(
+            String id, DeviceRecoveryRecoverAssetRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.recoverAsset(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

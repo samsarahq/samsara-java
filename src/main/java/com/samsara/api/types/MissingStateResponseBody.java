@@ -28,7 +28,7 @@ public final class MissingStateResponseBody {
 
     private final Optional<String> note;
 
-    private final Optional<List<NotificationRecipientResponseBody>> notificationRecipients;
+    private final Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients;
 
     private final long updatedAtMs;
 
@@ -42,7 +42,7 @@ public final class MissingStateResponseBody {
             String id,
             String name,
             Optional<String> note,
-            Optional<List<NotificationRecipientResponseBody>> notificationRecipients,
+            Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients,
             long updatedAtMs,
             Optional<Long> updatedByUserId,
             String uuid,
@@ -85,7 +85,7 @@ public final class MissingStateResponseBody {
      * @return Users subscribed to location update notifications for this asset.
      */
     @JsonProperty("notification_recipients")
-    public Optional<List<NotificationRecipientResponseBody>> getNotificationRecipients() {
+    public Optional<List<NotificationRecipientResponseResponseBody>> getNotificationRecipients() {
         return notificationRecipients;
     }
 
@@ -198,9 +198,10 @@ public final class MissingStateResponseBody {
         /**
          * <p>Users subscribed to location update notifications for this asset.</p>
          */
-        _FinalStage notificationRecipients(Optional<List<NotificationRecipientResponseBody>> notificationRecipients);
+        _FinalStage notificationRecipients(
+                Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients);
 
-        _FinalStage notificationRecipients(List<NotificationRecipientResponseBody> notificationRecipients);
+        _FinalStage notificationRecipients(List<NotificationRecipientResponseResponseBody> notificationRecipients);
 
         /**
          * <p>The ID of the user who marked the asset as missing.</p>
@@ -222,7 +223,7 @@ public final class MissingStateResponseBody {
 
         private Optional<Long> updatedByUserId = Optional.empty();
 
-        private Optional<List<NotificationRecipientResponseBody>> notificationRecipients = Optional.empty();
+        private Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients = Optional.empty();
 
         private Optional<String> note = Optional.empty();
 
@@ -316,7 +317,8 @@ public final class MissingStateResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage notificationRecipients(List<NotificationRecipientResponseBody> notificationRecipients) {
+        public _FinalStage notificationRecipients(
+                List<NotificationRecipientResponseResponseBody> notificationRecipients) {
             this.notificationRecipients = Optional.ofNullable(notificationRecipients);
             return this;
         }
@@ -327,7 +329,7 @@ public final class MissingStateResponseBody {
         @java.lang.Override
         @JsonSetter(value = "notification_recipients", nulls = Nulls.SKIP)
         public _FinalStage notificationRecipients(
-                Optional<List<NotificationRecipientResponseBody>> notificationRecipients) {
+                Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients) {
             this.notificationRecipients = notificationRecipients;
             return this;
         }

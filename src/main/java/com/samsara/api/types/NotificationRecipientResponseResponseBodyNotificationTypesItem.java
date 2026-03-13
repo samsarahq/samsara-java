@@ -6,15 +6,15 @@ package com.samsara.api.types;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public final class NotificationRecipientResponseBodyNotificationTypesItem {
-    public static final NotificationRecipientResponseBodyNotificationTypesItem EMAIL =
-            new NotificationRecipientResponseBodyNotificationTypesItem(Value.EMAIL, "email");
+public final class NotificationRecipientResponseResponseBodyNotificationTypesItem {
+    public static final NotificationRecipientResponseResponseBodyNotificationTypesItem EMAIL =
+            new NotificationRecipientResponseResponseBodyNotificationTypesItem(Value.EMAIL, "email");
 
     private final Value value;
 
     private final String string;
 
-    NotificationRecipientResponseBodyNotificationTypesItem(Value value, String string) {
+    NotificationRecipientResponseResponseBodyNotificationTypesItem(Value value, String string) {
         this.value = value;
         this.string = string;
     }
@@ -32,8 +32,9 @@ public final class NotificationRecipientResponseBodyNotificationTypesItem {
     @java.lang.Override
     public boolean equals(Object other) {
         return (this == other)
-                || (other instanceof NotificationRecipientResponseBodyNotificationTypesItem
-                        && this.string.equals(((NotificationRecipientResponseBodyNotificationTypesItem) other).string));
+                || (other instanceof NotificationRecipientResponseResponseBodyNotificationTypesItem
+                        && this.string.equals(
+                                ((NotificationRecipientResponseResponseBodyNotificationTypesItem) other).string));
     }
 
     @java.lang.Override
@@ -52,12 +53,12 @@ public final class NotificationRecipientResponseBodyNotificationTypesItem {
     }
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static NotificationRecipientResponseBodyNotificationTypesItem valueOf(String value) {
+    public static NotificationRecipientResponseResponseBodyNotificationTypesItem valueOf(String value) {
         switch (value) {
             case "email":
                 return EMAIL;
             default:
-                return new NotificationRecipientResponseBodyNotificationTypesItem(Value.UNKNOWN, value);
+                return new NotificationRecipientResponseResponseBodyNotificationTypesItem(Value.UNKNOWN, value);
         }
     }
 
