@@ -55,7 +55,7 @@ public class MaintenanceWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"id\":\"25d6151e-29b5-453e-875a-7c5425332e09\",\"label\":\"Air Compressor\",\"sectionType\":\"exteriorFront\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"id\":\"25d6151e-29b5-453e-875a-7c5425332e09\",\"label\":\"Air Compressor\",\"sectionType\":\"exteriorFront\",\"severity\":\"major\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DvirDefectTypeGetDefectTypesResponseBody response = client.maintenance()
                 .getDefectTypes(GetDefectTypesRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -72,7 +72,8 @@ public class MaintenanceWireTest {
                 + "      \"createdAtTime\": \"2020-01-27T07:06:25Z\",\n"
                 + "      \"id\": \"25d6151e-29b5-453e-875a-7c5425332e09\",\n"
                 + "      \"label\": \"Air Compressor\",\n"
-                + "      \"sectionType\": \"exteriorFront\"\n"
+                + "      \"sectionType\": \"exteriorFront\",\n"
+                + "      \"severity\": \"major\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"

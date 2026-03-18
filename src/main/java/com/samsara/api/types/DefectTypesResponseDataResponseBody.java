@@ -9,11 +9,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -27,6 +29,8 @@ public final class DefectTypesResponseDataResponseBody {
 
     private final DefectTypesResponseDataResponseBodySectionType sectionType;
 
+    private final Optional<DefectTypesResponseDataResponseBodySeverity> severity;
+
     private final Map<String, Object> additionalProperties;
 
     private DefectTypesResponseDataResponseBody(
@@ -34,11 +38,13 @@ public final class DefectTypesResponseDataResponseBody {
             String id,
             String label,
             DefectTypesResponseDataResponseBodySectionType sectionType,
+            Optional<DefectTypesResponseDataResponseBodySeverity> severity,
             Map<String, Object> additionalProperties) {
         this.createdAtTime = createdAtTime;
         this.id = id;
         this.label = label;
         this.sectionType = sectionType;
+        this.severity = severity;
         this.additionalProperties = additionalProperties;
     }
 
@@ -74,6 +80,14 @@ public final class DefectTypesResponseDataResponseBody {
         return sectionType;
     }
 
+    /**
+     * @return The severity of the defect type. Only present for DVIR 2.0 defect types.  Valid values: <code>major</code>, <code>minor</code>, <code>notApplicable</code>
+     */
+    @JsonProperty("severity")
+    public Optional<DefectTypesResponseDataResponseBodySeverity> getSeverity() {
+        return severity;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -90,12 +104,13 @@ public final class DefectTypesResponseDataResponseBody {
         return createdAtTime.equals(other.createdAtTime)
                 && id.equals(other.id)
                 && label.equals(other.label)
-                && sectionType.equals(other.sectionType);
+                && sectionType.equals(other.sectionType)
+                && severity.equals(other.severity);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.createdAtTime, this.id, this.label, this.sectionType);
+        return Objects.hash(this.createdAtTime, this.id, this.label, this.sectionType, this.severity);
     }
 
     @java.lang.Override
@@ -139,6 +154,13 @@ public final class DefectTypesResponseDataResponseBody {
 
     public interface _FinalStage {
         DefectTypesResponseDataResponseBody build();
+
+        /**
+         * <p>The severity of the defect type. Only present for DVIR 2.0 defect types.  Valid values: <code>major</code>, <code>minor</code>, <code>notApplicable</code></p>
+         */
+        _FinalStage severity(Optional<DefectTypesResponseDataResponseBodySeverity> severity);
+
+        _FinalStage severity(DefectTypesResponseDataResponseBodySeverity severity);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -152,6 +174,8 @@ public final class DefectTypesResponseDataResponseBody {
 
         private DefectTypesResponseDataResponseBodySectionType sectionType;
 
+        private Optional<DefectTypesResponseDataResponseBodySeverity> severity = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -163,6 +187,7 @@ public final class DefectTypesResponseDataResponseBody {
             id(other.getId());
             label(other.getLabel());
             sectionType(other.getSectionType());
+            severity(other.getSeverity());
             return this;
         }
 
@@ -214,9 +239,30 @@ public final class DefectTypesResponseDataResponseBody {
             return this;
         }
 
+        /**
+         * <p>The severity of the defect type. Only present for DVIR 2.0 defect types.  Valid values: <code>major</code>, <code>minor</code>, <code>notApplicable</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage severity(DefectTypesResponseDataResponseBodySeverity severity) {
+            this.severity = Optional.ofNullable(severity);
+            return this;
+        }
+
+        /**
+         * <p>The severity of the defect type. Only present for DVIR 2.0 defect types.  Valid values: <code>major</code>, <code>minor</code>, <code>notApplicable</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "severity", nulls = Nulls.SKIP)
+        public _FinalStage severity(Optional<DefectTypesResponseDataResponseBodySeverity> severity) {
+            this.severity = severity;
+            return this;
+        }
+
         @java.lang.Override
         public DefectTypesResponseDataResponseBody build() {
-            return new DefectTypesResponseDataResponseBody(createdAtTime, id, label, sectionType, additionalProperties);
+            return new DefectTypesResponseDataResponseBody(
+                    createdAtTime, id, label, sectionType, severity, additionalProperties);
         }
     }
 }
