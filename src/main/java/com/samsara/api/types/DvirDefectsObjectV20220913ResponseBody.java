@@ -25,7 +25,11 @@ public final class DvirDefectsObjectV20220913ResponseBody {
 
     private final String createdAtTime;
 
+    private final Optional<DvirDefectsObjectV20220913ResponseBodyDefectSeverity> defectSeverity;
+
     private final String defectType;
+
+    private final Optional<String> defectTypeId;
 
     private final String id;
 
@@ -48,7 +52,9 @@ public final class DvirDefectsObjectV20220913ResponseBody {
     private DvirDefectsObjectV20220913ResponseBody(
             Optional<String> comment,
             String createdAtTime,
+            Optional<DvirDefectsObjectV20220913ResponseBodyDefectSeverity> defectSeverity,
             String defectType,
+            Optional<String> defectTypeId,
             String id,
             boolean isResolved,
             Optional<String> mechanicNotes,
@@ -60,7 +66,9 @@ public final class DvirDefectsObjectV20220913ResponseBody {
             Map<String, Object> additionalProperties) {
         this.comment = comment;
         this.createdAtTime = createdAtTime;
+        this.defectSeverity = defectSeverity;
         this.defectType = defectType;
+        this.defectTypeId = defectTypeId;
         this.id = id;
         this.isResolved = isResolved;
         this.mechanicNotes = mechanicNotes;
@@ -89,11 +97,27 @@ public final class DvirDefectsObjectV20220913ResponseBody {
     }
 
     /**
+     * @return The severity of the DVIR defect.  Valid values: <code>minor</code>, <code>major</code>, <code>unspecified</code>
+     */
+    @JsonProperty("defectSeverity")
+    public Optional<DvirDefectsObjectV20220913ResponseBodyDefectSeverity> getDefectSeverity() {
+        return defectSeverity;
+    }
+
+    /**
      * @return The type of DVIR defect.
      */
     @JsonProperty("defectType")
     public String getDefectType() {
         return defectType;
+    }
+
+    /**
+     * @return The ID of the DVIR defect type.
+     */
+    @JsonProperty("defectTypeId")
+    public Optional<String> getDefectTypeId() {
+        return defectTypeId;
     }
 
     /**
@@ -166,7 +190,9 @@ public final class DvirDefectsObjectV20220913ResponseBody {
     private boolean equalTo(DvirDefectsObjectV20220913ResponseBody other) {
         return comment.equals(other.comment)
                 && createdAtTime.equals(other.createdAtTime)
+                && defectSeverity.equals(other.defectSeverity)
                 && defectType.equals(other.defectType)
+                && defectTypeId.equals(other.defectTypeId)
                 && id.equals(other.id)
                 && isResolved == other.isResolved
                 && mechanicNotes.equals(other.mechanicNotes)
@@ -182,7 +208,9 @@ public final class DvirDefectsObjectV20220913ResponseBody {
         return Objects.hash(
                 this.comment,
                 this.createdAtTime,
+                this.defectSeverity,
                 this.defectType,
+                this.defectTypeId,
                 this.id,
                 this.isResolved,
                 this.mechanicNotes,
@@ -243,6 +271,20 @@ public final class DvirDefectsObjectV20220913ResponseBody {
         _FinalStage comment(String comment);
 
         /**
+         * <p>The severity of the DVIR defect.  Valid values: <code>minor</code>, <code>major</code>, <code>unspecified</code></p>
+         */
+        _FinalStage defectSeverity(Optional<DvirDefectsObjectV20220913ResponseBodyDefectSeverity> defectSeverity);
+
+        _FinalStage defectSeverity(DvirDefectsObjectV20220913ResponseBodyDefectSeverity defectSeverity);
+
+        /**
+         * <p>The ID of the DVIR defect type.</p>
+         */
+        _FinalStage defectTypeId(Optional<String> defectTypeId);
+
+        _FinalStage defectTypeId(String defectTypeId);
+
+        /**
          * <p>The mechanic notes on this defect.</p>
          */
         _FinalStage mechanicNotes(Optional<String> mechanicNotes);
@@ -299,6 +341,10 @@ public final class DvirDefectsObjectV20220913ResponseBody {
 
         private Optional<String> mechanicNotes = Optional.empty();
 
+        private Optional<String> defectTypeId = Optional.empty();
+
+        private Optional<DvirDefectsObjectV20220913ResponseBodyDefectSeverity> defectSeverity = Optional.empty();
+
         private Optional<String> comment = Optional.empty();
 
         @JsonAnySetter
@@ -310,7 +356,9 @@ public final class DvirDefectsObjectV20220913ResponseBody {
         public Builder from(DvirDefectsObjectV20220913ResponseBody other) {
             comment(other.getComment());
             createdAtTime(other.getCreatedAtTime());
+            defectSeverity(other.getDefectSeverity());
             defectType(other.getDefectType());
+            defectTypeId(other.getDefectTypeId());
             id(other.getId());
             isResolved(other.getIsResolved());
             mechanicNotes(other.getMechanicNotes());
@@ -470,6 +518,47 @@ public final class DvirDefectsObjectV20220913ResponseBody {
         }
 
         /**
+         * <p>The ID of the DVIR defect type.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage defectTypeId(String defectTypeId) {
+            this.defectTypeId = Optional.ofNullable(defectTypeId);
+            return this;
+        }
+
+        /**
+         * <p>The ID of the DVIR defect type.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "defectTypeId", nulls = Nulls.SKIP)
+        public _FinalStage defectTypeId(Optional<String> defectTypeId) {
+            this.defectTypeId = defectTypeId;
+            return this;
+        }
+
+        /**
+         * <p>The severity of the DVIR defect.  Valid values: <code>minor</code>, <code>major</code>, <code>unspecified</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage defectSeverity(DvirDefectsObjectV20220913ResponseBodyDefectSeverity defectSeverity) {
+            this.defectSeverity = Optional.ofNullable(defectSeverity);
+            return this;
+        }
+
+        /**
+         * <p>The severity of the DVIR defect.  Valid values: <code>minor</code>, <code>major</code>, <code>unspecified</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "defectSeverity", nulls = Nulls.SKIP)
+        public _FinalStage defectSeverity(
+                Optional<DvirDefectsObjectV20220913ResponseBodyDefectSeverity> defectSeverity) {
+            this.defectSeverity = defectSeverity;
+            return this;
+        }
+
+        /**
          * <p>Comment on the defect.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -494,7 +583,9 @@ public final class DvirDefectsObjectV20220913ResponseBody {
             return new DvirDefectsObjectV20220913ResponseBody(
                     comment,
                     createdAtTime,
+                    defectSeverity,
                     defectType,
+                    defectTypeId,
                     id,
                     isResolved,
                     mechanicNotes,

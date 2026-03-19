@@ -30,11 +30,11 @@ public final class MissingStateResponseBody {
 
     private final Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients;
 
+    private final Optional<MissingStateResponseBodyUpdateSource> updateSource;
+
     private final long updatedAtMs;
 
     private final Optional<Long> updatedByUserId;
-
-    private final String uuid;
 
     private final Map<String, Object> additionalProperties;
 
@@ -43,17 +43,17 @@ public final class MissingStateResponseBody {
             String name,
             Optional<String> note,
             Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients,
+            Optional<MissingStateResponseBodyUpdateSource> updateSource,
             long updatedAtMs,
             Optional<Long> updatedByUserId,
-            String uuid,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.name = name;
         this.note = note;
         this.notificationRecipients = notificationRecipients;
+        this.updateSource = updateSource;
         this.updatedAtMs = updatedAtMs;
         this.updatedByUserId = updatedByUserId;
-        this.uuid = uuid;
         this.additionalProperties = additionalProperties;
     }
 
@@ -90,6 +90,14 @@ public final class MissingStateResponseBody {
     }
 
     /**
+     * @return The source of the last update to this recovery state. Defaults to <code>dashboard</code> if not explicitly set.  Valid values: <code>dashboard</code>, <code>api</code>
+     */
+    @JsonProperty("update_source")
+    public Optional<MissingStateResponseBodyUpdateSource> getUpdateSource() {
+        return updateSource;
+    }
+
+    /**
      * @return Timestamp when the asset was marked as missing, in milliseconds since epoch.
      */
     @JsonProperty("updated_at_ms")
@@ -103,14 +111,6 @@ public final class MissingStateResponseBody {
     @JsonProperty("updated_by_user_id")
     public Optional<Long> getUpdatedByUserId() {
         return updatedByUserId;
-    }
-
-    /**
-     * @return The unique UUID of this recovery state record.
-     */
-    @JsonProperty("uuid")
-    public String getUuid() {
-        return uuid;
     }
 
     @java.lang.Override
@@ -129,9 +129,9 @@ public final class MissingStateResponseBody {
                 && name.equals(other.name)
                 && note.equals(other.note)
                 && notificationRecipients.equals(other.notificationRecipients)
+                && updateSource.equals(other.updateSource)
                 && updatedAtMs == other.updatedAtMs
-                && updatedByUserId.equals(other.updatedByUserId)
-                && uuid.equals(other.uuid);
+                && updatedByUserId.equals(other.updatedByUserId);
     }
 
     @java.lang.Override
@@ -141,9 +141,9 @@ public final class MissingStateResponseBody {
                 this.name,
                 this.note,
                 this.notificationRecipients,
+                this.updateSource,
                 this.updatedAtMs,
-                this.updatedByUserId,
-                this.uuid);
+                this.updatedByUserId);
     }
 
     @java.lang.Override
@@ -175,14 +175,7 @@ public final class MissingStateResponseBody {
         /**
          * <p>Timestamp when the asset was marked as missing, in milliseconds since epoch.</p>
          */
-        UuidStage updatedAtMs(long updatedAtMs);
-    }
-
-    public interface UuidStage {
-        /**
-         * <p>The unique UUID of this recovery state record.</p>
-         */
-        _FinalStage uuid(@NotNull String uuid);
+        _FinalStage updatedAtMs(long updatedAtMs);
     }
 
     public interface _FinalStage {
@@ -204,6 +197,13 @@ public final class MissingStateResponseBody {
         _FinalStage notificationRecipients(List<NotificationRecipientResponseResponseBody> notificationRecipients);
 
         /**
+         * <p>The source of the last update to this recovery state. Defaults to <code>dashboard</code> if not explicitly set.  Valid values: <code>dashboard</code>, <code>api</code></p>
+         */
+        _FinalStage updateSource(Optional<MissingStateResponseBodyUpdateSource> updateSource);
+
+        _FinalStage updateSource(MissingStateResponseBodyUpdateSource updateSource);
+
+        /**
          * <p>The ID of the user who marked the asset as missing.</p>
          */
         _FinalStage updatedByUserId(Optional<Long> updatedByUserId);
@@ -212,16 +212,16 @@ public final class MissingStateResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements IdStage, NameStage, UpdatedAtMsStage, UuidStage, _FinalStage {
+    public static final class Builder implements IdStage, NameStage, UpdatedAtMsStage, _FinalStage {
         private String id;
 
         private String name;
 
         private long updatedAtMs;
 
-        private String uuid;
-
         private Optional<Long> updatedByUserId = Optional.empty();
+
+        private Optional<MissingStateResponseBodyUpdateSource> updateSource = Optional.empty();
 
         private Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients = Optional.empty();
 
@@ -238,9 +238,9 @@ public final class MissingStateResponseBody {
             name(other.getName());
             note(other.getNote());
             notificationRecipients(other.getNotificationRecipients());
+            updateSource(other.getUpdateSource());
             updatedAtMs(other.getUpdatedAtMs());
             updatedByUserId(other.getUpdatedByUserId());
-            uuid(other.getUuid());
             return this;
         }
 
@@ -275,20 +275,8 @@ public final class MissingStateResponseBody {
          */
         @java.lang.Override
         @JsonSetter("updated_at_ms")
-        public UuidStage updatedAtMs(long updatedAtMs) {
+        public _FinalStage updatedAtMs(long updatedAtMs) {
             this.updatedAtMs = updatedAtMs;
-            return this;
-        }
-
-        /**
-         * <p>The unique UUID of this recovery state record.</p>
-         * <p>The unique UUID of this recovery state record.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("uuid")
-        public _FinalStage uuid(@NotNull String uuid) {
-            this.uuid = Objects.requireNonNull(uuid, "uuid must not be null");
             return this;
         }
 
@@ -309,6 +297,26 @@ public final class MissingStateResponseBody {
         @JsonSetter(value = "updated_by_user_id", nulls = Nulls.SKIP)
         public _FinalStage updatedByUserId(Optional<Long> updatedByUserId) {
             this.updatedByUserId = updatedByUserId;
+            return this;
+        }
+
+        /**
+         * <p>The source of the last update to this recovery state. Defaults to <code>dashboard</code> if not explicitly set.  Valid values: <code>dashboard</code>, <code>api</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage updateSource(MissingStateResponseBodyUpdateSource updateSource) {
+            this.updateSource = Optional.ofNullable(updateSource);
+            return this;
+        }
+
+        /**
+         * <p>The source of the last update to this recovery state. Defaults to <code>dashboard</code> if not explicitly set.  Valid values: <code>dashboard</code>, <code>api</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "update_source", nulls = Nulls.SKIP)
+        public _FinalStage updateSource(Optional<MissingStateResponseBodyUpdateSource> updateSource) {
+            this.updateSource = updateSource;
             return this;
         }
 
@@ -357,7 +365,14 @@ public final class MissingStateResponseBody {
         @java.lang.Override
         public MissingStateResponseBody build() {
             return new MissingStateResponseBody(
-                    id, name, note, notificationRecipients, updatedAtMs, updatedByUserId, uuid, additionalProperties);
+                    id,
+                    name,
+                    note,
+                    notificationRecipients,
+                    updateSource,
+                    updatedAtMs,
+                    updatedByUserId,
+                    additionalProperties);
         }
     }
 }
