@@ -63,6 +63,7 @@ import com.samsara.api.resources.betaapis.requests.QualificationsPostQualificati
 import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
+import com.samsara.api.resources.betaapis.requests.ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipAccountsCreateRidershipAccountRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipAccountsUpdateRidershipAccountRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRidershipPassengerRequestBody;
@@ -126,6 +127,7 @@ import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
 import com.samsara.api.types.ReportsGetReportRunDataResponseBody;
 import com.samsara.api.types.ReportsGetReportRunsResponseBody;
+import com.samsara.api.types.ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody;
 import com.samsara.api.types.RidershipAccountsCreateRidershipAccountResponseBody;
 import com.samsara.api.types.RidershipAccountsGetRidershipAccountResponseBody;
 import com.samsara.api.types.RidershipAccountsListRidershipAccountsResponseBody;
@@ -1409,7 +1411,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody response = client.betaApIs()
                 .listDeviceRecoveryMissingAssets(
                         ListDeviceRecoveryMissingAssetsRequest.builder().build());
@@ -1437,9 +1439,9 @@ public class BetaApIsWireTest {
                 + "          \"user_id\": 1234\n"
                 + "        }\n"
                 + "      ],\n"
+                + "      \"update_source\": \"dashboard\",\n"
                 + "      \"updated_at_ms\": 1609459200000,\n"
-                + "      \"updated_by_user_id\": 1234,\n"
-                + "      \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
+                + "      \"updated_by_user_id\": 1234\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
@@ -1484,7 +1486,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
+                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}}"));
         DeviceRecoveryMarkAssetMissingResponseBody response = client.betaApIs()
                 .markAssetMissing(
                         "id",
@@ -1541,9 +1543,9 @@ public class BetaApIsWireTest {
                 + "        \"user_id\": 1234\n"
                 + "      }\n"
                 + "    ],\n"
+                + "    \"update_source\": \"dashboard\",\n"
                 + "    \"updated_at_ms\": 1609459200000,\n"
-                + "    \"updated_by_user_id\": 1234,\n"
-                + "    \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
+                + "    \"updated_by_user_id\": 1234\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -1583,7 +1585,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234,\"uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}}"));
+                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"recovery_photos\":[{\"start_ms\":1609459200000,\"status\":\"EXISTS\",\"url\":\"https://s3.amazonaws.com/samsara-recovery-photos/example.jpg\",\"url_expires_at_ms\":1609462800000}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}}"));
         DeviceRecoveryRecoverAssetResponseBody response = client.betaApIs()
                 .recoverAsset(
                         "id",
@@ -1657,9 +1659,9 @@ public class BetaApIsWireTest {
                 + "        \"url_expires_at_ms\": 1609462800000\n"
                 + "      }\n"
                 + "    ],\n"
+                + "    \"update_source\": \"dashboard\",\n"
                 + "    \"updated_at_ms\": 1609459200000,\n"
-                + "    \"updated_by_user_id\": 1234,\n"
-                + "    \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
+                + "    \"updated_by_user_id\": 1234\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -1791,6 +1793,91 @@ public class BetaApIsWireTest {
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testResolveAssignmentByDetails() throws Exception {
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody("{\"data\":{\"driverId\":\"1234567\",\"driverName\":\"Jane Doe\"}}"));
+        ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody response = client.betaApIs()
+                .resolveAssignmentByDetails(ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody.builder()
+                        .driverName("Jane Doe")
+                        .vehicleId("281474978683353")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody =
+                "" + "{\n" + "  \"driverName\": \"Jane Doe\",\n" + "  \"vehicleId\": \"281474978683353\"\n" + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"driverId\": \"1234567\",\n"
+                + "    \"driverName\": \"Jane Doe\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

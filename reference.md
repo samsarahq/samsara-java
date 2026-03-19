@@ -4299,6 +4299,81 @@ client.betaApIs().listCarbCtcVehicleHistory(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.resolveAssignmentByDetails(request) -> ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves a driver by name within an organization via voice sign-in, then creates a driver-vehicle assignment via the Driver Assignment Service.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().resolveAssignmentByDetails(
+    ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody
+        .builder()
+        .driverName("Jane Doe")
+        .vehicleId("281474978683353")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverName:** `String` — The full name of the driver to resolve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleId:** `String` — The vehicle ID. This can be either a unique Samsara ID or an external ID for the vehicle.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listVendorCategories() -> MaintenanceVendorsListVendorCategoriesResponseBody</code></summary>
 <dl>
 <dd>

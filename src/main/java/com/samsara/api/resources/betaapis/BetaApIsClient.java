@@ -65,6 +65,7 @@ import com.samsara.api.resources.betaapis.requests.QualificationsPostQualificati
 import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
+import com.samsara.api.resources.betaapis.requests.ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipAccountsCreateRidershipAccountRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipAccountsUpdateRidershipAccountRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRidershipPassengerRequestBody;
@@ -108,6 +109,7 @@ import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
 import com.samsara.api.types.ReportsGetReportRunDataResponseBody;
 import com.samsara.api.types.ReportsGetReportRunsResponseBody;
+import com.samsara.api.types.ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody;
 import com.samsara.api.types.RidershipAccountsCreateRidershipAccountResponseBody;
 import com.samsara.api.types.RidershipAccountsGetRidershipAccountResponseBody;
 import com.samsara.api.types.RidershipAccountsListRidershipAccountsResponseBody;
@@ -793,6 +795,30 @@ public class BetaApIsClient {
     public CarbCtcListCarbCtcVehicleHistoryResponseBody listCarbCtcVehicleHistory(
             ListCarbCtcVehicleHistoryRequest request, RequestOptions requestOptions) {
         return this.rawClient.listCarbCtcVehicleHistory(request, requestOptions).body();
+    }
+
+    /**
+     * Resolves a driver by name within an organization via voice sign-in, then creates a driver-vehicle assignment via the Driver Assignment Service.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody resolveAssignmentByDetails(
+            ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody request) {
+        return this.rawClient.resolveAssignmentByDetails(request).body();
+    }
+
+    /**
+     * Resolves a driver by name within an organization via voice sign-in, then creates a driver-vehicle assignment via the Driver Assignment Service.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody resolveAssignmentByDetails(
+            ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient
+                .resolveAssignmentByDetails(request, requestOptions)
+                .body();
     }
 
     /**
