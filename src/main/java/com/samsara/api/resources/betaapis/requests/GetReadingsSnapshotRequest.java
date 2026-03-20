@@ -95,7 +95,6 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
      * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
      * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
-     * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
      * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
      * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
      * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
@@ -110,21 +109,15 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
      * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
      * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
-     * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
      * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
      * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
      * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
-     * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
      * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
      * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
      * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
      * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
      * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
      * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
-     * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
-     * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
-     * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
-     * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
      * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
      * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
      * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
@@ -163,8 +156,6 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
      * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
      * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-     * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-     * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
      * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
      * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
      * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
@@ -195,15 +186,10 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
      * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
      * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
-     * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
      * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
      * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
-     * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
-     * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
      * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
-     * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
      * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
-     * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
      * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
      * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
      * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
@@ -213,8 +199,6 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
      * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
      * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
-     * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
-     * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
      * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
      * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
      * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
@@ -415,7 +399,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
          * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
          * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
-         * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
          * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
@@ -430,21 +413,15 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
-         * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
          * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
-         * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
          * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
          * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
          * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
-         * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
-         * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
-         * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
-         * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
@@ -483,8 +460,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
          * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
          * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-         * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-         * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
          * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
          * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
          * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
@@ -515,15 +490,10 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
          * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
          * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
-         * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
          * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
          * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
-         * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
-         * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
          * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
-         * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
          * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
-         * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
          * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
          * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
          * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
@@ -533,8 +503,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
          * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
          * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
-         * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
-         * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
          * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
          * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
          * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
@@ -731,7 +699,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
          * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
          * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
-         * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
          * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
@@ -746,21 +713,15 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
-         * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
          * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
-         * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
          * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
          * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
          * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
-         * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
-         * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
-         * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
-         * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
@@ -799,8 +760,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
          * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
          * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-         * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-         * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
          * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
          * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
          * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
@@ -831,15 +790,10 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
          * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
          * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
-         * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
          * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
          * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
-         * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
-         * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
          * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
-         * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
          * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
-         * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
          * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
          * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
          * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
@@ -849,8 +803,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
          * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
          * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
-         * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
-         * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
          * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
          * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
          * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
@@ -961,7 +913,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>crankcasePressure</code> (Crankcase Pressure): The pressure inside the engine's crankcase (kilopascal)</li>
          * <li><code>defLevel</code> (DEF Level): Represents the DEF (Diesel Exhaust Fluid) level percentage. (percent)</li>
          * <li><code>derivedFuelConsumed</code> (Lifetime Fuel Consumed (Samsara)): Samsara-maintained fuel consumption since the device was firstinstalled. (liter)</li>
-         * <li><code>deviceOrientation</code> (Device Orientation): Indicates orientation of the device. (values: invalid | unknown | topDown | bottomDown | leftDown | rightDown | backDown | frontDown)</li>
          * <li><code>digioInput1</code> (Digital IO #1): Represents the state of digital IO #1. (values: off | on)</li>
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
@@ -976,21 +927,15 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
-         * <li><code>ev24VoltDcDcInverterCurrent</code> (EV 24V DC/DC Inverter Current): Current from the 24V DC-DC inverter in amperes. (ampere)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
          * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
-         * <li><code>evChargingErrorStatus</code> (EV Charging Error Status): Indicates if the EV charging system has an error. (values: noError | batteryTooHotOrCold | vehicleNotInPark | connectorLockFault | chargingSystemFault | chargingCurrentDifferential | chargingVoltageOutOfRange | chargingSystemNotCompatible | noDataUndeterminedStatus | notAvailable | unknownError)</li>
          * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
          * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
          * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
-         * <li><code>evMaxAllowedStateOfChargePercent</code> (EV Max Allowed State of Charge): Maximum allowed state of charge percentage. (percent)</li>
-         * <li><code>evMaxCellTemperature</code> (EV Max Cell Temperature): Maximum temperature of EV battery cells in degrees Celsius. (celsius)</li>
-         * <li><code>evMinAllowedStateOfChargePercent</code> (EV Min Allowed State of Charge): Minimum allowed state of charge percentage. (percent)</li>
-         * <li><code>evMinCellTemperature</code> (EV Min Cell Temperature): Minimum temperature of EV battery cells in degrees Celsius. (celsius)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
@@ -1029,8 +974,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>samsaraSpeed</code> (Samsara Speed): Samsara's best estimate of the asset speed, combining multiple data sources such as ECU and GPS. (meterspersec)</li>
          * <li><code>samsaraSpeedLimit</code> (Samsara Speed Limit): Speed limit at the location of the asset. (meterspersec)</li>
          * <li><code>seatbeltDriver</code> (Seatbelt (Driver)): Indicates whether the driver's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-         * <li><code>seatbeltPassenger</code> (Seatbelt (Passenger)): Indicates whether the passenger's seatbelt is buckled or unbuckled. (values: unbuckled | buckled)</li>
-         * <li><code>supportFindNearby</code> (Support Find Nearby): Indicates if the asset can support find nearby. (values: noData | notCompatible | pendingUpgrade | Ready)</li>
          * <li><code>tellTales</code> (Tell Tale Status): Tell tales status as read from the vehicle.</li>
          * <li><code>tirePressuresBackLeft</code> (Tire pressure, back left): Represents the tire pressure for the back-left tire. (kilopascal)</li>
          * <li><code>tirePressuresBackRight</code> (Tire pressure, back right): Represents the tire pressure for the back-right tire. (kilopascal)</li>
@@ -1061,15 +1004,10 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>accDistanceAlertSignal</code> (ACC Distance Alert): Distance Alert Signal from the Adaptive Cruise Control system. (values: notActive | active)</li>
          * <li><code>adaptiveCruiseControlMode</code> (ACC Mode): Current mode of the Adaptive Cruise Control System. (values: off | speedControlActive | distanceControlActive | overtakeMode | holdMode | finishMode | disabledOrError)</li>
          * <li><code>aebsDriverActivationDemand</code> (AEBS Activation): Whether Advanced Emergency Braking is enabled or disabled by the driver. (values: deactivated | activated)</li>
-         * <li><code>cruiseControlFinalSetSpeed</code> (Cruise Control Final Set Speed): Includes driver set point and overrides from the ACC system. (kmperhr)</li>
          * <li><code>cruiseControlSetSpeed</code> (Cruise Control Set Speed): Driver's set speed for the cruise control system. (kmperhr)</li>
          * <li><code>cruiseControlSwitch</code> (Cruise Control Switch): The state of the cruise control switch. (values: off | on | error)</li>
-         * <li><code>driverAlertnessWarning</code> (Driver Alertness Warning): Driver Alertness Warning. (values: noConditionDetected | level1MildDistraction | level2Degradation | level3Warning)</li>
-         * <li><code>driverAlertnessWarningSystemState</code> (Driver Alertness Warning State): State of the Driver Alertness Warning system. (values: installedButDisabled | initializing | temporarilyNotAvailable | available | monitoringDriverBehavior)</li>
          * <li><code>ecuSpeed</code> (ECU Speed): Speed read from the asset's OBD port. (kmperhr)</li>
-         * <li><code>emergencyBrakingActive</code> (Emergency Braking State): State of the Emergency Braking System. (values: inactive | active)</li>
          * <li><code>emergencyBrakingAebsState</code> (AEBS State (Collision)): State of the Emergency Braking System for Forward Collision. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | forwardCollisionWarningActive | forwardCollisionWarningWithBraking | forwardCollisionEmergencyBrakingActive | performanceLimited | error)</li>
-         * <li><code>externalBrakeRequestReason</code> (Self-Braking Reason/Mode): Brake reason/mode for the emergency self-braking system. (values: collisionAvoidance | stabilityControl | cruiseControlRoadSpeed | adaptiveCruiseControlDistanceControl | driverWarningHapticIndicator)</li>
          * <li><code>forwardCollisionWarningLevel</code> (AEBS FCW Level): Severity level of the AEBS Forward Collision Warning. (values: noWarning | level1 | level2 | level3 | level4 | level5 | level6 | level7)</li>
          * <li><code>forwardCollisionWarningStatus</code> (ACC FCW Status): Status of the Adaptive Cruise Control Forward Collision Warning system. (values: noWarning | collisionImminent | error)</li>
          * <li><code>forwardLaneImagerStatus</code> (Forward Lane Imager State): State of the Forward Lane Imager. (values: fullyOperational | warmingUp | partiallyBlocked | fullyBlocked | misaligned | viewDegraded | error)</li>
@@ -1079,8 +1017,6 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>laneDepartureIndicationStatus</code> (LDW Indication): State of the Lane Departure Indication system. (values: disabled | enabled)</li>
          * <li><code>laneDepartureWarningSystemState</code> (LDW System State): State of the Lane Departure Warning system. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | warningSuppressed | warningLaneDeparture | error)</li>
          * <li><code>laneKeepingAssistSystemState</code> (LKAS State): State of the Lane Keep Assist System. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | ready | suppressedByOperator | actuating | error)</li>
-         * <li><code>leftLaneDeparture</code> (Left Lane Departure): State of the Left Lane Departure detection. (values: notDeparting | departing)</li>
-         * <li><code>rightLaneDeparture</code> (Right Lane Departure): State of the Right Lane Departure detection. (values: notDeparting | departing)</li>
          * <li><code>roadDepartureAebsState</code> (AEBS State (Lane Departure)): State of the AEBS system for Lane Departure. (values: notReady | temporarilyNotAvailable | deactivatedByDriver | readyAndActivated | driverOverrides | roadDepartureWarningActive | roadDepartureWarningWithBraking | roadDepartureEmergencyBrakingActive | performanceLimited | error)</li>
          * <li><code>ropBrakeControlActive</code> (ROP Brake Control Active): Indicates whether Roll Over Prevention (ROP) has activated brake control. (values: passive | active)</li>
          * <li><code>ropEngineControlActive</code> (ROP Engine Control Active): Indicates whether Roll Over Prevention (ROP) has commanded engine control to be active. (values: passive | active)</li>
