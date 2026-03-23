@@ -25,26 +25,26 @@ public final class AssociationResponseBody {
 
     private final String associationStartTime;
 
+    private final String centralId;
+
     private final String peripheralId;
 
     private final Optional<String> peripheralName;
-
-    private final String vehicleId;
 
     private final Map<String, Object> additionalProperties;
 
     private AssociationResponseBody(
             Optional<String> associationEndTime,
             String associationStartTime,
+            String centralId,
             String peripheralId,
             Optional<String> peripheralName,
-            String vehicleId,
             Map<String, Object> additionalProperties) {
         this.associationEndTime = associationEndTime;
         this.associationStartTime = associationStartTime;
+        this.centralId = centralId;
         this.peripheralId = peripheralId;
         this.peripheralName = peripheralName;
-        this.vehicleId = vehicleId;
         this.additionalProperties = additionalProperties;
     }
 
@@ -65,6 +65,14 @@ public final class AssociationResponseBody {
     }
 
     /**
+     * @return The Samsara ID of the central device in this association.
+     */
+    @JsonProperty("centralId")
+    public String getCentralId() {
+        return centralId;
+    }
+
+    /**
      * @return The Samsara ID of the peripheral device in this association.
      */
     @JsonProperty("peripheralId")
@@ -78,14 +86,6 @@ public final class AssociationResponseBody {
     @JsonProperty("peripheralName")
     public Optional<String> getPeripheralName() {
         return peripheralName;
-    }
-
-    /**
-     * @return The Samsara ID of the vehicle (central device) in this association.
-     */
-    @JsonProperty("vehicleId")
-    public String getVehicleId() {
-        return vehicleId;
     }
 
     @java.lang.Override
@@ -102,9 +102,9 @@ public final class AssociationResponseBody {
     private boolean equalTo(AssociationResponseBody other) {
         return associationEndTime.equals(other.associationEndTime)
                 && associationStartTime.equals(other.associationStartTime)
+                && centralId.equals(other.centralId)
                 && peripheralId.equals(other.peripheralId)
-                && peripheralName.equals(other.peripheralName)
-                && vehicleId.equals(other.vehicleId);
+                && peripheralName.equals(other.peripheralName);
     }
 
     @java.lang.Override
@@ -112,9 +112,9 @@ public final class AssociationResponseBody {
         return Objects.hash(
                 this.associationEndTime,
                 this.associationStartTime,
+                this.centralId,
                 this.peripheralId,
-                this.peripheralName,
-                this.vehicleId);
+                this.peripheralName);
     }
 
     @java.lang.Override
@@ -130,23 +130,23 @@ public final class AssociationResponseBody {
         /**
          * <p>The time when this association started, in RFC 3339 format.</p>
          */
-        PeripheralIdStage associationStartTime(@NotNull String associationStartTime);
+        CentralIdStage associationStartTime(@NotNull String associationStartTime);
 
         Builder from(AssociationResponseBody other);
+    }
+
+    public interface CentralIdStage {
+        /**
+         * <p>The Samsara ID of the central device in this association.</p>
+         */
+        PeripheralIdStage centralId(@NotNull String centralId);
     }
 
     public interface PeripheralIdStage {
         /**
          * <p>The Samsara ID of the peripheral device in this association.</p>
          */
-        VehicleIdStage peripheralId(@NotNull String peripheralId);
-    }
-
-    public interface VehicleIdStage {
-        /**
-         * <p>The Samsara ID of the vehicle (central device) in this association.</p>
-         */
-        _FinalStage vehicleId(@NotNull String vehicleId);
+        _FinalStage peripheralId(@NotNull String peripheralId);
     }
 
     public interface _FinalStage {
@@ -169,12 +169,12 @@ public final class AssociationResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements AssociationStartTimeStage, PeripheralIdStage, VehicleIdStage, _FinalStage {
+            implements AssociationStartTimeStage, CentralIdStage, PeripheralIdStage, _FinalStage {
         private String associationStartTime;
 
-        private String peripheralId;
+        private String centralId;
 
-        private String vehicleId;
+        private String peripheralId;
 
         private Optional<String> peripheralName = Optional.empty();
 
@@ -189,9 +189,9 @@ public final class AssociationResponseBody {
         public Builder from(AssociationResponseBody other) {
             associationEndTime(other.getAssociationEndTime());
             associationStartTime(other.getAssociationStartTime());
+            centralId(other.getCentralId());
             peripheralId(other.getPeripheralId());
             peripheralName(other.getPeripheralName());
-            vehicleId(other.getVehicleId());
             return this;
         }
 
@@ -202,9 +202,21 @@ public final class AssociationResponseBody {
          */
         @java.lang.Override
         @JsonSetter("associationStartTime")
-        public PeripheralIdStage associationStartTime(@NotNull String associationStartTime) {
+        public CentralIdStage associationStartTime(@NotNull String associationStartTime) {
             this.associationStartTime =
                     Objects.requireNonNull(associationStartTime, "associationStartTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The Samsara ID of the central device in this association.</p>
+         * <p>The Samsara ID of the central device in this association.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("centralId")
+        public PeripheralIdStage centralId(@NotNull String centralId) {
+            this.centralId = Objects.requireNonNull(centralId, "centralId must not be null");
             return this;
         }
 
@@ -215,20 +227,8 @@ public final class AssociationResponseBody {
          */
         @java.lang.Override
         @JsonSetter("peripheralId")
-        public VehicleIdStage peripheralId(@NotNull String peripheralId) {
+        public _FinalStage peripheralId(@NotNull String peripheralId) {
             this.peripheralId = Objects.requireNonNull(peripheralId, "peripheralId must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The Samsara ID of the vehicle (central device) in this association.</p>
-         * <p>The Samsara ID of the vehicle (central device) in this association.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("vehicleId")
-        public _FinalStage vehicleId(@NotNull String vehicleId) {
-            this.vehicleId = Objects.requireNonNull(vehicleId, "vehicleId must not be null");
             return this;
         }
 
@@ -277,9 +277,9 @@ public final class AssociationResponseBody {
             return new AssociationResponseBody(
                     associationEndTime,
                     associationStartTime,
+                    centralId,
                     peripheralId,
                     peripheralName,
-                    vehicleId,
                     additionalProperties);
         }
     }
