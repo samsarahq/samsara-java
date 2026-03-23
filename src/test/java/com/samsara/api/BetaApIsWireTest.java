@@ -45,6 +45,7 @@ import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoresRequest
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
+import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehicleHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehiclesRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
@@ -81,6 +82,7 @@ import com.samsara.api.resources.betaapis.types.GetTagGroupSafetyScoresRequestSc
 import com.samsara.api.resources.betaapis.types.GetTagSafetyScoresRequestScoreType;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
+import com.samsara.api.types.AssociationsListAssociationsResponseBody;
 import com.samsara.api.types.CarbCtcListCarbCtcVehicleHistoryResponseBody;
 import com.samsara.api.types.CarbCtcListCarbCtcVehiclesResponseBody;
 import com.samsara.api.types.CreateReportConfigObjectRequestBody;
@@ -1371,6 +1373,77 @@ public class BetaApIsWireTest {
                 + "  ],\n"
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListAssociations() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"associationEndTime\":\"associationEndTime\",\"associationStartTime\":\"associationStartTime\",\"centralId\":\"centralId\",\"peripheralId\":\"peripheralId\",\"peripheralName\":\"peripheralName\"},{\"associationEndTime\":\"associationEndTime\",\"associationStartTime\":\"associationStartTime\",\"centralId\":\"centralId\",\"peripheralId\":\"peripheralId\",\"peripheralName\":\"peripheralName\"}],\"pagination\":{\"endCursor\":\"endCursor\",\"hasNextPage\":true}}"));
+        AssociationsListAssociationsResponseBody response = client.betaApIs()
+                .listAssociations(
+                        ListAssociationsRequest.builder().startTime("startTime").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"associationEndTime\": \"associationEndTime\",\n"
+                + "      \"associationStartTime\": \"associationStartTime\",\n"
+                + "      \"centralId\": \"centralId\",\n"
+                + "      \"peripheralId\": \"peripheralId\",\n"
+                + "      \"peripheralName\": \"peripheralName\"\n"
+                + "    },\n"
+                + "    {\n"
+                + "      \"associationEndTime\": \"associationEndTime\",\n"
+                + "      \"associationStartTime\": \"associationStartTime\",\n"
+                + "      \"centralId\": \"centralId\",\n"
+                + "      \"peripheralId\": \"peripheralId\",\n"
+                + "      \"peripheralName\": \"peripheralName\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"endCursor\",\n"
                 + "    \"hasNextPage\": true\n"
                 + "  }\n"
                 + "}";

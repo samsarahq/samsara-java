@@ -3872,6 +3872,96 @@ client.betaApIs().getDevices(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listAssociations() -> AssociationsListAssociationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List associations between vehicles and peripheral devices within a given time range. Associations represent the relationship between a central device (vehicle) and a peripheral device (e.g. asset tag). An association with a null endTime is still active. If no endTime query parameter is provided, all associations from startTime onward are returned, including currently active (open) associations.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listAssociations(
+    ListAssociationsRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**peripheralIds:** `Optional<String>` — A comma-separated list of peripheral asset IDs to filter associations by. (Example: 1234,5678)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). If not provided, all associations from startTime onward are returned, including currently active (open) associations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listDeviceRecoveryMissingAssets() -> DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody</code></summary>
 <dl>
 <dd>
@@ -25267,103 +25357,6 @@ client.organizationInfo().getOrganizationInfo();
 </details>
 
 ## Preview APIs
-<details><summary><code>client.previewApIs.listAssociations() -> AssociationsListAssociationsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List associations between vehicles and peripheral devices within a given time range. Associations represent the relationship between a central device (vehicle) and a peripheral device (e.g. asset tag). An association with a null endTime is still active.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().listAssociations(
-    ListAssociationsRequest
-        .builder()
-        .startTime("startTime")
-        .endTime("endTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**peripheralIds:** `Optional<String>` — A comma-separated list of peripheral asset IDs to filter associations by. (Example: 1234,5678)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.previewApIs.createDriverAuthToken(request) -> DriversAuthTokenCreateDriverAuthTokenResponseBody</code></summary>
 <dl>
 <dd>
