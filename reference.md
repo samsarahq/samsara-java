@@ -536,6 +536,7 @@ Driver HOS Violation
 Vehicle Engine Idle
 Asset Engine On
 Asset Engine Off
+Harsh Event
 Scheduled Maintenance
 Scheduled Maintenance by Odometer
 Scheduled Maintenance by Engine Hours
@@ -682,7 +683,7 @@ client.alerts().postConfigurations(
         .scope(
             ScopeObjectRequestBody
                 .builder()
-                .all(true)
+                .all(false)
                 .build()
         )
         .actions(
@@ -4690,6 +4691,317 @@ client.betaApIs().getEngineImmobilizerStates(
 <dd>
 
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createFunction(request) -> FunctionsCreateFunctionResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new Function with the given name, description, and configuration. The response includes a URL (`uploadPutUrl`) for uploading the function's code package. After uploading, call `POST /functions/{name}/deploy` to make the function runnable.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Functions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createFunction(
+    FunctionsCreateFunctionRequestBody
+        .builder()
+        .config(
+            CreateFunctionRequestConfigRequestBody
+                .builder()
+                .handler("index.handler")
+                .build()
+        )
+        .name("my-function")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**config:** `CreateFunctionRequestConfigRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — A description of the Function.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Unique name for the Function.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.getFunction(name) -> FunctionsGetFunctionResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the current state of an existing Function, including its configuration, code package status, and a `lastUpdateTimestampMs` value for use in subsequent PATCH requests.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Functions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getFunction(
+    "name",
+    GetFunctionRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` — The name of the Function to retrieve.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.patchFunction(name, request) -> FunctionsPatchFunctionResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an existing Function's description and configuration. The request must include `lastUpdateTimestampMs`, which is the timestamp value obtained from a previous create or get response. The response includes a URL (`uploadPutUrl`) for uploading new code. After uploading, call `POST /functions/{name}/deploy` for the changes to be applied.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Functions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().patchFunction(
+    "name",
+    FunctionsPatchFunctionRequestBody
+        .builder()
+        .lastUpdateTimestampMs(1609459200000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` — The name of the Function to update.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**config:** `Optional<PatchFunctionRequestConfigRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — A description of the Function.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastUpdateTimestampMs:** `Long` — Timestamp of the last known update to this Function, obtained from a create or get response. Required to prevent conflicting updates.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deployFunction(name) -> FunctionsDeployFunctionResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deploy the uploaded code package for the specified Function, making it runnable.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Functions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deployFunction(
+    "name",
+    DeployFunctionRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` — The name of the Function to deploy.
     
 </dd>
 </dl>
@@ -25641,7 +25953,7 @@ client.previewApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -25659,7 +25971,7 @@ client.previewApIs().patchSafetyEventsV2Batch(
 <dl>
 <dd>
 
-**contextLabelIdsToAdd:** `Optional<List<String>>` — Context label IDs to add to the Safety Events.
+**contextLabelsToAdd:** `Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>>` — Context labels to add to the Safety Events.
     
 </dd>
 </dl>
@@ -25667,7 +25979,7 @@ client.previewApIs().patchSafetyEventsV2Batch(
 <dl>
 <dd>
 
-**contextLabelIdsToRemove:** `Optional<List<String>>` — Context label IDs to remove from the Safety Events.
+**contextLabelsToRemove:** `Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>>` — Context labels to remove from the Safety Events.
     
 </dd>
 </dl>
