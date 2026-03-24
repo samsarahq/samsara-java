@@ -42,7 +42,7 @@ public class GatewaysWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"accessoryDevices\":[{\"model\":\"EM11\",\"serial\":\"ABCD-123-EFG\"}],\"asset\":{\"id\":\"8393848111\"},\"connectionStatus\":{\"lastConnected\":\"2019-06-13T19:08:25Z\"},\"dataUsageLast30Days\":{\"cellularDataUsageBytes\":9113941723943371000,\"hotspotUsageBytes\":1229880709321352700},\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"accessoryDevices\":[{\"model\":\"EM11\",\"serial\":\"ABCD-123-EFG\"}],\"asset\":{\"id\":\"8393848111\"},\"connectionStatus\":{\"lastConnected\":\"2019-06-13T19:08:25Z\"},\"dataUsageLast30Days\":{\"cellularDataUsageBytes\":9048080439465260000,\"hotspotUsageBytes\":7432002865609636000},\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         GatewaysGetGatewaysResponseBody response =
                 client.gateways().getGateways(GetGatewaysRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -69,8 +69,8 @@ public class GatewaysWireTest {
                 + "        \"lastConnected\": \"2019-06-13T19:08:25Z\"\n"
                 + "      },\n"
                 + "      \"dataUsageLast30Days\": {\n"
-                + "        \"cellularDataUsageBytes\": 9113941723943371000,\n"
-                + "        \"hotspotUsageBytes\": 1229880709321352700\n"
+                + "        \"cellularDataUsageBytes\": 9048080439465260000,\n"
+                + "        \"hotspotUsageBytes\": 7432002865609636000\n"
                 + "      },\n"
                 + "      \"model\": \"AG15\",\n"
                 + "      \"serial\": \"GFRV-43N-VGX\"\n"
@@ -118,7 +118,7 @@ public class GatewaysWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accessoryDevices\":[{\"model\":\"EM11\",\"serial\":\"ABCD-123-EFG\"}],\"asset\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"8393848111\"},\"connectionStatus\":{\"healthStatus\":\"Status Not Set\",\"lastConnected\":\"2019-06-13T19:08:25Z\"},\"dataUsageLast30Days\":{\"cellularDataUsageBytes\":9113941723943371000,\"hotspotUsageBytes\":1229880709321352700},\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"}}"));
+                                "{\"data\":{\"accessoryDevices\":[{\"model\":\"EM11\",\"serial\":\"ABCD-123-EFG\"}],\"asset\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"8393848111\"},\"connectionStatus\":{\"healthStatus\":\"Status Not Set\",\"lastConnected\":\"2019-06-13T19:08:25Z\"},\"dataUsageLast30Days\":{\"cellularDataUsageBytes\":9048080439465260000,\"hotspotUsageBytes\":7432002865609636000},\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"}}"));
         GatewaysPostGatewayResponseBody response = client.gateways()
                 .postGateway(GatewaysPostGatewayRequestBody.builder()
                         .serial("GFRV-43N-VGX")
@@ -179,8 +179,8 @@ public class GatewaysWireTest {
                 + "      \"lastConnected\": \"2019-06-13T19:08:25Z\"\n"
                 + "    },\n"
                 + "    \"dataUsageLast30Days\": {\n"
-                + "      \"cellularDataUsageBytes\": 9113941723943371000,\n"
-                + "      \"hotspotUsageBytes\": 1229880709321352700\n"
+                + "      \"cellularDataUsageBytes\": 9048080439465260000,\n"
+                + "      \"hotspotUsageBytes\": 7432002865609636000\n"
                 + "    },\n"
                 + "    \"model\": \"AG15\",\n"
                 + "    \"serial\": \"GFRV-43N-VGX\"\n"

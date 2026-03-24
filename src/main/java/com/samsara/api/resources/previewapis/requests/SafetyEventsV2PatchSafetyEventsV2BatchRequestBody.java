@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.previewapis.types.SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem;
+import com.samsara.api.resources.previewapis.types.SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem;
 import com.samsara.api.resources.previewapis.types.SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyEventState;
 import com.samsara.api.types.PatchSafetyEventsDismissalReasonBodyRequestBody;
 import java.util.ArrayList;
@@ -24,9 +26,11 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = SafetyEventsV2PatchSafetyEventsV2BatchRequestBody.Builder.class)
 public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
-    private final Optional<List<String>> contextLabelIdsToAdd;
+    private final Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>>
+            contextLabelsToAdd;
 
-    private final Optional<List<String>> contextLabelIdsToRemove;
+    private final Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>>
+            contextLabelsToRemove;
 
     private final Optional<PatchSafetyEventsDismissalReasonBodyRequestBody> dismissalReason;
 
@@ -37,14 +41,15 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private SafetyEventsV2PatchSafetyEventsV2BatchRequestBody(
-            Optional<List<String>> contextLabelIdsToAdd,
-            Optional<List<String>> contextLabelIdsToRemove,
+            Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>> contextLabelsToAdd,
+            Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>>
+                    contextLabelsToRemove,
             Optional<PatchSafetyEventsDismissalReasonBodyRequestBody> dismissalReason,
             Optional<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyEventState> eventState,
             List<String> safetyEventIds,
             Map<String, Object> additionalProperties) {
-        this.contextLabelIdsToAdd = contextLabelIdsToAdd;
-        this.contextLabelIdsToRemove = contextLabelIdsToRemove;
+        this.contextLabelsToAdd = contextLabelsToAdd;
+        this.contextLabelsToRemove = contextLabelsToRemove;
         this.dismissalReason = dismissalReason;
         this.eventState = eventState;
         this.safetyEventIds = safetyEventIds;
@@ -52,19 +57,21 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
     }
 
     /**
-     * @return Context label IDs to add to the Safety Events.
+     * @return Context labels to add to the Safety Events.
      */
-    @JsonProperty("contextLabelIdsToAdd")
-    public Optional<List<String>> getContextLabelIdsToAdd() {
-        return contextLabelIdsToAdd;
+    @JsonProperty("contextLabelsToAdd")
+    public Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>>
+            getContextLabelsToAdd() {
+        return contextLabelsToAdd;
     }
 
     /**
-     * @return Context label IDs to remove from the Safety Events.
+     * @return Context labels to remove from the Safety Events.
      */
-    @JsonProperty("contextLabelIdsToRemove")
-    public Optional<List<String>> getContextLabelIdsToRemove() {
-        return contextLabelIdsToRemove;
+    @JsonProperty("contextLabelsToRemove")
+    public Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>>
+            getContextLabelsToRemove() {
+        return contextLabelsToRemove;
     }
 
     @JsonProperty("dismissalReason")
@@ -101,8 +108,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
     }
 
     private boolean equalTo(SafetyEventsV2PatchSafetyEventsV2BatchRequestBody other) {
-        return contextLabelIdsToAdd.equals(other.contextLabelIdsToAdd)
-                && contextLabelIdsToRemove.equals(other.contextLabelIdsToRemove)
+        return contextLabelsToAdd.equals(other.contextLabelsToAdd)
+                && contextLabelsToRemove.equals(other.contextLabelsToRemove)
                 && dismissalReason.equals(other.dismissalReason)
                 && eventState.equals(other.eventState)
                 && safetyEventIds.equals(other.safetyEventIds);
@@ -111,8 +118,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.contextLabelIdsToAdd,
-                this.contextLabelIdsToRemove,
+                this.contextLabelsToAdd,
+                this.contextLabelsToRemove,
                 this.dismissalReason,
                 this.eventState,
                 this.safetyEventIds);
@@ -129,9 +136,11 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> contextLabelIdsToAdd = Optional.empty();
+        private Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>>
+                contextLabelsToAdd = Optional.empty();
 
-        private Optional<List<String>> contextLabelIdsToRemove = Optional.empty();
+        private Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>>
+                contextLabelsToRemove = Optional.empty();
 
         private Optional<PatchSafetyEventsDismissalReasonBodyRequestBody> dismissalReason = Optional.empty();
 
@@ -145,8 +154,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
         private Builder() {}
 
         public Builder from(SafetyEventsV2PatchSafetyEventsV2BatchRequestBody other) {
-            contextLabelIdsToAdd(other.getContextLabelIdsToAdd());
-            contextLabelIdsToRemove(other.getContextLabelIdsToRemove());
+            contextLabelsToAdd(other.getContextLabelsToAdd());
+            contextLabelsToRemove(other.getContextLabelsToRemove());
             dismissalReason(other.getDismissalReason());
             eventState(other.getEventState());
             safetyEventIds(other.getSafetyEventIds());
@@ -154,30 +163,37 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
         }
 
         /**
-         * <p>Context label IDs to add to the Safety Events.</p>
+         * <p>Context labels to add to the Safety Events.</p>
          */
-        @JsonSetter(value = "contextLabelIdsToAdd", nulls = Nulls.SKIP)
-        public Builder contextLabelIdsToAdd(Optional<List<String>> contextLabelIdsToAdd) {
-            this.contextLabelIdsToAdd = contextLabelIdsToAdd;
+        @JsonSetter(value = "contextLabelsToAdd", nulls = Nulls.SKIP)
+        public Builder contextLabelsToAdd(
+                Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>>
+                        contextLabelsToAdd) {
+            this.contextLabelsToAdd = contextLabelsToAdd;
             return this;
         }
 
-        public Builder contextLabelIdsToAdd(List<String> contextLabelIdsToAdd) {
-            this.contextLabelIdsToAdd = Optional.ofNullable(contextLabelIdsToAdd);
+        public Builder contextLabelsToAdd(
+                List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem> contextLabelsToAdd) {
+            this.contextLabelsToAdd = Optional.ofNullable(contextLabelsToAdd);
             return this;
         }
 
         /**
-         * <p>Context label IDs to remove from the Safety Events.</p>
+         * <p>Context labels to remove from the Safety Events.</p>
          */
-        @JsonSetter(value = "contextLabelIdsToRemove", nulls = Nulls.SKIP)
-        public Builder contextLabelIdsToRemove(Optional<List<String>> contextLabelIdsToRemove) {
-            this.contextLabelIdsToRemove = contextLabelIdsToRemove;
+        @JsonSetter(value = "contextLabelsToRemove", nulls = Nulls.SKIP)
+        public Builder contextLabelsToRemove(
+                Optional<List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>>
+                        contextLabelsToRemove) {
+            this.contextLabelsToRemove = contextLabelsToRemove;
             return this;
         }
 
-        public Builder contextLabelIdsToRemove(List<String> contextLabelIdsToRemove) {
-            this.contextLabelIdsToRemove = Optional.ofNullable(contextLabelIdsToRemove);
+        public Builder contextLabelsToRemove(
+                List<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>
+                        contextLabelsToRemove) {
+            this.contextLabelsToRemove = Optional.ofNullable(contextLabelsToRemove);
             return this;
         }
 
@@ -232,8 +248,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBody {
 
         public SafetyEventsV2PatchSafetyEventsV2BatchRequestBody build() {
             return new SafetyEventsV2PatchSafetyEventsV2BatchRequestBody(
-                    contextLabelIdsToAdd,
-                    contextLabelIdsToRemove,
+                    contextLabelsToAdd,
+                    contextLabelsToRemove,
                     dismissalReason,
                     eventState,
                     safetyEventIds,
