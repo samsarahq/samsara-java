@@ -52,8 +52,6 @@ import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDoc
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
-import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehicleHistoryRequest;
-import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehiclesRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
@@ -80,8 +78,6 @@ import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRid
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.AssociationsListAssociationsResponseBody;
-import com.samsara.api.types.CarbCtcListCarbCtcVehicleHistoryResponseBody;
-import com.samsara.api.types.CarbCtcListCarbCtcVehiclesResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
 import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody;
@@ -776,71 +772,6 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<DeviceRecoveryRecoverAssetResponseBody> recoverAsset(
             String id, DeviceRecoveryRecoverAssetRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.recoverAsset(id, request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Returns a paginated list of vehicles enrolled in the CARB CTC program with their latest compliance status. Results can be filtered by tag IDs and test status.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read CARB CTC Integration</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<CarbCtcListCarbCtcVehiclesResponseBody> listCarbCtcVehicles() {
-        return this.rawClient.listCarbCtcVehicles().thenApply(response -> response.body());
-    }
-
-    /**
-     * Returns a paginated list of vehicles enrolled in the CARB CTC program with their latest compliance status. Results can be filtered by tag IDs and test status.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read CARB CTC Integration</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<CarbCtcListCarbCtcVehiclesResponseBody> listCarbCtcVehicles(
-            RequestOptions requestOptions) {
-        return this.rawClient.listCarbCtcVehicles(requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Returns a paginated list of vehicles enrolled in the CARB CTC program with their latest compliance status. Results can be filtered by tag IDs and test status.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read CARB CTC Integration</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<CarbCtcListCarbCtcVehiclesResponseBody> listCarbCtcVehicles(
-            ListCarbCtcVehiclesRequest request) {
-        return this.rawClient.listCarbCtcVehicles(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Returns a paginated list of vehicles enrolled in the CARB CTC program with their latest compliance status. Results can be filtered by tag IDs and test status.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read CARB CTC Integration</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<CarbCtcListCarbCtcVehiclesResponseBody> listCarbCtcVehicles(
-            ListCarbCtcVehiclesRequest request, RequestOptions requestOptions) {
-        return this.rawClient.listCarbCtcVehicles(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Returns paginated collection history for a batch of vehicles enrolled in the CARB CTC program. Use vehicle IDs from the list enrolled vehicles endpoint. Optionally filter by time range. Results are ordered by happenedAtTime descending, with vehicle ID as a tiebreaker.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read CARB CTC Integration</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<CarbCtcListCarbCtcVehicleHistoryResponseBody> listCarbCtcVehicleHistory(
-            ListCarbCtcVehicleHistoryRequest request) {
-        return this.rawClient.listCarbCtcVehicleHistory(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Returns paginated collection history for a batch of vehicles enrolled in the CARB CTC program. Use vehicle IDs from the list enrolled vehicles endpoint. Optionally filter by time range. Results are ordered by happenedAtTime descending, with vehicle ID as a tiebreaker.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read CARB CTC Integration</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<CarbCtcListCarbCtcVehicleHistoryResponseBody> listCarbCtcVehicleHistory(
-            ListCarbCtcVehicleHistoryRequest request, RequestOptions requestOptions) {
-        return this.rawClient.listCarbCtcVehicleHistory(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

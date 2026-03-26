@@ -11,6 +11,7 @@ import com.samsara.api.resources.assets.AsyncAssetsClient;
 import com.samsara.api.resources.attributes.AsyncAttributesClient;
 import com.samsara.api.resources.authtokenfordriver.AsyncAuthTokenForDriverClient;
 import com.samsara.api.resources.betaapis.AsyncBetaApIsClient;
+import com.samsara.api.resources.carbctc.AsyncCarbCtcClient;
 import com.samsara.api.resources.carrierproposedassignments.AsyncCarrierProposedAssignmentsClient;
 import com.samsara.api.resources.coaching.AsyncCoachingClient;
 import com.samsara.api.resources.contacts.AsyncContactsClient;
@@ -89,6 +90,8 @@ public class AsyncSamsaraApiClient {
     protected final Supplier<AsyncDriverTrailerAssignmentsClient> driverTrailerAssignmentsClient;
 
     protected final Supplier<AsyncDriverQrCodesClient> driverQrCodesClient;
+
+    protected final Supplier<AsyncCarbCtcClient> carbCtcClient;
 
     protected final Supplier<AsyncCarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
 
@@ -188,6 +191,7 @@ public class AsyncSamsaraApiClient {
         this.driverTrailerAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncDriverTrailerAssignmentsClient(clientOptions));
         this.driverQrCodesClient = Suppliers.memoize(() -> new AsyncDriverQrCodesClient(clientOptions));
+        this.carbCtcClient = Suppliers.memoize(() -> new AsyncCarbCtcClient(clientOptions));
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncCarrierProposedAssignmentsClient(clientOptions));
         this.legacyApIsClient = Suppliers.memoize(() -> new AsyncLegacyApIsClient(clientOptions));
@@ -283,6 +287,10 @@ public class AsyncSamsaraApiClient {
 
     public AsyncDriverQrCodesClient driverQrCodes() {
         return this.driverQrCodesClient.get();
+    }
+
+    public AsyncCarbCtcClient carbCtc() {
+        return this.carbCtcClient.get();
     }
 
     public AsyncCarrierProposedAssignmentsClient carrierProposedAssignments() {
