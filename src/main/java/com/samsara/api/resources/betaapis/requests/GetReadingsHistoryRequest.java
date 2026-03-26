@@ -294,7 +294,7 @@ public final class GetReadingsHistoryRequest {
     }
 
     /**
-     * @return A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.
+     * @return A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.
      */
     @JsonProperty("entityIds")
     public Optional<String> getEntityIds() {
@@ -302,7 +302,7 @@ public final class GetReadingsHistoryRequest {
     }
 
     /**
-     * @return A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+     * @return The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
      */
     @JsonProperty("entityType")
     public String getEntityType() {
@@ -318,7 +318,7 @@ public final class GetReadingsHistoryRequest {
     }
 
     /**
-     * @return A filter on the data that returns the last known data points with timestamps greater than or equal to this value. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)
+     * @return A filter on the data that returns data points with timestamps greater than or equal to this value. Required when feed mode is not enabled. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)
      */
     @JsonProperty("startTime")
     public Optional<String> getStartTime() {
@@ -619,7 +619,7 @@ public final class GetReadingsHistoryRequest {
 
     public interface EntityTypeStage {
         /**
-         * <p>A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
+         * <p>The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
          */
         _FinalStage entityType(@NotNull String entityType);
     }
@@ -635,7 +635,7 @@ public final class GetReadingsHistoryRequest {
         _FinalStage after(String after);
 
         /**
-         * <p>A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.</p>
+         * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          */
         _FinalStage entityIds(Optional<String> entityIds);
 
@@ -649,7 +649,7 @@ public final class GetReadingsHistoryRequest {
         _FinalStage externalIds(String externalIds);
 
         /**
-         * <p>A filter on the data that returns the last known data points with timestamps greater than or equal to this value. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
+         * <p>A filter on the data that returns data points with timestamps greater than or equal to this value. Required when feed mode is not enabled. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
          */
         _FinalStage startTime(Optional<String> startTime);
 
@@ -1155,8 +1155,8 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
-         * <p>A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
+         * <p>The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
+         * <p>The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1227,7 +1227,7 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A filter on the data that returns the last known data points with timestamps greater than or equal to this value. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
+         * <p>A filter on the data that returns data points with timestamps greater than or equal to this value. Required when feed mode is not enabled. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1237,7 +1237,7 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A filter on the data that returns the last known data points with timestamps greater than or equal to this value. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
+         * <p>A filter on the data that returns data points with timestamps greater than or equal to this value. Required when feed mode is not enabled. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
          */
         @java.lang.Override
         @JsonSetter(value = "startTime", nulls = Nulls.SKIP)
@@ -1267,7 +1267,7 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.</p>
+         * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1277,7 +1277,7 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.</p>
+         * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "entityIds", nulls = Nulls.SKIP)

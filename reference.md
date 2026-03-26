@@ -6249,7 +6249,7 @@ client.betaApIs().listReadingsDefinitions(
 <dl>
 <dd>
 
-**entityTypes:** `Optional<String>` — A list of entity type to return readings for. (Examples: asset, sensor)
+**entityTypes:** `Optional<String>` — A list of entity types to return readings for. (Examples: asset, sensor)
     
 </dd>
 </dl>
@@ -6273,7 +6273,7 @@ client.betaApIs().listReadingsDefinitions(
 <dl>
 <dd>
 
-Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime <= happenedAtTime < endTime. End time of null implies endTime is infinite and all known readings are returned.
+Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime <= happenedAtTime < endTime. If endTime is not set, the time of the request is used as the endTime.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -6556,7 +6556,7 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
-**entityIds:** `Optional<String>` — A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.
+**entityIds:** `Optional<String>` — A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.
     
 </dd>
 </dl>
@@ -6564,7 +6564,7 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
-**entityType:** `String` — A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+**entityType:** `String` — The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
     
 </dd>
 </dl>
@@ -6580,7 +6580,7 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
-**startTime:** `Optional<String>` — A filter on the data that returns the last known data points with timestamps greater than or equal to this value. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)
+**startTime:** `Optional<String>` — A filter on the data that returns data points with timestamps greater than or equal to this value. Required when feed mode is not enabled. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)
     
 </dd>
 </dl>
@@ -6681,7 +6681,7 @@ client.betaApIs().getReadingsSnapshot(
 
 **readingIds:** `String` 
 
-A collection of comma separated reading IDs. Include up to 3 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
+A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
 
 Available reading IDs (by category):
 
@@ -6911,7 +6911,7 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
-**entityIds:** `Optional<String>` — A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.
+**entityIds:** `Optional<String>` — A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.
     
 </dd>
 </dl>
@@ -6935,7 +6935,7 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
-**entityType:** `String` — A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+**entityType:** `String` — The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
     
 </dd>
 </dl>
