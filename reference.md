@@ -4211,185 +4211,6 @@ client.betaApIs().recoverAsset(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.listCarbCtcVehicles() -> CarbCtcListCarbCtcVehiclesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of vehicles enrolled in the CARB CTC program with their latest compliance status. Results can be filtered by tag IDs and test status. 
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read CARB CTC Integration** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listCarbCtcVehicles(
-    ListCarbCtcVehiclesRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**testStatus:** `Optional<ListCarbCtcVehiclesRequestTestStatusItem>` — Optional filter based on the test status. This parameter can be passed multiple times to filter by multiple statuses.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listCarbCtcVehicleHistory() -> CarbCtcListCarbCtcVehicleHistoryResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns paginated collection history for a batch of vehicles enrolled in the CARB CTC program. Use vehicle IDs from the list enrolled vehicles endpoint. Optionally filter by time range. Results are ordered by happenedAtTime descending, with vehicle ID as a tiebreaker.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read CARB CTC Integration** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listCarbCtcVehicleHistory(
-    ListCarbCtcVehicleHistoryRequest
-        .builder()
-        .vehicleIds("vehicleIds")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**vehicleIds:** `String` — A comma-separated list of vehicle IDs to fetch history for. Up to 100 IDs can be provided. Example: `vehicleIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.betaApIs.resolveAssignmentByDetails(request) -> ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody</code></summary>
 <dl>
 <dd>
@@ -12574,6 +12395,186 @@ client.driverQrCodes().deleteDriverQrCode(
 <dd>
 
 **driverId:** `Long` — Unique ID of the driver.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## CarbCtc
+<details><summary><code>client.carbCtc.listCarbCtcVehicles() -> CarbCtcListCarbCtcVehiclesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of vehicles enrolled in the CARB CTC program with their latest compliance status. Results can be filtered by tag IDs and test status. 
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read CARB CTC Integration** under the CARB CTC Integration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.carbCtc().listCarbCtcVehicles(
+    ListCarbCtcVehiclesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**testStatus:** `Optional<ListCarbCtcVehiclesRequestTestStatusItem>` — Optional filter based on the test status. This parameter can be passed multiple times to filter by multiple statuses.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.carbCtc.listCarbCtcVehicleHistory() -> CarbCtcListCarbCtcVehicleHistoryResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns paginated collection history for a batch of vehicles enrolled in the CARB CTC program. Use vehicle IDs from the list enrolled vehicles endpoint. Optionally filter by time range. Results are ordered by happenedAtTime descending, with vehicle ID as a tiebreaker.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read CARB CTC Integration** under the CARB CTC Integration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.carbCtc().listCarbCtcVehicleHistory(
+    ListCarbCtcVehicleHistoryRequest
+        .builder()
+        .vehicleIds("vehicleIds")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**vehicleIds:** `String` — A comma-separated list of vehicle IDs to fetch history for. Up to 100 IDs can be provided. Example: `vehicleIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>

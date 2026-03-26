@@ -50,8 +50,6 @@ import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDoc
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
-import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehicleHistoryRequest;
-import com.samsara.api.resources.betaapis.requests.ListCarbCtcVehiclesRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
@@ -87,8 +85,6 @@ import com.samsara.api.resources.betaapis.types.GetTagSafetyScoresRequestScoreTy
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.AssociationsListAssociationsResponseBody;
-import com.samsara.api.types.CarbCtcListCarbCtcVehicleHistoryResponseBody;
-import com.samsara.api.types.CarbCtcListCarbCtcVehiclesResponseBody;
 import com.samsara.api.types.CreateFunctionRequestConfigRequestBody;
 import com.samsara.api.types.CreateReportConfigObjectRequestBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
@@ -1744,137 +1740,6 @@ public class BetaApIsWireTest {
                 + "    \"update_source\": \"dashboard\",\n"
                 + "    \"updated_at_ms\": 1609459200000,\n"
                 + "    \"updated_by_user_id\": 1234\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testListCarbCtcVehicles() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"enrollmentId\":\"550e8400-e29b-41d4-a716-446655440000\",\"enrollmentVin\":\"1HGCM82633A123456\",\"id\":\"12345\",\"lastCollectionAtTime\":\"2024-06-15T08:00:00Z\",\"nextCollectionAtTime\":\"2024-12-15T00:00:00Z\",\"testStatus\":\"notScheduled\",\"testStatusDetails\":\"Response from CARB CTC: Vehicle PASSED emissions scan.\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        CarbCtcListCarbCtcVehiclesResponseBody response = client.betaApIs()
-                .listCarbCtcVehicles(ListCarbCtcVehiclesRequest.builder().build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"enrollmentId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
-                + "      \"enrollmentVin\": \"1HGCM82633A123456\",\n"
-                + "      \"id\": \"12345\",\n"
-                + "      \"lastCollectionAtTime\": \"2024-06-15T08:00:00Z\",\n"
-                + "      \"nextCollectionAtTime\": \"2024-12-15T00:00:00Z\",\n"
-                + "      \"testStatus\": \"notScheduled\",\n"
-                + "      \"testStatusDetails\": \"Response from CARB CTC: Vehicle PASSED emissions scan.\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testListCarbCtcVehicleHistory() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"enrollmentId\":\"550e8400-e29b-41d4-a716-446655440000\",\"enrollmentVin\":\"1HGCM82633A123456\",\"happenedAtTime\":\"2024-06-15T08:00:00Z\",\"id\":\"12345\",\"testResult\":\"pass\",\"testResultDetails\":\"Response from CARB CTC: Vehicle PASSED emissions scan.\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        CarbCtcListCarbCtcVehicleHistoryResponseBody response = client.betaApIs()
-                .listCarbCtcVehicleHistory(ListCarbCtcVehicleHistoryRequest.builder()
-                        .vehicleIds("vehicleIds")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"enrollmentId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
-                + "      \"enrollmentVin\": \"1HGCM82633A123456\",\n"
-                + "      \"happenedAtTime\": \"2024-06-15T08:00:00Z\",\n"
-                + "      \"id\": \"12345\",\n"
-                + "      \"testResult\": \"pass\",\n"
-                + "      \"testResultDetails\": \"Response from CARB CTC: Vehicle PASSED emissions scan.\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
