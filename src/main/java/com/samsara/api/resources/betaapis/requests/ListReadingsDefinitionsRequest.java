@@ -56,7 +56,7 @@ public final class ListReadingsDefinitionsRequest {
     }
 
     /**
-     * @return A list of entity type to return readings for. (Examples: asset, sensor)
+     * @return A list of entity types to return readings for. (Examples: asset, sensor)
      */
     @JsonProperty("entityTypes")
     public Optional<String> getEntityTypes() {
@@ -141,7 +141,7 @@ public final class ListReadingsDefinitionsRequest {
         }
 
         /**
-         * <p>A list of entity type to return readings for. (Examples: asset, sensor)</p>
+         * <p>A list of entity types to return readings for. (Examples: asset, sensor)</p>
          */
         @JsonSetter(value = "entityTypes", nulls = Nulls.SKIP)
         public Builder entityTypes(Optional<String> entityTypes) {

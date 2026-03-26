@@ -65,7 +65,7 @@ public final class GetReadingsSnapshotRequest {
     }
 
     /**
-     * @return A collection of comma separated reading IDs. Include up to 3 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
+     * @return A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
      * <p>Available reading IDs (by category):</p>
      * <p>&lt;details&gt;
      * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
@@ -286,7 +286,7 @@ public final class GetReadingsSnapshotRequest {
     }
 
     /**
-     * @return A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.
+     * @return A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.
      */
     @JsonProperty("entityIds")
     public Optional<String> getEntityIds() {
@@ -310,7 +310,7 @@ public final class GetReadingsSnapshotRequest {
     }
 
     /**
-     * @return A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+     * @return The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
      */
     @JsonProperty("entityType")
     public String getEntityType() {
@@ -369,7 +369,7 @@ public final class GetReadingsSnapshotRequest {
 
     public interface ReadingIdsStage {
         /**
-         * <p>A collection of comma separated reading IDs. Include up to 3 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
+         * <p>A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
          * <p>&lt;details&gt;
          * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
@@ -591,7 +591,7 @@ public final class GetReadingsSnapshotRequest {
 
     public interface EntityTypeStage {
         /**
-         * <p>A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
+         * <p>The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
          */
         _FinalStage entityType(@NotNull String entityType);
     }
@@ -607,7 +607,7 @@ public final class GetReadingsSnapshotRequest {
         _FinalStage after(String after);
 
         /**
-         * <p>A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.</p>
+         * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          */
         _FinalStage entityIds(Optional<String> entityIds);
 
@@ -669,7 +669,7 @@ public final class GetReadingsSnapshotRequest {
         }
 
         /**
-         * <p>A collection of comma separated reading IDs. Include up to 3 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
+         * <p>A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
          * <p>&lt;details&gt;
          * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
@@ -883,7 +883,7 @@ public final class GetReadingsSnapshotRequest {
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
-         * <p>A collection of comma separated reading IDs. Include up to 3 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
+         * <p>A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
          * <p>&lt;details&gt;
          * &lt;summary&gt;<strong>diagnostic</strong>&lt;/summary&gt;</p>
@@ -1107,8 +1107,8 @@ public final class GetReadingsSnapshotRequest {
         }
 
         /**
-         * <p>A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
-         * <p>A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
+         * <p>The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
+         * <p>The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1179,7 +1179,7 @@ public final class GetReadingsSnapshotRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.</p>
+         * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1189,7 +1189,7 @@ public final class GetReadingsSnapshotRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.</p>
+         * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "entityIds", nulls = Nulls.SKIP)

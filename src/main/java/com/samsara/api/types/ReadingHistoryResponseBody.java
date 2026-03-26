@@ -45,7 +45,7 @@ public final class ReadingHistoryResponseBody {
     }
 
     /**
-     * @return The ID of the entity this readings is for.
+     * @return The ID of the entity this reading is for.
      */
     @JsonProperty("entityId")
     public String getEntityId() {
@@ -110,7 +110,7 @@ public final class ReadingHistoryResponseBody {
 
     public interface EntityIdStage {
         /**
-         * <p>The ID of the entity this readings is for.</p>
+         * <p>The ID of the entity this reading is for.</p>
          */
         _FinalStage entityId(@NotNull String entityId);
 
@@ -167,8 +167,8 @@ public final class ReadingHistoryResponseBody {
         }
 
         /**
-         * <p>The ID of the entity this readings is for.</p>
-         * <p>The ID of the entity this readings is for.</p>
+         * <p>The ID of the entity this reading is for.</p>
+         * <p>The ID of the entity this reading is for.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
