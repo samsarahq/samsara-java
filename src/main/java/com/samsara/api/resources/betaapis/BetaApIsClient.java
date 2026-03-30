@@ -24,8 +24,6 @@ import com.samsara.api.resources.betaapis.requests.GetDepreciationTransactionsRe
 import com.samsara.api.resources.betaapis.requests.GetDetectionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDevicesRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverEfficiencyRequest;
-import com.samsara.api.resources.betaapis.requests.GetDriverSafetyScoreTripsRequest;
-import com.samsara.api.resources.betaapis.requests.GetDriverSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
@@ -41,13 +39,9 @@ import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
-import com.samsara.api.resources.betaapis.requests.GetTagGroupSafetyScoresRequest;
-import com.samsara.api.resources.betaapis.requests.GetTagSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsFeedRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsSnapshotRequest;
-import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoreTripsRequest;
-import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
@@ -128,12 +122,6 @@ import com.samsara.api.types.RidershipRouteSetupsCreateRidershipRouteSetupRespon
 import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
-import com.samsara.api.types.SafetyScoresGetDriverSafetyScoreTripsResponseBody;
-import com.samsara.api.types.SafetyScoresGetDriverSafetyScoresResponseBody;
-import com.samsara.api.types.SafetyScoresGetTagGroupSafetyScoresResponseBody;
-import com.samsara.api.types.SafetyScoresGetTagSafetyScoresResponseBody;
-import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoreTripsResponseBody;
-import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoresResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsFeedResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsHistoryResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsSnapshotResponseBody;
@@ -1976,138 +1964,6 @@ public class BetaApIsClient {
             String routeId, GetRidershipRouteSetupRequest request, RequestOptions requestOptions) {
         return this.rawClient
                 .getRidershipRouteSetup(routeId, request, requestOptions)
-                .body();
-    }
-
-    /**
-     * Get safety scores and overall risk factors for drivers.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetDriverSafetyScoresResponseBody getDriverSafetyScores(GetDriverSafetyScoresRequest request) {
-        return this.rawClient.getDriverSafetyScores(request).body();
-    }
-
-    /**
-     * Get safety scores and overall risk factors for drivers.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetDriverSafetyScoresResponseBody getDriverSafetyScores(
-            GetDriverSafetyScoresRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getDriverSafetyScores(request, requestOptions).body();
-    }
-
-    /**
-     * Get trips contributing to a driver's safety score, and risk factors in each trip.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetDriverSafetyScoreTripsResponseBody getDriverSafetyScoreTrips(
-            GetDriverSafetyScoreTripsRequest request) {
-        return this.rawClient.getDriverSafetyScoreTrips(request).body();
-    }
-
-    /**
-     * Get trips contributing to a driver's safety score, and risk factors in each trip.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetDriverSafetyScoreTripsResponseBody getDriverSafetyScoreTrips(
-            GetDriverSafetyScoreTripsRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getDriverSafetyScoreTrips(request, requestOptions).body();
-    }
-
-    /**
-     * Get a combined safety score and risk factors for a set of tags.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetTagGroupSafetyScoresResponseBody getTagGroupSafetyScores(
-            GetTagGroupSafetyScoresRequest request) {
-        return this.rawClient.getTagGroupSafetyScores(request).body();
-    }
-
-    /**
-     * Get a combined safety score and risk factors for a set of tags.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetTagGroupSafetyScoresResponseBody getTagGroupSafetyScores(
-            GetTagGroupSafetyScoresRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getTagGroupSafetyScores(request, requestOptions).body();
-    }
-
-    /**
-     * Get safety scores and overall risk factors for tags.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetTagSafetyScoresResponseBody getTagSafetyScores(GetTagSafetyScoresRequest request) {
-        return this.rawClient.getTagSafetyScores(request).body();
-    }
-
-    /**
-     * Get safety scores and overall risk factors for tags.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetTagSafetyScoresResponseBody getTagSafetyScores(
-            GetTagSafetyScoresRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getTagSafetyScores(request, requestOptions).body();
-    }
-
-    /**
-     * Get safety scores and overall risk factors for vehicles.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetVehicleSafetyScoresResponseBody getVehicleSafetyScores(
-            GetVehicleSafetyScoresRequest request) {
-        return this.rawClient.getVehicleSafetyScores(request).body();
-    }
-
-    /**
-     * Get safety scores and overall risk factors for vehicles.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetVehicleSafetyScoresResponseBody getVehicleSafetyScores(
-            GetVehicleSafetyScoresRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getVehicleSafetyScores(request, requestOptions).body();
-    }
-
-    /**
-     * Get trips contributing to a vehicle's safety score, and risk factors in each trip.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetVehicleSafetyScoreTripsResponseBody getVehicleSafetyScoreTrips(
-            GetVehicleSafetyScoreTripsRequest request) {
-        return this.rawClient.getVehicleSafetyScoreTrips(request).body();
-    }
-
-    /**
-     * Get trips contributing to a vehicle's safety score, and risk factors in each trip.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SafetyScoresGetVehicleSafetyScoreTripsResponseBody getVehicleSafetyScoreTrips(
-            GetVehicleSafetyScoreTripsRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .getVehicleSafetyScoreTrips(request, requestOptions)
                 .body();
     }
 }

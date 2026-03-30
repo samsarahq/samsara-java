@@ -44,6 +44,7 @@ import com.samsara.api.resources.previewapis.AsyncPreviewApIsClient;
 import com.samsara.api.resources.routeevents.AsyncRouteEventsClient;
 import com.samsara.api.resources.routes.AsyncRoutesClient;
 import com.samsara.api.resources.safety.AsyncSafetyClient;
+import com.samsara.api.resources.safetyscores.AsyncSafetyScoresClient;
 import com.samsara.api.resources.sensors.AsyncSensorsClient;
 import com.samsara.api.resources.settings.AsyncSettingsClient;
 import com.samsara.api.resources.speedingintervals.AsyncSpeedingIntervalsClient;
@@ -151,6 +152,8 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncSafetyClient> safetyClient;
 
+    protected final Supplier<AsyncSafetyScoresClient> safetyScoresClient;
+
     protected final Supplier<AsyncSpeedingIntervalsClient> speedingIntervalsClient;
 
     protected final Supplier<AsyncTagsClient> tagsClient;
@@ -223,6 +226,7 @@ public class AsyncSamsaraApiClient {
         this.previewApIsClient = Suppliers.memoize(() -> new AsyncPreviewApIsClient(clientOptions));
         this.routeEventsClient = Suppliers.memoize(() -> new AsyncRouteEventsClient(clientOptions));
         this.safetyClient = Suppliers.memoize(() -> new AsyncSafetyClient(clientOptions));
+        this.safetyScoresClient = Suppliers.memoize(() -> new AsyncSafetyScoresClient(clientOptions));
         this.speedingIntervalsClient = Suppliers.memoize(() -> new AsyncSpeedingIntervalsClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new AsyncTagsClient(clientOptions));
         this.trainingAssignmentsClient = Suppliers.memoize(() -> new AsyncTrainingAssignmentsClient(clientOptions));
@@ -407,6 +411,10 @@ public class AsyncSamsaraApiClient {
 
     public AsyncSafetyClient safety() {
         return this.safetyClient.get();
+    }
+
+    public AsyncSafetyScoresClient safetyScores() {
+        return this.safetyScoresClient.get();
     }
 
     public AsyncSpeedingIntervalsClient speedingIntervals() {

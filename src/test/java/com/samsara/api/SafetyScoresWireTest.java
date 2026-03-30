@@ -3,14 +3,16 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.ifta.requests.GetIftaDetailJobRequest;
-import com.samsara.api.resources.ifta.requests.GetIftaJurisdictionReportsRequest;
-import com.samsara.api.resources.ifta.requests.GetIftaVehicleReportsRequest;
-import com.samsara.api.resources.ifta.requests.IftaCreateIftaDetailJobRequestBody;
-import com.samsara.api.types.IftaCreateIftaDetailJobResponseBody;
-import com.samsara.api.types.IftaGetIftaDetailJobResponseBody;
-import com.samsara.api.types.IftaGetIftaJurisdictionReportsResponseBody;
-import com.samsara.api.types.IftaGetIftaVehicleReportsResponseBody;
+import com.samsara.api.resources.safetyscores.requests.GetDriverSafetyScoresRequest;
+import com.samsara.api.resources.safetyscores.requests.GetTagGroupSafetyScoresRequest;
+import com.samsara.api.resources.safetyscores.requests.GetTagSafetyScoresRequest;
+import com.samsara.api.resources.safetyscores.requests.GetVehicleSafetyScoresRequest;
+import com.samsara.api.resources.safetyscores.types.GetTagGroupSafetyScoresRequestScoreType;
+import com.samsara.api.resources.safetyscores.types.GetTagSafetyScoresRequestScoreType;
+import com.samsara.api.types.SafetyScoresGetDriverSafetyScoresResponseBody;
+import com.samsara.api.types.SafetyScoresGetTagGroupSafetyScoresResponseBody;
+import com.samsara.api.types.SafetyScoresGetTagSafetyScoresResponseBody;
+import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoresResponseBody;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -19,7 +21,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class IftaWireTest {
+public class SafetyScoresWireTest {
     private MockWebServer server;
     private SamsaraApiClient client;
     private ObjectMapper objectMapper = ObjectMappers.JSON_MAPPER;
@@ -40,15 +42,16 @@ public class IftaWireTest {
     }
 
     @Test
-    public void testGetIftaJurisdictionReports() throws Exception {
+    public void testGetDriverSafetyScores() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"jurisdictionReports\":[{\"jurisdiction\":\"GA\",\"taxPaidLiters\":25.5,\"taxableMeters\":2350,\"totalMeters\":2350}],\"month\":\"January\",\"quarter\":\"Q4\",\"troubleshooting\":{\"noPurchasesFound\":false,\"unassignedFuelTypePurchases\":200,\"unassignedFuelTypeVehicles\":2500,\"unassignedVehiclePurchases\":2500},\"year\":2021}}"));
-        IftaGetIftaJurisdictionReportsResponseBody response = client.ifta()
-                .getIftaJurisdictionReports(GetIftaJurisdictionReportsRequest.builder()
-                        .year(1000000L)
+                                "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"driverId\":\"1234\",\"driverScore\":92,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        SafetyScoresGetDriverSafetyScoresResponseBody response = client.safetyScores()
+                .getDriverSafetyScores(GetDriverSafetyScoresRequest.builder()
+                        .endTime("endTime")
+                        .startTime("startTime")
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -59,103 +62,28 @@ public class IftaWireTest {
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody = ""
                 + "{\n"
-                + "  \"data\": {\n"
-                + "    \"jurisdictionReports\": [\n"
-                + "      {\n"
-                + "        \"jurisdiction\": \"GA\",\n"
-                + "        \"taxPaidLiters\": 25.5,\n"
-                + "        \"taxableMeters\": 2350,\n"
-                + "        \"totalMeters\": 2350\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"month\": \"January\",\n"
-                + "    \"quarter\": \"Q4\",\n"
-                + "    \"troubleshooting\": {\n"
-                + "      \"noPurchasesFound\": false,\n"
-                + "      \"unassignedFuelTypePurchases\": 200,\n"
-                + "      \"unassignedFuelTypeVehicles\": 2500,\n"
-                + "      \"unassignedVehiclePurchases\": 2500\n"
-                + "    },\n"
-                + "    \"year\": 2021\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetIftaVehicleReports() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"month\":\"January\",\"quarter\":\"Q4\",\"troubleshooting\":{\"noPurchasesFound\":false,\"unassignedFuelTypePurchases\":200,\"unassignedFuelTypeVehicles\":2500,\"unassignedVehiclePurchases\":2500},\"vehicleReports\":[{\"jurisdictions\":[{\"jurisdiction\":\"GA\",\"taxPaidLiters\":25.5,\"taxableMeters\":2350,\"totalMeters\":2350}],\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}],\"year\":2021},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        IftaGetIftaVehicleReportsResponseBody response = client.ifta()
-                .getIftaVehicleReports(
-                        GetIftaVehicleReportsRequest.builder().year(1000000L).build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"month\": \"January\",\n"
-                + "    \"quarter\": \"Q4\",\n"
-                + "    \"troubleshooting\": {\n"
-                + "      \"noPurchasesFound\": false,\n"
-                + "      \"unassignedFuelTypePurchases\": 200,\n"
-                + "      \"unassignedFuelTypeVehicles\": 2500,\n"
-                + "      \"unassignedVehiclePurchases\": 2500\n"
-                + "    },\n"
-                + "    \"vehicleReports\": [\n"
-                + "      {\n"
-                + "        \"jurisdictions\": [\n"
-                + "          {\n"
-                + "            \"jurisdiction\": \"GA\",\n"
-                + "            \"taxPaidLiters\": 25.5,\n"
-                + "            \"taxableMeters\": 2350,\n"
-                + "            \"totalMeters\": 2350\n"
-                + "          }\n"
-                + "        ],\n"
-                + "        \"vehicle\": {\n"
-                + "          \"id\": \"494123\",\n"
-                + "          \"name\": \"Fleet Truck #1\"\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"behaviors\": [\n"
+                + "        {\n"
+                + "          \"behaviorType\": \"acceleration\",\n"
+                + "          \"count\": 5,\n"
+                + "          \"scoreImpact\": -18.91020325321117\n"
                 + "        }\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"year\": 2021\n"
-                + "  },\n"
+                + "      ],\n"
+                + "      \"driveDistanceMeters\": 2207296,\n"
+                + "      \"driveTimeMilliseconds\": 136997730,\n"
+                + "      \"driverId\": \"1234\",\n"
+                + "      \"driverScore\": 92,\n"
+                + "      \"speeding\": [\n"
+                + "        {\n"
+                + "          \"durationMilliseconds\": 178773,\n"
+                + "          \"scoreImpact\": -0.13049340306587562,\n"
+                + "          \"speedingType\": \"light\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    }\n"
+                + "  ],\n"
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
@@ -193,53 +121,21 @@ public class IftaWireTest {
     }
 
     @Test
-    public void testCreateIftaDetailJob() throws Exception {
+    public void testGetTagGroupSafetyScores() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"args\":{\"endHour\":\"2019-06-13T19:00:00Z\",\"startHour\":\"2019-06-13T19:00:00Z\",\"vehicleIds\":[12345678,56789123]},\"completedAtTime\":\"2019-06-13T19:00:00Z\",\"details\":\"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\"failedAtTime\":\"2019-06-13T19:00:00Z\",\"files\":[{\"createdAtTime\":\"2019-06-13T19:00:00Z\",\"downloadUrl\":\"https://s3.download-url.com\",\"downloadUrlExpirationTime\":\"2019-06-13T19:00:00Z\",\"name\":\"output-001.csv.gz\",\"recordCount\":8768187711968851000}],\"jobId\":\"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\"jobStatus\":\"Requested\",\"requestedAtTime\":\"2019-06-13T19:00:00Z\",\"startedAtTime\":\"2019-06-13T19:00:00Z\"}}"));
-        IftaCreateIftaDetailJobResponseBody response = client.ifta()
-                .createIftaDetailJob(IftaCreateIftaDetailJobRequestBody.builder()
-                        .endHour("2019-06-13T19:00:00Z")
-                        .startHour("2019-06-13T19:00:00Z")
+                                "{\"data\":{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"combinedScore\":92,\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}]}}"));
+        SafetyScoresGetTagGroupSafetyScoresResponseBody response = client.safetyScores()
+                .getTagGroupSafetyScores(GetTagGroupSafetyScoresRequest.builder()
+                        .endTime("endTime")
+                        .startTime("startTime")
+                        .scoreType(GetTagGroupSafetyScoresRequestScoreType.DRIVER)
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
-        Assertions.assertEquals("POST", request.getMethod());
-        // Validate request body
-        String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = ""
-                + "{\n"
-                + "  \"endHour\": \"2019-06-13T19:00:00Z\",\n"
-                + "  \"startHour\": \"2019-06-13T19:00:00Z\"\n"
-                + "}";
-        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
-        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
-        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
-        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
-            String discriminator = null;
-            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
-            else if (actualJson.has("_type"))
-                discriminator = actualJson.get("_type").asText();
-            else if (actualJson.has("kind"))
-                discriminator = actualJson.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualJson.isNull()) {
-            Assertions.assertTrue(
-                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
-                    "request should be a valid JSON value");
-        }
-
-        if (actualJson.isArray()) {
-            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
-        }
-        if (actualJson.isObject()) {
-            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
-        }
+        Assertions.assertEquals("GET", request.getMethod());
 
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
@@ -247,30 +143,23 @@ public class IftaWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"args\": {\n"
-                + "      \"endHour\": \"2019-06-13T19:00:00Z\",\n"
-                + "      \"startHour\": \"2019-06-13T19:00:00Z\",\n"
-                + "      \"vehicleIds\": [\n"
-                + "        12345678,\n"
-                + "        56789123\n"
-                + "      ]\n"
-                + "    },\n"
-                + "    \"completedAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "    \"details\": \"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\n"
-                + "    \"failedAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "    \"files\": [\n"
+                + "    \"behaviors\": [\n"
                 + "      {\n"
-                + "        \"createdAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "        \"downloadUrl\": \"https://s3.download-url.com\",\n"
-                + "        \"downloadUrlExpirationTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "        \"name\": \"output-001.csv.gz\",\n"
-                + "        \"recordCount\": 8768187711968851000\n"
+                + "        \"behaviorType\": \"acceleration\",\n"
+                + "        \"count\": 5,\n"
+                + "        \"scoreImpact\": -18.91020325321117\n"
                 + "      }\n"
                 + "    ],\n"
-                + "    \"jobId\": \"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\n"
-                + "    \"jobStatus\": \"Requested\",\n"
-                + "    \"requestedAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "    \"startedAtTime\": \"2019-06-13T19:00:00Z\"\n"
+                + "    \"combinedScore\": 92,\n"
+                + "    \"driveDistanceMeters\": 2207296,\n"
+                + "    \"driveTimeMilliseconds\": 136997730,\n"
+                + "    \"speeding\": [\n"
+                + "      {\n"
+                + "        \"durationMilliseconds\": 178773,\n"
+                + "        \"scoreImpact\": -0.13049340306587562,\n"
+                + "        \"speedingType\": \"light\"\n"
+                + "      }\n"
+                + "    ]\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -305,14 +194,18 @@ public class IftaWireTest {
     }
 
     @Test
-    public void testGetIftaDetailJob() throws Exception {
+    public void testGetTagSafetyScores() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"args\":{\"endHour\":\"2019-06-13T19:00:00Z\",\"startHour\":\"2019-06-13T19:00:00Z\",\"vehicleIds\":[12345678,56789123]},\"completedAtTime\":\"2019-06-13T19:00:00Z\",\"details\":\"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\"failedAtTime\":\"2019-06-13T19:00:00Z\",\"files\":[{\"createdAtTime\":\"2019-06-13T19:00:00Z\",\"downloadUrl\":\"https://s3.download-url.com\",\"downloadUrlExpirationTime\":\"2019-06-13T19:00:00Z\",\"name\":\"output-001.csv.gz\",\"recordCount\":8768187711968851000}],\"jobId\":\"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\"jobStatus\":\"Requested\",\"requestedAtTime\":\"2019-06-13T19:00:00Z\",\"startedAtTime\":\"2019-06-13T19:00:00Z\"}}"));
-        IftaGetIftaDetailJobResponseBody response = client.ifta()
-                .getIftaDetailJob("id", GetIftaDetailJobRequest.builder().build());
+                                "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}],\"tagId\":\"5678\",\"tagScore\":92}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        SafetyScoresGetTagSafetyScoresResponseBody response = client.safetyScores()
+                .getTagSafetyScores(GetTagSafetyScoresRequest.builder()
+                        .endTime("endTime")
+                        .startTime("startTime")
+                        .scoreType(GetTagSafetyScoresRequestScoreType.DRIVER)
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -322,31 +215,110 @@ public class IftaWireTest {
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody = ""
                 + "{\n"
-                + "  \"data\": {\n"
-                + "    \"args\": {\n"
-                + "      \"endHour\": \"2019-06-13T19:00:00Z\",\n"
-                + "      \"startHour\": \"2019-06-13T19:00:00Z\",\n"
-                + "      \"vehicleIds\": [\n"
-                + "        12345678,\n"
-                + "        56789123\n"
-                + "      ]\n"
-                + "    },\n"
-                + "    \"completedAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "    \"details\": \"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\n"
-                + "    \"failedAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "    \"files\": [\n"
-                + "      {\n"
-                + "        \"createdAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "        \"downloadUrl\": \"https://s3.download-url.com\",\n"
-                + "        \"downloadUrlExpirationTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "        \"name\": \"output-001.csv.gz\",\n"
-                + "        \"recordCount\": 8768187711968851000\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"jobId\": \"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\n"
-                + "    \"jobStatus\": \"Requested\",\n"
-                + "    \"requestedAtTime\": \"2019-06-13T19:00:00Z\",\n"
-                + "    \"startedAtTime\": \"2019-06-13T19:00:00Z\"\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"behaviors\": [\n"
+                + "        {\n"
+                + "          \"behaviorType\": \"acceleration\",\n"
+                + "          \"count\": 5,\n"
+                + "          \"scoreImpact\": -18.91020325321117\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"driveDistanceMeters\": 2207296,\n"
+                + "      \"driveTimeMilliseconds\": 136997730,\n"
+                + "      \"speeding\": [\n"
+                + "        {\n"
+                + "          \"durationMilliseconds\": 178773,\n"
+                + "          \"scoreImpact\": -0.13049340306587562,\n"
+                + "          \"speedingType\": \"light\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"tagId\": \"5678\",\n"
+                + "      \"tagScore\": 92\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetVehicleSafetyScores() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}],\"vehicleId\":\"5678\",\"vehicleScore\":92}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        SafetyScoresGetVehicleSafetyScoresResponseBody response = client.safetyScores()
+                .getVehicleSafetyScores(GetVehicleSafetyScoresRequest.builder()
+                        .endTime("endTime")
+                        .startTime("startTime")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"behaviors\": [\n"
+                + "        {\n"
+                + "          \"behaviorType\": \"acceleration\",\n"
+                + "          \"count\": 5,\n"
+                + "          \"scoreImpact\": -18.91020325321117\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"driveDistanceMeters\": 2207296,\n"
+                + "      \"driveTimeMilliseconds\": 136997730,\n"
+                + "      \"speeding\": [\n"
+                + "        {\n"
+                + "          \"durationMilliseconds\": 178773,\n"
+                + "          \"scoreImpact\": -0.13049340306587562,\n"
+                + "          \"speedingType\": \"light\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"vehicleId\": \"5678\",\n"
+                + "      \"vehicleScore\": 92\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

@@ -3214,7 +3214,7 @@ client.betaApIs().updateEngineImmobilizerState(
                 UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
                     .builder()
                     .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                    .isOpen(true)
+                    .isOpen(false)
                     .build()
             )
         )
@@ -6192,6 +6192,7 @@ Available reading IDs (by category):
 * `engineIntakeAirTemp` (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)
 * `engineLoadPercent` (Engine Load): Engine load percentage. (percent)
 * `engineOilTemperature` (Engine Oil Temperature): Temperature of the engine oil (celsius)
+* `engineRpm` (Engine Speed): Engine speed in revolutions per minute (RPM). (rpm)
 * `engineState` (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)
 * `engineTotalIdleTime` (Engine Total Idle Time): Total idle time for the vehicle. (minute)
 * `evAverageCellTemperature` (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)
@@ -6547,6 +6548,7 @@ Available reading IDs (by category):
 * `engineIntakeAirTemp` (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)
 * `engineLoadPercent` (Engine Load): Engine load percentage. (percent)
 * `engineOilTemperature` (Engine Oil Temperature): Temperature of the engine oil (celsius)
+* `engineRpm` (Engine Speed): Engine speed in revolutions per minute (RPM). (rpm)
 * `engineState` (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)
 * `engineTotalIdleTime` (Engine Total Idle Time): Total idle time for the vehicle. (minute)
 * `evAverageCellTemperature` (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)
@@ -8424,562 +8426,6 @@ client.betaApIs().getRidershipRouteSetup(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.getDriverSafetyScores() -> SafetyScoresGetDriverSafetyScoresResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get safety scores and overall risk factors for drivers.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getDriverSafetyScores(
-    GetDriverSafetyScoresRequest
-        .builder()
-        .endTime("endTime")
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**driverIds:** `Optional<String>` — Comma separated list of driver IDs to filter by. Include up to 100 IDs. Defaults to all drivers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getDriverSafetyScoreTrips() -> SafetyScoresGetDriverSafetyScoreTripsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get trips contributing to a driver's safety score, and risk factors in each trip.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getDriverSafetyScoreTrips(
-    GetDriverSafetyScoreTripsRequest
-        .builder()
-        .endTime("endTime")
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**driverIds:** `Optional<String>` — Comma separated list of driver IDs to fetch trip breakdowns for. Include up to 100 drivers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getTagGroupSafetyScores() -> SafetyScoresGetTagGroupSafetyScoresResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a combined safety score and risk factors for a set of tags.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getTagGroupSafetyScores(
-    GetTagGroupSafetyScoresRequest
-        .builder()
-        .endTime("endTime")
-        .startTime("startTime")
-        .scoreType(GetTagGroupSafetyScoresRequestScoreType.DRIVER)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scoreType:** `GetTagGroupSafetyScoresRequestScoreType` — Whether to calculate tag score with either all drivers or all vehicles in the tag. Deactivated drivers and unassigned trips are not included when calculating scores for drivers.   Valid values: `driver`, `vehicle`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` — Comma separated list of tag IDs to filter by. Include up to 100 IDs. Defaults to all tags.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getTagSafetyScores() -> SafetyScoresGetTagSafetyScoresResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get safety scores and overall risk factors for tags.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getTagSafetyScores(
-    GetTagSafetyScoresRequest
-        .builder()
-        .endTime("endTime")
-        .startTime("startTime")
-        .scoreType(GetTagSafetyScoresRequestScoreType.DRIVER)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scoreType:** `GetTagSafetyScoresRequestScoreType` — Whether to calculate tag score with either all drivers or all vehicles in the tag. Deactivated drivers and unassigned trips are not included when calculating scores for drivers.   Valid values: `driver`, `vehicle`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` — Comma separated list of tag IDs to filter by. Include up to 100 IDs. Defaults to all tags.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getVehicleSafetyScores() -> SafetyScoresGetVehicleSafetyScoresResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get safety scores and overall risk factors for vehicles.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getVehicleSafetyScores(
-    GetVehicleSafetyScoresRequest
-        .builder()
-        .endTime("endTime")
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleIds:** `Optional<String>` — Comma separated list of vehicle IDs to filter by. Include up to 100 IDs. Defaults to all vehicles.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getVehicleSafetyScoreTrips() -> SafetyScoresGetVehicleSafetyScoreTripsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get trips contributing to a vehicle's safety score, and risk factors in each trip.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getVehicleSafetyScoreTrips(
-    GetVehicleSafetyScoreTripsRequest
-        .builder()
-        .endTime("endTime")
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleIds:** `Optional<String>` — Comma separated list of vehicle IDs to fetch trip breakdowns for. Include up to 100 vehicles.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## LocationAndSpeed
 <details><summary><code>client.locationAndSpeed.getLocationAndSpeed() -> LocationAndSpeedGetLocationAndSpeedResponseBody</code></summary>
 <dl>
@@ -9800,7 +9246,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );
@@ -25491,7 +24937,7 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
-**status:** `Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus>` — The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`
+**status:** `Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus>` — The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`
     
 </dd>
 </dl>
@@ -25954,7 +25400,7 @@ client.previewApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -26535,6 +25981,381 @@ client.safety().v1GetVehicleSafetyScore(
 <dd>
 
 **endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs. Total duration (endMs - startMs) must be greater than or equal to 1 hour.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## SafetyScores
+<details><summary><code>client.safetyScores.getDriverSafetyScores() -> SafetyScoresGetDriverSafetyScoresResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get safety scores and overall risk factors for drivers.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safetyScores().getDriverSafetyScores(
+    GetDriverSafetyScoresRequest
+        .builder()
+        .endTime("endTime")
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverIds:** `Optional<String>` — Comma separated list of driver IDs to filter by. Include up to 100 IDs. Defaults to all drivers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.safetyScores.getTagGroupSafetyScores() -> SafetyScoresGetTagGroupSafetyScoresResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a combined safety score and risk factors for a set of tags.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safetyScores().getTagGroupSafetyScores(
+    GetTagGroupSafetyScoresRequest
+        .builder()
+        .endTime("endTime")
+        .startTime("startTime")
+        .scoreType(GetTagGroupSafetyScoresRequestScoreType.DRIVER)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scoreType:** `GetTagGroupSafetyScoresRequestScoreType` — Whether to calculate tag score with either all drivers or all vehicles in the tag. Deactivated drivers and unassigned trips are not included when calculating scores for drivers.   Valid values: `driver`, `vehicle`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — Comma separated list of tag IDs to filter by. Include up to 100 IDs. Defaults to all tags.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.safetyScores.getTagSafetyScores() -> SafetyScoresGetTagSafetyScoresResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get safety scores and overall risk factors for tags.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safetyScores().getTagSafetyScores(
+    GetTagSafetyScoresRequest
+        .builder()
+        .endTime("endTime")
+        .startTime("startTime")
+        .scoreType(GetTagSafetyScoresRequestScoreType.DRIVER)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scoreType:** `GetTagSafetyScoresRequestScoreType` — Whether to calculate tag score with either all drivers or all vehicles in the tag. Deactivated drivers and unassigned trips are not included when calculating scores for drivers.   Valid values: `driver`, `vehicle`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — Comma separated list of tag IDs to filter by. Include up to 100 IDs. Defaults to all tags.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.safetyScores.getVehicleSafetyScores() -> SafetyScoresGetVehicleSafetyScoresResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get safety scores and overall risk factors for vehicles.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.safetyScores().getVehicleSafetyScores(
+    GetVehicleSafetyScoresRequest
+        .builder()
+        .endTime("endTime")
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**endTime:** `String` — End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Start time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end after this timestamp. Can be up to 1 year before endTime.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleIds:** `Optional<String>` — Comma separated list of vehicle IDs to filter by. Include up to 100 IDs. Defaults to all vehicles.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>

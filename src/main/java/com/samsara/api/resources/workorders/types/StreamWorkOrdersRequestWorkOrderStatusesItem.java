@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class StreamWorkOrdersRequestWorkOrderStatusesItem {
+    public static final StreamWorkOrdersRequestWorkOrderStatusesItem ESTIMATE =
+            new StreamWorkOrdersRequestWorkOrderStatusesItem(Value.ESTIMATE, "Estimate");
+
     public static final StreamWorkOrdersRequestWorkOrderStatusesItem COMPLETED =
             new StreamWorkOrdersRequestWorkOrderStatusesItem(Value.COMPLETED, "Completed");
 
@@ -67,6 +70,8 @@ public final class StreamWorkOrdersRequestWorkOrderStatusesItem {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case ESTIMATE:
+                return visitor.visitEstimate();
             case COMPLETED:
                 return visitor.visitCompleted();
             case ASSIGNED:
@@ -94,6 +99,8 @@ public final class StreamWorkOrdersRequestWorkOrderStatusesItem {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static StreamWorkOrdersRequestWorkOrderStatusesItem valueOf(String value) {
         switch (value) {
+            case "Estimate":
+                return ESTIMATE;
             case "Completed":
                 return COMPLETED;
             case "Assigned":
@@ -126,6 +133,8 @@ public final class StreamWorkOrdersRequestWorkOrderStatusesItem {
 
         COMPLETED,
 
+        ESTIMATE,
+
         IN_PROGRESS,
 
         ON_HOLD,
@@ -147,6 +156,8 @@ public final class StreamWorkOrdersRequestWorkOrderStatusesItem {
         T visitClosed();
 
         T visitCompleted();
+
+        T visitEstimate();
 
         T visitInProgress();
 
