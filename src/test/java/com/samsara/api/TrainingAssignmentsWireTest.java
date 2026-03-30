@@ -190,7 +190,7 @@ public class TrainingAssignmentsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"course\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"revisionId\":\"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdById\":\"user-4392\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"durationMinutes\":5498774855504382000,\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"isCompletedLate\":true,\"isOverdue\":true,\"learner\":{\"id\":\"938172\",\"type\":\"driver\"},\"scorePercent\":0.21176328452105003,\"startedAtTime\":\"2019-06-13T19:08:25Z\",\"status\":\"notStarted\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"updatedById\":\"user-3112\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"course\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"revisionId\":\"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdById\":\"user-4392\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"durationMinutes\":3235248818899243000,\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"isCompletedLate\":true,\"isOverdue\":true,\"learner\":{\"id\":\"938172\",\"type\":\"driver\"},\"scorePercent\":0.928275626360249,\"startedAtTime\":\"2019-06-13T19:08:25Z\",\"status\":\"notStarted\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"updatedById\":\"user-3112\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         TrainingAssignmentsGetTrainingAssignmentsStreamResponseBody response = client.trainingAssignments()
                 .getTrainingAssignmentsStream(GetTrainingAssignmentsStreamRequest.builder()
                         .startTime("startTime")
@@ -215,7 +215,7 @@ public class TrainingAssignmentsWireTest {
                 + "      \"createdById\": \"user-4392\",\n"
                 + "      \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"dueAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"durationMinutes\": 5498774855504382000,\n"
+                + "      \"durationMinutes\": 3235248818899243000,\n"
                 + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
                 + "      \"isCompletedLate\": true,\n"
                 + "      \"isOverdue\": true,\n"
@@ -223,7 +223,7 @@ public class TrainingAssignmentsWireTest {
                 + "        \"id\": \"938172\",\n"
                 + "        \"type\": \"driver\"\n"
                 + "      },\n"
-                + "      \"scorePercent\": 0.21176328452105003,\n"
+                + "      \"scorePercent\": 0.928275626360249,\n"
                 + "      \"startedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"status\": \"notStarted\",\n"
                 + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"

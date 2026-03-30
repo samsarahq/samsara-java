@@ -22,8 +22,6 @@ import com.samsara.api.resources.betaapis.requests.GetDepreciationTransactionsRe
 import com.samsara.api.resources.betaapis.requests.GetDetectionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDevicesRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverEfficiencyRequest;
-import com.samsara.api.resources.betaapis.requests.GetDriverSafetyScoreTripsRequest;
-import com.samsara.api.resources.betaapis.requests.GetDriverSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
@@ -39,13 +37,9 @@ import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
-import com.samsara.api.resources.betaapis.requests.GetTagGroupSafetyScoresRequest;
-import com.samsara.api.resources.betaapis.requests.GetTagSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsFeedRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsHistoryRequest;
 import com.samsara.api.resources.betaapis.requests.GetTrailerStatsSnapshotRequest;
-import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoreTripsRequest;
-import com.samsara.api.resources.betaapis.requests.GetVehicleSafetyScoresRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
@@ -80,8 +74,6 @@ import com.samsara.api.resources.betaapis.types.FunctionsStartFunctionRunRequest
 import com.samsara.api.resources.betaapis.types.GetAssetsInputsRequestType;
 import com.samsara.api.resources.betaapis.types.GetQualificationRecordsStreamRequestEntityType;
 import com.samsara.api.resources.betaapis.types.GetQualificationTypesRequestEntityType;
-import com.samsara.api.resources.betaapis.types.GetTagGroupSafetyScoresRequestScoreType;
-import com.samsara.api.resources.betaapis.types.GetTagSafetyScoresRequestScoreType;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.AssociationsListAssociationsResponseBody;
@@ -148,12 +140,6 @@ import com.samsara.api.types.RidershipRouteSetupsCreateRidershipRouteSetupRespon
 import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
-import com.samsara.api.types.SafetyScoresGetDriverSafetyScoreTripsResponseBody;
-import com.samsara.api.types.SafetyScoresGetDriverSafetyScoresResponseBody;
-import com.samsara.api.types.SafetyScoresGetTagGroupSafetyScoresResponseBody;
-import com.samsara.api.types.SafetyScoresGetTagSafetyScoresResponseBody;
-import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoreTripsResponseBody;
-import com.samsara.api.types.SafetyScoresGetVehicleSafetyScoresResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsFeedResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsHistoryResponseBody;
 import com.samsara.api.types.TrailerStatsGetTrailerStatsSnapshotResponseBody;
@@ -814,7 +800,7 @@ public class BetaApIsWireTest {
                                 .relayStates(
                                         Arrays.asList(UpdateEngineImmobilizerRelayStateRequestBodyRequestBody.builder()
                                                 .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                                                .isOpen(true)
+                                                .isOpen(false)
                                                 .build()))
                                 .build());
         RecordedRequest request = server.takeRequest();
@@ -827,7 +813,7 @@ public class BetaApIsWireTest {
                 + "  \"relayStates\": [\n"
                 + "    {\n"
                 + "      \"id\": \"relay1\",\n"
-                + "      \"isOpen\": true\n"
+                + "      \"isOpen\": false\n"
                 + "    }\n"
                 + "  ]\n"
                 + "}";
@@ -1993,7 +1979,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":true,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":true}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":false,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":false}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EngineImmobilizerGetEngineImmobilizerStatesResponseBody response = client.betaApIs()
                 .getEngineImmobilizerStates(GetEngineImmobilizerStatesRequest.builder()
                         .vehicleIds("vehicleIds")
@@ -2011,11 +1997,11 @@ public class BetaApIsWireTest {
                 + "  \"data\": [\n"
                 + "    {\n"
                 + "      \"happenedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"isConnectedToVehicle\": true,\n"
+                + "      \"isConnectedToVehicle\": false,\n"
                 + "      \"relayStates\": [\n"
                 + "        {\n"
                 + "          \"id\": \"relay1\",\n"
-                + "          \"isOpen\": true\n"
+                + "          \"isOpen\": false\n"
                 + "        }\n"
                 + "      ],\n"
                 + "      \"vehicleId\": \"1234\"\n"
@@ -2497,7 +2483,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"adverseDrivingClaimed\":false,\"bigDayClaimed\":true,\"carrierFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"carrierName\":\"Carrier Name\",\"carrierUsDotNumber\":1234,\"homeTerminalFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"homeTerminalName\":\"Home Terminal Name\",\"isCertified\":true,\"isUsShortHaulActive\":true,\"trailerNames\":[\"10293\",\"Trailer ID 1\"]}}"));
+                                "{\"data\":{\"adverseDrivingClaimed\":true,\"bigDayClaimed\":false,\"carrierFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"carrierName\":\"Carrier Name\",\"carrierUsDotNumber\":1234,\"homeTerminalFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"homeTerminalName\":\"Home Terminal Name\",\"isCertified\":false,\"isUsShortHaulActive\":true,\"trailerNames\":[\"10293\",\"Trailer ID 1\"]}}"));
         HosDailyLogsUpdateShippingDocsResponseBody response = client.betaApIs()
                 .updateShippingDocs(HosDailyLogsUpdateShippingDocsRequestBody.builder()
                         .hosDate("hosDate")
@@ -2543,14 +2529,14 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"adverseDrivingClaimed\": false,\n"
-                + "    \"bigDayClaimed\": true,\n"
+                + "    \"adverseDrivingClaimed\": true,\n"
+                + "    \"bigDayClaimed\": false,\n"
                 + "    \"carrierFormattedAddress\": \"1990 Alameda Street, San Francisco, CA 94103\",\n"
                 + "    \"carrierName\": \"Carrier Name\",\n"
                 + "    \"carrierUsDotNumber\": 1234,\n"
                 + "    \"homeTerminalFormattedAddress\": \"1990 Alameda Street, San Francisco, CA 94103\",\n"
                 + "    \"homeTerminalName\": \"Home Terminal Name\",\n"
-                + "    \"isCertified\": true,\n"
+                + "    \"isCertified\": false,\n"
                 + "    \"isUsShortHaulActive\": true,\n"
                 + "    \"trailerNames\": [\n"
                 + "      \"10293\",\n"
@@ -3793,7 +3779,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunDataResponseBody response = client.betaApIs()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -3814,20 +3800,6 @@ public class BetaApIsWireTest {
                 + "    ],\n"
                 + "    \"rows\": [\n"
                 + "      [\n"
-                + "        {\n"
-                + "          \"key\": \"value\"\n"
-                + "        },\n"
-                + "        {\n"
-                + "          \"key\": \"value\"\n"
-                + "        },\n"
-                + "        {\n"
-                + "          \"key\": \"value\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      [\n"
-                + "        {\n"
-                + "          \"key\": \"value\"\n"
-                + "        },\n"
                 + "        {\n"
                 + "          \"key\": \"value\"\n"
                 + "        },\n"
@@ -4927,419 +4899,6 @@ public class BetaApIsWireTest {
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetDriverSafetyScores() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"driverId\":\"1234\",\"driverScore\":92,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyScoresGetDriverSafetyScoresResponseBody response = client.betaApIs()
-                .getDriverSafetyScores(GetDriverSafetyScoresRequest.builder()
-                        .endTime("endTime")
-                        .startTime("startTime")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"behaviors\": [\n"
-                + "        {\n"
-                + "          \"behaviorType\": \"acceleration\",\n"
-                + "          \"count\": 5,\n"
-                + "          \"scoreImpact\": -18.91020325321117\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"driveDistanceMeters\": 2207296,\n"
-                + "      \"driveTimeMilliseconds\": 136997730,\n"
-                + "      \"driverId\": \"1234\",\n"
-                + "      \"driverScore\": 92,\n"
-                + "      \"speeding\": [\n"
-                + "        {\n"
-                + "          \"durationMilliseconds\": 178773,\n"
-                + "          \"scoreImpact\": -0.13049340306587562,\n"
-                + "          \"speedingType\": \"light\"\n"
-                + "        }\n"
-                + "      ]\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetDriverSafetyScoreTrips() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetDriverSafetyScoreTrips_response.json")));
-        SafetyScoresGetDriverSafetyScoreTripsResponseBody response = client.betaApIs()
-                .getDriverSafetyScoreTrips(GetDriverSafetyScoreTripsRequest.builder()
-                        .endTime("endTime")
-                        .startTime("startTime")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetDriverSafetyScoreTrips_response.json");
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetTagGroupSafetyScores() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"combinedScore\":92,\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}]}}"));
-        SafetyScoresGetTagGroupSafetyScoresResponseBody response = client.betaApIs()
-                .getTagGroupSafetyScores(GetTagGroupSafetyScoresRequest.builder()
-                        .endTime("endTime")
-                        .startTime("startTime")
-                        .scoreType(GetTagGroupSafetyScoresRequestScoreType.DRIVER)
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"behaviors\": [\n"
-                + "      {\n"
-                + "        \"behaviorType\": \"acceleration\",\n"
-                + "        \"count\": 5,\n"
-                + "        \"scoreImpact\": -18.91020325321117\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"combinedScore\": 92,\n"
-                + "    \"driveDistanceMeters\": 2207296,\n"
-                + "    \"driveTimeMilliseconds\": 136997730,\n"
-                + "    \"speeding\": [\n"
-                + "      {\n"
-                + "        \"durationMilliseconds\": 178773,\n"
-                + "        \"scoreImpact\": -0.13049340306587562,\n"
-                + "        \"speedingType\": \"light\"\n"
-                + "      }\n"
-                + "    ]\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetTagSafetyScores() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}],\"tagId\":\"5678\",\"tagScore\":92}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyScoresGetTagSafetyScoresResponseBody response = client.betaApIs()
-                .getTagSafetyScores(GetTagSafetyScoresRequest.builder()
-                        .endTime("endTime")
-                        .startTime("startTime")
-                        .scoreType(GetTagSafetyScoresRequestScoreType.DRIVER)
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"behaviors\": [\n"
-                + "        {\n"
-                + "          \"behaviorType\": \"acceleration\",\n"
-                + "          \"count\": 5,\n"
-                + "          \"scoreImpact\": -18.91020325321117\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"driveDistanceMeters\": 2207296,\n"
-                + "      \"driveTimeMilliseconds\": 136997730,\n"
-                + "      \"speeding\": [\n"
-                + "        {\n"
-                + "          \"durationMilliseconds\": 178773,\n"
-                + "          \"scoreImpact\": -0.13049340306587562,\n"
-                + "          \"speedingType\": \"light\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"tagId\": \"5678\",\n"
-                + "      \"tagScore\": 92\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetVehicleSafetyScores() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"behaviors\":[{\"behaviorType\":\"acceleration\",\"count\":5,\"scoreImpact\":-18.91020325321117}],\"driveDistanceMeters\":2207296,\"driveTimeMilliseconds\":136997730,\"speeding\":[{\"durationMilliseconds\":178773,\"scoreImpact\":-0.13049340306587562,\"speedingType\":\"light\"}],\"vehicleId\":\"5678\",\"vehicleScore\":92}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        SafetyScoresGetVehicleSafetyScoresResponseBody response = client.betaApIs()
-                .getVehicleSafetyScores(GetVehicleSafetyScoresRequest.builder()
-                        .endTime("endTime")
-                        .startTime("startTime")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"behaviors\": [\n"
-                + "        {\n"
-                + "          \"behaviorType\": \"acceleration\",\n"
-                + "          \"count\": 5,\n"
-                + "          \"scoreImpact\": -18.91020325321117\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"driveDistanceMeters\": 2207296,\n"
-                + "      \"driveTimeMilliseconds\": 136997730,\n"
-                + "      \"speeding\": [\n"
-                + "        {\n"
-                + "          \"durationMilliseconds\": 178773,\n"
-                + "          \"scoreImpact\": -0.13049340306587562,\n"
-                + "          \"speedingType\": \"light\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"vehicleId\": \"5678\",\n"
-                + "      \"vehicleScore\": 92\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetVehicleSafetyScoreTrips() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(TestResources.loadResource(
-                        "/wire-tests/BetaApIsWireTest_testGetVehicleSafetyScoreTrips_response.json")));
-        SafetyScoresGetVehicleSafetyScoreTripsResponseBody response = client.betaApIs()
-                .getVehicleSafetyScoreTrips(GetVehicleSafetyScoreTripsRequest.builder()
-                        .endTime("endTime")
-                        .startTime("startTime")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetVehicleSafetyScoreTrips_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(

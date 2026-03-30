@@ -46,7 +46,7 @@ public class WebhooksWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         WebhooksListWebhooksResponseBody response =
                 client.webhooks().listWebhooks(ListWebhooksRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -67,6 +67,8 @@ public class WebhooksWireTest {
                 + "        }\n"
                 + "      ],\n"
                 + "      \"eventTypes\": [\n"
+                + "        \"AddressCreated\",\n"
+                + "        \"AddressCreated\",\n"
                 + "        \"AddressCreated\",\n"
                 + "        \"AddressCreated\"\n"
                 + "      ],\n"
@@ -119,7 +121,7 @@ public class WebhooksWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
+                                "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
         WebhooksPostWebhooksResponseBody response = client.webhooks()
                 .postWebhooks(WebhooksPostWebhooksRequestBody.builder()
                         .name("Webhook-123")
@@ -176,6 +178,7 @@ public class WebhooksWireTest {
                 + "  \"eventTypes\": [\n"
                 + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\",\n"
+                + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\"\n"
                 + "  ],\n"
                 + "  \"id\": \"23918\",\n"
@@ -221,7 +224,7 @@ public class WebhooksWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
+                                "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
         WebhooksGetWebhookResponseBody response =
                 client.webhooks().getWebhook("id", GetWebhookRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -240,7 +243,6 @@ public class WebhooksWireTest {
                 + "    }\n"
                 + "  ],\n"
                 + "  \"eventTypes\": [\n"
-                + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\"\n"
@@ -297,7 +299,7 @@ public class WebhooksWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\",\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
+                                "{\"customHeaders\":[{\"key\":\"format\",\"value\":\"xcmol-532\"}],\"eventTypes\":[\"AddressCreated\",\"AddressCreated\"],\"id\":\"23918\",\"name\":\"Webhook-123\",\"secretKey\":\"11121-31231-1231212\",\"url\":\"https://www.webhook-123.com/webhook/listener\",\"version\":\"2018-01-01\"}"));
         WebhooksPatchWebhookResponseBody response = client.webhooks()
                 .patchWebhook("id", WebhooksPatchWebhookRequestBody.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -345,8 +347,6 @@ public class WebhooksWireTest {
                 + "    }\n"
                 + "  ],\n"
                 + "  \"eventTypes\": [\n"
-                + "    \"AddressCreated\",\n"
-                + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\",\n"
                 + "    \"AddressCreated\"\n"
                 + "  ],\n"

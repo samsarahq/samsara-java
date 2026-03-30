@@ -226,7 +226,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     }
 
     /**
-     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>
+     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>
      */
     @JsonProperty("status")
     public Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> getStatus() {
@@ -420,7 +420,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         _FinalStage serviceTaskInstances(List<ServiceTaskInstanceInputObjectRequestBody> serviceTaskInstances);
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
+         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
          */
         _FinalStage status(Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status);
 
@@ -550,7 +550,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
+         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -560,7 +560,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
+         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)

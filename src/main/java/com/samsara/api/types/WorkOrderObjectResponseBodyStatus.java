@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class WorkOrderObjectResponseBodyStatus {
+    public static final WorkOrderObjectResponseBodyStatus ESTIMATE =
+            new WorkOrderObjectResponseBodyStatus(Value.ESTIMATE, "Estimate");
+
     public static final WorkOrderObjectResponseBodyStatus COMPLETED =
             new WorkOrderObjectResponseBodyStatus(Value.COMPLETED, "Completed");
 
@@ -67,6 +70,8 @@ public final class WorkOrderObjectResponseBodyStatus {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case ESTIMATE:
+                return visitor.visitEstimate();
             case COMPLETED:
                 return visitor.visitCompleted();
             case ASSIGNED:
@@ -94,6 +99,8 @@ public final class WorkOrderObjectResponseBodyStatus {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static WorkOrderObjectResponseBodyStatus valueOf(String value) {
         switch (value) {
+            case "Estimate":
+                return ESTIMATE;
             case "Completed":
                 return COMPLETED;
             case "Assigned":
@@ -126,6 +133,8 @@ public final class WorkOrderObjectResponseBodyStatus {
 
         COMPLETED,
 
+        ESTIMATE,
+
         IN_PROGRESS,
 
         ON_HOLD,
@@ -147,6 +156,8 @@ public final class WorkOrderObjectResponseBodyStatus {
         T visitClosed();
 
         T visitCompleted();
+
+        T visitEstimate();
 
         T visitInProgress();
 

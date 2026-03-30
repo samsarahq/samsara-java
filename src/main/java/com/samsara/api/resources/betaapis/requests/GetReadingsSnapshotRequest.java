@@ -107,6 +107,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
      * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
      * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
+     * <li><code>engineRpm</code> (Engine Speed): Engine speed in revolutions per minute (RPM). (rpm)</li>
      * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
      * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
      * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
@@ -411,6 +412,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
          * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
          * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
+         * <li><code>engineRpm</code> (Engine Speed): Engine speed in revolutions per minute (RPM). (rpm)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
@@ -711,6 +713,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
          * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
          * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
+         * <li><code>engineRpm</code> (Engine Speed): Engine speed in revolutions per minute (RPM). (rpm)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
@@ -925,6 +928,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineIntakeAirTemp</code> (Engine Intake Air Temperature): Represents the engine intake air temperature. (celsius)</li>
          * <li><code>engineLoadPercent</code> (Engine Load): Engine load percentage. (percent)</li>
          * <li><code>engineOilTemperature</code> (Engine Oil Temperature): Temperature of the engine oil (celsius)</li>
+         * <li><code>engineRpm</code> (Engine Speed): Engine speed in revolutions per minute (RPM). (rpm)</li>
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
