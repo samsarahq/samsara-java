@@ -279,6 +279,35 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
      * </ul>
      * <p>&lt;/details&gt;</p>
+     * <p>&lt;details&gt;
+     * &lt;summary&gt;<strong>tireCondition</strong>&lt;/summary&gt;</p>
+     * <ul>
+     * <li><code>axle1tirefromleft1pressure</code> (Axle 1 Left Outer Tire Pressure): Pressure of the left outer tire on axle 1. (kilopascal)</li>
+     * <li><code>axle1tirefromleft1temperature</code> (Axle 1 Left Outer Tire Temperature): Temperature of the left outer tire on axle 1. (celsius)</li>
+     * <li><code>axle1tirefromleft2pressure</code> (Axle 1 Left Inner Tire Pressure): Pressure of the left inner tire on axle 1. (kilopascal)</li>
+     * <li><code>axle1tirefromleft2temperature</code> (Axle 1 Left Inner Tire Temperature): Temperature of the left inner tire on axle 1. (celsius)</li>
+     * <li><code>axle1tirefromleft3pressure</code> (Axle 1 Right Inner Tire Pressure): Pressure of the right inner tire on axle 1. (kilopascal)</li>
+     * <li><code>axle1tirefromleft3temperature</code> (Axle 1 Right Inner Tire Temperature): Temperature of the right inner tire on axle 1. (celsius)</li>
+     * <li><code>axle1tirefromleft4pressure</code> (Axle 1 Right Outer Tire Pressure): Pressure of the right outer tire on axle 1. (kilopascal)</li>
+     * <li><code>axle1tirefromleft4temperature</code> (Axle 1 Right Outer Tire Temperature): Temperature of the right outer tire on axle 1. (celsius)</li>
+     * <li><code>axle2tirefromleft1pressure</code> (Axle 2 Left Outer Tire Pressure): Pressure of the left outer tire on axle 2. (kilopascal)</li>
+     * <li><code>axle2tirefromleft1temperature</code> (Axle 2 Left Outer Tire Temperature): Temperature of the left outer tire on axle 2. (celsius)</li>
+     * <li><code>axle2tirefromleft2pressure</code> (Axle 2 Left Inner Tire Pressure): Pressure of the left inner tire on axle 2. (kilopascal)</li>
+     * <li><code>axle2tirefromleft2temperature</code> (Axle 2 Left Inner Tire Temperature): Temperature of the left inner tire on axle 2. (celsius)</li>
+     * <li><code>axle2tirefromleft3pressure</code> (Axle 2 Right Inner Tire Pressure): Pressure of the right inner tire on axle 2. (kilopascal)</li>
+     * <li><code>axle2tirefromleft3temperature</code> (Axle 2 Right Inner Tire Temperature): Temperature of the right inner tire on axle 2. (celsius)</li>
+     * <li><code>axle2tirefromleft4pressure</code> (Axle 2 Right Outer Tire Pressure): Pressure of the right outer tire on axle 2. (kilopascal)</li>
+     * <li><code>axle2tirefromleft4temperature</code> (Axle 2 Right Outer Tire Temperature): Temperature of the right outer tire on axle 2. (celsius)</li>
+     * <li><code>axle3tirefromleft1pressure</code> (Axle 3 Left Outer Tire Pressure): Pressure of the left outer tire on axle 3. (kilopascal)</li>
+     * <li><code>axle3tirefromleft1temperature</code> (Axle 3 Left Outer Tire Temperature): Temperature of the left outer tire on axle 3. (celsius)</li>
+     * <li><code>axle3tirefromleft2pressure</code> (Axle 3 Left Inner Tire Pressure): Pressure of the left inner tire on axle 3. (kilopascal)</li>
+     * <li><code>axle3tirefromleft2temperature</code> (Axle 3 Left Inner Tire Temperature): Temperature of the left inner tire on axle 3. (celsius)</li>
+     * <li><code>axle3tirefromleft3pressure</code> (Axle 3 Right Inner Tire Pressure): Pressure of the right inner tire on axle 3. (kilopascal)</li>
+     * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
+     * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
+     * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+     * </ul>
+     * <p>&lt;/details&gt;</p>
      * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
      */
     @JsonProperty("readingIds")
@@ -584,6 +613,35 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>tireCondition</strong>&lt;/summary&gt;</p>
+         * <ul>
+         * <li><code>axle1tirefromleft1pressure</code> (Axle 1 Left Outer Tire Pressure): Pressure of the left outer tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft1temperature</code> (Axle 1 Left Outer Tire Temperature): Temperature of the left outer tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft2pressure</code> (Axle 1 Left Inner Tire Pressure): Pressure of the left inner tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft2temperature</code> (Axle 1 Left Inner Tire Temperature): Temperature of the left inner tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft3pressure</code> (Axle 1 Right Inner Tire Pressure): Pressure of the right inner tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft3temperature</code> (Axle 1 Right Inner Tire Temperature): Temperature of the right inner tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft4pressure</code> (Axle 1 Right Outer Tire Pressure): Pressure of the right outer tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft4temperature</code> (Axle 1 Right Outer Tire Temperature): Temperature of the right outer tire on axle 1. (celsius)</li>
+         * <li><code>axle2tirefromleft1pressure</code> (Axle 2 Left Outer Tire Pressure): Pressure of the left outer tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft1temperature</code> (Axle 2 Left Outer Tire Temperature): Temperature of the left outer tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft2pressure</code> (Axle 2 Left Inner Tire Pressure): Pressure of the left inner tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft2temperature</code> (Axle 2 Left Inner Tire Temperature): Temperature of the left inner tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft3pressure</code> (Axle 2 Right Inner Tire Pressure): Pressure of the right inner tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft3temperature</code> (Axle 2 Right Inner Tire Temperature): Temperature of the right inner tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft4pressure</code> (Axle 2 Right Outer Tire Pressure): Pressure of the right outer tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft4temperature</code> (Axle 2 Right Outer Tire Temperature): Temperature of the right outer tire on axle 2. (celsius)</li>
+         * <li><code>axle3tirefromleft1pressure</code> (Axle 3 Left Outer Tire Pressure): Pressure of the left outer tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft1temperature</code> (Axle 3 Left Outer Tire Temperature): Temperature of the left outer tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft2pressure</code> (Axle 3 Left Inner Tire Pressure): Pressure of the left inner tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft2temperature</code> (Axle 3 Left Inner Tire Temperature): Temperature of the left inner tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft3pressure</code> (Axle 3 Right Inner Tire Pressure): Pressure of the right inner tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+         * </ul>
+         * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          */
         EntityTypeStage readingIds(@NotNull String readingIds);
@@ -885,6 +943,35 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>tireCondition</strong>&lt;/summary&gt;</p>
+         * <ul>
+         * <li><code>axle1tirefromleft1pressure</code> (Axle 1 Left Outer Tire Pressure): Pressure of the left outer tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft1temperature</code> (Axle 1 Left Outer Tire Temperature): Temperature of the left outer tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft2pressure</code> (Axle 1 Left Inner Tire Pressure): Pressure of the left inner tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft2temperature</code> (Axle 1 Left Inner Tire Temperature): Temperature of the left inner tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft3pressure</code> (Axle 1 Right Inner Tire Pressure): Pressure of the right inner tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft3temperature</code> (Axle 1 Right Inner Tire Temperature): Temperature of the right inner tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft4pressure</code> (Axle 1 Right Outer Tire Pressure): Pressure of the right outer tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft4temperature</code> (Axle 1 Right Outer Tire Temperature): Temperature of the right outer tire on axle 1. (celsius)</li>
+         * <li><code>axle2tirefromleft1pressure</code> (Axle 2 Left Outer Tire Pressure): Pressure of the left outer tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft1temperature</code> (Axle 2 Left Outer Tire Temperature): Temperature of the left outer tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft2pressure</code> (Axle 2 Left Inner Tire Pressure): Pressure of the left inner tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft2temperature</code> (Axle 2 Left Inner Tire Temperature): Temperature of the left inner tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft3pressure</code> (Axle 2 Right Inner Tire Pressure): Pressure of the right inner tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft3temperature</code> (Axle 2 Right Inner Tire Temperature): Temperature of the right inner tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft4pressure</code> (Axle 2 Right Outer Tire Pressure): Pressure of the right outer tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft4temperature</code> (Axle 2 Right Outer Tire Temperature): Temperature of the right outer tire on axle 2. (celsius)</li>
+         * <li><code>axle3tirefromleft1pressure</code> (Axle 3 Left Outer Tire Pressure): Pressure of the left outer tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft1temperature</code> (Axle 3 Left Outer Tire Temperature): Temperature of the left outer tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft2pressure</code> (Axle 3 Left Inner Tire Pressure): Pressure of the left inner tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft2temperature</code> (Axle 3 Left Inner Tire Temperature): Temperature of the left inner tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft3pressure</code> (Axle 3 Right Inner Tire Pressure): Pressure of the right inner tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+         * </ul>
+         * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
          * <p>A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)</p>
          * <p>Available reading IDs (by category):</p>
@@ -1098,6 +1185,35 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
          * <li><code>widgetDisconnect</code> (Widget Disconnection Status): Connection status between widget and device (values: connected | disconnected)</li>
+         * </ul>
+         * <p>&lt;/details&gt;</p>
+         * <p>&lt;details&gt;
+         * &lt;summary&gt;<strong>tireCondition</strong>&lt;/summary&gt;</p>
+         * <ul>
+         * <li><code>axle1tirefromleft1pressure</code> (Axle 1 Left Outer Tire Pressure): Pressure of the left outer tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft1temperature</code> (Axle 1 Left Outer Tire Temperature): Temperature of the left outer tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft2pressure</code> (Axle 1 Left Inner Tire Pressure): Pressure of the left inner tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft2temperature</code> (Axle 1 Left Inner Tire Temperature): Temperature of the left inner tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft3pressure</code> (Axle 1 Right Inner Tire Pressure): Pressure of the right inner tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft3temperature</code> (Axle 1 Right Inner Tire Temperature): Temperature of the right inner tire on axle 1. (celsius)</li>
+         * <li><code>axle1tirefromleft4pressure</code> (Axle 1 Right Outer Tire Pressure): Pressure of the right outer tire on axle 1. (kilopascal)</li>
+         * <li><code>axle1tirefromleft4temperature</code> (Axle 1 Right Outer Tire Temperature): Temperature of the right outer tire on axle 1. (celsius)</li>
+         * <li><code>axle2tirefromleft1pressure</code> (Axle 2 Left Outer Tire Pressure): Pressure of the left outer tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft1temperature</code> (Axle 2 Left Outer Tire Temperature): Temperature of the left outer tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft2pressure</code> (Axle 2 Left Inner Tire Pressure): Pressure of the left inner tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft2temperature</code> (Axle 2 Left Inner Tire Temperature): Temperature of the left inner tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft3pressure</code> (Axle 2 Right Inner Tire Pressure): Pressure of the right inner tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft3temperature</code> (Axle 2 Right Inner Tire Temperature): Temperature of the right inner tire on axle 2. (celsius)</li>
+         * <li><code>axle2tirefromleft4pressure</code> (Axle 2 Right Outer Tire Pressure): Pressure of the right outer tire on axle 2. (kilopascal)</li>
+         * <li><code>axle2tirefromleft4temperature</code> (Axle 2 Right Outer Tire Temperature): Temperature of the right outer tire on axle 2. (celsius)</li>
+         * <li><code>axle3tirefromleft1pressure</code> (Axle 3 Left Outer Tire Pressure): Pressure of the left outer tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft1temperature</code> (Axle 3 Left Outer Tire Temperature): Temperature of the left outer tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft2pressure</code> (Axle 3 Left Inner Tire Pressure): Pressure of the left inner tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft2temperature</code> (Axle 3 Left Inner Tire Temperature): Temperature of the left inner tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft3pressure</code> (Axle 3 Right Inner Tire Pressure): Pressure of the right inner tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
+         * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
+         * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>

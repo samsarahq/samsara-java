@@ -53,6 +53,7 @@ import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsReques
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
+import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
@@ -80,6 +81,7 @@ import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
+import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
@@ -855,6 +857,49 @@ public class BetaApIsClient {
     public MaintenanceVendorsListMaintenanceVendorsResponseBody listMaintenanceVendors(
             ListMaintenanceVendorsRequest request, RequestOptions requestOptions) {
         return this.rawClient.listMaintenanceVendors(request, requestOptions).body();
+    }
+
+    /**
+     * Returns the latest live tachograph data for drivers, including working state and driving rest times, sourced from real-time telemetry.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Tachograph (EU)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody listTachographLiveData() {
+        return this.rawClient.listTachographLiveData().body();
+    }
+
+    /**
+     * Returns the latest live tachograph data for drivers, including working state and driving rest times, sourced from real-time telemetry.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Tachograph (EU)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody listTachographLiveData(
+            RequestOptions requestOptions) {
+        return this.rawClient.listTachographLiveData(requestOptions).body();
+    }
+
+    /**
+     * Returns the latest live tachograph data for drivers, including working state and driving rest times, sourced from real-time telemetry.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Tachograph (EU)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody listTachographLiveData(
+            ListTachographLiveDataRequest request) {
+        return this.rawClient.listTachographLiveData(request).body();
+    }
+
+    /**
+     * Returns the latest live tachograph data for drivers, including working state and driving rest times, sourced from real-time telemetry.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Tachograph (EU)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody listTachographLiveData(
+            ListTachographLiveDataRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listTachographLiveData(request, requestOptions).body();
     }
 
     /**
