@@ -51,6 +51,7 @@ import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsReques
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
+import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
@@ -87,6 +88,7 @@ import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
+import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
@@ -1935,6 +1937,95 @@ public class BetaApIsWireTest {
                 + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
                 + "      \"servicesProvided\": \"Oil changes, tire rotations, brake services\",\n"
                 + "      \"vendorId\": \"0000000772\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListTachographLiveData() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"cumulatedDrivingTimePreviousAndCurrentWeekMinute\":12345,\"cumulativeBreakTimeMinute\":12345,\"currentDailyDrivingTimeMinute\":12345,\"currentDurationOfSelectedActivityMinute\":12345,\"currentWeeklyDrivingTimeMinute\":12345,\"driverId\":\"12345\",\"durationOfNextBreakRestMinute\":12345,\"durationOfNextDrivingPeriodMinute\":12345,\"endOfLastDailyRestPeriod\":\"2019-06-13T19:08:25Z\",\"endOfLastWeeklyRestPeriod\":\"2019-06-13T19:08:25Z\",\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"maximumDailyDrivingTimeMinute\":12345,\"minimumDailyRestMinute\":12345,\"minimumWeeklyRestMinute\":12345,\"numberOfTimes9hDailyDrivingTimesExceeded\":12345,\"numberOfUsedReducedDailyRestPeriods\":12345,\"openCompensationInSecondWeekBeforeLastMinute\":12345,\"openCompensationInTheLastWeekMinute\":12345,\"openCompensationInWeekBeforeLastMinute\":12345,\"remaining2WeeksDrivingTimeMinute\":12345,\"remainingCurrentDrivingTimeMinute\":12345,\"remainingDrivingTimeOfCurrentWeekMinute\":12345,\"remainingDrivingTimeOnCurrentShiftMinute\":12345,\"remainingTimeOfCurrentBreakRestMinute\":12345,\"remainingTimeUntilNextBreakOrRestMinute\":12345,\"tachographCardNumber\":\"12345\",\"timeLeftUntilNewDailyRestPeriodMinute\":12345,\"timeLeftUntilNewWeeklyRestPeriodMinute\":12345,\"timeLeftUntilNextDrivingPeriodMinute\":12345,\"vehicleId\":\"12345\",\"workingState\":\"12345\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody response = client.betaApIs()
+                .listTachographLiveData(ListTachographLiveDataRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"cumulatedDrivingTimePreviousAndCurrentWeekMinute\": 12345,\n"
+                + "      \"cumulativeBreakTimeMinute\": 12345,\n"
+                + "      \"currentDailyDrivingTimeMinute\": 12345,\n"
+                + "      \"currentDurationOfSelectedActivityMinute\": 12345,\n"
+                + "      \"currentWeeklyDrivingTimeMinute\": 12345,\n"
+                + "      \"driverId\": \"12345\",\n"
+                + "      \"durationOfNextBreakRestMinute\": 12345,\n"
+                + "      \"durationOfNextDrivingPeriodMinute\": 12345,\n"
+                + "      \"endOfLastDailyRestPeriod\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"endOfLastWeeklyRestPeriod\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"happenedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"maximumDailyDrivingTimeMinute\": 12345,\n"
+                + "      \"minimumDailyRestMinute\": 12345,\n"
+                + "      \"minimumWeeklyRestMinute\": 12345,\n"
+                + "      \"numberOfTimes9hDailyDrivingTimesExceeded\": 12345,\n"
+                + "      \"numberOfUsedReducedDailyRestPeriods\": 12345,\n"
+                + "      \"openCompensationInSecondWeekBeforeLastMinute\": 12345,\n"
+                + "      \"openCompensationInTheLastWeekMinute\": 12345,\n"
+                + "      \"openCompensationInWeekBeforeLastMinute\": 12345,\n"
+                + "      \"remaining2WeeksDrivingTimeMinute\": 12345,\n"
+                + "      \"remainingCurrentDrivingTimeMinute\": 12345,\n"
+                + "      \"remainingDrivingTimeOfCurrentWeekMinute\": 12345,\n"
+                + "      \"remainingDrivingTimeOnCurrentShiftMinute\": 12345,\n"
+                + "      \"remainingTimeOfCurrentBreakRestMinute\": 12345,\n"
+                + "      \"remainingTimeUntilNextBreakOrRestMinute\": 12345,\n"
+                + "      \"tachographCardNumber\": \"12345\",\n"
+                + "      \"timeLeftUntilNewDailyRestPeriodMinute\": 12345,\n"
+                + "      \"timeLeftUntilNewWeeklyRestPeriodMinute\": 12345,\n"
+                + "      \"timeLeftUntilNextDrivingPeriodMinute\": 12345,\n"
+                + "      \"vehicleId\": \"12345\",\n"
+                + "      \"workingState\": \"12345\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
