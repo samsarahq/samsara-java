@@ -26,6 +26,7 @@ import com.samsara.api.resources.betaapis.requests.GetDevicesRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverEfficiencyRequest;
 import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRequest;
+import com.samsara.api.resources.betaapis.requests.GetFunctionRunRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
@@ -86,6 +87,7 @@ import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionResponseBody;
+import com.samsara.api.types.FunctionsGetFunctionRunResponseBody;
 import com.samsara.api.types.FunctionsPatchFunctionResponseBody;
 import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
@@ -1070,6 +1072,53 @@ public class BetaApIsClient {
     public FunctionsStartFunctionRunResponseBody startFunctionRun(
             String name, FunctionsStartFunctionRunRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.startFunctionRun(name, request, requestOptions).body();
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsGetFunctionRunResponseBody getFunctionRun(String name, String correlationId) {
+        return this.rawClient.getFunctionRun(name, correlationId).body();
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsGetFunctionRunResponseBody getFunctionRun(
+            String name, String correlationId, RequestOptions requestOptions) {
+        return this.rawClient
+                .getFunctionRun(name, correlationId, requestOptions)
+                .body();
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsGetFunctionRunResponseBody getFunctionRun(
+            String name, String correlationId, GetFunctionRunRequest request) {
+        return this.rawClient.getFunctionRun(name, correlationId, request).body();
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsGetFunctionRunResponseBody getFunctionRun(
+            String name, String correlationId, GetFunctionRunRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .getFunctionRun(name, correlationId, request, requestOptions)
+                .body();
     }
 
     /**
