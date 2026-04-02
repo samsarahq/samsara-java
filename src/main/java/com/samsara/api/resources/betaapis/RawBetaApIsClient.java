@@ -42,6 +42,7 @@ import com.samsara.api.resources.betaapis.requests.GetDevicesRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverEfficiencyRequest;
 import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRequest;
+import com.samsara.api.resources.betaapis.requests.GetFunctionRunRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
@@ -102,6 +103,7 @@ import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionResponseBody;
+import com.samsara.api.types.FunctionsGetFunctionRunResponseBody;
 import com.samsara.api.types.FunctionsPatchFunctionResponseBody;
 import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
@@ -3423,6 +3425,120 @@ public class RawBetaApIsClient {
                 return new SamsaraApiHttpResponse<>(
                         ObjectMappers.JSON_MAPPER.readValue(
                                 responseBodyString, FunctionsStartFunctionRunResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FunctionsGetFunctionRunResponseBody> getFunctionRun(
+            String name, String correlationId) {
+        return getFunctionRun(
+                name, correlationId, GetFunctionRunRequest.builder().build());
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FunctionsGetFunctionRunResponseBody> getFunctionRun(
+            String name, String correlationId, RequestOptions requestOptions) {
+        return getFunctionRun(
+                name, correlationId, GetFunctionRunRequest.builder().build(), requestOptions);
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FunctionsGetFunctionRunResponseBody> getFunctionRun(
+            String name, String correlationId, GetFunctionRunRequest request) {
+        return getFunctionRun(name, correlationId, request, null);
+    }
+
+    /**
+     * Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FunctionsGetFunctionRunResponseBody> getFunctionRun(
+            String name, String correlationId, GetFunctionRunRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("functions")
+                .addPathSegment(name)
+                .addPathSegments("runs")
+                .addPathSegment(correlationId);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString, FunctionsGetFunctionRunResponseBody.class),
                         response);
             }
             try {

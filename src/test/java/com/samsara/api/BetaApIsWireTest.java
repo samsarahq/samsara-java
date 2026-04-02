@@ -24,6 +24,7 @@ import com.samsara.api.resources.betaapis.requests.GetDevicesRequest;
 import com.samsara.api.resources.betaapis.requests.GetDriverEfficiencyRequest;
 import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRequest;
+import com.samsara.api.resources.betaapis.requests.GetFunctionRunRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
@@ -93,6 +94,7 @@ import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionResponseBody;
+import com.samsara.api.types.FunctionsGetFunctionRunResponseBody;
 import com.samsara.api.types.FunctionsPatchFunctionResponseBody;
 import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
@@ -802,7 +804,7 @@ public class BetaApIsWireTest {
                                 .relayStates(
                                         Arrays.asList(UpdateEngineImmobilizerRelayStateRequestBodyRequestBody.builder()
                                                 .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                                                .isOpen(false)
+                                                .isOpen(true)
                                                 .build()))
                                 .build());
         RecordedRequest request = server.takeRequest();
@@ -815,7 +817,7 @@ public class BetaApIsWireTest {
                 + "  \"relayStates\": [\n"
                 + "    {\n"
                 + "      \"id\": \"relay1\",\n"
-                + "      \"isOpen\": false\n"
+                + "      \"isOpen\": true\n"
                 + "    }\n"
                 + "  ]\n"
                 + "}";
@@ -2070,7 +2072,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":false,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":false}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":true,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":true}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EngineImmobilizerGetEngineImmobilizerStatesResponseBody response = client.betaApIs()
                 .getEngineImmobilizerStates(GetEngineImmobilizerStatesRequest.builder()
                         .vehicleIds("vehicleIds")
@@ -2088,11 +2090,11 @@ public class BetaApIsWireTest {
                 + "  \"data\": [\n"
                 + "    {\n"
                 + "      \"happenedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"isConnectedToVehicle\": false,\n"
+                + "      \"isConnectedToVehicle\": true,\n"
                 + "      \"relayStates\": [\n"
                 + "        {\n"
                 + "          \"id\": \"relay1\",\n"
-                + "          \"isOpen\": false\n"
+                + "          \"isOpen\": true\n"
                 + "        }\n"
                 + "      ],\n"
                 + "      \"vehicleId\": \"1234\"\n"
@@ -2535,6 +2537,73 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"correlationId\": \"550e8400-e29b-41d4-a716-446655440000\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetFunctionRun() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"completedAtTime\":\"2021-01-01T00:00:30Z\",\"context\":{\"requestId\":\"req-550e8400-e29b-41d4-a716-446655440000\",\"requestPayload\":{\"key\":\"value\"},\"responsePayload\":{\"key\":\"value\"}},\"correlationId\":\"550e8400-e29b-41d4-a716-446655440000\",\"name\":\"my-function\",\"startedAtTime\":\"2021-01-01T00:00:00Z\",\"status\":\"started\"}}"));
+        FunctionsGetFunctionRunResponseBody response = client.betaApIs()
+                .getFunctionRun(
+                        "name", "correlationId", GetFunctionRunRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"completedAtTime\": \"2021-01-01T00:00:30Z\",\n"
+                + "    \"context\": {\n"
+                + "      \"requestId\": \"req-550e8400-e29b-41d4-a716-446655440000\",\n"
+                + "      \"requestPayload\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"responsePayload\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      }\n"
+                + "    },\n"
+                + "    \"correlationId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
+                + "    \"name\": \"my-function\",\n"
+                + "    \"startedAtTime\": \"2021-01-01T00:00:00Z\",\n"
+                + "    \"status\": \"started\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -3870,7 +3939,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunDataResponseBody response = client.betaApIs()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -3891,6 +3960,20 @@ public class BetaApIsWireTest {
                 + "    ],\n"
                 + "    \"rows\": [\n"
                 + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
                 + "        {\n"
                 + "          \"key\": \"value\"\n"
                 + "        },\n"
