@@ -32,6 +32,7 @@
             ]
           },
           "dateTimeValue": {
+            "dateValue": "2024-08-08",
             "type": "datetime",
             "value": "2024-08-08T18:53:23Z"
           },
@@ -97,6 +98,7 @@
                       ]
                     },
                     "dateTimeValue": {
+                      "dateValue": "2024-08-08",
                       "type": "datetime",
                       "value": "2024-08-08T18:53:23Z"
                     },

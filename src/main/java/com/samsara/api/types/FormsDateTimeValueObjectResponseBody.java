@@ -9,17 +9,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FormsDateTimeValueObjectResponseBody.Builder.class)
 public final class FormsDateTimeValueObjectResponseBody {
+    private final Optional<String> dateValue;
+
     private final FormsDateTimeValueObjectResponseBodyType type;
 
     private final OffsetDateTime value;
@@ -27,12 +31,22 @@ public final class FormsDateTimeValueObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private FormsDateTimeValueObjectResponseBody(
+            Optional<String> dateValue,
             FormsDateTimeValueObjectResponseBodyType type,
             OffsetDateTime value,
             Map<String, Object> additionalProperties) {
+        this.dateValue = dateValue;
         this.type = type;
         this.value = value;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Calendar date in YYYY-MM-DD format in the stored field timezone. Present when type is <code>date</code> (date-only fields).
+     */
+    @JsonProperty("dateValue")
+    public Optional<String> getDateValue() {
+        return dateValue;
     }
 
     /**
@@ -64,12 +78,12 @@ public final class FormsDateTimeValueObjectResponseBody {
     }
 
     private boolean equalTo(FormsDateTimeValueObjectResponseBody other) {
-        return type.equals(other.type) && value.equals(other.value);
+        return dateValue.equals(other.dateValue) && type.equals(other.type) && value.equals(other.value);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.type, this.value);
+        return Objects.hash(this.dateValue, this.type, this.value);
     }
 
     @java.lang.Override
@@ -99,6 +113,13 @@ public final class FormsDateTimeValueObjectResponseBody {
 
     public interface _FinalStage {
         FormsDateTimeValueObjectResponseBody build();
+
+        /**
+         * <p>Calendar date in YYYY-MM-DD format in the stored field timezone. Present when type is <code>date</code> (date-only fields).</p>
+         */
+        _FinalStage dateValue(Optional<String> dateValue);
+
+        _FinalStage dateValue(String dateValue);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -107,6 +128,8 @@ public final class FormsDateTimeValueObjectResponseBody {
 
         private OffsetDateTime value;
 
+        private Optional<String> dateValue = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -114,6 +137,7 @@ public final class FormsDateTimeValueObjectResponseBody {
 
         @java.lang.Override
         public Builder from(FormsDateTimeValueObjectResponseBody other) {
+            dateValue(other.getDateValue());
             type(other.getType());
             value(other.getValue());
             return this;
@@ -143,9 +167,29 @@ public final class FormsDateTimeValueObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Calendar date in YYYY-MM-DD format in the stored field timezone. Present when type is <code>date</code> (date-only fields).</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage dateValue(String dateValue) {
+            this.dateValue = Optional.ofNullable(dateValue);
+            return this;
+        }
+
+        /**
+         * <p>Calendar date in YYYY-MM-DD format in the stored field timezone. Present when type is <code>date</code> (date-only fields).</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "dateValue", nulls = Nulls.SKIP)
+        public _FinalStage dateValue(Optional<String> dateValue) {
+            this.dateValue = dateValue;
+            return this;
+        }
+
         @java.lang.Override
         public FormsDateTimeValueObjectResponseBody build() {
-            return new FormsDateTimeValueObjectResponseBody(type, value, additionalProperties);
+            return new FormsDateTimeValueObjectResponseBody(dateValue, type, value, additionalProperties);
         }
     }
 }
