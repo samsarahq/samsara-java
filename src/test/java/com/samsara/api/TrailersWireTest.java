@@ -5,9 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.trailers.requests.DeleteTrailerRequest;
 import com.samsara.api.resources.trailers.requests.GetTrailerRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerStatsFeedRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerStatsHistoryRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerStatsSnapshotRequest;
 import com.samsara.api.resources.trailers.requests.ListTrailersRequest;
 import com.samsara.api.resources.trailers.requests.TrailersCreateTrailerRequestBody;
 import com.samsara.api.resources.trailers.requests.TrailersUpdateTrailerRequestBody;
+import com.samsara.api.types.TrailerStatsGetTrailerStatsFeedResponseBody;
+import com.samsara.api.types.TrailerStatsGetTrailerStatsHistoryResponseBody;
+import com.samsara.api.types.TrailerStatsGetTrailerStatsSnapshotResponseBody;
 import com.samsara.api.types.TrailersCreateTrailerResponseBody;
 import com.samsara.api.types.TrailersGetTrailerResponseBody;
 import com.samsara.api.types.TrailersListTrailersResponseBody;
@@ -208,6 +214,156 @@ public class TrailersWireTest {
                 + "    \"trailerSerialNumber\": \"8V8WD530FLN016251\"\n"
                 + "  }\n"
                 + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetTrailerStatsSnapshot() throws Exception {
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/TrailersWireTest_testGetTrailerStatsSnapshot_response.json")));
+        TrailerStatsGetTrailerStatsSnapshotResponseBody response = client.trailers()
+                .getTrailerStatsSnapshot(
+                        GetTrailerStatsSnapshotRequest.builder().types("types").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/TrailersWireTest_testGetTrailerStatsSnapshot_response.json");
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetTrailerStatsFeed() throws Exception {
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/TrailersWireTest_testGetTrailerStatsFeed_response.json")));
+        TrailerStatsGetTrailerStatsFeedResponseBody response = client.trailers()
+                .getTrailerStatsFeed(
+                        GetTrailerStatsFeedRequest.builder().types("types").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/TrailersWireTest_testGetTrailerStatsFeed_response.json");
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetTrailerStatsHistory() throws Exception {
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/TrailersWireTest_testGetTrailerStatsHistory_response.json")));
+        TrailerStatsGetTrailerStatsHistoryResponseBody response = client.trailers()
+                .getTrailerStatsHistory(GetTrailerStatsHistoryRequest.builder()
+                        .startTime("startTime")
+                        .endTime("endTime")
+                        .types("types")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/TrailersWireTest_testGetTrailerStatsHistory_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(

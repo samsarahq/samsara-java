@@ -7,9 +7,15 @@ import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.trailers.requests.DeleteTrailerRequest;
 import com.samsara.api.resources.trailers.requests.GetTrailerRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerStatsFeedRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerStatsHistoryRequest;
+import com.samsara.api.resources.trailers.requests.GetTrailerStatsSnapshotRequest;
 import com.samsara.api.resources.trailers.requests.ListTrailersRequest;
 import com.samsara.api.resources.trailers.requests.TrailersCreateTrailerRequestBody;
 import com.samsara.api.resources.trailers.requests.TrailersUpdateTrailerRequestBody;
+import com.samsara.api.types.TrailerStatsGetTrailerStatsFeedResponseBody;
+import com.samsara.api.types.TrailerStatsGetTrailerStatsHistoryResponseBody;
+import com.samsara.api.types.TrailerStatsGetTrailerStatsSnapshotResponseBody;
 import com.samsara.api.types.TrailersCreateTrailerResponseBody;
 import com.samsara.api.types.TrailersGetTrailerResponseBody;
 import com.samsara.api.types.TrailersListTrailersResponseBody;
@@ -91,6 +97,77 @@ public class TrailersClient {
     public TrailersCreateTrailerResponseBody createTrailer(
             TrailersCreateTrailerRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.createTrailer(request, requestOptions).body();
+    }
+
+    /**
+     * Returns the last known stats of all trailers at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public TrailerStatsGetTrailerStatsSnapshotResponseBody getTrailerStatsSnapshot(
+            GetTrailerStatsSnapshotRequest request) {
+        return this.rawClient.getTrailerStatsSnapshot(request).body();
+    }
+
+    /**
+     * Returns the last known stats of all trailers at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public TrailerStatsGetTrailerStatsSnapshotResponseBody getTrailerStatsSnapshot(
+            GetTrailerStatsSnapshotRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getTrailerStatsSnapshot(request, requestOptions).body();
+    }
+
+    /**
+     * Follow a feed of trailer stats.
+     * <p>The first call to this endpoint will provide the most recent stats for each trailer and an <code>endCursor</code>.</p>
+     * <p>Providing the <code>endCursor</code> value to the <code>after</code> query parameter will fetch all updates since the previous API call.</p>
+     * <p>If <code>hasNextPage</code> is false, no new data is immediately available. Please wait a minimum of 5 seconds before making a subsequent request.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public TrailerStatsGetTrailerStatsFeedResponseBody getTrailerStatsFeed(GetTrailerStatsFeedRequest request) {
+        return this.rawClient.getTrailerStatsFeed(request).body();
+    }
+
+    /**
+     * Follow a feed of trailer stats.
+     * <p>The first call to this endpoint will provide the most recent stats for each trailer and an <code>endCursor</code>.</p>
+     * <p>Providing the <code>endCursor</code> value to the <code>after</code> query parameter will fetch all updates since the previous API call.</p>
+     * <p>If <code>hasNextPage</code> is false, no new data is immediately available. Please wait a minimum of 5 seconds before making a subsequent request.</p>
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public TrailerStatsGetTrailerStatsFeedResponseBody getTrailerStatsFeed(
+            GetTrailerStatsFeedRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getTrailerStatsFeed(request, requestOptions).body();
+    }
+
+    /**
+     * Returns trailer stats during the given time range for all trailers. This can be optionally filtered by tags or specific trailer IDs.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public TrailerStatsGetTrailerStatsHistoryResponseBody getTrailerStatsHistory(
+            GetTrailerStatsHistoryRequest request) {
+        return this.rawClient.getTrailerStatsHistory(request).body();
+    }
+
+    /**
+     * Returns trailer stats during the given time range for all trailers. This can be optionally filtered by tags or specific trailer IDs.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public TrailerStatsGetTrailerStatsHistoryResponseBody getTrailerStatsHistory(
+            GetTrailerStatsHistoryRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getTrailerStatsHistory(request, requestOptions).body();
     }
 
     /**

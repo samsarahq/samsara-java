@@ -5,6 +5,7 @@ package com.samsara.api.resources.betaapis;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.betaapis.requests.DeleteFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipPassengerRequest;
@@ -12,6 +13,7 @@ import com.samsara.api.resources.betaapis.requests.DeleteRidershipRouteSetupRequ
 import com.samsara.api.resources.betaapis.requests.DeployFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeviceRecoveryMarkAssetMissingRequestBody;
 import com.samsara.api.resources.betaapis.requests.DeviceRecoveryRecoverAssetRequestBody;
+import com.samsara.api.resources.betaapis.requests.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsCreateFunctionRequestBody;
@@ -40,9 +42,6 @@ import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
-import com.samsara.api.resources.betaapis.requests.GetTrailerStatsFeedRequest;
-import com.samsara.api.resources.betaapis.requests.GetTrailerStatsHistoryRequest;
-import com.samsara.api.resources.betaapis.requests.GetTrailerStatsSnapshotRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
@@ -81,6 +80,7 @@ import com.samsara.api.types.DeviceRecoveryMarkAssetMissingResponseBody;
 import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
+import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
@@ -126,9 +126,6 @@ import com.samsara.api.types.RidershipRouteSetupsCreateRidershipRouteSetupRespon
 import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
-import com.samsara.api.types.TrailerStatsGetTrailerStatsFeedResponseBody;
-import com.samsara.api.types.TrailerStatsGetTrailerStatsHistoryResponseBody;
-import com.samsara.api.types.TrailerStatsGetTrailerStatsSnapshotResponseBody;
 
 public class BetaApIsClient {
     protected final ClientOptions clientOptions;
@@ -371,77 +368,6 @@ public class BetaApIsClient {
     public HosEldEventsGetHosEldEventsResponseBody getHosEldEvents(
             GetHosEldEventsRequest request, RequestOptions requestOptions) {
         return this.rawClient.getHosEldEvents(request, requestOptions).body();
-    }
-
-    /**
-     * Returns the last known stats of all trailers at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public TrailerStatsGetTrailerStatsSnapshotResponseBody getTrailerStatsSnapshot(
-            GetTrailerStatsSnapshotRequest request) {
-        return this.rawClient.getTrailerStatsSnapshot(request).body();
-    }
-
-    /**
-     * Returns the last known stats of all trailers at the given <code>time</code>. If no <code>time</code> is specified, the current time is used.
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public TrailerStatsGetTrailerStatsSnapshotResponseBody getTrailerStatsSnapshot(
-            GetTrailerStatsSnapshotRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getTrailerStatsSnapshot(request, requestOptions).body();
-    }
-
-    /**
-     * Follow a feed of trailer stats.
-     * <p>The first call to this endpoint will provide the most recent stats for each trailer and an <code>endCursor</code>.</p>
-     * <p>Providing the <code>endCursor</code> value to the <code>after</code> query parameter will fetch all updates since the previous API call.</p>
-     * <p>If <code>hasNextPage</code> is false, no new data is immediately available. Please wait a minimum of 5 seconds before making a subsequent request.</p>
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public TrailerStatsGetTrailerStatsFeedResponseBody getTrailerStatsFeed(GetTrailerStatsFeedRequest request) {
-        return this.rawClient.getTrailerStatsFeed(request).body();
-    }
-
-    /**
-     * Follow a feed of trailer stats.
-     * <p>The first call to this endpoint will provide the most recent stats for each trailer and an <code>endCursor</code>.</p>
-     * <p>Providing the <code>endCursor</code> value to the <code>after</code> query parameter will fetch all updates since the previous API call.</p>
-     * <p>If <code>hasNextPage</code> is false, no new data is immediately available. Please wait a minimum of 5 seconds before making a subsequent request.</p>
-     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public TrailerStatsGetTrailerStatsFeedResponseBody getTrailerStatsFeed(
-            GetTrailerStatsFeedRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getTrailerStatsFeed(request, requestOptions).body();
-    }
-
-    /**
-     * Returns trailer stats during the given time range for all trailers. This can be optionally filtered by tags or specific trailer IDs.
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public TrailerStatsGetTrailerStatsHistoryResponseBody getTrailerStatsHistory(
-            GetTrailerStatsHistoryRequest request) {
-        return this.rawClient.getTrailerStatsHistory(request).body();
-    }
-
-    /**
-     * Returns trailer stats during the given time range for all trailers. This can be optionally filtered by tags or specific trailer IDs.
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Trailer Statistics</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public TrailerStatsGetTrailerStatsHistoryResponseBody getTrailerStatsHistory(
-            GetTrailerStatsHistoryRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getTrailerStatsHistory(request, requestOptions).body();
     }
 
     /**
@@ -778,6 +704,30 @@ public class BetaApIsClient {
     }
 
     /**
+     * Publish or unpublish a driver app workflow to one or more drivers by their IDs. If a workflow is published to a driver who already has it, or unpublished from a driver who does not have it, the operation is a no-op for that driver.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Driver App Settings</strong> under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody postDriverWorkflowAssignment(
+            DriverWorkflowAssignmentsPostDriverWorkflowAssignmentRequestBody request) {
+        return this.rawClient.postDriverWorkflowAssignment(request).body();
+    }
+
+    /**
+     * Publish or unpublish a driver app workflow to one or more drivers by their IDs. If a workflow is published to a driver who already has it, or unpublished from a driver who does not have it, the operation is a no-op for that driver.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Driver App Settings</strong> under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody postDriverWorkflowAssignment(
+            DriverWorkflowAssignmentsPostDriverWorkflowAssignmentRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient
+                .postDriverWorkflowAssignment(request, requestOptions)
+                .body();
+    }
+
+    /**
      * Returns the list of vendor categories available for maintenance vendors.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -988,6 +938,46 @@ public class BetaApIsClient {
     public FunctionsGetFunctionResponseBody getFunction(
             String name, GetFunctionRequest request, RequestOptions requestOptions) {
         return this.rawClient.getFunction(name, request, requestOptions).body();
+    }
+
+    /**
+     * Delete a Function by name. A Function that is currently configured as an action in a workflow config cannot be deleted.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteFunction(String name) {
+        this.rawClient.deleteFunction(name).body();
+    }
+
+    /**
+     * Delete a Function by name. A Function that is currently configured as an action in a workflow config cannot be deleted.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteFunction(String name, RequestOptions requestOptions) {
+        this.rawClient.deleteFunction(name, requestOptions).body();
+    }
+
+    /**
+     * Delete a Function by name. A Function that is currently configured as an action in a workflow config cannot be deleted.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteFunction(String name, DeleteFunctionRequest request) {
+        this.rawClient.deleteFunction(name, request).body();
+    }
+
+    /**
+     * Delete a Function by name. A Function that is currently configured as an action in a workflow config cannot be deleted.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteFunction(String name, DeleteFunctionRequest request, RequestOptions requestOptions) {
+        this.rawClient.deleteFunction(name, request, requestOptions).body();
     }
 
     /**
