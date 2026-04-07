@@ -2728,7 +2728,7 @@ client.betaApIs().updateEngineImmobilizerState(
                 UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
                     .builder()
                     .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                    .isOpen(true)
+                    .isOpen(false)
                     .build()
             )
         )
@@ -9140,7 +9140,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );
