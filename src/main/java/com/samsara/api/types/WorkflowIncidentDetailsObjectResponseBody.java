@@ -130,6 +130,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<TireFaultsResponseBody> tireFaults;
 
+    private final Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower;
+
     private final Optional<UnassignedDrivingDataResponseBody> unassignedDriving;
 
     private final Optional<VehicleBatteryVoltageResponseBody> vehicleBatteryVoltage;
@@ -139,6 +141,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
     private final Optional<VehicleDetectedResponseBody> vehicleDetected;
 
     private final Optional<VehicleFaultsResponseBody> vehicleFaults;
+
+    private final Optional<VehicleTrailerMismatchDataResponseBody> vehicleTrailerMismatch;
 
     private final Optional<WorkerSafetySosDataResponseBody> workerSafetySos;
 
@@ -200,11 +204,13 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<SuddenFuelLevelRiseResponseBody> suddenFuelLevelRise,
             Optional<TamperingDetectedResponseBody> tamperingDetected,
             Optional<TireFaultsResponseBody> tireFaults,
+            Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower,
             Optional<UnassignedDrivingDataResponseBody> unassignedDriving,
             Optional<VehicleBatteryVoltageResponseBody> vehicleBatteryVoltage,
             Optional<VehicleDefLevelPercentageResponseBody> vehicleDefLevelPercentage,
             Optional<VehicleDetectedResponseBody> vehicleDetected,
             Optional<VehicleFaultsResponseBody> vehicleFaults,
+            Optional<VehicleTrailerMismatchDataResponseBody> vehicleTrailerMismatch,
             Optional<WorkerSafetySosDataResponseBody> workerSafetySos,
             Map<String, Object> additionalProperties) {
         this.ambientTemperature = ambientTemperature;
@@ -262,11 +268,13 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.suddenFuelLevelRise = suddenFuelLevelRise;
         this.tamperingDetected = tamperingDetected;
         this.tireFaults = tireFaults;
+        this.trailerMovingWithoutPower = trailerMovingWithoutPower;
         this.unassignedDriving = unassignedDriving;
         this.vehicleBatteryVoltage = vehicleBatteryVoltage;
         this.vehicleDefLevelPercentage = vehicleDefLevelPercentage;
         this.vehicleDetected = vehicleDetected;
         this.vehicleFaults = vehicleFaults;
+        this.vehicleTrailerMismatch = vehicleTrailerMismatch;
         this.workerSafetySos = workerSafetySos;
         this.additionalProperties = additionalProperties;
     }
@@ -546,6 +554,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return tireFaults;
     }
 
+    @JsonProperty("trailerMovingWithoutPower")
+    public Optional<TrailerMovingWithoutPowerDataResponseBody> getTrailerMovingWithoutPower() {
+        return trailerMovingWithoutPower;
+    }
+
     @JsonProperty("unassignedDriving")
     public Optional<UnassignedDrivingDataResponseBody> getUnassignedDriving() {
         return unassignedDriving;
@@ -569,6 +582,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
     @JsonProperty("vehicleFaults")
     public Optional<VehicleFaultsResponseBody> getVehicleFaults() {
         return vehicleFaults;
+    }
+
+    @JsonProperty("vehicleTrailerMismatch")
+    public Optional<VehicleTrailerMismatchDataResponseBody> getVehicleTrailerMismatch() {
+        return vehicleTrailerMismatch;
     }
 
     @JsonProperty("workerSafetySos")
@@ -644,11 +662,13 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && suddenFuelLevelRise.equals(other.suddenFuelLevelRise)
                 && tamperingDetected.equals(other.tamperingDetected)
                 && tireFaults.equals(other.tireFaults)
+                && trailerMovingWithoutPower.equals(other.trailerMovingWithoutPower)
                 && unassignedDriving.equals(other.unassignedDriving)
                 && vehicleBatteryVoltage.equals(other.vehicleBatteryVoltage)
                 && vehicleDefLevelPercentage.equals(other.vehicleDefLevelPercentage)
                 && vehicleDetected.equals(other.vehicleDetected)
                 && vehicleFaults.equals(other.vehicleFaults)
+                && vehicleTrailerMismatch.equals(other.vehicleTrailerMismatch)
                 && workerSafetySos.equals(other.workerSafetySos);
     }
 
@@ -710,11 +730,13 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.suddenFuelLevelRise,
                 this.tamperingDetected,
                 this.tireFaults,
+                this.trailerMovingWithoutPower,
                 this.unassignedDriving,
                 this.vehicleBatteryVoltage,
                 this.vehicleDefLevelPercentage,
                 this.vehicleDetected,
                 this.vehicleFaults,
+                this.vehicleTrailerMismatch,
                 this.workerSafetySos);
     }
 
@@ -840,6 +862,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<TireFaultsResponseBody> tireFaults = Optional.empty();
 
+        private Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower = Optional.empty();
+
         private Optional<UnassignedDrivingDataResponseBody> unassignedDriving = Optional.empty();
 
         private Optional<VehicleBatteryVoltageResponseBody> vehicleBatteryVoltage = Optional.empty();
@@ -849,6 +873,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         private Optional<VehicleDetectedResponseBody> vehicleDetected = Optional.empty();
 
         private Optional<VehicleFaultsResponseBody> vehicleFaults = Optional.empty();
+
+        private Optional<VehicleTrailerMismatchDataResponseBody> vehicleTrailerMismatch = Optional.empty();
 
         private Optional<WorkerSafetySosDataResponseBody> workerSafetySos = Optional.empty();
 
@@ -913,11 +939,13 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             suddenFuelLevelRise(other.getSuddenFuelLevelRise());
             tamperingDetected(other.getTamperingDetected());
             tireFaults(other.getTireFaults());
+            trailerMovingWithoutPower(other.getTrailerMovingWithoutPower());
             unassignedDriving(other.getUnassignedDriving());
             vehicleBatteryVoltage(other.getVehicleBatteryVoltage());
             vehicleDefLevelPercentage(other.getVehicleDefLevelPercentage());
             vehicleDetected(other.getVehicleDetected());
             vehicleFaults(other.getVehicleFaults());
+            vehicleTrailerMismatch(other.getVehicleTrailerMismatch());
             workerSafetySos(other.getWorkerSafetySos());
             return this;
         }
@@ -1533,6 +1561,18 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "trailerMovingWithoutPower", nulls = Nulls.SKIP)
+        public Builder trailerMovingWithoutPower(
+                Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower) {
+            this.trailerMovingWithoutPower = trailerMovingWithoutPower;
+            return this;
+        }
+
+        public Builder trailerMovingWithoutPower(TrailerMovingWithoutPowerDataResponseBody trailerMovingWithoutPower) {
+            this.trailerMovingWithoutPower = Optional.ofNullable(trailerMovingWithoutPower);
+            return this;
+        }
+
         @JsonSetter(value = "unassignedDriving", nulls = Nulls.SKIP)
         public Builder unassignedDriving(Optional<UnassignedDrivingDataResponseBody> unassignedDriving) {
             this.unassignedDriving = unassignedDriving;
@@ -1586,6 +1626,17 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         public Builder vehicleFaults(VehicleFaultsResponseBody vehicleFaults) {
             this.vehicleFaults = Optional.ofNullable(vehicleFaults);
+            return this;
+        }
+
+        @JsonSetter(value = "vehicleTrailerMismatch", nulls = Nulls.SKIP)
+        public Builder vehicleTrailerMismatch(Optional<VehicleTrailerMismatchDataResponseBody> vehicleTrailerMismatch) {
+            this.vehicleTrailerMismatch = vehicleTrailerMismatch;
+            return this;
+        }
+
+        public Builder vehicleTrailerMismatch(VehicleTrailerMismatchDataResponseBody vehicleTrailerMismatch) {
+            this.vehicleTrailerMismatch = Optional.ofNullable(vehicleTrailerMismatch);
             return this;
         }
 
@@ -1657,11 +1708,13 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     suddenFuelLevelRise,
                     tamperingDetected,
                     tireFaults,
+                    trailerMovingWithoutPower,
                     unassignedDriving,
                     vehicleBatteryVoltage,
                     vehicleDefLevelPercentage,
                     vehicleDetected,
                     vehicleFaults,
+                    vehicleTrailerMismatch,
                     workerSafetySos,
                     additionalProperties);
         }

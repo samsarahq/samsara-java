@@ -44,7 +44,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":false,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":true,\"editCertifiedLogsEnabled\":false,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":false}}"));
+                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":false,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":true,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":true}}"));
         SettingsGetComplianceSettingsResponseBody response = client.settings().getComplianceSettings();
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -61,11 +61,11 @@ public class SettingsWireTest {
                 + "    \"carrierName\": \"ABC Trucking\",\n"
                 + "    \"dotNumber\": 12345678,\n"
                 + "    \"driverAutoDutyEnabled\": true,\n"
-                + "    \"editCertifiedLogsEnabled\": false,\n"
+                + "    \"editCertifiedLogsEnabled\": true,\n"
                 + "    \"forceManualLocationForDutyStatusChangesEnabled\": true,\n"
                 + "    \"forceReviewUnassignedHosEnabled\": true,\n"
                 + "    \"mainOfficeFormattedAddress\": \"123 Main Street\",\n"
-                + "    \"persistentDutyStatusEnabled\": false\n"
+                + "    \"persistentDutyStatusEnabled\": true\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -105,7 +105,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":false,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":true,\"editCertifiedLogsEnabled\":false,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":false}}"));
+                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":false,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":true,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":true}}"));
         SettingsPatchComplianceSettingsResponseBody response = client.settings()
                 .patchComplianceSettings(
                         SettingsPatchComplianceSettingsRequestBody.builder().build());
@@ -153,11 +153,11 @@ public class SettingsWireTest {
                 + "    \"carrierName\": \"ABC Trucking\",\n"
                 + "    \"dotNumber\": 12345678,\n"
                 + "    \"driverAutoDutyEnabled\": true,\n"
-                + "    \"editCertifiedLogsEnabled\": false,\n"
+                + "    \"editCertifiedLogsEnabled\": true,\n"
                 + "    \"forceManualLocationForDutyStatusChangesEnabled\": true,\n"
                 + "    \"forceReviewUnassignedHosEnabled\": true,\n"
                 + "    \"mainOfficeFormattedAddress\": \"123 Main Street\",\n"
-                + "    \"persistentDutyStatusEnabled\": false\n"
+                + "    \"persistentDutyStatusEnabled\": true\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
