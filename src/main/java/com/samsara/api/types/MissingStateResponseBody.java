@@ -24,6 +24,10 @@ import org.jetbrains.annotations.NotNull;
 public final class MissingStateResponseBody {
     private final String id;
 
+    private final Optional<Long> initiatedAtMs;
+
+    private final Optional<Long> initiatedByUserId;
+
     private final String name;
 
     private final Optional<String> note;
@@ -40,6 +44,8 @@ public final class MissingStateResponseBody {
 
     private MissingStateResponseBody(
             String id,
+            Optional<Long> initiatedAtMs,
+            Optional<Long> initiatedByUserId,
             String name,
             Optional<String> note,
             Optional<List<NotificationRecipientResponseResponseBody>> notificationRecipients,
@@ -48,6 +54,8 @@ public final class MissingStateResponseBody {
             Optional<Long> updatedByUserId,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.initiatedAtMs = initiatedAtMs;
+        this.initiatedByUserId = initiatedByUserId;
         this.name = name;
         this.note = note;
         this.notificationRecipients = notificationRecipients;
@@ -63,6 +71,22 @@ public final class MissingStateResponseBody {
     @JsonProperty("id")
     public String getId() {
         return id;
+    }
+
+    /**
+     * @return Timestamp when the asset was first marked as missing, in milliseconds since epoch. Unlike updated_at_ms, this value is preserved when the missing state is edited.
+     */
+    @JsonProperty("initiated_at_ms")
+    public Optional<Long> getInitiatedAtMs() {
+        return initiatedAtMs;
+    }
+
+    /**
+     * @return The ID of the user who first marked this asset as missing. Unlike updated_by_user_id, this value is preserved when the missing state is edited.
+     */
+    @JsonProperty("initiated_by_user_id")
+    public Optional<Long> getInitiatedByUserId() {
+        return initiatedByUserId;
     }
 
     /**
@@ -126,6 +150,8 @@ public final class MissingStateResponseBody {
 
     private boolean equalTo(MissingStateResponseBody other) {
         return id.equals(other.id)
+                && initiatedAtMs.equals(other.initiatedAtMs)
+                && initiatedByUserId.equals(other.initiatedByUserId)
                 && name.equals(other.name)
                 && note.equals(other.note)
                 && notificationRecipients.equals(other.notificationRecipients)
@@ -138,6 +164,8 @@ public final class MissingStateResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.initiatedAtMs,
+                this.initiatedByUserId,
                 this.name,
                 this.note,
                 this.notificationRecipients,
@@ -180,6 +208,20 @@ public final class MissingStateResponseBody {
 
     public interface _FinalStage {
         MissingStateResponseBody build();
+
+        /**
+         * <p>Timestamp when the asset was first marked as missing, in milliseconds since epoch. Unlike updated_at_ms, this value is preserved when the missing state is edited.</p>
+         */
+        _FinalStage initiatedAtMs(Optional<Long> initiatedAtMs);
+
+        _FinalStage initiatedAtMs(Long initiatedAtMs);
+
+        /**
+         * <p>The ID of the user who first marked this asset as missing. Unlike updated_by_user_id, this value is preserved when the missing state is edited.</p>
+         */
+        _FinalStage initiatedByUserId(Optional<Long> initiatedByUserId);
+
+        _FinalStage initiatedByUserId(Long initiatedByUserId);
 
         /**
          * <p>A note associated with the missing asset.</p>
@@ -227,6 +269,10 @@ public final class MissingStateResponseBody {
 
         private Optional<String> note = Optional.empty();
 
+        private Optional<Long> initiatedByUserId = Optional.empty();
+
+        private Optional<Long> initiatedAtMs = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -235,6 +281,8 @@ public final class MissingStateResponseBody {
         @java.lang.Override
         public Builder from(MissingStateResponseBody other) {
             id(other.getId());
+            initiatedAtMs(other.getInitiatedAtMs());
+            initiatedByUserId(other.getInitiatedByUserId());
             name(other.getName());
             note(other.getNote());
             notificationRecipients(other.getNotificationRecipients());
@@ -362,10 +410,52 @@ public final class MissingStateResponseBody {
             return this;
         }
 
+        /**
+         * <p>The ID of the user who first marked this asset as missing. Unlike updated_by_user_id, this value is preserved when the missing state is edited.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage initiatedByUserId(Long initiatedByUserId) {
+            this.initiatedByUserId = Optional.ofNullable(initiatedByUserId);
+            return this;
+        }
+
+        /**
+         * <p>The ID of the user who first marked this asset as missing. Unlike updated_by_user_id, this value is preserved when the missing state is edited.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "initiated_by_user_id", nulls = Nulls.SKIP)
+        public _FinalStage initiatedByUserId(Optional<Long> initiatedByUserId) {
+            this.initiatedByUserId = initiatedByUserId;
+            return this;
+        }
+
+        /**
+         * <p>Timestamp when the asset was first marked as missing, in milliseconds since epoch. Unlike updated_at_ms, this value is preserved when the missing state is edited.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage initiatedAtMs(Long initiatedAtMs) {
+            this.initiatedAtMs = Optional.ofNullable(initiatedAtMs);
+            return this;
+        }
+
+        /**
+         * <p>Timestamp when the asset was first marked as missing, in milliseconds since epoch. Unlike updated_at_ms, this value is preserved when the missing state is edited.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "initiated_at_ms", nulls = Nulls.SKIP)
+        public _FinalStage initiatedAtMs(Optional<Long> initiatedAtMs) {
+            this.initiatedAtMs = initiatedAtMs;
+            return this;
+        }
+
         @java.lang.Override
         public MissingStateResponseBody build() {
             return new MissingStateResponseBody(
                     id,
+                    initiatedAtMs,
+                    initiatedByUserId,
                     name,
                     note,
                     notificationRecipients,

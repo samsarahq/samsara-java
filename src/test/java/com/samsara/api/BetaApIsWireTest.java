@@ -1326,7 +1326,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"id\":\"12345\",\"initiated_at_ms\":1609459200000,\"initiated_by_user_id\":1234,\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody response = client.betaApIs()
                 .listDeviceRecoveryMissingAssets(
                         ListDeviceRecoveryMissingAssetsRequest.builder().build());
@@ -1342,6 +1342,8 @@ public class BetaApIsWireTest {
                 + "  \"data\": [\n"
                 + "    {\n"
                 + "      \"id\": \"12345\",\n"
+                + "      \"initiated_at_ms\": 1609459200000,\n"
+                + "      \"initiated_by_user_id\": 1234,\n"
                 + "      \"name\": \"Trailer-A1234\",\n"
                 + "      \"note\": \"Asset was last seen at warehouse A\",\n"
                 + "      \"notification_recipients\": [\n"
@@ -1401,7 +1403,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"id\":\"12345\",\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}}"));
+                                "{\"data\":{\"id\":\"12345\",\"initiated_at_ms\":1609459200000,\"initiated_by_user_id\":1234,\"name\":\"Trailer-A1234\",\"note\":\"Asset was last seen at warehouse A\",\"notification_recipients\":[{\"email\":\"jane.doe@example.com\",\"name\":\"Jane Doe\",\"notification_types\":[\"email\"],\"user_id\":1234}],\"update_source\":\"dashboard\",\"updated_at_ms\":1609459200000,\"updated_by_user_id\":1234}}"));
         DeviceRecoveryMarkAssetMissingResponseBody response = client.betaApIs()
                 .markAssetMissing(
                         "id",
@@ -1446,6 +1448,8 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"id\": \"12345\",\n"
+                + "    \"initiated_at_ms\": 1609459200000,\n"
+                + "    \"initiated_by_user_id\": 1234,\n"
                 + "    \"name\": \"Trailer-A1234\",\n"
                 + "    \"note\": \"Asset was last seen at warehouse A\",\n"
                 + "    \"notification_recipients\": [\n"
