@@ -32,11 +32,8 @@ import com.samsara.api.types.Driver;
 import com.samsara.api.types.DriverRemoteSignoutPostDriverRemoteSignoutResponseBody;
 import com.samsara.api.types.DriverResponse;
 import com.samsara.api.types.ListDriversResponse;
-import com.samsara.api.types.PaginationResponse;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -149,14 +146,14 @@ public class RawDriversClient {
             if (response.isSuccessful()) {
                 ListDriversResponse parsedResponse =
                         ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListDriversResponse.class);
-                Optional<String> startingAfter = parsedResponse.getPagination().map(PaginationResponse::getEndCursor);
+                String startingAfter = parsedResponse.getPagination().getEndCursor();
                 ListDriversRequest nextRequest = ListDriversRequest.builder()
                         .from(request)
                         .after(startingAfter)
                         .build();
-                List<Driver> result = parsedResponse.getData().orElse(Collections.emptyList());
+                List<Driver> result = parsedResponse.getData();
                 return new SamsaraApiHttpResponse<>(
-                        new SyncPagingIterable<Driver>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                        new SyncPagingIterable<Driver>(!startingAfter.isEmpty(), result, parsedResponse, () -> list(
                                         nextRequest, requestOptions)
                                 .body()),
                         response);

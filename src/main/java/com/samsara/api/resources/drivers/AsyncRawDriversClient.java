@@ -32,11 +32,8 @@ import com.samsara.api.types.Driver;
 import com.samsara.api.types.DriverRemoteSignoutPostDriverRemoteSignoutResponseBody;
 import com.samsara.api.types.DriverResponse;
 import com.samsara.api.types.ListDriversResponse;
-import com.samsara.api.types.PaginationResponse;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -157,24 +154,22 @@ public class AsyncRawDriversClient {
                     if (response.isSuccessful()) {
                         ListDriversResponse parsedResponse =
                                 ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListDriversResponse.class);
-                        Optional<String> startingAfter =
-                                parsedResponse.getPagination().map(PaginationResponse::getEndCursor);
+                        String startingAfter = parsedResponse.getPagination().getEndCursor();
                         ListDriversRequest nextRequest = ListDriversRequest.builder()
                                 .from(request)
                                 .after(startingAfter)
                                 .build();
-                        List<Driver> result = parsedResponse.getData().orElse(Collections.emptyList());
+                        List<Driver> result = parsedResponse.getData();
                         future.complete(new SamsaraApiHttpResponse<>(
-                                new SyncPagingIterable<Driver>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
-                                            try {
-                                                return list(nextRequest, requestOptions)
-                                                        .get()
-                                                        .body();
-                                            } catch (InterruptedException | ExecutionException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                        }),
+                                new SyncPagingIterable<Driver>(!startingAfter.isEmpty(), result, parsedResponse, () -> {
+                                    try {
+                                        return list(nextRequest, requestOptions)
+                                                .get()
+                                                .body();
+                                    } catch (InterruptedException | ExecutionException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }),
                                 response));
                         return;
                     }

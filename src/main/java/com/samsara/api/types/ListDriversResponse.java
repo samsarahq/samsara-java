@@ -12,37 +12,36 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListDriversResponse.Builder.class)
 public final class ListDriversResponse {
-    private final Optional<List<Driver>> data;
+    private final List<Driver> data;
 
-    private final Optional<PaginationResponse> pagination;
+    private final PaginationResponse pagination;
 
     private final Map<String, Object> additionalProperties;
 
     private ListDriversResponse(
-            Optional<List<Driver>> data,
-            Optional<PaginationResponse> pagination,
-            Map<String, Object> additionalProperties) {
+            List<Driver> data, PaginationResponse pagination, Map<String, Object> additionalProperties) {
         this.data = data;
         this.pagination = pagination;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public Optional<List<Driver>> getData() {
+    public List<Driver> getData() {
         return data;
     }
 
     @JsonProperty("pagination")
-    public Optional<PaginationResponse> getPagination() {
+    public PaginationResponse getPagination() {
         return pagination;
     }
 
@@ -71,49 +70,76 @@ public final class ListDriversResponse {
         return ObjectMappers.stringify(this);
     }
 
-    public static Builder builder() {
+    public static PaginationStage builder() {
         return new Builder();
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder {
-        private Optional<List<Driver>> data = Optional.empty();
+    public interface PaginationStage {
+        _FinalStage pagination(@NotNull PaginationResponse pagination);
 
-        private Optional<PaginationResponse> pagination = Optional.empty();
+        Builder from(ListDriversResponse other);
+    }
+
+    public interface _FinalStage {
+        ListDriversResponse build();
+
+        _FinalStage data(List<Driver> data);
+
+        _FinalStage addData(Driver data);
+
+        _FinalStage addAllData(List<Driver> data);
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static final class Builder implements PaginationStage, _FinalStage {
+        private PaginationResponse pagination;
+
+        private List<Driver> data = new ArrayList<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
+        @java.lang.Override
         public Builder from(ListDriversResponse other) {
             data(other.getData());
             pagination(other.getPagination());
             return this;
         }
 
+        @java.lang.Override
+        @JsonSetter("pagination")
+        public _FinalStage pagination(@NotNull PaginationResponse pagination) {
+            this.pagination = Objects.requireNonNull(pagination, "pagination must not be null");
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage addAllData(List<Driver> data) {
+            if (data != null) {
+                this.data.addAll(data);
+            }
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage addData(Driver data) {
+            this.data.add(data);
+            return this;
+        }
+
+        @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public Builder data(Optional<List<Driver>> data) {
-            this.data = data;
+        public _FinalStage data(List<Driver> data) {
+            this.data.clear();
+            if (data != null) {
+                this.data.addAll(data);
+            }
             return this;
         }
 
-        public Builder data(List<Driver> data) {
-            this.data = Optional.ofNullable(data);
-            return this;
-        }
-
-        @JsonSetter(value = "pagination", nulls = Nulls.SKIP)
-        public Builder pagination(Optional<PaginationResponse> pagination) {
-            this.pagination = pagination;
-            return this;
-        }
-
-        public Builder pagination(PaginationResponse pagination) {
-            this.pagination = Optional.ofNullable(pagination);
-            return this;
-        }
-
+        @java.lang.Override
         public ListDriversResponse build() {
             return new ListDriversResponse(data, pagination, additionalProperties);
         }
