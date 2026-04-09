@@ -4593,6 +4593,114 @@ client.betaApIs().deployFunction(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.getFunctionLogs(name) -> FunctionsGetFunctionLogsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve paginated log entries for a specific Function within a given time range. Logs are produced during Function executions and can be filtered by text content.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Functions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getFunctionLogs(
+    "name",
+    GetFunctionLogsRequest
+        .builder()
+        .startTime(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
+        .endTime(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `String` — The name of the Function whose logs to retrieve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `OffsetDateTime` — Required RFC 3339 timestamp for the beginning of the log time range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `OffsetDateTime` — Required RFC 3339 timestamp for the end of the log time range.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The maximum number of log entries to return per page. Default is 100.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterText:** `Optional<String>` — Optional text to filter log entries. Only logs containing this text will be returned.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.startFunctionRun(name, request) -> FunctionsStartFunctionRunResponseBody</code></summary>
 <dl>
 <dd>
@@ -5766,7 +5874,7 @@ client.betaApIs().getQualificationTypes(
 
 Ingest new readings. This endpoint allows the ingestion of batches of readings.
 
-Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.
+Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'. Related guide: [Readings](https://developers.samsara.com/docs/readings).
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5847,7 +5955,7 @@ client.betaApIs().postReadings(
 <dl>
 <dd>
 
-An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
+An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata. Related guide: [Readings](https://developers.samsara.com/docs/readings).
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5928,7 +6036,7 @@ client.betaApIs().listReadingsDefinitions(
 <dl>
 <dd>
 
-Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime <= happenedAtTime < endTime. If endTime is not set, the time of the request is used as the endTime.
+Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime <= happenedAtTime < endTime. If endTime is not set, the time of the request is used as the endTime. Related guide: [Readings](https://developers.samsara.com/docs/readings).
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -6314,7 +6422,7 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
-An endpoint to get the last value of a reading for a set of entities at the specified time.
+An endpoint to get the last value of a reading for a set of entities at the specified time. Related guide: [Readings](https://developers.samsara.com/docs/readings).
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
