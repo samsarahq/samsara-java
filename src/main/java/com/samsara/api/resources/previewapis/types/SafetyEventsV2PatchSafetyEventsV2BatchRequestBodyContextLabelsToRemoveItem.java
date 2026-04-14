@@ -7,10 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem {
-    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem ANIMAL_COLLISION =
-            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
-                    Value.ANIMAL_COLLISION, "Animal Collision");
-
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem FOG =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(Value.FOG, "Fog");
 
@@ -79,6 +75,9 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
                     Value.SENSITIVE_MEDIA, "Sensitive Media");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem WILDLIFE =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(Value.WILDLIFE, "Wildlife");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem SNOWING =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(Value.SNOWING, "Snowing");
 
@@ -141,8 +140,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
-            case ANIMAL_COLLISION:
-                return visitor.visitAnimalCollision();
             case FOG:
                 return visitor.visitFog();
             case SNOWY_ROAD:
@@ -179,6 +176,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return visitor.visitSlightlyDrowsy();
             case SENSITIVE_MEDIA:
                 return visitor.visitSensitiveMedia();
+            case WILDLIFE:
+                return visitor.visitWildlife();
             case SNOWING:
                 return visitor.visitSnowing();
             case VERY_DROWSY:
@@ -202,8 +201,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem valueOf(String value) {
         switch (value) {
-            case "Animal Collision":
-                return ANIMAL_COLLISION;
             case "Fog":
                 return FOG;
             case "Snowy Road":
@@ -240,6 +237,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return SLIGHTLY_DROWSY;
             case "Sensitive Media":
                 return SENSITIVE_MEDIA;
+            case "Wildlife":
+                return WILDLIFE;
             case "Snowing":
                 return SNOWING;
             case "Very Drowsy":
@@ -261,8 +260,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
     }
 
     public enum Value {
-        ANIMAL_COLLISION,
-
         CONGESTED,
 
         CONSTRUCTION,
@@ -313,12 +310,12 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         WET_ROAD,
 
+        WILDLIFE,
+
         UNKNOWN
     }
 
     public interface Visitor<T> {
-        T visitAnimalCollision();
-
         T visitCongested();
 
         T visitConstruction();
@@ -368,6 +365,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         T visitVeryDrowsy();
 
         T visitWetRoad();
+
+        T visitWildlife();
 
         T visitUnknown(String unknownType);
     }
