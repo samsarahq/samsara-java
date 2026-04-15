@@ -5905,7 +5905,6 @@ client.betaApIs().postReadings(
             Arrays.asList(
                 ReadingDatapointRequestBody
                     .builder()
-                    .entityId("123451234512345")
                     .entityType(ReadingDatapointRequestBodyEntityType.ASSET)
                     .happenedAtTime("2023-10-27T10:00:00Z")
                     .readingId("airInletPressure")
