@@ -3379,7 +3379,6 @@ public class BetaApIsWireTest {
         client.betaApIs()
                 .postReadings(ReadingsPostReadingsRequestBody.builder()
                         .data(Arrays.asList(ReadingDatapointRequestBody.builder()
-                                .entityId("123451234512345")
                                 .entityType(ReadingDatapointRequestBodyEntityType.ASSET)
                                 .happenedAtTime("2023-10-27T10:00:00Z")
                                 .readingId("airInletPressure")
@@ -3399,7 +3398,6 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"entityId\": \"123451234512345\",\n"
                 + "      \"entityType\": \"asset\",\n"
                 + "      \"happenedAtTime\": \"2023-10-27T10:00:00Z\",\n"
                 + "      \"readingId\": \"airInletPressure\",\n"

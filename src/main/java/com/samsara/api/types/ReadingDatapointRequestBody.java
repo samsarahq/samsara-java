@@ -16,14 +16,17 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ReadingDatapointRequestBody.Builder.class)
 public final class ReadingDatapointRequestBody {
-    private final String entityId;
+    private final Optional<String> entityId;
 
     private final ReadingDatapointRequestBodyEntityType entityType;
+
+    private final Optional<String> externalId;
 
     private final String happenedAtTime;
 
@@ -34,14 +37,16 @@ public final class ReadingDatapointRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private ReadingDatapointRequestBody(
-            String entityId,
+            Optional<String> entityId,
             ReadingDatapointRequestBodyEntityType entityType,
+            Optional<String> externalId,
             String happenedAtTime,
             String readingId,
             Map<String, Object> value,
             Map<String, Object> additionalProperties) {
         this.entityId = entityId;
         this.entityType = entityType;
+        this.externalId = externalId;
         this.happenedAtTime = happenedAtTime;
         this.readingId = readingId;
         this.value = value;
@@ -49,10 +54,10 @@ public final class ReadingDatapointRequestBody {
     }
 
     /**
-     * @return Samsara entity ID. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.
+     * @return Samsara entity ID. Required if externalId is not provided. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.
      */
     @JsonProperty("entityId")
-    public String getEntityId() {
+    public Optional<String> getEntityId() {
         return entityId;
     }
 
@@ -62,6 +67,14 @@ public final class ReadingDatapointRequestBody {
     @JsonProperty("entityType")
     public ReadingDatapointRequestBodyEntityType getEntityType() {
         return entityType;
+    }
+
+    /**
+     * @return An external ID in key:value format. Required if entityId is not provided. Use this to reference an asset by its external ID instead of the Samsara entity ID.
+     */
+    @JsonProperty("externalId")
+    public Optional<String> getExternalId() {
+        return externalId;
     }
 
     /**
@@ -102,6 +115,7 @@ public final class ReadingDatapointRequestBody {
     private boolean equalTo(ReadingDatapointRequestBody other) {
         return entityId.equals(other.entityId)
                 && entityType.equals(other.entityType)
+                && externalId.equals(other.externalId)
                 && happenedAtTime.equals(other.happenedAtTime)
                 && readingId.equals(other.readingId)
                 && value.equals(other.value);
@@ -109,7 +123,8 @@ public final class ReadingDatapointRequestBody {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.entityId, this.entityType, this.happenedAtTime, this.readingId, this.value);
+        return Objects.hash(
+                this.entityId, this.entityType, this.externalId, this.happenedAtTime, this.readingId, this.value);
     }
 
     @java.lang.Override
@@ -117,17 +132,8 @@ public final class ReadingDatapointRequestBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static EntityIdStage builder() {
+    public static EntityTypeStage builder() {
         return new Builder();
-    }
-
-    public interface EntityIdStage {
-        /**
-         * <p>Samsara entity ID. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
-         */
-        EntityTypeStage entityId(@NotNull String entityId);
-
-        Builder from(ReadingDatapointRequestBody other);
     }
 
     public interface EntityTypeStage {
@@ -135,6 +141,8 @@ public final class ReadingDatapointRequestBody {
          * <p>The type of the entity (e.g., asset).  Valid values: <code>asset</code></p>
          */
         HappenedAtTimeStage entityType(@NotNull ReadingDatapointRequestBodyEntityType entityType);
+
+        Builder from(ReadingDatapointRequestBody other);
     }
 
     public interface HappenedAtTimeStage {
@@ -155,6 +163,20 @@ public final class ReadingDatapointRequestBody {
         ReadingDatapointRequestBody build();
 
         /**
+         * <p>Samsara entity ID. Required if externalId is not provided. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
+         */
+        _FinalStage entityId(Optional<String> entityId);
+
+        _FinalStage entityId(String entityId);
+
+        /**
+         * <p>An external ID in key:value format. Required if entityId is not provided. Use this to reference an asset by its external ID instead of the Samsara entity ID.</p>
+         */
+        _FinalStage externalId(Optional<String> externalId);
+
+        _FinalStage externalId(String externalId);
+
+        /**
          * <p>The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.</p>
          */
         _FinalStage value(Map<String, Object> value);
@@ -165,10 +187,7 @@ public final class ReadingDatapointRequestBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder
-            implements EntityIdStage, EntityTypeStage, HappenedAtTimeStage, ReadingIdStage, _FinalStage {
-        private String entityId;
-
+    public static final class Builder implements EntityTypeStage, HappenedAtTimeStage, ReadingIdStage, _FinalStage {
         private ReadingDatapointRequestBodyEntityType entityType;
 
         private String happenedAtTime;
@@ -176,6 +195,10 @@ public final class ReadingDatapointRequestBody {
         private String readingId;
 
         private Map<String, Object> value = new LinkedHashMap<>();
+
+        private Optional<String> externalId = Optional.empty();
+
+        private Optional<String> entityId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -186,21 +209,10 @@ public final class ReadingDatapointRequestBody {
         public Builder from(ReadingDatapointRequestBody other) {
             entityId(other.getEntityId());
             entityType(other.getEntityType());
+            externalId(other.getExternalId());
             happenedAtTime(other.getHappenedAtTime());
             readingId(other.getReadingId());
             value(other.getValue());
-            return this;
-        }
-
-        /**
-         * <p>Samsara entity ID. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
-         * <p>Samsara entity ID. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("entityId")
-        public EntityTypeStage entityId(@NotNull String entityId) {
-            this.entityId = Objects.requireNonNull(entityId, "entityId must not be null");
             return this;
         }
 
@@ -275,10 +287,50 @@ public final class ReadingDatapointRequestBody {
             return this;
         }
 
+        /**
+         * <p>An external ID in key:value format. Required if entityId is not provided. Use this to reference an asset by its external ID instead of the Samsara entity ID.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalId(String externalId) {
+            this.externalId = Optional.ofNullable(externalId);
+            return this;
+        }
+
+        /**
+         * <p>An external ID in key:value format. Required if entityId is not provided. Use this to reference an asset by its external ID instead of the Samsara entity ID.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
+        public _FinalStage externalId(Optional<String> externalId) {
+            this.externalId = externalId;
+            return this;
+        }
+
+        /**
+         * <p>Samsara entity ID. Required if externalId is not provided. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage entityId(String entityId) {
+            this.entityId = Optional.ofNullable(entityId);
+            return this;
+        }
+
+        /**
+         * <p>Samsara entity ID. Required if externalId is not provided. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "entityId", nulls = Nulls.SKIP)
+        public _FinalStage entityId(Optional<String> entityId) {
+            this.entityId = entityId;
+            return this;
+        }
+
         @java.lang.Override
         public ReadingDatapointRequestBody build() {
             return new ReadingDatapointRequestBody(
-                    entityId, entityType, happenedAtTime, readingId, value, additionalProperties);
+                    entityId, entityType, externalId, happenedAtTime, readingId, value, additionalProperties);
         }
     }
 }
