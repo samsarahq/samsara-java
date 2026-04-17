@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = OrderObjectResponseBody.Builder.class)
 public final class OrderObjectResponseBody {
-    private final OffsetDateTime createdAt;
+    private final OffsetDateTime createdAtTime;
 
     private final List<OrderCustomPropertyResponseBody> customProperties;
 
@@ -44,14 +44,16 @@ public final class OrderObjectResponseBody {
 
     private final List<OrderQuantityResponseBody> quantities;
 
+    private final Optional<String> routeId;
+
     private final List<String> skillsRequired;
 
-    private final OffsetDateTime updatedAt;
+    private final OffsetDateTime updatedAtTime;
 
     private final Map<String, Object> additionalProperties;
 
     private OrderObjectResponseBody(
-            OffsetDateTime createdAt,
+            OffsetDateTime createdAtTime,
             List<OrderCustomPropertyResponseBody> customProperties,
             String customerOrderId,
             Optional<OrderTaskResponseBody> delivery,
@@ -61,10 +63,11 @@ public final class OrderObjectResponseBody {
             String planId,
             long priority,
             List<OrderQuantityResponseBody> quantities,
+            Optional<String> routeId,
             List<String> skillsRequired,
-            OffsetDateTime updatedAt,
+            OffsetDateTime updatedAtTime,
             Map<String, Object> additionalProperties) {
-        this.createdAt = createdAt;
+        this.createdAtTime = createdAtTime;
         this.customProperties = customProperties;
         this.customerOrderId = customerOrderId;
         this.delivery = delivery;
@@ -74,17 +77,18 @@ public final class OrderObjectResponseBody {
         this.planId = planId;
         this.priority = priority;
         this.quantities = quantities;
+        this.routeId = routeId;
         this.skillsRequired = skillsRequired;
-        this.updatedAt = updatedAt;
+        this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
     }
 
     /**
      * @return The timestamp (in UTC) when the order was created
      */
-    @JsonProperty("createdAt")
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
+    @JsonProperty("createdAtTime")
+    public OffsetDateTime getCreatedAtTime() {
+        return createdAtTime;
     }
 
     /**
@@ -154,6 +158,14 @@ public final class OrderObjectResponseBody {
     }
 
     /**
+     * @return The ID of the route this order is assigned to. Null if the order is unassigned. Only populated on list responses.
+     */
+    @JsonProperty("routeId")
+    public Optional<String> getRouteId() {
+        return routeId;
+    }
+
+    /**
      * @return An array of skill IDs required to fulfill the order
      */
     @JsonProperty("skillsRequired")
@@ -164,9 +176,9 @@ public final class OrderObjectResponseBody {
     /**
      * @return The timestamp (in UTC) when the order was last updated
      */
-    @JsonProperty("updatedAt")
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
+    @JsonProperty("updatedAtTime")
+    public OffsetDateTime getUpdatedAtTime() {
+        return updatedAtTime;
     }
 
     @java.lang.Override
@@ -181,7 +193,7 @@ public final class OrderObjectResponseBody {
     }
 
     private boolean equalTo(OrderObjectResponseBody other) {
-        return createdAt.equals(other.createdAt)
+        return createdAtTime.equals(other.createdAtTime)
                 && customProperties.equals(other.customProperties)
                 && customerOrderId.equals(other.customerOrderId)
                 && delivery.equals(other.delivery)
@@ -191,14 +203,15 @@ public final class OrderObjectResponseBody {
                 && planId.equals(other.planId)
                 && priority == other.priority
                 && quantities.equals(other.quantities)
+                && routeId.equals(other.routeId)
                 && skillsRequired.equals(other.skillsRequired)
-                && updatedAt.equals(other.updatedAt);
+                && updatedAtTime.equals(other.updatedAtTime);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.createdAt,
+                this.createdAtTime,
                 this.customProperties,
                 this.customerOrderId,
                 this.delivery,
@@ -208,8 +221,9 @@ public final class OrderObjectResponseBody {
                 this.planId,
                 this.priority,
                 this.quantities,
+                this.routeId,
                 this.skillsRequired,
-                this.updatedAt);
+                this.updatedAtTime);
     }
 
     @java.lang.Override
@@ -217,15 +231,15 @@ public final class OrderObjectResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static CreatedAtStage builder() {
+    public static CreatedAtTimeStage builder() {
         return new Builder();
     }
 
-    public interface CreatedAtStage {
+    public interface CreatedAtTimeStage {
         /**
          * <p>The timestamp (in UTC) when the order was created</p>
          */
-        CustomerOrderIdStage createdAt(@NotNull OffsetDateTime createdAt);
+        CustomerOrderIdStage createdAtTime(@NotNull OffsetDateTime createdAtTime);
 
         Builder from(OrderObjectResponseBody other);
     }
@@ -262,14 +276,14 @@ public final class OrderObjectResponseBody {
         /**
          * <p>Priority of the order (e.g., 1 for high, 5 for low)</p>
          */
-        UpdatedAtStage priority(long priority);
+        UpdatedAtTimeStage priority(long priority);
     }
 
-    public interface UpdatedAtStage {
+    public interface UpdatedAtTimeStage {
         /**
          * <p>The timestamp (in UTC) when the order was last updated</p>
          */
-        _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt);
+        _FinalStage updatedAtTime(@NotNull OffsetDateTime updatedAtTime);
     }
 
     public interface _FinalStage {
@@ -302,6 +316,13 @@ public final class OrderObjectResponseBody {
         _FinalStage addAllQuantities(List<OrderQuantityResponseBody> quantities);
 
         /**
+         * <p>The ID of the route this order is assigned to. Null if the order is unassigned. Only populated on list responses.</p>
+         */
+        _FinalStage routeId(Optional<String> routeId);
+
+        _FinalStage routeId(String routeId);
+
+        /**
          * <p>An array of skill IDs required to fulfill the order</p>
          */
         _FinalStage skillsRequired(List<String> skillsRequired);
@@ -313,15 +334,15 @@ public final class OrderObjectResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements CreatedAtStage,
+            implements CreatedAtTimeStage,
                     CustomerOrderIdStage,
                     HubIdStage,
                     IdStage,
                     PlanIdStage,
                     PriorityStage,
-                    UpdatedAtStage,
+                    UpdatedAtTimeStage,
                     _FinalStage {
-        private OffsetDateTime createdAt;
+        private OffsetDateTime createdAtTime;
 
         private String customerOrderId;
 
@@ -333,9 +354,11 @@ public final class OrderObjectResponseBody {
 
         private long priority;
 
-        private OffsetDateTime updatedAt;
+        private OffsetDateTime updatedAtTime;
 
         private List<String> skillsRequired = new ArrayList<>();
+
+        private Optional<String> routeId = Optional.empty();
 
         private List<OrderQuantityResponseBody> quantities = new ArrayList<>();
 
@@ -352,7 +375,7 @@ public final class OrderObjectResponseBody {
 
         @java.lang.Override
         public Builder from(OrderObjectResponseBody other) {
-            createdAt(other.getCreatedAt());
+            createdAtTime(other.getCreatedAtTime());
             customProperties(other.getCustomProperties());
             customerOrderId(other.getCustomerOrderId());
             delivery(other.getDelivery());
@@ -362,8 +385,9 @@ public final class OrderObjectResponseBody {
             planId(other.getPlanId());
             priority(other.getPriority());
             quantities(other.getQuantities());
+            routeId(other.getRouteId());
             skillsRequired(other.getSkillsRequired());
-            updatedAt(other.getUpdatedAt());
+            updatedAtTime(other.getUpdatedAtTime());
             return this;
         }
 
@@ -373,9 +397,9 @@ public final class OrderObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter("createdAt")
-        public CustomerOrderIdStage createdAt(@NotNull OffsetDateTime createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+        @JsonSetter("createdAtTime")
+        public CustomerOrderIdStage createdAtTime(@NotNull OffsetDateTime createdAtTime) {
+            this.createdAtTime = Objects.requireNonNull(createdAtTime, "createdAtTime must not be null");
             return this;
         }
 
@@ -434,7 +458,7 @@ public final class OrderObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("priority")
-        public UpdatedAtStage priority(long priority) {
+        public UpdatedAtTimeStage priority(long priority) {
             this.priority = priority;
             return this;
         }
@@ -445,9 +469,9 @@ public final class OrderObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter("updatedAt")
-        public _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt) {
-            this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+        @JsonSetter("updatedAtTime")
+        public _FinalStage updatedAtTime(@NotNull OffsetDateTime updatedAtTime) {
+            this.updatedAtTime = Objects.requireNonNull(updatedAtTime, "updatedAtTime must not be null");
             return this;
         }
 
@@ -483,6 +507,26 @@ public final class OrderObjectResponseBody {
             if (skillsRequired != null) {
                 this.skillsRequired.addAll(skillsRequired);
             }
+            return this;
+        }
+
+        /**
+         * <p>The ID of the route this order is assigned to. Null if the order is unassigned. Only populated on list responses.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage routeId(String routeId) {
+            this.routeId = Optional.ofNullable(routeId);
+            return this;
+        }
+
+        /**
+         * <p>The ID of the route this order is assigned to. Null if the order is unassigned. Only populated on list responses.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "routeId", nulls = Nulls.SKIP)
+        public _FinalStage routeId(Optional<String> routeId) {
+            this.routeId = routeId;
             return this;
         }
 
@@ -585,7 +629,7 @@ public final class OrderObjectResponseBody {
         @java.lang.Override
         public OrderObjectResponseBody build() {
             return new OrderObjectResponseBody(
-                    createdAt,
+                    createdAtTime,
                     customProperties,
                     customerOrderId,
                     delivery,
@@ -595,8 +639,9 @@ public final class OrderObjectResponseBody {
                     planId,
                     priority,
                     quantities,
+                    routeId,
                     skillsRequired,
-                    updatedAt,
+                    updatedAtTime,
                     additionalProperties);
         }
     }
