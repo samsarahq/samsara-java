@@ -199,7 +199,6 @@ public class MediaWireTest {
                         .vehicleId("1234")
                         .inputs(Arrays.asList(
                                 MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING,
-                                MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING,
                                 MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING))
                         .build());
         RecordedRequest request = server.takeRequest();
@@ -211,7 +210,6 @@ public class MediaWireTest {
                 + "{\n"
                 + "  \"endTime\": \"2019-06-13T19:08:55Z\",\n"
                 + "  \"inputs\": [\n"
-                + "    \"dashcamRoadFacing\",\n"
                 + "    \"dashcamRoadFacing\",\n"
                 + "    \"dashcamRoadFacing\"\n"
                 + "  ],\n"

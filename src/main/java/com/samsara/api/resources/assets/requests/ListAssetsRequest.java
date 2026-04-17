@@ -25,6 +25,8 @@ import java.util.Optional;
 public final class ListAssetsRequest {
     private final Optional<List<String>> ids;
 
+    private final Optional<List<String>> externalIds;
+
     private final Optional<List<String>> attributes;
 
     private final Optional<ListAssetsRequestType> type;
@@ -47,6 +49,7 @@ public final class ListAssetsRequest {
 
     private ListAssetsRequest(
             Optional<List<String>> ids,
+            Optional<List<String>> externalIds,
             Optional<List<String>> attributes,
             Optional<ListAssetsRequestType> type,
             Optional<String> after,
@@ -58,6 +61,7 @@ public final class ListAssetsRequest {
             Optional<String> attributeValueIds,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
+        this.externalIds = externalIds;
         this.attributes = attributes;
         this.type = type;
         this.after = after;
@@ -76,6 +80,14 @@ public final class ListAssetsRequest {
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
         return ids;
+    }
+
+    /**
+     * @return A filter on the data based on this comma-separated list of external IDs. Example: <code>externalIds=maintenanceId:250020,vin:1HGBH41JXMN109186</code>
+     */
+    @JsonProperty("externalIds")
+    public Optional<List<String>> getExternalIds() {
+        return externalIds;
     }
 
     /**
@@ -163,6 +175,7 @@ public final class ListAssetsRequest {
 
     private boolean equalTo(ListAssetsRequest other) {
         return ids.equals(other.ids)
+                && externalIds.equals(other.externalIds)
                 && attributes.equals(other.attributes)
                 && type.equals(other.type)
                 && after.equals(other.after)
@@ -178,6 +191,7 @@ public final class ListAssetsRequest {
     public int hashCode() {
         return Objects.hash(
                 this.ids,
+                this.externalIds,
                 this.attributes,
                 this.type,
                 this.after,
@@ -201,6 +215,8 @@ public final class ListAssetsRequest {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
         private Optional<List<String>> ids = Optional.empty();
+
+        private Optional<List<String>> externalIds = Optional.empty();
 
         private Optional<List<String>> attributes = Optional.empty();
 
@@ -227,6 +243,7 @@ public final class ListAssetsRequest {
 
         public Builder from(ListAssetsRequest other) {
             ids(other.getIds());
+            externalIds(other.getExternalIds());
             attributes(other.getAttributes());
             type(other.getType());
             after(other.getAfter());
@@ -255,6 +272,25 @@ public final class ListAssetsRequest {
 
         public Builder ids(String ids) {
             this.ids = Optional.of(Collections.singletonList(ids));
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of external IDs. Example: <code>externalIds=maintenanceId:250020,vin:1HGBH41JXMN109186</code></p>
+         */
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public Builder externalIds(Optional<List<String>> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
+        public Builder externalIds(List<String> externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        public Builder externalIds(String externalIds) {
+            this.externalIds = Optional.of(Collections.singletonList(externalIds));
             return this;
         }
 
@@ -392,6 +428,7 @@ public final class ListAssetsRequest {
         public ListAssetsRequest build() {
             return new ListAssetsRequest(
                     ids,
+                    externalIds,
                     attributes,
                     type,
                     after,

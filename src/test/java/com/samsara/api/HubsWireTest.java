@@ -119,7 +119,7 @@ public class HubsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"address\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"createdAt\":\"2024-01-15T10:30:00Z\",\"customerLocationId\":\"LOC-123\",\"driverInstructions\":\"sample instructions\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"isDepot\":false,\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"plannerNotes\":\"sample note\",\"serviceTimeSeconds\":1800,\"serviceWindows\":[{\"daysOfWeek\":[\"monday\",\"monday\"],\"endTime\":\"17:00:00\",\"startTime\":\"08:00:00\"}],\"skillsRequired\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"name\":\"Heavy Lifting\"}],\"updatedAt\":\"2024-01-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"address\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"createdAt\":\"2024-01-15T10:30:00Z\",\"customerLocationId\":\"LOC-123\",\"driverInstructions\":\"sample instructions\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"isDepot\":false,\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"plannerNotes\":\"sample note\",\"serviceTimeSeconds\":1800,\"serviceWindows\":[{\"daysOfWeek\":[\"monday\",\"monday\",\"monday\"],\"endTime\":\"17:00:00\",\"startTime\":\"08:00:00\"}],\"skillsRequired\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"name\":\"Heavy Lifting\"}],\"updatedAt\":\"2024-01-15T10:30:00Z\"}}"));
         HubLocationsUpdateHubLocationResponseBody response = client.hubs()
                 .updateHubLocation(
                         "id",
@@ -229,6 +229,7 @@ public class HubsWireTest {
                 + "      {\n"
                 + "        \"daysOfWeek\": [\n"
                 + "          \"monday\",\n"
+                + "          \"monday\",\n"
                 + "          \"monday\"\n"
                 + "        ],\n"
                 + "        \"endTime\": \"17:00:00\",\n"
@@ -281,7 +282,7 @@ public class HubsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"address\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"createdAt\":\"2024-01-15T10:30:00Z\",\"customerLocationId\":\"LOC-123\",\"driverInstructions\":\"sample instructions\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"isDepot\":false,\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"plannerNotes\":\"sample note\",\"serviceTimeSeconds\":1800,\"serviceWindows\":[{\"daysOfWeek\":[\"monday\",\"monday\"],\"endTime\":\"17:00:00\",\"startTime\":\"08:00:00\"}],\"skillsRequired\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"name\":\"Heavy Lifting\"}],\"updatedAt\":\"2024-01-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"YXJyYXljb25uZWN0aW9uOjEwMA==\",\"hasNextPage\":false}}"));
+                                "{\"data\":[{\"address\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"createdAt\":\"2024-01-15T10:30:00Z\",\"customerLocationId\":\"LOC-123\",\"driverInstructions\":\"sample instructions\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"isDepot\":false,\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"plannerNotes\":\"sample note\",\"serviceTimeSeconds\":1800,\"serviceWindows\":[{\"daysOfWeek\":[\"monday\",\"monday\",\"monday\"],\"endTime\":\"17:00:00\",\"startTime\":\"08:00:00\"}],\"skillsRequired\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"name\":\"Heavy Lifting\"}],\"updatedAt\":\"2024-01-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"YXJyYXljb25uZWN0aW9uOjEwMA==\",\"hasNextPage\":false}}"));
         HubLocationsListHubLocationsResponseBody response = client.hubs()
                 .listHubLocations(
                         ListHubLocationsRequest.builder().hubId("hubId").build());
@@ -311,6 +312,7 @@ public class HubsWireTest {
                 + "      \"serviceWindows\": [\n"
                 + "        {\n"
                 + "          \"daysOfWeek\": [\n"
+                + "            \"monday\",\n"
                 + "            \"monday\",\n"
                 + "            \"monday\"\n"
                 + "          ],\n"
@@ -369,7 +371,7 @@ public class HubsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"address\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"createdAt\":\"2024-01-15T10:30:00Z\",\"customerLocationId\":\"LOC-123\",\"driverInstructions\":\"sample instructions\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"isDepot\":false,\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"plannerNotes\":\"sample note\",\"serviceTimeSeconds\":1800,\"serviceWindows\":[{\"daysOfWeek\":[\"monday\",\"monday\"],\"endTime\":\"17:00:00\",\"startTime\":\"08:00:00\"}],\"skillsRequired\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"name\":\"Heavy Lifting\"}],\"updatedAt\":\"2024-01-15T10:30:00Z\"}]}"));
+                                "{\"data\":[{\"address\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"createdAt\":\"2024-01-15T10:30:00Z\",\"customerLocationId\":\"LOC-123\",\"driverInstructions\":\"sample instructions\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"isDepot\":false,\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"plannerNotes\":\"sample note\",\"serviceTimeSeconds\":1800,\"serviceWindows\":[{\"daysOfWeek\":[\"monday\",\"monday\",\"monday\"],\"endTime\":\"17:00:00\",\"startTime\":\"08:00:00\"}],\"skillsRequired\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"name\":\"Heavy Lifting\"}],\"updatedAt\":\"2024-01-15T10:30:00Z\"}]}"));
         HubLocationsCreateHubLocationsResponseBody response = client.hubs()
                 .createHubLocations(HubLocationsCreateHubLocationsRequestBody.builder()
                         .data(Arrays.asList(HubLocationInputObjectRequestBody.builder()
@@ -480,6 +482,7 @@ public class HubsWireTest {
                 + "      \"serviceWindows\": [\n"
                 + "        {\n"
                 + "          \"daysOfWeek\": [\n"
+                + "            \"monday\",\n"
                 + "            \"monday\",\n"
                 + "            \"monday\"\n"
                 + "          ],\n"
