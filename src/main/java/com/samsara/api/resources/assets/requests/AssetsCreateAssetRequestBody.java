@@ -14,7 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.assets.types.AssetsCreateAssetRequestBodyRegulationMode;
 import com.samsara.api.resources.assets.types.AssetsCreateAssetRequestBodyType;
+import com.samsara.api.types.GoaAttributeTinyRequestBody;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AssetsCreateAssetRequestBody.Builder.class)
 public final class AssetsCreateAssetRequestBody {
+    private final Optional<List<GoaAttributeTinyRequestBody>> attributes;
+
     private final Optional<Map<String, String>> externalIds;
 
     private final Optional<String> licensePlate;
@@ -40,6 +44,8 @@ public final class AssetsCreateAssetRequestBody {
 
     private final Optional<String> serialNumber;
 
+    private final Optional<List<String>> tagIds;
+
     private final Optional<AssetsCreateAssetRequestBodyType> type;
 
     private final Optional<String> vin;
@@ -49,6 +55,7 @@ public final class AssetsCreateAssetRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private AssetsCreateAssetRequestBody(
+            Optional<List<GoaAttributeTinyRequestBody>> attributes,
             Optional<Map<String, String>> externalIds,
             Optional<String> licensePlate,
             Optional<String> make,
@@ -58,10 +65,12 @@ public final class AssetsCreateAssetRequestBody {
             Optional<Boolean> readingsIngestionEnabled,
             Optional<AssetsCreateAssetRequestBodyRegulationMode> regulationMode,
             Optional<String> serialNumber,
+            Optional<List<String>> tagIds,
             Optional<AssetsCreateAssetRequestBodyType> type,
             Optional<String> vin,
             Optional<Long> year,
             Map<String, Object> additionalProperties) {
+        this.attributes = attributes;
         this.externalIds = externalIds;
         this.licensePlate = licensePlate;
         this.make = make;
@@ -71,10 +80,19 @@ public final class AssetsCreateAssetRequestBody {
         this.readingsIngestionEnabled = readingsIngestionEnabled;
         this.regulationMode = regulationMode;
         this.serialNumber = serialNumber;
+        this.tagIds = tagIds;
         this.type = type;
         this.vin = vin;
         this.year = year;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return A list of attributes to assign to the asset.
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyRequestBody>> getAttributes() {
+        return attributes;
     }
 
     /**
@@ -150,6 +168,14 @@ public final class AssetsCreateAssetRequestBody {
     }
 
     /**
+     * @return An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
+     */
+    @JsonProperty("tagIds")
+    public Optional<List<String>> getTagIds() {
+        return tagIds;
+    }
+
+    /**
      * @return The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: <code>uncategorized</code>, <code>trailer</code>, <code>equipment</code>, <code>unpowered</code>, <code>vehicle</code>
      */
     @JsonProperty("type")
@@ -185,7 +211,8 @@ public final class AssetsCreateAssetRequestBody {
     }
 
     private boolean equalTo(AssetsCreateAssetRequestBody other) {
-        return externalIds.equals(other.externalIds)
+        return attributes.equals(other.attributes)
+                && externalIds.equals(other.externalIds)
                 && licensePlate.equals(other.licensePlate)
                 && make.equals(other.make)
                 && model.equals(other.model)
@@ -194,6 +221,7 @@ public final class AssetsCreateAssetRequestBody {
                 && readingsIngestionEnabled.equals(other.readingsIngestionEnabled)
                 && regulationMode.equals(other.regulationMode)
                 && serialNumber.equals(other.serialNumber)
+                && tagIds.equals(other.tagIds)
                 && type.equals(other.type)
                 && vin.equals(other.vin)
                 && year.equals(other.year);
@@ -202,6 +230,7 @@ public final class AssetsCreateAssetRequestBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.attributes,
                 this.externalIds,
                 this.licensePlate,
                 this.make,
@@ -211,6 +240,7 @@ public final class AssetsCreateAssetRequestBody {
                 this.readingsIngestionEnabled,
                 this.regulationMode,
                 this.serialNumber,
+                this.tagIds,
                 this.type,
                 this.vin,
                 this.year);
@@ -227,6 +257,8 @@ public final class AssetsCreateAssetRequestBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<GoaAttributeTinyRequestBody>> attributes = Optional.empty();
+
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
         private Optional<String> licensePlate = Optional.empty();
@@ -245,6 +277,8 @@ public final class AssetsCreateAssetRequestBody {
 
         private Optional<String> serialNumber = Optional.empty();
 
+        private Optional<List<String>> tagIds = Optional.empty();
+
         private Optional<AssetsCreateAssetRequestBodyType> type = Optional.empty();
 
         private Optional<String> vin = Optional.empty();
@@ -257,6 +291,7 @@ public final class AssetsCreateAssetRequestBody {
         private Builder() {}
 
         public Builder from(AssetsCreateAssetRequestBody other) {
+            attributes(other.getAttributes());
             externalIds(other.getExternalIds());
             licensePlate(other.getLicensePlate());
             make(other.getMake());
@@ -266,9 +301,24 @@ public final class AssetsCreateAssetRequestBody {
             readingsIngestionEnabled(other.getReadingsIngestionEnabled());
             regulationMode(other.getRegulationMode());
             serialNumber(other.getSerialNumber());
+            tagIds(other.getTagIds());
             type(other.getType());
             vin(other.getVin());
             year(other.getYear());
+            return this;
+        }
+
+        /**
+         * <p>A list of attributes to assign to the asset.</p>
+         */
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public Builder attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
+        public Builder attributes(List<GoaAttributeTinyRequestBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
             return this;
         }
 
@@ -399,6 +449,20 @@ public final class AssetsCreateAssetRequestBody {
         }
 
         /**
+         * <p>An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.</p>
+         */
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public Builder tagIds(Optional<List<String>> tagIds) {
+            this.tagIds = tagIds;
+            return this;
+        }
+
+        public Builder tagIds(List<String> tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
          * <p>The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: <code>uncategorized</code>, <code>trailer</code>, <code>equipment</code>, <code>unpowered</code>, <code>vehicle</code></p>
          */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
@@ -442,6 +506,7 @@ public final class AssetsCreateAssetRequestBody {
 
         public AssetsCreateAssetRequestBody build() {
             return new AssetsCreateAssetRequestBody(
+                    attributes,
                     externalIds,
                     licensePlate,
                     make,
@@ -451,6 +516,7 @@ public final class AssetsCreateAssetRequestBody {
                     readingsIngestionEnabled,
                     regulationMode,
                     serialNumber,
+                    tagIds,
                     type,
                     vin,
                     year,

@@ -1174,6 +1174,14 @@ client.assets().list(
 <dl>
 <dd>
 
+**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs. Example: `externalIds=maintenanceId:250020,vin:1HGBH41JXMN109186`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **attributeValueIds:** `Optional<String>` — A filter on the data based on this comma-separated list of attribute value IDs. Only entities associated with ALL of the referenced values will be returned (i.e. the intersection of the sets of entities with each value). Example: `attributeValueIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`
     
 </dd>
@@ -1247,6 +1255,14 @@ client.assets().createAsset(
 <dl>
 <dd>
 
+**attributes:** `Optional<List<GoaAttributeTinyRequestBody>>` — A list of attributes to assign to the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<Map<String, String>>` — A map of external ids
     
 </dd>
@@ -1312,6 +1328,14 @@ client.assets().createAsset(
 <dd>
 
 **serialNumber:** `Optional<String>` — The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<List<String>>` — An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
     
 </dd>
 </dl>
@@ -9255,7 +9279,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );

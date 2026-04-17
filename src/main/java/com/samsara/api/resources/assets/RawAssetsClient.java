@@ -137,6 +137,10 @@ public class RawAssetsClient {
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }
+        if (request.getExternalIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "externalIds", request.getExternalIds().get(), true);
+        }
         if (request.getAttributes().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "attributes", request.getAttributes().get(), true);
