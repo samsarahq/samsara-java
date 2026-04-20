@@ -52,8 +52,6 @@ import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationTypesRequest;
-import com.samsara.api.resources.betaapis.requests.GetReadingsHistoryRequest;
-import com.samsara.api.resources.betaapis.requests.GetReadingsSnapshotRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportConfigsRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
@@ -68,7 +66,6 @@ import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAsse
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
-import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
@@ -126,9 +123,6 @@ import com.samsara.api.types.QualificationsGetQualificationRecordsStreamResponse
 import com.samsara.api.types.QualificationsGetQualificationTypesResponseBody;
 import com.samsara.api.types.QualificationsPatchQualificationRecordResponseBody;
 import com.samsara.api.types.QualificationsPostQualificationRecordResponseBody;
-import com.samsara.api.types.ReadingsGetReadingsHistoryResponseBody;
-import com.samsara.api.types.ReadingsGetReadingsSnapshotResponseBody;
-import com.samsara.api.types.ReadingsListReadingsDefinitionsResponseBody;
 import com.samsara.api.types.ReportsCreateReportRunResponseBody;
 import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
@@ -4866,7 +4860,7 @@ public class RawBetaApIsClient {
      * <p>Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.</p>
      * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Readings category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<Void> postReadings(ReadingsPostReadingsRequestBody request) {
@@ -4878,7 +4872,7 @@ public class RawBetaApIsClient {
      * <p>Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.</p>
      * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Readings category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public SamsaraApiHttpResponse<Void> postReadings(
@@ -4915,365 +4909,6 @@ public class RawBetaApIsClient {
                 return new SamsaraApiHttpResponse<>(null, response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            try {
-                switch (response.code()) {
-                    case 401:
-                        throw new UnauthorizedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 404:
-                        throw new NotFoundError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 429:
-                        throw new TooManyRequestsError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 500:
-                        throw new InternalServerError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 501:
-                        throw new NotImplementedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 502:
-                        throw new BadGatewayError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 503:
-                        throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 504:
-                        throw new GatewayTimeoutError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                }
-            } catch (JsonProcessingException ignored) {
-                // unable to map error response, throwing generic error
-            }
-            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-            throw new SamsaraApiApiException(
-                    "Error with status code " + response.code(), response.code(), errorBody, response);
-        } catch (IOException e) {
-            throw new SamsaraApiException("Network error executing HTTP request", e);
-        }
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsListReadingsDefinitionsResponseBody> listReadingsDefinitions() {
-        return listReadingsDefinitions(ListReadingsDefinitionsRequest.builder().build());
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsListReadingsDefinitionsResponseBody> listReadingsDefinitions(
-            RequestOptions requestOptions) {
-        return listReadingsDefinitions(ListReadingsDefinitionsRequest.builder().build(), requestOptions);
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsListReadingsDefinitionsResponseBody> listReadingsDefinitions(
-            ListReadingsDefinitionsRequest request) {
-        return listReadingsDefinitions(request, null);
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsListReadingsDefinitionsResponseBody> listReadingsDefinitions(
-            ListReadingsDefinitionsRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("readings/definitions");
-        if (request.getAfter().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "after", request.getAfter().get(), false);
-        }
-        if (request.getIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), false);
-        }
-        if (request.getEntityTypes().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "entityTypes", request.getEntityTypes().get(), false);
-        }
-        if (requestOptions != null) {
-            requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                httpUrl.addQueryParameter(_key, _value);
-            });
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            if (response.isSuccessful()) {
-                return new SamsaraApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(
-                                responseBodyString, ReadingsListReadingsDefinitionsResponseBody.class),
-                        response);
-            }
-            try {
-                switch (response.code()) {
-                    case 401:
-                        throw new UnauthorizedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 404:
-                        throw new NotFoundError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 429:
-                        throw new TooManyRequestsError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 500:
-                        throw new InternalServerError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 501:
-                        throw new NotImplementedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 502:
-                        throw new BadGatewayError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 503:
-                        throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 504:
-                        throw new GatewayTimeoutError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                }
-            } catch (JsonProcessingException ignored) {
-                // unable to map error response, throwing generic error
-            }
-            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-            throw new SamsaraApiApiException(
-                    "Error with status code " + response.code(), response.code(), errorBody, response);
-        } catch (IOException e) {
-            throw new SamsaraApiException("Network error executing HTTP request", e);
-        }
-    }
-
-    /**
-     * Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime &lt;= happenedAtTime &lt; endTime. If endTime is not set, the time of the request is used as the endTime.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsGetReadingsHistoryResponseBody> getReadingsHistory(
-            GetReadingsHistoryRequest request) {
-        return getReadingsHistory(request, null);
-    }
-
-    /**
-     * Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime &lt;= happenedAtTime &lt; endTime. If endTime is not set, the time of the request is used as the endTime.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsGetReadingsHistoryResponseBody> getReadingsHistory(
-            GetReadingsHistoryRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("readings/history");
-        if (request.getAfter().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "after", request.getAfter().get(), false);
-        }
-        QueryStringMapper.addQueryParameter(httpUrl, "readingId", request.getReadingId(), false);
-        if (request.getEntityIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "entityIds", request.getEntityIds().get(), false);
-        }
-        QueryStringMapper.addQueryParameter(httpUrl, "entityType", request.getEntityType(), false);
-        if (request.getExternalIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "externalIds", request.getExternalIds().get(), false);
-        }
-        if (request.getStartTime().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "startTime", request.getStartTime().get(), false);
-        }
-        if (request.getEndTime().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "endTime", request.getEndTime().get(), false);
-        }
-        if (request.getFeed().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "feed", request.getFeed().get(), false);
-        }
-        if (request.getIncludeExternalIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "includeExternalIds",
-                    request.getIncludeExternalIds().get(),
-                    false);
-        }
-        if (requestOptions != null) {
-            requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                httpUrl.addQueryParameter(_key, _value);
-            });
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            if (response.isSuccessful()) {
-                return new SamsaraApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(
-                                responseBodyString, ReadingsGetReadingsHistoryResponseBody.class),
-                        response);
-            }
-            try {
-                switch (response.code()) {
-                    case 401:
-                        throw new UnauthorizedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 404:
-                        throw new NotFoundError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 405:
-                        throw new MethodNotAllowedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 429:
-                        throw new TooManyRequestsError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 500:
-                        throw new InternalServerError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 501:
-                        throw new NotImplementedError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 502:
-                        throw new BadGatewayError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 503:
-                        throw new ServiceUnavailableError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                    case 504:
-                        throw new GatewayTimeoutError(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
-                }
-            } catch (JsonProcessingException ignored) {
-                // unable to map error response, throwing generic error
-            }
-            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-            throw new SamsaraApiApiException(
-                    "Error with status code " + response.code(), response.code(), errorBody, response);
-        } catch (IOException e) {
-            throw new SamsaraApiException("Network error executing HTTP request", e);
-        }
-    }
-
-    /**
-     * An endpoint to get the last value of a reading for a set of entities at the specified time.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsGetReadingsSnapshotResponseBody> getReadingsSnapshot(
-            GetReadingsSnapshotRequest request) {
-        return getReadingsSnapshot(request, null);
-    }
-
-    /**
-     * An endpoint to get the last value of a reading for a set of entities at the specified time.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public SamsaraApiHttpResponse<ReadingsGetReadingsSnapshotResponseBody> getReadingsSnapshot(
-            GetReadingsSnapshotRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("readings/latest");
-        if (request.getAfter().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "after", request.getAfter().get(), false);
-        }
-        QueryStringMapper.addQueryParameter(httpUrl, "readingIds", request.getReadingIds(), false);
-        if (request.getEntityIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "entityIds", request.getEntityIds().get(), false);
-        }
-        if (request.getExternalIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "externalIds", request.getExternalIds().get(), false);
-        }
-        if (request.getAsOfTime().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "asOfTime", request.getAsOfTime().get(), false);
-        }
-        QueryStringMapper.addQueryParameter(httpUrl, "entityType", request.getEntityType(), false);
-        if (request.getIncludeExternalIds().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "includeExternalIds",
-                    request.getIncludeExternalIds().get(),
-                    false);
-        }
-        if (requestOptions != null) {
-            requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                httpUrl.addQueryParameter(_key, _value);
-            });
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            if (response.isSuccessful()) {
-                return new SamsaraApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(
-                                responseBodyString, ReadingsGetReadingsSnapshotResponseBody.class),
-                        response);
-            }
             try {
                 switch (response.code()) {
                     case 401:

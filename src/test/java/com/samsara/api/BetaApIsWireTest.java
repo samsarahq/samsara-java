@@ -34,8 +34,6 @@ import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationTypesRequest;
-import com.samsara.api.resources.betaapis.requests.GetReadingsHistoryRequest;
-import com.samsara.api.resources.betaapis.requests.GetReadingsSnapshotRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportConfigsRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
@@ -50,7 +48,6 @@ import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAsse
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
-import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
@@ -127,9 +124,6 @@ import com.samsara.api.types.QualificationsPatchQualificationRecordResponseBody;
 import com.samsara.api.types.QualificationsPostQualificationRecordResponseBody;
 import com.samsara.api.types.ReadingDatapointRequestBody;
 import com.samsara.api.types.ReadingDatapointRequestBodyEntityType;
-import com.samsara.api.types.ReadingsGetReadingsHistoryResponseBody;
-import com.samsara.api.types.ReadingsGetReadingsSnapshotResponseBody;
-import com.samsara.api.types.ReadingsListReadingsDefinitionsResponseBody;
 import com.samsara.api.types.ReportsCreateReportRunResponseBody;
 import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
@@ -3494,219 +3488,6 @@ public class BetaApIsWireTest {
         }
         if (actualJson.isObject()) {
             Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testListReadingsDefinitions() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"category\":\"smartTrailer\",\"description\":\"Engine Speed\",\"entityType\":\"sensor\",\"enumValues\":[{\"label\":\"Critically High\",\"symbol\":\"criticallyHigh\"}],\"ingestionEnabled\":true,\"label\":\"engineRpm\",\"readingId\":\"12345\",\"type\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReadingsListReadingsDefinitionsResponseBody response = client.betaApIs()
-                .listReadingsDefinitions(
-                        ListReadingsDefinitionsRequest.builder().build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"category\": \"smartTrailer\",\n"
-                + "      \"description\": \"Engine Speed\",\n"
-                + "      \"entityType\": \"sensor\",\n"
-                + "      \"enumValues\": [\n"
-                + "        {\n"
-                + "          \"label\": \"Critically High\",\n"
-                + "          \"symbol\": \"criticallyHigh\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"ingestionEnabled\": true,\n"
-                + "      \"label\": \"engineRpm\",\n"
-                + "      \"readingId\": \"12345\",\n"
-                + "      \"type\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      }\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetReadingsHistory() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"value\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReadingsGetReadingsHistoryResponseBody response = client.betaApIs()
-                .getReadingsHistory(GetReadingsHistoryRequest.builder()
-                        .readingId("readingId")
-                        .entityType("entityType")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"entityId\": \"123456\",\n"
-                + "      \"externalIds\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      },\n"
-                + "      \"happenedAtTime\": \"2020-01-27T07:06:25Z\",\n"
-                + "      \"value\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      }\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetReadingsSnapshot() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"readingId\":\"engineSpeed\",\"value\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        ReadingsGetReadingsSnapshotResponseBody response = client.betaApIs()
-                .getReadingsSnapshot(GetReadingsSnapshotRequest.builder()
-                        .readingIds("readingIds")
-                        .entityType("entityType")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"entityId\": \"123456\",\n"
-                + "      \"externalIds\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      },\n"
-                + "      \"happenedAtTime\": \"2020-01-27T07:06:25Z\",\n"
-                + "      \"readingId\": \"engineSpeed\",\n"
-                + "      \"value\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      }\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
         }
     }
 

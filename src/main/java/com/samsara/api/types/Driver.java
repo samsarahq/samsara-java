@@ -81,6 +81,8 @@ public final class Driver {
 
     private final Optional<String> timezone;
 
+    private final Optional<DriverTrailerGroupTag> trailerGroupTag;
+
     private final Optional<String> updatedAtTime;
 
     private final Optional<UsDriverRulesetOverride> usDriverRulesetOverride;
@@ -124,6 +126,7 @@ public final class Driver {
             Optional<String> tachographCardNumber,
             Optional<List<TagTinyResponse>> tags,
             Optional<String> timezone,
+            Optional<DriverTrailerGroupTag> trailerGroupTag,
             Optional<String> updatedAtTime,
             Optional<UsDriverRulesetOverride> usDriverRulesetOverride,
             Optional<String> username,
@@ -160,6 +163,7 @@ public final class Driver {
         this.tachographCardNumber = tachographCardNumber;
         this.tags = tags;
         this.timezone = timezone;
+        this.trailerGroupTag = trailerGroupTag;
         this.updatedAtTime = updatedAtTime;
         this.usDriverRulesetOverride = usDriverRulesetOverride;
         this.username = username;
@@ -321,6 +325,11 @@ public final class Driver {
         return timezone;
     }
 
+    @JsonProperty("trailerGroupTag")
+    public Optional<DriverTrailerGroupTag> getTrailerGroupTag() {
+        return trailerGroupTag;
+    }
+
     @JsonProperty("updatedAtTime")
     public Optional<String> getUpdatedAtTime() {
         return updatedAtTime;
@@ -388,6 +397,7 @@ public final class Driver {
                 && tachographCardNumber.equals(other.tachographCardNumber)
                 && tags.equals(other.tags)
                 && timezone.equals(other.timezone)
+                && trailerGroupTag.equals(other.trailerGroupTag)
                 && updatedAtTime.equals(other.updatedAtTime)
                 && usDriverRulesetOverride.equals(other.usDriverRulesetOverride)
                 && username.equals(other.username)
@@ -428,6 +438,7 @@ public final class Driver {
                 this.tachographCardNumber,
                 this.tags,
                 this.timezone,
+                this.trailerGroupTag,
                 this.updatedAtTime,
                 this.usDriverRulesetOverride,
                 this.username,
@@ -506,6 +517,8 @@ public final class Driver {
 
         private Optional<String> timezone = Optional.empty();
 
+        private Optional<DriverTrailerGroupTag> trailerGroupTag = Optional.empty();
+
         private Optional<String> updatedAtTime = Optional.empty();
 
         private Optional<UsDriverRulesetOverride> usDriverRulesetOverride = Optional.empty();
@@ -552,6 +565,7 @@ public final class Driver {
             tachographCardNumber(other.getTachographCardNumber());
             tags(other.getTags());
             timezone(other.getTimezone());
+            trailerGroupTag(other.getTrailerGroupTag());
             updatedAtTime(other.getUpdatedAtTime());
             usDriverRulesetOverride(other.getUsDriverRulesetOverride());
             username(other.getUsername());
@@ -893,6 +907,17 @@ public final class Driver {
             return this;
         }
 
+        @JsonSetter(value = "trailerGroupTag", nulls = Nulls.SKIP)
+        public Builder trailerGroupTag(Optional<DriverTrailerGroupTag> trailerGroupTag) {
+            this.trailerGroupTag = trailerGroupTag;
+            return this;
+        }
+
+        public Builder trailerGroupTag(DriverTrailerGroupTag trailerGroupTag) {
+            this.trailerGroupTag = Optional.ofNullable(trailerGroupTag);
+            return this;
+        }
+
         @JsonSetter(value = "updatedAtTime", nulls = Nulls.SKIP)
         public Builder updatedAtTime(Optional<String> updatedAtTime) {
             this.updatedAtTime = updatedAtTime;
@@ -980,6 +1005,7 @@ public final class Driver {
                     tachographCardNumber,
                     tags,
                     timezone,
+                    trailerGroupTag,
                     updatedAtTime,
                     usDriverRulesetOverride,
                     username,
