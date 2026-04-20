@@ -36,8 +36,6 @@ import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationTypesRequest;
-import com.samsara.api.resources.betaapis.requests.GetReadingsHistoryRequest;
-import com.samsara.api.resources.betaapis.requests.GetReadingsSnapshotRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportConfigsRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
@@ -52,7 +50,6 @@ import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAsse
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
-import com.samsara.api.resources.betaapis.requests.ListReadingsDefinitionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
@@ -110,9 +107,6 @@ import com.samsara.api.types.QualificationsGetQualificationRecordsStreamResponse
 import com.samsara.api.types.QualificationsGetQualificationTypesResponseBody;
 import com.samsara.api.types.QualificationsPatchQualificationRecordResponseBody;
 import com.samsara.api.types.QualificationsPostQualificationRecordResponseBody;
-import com.samsara.api.types.ReadingsGetReadingsHistoryResponseBody;
-import com.samsara.api.types.ReadingsGetReadingsSnapshotResponseBody;
-import com.samsara.api.types.ReadingsListReadingsDefinitionsResponseBody;
 import com.samsara.api.types.ReportsCreateReportRunResponseBody;
 import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
@@ -1450,7 +1444,7 @@ public class BetaApIsClient {
      * <p>Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.</p>
      * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Readings category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public void postReadings(ReadingsPostReadingsRequestBody request) {
@@ -1462,102 +1456,11 @@ public class BetaApIsClient {
      * <p>Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.</p>
      * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>To use this endpoint, select <strong>Write Readings</strong> under the Readings category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      */
     public void postReadings(ReadingsPostReadingsRequestBody request, RequestOptions requestOptions) {
         this.rawClient.postReadings(request, requestOptions).body();
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsListReadingsDefinitionsResponseBody listReadingsDefinitions() {
-        return this.rawClient.listReadingsDefinitions().body();
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsListReadingsDefinitionsResponseBody listReadingsDefinitions(RequestOptions requestOptions) {
-        return this.rawClient.listReadingsDefinitions(requestOptions).body();
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsListReadingsDefinitionsResponseBody listReadingsDefinitions(ListReadingsDefinitionsRequest request) {
-        return this.rawClient.listReadingsDefinitions(request).body();
-    }
-
-    /**
-     * An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsListReadingsDefinitionsResponseBody listReadingsDefinitions(
-            ListReadingsDefinitionsRequest request, RequestOptions requestOptions) {
-        return this.rawClient.listReadingsDefinitions(request, requestOptions).body();
-    }
-
-    /**
-     * Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime &lt;= happenedAtTime &lt; endTime. If endTime is not set, the time of the request is used as the endTime.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsGetReadingsHistoryResponseBody getReadingsHistory(GetReadingsHistoryRequest request) {
-        return this.rawClient.getReadingsHistory(request).body();
-    }
-
-    /**
-     * Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime &lt;= happenedAtTime &lt; endTime. If endTime is not set, the time of the request is used as the endTime.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsGetReadingsHistoryResponseBody getReadingsHistory(
-            GetReadingsHistoryRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getReadingsHistory(request, requestOptions).body();
-    }
-
-    /**
-     * An endpoint to get the last value of a reading for a set of entities at the specified time.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsGetReadingsSnapshotResponseBody getReadingsSnapshot(GetReadingsSnapshotRequest request) {
-        return this.rawClient.getReadingsSnapshot(request).body();
-    }
-
-    /**
-     * An endpoint to get the last value of a reading for a set of entities at the specified time.
-     * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Readings</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public ReadingsGetReadingsSnapshotResponseBody getReadingsSnapshot(
-            GetReadingsSnapshotRequest request, RequestOptions requestOptions) {
-        return this.rawClient.getReadingsSnapshot(request, requestOptions).body();
     }
 
     /**

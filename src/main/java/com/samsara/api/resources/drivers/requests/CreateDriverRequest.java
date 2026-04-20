@@ -83,6 +83,8 @@ public final class CreateDriverRequest {
 
     private final Optional<String> timezone;
 
+    private final Optional<String> trailerGroupTagId;
+
     private final Optional<UsDriverRulesetOverride> usDriverRulesetOverride;
 
     private final String username;
@@ -122,6 +124,7 @@ public final class CreateDriverRequest {
             Optional<String> tachographCardNumber,
             Optional<List<String>> tagIds,
             Optional<String> timezone,
+            Optional<String> trailerGroupTagId,
             Optional<UsDriverRulesetOverride> usDriverRulesetOverride,
             String username,
             Optional<String> vehicleGroupTagId,
@@ -155,6 +158,7 @@ public final class CreateDriverRequest {
         this.tachographCardNumber = tachographCardNumber;
         this.tagIds = tagIds;
         this.timezone = timezone;
+        this.trailerGroupTagId = trailerGroupTagId;
         this.usDriverRulesetOverride = usDriverRulesetOverride;
         this.username = username;
         this.vehicleGroupTagId = vehicleGroupTagId;
@@ -365,6 +369,14 @@ public final class CreateDriverRequest {
         return timezone;
     }
 
+    /**
+     * @return Tag ID which determines which trailers a driver will see when selecting trailers.
+     */
+    @JsonProperty("trailerGroupTagId")
+    public Optional<String> getTrailerGroupTagId() {
+        return trailerGroupTagId;
+    }
+
     @JsonProperty("usDriverRulesetOverride")
     public Optional<UsDriverRulesetOverride> getUsDriverRulesetOverride() {
         return usDriverRulesetOverride;
@@ -434,6 +446,7 @@ public final class CreateDriverRequest {
                 && tachographCardNumber.equals(other.tachographCardNumber)
                 && tagIds.equals(other.tagIds)
                 && timezone.equals(other.timezone)
+                && trailerGroupTagId.equals(other.trailerGroupTagId)
                 && usDriverRulesetOverride.equals(other.usDriverRulesetOverride)
                 && username.equals(other.username)
                 && vehicleGroupTagId.equals(other.vehicleGroupTagId)
@@ -471,6 +484,7 @@ public final class CreateDriverRequest {
                 this.tachographCardNumber,
                 this.tagIds,
                 this.timezone,
+                this.trailerGroupTagId,
                 this.usDriverRulesetOverride,
                 this.username,
                 this.vehicleGroupTagId,
@@ -673,6 +687,13 @@ public final class CreateDriverRequest {
 
         _FinalStage timezone(String timezone);
 
+        /**
+         * <p>Tag ID which determines which trailers a driver will see when selecting trailers.</p>
+         */
+        _FinalStage trailerGroupTagId(Optional<String> trailerGroupTagId);
+
+        _FinalStage trailerGroupTagId(String trailerGroupTagId);
+
         _FinalStage usDriverRulesetOverride(Optional<UsDriverRulesetOverride> usDriverRulesetOverride);
 
         _FinalStage usDriverRulesetOverride(UsDriverRulesetOverride usDriverRulesetOverride);
@@ -705,6 +726,8 @@ public final class CreateDriverRequest {
         private Optional<String> vehicleGroupTagId = Optional.empty();
 
         private Optional<UsDriverRulesetOverride> usDriverRulesetOverride = Optional.empty();
+
+        private Optional<String> trailerGroupTagId = Optional.empty();
 
         private Optional<String> timezone = Optional.empty();
 
@@ -793,6 +816,7 @@ public final class CreateDriverRequest {
             tachographCardNumber(other.getTachographCardNumber());
             tagIds(other.getTagIds());
             timezone(other.getTimezone());
+            trailerGroupTagId(other.getTrailerGroupTagId());
             usDriverRulesetOverride(other.getUsDriverRulesetOverride());
             username(other.getUsername());
             vehicleGroupTagId(other.getVehicleGroupTagId());
@@ -886,6 +910,26 @@ public final class CreateDriverRequest {
         @JsonSetter(value = "usDriverRulesetOverride", nulls = Nulls.SKIP)
         public _FinalStage usDriverRulesetOverride(Optional<UsDriverRulesetOverride> usDriverRulesetOverride) {
             this.usDriverRulesetOverride = usDriverRulesetOverride;
+            return this;
+        }
+
+        /**
+         * <p>Tag ID which determines which trailers a driver will see when selecting trailers.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage trailerGroupTagId(String trailerGroupTagId) {
+            this.trailerGroupTagId = Optional.ofNullable(trailerGroupTagId);
+            return this;
+        }
+
+        /**
+         * <p>Tag ID which determines which trailers a driver will see when selecting trailers.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "trailerGroupTagId", nulls = Nulls.SKIP)
+        public _FinalStage trailerGroupTagId(Optional<String> trailerGroupTagId) {
+            this.trailerGroupTagId = trailerGroupTagId;
             return this;
         }
 
@@ -1391,6 +1435,7 @@ public final class CreateDriverRequest {
                     tachographCardNumber,
                     tagIds,
                     timezone,
+                    trailerGroupTagId,
                     usDriverRulesetOverride,
                     username,
                     vehicleGroupTagId,

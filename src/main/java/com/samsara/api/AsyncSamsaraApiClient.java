@@ -41,6 +41,7 @@ import com.samsara.api.resources.messages.AsyncMessagesClient;
 import com.samsara.api.resources.organizationinfo.AsyncOrganizationInfoClient;
 import com.samsara.api.resources.plans.AsyncPlansClient;
 import com.samsara.api.resources.previewapis.AsyncPreviewApIsClient;
+import com.samsara.api.resources.readings.AsyncReadingsClient;
 import com.samsara.api.resources.routeevents.AsyncRouteEventsClient;
 import com.samsara.api.resources.routes.AsyncRoutesClient;
 import com.samsara.api.resources.safety.AsyncSafetyClient;
@@ -148,6 +149,8 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncPreviewApIsClient> previewApIsClient;
 
+    protected final Supplier<AsyncReadingsClient> readingsClient;
+
     protected final Supplier<AsyncRouteEventsClient> routeEventsClient;
 
     protected final Supplier<AsyncSafetyClient> safetyClient;
@@ -224,6 +227,7 @@ public class AsyncSamsaraApiClient {
         this.workOrdersClient = Suppliers.memoize(() -> new AsyncWorkOrdersClient(clientOptions));
         this.organizationInfoClient = Suppliers.memoize(() -> new AsyncOrganizationInfoClient(clientOptions));
         this.previewApIsClient = Suppliers.memoize(() -> new AsyncPreviewApIsClient(clientOptions));
+        this.readingsClient = Suppliers.memoize(() -> new AsyncReadingsClient(clientOptions));
         this.routeEventsClient = Suppliers.memoize(() -> new AsyncRouteEventsClient(clientOptions));
         this.safetyClient = Suppliers.memoize(() -> new AsyncSafetyClient(clientOptions));
         this.safetyScoresClient = Suppliers.memoize(() -> new AsyncSafetyScoresClient(clientOptions));
@@ -403,6 +407,10 @@ public class AsyncSamsaraApiClient {
 
     public AsyncPreviewApIsClient previewApIs() {
         return this.previewApIsClient.get();
+    }
+
+    public AsyncReadingsClient readings() {
+        return this.readingsClient.get();
     }
 
     public AsyncRouteEventsClient routeEvents() {

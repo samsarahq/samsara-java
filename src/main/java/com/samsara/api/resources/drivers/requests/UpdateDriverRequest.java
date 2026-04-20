@@ -87,6 +87,8 @@ public final class UpdateDriverRequest {
 
     private final Optional<String> timezone;
 
+    private final Optional<String> trailerGroupTagId;
+
     private final Optional<UsDriverRulesetOverride> usDriverRulesetOverride;
 
     private final Optional<String> username;
@@ -128,6 +130,7 @@ public final class UpdateDriverRequest {
             Optional<String> tachographCardNumber,
             Optional<List<String>> tagIds,
             Optional<String> timezone,
+            Optional<String> trailerGroupTagId,
             Optional<UsDriverRulesetOverride> usDriverRulesetOverride,
             Optional<String> username,
             Optional<String> vehicleGroupTagId,
@@ -163,6 +166,7 @@ public final class UpdateDriverRequest {
         this.tachographCardNumber = tachographCardNumber;
         this.tagIds = tagIds;
         this.timezone = timezone;
+        this.trailerGroupTagId = trailerGroupTagId;
         this.usDriverRulesetOverride = usDriverRulesetOverride;
         this.username = username;
         this.vehicleGroupTagId = vehicleGroupTagId;
@@ -389,6 +393,14 @@ public final class UpdateDriverRequest {
         return timezone;
     }
 
+    /**
+     * @return Tag ID which determines which trailers a driver will see when selecting trailers.
+     */
+    @JsonProperty("trailerGroupTagId")
+    public Optional<String> getTrailerGroupTagId() {
+        return trailerGroupTagId;
+    }
+
     @JsonProperty("usDriverRulesetOverride")
     public Optional<UsDriverRulesetOverride> getUsDriverRulesetOverride() {
         return usDriverRulesetOverride;
@@ -460,6 +472,7 @@ public final class UpdateDriverRequest {
                 && tachographCardNumber.equals(other.tachographCardNumber)
                 && tagIds.equals(other.tagIds)
                 && timezone.equals(other.timezone)
+                && trailerGroupTagId.equals(other.trailerGroupTagId)
                 && usDriverRulesetOverride.equals(other.usDriverRulesetOverride)
                 && username.equals(other.username)
                 && vehicleGroupTagId.equals(other.vehicleGroupTagId)
@@ -499,6 +512,7 @@ public final class UpdateDriverRequest {
                 this.tachographCardNumber,
                 this.tagIds,
                 this.timezone,
+                this.trailerGroupTagId,
                 this.usDriverRulesetOverride,
                 this.username,
                 this.vehicleGroupTagId,
@@ -576,6 +590,8 @@ public final class UpdateDriverRequest {
 
         private Optional<String> timezone = Optional.empty();
 
+        private Optional<String> trailerGroupTagId = Optional.empty();
+
         private Optional<UsDriverRulesetOverride> usDriverRulesetOverride = Optional.empty();
 
         private Optional<String> username = Optional.empty();
@@ -620,6 +636,7 @@ public final class UpdateDriverRequest {
             tachographCardNumber(other.getTachographCardNumber());
             tagIds(other.getTagIds());
             timezone(other.getTimezone());
+            trailerGroupTagId(other.getTrailerGroupTagId());
             usDriverRulesetOverride(other.getUsDriverRulesetOverride());
             username(other.getUsername());
             vehicleGroupTagId(other.getVehicleGroupTagId());
@@ -1027,6 +1044,20 @@ public final class UpdateDriverRequest {
             return this;
         }
 
+        /**
+         * <p>Tag ID which determines which trailers a driver will see when selecting trailers.</p>
+         */
+        @JsonSetter(value = "trailerGroupTagId", nulls = Nulls.SKIP)
+        public Builder trailerGroupTagId(Optional<String> trailerGroupTagId) {
+            this.trailerGroupTagId = trailerGroupTagId;
+            return this;
+        }
+
+        public Builder trailerGroupTagId(String trailerGroupTagId) {
+            this.trailerGroupTagId = Optional.ofNullable(trailerGroupTagId);
+            return this;
+        }
+
         @JsonSetter(value = "usDriverRulesetOverride", nulls = Nulls.SKIP)
         public Builder usDriverRulesetOverride(Optional<UsDriverRulesetOverride> usDriverRulesetOverride) {
             this.usDriverRulesetOverride = usDriverRulesetOverride;
@@ -1112,6 +1143,7 @@ public final class UpdateDriverRequest {
                     tachographCardNumber,
                     tagIds,
                     timezone,
+                    trailerGroupTagId,
                     usDriverRulesetOverride,
                     username,
                     vehicleGroupTagId,
