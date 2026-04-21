@@ -32,6 +32,8 @@ public final class RouteObjectResponseBody {
 
     private final int distanceMeters;
 
+    private final Optional<RouteDriverObjectResponseBody> driver;
+
     private final int durationSeconds;
 
     private final String hubId;
@@ -60,6 +62,8 @@ public final class RouteObjectResponseBody {
 
     private final OffsetDateTime updatedAt;
 
+    private final Optional<RouteVehicleObjectResponseBody> vehicle;
+
     private final Map<String, Object> additionalProperties;
 
     private RouteObjectResponseBody(
@@ -67,6 +71,7 @@ public final class RouteObjectResponseBody {
             OffsetDateTime createdAt,
             Optional<String> dispatchRouteId,
             int distanceMeters,
+            Optional<RouteDriverObjectResponseBody> driver,
             int durationSeconds,
             String hubId,
             String id,
@@ -81,11 +86,13 @@ public final class RouteObjectResponseBody {
             List<RouteStopObjectResponseBody> stops,
             String type,
             OffsetDateTime updatedAt,
+            Optional<RouteVehicleObjectResponseBody> vehicle,
             Map<String, Object> additionalProperties) {
         this.cost = cost;
         this.createdAt = createdAt;
         this.dispatchRouteId = dispatchRouteId;
         this.distanceMeters = distanceMeters;
+        this.driver = driver;
         this.durationSeconds = durationSeconds;
         this.hubId = hubId;
         this.id = id;
@@ -100,6 +107,7 @@ public final class RouteObjectResponseBody {
         this.stops = stops;
         this.type = type;
         this.updatedAt = updatedAt;
+        this.vehicle = vehicle;
         this.additionalProperties = additionalProperties;
     }
 
@@ -133,6 +141,11 @@ public final class RouteObjectResponseBody {
     @JsonProperty("distanceMeters")
     public int getDistanceMeters() {
         return distanceMeters;
+    }
+
+    @JsonProperty("driver")
+    public Optional<RouteDriverObjectResponseBody> getDriver() {
+        return driver;
     }
 
     /**
@@ -247,6 +260,11 @@ public final class RouteObjectResponseBody {
         return updatedAt;
     }
 
+    @JsonProperty("vehicle")
+    public Optional<RouteVehicleObjectResponseBody> getVehicle() {
+        return vehicle;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -263,6 +281,7 @@ public final class RouteObjectResponseBody {
                 && createdAt.equals(other.createdAt)
                 && dispatchRouteId.equals(other.dispatchRouteId)
                 && distanceMeters == other.distanceMeters
+                && driver.equals(other.driver)
                 && durationSeconds == other.durationSeconds
                 && hubId.equals(other.hubId)
                 && id.equals(other.id)
@@ -276,7 +295,8 @@ public final class RouteObjectResponseBody {
                 && scheduledRouteStartTime.equals(other.scheduledRouteStartTime)
                 && stops.equals(other.stops)
                 && type.equals(other.type)
-                && updatedAt.equals(other.updatedAt);
+                && updatedAt.equals(other.updatedAt)
+                && vehicle.equals(other.vehicle);
     }
 
     @java.lang.Override
@@ -286,6 +306,7 @@ public final class RouteObjectResponseBody {
                 this.createdAt,
                 this.dispatchRouteId,
                 this.distanceMeters,
+                this.driver,
                 this.durationSeconds,
                 this.hubId,
                 this.id,
@@ -299,7 +320,8 @@ public final class RouteObjectResponseBody {
                 this.scheduledRouteStartTime,
                 this.stops,
                 this.type,
-                this.updatedAt);
+                this.updatedAt,
+                this.vehicle);
     }
 
     @java.lang.Override
@@ -428,6 +450,10 @@ public final class RouteObjectResponseBody {
 
         _FinalStage dispatchRouteId(String dispatchRouteId);
 
+        _FinalStage driver(Optional<RouteDriverObjectResponseBody> driver);
+
+        _FinalStage driver(RouteDriverObjectResponseBody driver);
+
         /**
          * <p>List of quantity information for the route</p>
          */
@@ -443,6 +469,10 @@ public final class RouteObjectResponseBody {
         _FinalStage addStops(RouteStopObjectResponseBody stops);
 
         _FinalStage addAllStops(List<RouteStopObjectResponseBody> stops);
+
+        _FinalStage vehicle(Optional<RouteVehicleObjectResponseBody> vehicle);
+
+        _FinalStage vehicle(RouteVehicleObjectResponseBody vehicle);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -493,9 +523,13 @@ public final class RouteObjectResponseBody {
 
         private OffsetDateTime updatedAt;
 
+        private Optional<RouteVehicleObjectResponseBody> vehicle = Optional.empty();
+
         private List<RouteStopObjectResponseBody> stops = new ArrayList<>();
 
         private Optional<List<QuantityObjectResponseBody>> quantities = Optional.empty();
+
+        private Optional<RouteDriverObjectResponseBody> driver = Optional.empty();
 
         private Optional<String> dispatchRouteId = Optional.empty();
 
@@ -510,6 +544,7 @@ public final class RouteObjectResponseBody {
             createdAt(other.getCreatedAt());
             dispatchRouteId(other.getDispatchRouteId());
             distanceMeters(other.getDistanceMeters());
+            driver(other.getDriver());
             durationSeconds(other.getDurationSeconds());
             hubId(other.getHubId());
             id(other.getId());
@@ -524,6 +559,7 @@ public final class RouteObjectResponseBody {
             stops(other.getStops());
             type(other.getType());
             updatedAt(other.getUpdatedAt());
+            vehicle(other.getVehicle());
             return this;
         }
 
@@ -710,6 +746,19 @@ public final class RouteObjectResponseBody {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage vehicle(RouteVehicleObjectResponseBody vehicle) {
+            this.vehicle = Optional.ofNullable(vehicle);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "vehicle", nulls = Nulls.SKIP)
+        public _FinalStage vehicle(Optional<RouteVehicleObjectResponseBody> vehicle) {
+            this.vehicle = vehicle;
+            return this;
+        }
+
         /**
          * <p>List of stops on the route</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -765,6 +814,19 @@ public final class RouteObjectResponseBody {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage driver(RouteDriverObjectResponseBody driver) {
+            this.driver = Optional.ofNullable(driver);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "driver", nulls = Nulls.SKIP)
+        public _FinalStage driver(Optional<RouteDriverObjectResponseBody> driver) {
+            this.driver = driver;
+            return this;
+        }
+
         /**
          * <p>The dispatch route identifier</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -792,6 +854,7 @@ public final class RouteObjectResponseBody {
                     createdAt,
                     dispatchRouteId,
                     distanceMeters,
+                    driver,
                     durationSeconds,
                     hubId,
                     id,
@@ -806,6 +869,7 @@ public final class RouteObjectResponseBody {
                     stops,
                     type,
                     updatedAt,
+                    vehicle,
                     additionalProperties);
         }
     }
