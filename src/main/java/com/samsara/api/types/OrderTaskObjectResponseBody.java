@@ -24,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 public final class OrderTaskObjectResponseBody {
     private final Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties;
 
+    private final Optional<String> customerLocationId;
+
     private final String id;
 
     private final Optional<List<QuantityObjectResponseBody>> quantities;
@@ -38,6 +40,7 @@ public final class OrderTaskObjectResponseBody {
 
     private OrderTaskObjectResponseBody(
             Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties,
+            Optional<String> customerLocationId,
             String id,
             Optional<List<QuantityObjectResponseBody>> quantities,
             Optional<List<OrderTaskSkillObjectResponseBody>> requiredSkills,
@@ -45,6 +48,7 @@ public final class OrderTaskObjectResponseBody {
             String type,
             Map<String, Object> additionalProperties) {
         this.customProperties = customProperties;
+        this.customerLocationId = customerLocationId;
         this.id = id;
         this.quantities = quantities;
         this.requiredSkills = requiredSkills;
@@ -59,6 +63,14 @@ public final class OrderTaskObjectResponseBody {
     @JsonProperty("customProperties")
     public Optional<List<OrderTaskCustomPropertyObjectResponseBody>> getCustomProperties() {
         return customProperties;
+    }
+
+    /**
+     * @return The external ID of the location associated with this order
+     */
+    @JsonProperty("customerLocationId")
+    public Optional<String> getCustomerLocationId() {
+        return customerLocationId;
     }
 
     /**
@@ -114,6 +126,7 @@ public final class OrderTaskObjectResponseBody {
 
     private boolean equalTo(OrderTaskObjectResponseBody other) {
         return customProperties.equals(other.customProperties)
+                && customerLocationId.equals(other.customerLocationId)
                 && id.equals(other.id)
                 && quantities.equals(other.quantities)
                 && requiredSkills.equals(other.requiredSkills)
@@ -124,7 +137,13 @@ public final class OrderTaskObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.customProperties, this.id, this.quantities, this.requiredSkills, this.serviceWindow, this.type);
+                this.customProperties,
+                this.customerLocationId,
+                this.id,
+                this.quantities,
+                this.requiredSkills,
+                this.serviceWindow,
+                this.type);
     }
 
     @java.lang.Override
@@ -163,6 +182,13 @@ public final class OrderTaskObjectResponseBody {
         _FinalStage customProperties(List<OrderTaskCustomPropertyObjectResponseBody> customProperties);
 
         /**
+         * <p>The external ID of the location associated with this order</p>
+         */
+        _FinalStage customerLocationId(Optional<String> customerLocationId);
+
+        _FinalStage customerLocationId(String customerLocationId);
+
+        /**
          * <p>List of quantity information for the order</p>
          */
         _FinalStage quantities(Optional<List<QuantityObjectResponseBody>> quantities);
@@ -196,6 +222,8 @@ public final class OrderTaskObjectResponseBody {
 
         private Optional<List<QuantityObjectResponseBody>> quantities = Optional.empty();
 
+        private Optional<String> customerLocationId = Optional.empty();
+
         private Optional<List<OrderTaskCustomPropertyObjectResponseBody>> customProperties = Optional.empty();
 
         @JsonAnySetter
@@ -206,6 +234,7 @@ public final class OrderTaskObjectResponseBody {
         @java.lang.Override
         public Builder from(OrderTaskObjectResponseBody other) {
             customProperties(other.getCustomProperties());
+            customerLocationId(other.getCustomerLocationId());
             id(other.getId());
             quantities(other.getQuantities());
             requiredSkills(other.getRequiredSkills());
@@ -299,6 +328,26 @@ public final class OrderTaskObjectResponseBody {
         }
 
         /**
+         * <p>The external ID of the location associated with this order</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage customerLocationId(String customerLocationId) {
+            this.customerLocationId = Optional.ofNullable(customerLocationId);
+            return this;
+        }
+
+        /**
+         * <p>The external ID of the location associated with this order</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "customerLocationId", nulls = Nulls.SKIP)
+        public _FinalStage customerLocationId(Optional<String> customerLocationId) {
+            this.customerLocationId = customerLocationId;
+            return this;
+        }
+
+        /**
          * <p>List of custom properties for the order</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -322,7 +371,14 @@ public final class OrderTaskObjectResponseBody {
         @java.lang.Override
         public OrderTaskObjectResponseBody build() {
             return new OrderTaskObjectResponseBody(
-                    customProperties, id, quantities, requiredSkills, serviceWindow, type, additionalProperties);
+                    customProperties,
+                    customerLocationId,
+                    id,
+                    quantities,
+                    requiredSkills,
+                    serviceWindow,
+                    type,
+                    additionalProperties);
         }
     }
 }
