@@ -49,6 +49,7 @@ import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
+import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
@@ -107,6 +108,7 @@ import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosEldEventsGetHosEldEventsResponseBody;
 import com.samsara.api.types.HubCustomPropertiesListHubCustomPropertiesResponseBody;
+import com.samsara.api.types.HubRouteTemplatesListHubRouteTemplatesResponseBody;
 import com.samsara.api.types.JobsCreateJobResponseBody;
 import com.samsara.api.types.JobsDeleteJobResponseBody;
 import com.samsara.api.types.JobsGetJobsResponseBody;
@@ -3174,6 +3176,101 @@ public class BetaApIsWireTest {
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testListHubRouteTemplates() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"createdAtTime\":\"2024-01-15T10:30:00Z\",\"defaultDepotEnd\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultDepotStart\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"distanceMeters\":15000,\"durationSeconds\":3600,\"earliestStartTime\":\"08:00\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"hubTimezone\":\"America/Los_Angeles\",\"id\":\"660e8400-e29b-41d4-a716-446655440001\",\"locations\":[{\"externalId\":\"LOC-123\",\"formattedAddress\":\"456 Main St, Los Angeles, CA 90210, US\",\"id\":\"850e8400-e29b-41d4-a716-446655440003\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"position\":1}],\"name\":\"Downtown Delivery Route\",\"updatedAtTime\":\"2024-01-15T12:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        HubRouteTemplatesListHubRouteTemplatesResponseBody response = client.betaApIs()
+                .listHubRouteTemplates(
+                        ListHubRouteTemplatesRequest.builder().hubId("hubId").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"createdAtTime\": \"2024-01-15T10:30:00Z\",\n"
+                + "      \"defaultDepotEnd\": {\n"
+                + "        \"externalId\": \"DEPOT-001\",\n"
+                + "        \"formattedAddress\": \"123 Industrial Blvd, Los Angeles, CA 90210, US\",\n"
+                + "        \"id\": \"750e8400-e29b-41d4-a716-446655440002\",\n"
+                + "        \"latitude\": 34.0522,\n"
+                + "        \"longitude\": -118.2437,\n"
+                + "        \"name\": \"Main Warehouse\"\n"
+                + "      },\n"
+                + "      \"defaultDepotStart\": {\n"
+                + "        \"externalId\": \"DEPOT-001\",\n"
+                + "        \"formattedAddress\": \"123 Industrial Blvd, Los Angeles, CA 90210, US\",\n"
+                + "        \"id\": \"750e8400-e29b-41d4-a716-446655440002\",\n"
+                + "        \"latitude\": 34.0522,\n"
+                + "        \"longitude\": -118.2437,\n"
+                + "        \"name\": \"Main Warehouse\"\n"
+                + "      },\n"
+                + "      \"distanceMeters\": 15000,\n"
+                + "      \"durationSeconds\": 3600,\n"
+                + "      \"earliestStartTime\": \"08:00\",\n"
+                + "      \"hubId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
+                + "      \"hubTimezone\": \"America/Los_Angeles\",\n"
+                + "      \"id\": \"660e8400-e29b-41d4-a716-446655440001\",\n"
+                + "      \"locations\": [\n"
+                + "        {\n"
+                + "          \"externalId\": \"LOC-123\",\n"
+                + "          \"formattedAddress\": \"456 Main St, Los Angeles, CA 90210, US\",\n"
+                + "          \"id\": \"850e8400-e29b-41d4-a716-446655440003\",\n"
+                + "          \"latitude\": 34.0522,\n"
+                + "          \"longitude\": -118.2437,\n"
+                + "          \"name\": \"Customer ABC Warehouse\",\n"
+                + "          \"position\": 1\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"name\": \"Downtown Delivery Route\",\n"
+                + "      \"updatedAtTime\": \"2024-01-15T12:00:00Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
     }
 
     @Test
