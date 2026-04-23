@@ -7,8 +7,10 @@ import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.plans.requests.HubPlansCreateHubPlanRequestBody;
 import com.samsara.api.resources.plans.requests.ListHubPlansRequest;
+import com.samsara.api.resources.plans.requests.PlanOrdersCreatePlanOrdersRequestBody;
 import com.samsara.api.types.HubPlansCreateHubPlanResponseBody;
 import com.samsara.api.types.HubPlansListHubPlansResponseBody;
+import com.samsara.api.types.PlanOrdersCreatePlanOrdersResponseBody;
 
 public class PlansClient {
     protected final ClientOptions clientOptions;
@@ -46,6 +48,27 @@ public class PlansClient {
     public HubPlansCreateHubPlanResponseBody createHubPlan(
             HubPlansCreateHubPlanRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.createHubPlan(request, requestOptions).body();
+    }
+
+    /**
+     * Create one or more orders (bulk upsert). Pass an array of order objects; any object whose customerOrderId already exists will be updated, otherwise a new order is created. Functions can return JSON arrays in this Order POST format. Orders are initially created at the plan level but will migrate to hub-level entities, with planId becoming optional in future versions.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PlanOrdersCreatePlanOrdersResponseBody createPlanOrders(PlanOrdersCreatePlanOrdersRequestBody request) {
+        return this.rawClient.createPlanOrders(request).body();
+    }
+
+    /**
+     * Create one or more orders (bulk upsert). Pass an array of order objects; any object whose customerOrderId already exists will be updated, otherwise a new order is created. Functions can return JSON arrays in this Order POST format. Orders are initially created at the plan level but will migrate to hub-level entities, with planId becoming optional in future versions.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PlanOrdersCreatePlanOrdersResponseBody createPlanOrders(
+            PlanOrdersCreatePlanOrdersRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createPlanOrders(request, requestOptions).body();
     }
 
     /**
