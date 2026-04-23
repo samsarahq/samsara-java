@@ -6,10 +6,12 @@ import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.hubs.requests.HubLocationsCreateHubLocationsRequestBody;
 import com.samsara.api.resources.hubs.requests.HubLocationsUpdateHubLocationRequestBody;
 import com.samsara.api.resources.hubs.requests.ListHubCapacitiesRequest;
+import com.samsara.api.resources.hubs.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.hubs.requests.ListHubLocationsRequest;
 import com.samsara.api.resources.hubs.requests.ListHubSkillsRequest;
 import com.samsara.api.resources.hubs.requests.ListHubsRequest;
 import com.samsara.api.types.HubCapacitiesListHubCapacitiesResponseBody;
+import com.samsara.api.types.HubCustomPropertiesListHubCustomPropertiesResponseBody;
 import com.samsara.api.types.HubLocationInputObjectRequestBody;
 import com.samsara.api.types.HubLocationServiceWindowInputRequestBody;
 import com.samsara.api.types.HubLocationsCreateHubLocationsResponseBody;
@@ -74,6 +76,71 @@ public class HubsWireTest {
                 + "      \"id\": \"850e8400-e29b-41d4-a716-446655440003\",\n"
                 + "      \"name\": \"Weight\",\n"
                 + "      \"unit\": \"kg\",\n"
+                + "      \"updatedAt\": \"2024-01-15T10:30:00Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"YXJyYXljb25uZWN0aW9uOjEwMA==\",\n"
+                + "    \"hasNextPage\": false\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListHubCustomProperties() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"createdAt\":\"2024-01-15T10:30:00Z\",\"csvColumns\":\"customer_type,customerType\",\"hubId\":\"650e8400-e29b-41d4-a716-446655440001\",\"id\":\"750e8400-e29b-41d4-a716-446655440004\",\"name\":\"CustomerType\",\"updatedAt\":\"2024-01-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"YXJyYXljb25uZWN0aW9uOjEwMA==\",\"hasNextPage\":false}}"));
+        HubCustomPropertiesListHubCustomPropertiesResponseBody response = client.hubs()
+                .listHubCustomProperties(
+                        ListHubCustomPropertiesRequest.builder().hubId("hubId").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"createdAt\": \"2024-01-15T10:30:00Z\",\n"
+                + "      \"csvColumns\": \"customer_type,customerType\",\n"
+                + "      \"hubId\": \"650e8400-e29b-41d4-a716-446655440001\",\n"
+                + "      \"id\": \"750e8400-e29b-41d4-a716-446655440004\",\n"
+                + "      \"name\": \"CustomerType\",\n"
                 + "      \"updatedAt\": \"2024-01-15T10:30:00Z\"\n"
                 + "    }\n"
                 + "  ],\n"

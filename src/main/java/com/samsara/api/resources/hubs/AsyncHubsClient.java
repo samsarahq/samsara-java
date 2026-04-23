@@ -8,10 +8,12 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.hubs.requests.HubLocationsCreateHubLocationsRequestBody;
 import com.samsara.api.resources.hubs.requests.HubLocationsUpdateHubLocationRequestBody;
 import com.samsara.api.resources.hubs.requests.ListHubCapacitiesRequest;
+import com.samsara.api.resources.hubs.requests.ListHubCustomPropertiesRequest;
 import com.samsara.api.resources.hubs.requests.ListHubLocationsRequest;
 import com.samsara.api.resources.hubs.requests.ListHubSkillsRequest;
 import com.samsara.api.resources.hubs.requests.ListHubsRequest;
 import com.samsara.api.types.HubCapacitiesListHubCapacitiesResponseBody;
+import com.samsara.api.types.HubCustomPropertiesListHubCustomPropertiesResponseBody;
 import com.samsara.api.types.HubLocationsCreateHubLocationsResponseBody;
 import com.samsara.api.types.HubLocationsListHubLocationsResponseBody;
 import com.samsara.api.types.HubLocationsUpdateHubLocationResponseBody;
@@ -56,6 +58,28 @@ public class AsyncHubsClient {
     public CompletableFuture<HubCapacitiesListHubCapacitiesResponseBody> listHubCapacities(
             ListHubCapacitiesRequest request, RequestOptions requestOptions) {
         return this.rawClient.listHubCapacities(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Retrieve custom properties for a specific hub.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<HubCustomPropertiesListHubCustomPropertiesResponseBody> listHubCustomProperties(
+            ListHubCustomPropertiesRequest request) {
+        return this.rawClient.listHubCustomProperties(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Retrieve custom properties for a specific hub.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<HubCustomPropertiesListHubCustomPropertiesResponseBody> listHubCustomProperties(
+            ListHubCustomPropertiesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listHubCustomProperties(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
