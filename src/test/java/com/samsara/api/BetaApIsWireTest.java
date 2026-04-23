@@ -3,6 +3,8 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.betaapis.requests.AssetAssignmentsCreateAssetAssignmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.AssetAssignmentsUnassignAssetAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
@@ -43,6 +45,7 @@ import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
+import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
@@ -68,6 +71,7 @@ import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRide
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRidershipPassengerRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody;
+import com.samsara.api.resources.betaapis.types.AssetAssignmentsCreateAssetAssignmentRequestBodyAssigneeType;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyMissingReason;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyStatus;
@@ -76,6 +80,8 @@ import com.samsara.api.resources.betaapis.types.GetAssetsInputsRequestType;
 import com.samsara.api.resources.betaapis.types.GetQualificationRecordsStreamRequestEntityType;
 import com.samsara.api.resources.betaapis.types.GetQualificationTypesRequestEntityType;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
+import com.samsara.api.types.AssetAssignmentsCreateAssetAssignmentResponseBody;
+import com.samsara.api.types.AssetAssignmentsListAssetAssignmentsResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.AssociationsListAssociationsResponseBody;
 import com.samsara.api.types.CreateFunctionRequestConfigRequestBody;
@@ -1245,6 +1251,219 @@ public class BetaApIsWireTest {
         }
         if (actualResponseNode.isObject()) {
             Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListAssetAssignments() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"asset\":{\"id\":\"12345\"},\"assignee\":{\"assigneeType\":\"unknown\",\"id\":\"494123\"},\"endTime\":\"2024-09-01T13:00:00Z\",\"startTime\":\"2024-09-01T12:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        AssetAssignmentsListAssetAssignmentsResponseBody response = client.betaApIs()
+                .listAssetAssignments(ListAssetAssignmentsRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"asset\": {\n"
+                + "        \"id\": \"12345\"\n"
+                + "      },\n"
+                + "      \"assignee\": {\n"
+                + "        \"assigneeType\": \"unknown\",\n"
+                + "        \"id\": \"494123\"\n"
+                + "      },\n"
+                + "      \"endTime\": \"2024-09-01T13:00:00Z\",\n"
+                + "      \"startTime\": \"2024-09-01T12:00:00Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCreateAssetAssignment() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"asset\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\"},\"assignee\":{\"assigneeType\":\"unknown\",\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\"},\"endTime\":\"2024-09-01T13:00:00Z\",\"startTime\":\"2024-09-01T12:00:00Z\"}}"));
+        AssetAssignmentsCreateAssetAssignmentResponseBody response = client.betaApIs()
+                .createAssetAssignment(AssetAssignmentsCreateAssetAssignmentRequestBody.builder()
+                        .assetId("281474978683353")
+                        .assigneeId("494123")
+                        .assigneeType(AssetAssignmentsCreateAssetAssignmentRequestBodyAssigneeType.DRIVER)
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"assetId\": \"281474978683353\",\n"
+                + "  \"assigneeId\": \"494123\",\n"
+                + "  \"assigneeType\": \"driver\"\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"asset\": {\n"
+                + "      \"externalIds\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"id\": \"12345\"\n"
+                + "    },\n"
+                + "    \"assignee\": {\n"
+                + "      \"assigneeType\": \"unknown\",\n"
+                + "      \"externalIds\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"id\": \"494123\"\n"
+                + "    },\n"
+                + "    \"endTime\": \"2024-09-01T13:00:00Z\",\n"
+                + "    \"startTime\": \"2024-09-01T12:00:00Z\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testUnassignAssetAssignment() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.betaApIs()
+                .unassignAssetAssignment(AssetAssignmentsUnassignAssetAssignmentRequestBody.builder()
+                        .assetId("281474978683353")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{\n" + "  \"assetId\": \"281474978683353\"\n" + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
         }
     }
 

@@ -5,6 +5,8 @@ package com.samsara.api.resources.betaapis;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.betaapis.requests.AssetAssignmentsCreateAssetAssignmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.AssetAssignmentsUnassignAssetAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
@@ -45,6 +47,7 @@ import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
+import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubCustomPropertiesRequest;
@@ -71,6 +74,8 @@ import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRide
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
+import com.samsara.api.types.AssetAssignmentsCreateAssetAssignmentResponseBody;
+import com.samsara.api.types.AssetAssignmentsListAssetAssignmentsResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.AssociationsListAssociationsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
@@ -555,6 +560,92 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<DevicesGetDevicesResponseBody> getDevices(
             GetDevicesRequest request, RequestOptions requestOptions) {
         return this.rawClient.getDevices(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments() {
+        return this.rawClient.listAssetAssignments().thenApply(response -> response.body());
+    }
+
+    /**
+     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments(
+            RequestOptions requestOptions) {
+        return this.rawClient.listAssetAssignments(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments(
+            ListAssetAssignmentsRequest request) {
+        return this.rawClient.listAssetAssignments(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments(
+            ListAssetAssignmentsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listAssetAssignments(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Create an asset assignment.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetAssignmentsCreateAssetAssignmentResponseBody> createAssetAssignment(
+            AssetAssignmentsCreateAssetAssignmentRequestBody request) {
+        return this.rawClient.createAssetAssignment(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Create an asset assignment.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetAssignmentsCreateAssetAssignmentResponseBody> createAssetAssignment(
+            AssetAssignmentsCreateAssetAssignmentRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createAssetAssignment(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Unassign an active asset assignment.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> unassignAssetAssignment(AssetAssignmentsUnassignAssetAssignmentRequestBody request) {
+        return this.rawClient.unassignAssetAssignment(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Unassign an active asset assignment.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> unassignAssetAssignment(
+            AssetAssignmentsUnassignAssetAssignmentRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.unassignAssetAssignment(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
