@@ -13,6 +13,9 @@ public final class FormTemplateResponseObjectResponseBodyFormCategory {
     public static final FormTemplateResponseObjectResponseBodyFormCategory FUEL =
             new FormTemplateResponseObjectResponseBodyFormCategory(Value.FUEL, "fuel");
 
+    public static final FormTemplateResponseObjectResponseBodyFormCategory SAFETY =
+            new FormTemplateResponseObjectResponseBodyFormCategory(Value.SAFETY, "safety");
+
     public static final FormTemplateResponseObjectResponseBodyFormCategory ROUTING =
             new FormTemplateResponseObjectResponseBodyFormCategory(Value.ROUTING, "routing");
 
@@ -53,6 +56,8 @@ public final class FormTemplateResponseObjectResponseBodyFormCategory {
                 return visitor.visitGeneral();
             case FUEL:
                 return visitor.visitFuel();
+            case SAFETY:
+                return visitor.visitSafety();
             case ROUTING:
                 return visitor.visitRouting();
             case UNKNOWN:
@@ -68,6 +73,8 @@ public final class FormTemplateResponseObjectResponseBodyFormCategory {
                 return GENERAL;
             case "fuel":
                 return FUEL;
+            case "safety":
+                return SAFETY;
             case "routing":
                 return ROUTING;
             default:
@@ -82,6 +89,8 @@ public final class FormTemplateResponseObjectResponseBodyFormCategory {
 
         FUEL,
 
+        SAFETY,
+
         UNKNOWN
     }
 
@@ -91,6 +100,8 @@ public final class FormTemplateResponseObjectResponseBodyFormCategory {
         T visitRouting();
 
         T visitFuel();
+
+        T visitSafety();
 
         T visitUnknown(String unknownType);
     }
