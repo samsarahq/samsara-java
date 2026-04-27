@@ -48,6 +48,7 @@ import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
+import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
@@ -93,6 +94,7 @@ import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody;
+import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
@@ -1997,6 +1999,67 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testListDriverWorkflows() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"id\":\"a4db8702-79d5-4396-a717-e301d52ecc11\",\"name\":\"Pre-trip inspection\",\"workflowType\":\"startOfDay\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        DriverWorkflowsListDriverWorkflowsResponseBody response = client.betaApIs()
+                .listDriverWorkflows(ListDriverWorkflowsRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"id\": \"a4db8702-79d5-4396-a717-e301d52ecc11\",\n"
+                + "      \"name\": \"Pre-trip inspection\",\n"
+                + "      \"workflowType\": \"startOfDay\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testListVendorCategories() throws Exception {
         server.enqueue(
                 new MockResponse()
@@ -2291,7 +2354,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"codePackage\":{\"downloadGetUrl\":\"https://example.com/download?token=...\",\"status\":\"unknown\"},\"config\":{\"handler\":\"index.handler\",\"isScheduleEnabled\":true,\"params\":{},\"schedule\":{\"entries\":[{\"daysOfWeek\":[false,true,true,true,true,true,false],\"timeSinceMidnightMs\":32400000}],\"timezone\":\"America/Los_Angeles\"},\"secrets\":{}},\"createdAtTime\":\"2021-01-01T00:00:00Z\",\"description\":\"Processes incoming telemetry data.\",\"effects\":{\"nextScheduledAtTime\":\"2021-01-01T00:00:00Z\"},\"lastUpdateTimestampMs\":1609459200000,\"name\":\"my-function\",\"updatedAtTime\":\"2021-01-01T00:00:00Z\",\"uploadPutUrl\":\"https://example.com/upload?token=...\"}}"));
+                                "{\"data\":{\"codePackage\":{\"downloadGetUrl\":\"https://example.com/download?token=...\",\"status\":\"unknown\"},\"config\":{\"handler\":\"index.handler\",\"isScheduleEnabled\":false,\"params\":{},\"schedule\":{\"entries\":[{\"daysOfWeek\":[false,true,true,true,true,true,false],\"timeSinceMidnightMs\":32400000}],\"timezone\":\"America/Los_Angeles\"},\"secrets\":{}},\"createdAtTime\":\"2021-01-01T00:00:00Z\",\"description\":\"Processes incoming telemetry data.\",\"effects\":{\"nextScheduledAtTime\":\"2021-01-01T00:00:00Z\"},\"lastUpdateTimestampMs\":1609459200000,\"name\":\"my-function\",\"updatedAtTime\":\"2021-01-01T00:00:00Z\",\"uploadPutUrl\":\"https://example.com/upload?token=...\"}}"));
         FunctionsCreateFunctionResponseBody response = client.betaApIs()
                 .createFunction(FunctionsCreateFunctionRequestBody.builder()
                         .config(CreateFunctionRequestConfigRequestBody.builder()
@@ -2350,7 +2413,7 @@ public class BetaApIsWireTest {
                 + "    },\n"
                 + "    \"config\": {\n"
                 + "      \"handler\": \"index.handler\",\n"
-                + "      \"isScheduleEnabled\": true,\n"
+                + "      \"isScheduleEnabled\": false,\n"
                 + "      \"params\": {},\n"
                 + "      \"schedule\": {\n"
                 + "        \"entries\": [\n"
@@ -2419,7 +2482,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"codePackage\":{\"downloadGetUrl\":\"https://example.com/download?token=...\",\"status\":\"unknown\"},\"config\":{\"handler\":\"index.handler\",\"isScheduleEnabled\":true,\"params\":{},\"schedule\":{\"entries\":[{\"daysOfWeek\":[false,true,true,true,true,true,false],\"timeSinceMidnightMs\":32400000}],\"timezone\":\"America/Los_Angeles\"},\"secrets\":{}},\"createdAtTime\":\"2021-01-01T00:00:00Z\",\"description\":\"Processes incoming telemetry data.\",\"effects\":{\"nextScheduledAtTime\":\"2021-01-01T00:00:00Z\"},\"lastUpdateTimestampMs\":1609459200000,\"name\":\"my-function\",\"updatedAtTime\":\"2021-01-01T00:00:00Z\"}}"));
+                                "{\"data\":{\"codePackage\":{\"downloadGetUrl\":\"https://example.com/download?token=...\",\"status\":\"unknown\"},\"config\":{\"handler\":\"index.handler\",\"isScheduleEnabled\":false,\"params\":{},\"schedule\":{\"entries\":[{\"daysOfWeek\":[false,true,true,true,true,true,false],\"timeSinceMidnightMs\":32400000}],\"timezone\":\"America/Los_Angeles\"},\"secrets\":{}},\"createdAtTime\":\"2021-01-01T00:00:00Z\",\"description\":\"Processes incoming telemetry data.\",\"effects\":{\"nextScheduledAtTime\":\"2021-01-01T00:00:00Z\"},\"lastUpdateTimestampMs\":1609459200000,\"name\":\"my-function\",\"updatedAtTime\":\"2021-01-01T00:00:00Z\"}}"));
         FunctionsGetFunctionResponseBody response = client.betaApIs()
                 .getFunction("name", GetFunctionRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -2438,7 +2501,7 @@ public class BetaApIsWireTest {
                 + "    },\n"
                 + "    \"config\": {\n"
                 + "      \"handler\": \"index.handler\",\n"
-                + "      \"isScheduleEnabled\": true,\n"
+                + "      \"isScheduleEnabled\": false,\n"
                 + "      \"params\": {},\n"
                 + "      \"schedule\": {\n"
                 + "        \"entries\": [\n"
@@ -2866,7 +2929,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"adverseDrivingClaimed\":true,\"bigDayClaimed\":true,\"carrierFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"carrierName\":\"Carrier Name\",\"carrierUsDotNumber\":1234,\"homeTerminalFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"homeTerminalName\":\"Home Terminal Name\",\"isCertified\":true,\"isUsShortHaulActive\":false,\"trailerNames\":[\"10293\",\"Trailer ID 1\"]}}"));
+                                "{\"data\":{\"adverseDrivingClaimed\":false,\"bigDayClaimed\":true,\"carrierFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"carrierName\":\"Carrier Name\",\"carrierUsDotNumber\":1234,\"homeTerminalFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"homeTerminalName\":\"Home Terminal Name\",\"isCertified\":true,\"isUsShortHaulActive\":true,\"trailerNames\":[\"10293\",\"Trailer ID 1\"]}}"));
         HosDailyLogsUpdateShippingDocsResponseBody response = client.betaApIs()
                 .updateShippingDocs(HosDailyLogsUpdateShippingDocsRequestBody.builder()
                         .hosDate("hosDate")
@@ -2912,7 +2975,7 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"adverseDrivingClaimed\": true,\n"
+                + "    \"adverseDrivingClaimed\": false,\n"
                 + "    \"bigDayClaimed\": true,\n"
                 + "    \"carrierFormattedAddress\": \"1990 Alameda Street, San Francisco, CA 94103\",\n"
                 + "    \"carrierName\": \"Carrier Name\",\n"
@@ -2920,7 +2983,7 @@ public class BetaApIsWireTest {
                 + "    \"homeTerminalFormattedAddress\": \"1990 Alameda Street, San Francisco, CA 94103\",\n"
                 + "    \"homeTerminalName\": \"Home Terminal Name\",\n"
                 + "    \"isCertified\": true,\n"
-                + "    \"isUsShortHaulActive\": false,\n"
+                + "    \"isUsShortHaulActive\": true,\n"
                 + "    \"trailerNames\": [\n"
                 + "      \"10293\",\n"
                 + "      \"Trailer ID 1\"\n"

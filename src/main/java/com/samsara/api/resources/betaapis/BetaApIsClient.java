@@ -50,6 +50,7 @@ import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
 import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
+import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
@@ -85,6 +86,7 @@ import com.samsara.api.types.DeviceRecoveryRecoverAssetResponseBody;
 import com.samsara.api.types.DevicesGetDevicesResponseBody;
 import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody;
+import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
@@ -811,6 +813,47 @@ public class BetaApIsClient {
         return this.rawClient
                 .postDriverWorkflowAssignment(request, requestOptions)
                 .body();
+    }
+
+    /**
+     * List the driver app workflows configured for the organization. Use the returned workflow IDs to reference workflows from the driver create/update APIs or from the driver workflow assignment API. Workflows are organization-scoped and unique per organization.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public DriverWorkflowsListDriverWorkflowsResponseBody listDriverWorkflows() {
+        return this.rawClient.listDriverWorkflows().body();
+    }
+
+    /**
+     * List the driver app workflows configured for the organization. Use the returned workflow IDs to reference workflows from the driver create/update APIs or from the driver workflow assignment API. Workflows are organization-scoped and unique per organization.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public DriverWorkflowsListDriverWorkflowsResponseBody listDriverWorkflows(RequestOptions requestOptions) {
+        return this.rawClient.listDriverWorkflows(requestOptions).body();
+    }
+
+    /**
+     * List the driver app workflows configured for the organization. Use the returned workflow IDs to reference workflows from the driver create/update APIs or from the driver workflow assignment API. Workflows are organization-scoped and unique per organization.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public DriverWorkflowsListDriverWorkflowsResponseBody listDriverWorkflows(ListDriverWorkflowsRequest request) {
+        return this.rawClient.listDriverWorkflows(request).body();
+    }
+
+    /**
+     * List the driver app workflows configured for the organization. Use the returned workflow IDs to reference workflows from the driver create/update APIs or from the driver workflow assignment API. Workflows are organization-scoped and unique per organization.
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Drivers</strong> under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public DriverWorkflowsListDriverWorkflowsResponseBody listDriverWorkflows(
+            ListDriverWorkflowsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listDriverWorkflows(request, requestOptions).body();
     }
 
     /**
