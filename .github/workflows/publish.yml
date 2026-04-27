@@ -149,3 +149,31 @@ jobs:
           echo "✅ Bundle uploaded to Central Portal"
           echo "Publication will be processed and synced to Maven Central"
           echo "Check status at: https://central.sonatype.com/publishing/deployments"
+
+      - name: Notify Slack - Java SDK published
+        if: success()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_SDK_BUILD_WEBHOOK_URL }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          curl -s -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{
+              \"text\": \":white_check_mark: Java SDK v${VERSION} published to Maven Central\",
+              \"blocks\": [{
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \":white_check_mark: *Java SDK Published to Maven Central*\n*Version:* \`${VERSION}\`\n*Package:* <https://central.sonatype.com/artifact/com.samsara/samsara-java-sdk/${VERSION}|com.samsara:samsara-java-sdk>\n*Run:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View workflow>\"
+                }
+              }]
+            }"
+
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_SDK_BUILD_WEBHOOK_URL }}
+        run: |
+          curl -s -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\": \":x: Java SDK publish to Maven Central failed — <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View workflow>\"}"
