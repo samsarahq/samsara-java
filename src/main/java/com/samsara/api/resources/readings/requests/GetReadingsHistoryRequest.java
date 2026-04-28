@@ -107,6 +107,7 @@ public final class GetReadingsHistoryRequest {
      * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
      * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
      * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+     * <li><code>ecuNativeDoorStatus</code> (Door Status (ECU)): Indicates whether the vehicle door is open or closed based on the native ECU diagnostic signal. (values: unknown | closed | open)</li>
      * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
      * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
      * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
@@ -461,6 +462,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
          * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>ecuNativeDoorStatus</code> (Door Status (ECU)): Indicates whether the vehicle door is open or closed based on the native ECU diagnostic signal. (values: unknown | closed | open)</li>
          * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
          * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
          * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
@@ -811,6 +813,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
          * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>ecuNativeDoorStatus</code> (Door Status (ECU)): Indicates whether the vehicle door is open or closed based on the native ECU diagnostic signal. (values: unknown | closed | open)</li>
          * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
          * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
          * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>
@@ -1055,6 +1058,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>dpfLampStatus</code> (DPF Lamp Status): Status of the Diesel Particulate Filter warning lamp. (values: off | on | blinking)</li>
          * <li><code>dpfSootLoadPercent</code> (DPF Soot Load): Diesel Particulate Filter soot load percentage. (percent)</li>
          * <li><code>ecuHistoryTotalRunTime</code> (ECU Total Run Time): Total engine run time from ECU in seconds. (second)</li>
+         * <li><code>ecuNativeDoorStatus</code> (Door Status (ECU)): Indicates whether the vehicle door is open or closed based on the native ECU diagnostic signal. (values: unknown | closed | open)</li>
          * <li><code>engineExhaustTemperature</code> (Engine Exhaust Temperature): Temperature of the engine exhaust (celsius)</li>
          * <li><code>engineHours</code> (Engine Hours (ECU)): Represents the total engine runtime in hours as reported by the ECU. (second)</li>
          * <li><code>engineHoursDigioBased</code> (Engine Hours (Synthetic - Aux input)): Represents the synthetic total engine runtime in hours based on auxiliary input. (millisecond)</li>

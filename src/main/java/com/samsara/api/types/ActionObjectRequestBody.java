@@ -44,6 +44,7 @@ public final class ActionObjectRequestBody {
      * @return The id of the of the action type. Reference the following list for the ids:
      * The following action types are in Beta:
      * Driver App Push = 5
+     * Functions = 14
      * The following action types are Stable:
      * Notification (Email, Text, Samsara Fleet Push) = 1
      * Dashboard Notification = 3
@@ -89,6 +90,7 @@ public final class ActionObjectRequestBody {
          * <p>The id of the of the action type. Reference the following list for the ids:
          * The following action types are in Beta:
          * Driver App Push = 5
+         * Functions = 14
          * The following action types are Stable:
          * Notification (Email, Text, Samsara Fleet Push) = 1
          * Dashboard Notification = 3
@@ -130,6 +132,7 @@ public final class ActionObjectRequestBody {
          * <p>The id of the of the action type. Reference the following list for the ids:
          * The following action types are in Beta:
          * Driver App Push = 5
+         * Functions = 14
          * The following action types are Stable:
          * Notification (Email, Text, Samsara Fleet Push) = 1
          * Dashboard Notification = 3
@@ -138,6 +141,7 @@ public final class ActionObjectRequestBody {
          * <p>The id of the of the action type. Reference the following list for the ids:
          * The following action types are in Beta:
          * Driver App Push = 5
+         * Functions = 14
          * The following action types are Stable:
          * Notification (Email, Text, Samsara Fleet Push) = 1
          * Dashboard Notification = 3
