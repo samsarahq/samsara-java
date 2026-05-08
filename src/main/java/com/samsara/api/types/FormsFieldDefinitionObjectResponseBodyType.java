@@ -25,6 +25,9 @@ public final class FormsFieldDefinitionObjectResponseBodyType {
     public static final FormsFieldDefinitionObjectResponseBodyType DATETIME =
             new FormsFieldDefinitionObjectResponseBodyType(Value.DATETIME, "datetime");
 
+    public static final FormsFieldDefinitionObjectResponseBodyType BARCODE =
+            new FormsFieldDefinitionObjectResponseBodyType(Value.BARCODE, "barcode");
+
     public static final FormsFieldDefinitionObjectResponseBodyType TABLE =
             new FormsFieldDefinitionObjectResponseBodyType(Value.TABLE, "table");
 
@@ -91,6 +94,8 @@ public final class FormsFieldDefinitionObjectResponseBodyType {
                 return visitor.visitMultipleChoice();
             case DATETIME:
                 return visitor.visitDatetime();
+            case BARCODE:
+                return visitor.visitBarcode();
             case TABLE:
                 return visitor.visitTable();
             case SIGNATURE:
@@ -126,6 +131,8 @@ public final class FormsFieldDefinitionObjectResponseBodyType {
                 return MULTIPLE_CHOICE;
             case "datetime":
                 return DATETIME;
+            case "barcode":
+                return BARCODE;
             case "table":
                 return TABLE;
             case "signature":
@@ -172,6 +179,8 @@ public final class FormsFieldDefinitionObjectResponseBodyType {
 
         TABLE,
 
+        BARCODE,
+
         UNKNOWN
     }
 
@@ -201,6 +210,8 @@ public final class FormsFieldDefinitionObjectResponseBodyType {
         T visitMediaInstruction();
 
         T visitTable();
+
+        T visitBarcode();
 
         T visitUnknown(String unknownType);
     }

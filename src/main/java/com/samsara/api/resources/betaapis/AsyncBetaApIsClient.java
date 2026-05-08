@@ -5,9 +5,9 @@ package com.samsara.api.resources.betaapis;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
-import com.samsara.api.resources.betaapis.requests.AssetAssignmentsCreateAssetAssignmentRequestBody;
-import com.samsara.api.resources.betaapis.requests.AssetAssignmentsUnassignAssetAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteFunctionStorageFileRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteHubRouteTemplateRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipAccountRequest;
@@ -47,10 +47,9 @@ import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
-import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
-import com.samsara.api.resources.betaapis.requests.ListAssociationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
+import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
@@ -73,11 +72,9 @@ import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRide
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRidershipPassengerRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody;
+import com.samsara.api.resources.betaapis.requests.SafetyEventsV2PatchSafetyEventsV2BatchRequestBody;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
-import com.samsara.api.types.AssetAssignmentsCreateAssetAssignmentResponseBody;
-import com.samsara.api.types.AssetAssignmentsListAssetAssignmentsResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
-import com.samsara.api.types.AssociationsListAssociationsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
 import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody;
@@ -97,6 +94,7 @@ import com.samsara.api.types.FunctionsGetFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionRunResponseBody;
 import com.samsara.api.types.FunctionsPatchFunctionResponseBody;
 import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
+import com.samsara.api.types.FunctionsStorageListFunctionsStorageFilesResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosEldEventsGetHosEldEventsResponseBody;
 import com.samsara.api.types.HubRouteTemplatesListHubRouteTemplatesResponseBody;
@@ -130,6 +128,7 @@ import com.samsara.api.types.RidershipRouteSetupsCreateRidershipRouteSetupRespon
 import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
+import com.samsara.api.types.SafetyEventsV2PatchSafetyEventsV2BatchResponseBody;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncBetaApIsClient {
@@ -563,114 +562,6 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments() {
-        return this.rawClient.listAssetAssignments().thenApply(response -> response.body());
-    }
-
-    /**
-     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments(
-            RequestOptions requestOptions) {
-        return this.rawClient.listAssetAssignments(requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments(
-            ListAssetAssignmentsRequest request) {
-        return this.rawClient.listAssetAssignments(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssetAssignmentsListAssetAssignmentsResponseBody> listAssetAssignments(
-            ListAssetAssignmentsRequest request, RequestOptions requestOptions) {
-        return this.rawClient.listAssetAssignments(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Create an asset assignment.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssetAssignmentsCreateAssetAssignmentResponseBody> createAssetAssignment(
-            AssetAssignmentsCreateAssetAssignmentRequestBody request) {
-        return this.rawClient.createAssetAssignment(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Create an asset assignment.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssetAssignmentsCreateAssetAssignmentResponseBody> createAssetAssignment(
-            AssetAssignmentsCreateAssetAssignmentRequestBody request, RequestOptions requestOptions) {
-        return this.rawClient.createAssetAssignment(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Unassign an active asset assignment.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<Void> unassignAssetAssignment(AssetAssignmentsUnassignAssetAssignmentRequestBody request) {
-        return this.rawClient.unassignAssetAssignment(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Unassign an active asset assignment.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<Void> unassignAssetAssignment(
-            AssetAssignmentsUnassignAssetAssignmentRequestBody request, RequestOptions requestOptions) {
-        return this.rawClient.unassignAssetAssignment(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * List associations between vehicles and peripheral devices within a given time range. Associations represent the relationship between a central device (vehicle) and a peripheral device (e.g. asset tag). An association with a null endTime is still active. If no endTime query parameter is provided, all associations from startTime onward are returned, including currently active (open) associations.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssociationsListAssociationsResponseBody> listAssociations(
-            ListAssociationsRequest request) {
-        return this.rawClient.listAssociations(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * List associations between vehicles and peripheral devices within a given time range. Associations represent the relationship between a central device (vehicle) and a peripheral device (e.g. asset tag). An association with a null endTime is still active. If no endTime query parameter is provided, all associations from startTime onward are returned, including currently active (open) associations.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<AssociationsListAssociationsResponseBody> listAssociations(
-            ListAssociationsRequest request, RequestOptions requestOptions) {
-        return this.rawClient.listAssociations(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
      * List all assets that are currently marked as missing for the organization.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -1053,6 +944,70 @@ public class AsyncBetaApIsClient {
     }
 
     /**
+     * List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FunctionsStorageListFunctionsStorageFilesResponseBody> listFunctionsStorageFiles() {
+        return this.rawClient.listFunctionsStorageFiles().thenApply(response -> response.body());
+    }
+
+    /**
+     * List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FunctionsStorageListFunctionsStorageFilesResponseBody> listFunctionsStorageFiles(
+            RequestOptions requestOptions) {
+        return this.rawClient.listFunctionsStorageFiles(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FunctionsStorageListFunctionsStorageFilesResponseBody> listFunctionsStorageFiles(
+            ListFunctionsStorageFilesRequest request) {
+        return this.rawClient.listFunctionsStorageFiles(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FunctionsStorageListFunctionsStorageFilesResponseBody> listFunctionsStorageFiles(
+            ListFunctionsStorageFilesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listFunctionsStorageFiles(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a file from Functions storage by name.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteFunctionStorageFile(DeleteFunctionStorageFileRequest request) {
+        return this.rawClient.deleteFunctionStorageFile(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a file from Functions storage by name.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteFunctionStorageFile(
+            DeleteFunctionStorageFileRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteFunctionStorageFile(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
      * Retrieve the current state of an existing Function, including its configuration, code package status, and a <code>lastUpdateTimestampMs</code> value for use in subsequent PATCH requests.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Functions</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -1377,6 +1332,27 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<HubRouteTemplatesListHubRouteTemplatesResponseBody> listHubRouteTemplates(
             ListHubRouteTemplatesRequest request, RequestOptions requestOptions) {
         return this.rawClient.listHubRouteTemplates(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a route template by its unique identifier.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteHubRouteTemplate(DeleteHubRouteTemplateRequest request) {
+        return this.rawClient.deleteHubRouteTemplate(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a route template by its unique identifier.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteHubRouteTemplate(
+            DeleteHubRouteTemplateRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteHubRouteTemplate(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -2185,5 +2161,27 @@ public class AsyncBetaApIsClient {
         return this.rawClient
                 .getRidershipRouteSetup(routeId, request, requestOptions)
                 .thenApply(response -> response.body());
+    }
+
+    /**
+     * Asynchronously update eventState, context labels, and/or behavior labels for one or more Safety Events. Returns 202 Accepted immediately. State changes propagate asynchronously; use GET /safety-events to confirm updated state. If any safetyEventIds are not found, the entire request fails with 404 before any mutations are executed.If both eventState and label fields are provided, the two mutations execute serially and are not transactional — a label mutation failure will not roll back a successful state change.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<SafetyEventsV2PatchSafetyEventsV2BatchResponseBody> patchSafetyEventsV2Batch(
+            SafetyEventsV2PatchSafetyEventsV2BatchRequestBody request) {
+        return this.rawClient.patchSafetyEventsV2Batch(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Asynchronously update eventState, context labels, and/or behavior labels for one or more Safety Events. Returns 202 Accepted immediately. State changes propagate asynchronously; use GET /safety-events to confirm updated state. If any safetyEventIds are not found, the entire request fails with 404 before any mutations are executed.If both eventState and label fields are provided, the two mutations execute serially and are not transactional — a label mutation failure will not roll back a successful state change.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Safety Events &amp; Scores</strong> under the Safety &amp; Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<SafetyEventsV2PatchSafetyEventsV2BatchResponseBody> patchSafetyEventsV2Batch(
+            SafetyEventsV2PatchSafetyEventsV2BatchRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.patchSafetyEventsV2Batch(request, requestOptions).thenApply(response -> response.body());
     }
 }

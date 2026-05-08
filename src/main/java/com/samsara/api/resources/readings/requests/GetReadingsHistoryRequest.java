@@ -184,10 +184,17 @@ public final class GetReadingsHistoryRequest {
      * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
      * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
      * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+     * <li><code>fillMassEgress</code> (Fill Mass Out): Mass negative change in the vessel. (kilogram)</li>
+     * <li><code>fillMassIngress</code> (Fill Mass In): Mass positive change in the vessel. (kilogram)</li>
      * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
      * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
      * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+     * <li><code>fillVolumeEgress</code> (Fill Volume Out): Volume negative change in the vessel. (liter)</li>
+     * <li><code>fillVolumeIngress</code> (Fill Volume In): Volume positive change in the vessel. (liter)</li>
      * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+     * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
+     * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
+     * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
      * </ul>
      * <p>&lt;/details&gt;</p>
      * <p>&lt;details&gt;
@@ -539,10 +546,17 @@ public final class GetReadingsHistoryRequest {
          * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
          * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
          * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+         * <li><code>fillMassEgress</code> (Fill Mass Out): Mass negative change in the vessel. (kilogram)</li>
+         * <li><code>fillMassIngress</code> (Fill Mass In): Mass positive change in the vessel. (kilogram)</li>
          * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
          * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
          * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+         * <li><code>fillVolumeEgress</code> (Fill Volume Out): Volume negative change in the vessel. (liter)</li>
+         * <li><code>fillVolumeIngress</code> (Fill Volume In): Volume positive change in the vessel. (liter)</li>
          * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+         * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
+         * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
+         * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p>&lt;details&gt;
@@ -890,10 +904,17 @@ public final class GetReadingsHistoryRequest {
          * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
          * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
          * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+         * <li><code>fillMassEgress</code> (Fill Mass Out): Mass negative change in the vessel. (kilogram)</li>
+         * <li><code>fillMassIngress</code> (Fill Mass In): Mass positive change in the vessel. (kilogram)</li>
          * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
          * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
          * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+         * <li><code>fillVolumeEgress</code> (Fill Volume Out): Volume negative change in the vessel. (liter)</li>
+         * <li><code>fillVolumeIngress</code> (Fill Volume In): Volume positive change in the vessel. (liter)</li>
          * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+         * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
+         * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
+         * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p>&lt;details&gt;
@@ -1135,10 +1156,17 @@ public final class GetReadingsHistoryRequest {
          * <li><code>fillCriticality</code> (Fill Level Criticality): Indicates if the state of the fill level is critical. (values: normal | criticallyHigh | criticallyLow)</li>
          * <li><code>fillMass</code> (Fill Mass): Mass of material in the vessel. (kilogram)</li>
          * <li><code>fillMassAvailableCapacity</code> (Fill Mass Available Capacity): Available mass to be filled in the vessel. (kilogram)</li>
+         * <li><code>fillMassEgress</code> (Fill Mass Out): Mass negative change in the vessel. (kilogram)</li>
+         * <li><code>fillMassIngress</code> (Fill Mass In): Mass positive change in the vessel. (kilogram)</li>
          * <li><code>fillPercent</code> (Fill Level Percent): Fill level of the vessel as a percentage full. (percent)</li>
          * <li><code>fillVolume</code> (Fill Volume): Volume of material in the vessel. (liter)</li>
          * <li><code>fillVolumeAvailableCapacity</code> (Fill Volume Available Capacity): Available volume to be filled in the vessel. (liter)</li>
+         * <li><code>fillVolumeEgress</code> (Fill Volume Out): Volume negative change in the vessel. (liter)</li>
+         * <li><code>fillVolumeIngress</code> (Fill Volume In): Volume positive change in the vessel. (liter)</li>
          * <li><code>fluidLevelStatus</code> (Battery Water Level): The status of the battery's water level. Will be OK or LOW. (values: noData | ok | low)</li>
+         * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
+         * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
+         * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p>&lt;details&gt;

@@ -4,11 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
+import com.samsara.api.resources.previewapis.requests.GatewaysPairGatewaysRequestBody;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
-import com.samsara.api.resources.previewapis.requests.SafetyEventsV2PatchSafetyEventsV2BatchRequestBody;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
-import com.samsara.api.types.SafetyEventsV2PatchSafetyEventsV2BatchResponseBody;
+import com.samsara.api.types.GatewaysPairGatewaysResponseBody;
+import com.samsara.api.types.PairGatewayPairObjectRequestBody;
 import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -142,30 +143,31 @@ public class PreviewApIsWireTest {
     }
 
     @Test
-    public void testPatchSafetyEventsV2Batch() throws Exception {
+    public void testPairGateways() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"requestId\":\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"responses\":[{\"data\":{\"safetyEventId\":\"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\"},\"status\":202}]}"));
-        SafetyEventsV2PatchSafetyEventsV2BatchResponseBody response = client.previewApIs()
-                .patchSafetyEventsV2Batch(SafetyEventsV2PatchSafetyEventsV2BatchRequestBody.builder()
-                        .safetyEventIds(Arrays.asList(
-                                "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
-                                "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
-                                "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590"))
+                                "{\"data\":[{\"device\":{\"id\":\"8393848111\",\"name\":\"Truck 17\",\"serial\":\"ABCD-123-EFG\",\"type\":\"vehicle\"},\"displacedGateway\":{\"id\":\"8393848111\",\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"},\"gateway\":{\"id\":\"8393848111\",\"model\":\"AG15\",\"serial\":\"GFRV-43N-VGX\"},\"previousDevice\":{\"id\":\"8393848111\",\"name\":\"Truck 17\",\"serial\":\"ABCD-123-EFG\",\"type\":\"vehicle\"}}]}"));
+        GatewaysPairGatewaysResponseBody response = client.previewApIs()
+                .pairGateways(GatewaysPairGatewaysRequestBody.builder()
+                        .pairs(Arrays.asList(PairGatewayPairObjectRequestBody.builder()
+                                .deviceSerial("GFRV-43N-VGX")
+                                .gatewaySerial("GFRV-43N-VGX")
+                                .build()))
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
-        Assertions.assertEquals("PATCH", request.getMethod());
+        Assertions.assertEquals("POST", request.getMethod());
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
         String expectedRequestBody = ""
                 + "{\n"
-                + "  \"safetyEventIds\": [\n"
-                + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
-                + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
-                + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\"\n"
+                + "  \"pairs\": [\n"
+                + "    {\n"
+                + "      \"deviceSerial\": \"GFRV-43N-VGX\",\n"
+                + "      \"gatewaySerial\": \"GFRV-43N-VGX\"\n"
+                + "    }\n"
                 + "  ]\n"
                 + "}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
@@ -200,13 +202,30 @@ public class PreviewApIsWireTest {
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody = ""
                 + "{\n"
-                + "  \"requestId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
-                + "  \"responses\": [\n"
+                + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"data\": {\n"
-                + "        \"safetyEventId\": \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\"\n"
+                + "      \"device\": {\n"
+                + "        \"id\": \"8393848111\",\n"
+                + "        \"name\": \"Truck 17\",\n"
+                + "        \"serial\": \"ABCD-123-EFG\",\n"
+                + "        \"type\": \"vehicle\"\n"
                 + "      },\n"
-                + "      \"status\": 202\n"
+                + "      \"displacedGateway\": {\n"
+                + "        \"id\": \"8393848111\",\n"
+                + "        \"model\": \"AG15\",\n"
+                + "        \"serial\": \"GFRV-43N-VGX\"\n"
+                + "      },\n"
+                + "      \"gateway\": {\n"
+                + "        \"id\": \"8393848111\",\n"
+                + "        \"model\": \"AG15\",\n"
+                + "        \"serial\": \"GFRV-43N-VGX\"\n"
+                + "      },\n"
+                + "      \"previousDevice\": {\n"
+                + "        \"id\": \"8393848111\",\n"
+                + "        \"name\": \"Truck 17\",\n"
+                + "        \"serial\": \"ABCD-123-EFG\",\n"
+                + "        \"type\": \"vehicle\"\n"
+                + "      }\n"
                 + "    }\n"
                 + "  ]\n"
                 + "}";

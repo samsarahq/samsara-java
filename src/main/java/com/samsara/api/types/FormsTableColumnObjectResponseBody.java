@@ -55,7 +55,7 @@ public final class FormsTableColumnObjectResponseBody {
     }
 
     /**
-     * @return Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code>
+     * @return Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code>
      */
     @JsonProperty("type")
     public FormsTableColumnObjectResponseBodyType getType() {
@@ -110,7 +110,7 @@ public final class FormsTableColumnObjectResponseBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code></p>
+         * <p>Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code></p>
          */
         _FinalStage type(@NotNull FormsTableColumnObjectResponseBodyType type);
     }
@@ -165,8 +165,8 @@ public final class FormsTableColumnObjectResponseBody {
         }
 
         /**
-         * <p>Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code></p>
-         * <p>Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code></p>
+         * <p>Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code></p>
+         * <p>Type of the column field.  Valid values: <code>text</code>, <code>number</code>, <code>datetime</code>, <code>check_boxes</code>, <code>multiple_choice</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

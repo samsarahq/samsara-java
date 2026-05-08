@@ -16,6 +16,9 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
     public static final FormSubmissionRequestFieldInputObjectRequestBodyType TEXT =
             new FormSubmissionRequestFieldInputObjectRequestBodyType(Value.TEXT, "text");
 
+    public static final FormSubmissionRequestFieldInputObjectRequestBodyType BARCODE =
+            new FormSubmissionRequestFieldInputObjectRequestBodyType(Value.BARCODE, "barcode");
+
     public static final FormSubmissionRequestFieldInputObjectRequestBodyType TABLE =
             new FormSubmissionRequestFieldInputObjectRequestBodyType(Value.TABLE, "table");
 
@@ -73,6 +76,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
                 return visitor.visitDatetime();
             case TEXT:
                 return visitor.visitText();
+            case BARCODE:
+                return visitor.visitBarcode();
             case TABLE:
                 return visitor.visitTable();
             case PERSON:
@@ -100,6 +105,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
                 return DATETIME;
             case "text":
                 return TEXT;
+            case "barcode":
+                return BARCODE;
             case "table":
                 return TABLE;
             case "person":
@@ -136,6 +143,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
 
         GEOFENCE,
 
+        BARCODE,
+
         UNKNOWN
     }
 
@@ -157,6 +166,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
         T visitTable();
 
         T visitGeofence();
+
+        T visitBarcode();
 
         T visitUnknown(String unknownType);
     }

@@ -16,6 +16,9 @@ public final class FormsFieldInputObjectResponseBodyType {
     public static final FormsFieldInputObjectResponseBodyType TEXT =
             new FormsFieldInputObjectResponseBodyType(Value.TEXT, "text");
 
+    public static final FormsFieldInputObjectResponseBodyType BARCODE =
+            new FormsFieldInputObjectResponseBodyType(Value.BARCODE, "barcode");
+
     public static final FormsFieldInputObjectResponseBodyType TABLE =
             new FormsFieldInputObjectResponseBodyType(Value.TABLE, "table");
 
@@ -79,6 +82,8 @@ public final class FormsFieldInputObjectResponseBodyType {
                 return visitor.visitDatetime();
             case TEXT:
                 return visitor.visitText();
+            case BARCODE:
+                return visitor.visitBarcode();
             case TABLE:
                 return visitor.visitTable();
             case SIGNATURE:
@@ -110,6 +115,8 @@ public final class FormsFieldInputObjectResponseBodyType {
                 return DATETIME;
             case "text":
                 return TEXT;
+            case "barcode":
+                return BARCODE;
             case "table":
                 return TABLE;
             case "signature":
@@ -154,6 +161,8 @@ public final class FormsFieldInputObjectResponseBodyType {
 
         GEOFENCE,
 
+        BARCODE,
+
         UNKNOWN
     }
 
@@ -179,6 +188,8 @@ public final class FormsFieldInputObjectResponseBodyType {
         T visitPerson();
 
         T visitGeofence();
+
+        T visitBarcode();
 
         T visitUnknown(String unknownType);
     }

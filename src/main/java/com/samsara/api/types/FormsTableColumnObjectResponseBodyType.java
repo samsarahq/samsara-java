@@ -16,6 +16,9 @@ public final class FormsTableColumnObjectResponseBodyType {
     public static final FormsTableColumnObjectResponseBodyType TEXT =
             new FormsTableColumnObjectResponseBodyType(Value.TEXT, "text");
 
+    public static final FormsTableColumnObjectResponseBodyType BARCODE =
+            new FormsTableColumnObjectResponseBodyType(Value.BARCODE, "barcode");
+
     public static final FormsTableColumnObjectResponseBodyType SIGNATURE =
             new FormsTableColumnObjectResponseBodyType(Value.SIGNATURE, "signature");
 
@@ -70,6 +73,8 @@ public final class FormsTableColumnObjectResponseBodyType {
                 return visitor.visitDatetime();
             case TEXT:
                 return visitor.visitText();
+            case BARCODE:
+                return visitor.visitBarcode();
             case SIGNATURE:
                 return visitor.visitSignature();
             case PERSON:
@@ -95,6 +100,8 @@ public final class FormsTableColumnObjectResponseBodyType {
                 return DATETIME;
             case "text":
                 return TEXT;
+            case "barcode":
+                return BARCODE;
             case "signature":
                 return SIGNATURE;
             case "person":
@@ -127,6 +134,8 @@ public final class FormsTableColumnObjectResponseBodyType {
 
         PERSON,
 
+        BARCODE,
+
         UNKNOWN
     }
 
@@ -146,6 +155,8 @@ public final class FormsTableColumnObjectResponseBodyType {
         T visitMedia();
 
         T visitPerson();
+
+        T visitBarcode();
 
         T visitUnknown(String unknownType);
     }

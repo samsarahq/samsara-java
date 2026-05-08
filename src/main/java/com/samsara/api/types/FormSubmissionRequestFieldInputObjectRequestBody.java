@@ -23,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 public final class FormSubmissionRequestFieldInputObjectRequestBody {
     private final Optional<FormSubmissionRequestAssetValueObjectRequestBody> assetValue;
 
+    private final Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue;
+
     private final Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue;
 
     private final Optional<FormSubmissionRequestDateTimeValueObjectRequestBody> dateTimeValue;
@@ -47,6 +49,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
 
     private FormSubmissionRequestFieldInputObjectRequestBody(
             Optional<FormSubmissionRequestAssetValueObjectRequestBody> assetValue,
+            Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue,
             Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue,
             Optional<FormSubmissionRequestDateTimeValueObjectRequestBody> dateTimeValue,
             Optional<FormSubmissionRequestGeofenceValueObjectRequestBody> geofenceValue,
@@ -59,6 +62,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
             FormSubmissionRequestFieldInputObjectRequestBodyType type,
             Map<String, Object> additionalProperties) {
         this.assetValue = assetValue;
+        this.barcodeValue = barcodeValue;
         this.checkBoxesValue = checkBoxesValue;
         this.dateTimeValue = dateTimeValue;
         this.geofenceValue = geofenceValue;
@@ -75,6 +79,11 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
     @JsonProperty("assetValue")
     public Optional<FormSubmissionRequestAssetValueObjectRequestBody> getAssetValue() {
         return assetValue;
+    }
+
+    @JsonProperty("barcodeValue")
+    public Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> getBarcodeValue() {
+        return barcodeValue;
     }
 
     @JsonProperty("checkBoxesValue")
@@ -126,7 +135,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
     }
 
     /**
-     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>
+     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code>
      */
     @JsonProperty("type")
     public FormSubmissionRequestFieldInputObjectRequestBodyType getType() {
@@ -147,6 +156,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
 
     private boolean equalTo(FormSubmissionRequestFieldInputObjectRequestBody other) {
         return assetValue.equals(other.assetValue)
+                && barcodeValue.equals(other.barcodeValue)
                 && checkBoxesValue.equals(other.checkBoxesValue)
                 && dateTimeValue.equals(other.dateTimeValue)
                 && geofenceValue.equals(other.geofenceValue)
@@ -163,6 +173,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
     public int hashCode() {
         return Objects.hash(
                 this.assetValue,
+                this.barcodeValue,
                 this.checkBoxesValue,
                 this.dateTimeValue,
                 this.geofenceValue,
@@ -195,7 +206,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code></p>
          */
         _FinalStage type(@NotNull FormSubmissionRequestFieldInputObjectRequestBodyType type);
     }
@@ -206,6 +217,10 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         _FinalStage assetValue(Optional<FormSubmissionRequestAssetValueObjectRequestBody> assetValue);
 
         _FinalStage assetValue(FormSubmissionRequestAssetValueObjectRequestBody assetValue);
+
+        _FinalStage barcodeValue(Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue);
+
+        _FinalStage barcodeValue(FormSubmissionRequestBarcodeValueObjectRequestBody barcodeValue);
 
         _FinalStage checkBoxesValue(Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue);
 
@@ -264,6 +279,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
 
         private Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue = Optional.empty();
 
+        private Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue = Optional.empty();
+
         private Optional<FormSubmissionRequestAssetValueObjectRequestBody> assetValue = Optional.empty();
 
         @JsonAnySetter
@@ -274,6 +291,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         @java.lang.Override
         public Builder from(FormSubmissionRequestFieldInputObjectRequestBody other) {
             assetValue(other.getAssetValue());
+            barcodeValue(other.getBarcodeValue());
             checkBoxesValue(other.getCheckBoxesValue());
             dateTimeValue(other.getDateTimeValue());
             geofenceValue(other.getGeofenceValue());
@@ -300,8 +318,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         }
 
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code></p>
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -419,6 +437,19 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         }
 
         @java.lang.Override
+        public _FinalStage barcodeValue(FormSubmissionRequestBarcodeValueObjectRequestBody barcodeValue) {
+            this.barcodeValue = Optional.ofNullable(barcodeValue);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "barcodeValue", nulls = Nulls.SKIP)
+        public _FinalStage barcodeValue(Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue) {
+            this.barcodeValue = barcodeValue;
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage assetValue(FormSubmissionRequestAssetValueObjectRequestBody assetValue) {
             this.assetValue = Optional.ofNullable(assetValue);
             return this;
@@ -435,6 +466,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         public FormSubmissionRequestFieldInputObjectRequestBody build() {
             return new FormSubmissionRequestFieldInputObjectRequestBody(
                     assetValue,
+                    barcodeValue,
                     checkBoxesValue,
                     dateTimeValue,
                     geofenceValue,

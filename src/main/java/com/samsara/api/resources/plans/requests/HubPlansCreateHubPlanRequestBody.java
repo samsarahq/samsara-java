@@ -26,6 +26,8 @@ public final class HubPlansCreateHubPlanRequestBody {
 
     private final String name;
 
+    private final Optional<String> sessionConfigurationId;
+
     private final Optional<OffsetDateTime> shiftStartTime;
 
     private final Map<String, Object> additionalProperties;
@@ -33,10 +35,12 @@ public final class HubPlansCreateHubPlanRequestBody {
     private HubPlansCreateHubPlanRequestBody(
             String hubId,
             String name,
+            Optional<String> sessionConfigurationId,
             Optional<OffsetDateTime> shiftStartTime,
             Map<String, Object> additionalProperties) {
         this.hubId = hubId;
         this.name = name;
+        this.sessionConfigurationId = sessionConfigurationId;
         this.shiftStartTime = shiftStartTime;
         this.additionalProperties = additionalProperties;
     }
@@ -55,6 +59,14 @@ public final class HubPlansCreateHubPlanRequestBody {
     @JsonProperty("name")
     public String getName() {
         return name;
+    }
+
+    /**
+     * @return The ID of a saved session configuration (preset) to apply when creating the plan. When provided, the preset's optimization settings and route constructions are applied to the new plan, replacing any defaults.
+     */
+    @JsonProperty("sessionConfigurationId")
+    public Optional<String> getSessionConfigurationId() {
+        return sessionConfigurationId;
     }
 
     /**
@@ -77,12 +89,15 @@ public final class HubPlansCreateHubPlanRequestBody {
     }
 
     private boolean equalTo(HubPlansCreateHubPlanRequestBody other) {
-        return hubId.equals(other.hubId) && name.equals(other.name) && shiftStartTime.equals(other.shiftStartTime);
+        return hubId.equals(other.hubId)
+                && name.equals(other.name)
+                && sessionConfigurationId.equals(other.sessionConfigurationId)
+                && shiftStartTime.equals(other.shiftStartTime);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.hubId, this.name, this.shiftStartTime);
+        return Objects.hash(this.hubId, this.name, this.sessionConfigurationId, this.shiftStartTime);
     }
 
     @java.lang.Override
@@ -114,6 +129,13 @@ public final class HubPlansCreateHubPlanRequestBody {
         HubPlansCreateHubPlanRequestBody build();
 
         /**
+         * <p>The ID of a saved session configuration (preset) to apply when creating the plan. When provided, the preset's optimization settings and route constructions are applied to the new plan, replacing any defaults.</p>
+         */
+        _FinalStage sessionConfigurationId(Optional<String> sessionConfigurationId);
+
+        _FinalStage sessionConfigurationId(String sessionConfigurationId);
+
+        /**
          * <p>The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.</p>
          */
         _FinalStage shiftStartTime(Optional<OffsetDateTime> shiftStartTime);
@@ -129,6 +151,8 @@ public final class HubPlansCreateHubPlanRequestBody {
 
         private Optional<OffsetDateTime> shiftStartTime = Optional.empty();
 
+        private Optional<String> sessionConfigurationId = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -138,6 +162,7 @@ public final class HubPlansCreateHubPlanRequestBody {
         public Builder from(HubPlansCreateHubPlanRequestBody other) {
             hubId(other.getHubId());
             name(other.getName());
+            sessionConfigurationId(other.getSessionConfigurationId());
             shiftStartTime(other.getShiftStartTime());
             return this;
         }
@@ -186,9 +211,30 @@ public final class HubPlansCreateHubPlanRequestBody {
             return this;
         }
 
+        /**
+         * <p>The ID of a saved session configuration (preset) to apply when creating the plan. When provided, the preset's optimization settings and route constructions are applied to the new plan, replacing any defaults.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage sessionConfigurationId(String sessionConfigurationId) {
+            this.sessionConfigurationId = Optional.ofNullable(sessionConfigurationId);
+            return this;
+        }
+
+        /**
+         * <p>The ID of a saved session configuration (preset) to apply when creating the plan. When provided, the preset's optimization settings and route constructions are applied to the new plan, replacing any defaults.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "sessionConfigurationId", nulls = Nulls.SKIP)
+        public _FinalStage sessionConfigurationId(Optional<String> sessionConfigurationId) {
+            this.sessionConfigurationId = sessionConfigurationId;
+            return this;
+        }
+
         @java.lang.Override
         public HubPlansCreateHubPlanRequestBody build() {
-            return new HubPlansCreateHubPlanRequestBody(hubId, name, shiftStartTime, additionalProperties);
+            return new HubPlansCreateHubPlanRequestBody(
+                    hubId, name, sessionConfigurationId, shiftStartTime, additionalProperties);
         }
     }
 }

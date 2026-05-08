@@ -16,6 +16,9 @@ public final class FormSubmissionRequestTableCellObjectRequestBodyType {
     public static final FormSubmissionRequestTableCellObjectRequestBodyType TEXT =
             new FormSubmissionRequestTableCellObjectRequestBodyType(Value.TEXT, "text");
 
+    public static final FormSubmissionRequestTableCellObjectRequestBodyType BARCODE =
+            new FormSubmissionRequestTableCellObjectRequestBodyType(Value.BARCODE, "barcode");
+
     public static final FormSubmissionRequestTableCellObjectRequestBodyType PERSON =
             new FormSubmissionRequestTableCellObjectRequestBodyType(Value.PERSON, "person");
 
@@ -64,6 +67,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBodyType {
                 return visitor.visitDatetime();
             case TEXT:
                 return visitor.visitText();
+            case BARCODE:
+                return visitor.visitBarcode();
             case PERSON:
                 return visitor.visitPerson();
             case CHECK_BOXES:
@@ -85,6 +90,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBodyType {
                 return DATETIME;
             case "text":
                 return TEXT;
+            case "barcode":
+                return BARCODE;
             case "person":
                 return PERSON;
             case "check_boxes":
@@ -109,6 +116,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBodyType {
 
         PERSON,
 
+        BARCODE,
+
         UNKNOWN
     }
 
@@ -124,6 +133,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBodyType {
         T visitDatetime();
 
         T visitPerson();
+
+        T visitBarcode();
 
         T visitUnknown(String unknownType);
     }

@@ -34,6 +34,16 @@
               "name": "name"
             }
           },
+          "barcodeValue": {
+            "barcodes": [
+              {
+                "value": "value"
+              },
+              {
+                "value": "value"
+              }
+            ]
+          },
           "checkBoxesValue": {
             "value": [
               "value",
@@ -163,6 +173,16 @@
               "id": "id",
               "name": "name"
             }
+          },
+          "barcodeValue": {
+            "barcodes": [
+              {
+                "value": "value"
+              },
+              {
+                "value": "value"
+              }
+            ]
           },
           "checkBoxesValue": {
             "value": [
@@ -353,6 +373,16 @@
               "name": "name"
             }
           },
+          "barcodeValue": {
+            "barcodes": [
+              {
+                "value": "value"
+              },
+              {
+                "value": "value"
+              }
+            ]
+          },
           "checkBoxesValue": {
             "value": [
               "value",
@@ -482,6 +512,16 @@
               "id": "id",
               "name": "name"
             }
+          },
+          "barcodeValue": {
+            "barcodes": [
+              {
+                "value": "value"
+              },
+              {
+                "value": "value"
+              }
+            ]
           },
           "checkBoxesValue": {
             "value": [
