@@ -24,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 public final class FormsFieldInputObjectResponseBody {
     private final Optional<FormsAssetValueObjectResponseBody> assetValue;
 
+    private final Optional<FormsBarcodeValueObjectResponseBody> barcodeValue;
+
     private final Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue;
 
     private final Optional<FormsDateTimeValueObjectResponseBody> dateTimeValue;
@@ -60,6 +62,7 @@ public final class FormsFieldInputObjectResponseBody {
 
     private FormsFieldInputObjectResponseBody(
             Optional<FormsAssetValueObjectResponseBody> assetValue,
+            Optional<FormsBarcodeValueObjectResponseBody> barcodeValue,
             Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue,
             Optional<FormsDateTimeValueObjectResponseBody> dateTimeValue,
             Optional<FormsGeofenceValueObjectResponseBody> geofenceValue,
@@ -78,6 +81,7 @@ public final class FormsFieldInputObjectResponseBody {
             FormsFieldInputObjectResponseBodyType type,
             Map<String, Object> additionalProperties) {
         this.assetValue = assetValue;
+        this.barcodeValue = barcodeValue;
         this.checkBoxesValue = checkBoxesValue;
         this.dateTimeValue = dateTimeValue;
         this.geofenceValue = geofenceValue;
@@ -100,6 +104,11 @@ public final class FormsFieldInputObjectResponseBody {
     @JsonProperty("assetValue")
     public Optional<FormsAssetValueObjectResponseBody> getAssetValue() {
         return assetValue;
+    }
+
+    @JsonProperty("barcodeValue")
+    public Optional<FormsBarcodeValueObjectResponseBody> getBarcodeValue() {
+        return barcodeValue;
     }
 
     @JsonProperty("checkBoxesValue")
@@ -190,7 +199,7 @@ public final class FormsFieldInputObjectResponseBody {
     }
 
     /**
-     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code>
+     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code>, <code>barcode</code>
      */
     @JsonProperty("type")
     public FormsFieldInputObjectResponseBodyType getType() {
@@ -210,6 +219,7 @@ public final class FormsFieldInputObjectResponseBody {
 
     private boolean equalTo(FormsFieldInputObjectResponseBody other) {
         return assetValue.equals(other.assetValue)
+                && barcodeValue.equals(other.barcodeValue)
                 && checkBoxesValue.equals(other.checkBoxesValue)
                 && dateTimeValue.equals(other.dateTimeValue)
                 && geofenceValue.equals(other.geofenceValue)
@@ -232,6 +242,7 @@ public final class FormsFieldInputObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.assetValue,
+                this.barcodeValue,
                 this.checkBoxesValue,
                 this.dateTimeValue,
                 this.geofenceValue,
@@ -270,7 +281,7 @@ public final class FormsFieldInputObjectResponseBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code>, <code>barcode</code></p>
          */
         _FinalStage type(@NotNull FormsFieldInputObjectResponseBodyType type);
     }
@@ -281,6 +292,10 @@ public final class FormsFieldInputObjectResponseBody {
         _FinalStage assetValue(Optional<FormsAssetValueObjectResponseBody> assetValue);
 
         _FinalStage assetValue(FormsAssetValueObjectResponseBody assetValue);
+
+        _FinalStage barcodeValue(Optional<FormsBarcodeValueObjectResponseBody> barcodeValue);
+
+        _FinalStage barcodeValue(FormsBarcodeValueObjectResponseBody barcodeValue);
 
         _FinalStage checkBoxesValue(Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue);
 
@@ -382,6 +397,8 @@ public final class FormsFieldInputObjectResponseBody {
 
         private Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue = Optional.empty();
 
+        private Optional<FormsBarcodeValueObjectResponseBody> barcodeValue = Optional.empty();
+
         private Optional<FormsAssetValueObjectResponseBody> assetValue = Optional.empty();
 
         @JsonAnySetter
@@ -392,6 +409,7 @@ public final class FormsFieldInputObjectResponseBody {
         @java.lang.Override
         public Builder from(FormsFieldInputObjectResponseBody other) {
             assetValue(other.getAssetValue());
+            barcodeValue(other.getBarcodeValue());
             checkBoxesValue(other.getCheckBoxesValue());
             dateTimeValue(other.getDateTimeValue());
             geofenceValue(other.getGeofenceValue());
@@ -424,8 +442,8 @@ public final class FormsFieldInputObjectResponseBody {
         }
 
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code></p>
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code>, <code>barcode</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>asset</code>, <code>table</code>, <code>person</code>, <code>geofence</code>, <code>barcode</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -640,6 +658,19 @@ public final class FormsFieldInputObjectResponseBody {
         }
 
         @java.lang.Override
+        public _FinalStage barcodeValue(FormsBarcodeValueObjectResponseBody barcodeValue) {
+            this.barcodeValue = Optional.ofNullable(barcodeValue);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "barcodeValue", nulls = Nulls.SKIP)
+        public _FinalStage barcodeValue(Optional<FormsBarcodeValueObjectResponseBody> barcodeValue) {
+            this.barcodeValue = barcodeValue;
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage assetValue(FormsAssetValueObjectResponseBody assetValue) {
             this.assetValue = Optional.ofNullable(assetValue);
             return this;
@@ -656,6 +687,7 @@ public final class FormsFieldInputObjectResponseBody {
         public FormsFieldInputObjectResponseBody build() {
             return new FormsFieldInputObjectResponseBody(
                     assetValue,
+                    barcodeValue,
                     checkBoxesValue,
                     dateTimeValue,
                     geofenceValue,

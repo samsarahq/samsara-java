@@ -226,7 +226,7 @@ public final class FormsFieldDefinitionObjectResponseBody {
     }
 
     /**
-     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code>
+     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code>, <code>barcode</code>
      */
     @JsonProperty("type")
     public FormsFieldDefinitionObjectResponseBodyType getType() {
@@ -321,7 +321,7 @@ public final class FormsFieldDefinitionObjectResponseBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code>, <code>barcode</code></p>
          */
         _FinalStage type(@NotNull FormsFieldDefinitionObjectResponseBodyType type);
     }
@@ -527,8 +527,8 @@ public final class FormsFieldDefinitionObjectResponseBody {
         }
 
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code></p>
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code>, <code>barcode</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>media</code>, <code>datetime</code>, <code>signature</code>, <code>asset</code>, <code>person</code>, <code>geofence</code>, <code>instruction</code>, <code>media_instruction</code>, <code>table</code>, <code>barcode</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

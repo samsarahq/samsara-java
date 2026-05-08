@@ -21,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FormsTableCellObjectResponseBody.Builder.class)
 public final class FormsTableCellObjectResponseBody {
+    private final Optional<FormsBarcodeValueObjectResponseBody> barcodeValue;
+
     private final Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue;
 
     private final Optional<FormsDateTimeValueObjectResponseBody> dateTimeValue;
@@ -44,6 +46,7 @@ public final class FormsTableCellObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private FormsTableCellObjectResponseBody(
+            Optional<FormsBarcodeValueObjectResponseBody> barcodeValue,
             Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue,
             Optional<FormsDateTimeValueObjectResponseBody> dateTimeValue,
             String id,
@@ -55,6 +58,7 @@ public final class FormsTableCellObjectResponseBody {
             Optional<FormsTextValueObjectResponseBody> textValue,
             FormsTableCellObjectResponseBodyType type,
             Map<String, Object> additionalProperties) {
+        this.barcodeValue = barcodeValue;
         this.checkBoxesValue = checkBoxesValue;
         this.dateTimeValue = dateTimeValue;
         this.id = id;
@@ -66,6 +70,11 @@ public final class FormsTableCellObjectResponseBody {
         this.textValue = textValue;
         this.type = type;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("barcodeValue")
+    public Optional<FormsBarcodeValueObjectResponseBody> getBarcodeValue() {
+        return barcodeValue;
     }
 
     @JsonProperty("checkBoxesValue")
@@ -117,7 +126,7 @@ public final class FormsTableCellObjectResponseBody {
     }
 
     /**
-     * @return Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code>
+     * @return Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code>
      */
     @JsonProperty("type")
     public FormsTableCellObjectResponseBodyType getType() {
@@ -136,7 +145,8 @@ public final class FormsTableCellObjectResponseBody {
     }
 
     private boolean equalTo(FormsTableCellObjectResponseBody other) {
-        return checkBoxesValue.equals(other.checkBoxesValue)
+        return barcodeValue.equals(other.barcodeValue)
+                && checkBoxesValue.equals(other.checkBoxesValue)
                 && dateTimeValue.equals(other.dateTimeValue)
                 && id.equals(other.id)
                 && mediaValue.equals(other.mediaValue)
@@ -151,6 +161,7 @@ public final class FormsTableCellObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.barcodeValue,
                 this.checkBoxesValue,
                 this.dateTimeValue,
                 this.id,
@@ -183,13 +194,17 @@ public final class FormsTableCellObjectResponseBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code></p>
+         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code></p>
          */
         _FinalStage type(@NotNull FormsTableCellObjectResponseBodyType type);
     }
 
     public interface _FinalStage {
         FormsTableCellObjectResponseBody build();
+
+        _FinalStage barcodeValue(Optional<FormsBarcodeValueObjectResponseBody> barcodeValue);
+
+        _FinalStage barcodeValue(FormsBarcodeValueObjectResponseBody barcodeValue);
 
         _FinalStage checkBoxesValue(Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue);
 
@@ -246,6 +261,8 @@ public final class FormsTableCellObjectResponseBody {
 
         private Optional<FormsCheckBoxesValueObjectResponseBody> checkBoxesValue = Optional.empty();
 
+        private Optional<FormsBarcodeValueObjectResponseBody> barcodeValue = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -253,6 +270,7 @@ public final class FormsTableCellObjectResponseBody {
 
         @java.lang.Override
         public Builder from(FormsTableCellObjectResponseBody other) {
+            barcodeValue(other.getBarcodeValue());
             checkBoxesValue(other.getCheckBoxesValue());
             dateTimeValue(other.getDateTimeValue());
             id(other.getId());
@@ -279,8 +297,8 @@ public final class FormsTableCellObjectResponseBody {
         }
 
         /**
-         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code></p>
-         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code></p>
+         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code></p>
+         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>signature</code>, <code>media</code>, <code>person</code>, <code>barcode</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -396,8 +414,22 @@ public final class FormsTableCellObjectResponseBody {
         }
 
         @java.lang.Override
+        public _FinalStage barcodeValue(FormsBarcodeValueObjectResponseBody barcodeValue) {
+            this.barcodeValue = Optional.ofNullable(barcodeValue);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "barcodeValue", nulls = Nulls.SKIP)
+        public _FinalStage barcodeValue(Optional<FormsBarcodeValueObjectResponseBody> barcodeValue) {
+            this.barcodeValue = barcodeValue;
+            return this;
+        }
+
+        @java.lang.Override
         public FormsTableCellObjectResponseBody build() {
             return new FormsTableCellObjectResponseBody(
+                    barcodeValue,
                     checkBoxesValue,
                     dateTimeValue,
                     id,

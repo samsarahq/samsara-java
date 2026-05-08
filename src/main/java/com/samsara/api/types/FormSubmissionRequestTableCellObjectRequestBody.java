@@ -21,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FormSubmissionRequestTableCellObjectRequestBody.Builder.class)
 public final class FormSubmissionRequestTableCellObjectRequestBody {
+    private final Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue;
+
     private final Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue;
 
     private final Optional<FormSubmissionRequestDateTimeValueObjectRequestBody> dateTimeValue;
@@ -40,6 +42,7 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private FormSubmissionRequestTableCellObjectRequestBody(
+            Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue,
             Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue,
             Optional<FormSubmissionRequestDateTimeValueObjectRequestBody> dateTimeValue,
             String id,
@@ -49,6 +52,7 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
             Optional<FormSubmissionRequestTextValueObjectRequestBody> textValue,
             FormSubmissionRequestTableCellObjectRequestBodyType type,
             Map<String, Object> additionalProperties) {
+        this.barcodeValue = barcodeValue;
         this.checkBoxesValue = checkBoxesValue;
         this.dateTimeValue = dateTimeValue;
         this.id = id;
@@ -58,6 +62,11 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
         this.textValue = textValue;
         this.type = type;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("barcodeValue")
+    public Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> getBarcodeValue() {
+        return barcodeValue;
     }
 
     @JsonProperty("checkBoxesValue")
@@ -99,7 +108,7 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
     }
 
     /**
-     * @return Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code>
+     * @return Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code>, <code>barcode</code>
      */
     @JsonProperty("type")
     public FormSubmissionRequestTableCellObjectRequestBodyType getType() {
@@ -119,7 +128,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
     }
 
     private boolean equalTo(FormSubmissionRequestTableCellObjectRequestBody other) {
-        return checkBoxesValue.equals(other.checkBoxesValue)
+        return barcodeValue.equals(other.barcodeValue)
+                && checkBoxesValue.equals(other.checkBoxesValue)
                 && dateTimeValue.equals(other.dateTimeValue)
                 && id.equals(other.id)
                 && multipleChoiceValue.equals(other.multipleChoiceValue)
@@ -132,6 +142,7 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.barcodeValue,
                 this.checkBoxesValue,
                 this.dateTimeValue,
                 this.id,
@@ -162,13 +173,17 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code></p>
+         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code>, <code>barcode</code></p>
          */
         _FinalStage type(@NotNull FormSubmissionRequestTableCellObjectRequestBodyType type);
     }
 
     public interface _FinalStage {
         FormSubmissionRequestTableCellObjectRequestBody build();
+
+        _FinalStage barcodeValue(Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue);
+
+        _FinalStage barcodeValue(FormSubmissionRequestBarcodeValueObjectRequestBody barcodeValue);
 
         _FinalStage checkBoxesValue(Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue);
 
@@ -215,6 +230,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
 
         private Optional<FormSubmissionRequestCheckBoxesValueObjectRequestBody> checkBoxesValue = Optional.empty();
 
+        private Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -222,6 +239,7 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
 
         @java.lang.Override
         public Builder from(FormSubmissionRequestTableCellObjectRequestBody other) {
+            barcodeValue(other.getBarcodeValue());
             checkBoxesValue(other.getCheckBoxesValue());
             dateTimeValue(other.getDateTimeValue());
             id(other.getId());
@@ -246,8 +264,8 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
         }
 
         /**
-         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code></p>
-         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code></p>
+         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code>, <code>barcode</code></p>
+         * <p>Type of the cell field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>person</code>, <code>barcode</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -339,8 +357,22 @@ public final class FormSubmissionRequestTableCellObjectRequestBody {
         }
 
         @java.lang.Override
+        public _FinalStage barcodeValue(FormSubmissionRequestBarcodeValueObjectRequestBody barcodeValue) {
+            this.barcodeValue = Optional.ofNullable(barcodeValue);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "barcodeValue", nulls = Nulls.SKIP)
+        public _FinalStage barcodeValue(Optional<FormSubmissionRequestBarcodeValueObjectRequestBody> barcodeValue) {
+            this.barcodeValue = barcodeValue;
+            return this;
+        }
+
+        @java.lang.Override
         public FormSubmissionRequestTableCellObjectRequestBody build() {
             return new FormSubmissionRequestTableCellObjectRequestBody(
+                    barcodeValue,
                     checkBoxesValue,
                     dateTimeValue,
                     id,
