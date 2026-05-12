@@ -25,8 +25,6 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RidershipPassengersCreateRidershipPassengerRequestBody.Builder.class)
 public final class RidershipPassengersCreateRidershipPassengerRequestBody {
-    private final String accountId;
-
     private final Optional<RidershipPassengersCreateRidershipPassengerRequestBodyClassification> classification;
 
     private final Optional<Map<String, String>> externalIds;
@@ -39,33 +37,27 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
 
     private final Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions;
 
+    private final Optional<List<String>> tagIds;
+
     private final Map<String, Object> additionalProperties;
 
     private RidershipPassengersCreateRidershipPassengerRequestBody(
-            String accountId,
             Optional<RidershipPassengersCreateRidershipPassengerRequestBodyClassification> classification,
             Optional<Map<String, String>> externalIds,
             String firstName,
             Optional<List<RidershipPassengerIdentifierInputRequestBody>> identifiers,
             String lastName,
             Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions,
+            Optional<List<String>> tagIds,
             Map<String, Object> additionalProperties) {
-        this.accountId = accountId;
         this.classification = classification;
         this.externalIds = externalIds;
         this.firstName = firstName;
         this.identifiers = identifiers;
         this.lastName = lastName;
         this.specialInstructions = specialInstructions;
+        this.tagIds = tagIds;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return The Samsara UUID of the ridership account this passenger belongs to.
-     */
-    @JsonProperty("accountId")
-    public String getAccountId() {
-        return accountId;
     }
 
     /**
@@ -113,6 +105,14 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         return specialInstructions;
     }
 
+    /**
+     * @return IDs of tags to associate with the passenger.
+     */
+    @JsonProperty("tagIds")
+    public Optional<List<String>> getTagIds() {
+        return tagIds;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -126,25 +126,25 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     private boolean equalTo(RidershipPassengersCreateRidershipPassengerRequestBody other) {
-        return accountId.equals(other.accountId)
-                && classification.equals(other.classification)
+        return classification.equals(other.classification)
                 && externalIds.equals(other.externalIds)
                 && firstName.equals(other.firstName)
                 && identifiers.equals(other.identifiers)
                 && lastName.equals(other.lastName)
-                && specialInstructions.equals(other.specialInstructions);
+                && specialInstructions.equals(other.specialInstructions)
+                && tagIds.equals(other.tagIds);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.accountId,
                 this.classification,
                 this.externalIds,
                 this.firstName,
                 this.identifiers,
                 this.lastName,
-                this.specialInstructions);
+                this.specialInstructions,
+                this.tagIds);
     }
 
     @java.lang.Override
@@ -152,17 +152,8 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static AccountIdStage builder() {
+    public static FirstNameStage builder() {
         return new Builder();
-    }
-
-    public interface AccountIdStage {
-        /**
-         * <p>The Samsara UUID of the ridership account this passenger belongs to.</p>
-         */
-        FirstNameStage accountId(@NotNull String accountId);
-
-        Builder from(RidershipPassengersCreateRidershipPassengerRequestBody other);
     }
 
     public interface FirstNameStage {
@@ -170,6 +161,8 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
          * <p>First name of the passenger.</p>
          */
         LastNameStage firstName(@NotNull String firstName);
+
+        Builder from(RidershipPassengersCreateRidershipPassengerRequestBody other);
     }
 
     public interface LastNameStage {
@@ -208,15 +201,22 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
                 Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions);
 
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsInputRequestBody specialInstructions);
+
+        /**
+         * <p>IDs of tags to associate with the passenger.</p>
+         */
+        _FinalStage tagIds(Optional<List<String>> tagIds);
+
+        _FinalStage tagIds(List<String> tagIds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AccountIdStage, FirstNameStage, LastNameStage, _FinalStage {
-        private String accountId;
-
+    public static final class Builder implements FirstNameStage, LastNameStage, _FinalStage {
         private String firstName;
 
         private String lastName;
+
+        private Optional<List<String>> tagIds = Optional.empty();
 
         private Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions = Optional.empty();
 
@@ -234,25 +234,13 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
 
         @java.lang.Override
         public Builder from(RidershipPassengersCreateRidershipPassengerRequestBody other) {
-            accountId(other.getAccountId());
             classification(other.getClassification());
             externalIds(other.getExternalIds());
             firstName(other.getFirstName());
             identifiers(other.getIdentifiers());
             lastName(other.getLastName());
             specialInstructions(other.getSpecialInstructions());
-            return this;
-        }
-
-        /**
-         * <p>The Samsara UUID of the ridership account this passenger belongs to.</p>
-         * <p>The Samsara UUID of the ridership account this passenger belongs to.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("accountId")
-        public FirstNameStage accountId(@NotNull String accountId) {
-            this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
+            tagIds(other.getTagIds());
             return this;
         }
 
@@ -277,6 +265,26 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         @JsonSetter("lastName")
         public _FinalStage lastName(@NotNull String lastName) {
             this.lastName = Objects.requireNonNull(lastName, "lastName must not be null");
+            return this;
+        }
+
+        /**
+         * <p>IDs of tags to associate with the passenger.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tagIds(List<String> tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
+         * <p>IDs of tags to associate with the passenger.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public _FinalStage tagIds(Optional<List<String>> tagIds) {
+            this.tagIds = tagIds;
             return this;
         }
 
@@ -360,13 +368,13 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         @java.lang.Override
         public RidershipPassengersCreateRidershipPassengerRequestBody build() {
             return new RidershipPassengersCreateRidershipPassengerRequestBody(
-                    accountId,
                     classification,
                     externalIds,
                     firstName,
                     identifiers,
                     lastName,
                     specialInstructions,
+                    tagIds,
                     additionalProperties);
         }
     }

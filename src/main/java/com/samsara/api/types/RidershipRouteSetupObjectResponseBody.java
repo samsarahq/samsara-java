@@ -22,8 +22,6 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RidershipRouteSetupObjectResponseBody.Builder.class)
 public final class RidershipRouteSetupObjectResponseBody {
-    private final String accountId;
-
     private final String createdAtTime;
 
     private final List<RidershipRouteSetupPassengerObjectResponseBody> passengers;
@@ -35,26 +33,16 @@ public final class RidershipRouteSetupObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private RidershipRouteSetupObjectResponseBody(
-            String accountId,
             String createdAtTime,
             List<RidershipRouteSetupPassengerObjectResponseBody> passengers,
             String routeId,
             String updatedAtTime,
             Map<String, Object> additionalProperties) {
-        this.accountId = accountId;
         this.createdAtTime = createdAtTime;
         this.passengers = passengers;
         this.routeId = routeId;
         this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return The Samsara UUID of the ridership account.
-     */
-    @JsonProperty("accountId")
-    public String getAccountId() {
-        return accountId;
     }
 
     /**
@@ -102,8 +90,7 @@ public final class RidershipRouteSetupObjectResponseBody {
     }
 
     private boolean equalTo(RidershipRouteSetupObjectResponseBody other) {
-        return accountId.equals(other.accountId)
-                && createdAtTime.equals(other.createdAtTime)
+        return createdAtTime.equals(other.createdAtTime)
                 && passengers.equals(other.passengers)
                 && routeId.equals(other.routeId)
                 && updatedAtTime.equals(other.updatedAtTime);
@@ -111,7 +98,7 @@ public final class RidershipRouteSetupObjectResponseBody {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.accountId, this.createdAtTime, this.passengers, this.routeId, this.updatedAtTime);
+        return Objects.hash(this.createdAtTime, this.passengers, this.routeId, this.updatedAtTime);
     }
 
     @java.lang.Override
@@ -119,17 +106,8 @@ public final class RidershipRouteSetupObjectResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static AccountIdStage builder() {
+    public static CreatedAtTimeStage builder() {
         return new Builder();
-    }
-
-    public interface AccountIdStage {
-        /**
-         * <p>The Samsara UUID of the ridership account.</p>
-         */
-        CreatedAtTimeStage accountId(@NotNull String accountId);
-
-        Builder from(RidershipRouteSetupObjectResponseBody other);
     }
 
     public interface CreatedAtTimeStage {
@@ -137,6 +115,8 @@ public final class RidershipRouteSetupObjectResponseBody {
          * <p>The time the route setup was created in RFC 3339 format.</p>
          */
         RouteIdStage createdAtTime(@NotNull String createdAtTime);
+
+        Builder from(RidershipRouteSetupObjectResponseBody other);
     }
 
     public interface RouteIdStage {
@@ -167,10 +147,7 @@ public final class RidershipRouteSetupObjectResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder
-            implements AccountIdStage, CreatedAtTimeStage, RouteIdStage, UpdatedAtTimeStage, _FinalStage {
-        private String accountId;
-
+    public static final class Builder implements CreatedAtTimeStage, RouteIdStage, UpdatedAtTimeStage, _FinalStage {
         private String createdAtTime;
 
         private String routeId;
@@ -186,23 +163,10 @@ public final class RidershipRouteSetupObjectResponseBody {
 
         @java.lang.Override
         public Builder from(RidershipRouteSetupObjectResponseBody other) {
-            accountId(other.getAccountId());
             createdAtTime(other.getCreatedAtTime());
             passengers(other.getPassengers());
             routeId(other.getRouteId());
             updatedAtTime(other.getUpdatedAtTime());
-            return this;
-        }
-
-        /**
-         * <p>The Samsara UUID of the ridership account.</p>
-         * <p>The Samsara UUID of the ridership account.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("accountId")
-        public CreatedAtTimeStage accountId(@NotNull String accountId) {
-            this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
             return this;
         }
 
@@ -280,7 +244,7 @@ public final class RidershipRouteSetupObjectResponseBody {
         @java.lang.Override
         public RidershipRouteSetupObjectResponseBody build() {
             return new RidershipRouteSetupObjectResponseBody(
-                    accountId, createdAtTime, passengers, routeId, updatedAtTime, additionalProperties);
+                    createdAtTime, passengers, routeId, updatedAtTime, additionalProperties);
         }
     }
 }

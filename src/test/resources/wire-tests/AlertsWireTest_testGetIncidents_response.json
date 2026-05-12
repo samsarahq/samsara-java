@@ -435,6 +435,15 @@
                 "serial": "serial"
               }
             },
+            "routeStartDelayed": {
+              "driver": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "routeStopArrival": {
               "driver": {
                 "id": "id"
@@ -504,6 +513,17 @@
                 "id": "id"
               },
               "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
+            "routeStopEarlyLateArrival": {
+              "arrivalStatus": "early",
+              "deviationMinutes": 1000000,
+              "driver": {
                 "id": "id"
               },
               "vehicle": {
@@ -1152,6 +1172,15 @@
                 "serial": "serial"
               }
             },
+            "routeStartDelayed": {
+              "driver": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "routeStopArrival": {
               "driver": {
                 "id": "id"
@@ -1221,6 +1250,17 @@
                 "id": "id"
               },
               "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
+            "routeStopEarlyLateArrival": {
+              "arrivalStatus": "early",
+              "deviationMinutes": 1000000,
+              "driver": {
                 "id": "id"
               },
               "vehicle": {
@@ -1879,6 +1919,15 @@
                 "serial": "serial"
               }
             },
+            "routeStartDelayed": {
+              "driver": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "routeStopArrival": {
               "driver": {
                 "id": "id"
@@ -1948,6 +1997,17 @@
                 "id": "id"
               },
               "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
+            "routeStopEarlyLateArrival": {
+              "arrivalStatus": "early",
+              "deviationMinutes": 1000000,
+              "driver": {
                 "id": "id"
               },
               "vehicle": {
@@ -2596,6 +2656,15 @@
                 "serial": "serial"
               }
             },
+            "routeStartDelayed": {
+              "driver": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "routeStopArrival": {
               "driver": {
                 "id": "id"
@@ -2665,6 +2734,17 @@
                 "id": "id"
               },
               "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
+            "routeStopEarlyLateArrival": {
+              "arrivalStatus": "early",
+              "deviationMinutes": 1000000,
+              "driver": {
                 "id": "id"
               },
               "vehicle": {

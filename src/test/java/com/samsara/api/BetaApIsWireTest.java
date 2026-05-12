@@ -8,7 +8,6 @@ import com.samsara.api.resources.betaapis.requests.DeleteFunctionStorageFileRequ
 import com.samsara.api.resources.betaapis.requests.DeleteHubRouteTemplateRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
-import com.samsara.api.resources.betaapis.requests.DeleteRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipRouteSetupRequest;
 import com.samsara.api.resources.betaapis.requests.DeployFunctionRequest;
@@ -39,7 +38,6 @@ import com.samsara.api.resources.betaapis.requests.GetQualificationTypesRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportConfigsRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
-import com.samsara.api.resources.betaapis.requests.GetRidershipAccountRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
@@ -51,7 +49,6 @@ import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequ
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
-import com.samsara.api.resources.betaapis.requests.ListRidershipAccountsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
@@ -64,8 +61,6 @@ import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualif
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
 import com.samsara.api.resources.betaapis.requests.ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody;
-import com.samsara.api.resources.betaapis.requests.RidershipAccountsCreateRidershipAccountRequestBody;
-import com.samsara.api.resources.betaapis.requests.RidershipAccountsUpdateRidershipAccountRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRidershipPassengerRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRidershipPassengerRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
@@ -132,10 +127,6 @@ import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
 import com.samsara.api.types.ReportsGetReportRunDataResponseBody;
 import com.samsara.api.types.ReportsGetReportRunsResponseBody;
 import com.samsara.api.types.ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody;
-import com.samsara.api.types.RidershipAccountsCreateRidershipAccountResponseBody;
-import com.samsara.api.types.RidershipAccountsGetRidershipAccountResponseBody;
-import com.samsara.api.types.RidershipAccountsListRidershipAccountsResponseBody;
-import com.samsara.api.types.RidershipAccountsUpdateRidershipAccountResponseBody;
 import com.samsara.api.types.RidershipPassengersCreateRidershipPassengerResponseBody;
 import com.samsara.api.types.RidershipPassengersGetRidershipPassengerResponseBody;
 import com.samsara.api.types.RidershipPassengersListRidershipPassengersResponseBody;
@@ -3895,332 +3886,15 @@ public class BetaApIsWireTest {
     }
 
     @Test
-    public void testListRidershipAccounts() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"name\":\"Springfield Public Schools\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        RidershipAccountsListRidershipAccountsResponseBody response = client.betaApIs()
-                .listRidershipAccounts(ListRidershipAccountsRequest.builder().build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
-                + "      \"externalIds\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      },\n"
-                + "      \"id\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
-                + "      \"name\": \"Springfield Public Schools\",\n"
-                + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testCreateRidershipAccount() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"name\":\"Springfield Public Schools\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
-        RidershipAccountsCreateRidershipAccountResponseBody response = client.betaApIs()
-                .createRidershipAccount(RidershipAccountsCreateRidershipAccountRequestBody.builder()
-                        .name("Springfield Public Schools")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("POST", request.getMethod());
-        // Validate request body
-        String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = "" + "{\n" + "  \"name\": \"Springfield Public Schools\"\n" + "}";
-        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
-        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
-        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
-        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
-            String discriminator = null;
-            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
-            else if (actualJson.has("_type"))
-                discriminator = actualJson.get("_type").asText();
-            else if (actualJson.has("kind"))
-                discriminator = actualJson.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualJson.isNull()) {
-            Assertions.assertTrue(
-                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
-                    "request should be a valid JSON value");
-        }
-
-        if (actualJson.isArray()) {
-            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
-        }
-        if (actualJson.isObject()) {
-            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
-        }
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
-                + "    \"externalIds\": {\n"
-                + "      \"key\": \"value\"\n"
-                + "    },\n"
-                + "    \"id\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
-                + "    \"name\": \"Springfield Public Schools\",\n"
-                + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testUpdateRidershipAccount() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"name\":\"Springfield Public Schools\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
-        RidershipAccountsUpdateRidershipAccountResponseBody response = client.betaApIs()
-                .updateRidershipAccount(RidershipAccountsUpdateRidershipAccountRequestBody.builder()
-                        .id("id")
-                        .name("Springfield Public Schools")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("PUT", request.getMethod());
-        // Validate request body
-        String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = "" + "{\n" + "  \"name\": \"Springfield Public Schools\"\n" + "}";
-        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
-        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
-        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
-        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
-            String discriminator = null;
-            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
-            else if (actualJson.has("_type"))
-                discriminator = actualJson.get("_type").asText();
-            else if (actualJson.has("kind"))
-                discriminator = actualJson.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualJson.isNull()) {
-            Assertions.assertTrue(
-                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
-                    "request should be a valid JSON value");
-        }
-
-        if (actualJson.isArray()) {
-            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
-        }
-        if (actualJson.isObject()) {
-            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
-        }
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
-                + "    \"externalIds\": {\n"
-                + "      \"key\": \"value\"\n"
-                + "    },\n"
-                + "    \"id\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
-                + "    \"name\": \"Springfield Public Schools\",\n"
-                + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testDeleteRidershipAccount() throws Exception {
-        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
-        client.betaApIs()
-                .deleteRidershipAccount(
-                        DeleteRidershipAccountRequest.builder().id("id").build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("DELETE", request.getMethod());
-    }
-
-    @Test
-    public void testGetRidershipAccount() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"name\":\"Springfield Public Schools\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
-        RidershipAccountsGetRidershipAccountResponseBody response = client.betaApIs()
-                .getRidershipAccount("id", GetRidershipAccountRequest.builder().build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
-                + "    \"externalIds\": {\n"
-                + "      \"key\": \"value\"\n"
-                + "    },\n"
-                + "    \"id\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
-                + "    \"name\": \"Springfield Public Schools\",\n"
-                + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
     public void testListRidershipPassengers() throws Exception {
         server.enqueue(
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Beatae minus.\",\"Voluptatum voluptatem qui.\",\"Tempora voluptatem voluptatem veritatis molestiae.\",\"Quis est eaque voluptas quia id voluptates.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipPassengersListRidershipPassengersResponseBody response = client.betaApIs()
-                .listRidershipPassengers(ListRidershipPassengersRequest.builder()
-                        .accountId("accountId")
-                        .build());
+                .listRidershipPassengers(
+                        ListRidershipPassengersRequest.builder().tagId("tagId").build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -4232,7 +3906,6 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "      \"classification\": \"grade5\",\n"
                 + "      \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "      \"externalIds\": {\n"
@@ -4251,9 +3924,15 @@ public class BetaApIsWireTest {
                 + "      \"isActive\": true,\n"
                 + "      \"lastName\": \"Doe\",\n"
                 + "      \"specialInstructions\": {\n"
-                + "        \"isGuardianRequired\": false,\n"
-                + "        \"isSpecialEducation\": false\n"
+                + "        \"isGuardianRequired\": true,\n"
+                + "        \"isSpecialEducation\": true\n"
                 + "      },\n"
+                + "      \"tagIds\": [\n"
+                + "        \"Beatae minus.\",\n"
+                + "        \"Voluptatum voluptatem qui.\",\n"
+                + "        \"Tempora voluptatem voluptatem veritatis molestiae.\",\n"
+                + "        \"Quis est eaque voluptas quia id voluptates.\"\n"
+                + "      ],\n"
                 + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "    }\n"
                 + "  ],\n"
@@ -4299,10 +3978,9 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Beatae minus.\",\"Voluptatum voluptatem qui.\",\"Tempora voluptatem voluptatem veritatis molestiae.\",\"Quis est eaque voluptas quia id voluptates.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersCreateRidershipPassengerResponseBody response = client.betaApIs()
                 .createRidershipPassenger(RidershipPassengersCreateRidershipPassengerRequestBody.builder()
-                        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
                         .firstName("John")
                         .lastName("Doe")
                         .build());
@@ -4311,12 +3989,7 @@ public class BetaApIsWireTest {
         Assertions.assertEquals("POST", request.getMethod());
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = ""
-                + "{\n"
-                + "  \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
-                + "  \"firstName\": \"John\",\n"
-                + "  \"lastName\": \"Doe\"\n"
-                + "}";
+        String expectedRequestBody = "" + "{\n" + "  \"firstName\": \"John\",\n" + "  \"lastName\": \"Doe\"\n" + "}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
@@ -4350,7 +4023,6 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "    \"classification\": \"grade5\",\n"
                 + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"externalIds\": {\n"
@@ -4369,9 +4041,15 @@ public class BetaApIsWireTest {
                 + "    \"isActive\": true,\n"
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
-                + "      \"isGuardianRequired\": false,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isGuardianRequired\": true,\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
+                + "    \"tagIds\": [\n"
+                + "      \"Beatae minus.\",\n"
+                + "      \"Voluptatum voluptatem qui.\",\n"
+                + "      \"Tempora voluptatem voluptatem veritatis molestiae.\",\n"
+                + "      \"Quis est eaque voluptas quia id voluptates.\"\n"
+                + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
@@ -4412,11 +4090,10 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Beatae minus.\",\"Voluptatum voluptatem qui.\",\"Tempora voluptatem voluptatem veritatis molestiae.\",\"Quis est eaque voluptas quia id voluptates.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersUpdateRidershipPassengerResponseBody response = client.betaApIs()
                 .updateRidershipPassenger(RidershipPassengersUpdateRidershipPassengerRequestBody.builder()
                         .id("id")
-                        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
                         .firstName("John")
                         .lastName("Doe")
                         .build());
@@ -4425,12 +4102,7 @@ public class BetaApIsWireTest {
         Assertions.assertEquals("PUT", request.getMethod());
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = ""
-                + "{\n"
-                + "  \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
-                + "  \"firstName\": \"John\",\n"
-                + "  \"lastName\": \"Doe\"\n"
-                + "}";
+        String expectedRequestBody = "" + "{\n" + "  \"firstName\": \"John\",\n" + "  \"lastName\": \"Doe\"\n" + "}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
@@ -4464,7 +4136,6 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "    \"classification\": \"grade5\",\n"
                 + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"externalIds\": {\n"
@@ -4483,9 +4154,15 @@ public class BetaApIsWireTest {
                 + "    \"isActive\": true,\n"
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
-                + "      \"isGuardianRequired\": false,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isGuardianRequired\": true,\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
+                + "    \"tagIds\": [\n"
+                + "      \"Beatae minus.\",\n"
+                + "      \"Voluptatum voluptatem qui.\",\n"
+                + "      \"Tempora voluptatem voluptatem veritatis molestiae.\",\n"
+                + "      \"Quis est eaque voluptas quia id voluptates.\"\n"
+                + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
@@ -4537,7 +4214,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Beatae minus.\",\"Voluptatum voluptatem qui.\",\"Tempora voluptatem voluptatem veritatis molestiae.\",\"Quis est eaque voluptas quia id voluptates.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersGetRidershipPassengerResponseBody response = client.betaApIs()
                 .getRidershipPassenger(
                         "id", GetRidershipPassengerRequest.builder().build());
@@ -4551,7 +4228,6 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "    \"classification\": \"grade5\",\n"
                 + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"externalIds\": {\n"
@@ -4570,9 +4246,15 @@ public class BetaApIsWireTest {
                 + "    \"isActive\": true,\n"
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
-                + "      \"isGuardianRequired\": false,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isGuardianRequired\": true,\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
+                + "    \"tagIds\": [\n"
+                + "      \"Beatae minus.\",\n"
+                + "      \"Voluptatum voluptatem qui.\",\n"
+                + "      \"Tempora voluptatem voluptatem veritatis molestiae.\",\n"
+                + "      \"Quis est eaque voluptas quia id voluptates.\"\n"
+                + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
                 + "}";
@@ -4613,7 +4295,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipRouteSetupsListRidershipRouteSetupsResponseBody response = client.betaApIs()
                 .listRidershipRouteSetups(ListRidershipRouteSetupsRequest.builder()
                         .accountId("accountId")
@@ -4629,7 +4311,6 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "      \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "      \"passengers\": [\n"
                 + "        {\n"
@@ -4684,10 +4365,9 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipRouteSetupsCreateRidershipRouteSetupResponseBody response = client.betaApIs()
                 .createRidershipRouteSetup(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody.builder()
-                        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
                         .routeId("123456")
                         .passengers(Arrays.asList(RidershipRouteSetupPassengerInputRequestBody.builder()
                                 .passengerId("a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d")
@@ -4700,7 +4380,6 @@ public class BetaApIsWireTest {
         String actualRequestBody = request.getBody().readUtf8();
         String expectedRequestBody = ""
                 + "{\n"
-                + "  \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "  \"passengers\": [\n"
                 + "    {\n"
                 + "      \"passengerId\": \"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\"\n"
@@ -4741,7 +4420,6 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"passengers\": [\n"
                 + "      {\n"
@@ -4791,11 +4469,10 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody response = client.betaApIs()
                 .updateRidershipRouteSetup(RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody.builder()
                         .routeId("routeId")
-                        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
                         .passengers(Arrays.asList(RidershipRouteSetupPassengerInputRequestBody.builder()
                                 .passengerId("a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d")
                                 .build()))
@@ -4807,7 +4484,6 @@ public class BetaApIsWireTest {
         String actualRequestBody = request.getBody().readUtf8();
         String expectedRequestBody = ""
                 + "{\n"
-                + "  \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "  \"passengers\": [\n"
                 + "    {\n"
                 + "      \"passengerId\": \"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\"\n"
@@ -4847,7 +4523,6 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"passengers\": [\n"
                 + "      {\n"
@@ -4909,7 +4584,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"accountId\":\"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"passengers\":[{\"dropOffStopId\":\"790\",\"passengerId\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"pickUpStopId\":\"789\"}],\"routeId\":\"123456\",\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipRouteSetupsGetRidershipRouteSetupResponseBody response = client.betaApIs()
                 .getRidershipRouteSetup(
                         "routeId", GetRidershipRouteSetupRequest.builder().build());
@@ -4923,7 +4598,6 @@ public class BetaApIsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"accountId\": \"e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b\",\n"
                 + "    \"createdAtTime\": \"2024-11-15T10:00:00Z\",\n"
                 + "    \"passengers\": [\n"
                 + "      {\n"

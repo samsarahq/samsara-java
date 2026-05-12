@@ -27,8 +27,6 @@ import org.jetbrains.annotations.NotNull;
 public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
     private final String id;
 
-    private final String accountId;
-
     private final Optional<RidershipPassengersUpdateRidershipPassengerRequestBodyClassification> classification;
 
     private final Optional<Map<String, String>> externalIds;
@@ -41,43 +39,37 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
 
     private final Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions;
 
+    private final Optional<List<String>> tagIds;
+
     private final Map<String, Object> additionalProperties;
 
     private RidershipPassengersUpdateRidershipPassengerRequestBody(
             String id,
-            String accountId,
             Optional<RidershipPassengersUpdateRidershipPassengerRequestBodyClassification> classification,
             Optional<Map<String, String>> externalIds,
             String firstName,
             Optional<List<RidershipPassengerIdentifierInputRequestBody>> identifiers,
             String lastName,
             Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions,
+            Optional<List<String>> tagIds,
             Map<String, Object> additionalProperties) {
         this.id = id;
-        this.accountId = accountId;
         this.classification = classification;
         this.externalIds = externalIds;
         this.firstName = firstName;
         this.identifiers = identifiers;
         this.lastName = lastName;
         this.specialInstructions = specialInstructions;
+        this.tagIds = tagIds;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return The Samsara UUID of the ridership passenger.
+     * @return ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.
      */
     @JsonProperty("id")
     public String getId() {
         return id;
-    }
-
-    /**
-     * @return The Samsara UUID of the ridership account this passenger belongs to.
-     */
-    @JsonProperty("accountId")
-    public String getAccountId() {
-        return accountId;
     }
 
     /**
@@ -125,6 +117,14 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         return specialInstructions;
     }
 
+    /**
+     * @return IDs of tags to associate with the passenger.
+     */
+    @JsonProperty("tagIds")
+    public Optional<List<String>> getTagIds() {
+        return tagIds;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -139,26 +139,26 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
 
     private boolean equalTo(RidershipPassengersUpdateRidershipPassengerRequestBody other) {
         return id.equals(other.id)
-                && accountId.equals(other.accountId)
                 && classification.equals(other.classification)
                 && externalIds.equals(other.externalIds)
                 && firstName.equals(other.firstName)
                 && identifiers.equals(other.identifiers)
                 && lastName.equals(other.lastName)
-                && specialInstructions.equals(other.specialInstructions);
+                && specialInstructions.equals(other.specialInstructions)
+                && tagIds.equals(other.tagIds);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
-                this.accountId,
                 this.classification,
                 this.externalIds,
                 this.firstName,
                 this.identifiers,
                 this.lastName,
-                this.specialInstructions);
+                this.specialInstructions,
+                this.tagIds);
     }
 
     @java.lang.Override
@@ -172,18 +172,11 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
 
     public interface IdStage {
         /**
-         * <p>The Samsara UUID of the ridership passenger.</p>
+         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
          */
-        AccountIdStage id(@NotNull String id);
+        FirstNameStage id(@NotNull String id);
 
         Builder from(RidershipPassengersUpdateRidershipPassengerRequestBody other);
-    }
-
-    public interface AccountIdStage {
-        /**
-         * <p>The Samsara UUID of the ridership account this passenger belongs to.</p>
-         */
-        FirstNameStage accountId(@NotNull String accountId);
     }
 
     public interface FirstNameStage {
@@ -229,17 +222,24 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
                 Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions);
 
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsInputRequestBody specialInstructions);
+
+        /**
+         * <p>IDs of tags to associate with the passenger.</p>
+         */
+        _FinalStage tagIds(Optional<List<String>> tagIds);
+
+        _FinalStage tagIds(List<String> tagIds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements IdStage, AccountIdStage, FirstNameStage, LastNameStage, _FinalStage {
+    public static final class Builder implements IdStage, FirstNameStage, LastNameStage, _FinalStage {
         private String id;
-
-        private String accountId;
 
         private String firstName;
 
         private String lastName;
+
+        private Optional<List<String>> tagIds = Optional.empty();
 
         private Optional<RidershipPassengerSpecialInstructionsInputRequestBody> specialInstructions = Optional.empty();
 
@@ -258,37 +258,25 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         @java.lang.Override
         public Builder from(RidershipPassengersUpdateRidershipPassengerRequestBody other) {
             id(other.getId());
-            accountId(other.getAccountId());
             classification(other.getClassification());
             externalIds(other.getExternalIds());
             firstName(other.getFirstName());
             identifiers(other.getIdentifiers());
             lastName(other.getLastName());
             specialInstructions(other.getSpecialInstructions());
+            tagIds(other.getTagIds());
             return this;
         }
 
         /**
-         * <p>The Samsara UUID of the ridership passenger.</p>
-         * <p>The Samsara UUID of the ridership passenger.</p>
+         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
+         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("id")
-        public AccountIdStage id(@NotNull String id) {
+        public FirstNameStage id(@NotNull String id) {
             this.id = Objects.requireNonNull(id, "id must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The Samsara UUID of the ridership account this passenger belongs to.</p>
-         * <p>The Samsara UUID of the ridership account this passenger belongs to.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("accountId")
-        public FirstNameStage accountId(@NotNull String accountId) {
-            this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
             return this;
         }
 
@@ -313,6 +301,26 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         @JsonSetter("lastName")
         public _FinalStage lastName(@NotNull String lastName) {
             this.lastName = Objects.requireNonNull(lastName, "lastName must not be null");
+            return this;
+        }
+
+        /**
+         * <p>IDs of tags to associate with the passenger.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tagIds(List<String> tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
+         * <p>IDs of tags to associate with the passenger.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public _FinalStage tagIds(Optional<List<String>> tagIds) {
+            this.tagIds = tagIds;
             return this;
         }
 
@@ -397,13 +405,13 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         public RidershipPassengersUpdateRidershipPassengerRequestBody build() {
             return new RidershipPassengersUpdateRidershipPassengerRequestBody(
                     id,
-                    accountId,
                     classification,
                     externalIds,
                     firstName,
                     identifiers,
                     lastName,
                     specialInstructions,
+                    tagIds,
                     additionalProperties);
         }
     }

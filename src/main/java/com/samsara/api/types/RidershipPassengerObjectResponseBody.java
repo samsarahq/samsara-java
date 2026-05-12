@@ -22,8 +22,6 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RidershipPassengerObjectResponseBody.Builder.class)
 public final class RidershipPassengerObjectResponseBody {
-    private final String accountId;
-
     private final Optional<String> classification;
 
     private final String createdAtTime;
@@ -42,12 +40,13 @@ public final class RidershipPassengerObjectResponseBody {
 
     private final Optional<RidershipPassengerSpecialInstructionsObjectResponseBody> specialInstructions;
 
+    private final Optional<List<String>> tagIds;
+
     private final String updatedAtTime;
 
     private final Map<String, Object> additionalProperties;
 
     private RidershipPassengerObjectResponseBody(
-            String accountId,
             Optional<String> classification,
             String createdAtTime,
             Optional<Map<String, String>> externalIds,
@@ -57,9 +56,9 @@ public final class RidershipPassengerObjectResponseBody {
             boolean isActive,
             String lastName,
             Optional<RidershipPassengerSpecialInstructionsObjectResponseBody> specialInstructions,
+            Optional<List<String>> tagIds,
             String updatedAtTime,
             Map<String, Object> additionalProperties) {
-        this.accountId = accountId;
         this.classification = classification;
         this.createdAtTime = createdAtTime;
         this.externalIds = externalIds;
@@ -69,16 +68,9 @@ public final class RidershipPassengerObjectResponseBody {
         this.isActive = isActive;
         this.lastName = lastName;
         this.specialInstructions = specialInstructions;
+        this.tagIds = tagIds;
         this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return The Samsara UUID of the account this passenger belongs to.
-     */
-    @JsonProperty("accountId")
-    public String getAccountId() {
-        return accountId;
     }
 
     /**
@@ -151,6 +143,14 @@ public final class RidershipPassengerObjectResponseBody {
     }
 
     /**
+     * @return IDs of tags associated with this passenger.
+     */
+    @JsonProperty("tagIds")
+    public Optional<List<String>> getTagIds() {
+        return tagIds;
+    }
+
+    /**
      * @return The time the passenger was last updated in RFC 3339 format.
      */
     @JsonProperty("updatedAtTime")
@@ -171,8 +171,7 @@ public final class RidershipPassengerObjectResponseBody {
     }
 
     private boolean equalTo(RidershipPassengerObjectResponseBody other) {
-        return accountId.equals(other.accountId)
-                && classification.equals(other.classification)
+        return classification.equals(other.classification)
                 && createdAtTime.equals(other.createdAtTime)
                 && externalIds.equals(other.externalIds)
                 && firstName.equals(other.firstName)
@@ -181,13 +180,13 @@ public final class RidershipPassengerObjectResponseBody {
                 && isActive == other.isActive
                 && lastName.equals(other.lastName)
                 && specialInstructions.equals(other.specialInstructions)
+                && tagIds.equals(other.tagIds)
                 && updatedAtTime.equals(other.updatedAtTime);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.accountId,
                 this.classification,
                 this.createdAtTime,
                 this.externalIds,
@@ -197,6 +196,7 @@ public final class RidershipPassengerObjectResponseBody {
                 this.isActive,
                 this.lastName,
                 this.specialInstructions,
+                this.tagIds,
                 this.updatedAtTime);
     }
 
@@ -205,17 +205,8 @@ public final class RidershipPassengerObjectResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static AccountIdStage builder() {
+    public static CreatedAtTimeStage builder() {
         return new Builder();
-    }
-
-    public interface AccountIdStage {
-        /**
-         * <p>The Samsara UUID of the account this passenger belongs to.</p>
-         */
-        CreatedAtTimeStage accountId(@NotNull String accountId);
-
-        Builder from(RidershipPassengerObjectResponseBody other);
     }
 
     public interface CreatedAtTimeStage {
@@ -223,6 +214,8 @@ public final class RidershipPassengerObjectResponseBody {
          * <p>The time the passenger was created in RFC 3339 format.</p>
          */
         FirstNameStage createdAtTime(@NotNull String createdAtTime);
+
+        Builder from(RidershipPassengerObjectResponseBody other);
     }
 
     public interface FirstNameStage {
@@ -288,20 +281,24 @@ public final class RidershipPassengerObjectResponseBody {
                 Optional<RidershipPassengerSpecialInstructionsObjectResponseBody> specialInstructions);
 
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsObjectResponseBody specialInstructions);
+
+        /**
+         * <p>IDs of tags associated with this passenger.</p>
+         */
+        _FinalStage tagIds(Optional<List<String>> tagIds);
+
+        _FinalStage tagIds(List<String> tagIds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements AccountIdStage,
-                    CreatedAtTimeStage,
+            implements CreatedAtTimeStage,
                     FirstNameStage,
                     IdStage,
                     IsActiveStage,
                     LastNameStage,
                     UpdatedAtTimeStage,
                     _FinalStage {
-        private String accountId;
-
         private String createdAtTime;
 
         private String firstName;
@@ -313,6 +310,8 @@ public final class RidershipPassengerObjectResponseBody {
         private String lastName;
 
         private String updatedAtTime;
+
+        private Optional<List<String>> tagIds = Optional.empty();
 
         private Optional<RidershipPassengerSpecialInstructionsObjectResponseBody> specialInstructions =
                 Optional.empty();
@@ -330,7 +329,6 @@ public final class RidershipPassengerObjectResponseBody {
 
         @java.lang.Override
         public Builder from(RidershipPassengerObjectResponseBody other) {
-            accountId(other.getAccountId());
             classification(other.getClassification());
             createdAtTime(other.getCreatedAtTime());
             externalIds(other.getExternalIds());
@@ -340,19 +338,8 @@ public final class RidershipPassengerObjectResponseBody {
             isActive(other.getIsActive());
             lastName(other.getLastName());
             specialInstructions(other.getSpecialInstructions());
+            tagIds(other.getTagIds());
             updatedAtTime(other.getUpdatedAtTime());
-            return this;
-        }
-
-        /**
-         * <p>The Samsara UUID of the account this passenger belongs to.</p>
-         * <p>The Samsara UUID of the account this passenger belongs to.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("accountId")
-        public CreatedAtTimeStage accountId(@NotNull String accountId) {
-            this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
             return this;
         }
 
@@ -425,6 +412,26 @@ public final class RidershipPassengerObjectResponseBody {
         @JsonSetter("updatedAtTime")
         public _FinalStage updatedAtTime(@NotNull String updatedAtTime) {
             this.updatedAtTime = Objects.requireNonNull(updatedAtTime, "updatedAtTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>IDs of tags associated with this passenger.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tagIds(List<String> tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
+         * <p>IDs of tags associated with this passenger.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public _FinalStage tagIds(Optional<List<String>> tagIds) {
+            this.tagIds = tagIds;
             return this;
         }
 
@@ -506,7 +513,6 @@ public final class RidershipPassengerObjectResponseBody {
         @java.lang.Override
         public RidershipPassengerObjectResponseBody build() {
             return new RidershipPassengerObjectResponseBody(
-                    accountId,
                     classification,
                     createdAtTime,
                     externalIds,
@@ -516,6 +522,7 @@ public final class RidershipPassengerObjectResponseBody {
                     isActive,
                     lastName,
                     specialInstructions,
+                    tagIds,
                     updatedAtTime,
                     additionalProperties);
         }

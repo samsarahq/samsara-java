@@ -29,7 +29,7 @@ public final class DeleteRidershipPassengerRequest {
     }
 
     /**
-     * @return The Samsara UUID of the ridership passenger.
+     * @return ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.
      */
     @JsonProperty("id")
     public String getId() {
@@ -67,7 +67,7 @@ public final class DeleteRidershipPassengerRequest {
 
     public interface IdStage {
         /**
-         * <p>The Samsara UUID of the ridership passenger.</p>
+         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
          */
         _FinalStage id(@NotNull String id);
 
@@ -94,8 +94,8 @@ public final class DeleteRidershipPassengerRequest {
         }
 
         /**
-         * <p>The Samsara UUID of the ridership passenger.</p>
-         * <p>The Samsara UUID of the ridership passenger.</p>
+         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
+         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
