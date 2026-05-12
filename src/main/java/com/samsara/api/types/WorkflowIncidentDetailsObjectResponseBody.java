@@ -104,11 +104,15 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<ReeferTemperatureResponseBody> reeferTemperature;
 
+    private final Optional<RouteStartDelayedDataResponseBody> routeStartDelayed;
+
     private final Optional<RouteStopDetailsObjectResponseBody> routeStopArrival;
 
     private final Optional<RouteStopDetailsObjectResponseBody> routeStopDeparture;
 
     private final Optional<RouteStopEtaResponseBody> routeStopEta;
+
+    private final Optional<RouteStopEarlyLateArrivalDataResponseBody> routeStopEarlyLateArrival;
 
     private final Optional<ScheduledMaintenanceDataResponseBody> scheduledMaintenance;
 
@@ -191,9 +195,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<PersonDetectedResponseBody> personDetected,
             Optional<ReadingTriggerDetailsResponseBody> reading,
             Optional<ReeferTemperatureResponseBody> reeferTemperature,
+            Optional<RouteStartDelayedDataResponseBody> routeStartDelayed,
             Optional<RouteStopDetailsObjectResponseBody> routeStopArrival,
             Optional<RouteStopDetailsObjectResponseBody> routeStopDeparture,
             Optional<RouteStopEtaResponseBody> routeStopEta,
+            Optional<RouteStopEarlyLateArrivalDataResponseBody> routeStopEarlyLateArrival,
             Optional<ScheduledMaintenanceDataResponseBody> scheduledMaintenance,
             Optional<ScheduledMaintenanceByEngineHoursResponseBody> scheduledMaintenanceByEngineHours,
             Optional<ScheduledMaintenanceOdometerDataResponseBody> scheduledMaintenanceOdometer,
@@ -255,9 +261,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.personDetected = personDetected;
         this.reading = reading;
         this.reeferTemperature = reeferTemperature;
+        this.routeStartDelayed = routeStartDelayed;
         this.routeStopArrival = routeStopArrival;
         this.routeStopDeparture = routeStopDeparture;
         this.routeStopEta = routeStopEta;
+        this.routeStopEarlyLateArrival = routeStopEarlyLateArrival;
         this.scheduledMaintenance = scheduledMaintenance;
         this.scheduledMaintenanceByEngineHours = scheduledMaintenanceByEngineHours;
         this.scheduledMaintenanceOdometer = scheduledMaintenanceOdometer;
@@ -489,6 +497,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return reeferTemperature;
     }
 
+    @JsonProperty("routeStartDelayed")
+    public Optional<RouteStartDelayedDataResponseBody> getRouteStartDelayed() {
+        return routeStartDelayed;
+    }
+
     @JsonProperty("routeStopArrival")
     public Optional<RouteStopDetailsObjectResponseBody> getRouteStopArrival() {
         return routeStopArrival;
@@ -502,6 +515,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
     @JsonProperty("routeStopETA")
     public Optional<RouteStopEtaResponseBody> getRouteStopEta() {
         return routeStopEta;
+    }
+
+    @JsonProperty("routeStopEarlyLateArrival")
+    public Optional<RouteStopEarlyLateArrivalDataResponseBody> getRouteStopEarlyLateArrival() {
+        return routeStopEarlyLateArrival;
     }
 
     @JsonProperty("scheduledMaintenance")
@@ -649,9 +667,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && personDetected.equals(other.personDetected)
                 && reading.equals(other.reading)
                 && reeferTemperature.equals(other.reeferTemperature)
+                && routeStartDelayed.equals(other.routeStartDelayed)
                 && routeStopArrival.equals(other.routeStopArrival)
                 && routeStopDeparture.equals(other.routeStopDeparture)
                 && routeStopEta.equals(other.routeStopEta)
+                && routeStopEarlyLateArrival.equals(other.routeStopEarlyLateArrival)
                 && scheduledMaintenance.equals(other.scheduledMaintenance)
                 && scheduledMaintenanceByEngineHours.equals(other.scheduledMaintenanceByEngineHours)
                 && scheduledMaintenanceOdometer.equals(other.scheduledMaintenanceOdometer)
@@ -717,9 +737,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.personDetected,
                 this.reading,
                 this.reeferTemperature,
+                this.routeStartDelayed,
                 this.routeStopArrival,
                 this.routeStopDeparture,
                 this.routeStopEta,
+                this.routeStopEarlyLateArrival,
                 this.scheduledMaintenance,
                 this.scheduledMaintenanceByEngineHours,
                 this.scheduledMaintenanceOdometer,
@@ -835,11 +857,15 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<ReeferTemperatureResponseBody> reeferTemperature = Optional.empty();
 
+        private Optional<RouteStartDelayedDataResponseBody> routeStartDelayed = Optional.empty();
+
         private Optional<RouteStopDetailsObjectResponseBody> routeStopArrival = Optional.empty();
 
         private Optional<RouteStopDetailsObjectResponseBody> routeStopDeparture = Optional.empty();
 
         private Optional<RouteStopEtaResponseBody> routeStopEta = Optional.empty();
+
+        private Optional<RouteStopEarlyLateArrivalDataResponseBody> routeStopEarlyLateArrival = Optional.empty();
 
         private Optional<ScheduledMaintenanceDataResponseBody> scheduledMaintenance = Optional.empty();
 
@@ -926,9 +952,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             personDetected(other.getPersonDetected());
             reading(other.getReading());
             reeferTemperature(other.getReeferTemperature());
+            routeStartDelayed(other.getRouteStartDelayed());
             routeStopArrival(other.getRouteStopArrival());
             routeStopDeparture(other.getRouteStopDeparture());
             routeStopEta(other.getRouteStopEta());
+            routeStopEarlyLateArrival(other.getRouteStopEarlyLateArrival());
             scheduledMaintenance(other.getScheduledMaintenance());
             scheduledMaintenanceByEngineHours(other.getScheduledMaintenanceByEngineHours());
             scheduledMaintenanceOdometer(other.getScheduledMaintenanceOdometer());
@@ -1414,6 +1442,17 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "routeStartDelayed", nulls = Nulls.SKIP)
+        public Builder routeStartDelayed(Optional<RouteStartDelayedDataResponseBody> routeStartDelayed) {
+            this.routeStartDelayed = routeStartDelayed;
+            return this;
+        }
+
+        public Builder routeStartDelayed(RouteStartDelayedDataResponseBody routeStartDelayed) {
+            this.routeStartDelayed = Optional.ofNullable(routeStartDelayed);
+            return this;
+        }
+
         @JsonSetter(value = "routeStopArrival", nulls = Nulls.SKIP)
         public Builder routeStopArrival(Optional<RouteStopDetailsObjectResponseBody> routeStopArrival) {
             this.routeStopArrival = routeStopArrival;
@@ -1444,6 +1483,18 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         public Builder routeStopEta(RouteStopEtaResponseBody routeStopEta) {
             this.routeStopEta = Optional.ofNullable(routeStopEta);
+            return this;
+        }
+
+        @JsonSetter(value = "routeStopEarlyLateArrival", nulls = Nulls.SKIP)
+        public Builder routeStopEarlyLateArrival(
+                Optional<RouteStopEarlyLateArrivalDataResponseBody> routeStopEarlyLateArrival) {
+            this.routeStopEarlyLateArrival = routeStopEarlyLateArrival;
+            return this;
+        }
+
+        public Builder routeStopEarlyLateArrival(RouteStopEarlyLateArrivalDataResponseBody routeStopEarlyLateArrival) {
+            this.routeStopEarlyLateArrival = Optional.ofNullable(routeStopEarlyLateArrival);
             return this;
         }
 
@@ -1695,9 +1746,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     personDetected,
                     reading,
                     reeferTemperature,
+                    routeStartDelayed,
                     routeStopArrival,
                     routeStopDeparture,
                     routeStopEta,
+                    routeStopEarlyLateArrival,
                     scheduledMaintenance,
                     scheduledMaintenanceByEngineHours,
                     scheduledMaintenanceOdometer,

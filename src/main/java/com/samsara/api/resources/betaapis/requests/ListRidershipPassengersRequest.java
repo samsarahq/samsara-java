@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListRidershipPassengersRequest.Builder.class)
 public final class ListRidershipPassengersRequest {
-    private final String accountId;
+    private final String tagId;
 
     private final Optional<String> after;
 
@@ -32,12 +32,12 @@ public final class ListRidershipPassengersRequest {
     private final Map<String, Object> additionalProperties;
 
     private ListRidershipPassengersRequest(
-            String accountId,
+            String tagId,
             Optional<String> after,
             Optional<Long> limit,
             Optional<Boolean> includeExternalIds,
             Map<String, Object> additionalProperties) {
-        this.accountId = accountId;
+        this.tagId = tagId;
         this.after = after;
         this.limit = limit;
         this.includeExternalIds = includeExternalIds;
@@ -45,11 +45,11 @@ public final class ListRidershipPassengersRequest {
     }
 
     /**
-     * @return The Samsara UUID of the ridership account to filter passengers by.
+     * @return ID of a tag to filter passengers by.
      */
-    @JsonProperty("accountId")
-    public String getAccountId() {
-        return accountId;
+    @JsonProperty("tagId")
+    public String getTagId() {
+        return tagId;
     }
 
     /**
@@ -88,7 +88,7 @@ public final class ListRidershipPassengersRequest {
     }
 
     private boolean equalTo(ListRidershipPassengersRequest other) {
-        return accountId.equals(other.accountId)
+        return tagId.equals(other.tagId)
                 && after.equals(other.after)
                 && limit.equals(other.limit)
                 && includeExternalIds.equals(other.includeExternalIds);
@@ -96,7 +96,7 @@ public final class ListRidershipPassengersRequest {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.accountId, this.after, this.limit, this.includeExternalIds);
+        return Objects.hash(this.tagId, this.after, this.limit, this.includeExternalIds);
     }
 
     @java.lang.Override
@@ -104,15 +104,15 @@ public final class ListRidershipPassengersRequest {
         return ObjectMappers.stringify(this);
     }
 
-    public static AccountIdStage builder() {
+    public static TagIdStage builder() {
         return new Builder();
     }
 
-    public interface AccountIdStage {
+    public interface TagIdStage {
         /**
-         * <p>The Samsara UUID of the ridership account to filter passengers by.</p>
+         * <p>ID of a tag to filter passengers by.</p>
          */
-        _FinalStage accountId(@NotNull String accountId);
+        _FinalStage tagId(@NotNull String tagId);
 
         Builder from(ListRidershipPassengersRequest other);
     }
@@ -143,8 +143,8 @@ public final class ListRidershipPassengersRequest {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AccountIdStage, _FinalStage {
-        private String accountId;
+    public static final class Builder implements TagIdStage, _FinalStage {
+        private String tagId;
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
@@ -159,7 +159,7 @@ public final class ListRidershipPassengersRequest {
 
         @java.lang.Override
         public Builder from(ListRidershipPassengersRequest other) {
-            accountId(other.getAccountId());
+            tagId(other.getTagId());
             after(other.getAfter());
             limit(other.getLimit());
             includeExternalIds(other.getIncludeExternalIds());
@@ -167,14 +167,14 @@ public final class ListRidershipPassengersRequest {
         }
 
         /**
-         * <p>The Samsara UUID of the ridership account to filter passengers by.</p>
-         * <p>The Samsara UUID of the ridership account to filter passengers by.</p>
+         * <p>ID of a tag to filter passengers by.</p>
+         * <p>ID of a tag to filter passengers by.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter("accountId")
-        public _FinalStage accountId(@NotNull String accountId) {
-            this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
+        @JsonSetter("tagId")
+        public _FinalStage tagId(@NotNull String tagId) {
+            this.tagId = Objects.requireNonNull(tagId, "tagId must not be null");
             return this;
         }
 
@@ -240,8 +240,7 @@ public final class ListRidershipPassengersRequest {
 
         @java.lang.Override
         public ListRidershipPassengersRequest build() {
-            return new ListRidershipPassengersRequest(
-                    accountId, after, limit, includeExternalIds, additionalProperties);
+            return new ListRidershipPassengersRequest(tagId, after, limit, includeExternalIds, additionalProperties);
         }
     }
 }

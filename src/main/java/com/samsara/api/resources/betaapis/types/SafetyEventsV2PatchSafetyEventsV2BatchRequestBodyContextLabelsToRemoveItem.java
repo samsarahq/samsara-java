@@ -10,6 +10,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem FOG =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(Value.FOG, "Fog");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem TRAILER_CAR =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
+                    Value.TRAILER_CAR, "Trailer Car");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem SNOWY_ROAD =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
                     Value.SNOWY_ROAD, "Snowy Road");
@@ -89,6 +93,9 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
                     Value.IMPROPER_SEAT_BELT, "Improper Seat Belt");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem LEAD_CAR =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(Value.LEAD_CAR, "Lead Car");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem PARKING_LOT =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
                     Value.PARKING_LOT, "Parking Lot");
@@ -142,6 +149,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         switch (value) {
             case FOG:
                 return visitor.visitFog();
+            case TRAILER_CAR:
+                return visitor.visitTrailerCar();
             case SNOWY_ROAD:
                 return visitor.visitSnowyRoad();
             case COUPLING_UNCOUPLING:
@@ -184,6 +193,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return visitor.visitVeryDrowsy();
             case IMPROPER_SEAT_BELT:
                 return visitor.visitImproperSeatBelt();
+            case LEAD_CAR:
+                return visitor.visitLeadCar();
             case PARKING_LOT:
                 return visitor.visitParkingLot();
             case PASSENGER_MOBILE_USAGE:
@@ -203,6 +214,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         switch (value) {
             case "Fog":
                 return FOG;
+            case "Trailer Car":
+                return TRAILER_CAR;
             case "Snowy Road":
                 return SNOWY_ROAD;
             case "Coupling/Uncoupling":
@@ -245,6 +258,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return VERY_DROWSY;
             case "Improper Seat Belt":
                 return IMPROPER_SEAT_BELT;
+            case "Lead Car":
+                return LEAD_CAR;
             case "Parking Lot":
                 return PARKING_LOT;
             case "Passenger Mobile Usage":
@@ -273,6 +288,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         FOG,
 
         IMPROPER_SEAT_BELT,
+
+        LEAD_CAR,
 
         LIGHT_TRAFFIC,
 
@@ -306,6 +323,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         SPEED_SIGN_VERIFIED,
 
+        TRAILER_CAR,
+
         VERY_DROWSY,
 
         WET_ROAD,
@@ -329,6 +348,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         T visitFog();
 
         T visitImproperSeatBelt();
+
+        T visitLeadCar();
 
         T visitLightTraffic();
 
@@ -361,6 +382,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         T visitSnowyRoad();
 
         T visitSpeedSignVerified();
+
+        T visitTrailerCar();
 
         T visitVeryDrowsy();
 

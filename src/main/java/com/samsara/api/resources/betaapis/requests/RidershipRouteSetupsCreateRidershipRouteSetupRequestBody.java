@@ -23,8 +23,6 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RidershipRouteSetupsCreateRidershipRouteSetupRequestBody.Builder.class)
 public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
-    private final String accountId;
-
     private final List<RidershipRouteSetupPassengerInputRequestBody> passengers;
 
     private final String routeId;
@@ -32,22 +30,12 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private RidershipRouteSetupsCreateRidershipRouteSetupRequestBody(
-            String accountId,
             List<RidershipRouteSetupPassengerInputRequestBody> passengers,
             String routeId,
             Map<String, Object> additionalProperties) {
-        this.accountId = accountId;
         this.passengers = passengers;
         this.routeId = routeId;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return The Samsara UUID of the ridership account.
-     */
-    @JsonProperty("accountId")
-    public String getAccountId() {
-        return accountId;
     }
 
     /**
@@ -79,14 +67,12 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
     }
 
     private boolean equalTo(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody other) {
-        return accountId.equals(other.accountId)
-                && passengers.equals(other.passengers)
-                && routeId.equals(other.routeId);
+        return passengers.equals(other.passengers) && routeId.equals(other.routeId);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.accountId, this.passengers, this.routeId);
+        return Objects.hash(this.passengers, this.routeId);
     }
 
     @java.lang.Override
@@ -94,17 +80,8 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static AccountIdStage builder() {
+    public static RouteIdStage builder() {
         return new Builder();
-    }
-
-    public interface AccountIdStage {
-        /**
-         * <p>The Samsara UUID of the ridership account.</p>
-         */
-        RouteIdStage accountId(@NotNull String accountId);
-
-        Builder from(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody other);
     }
 
     public interface RouteIdStage {
@@ -112,6 +89,8 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
          * <p>The route ID. This is the Samsara route ID returned by the Routing API.</p>
          */
         _FinalStage routeId(@NotNull String routeId);
+
+        Builder from(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody other);
     }
 
     public interface _FinalStage {
@@ -128,9 +107,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AccountIdStage, RouteIdStage, _FinalStage {
-        private String accountId;
-
+    public static final class Builder implements RouteIdStage, _FinalStage {
         private String routeId;
 
         private List<RidershipRouteSetupPassengerInputRequestBody> passengers = new ArrayList<>();
@@ -142,21 +119,8 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
 
         @java.lang.Override
         public Builder from(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody other) {
-            accountId(other.getAccountId());
             passengers(other.getPassengers());
             routeId(other.getRouteId());
-            return this;
-        }
-
-        /**
-         * <p>The Samsara UUID of the ridership account.</p>
-         * <p>The Samsara UUID of the ridership account.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("accountId")
-        public RouteIdStage accountId(@NotNull String accountId) {
-            this.accountId = Objects.requireNonNull(accountId, "accountId must not be null");
             return this;
         }
 
@@ -210,7 +174,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
         @java.lang.Override
         public RidershipRouteSetupsCreateRidershipRouteSetupRequestBody build() {
             return new RidershipRouteSetupsCreateRidershipRouteSetupRequestBody(
-                    accountId, passengers, routeId, additionalProperties);
+                    passengers, routeId, additionalProperties);
         }
     }
 }

@@ -6656,384 +6656,6 @@ client.betaApIs().getReportRunData(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.listRidershipAccounts() -> RidershipAccountsListRidershipAccountsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List all ridership accounts for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Ridership** under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listRidershipAccounts(
-    ListRidershipAccountsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createRidershipAccount(request) -> RidershipAccountsCreateRidershipAccountResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a new ridership account.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Ridership** under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createRidershipAccount(
-    RidershipAccountsCreateRidershipAccountRequestBody
-        .builder()
-        .name("Springfield Public Schools")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Name of the ridership account.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateRidershipAccount(request) -> RidershipAccountsUpdateRidershipAccountResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update a ridership account by Samsara ID. All provided fields will overwrite existing values (PUT semantics).
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Ridership** under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateRidershipAccount(
-    RidershipAccountsUpdateRidershipAccountRequestBody
-        .builder()
-        .id("id")
-        .name("Springfield Public Schools")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The Samsara UUID of the ridership account.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Name of the ridership account.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deleteRidershipAccount()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a ridership account by Samsara ID.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Ridership** under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deleteRidershipAccount(
-    DeleteRidershipAccountRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The Samsara UUID of the ridership account.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getRidershipAccount(id) -> RidershipAccountsGetRidershipAccountResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a single ridership account by ID. The ID can be a Samsara UUID or an external ID in `key:value` format.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Ridership** under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getRidershipAccount(
-    "id",
-    GetRidershipAccountRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — ID of the ridership account. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `district:SPR-001`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.betaApIs.listRidershipPassengers() -> RidershipPassengersListRidershipPassengersResponseBody</code></summary>
 <dl>
 <dd>
@@ -7046,7 +6668,7 @@ client.betaApIs().getRidershipAccount(
 <dl>
 <dd>
 
-List ridership passengers for an account.
+List ridership passengers by tag.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -7071,7 +6693,7 @@ To use this endpoint, select **Read Ridership** under the Ridership category whe
 client.betaApIs().listRidershipPassengers(
     ListRidershipPassengersRequest
         .builder()
-        .accountId("accountId")
+        .tagId("tagId")
         .build()
 );
 ```
@@ -7088,7 +6710,7 @@ client.betaApIs().listRidershipPassengers(
 <dl>
 <dd>
 
-**accountId:** `String` — The Samsara UUID of the ridership account to filter passengers by.
+**tagId:** `String` — ID of a tag to filter passengers by.
     
 </dd>
 </dl>
@@ -7161,7 +6783,6 @@ To use this endpoint, select **Write Ridership** under the Ridership category wh
 client.betaApIs().createRidershipPassenger(
     RidershipPassengersCreateRidershipPassengerRequestBody
         .builder()
-        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
         .firstName("John")
         .lastName("Doe")
         .build()
@@ -7176,14 +6797,6 @@ client.betaApIs().createRidershipPassenger(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**accountId:** `String` — The Samsara UUID of the ridership account this passenger belongs to.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -7232,6 +6845,14 @@ client.betaApIs().createRidershipPassenger(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<List<String>>` — IDs of tags to associate with the passenger.
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -7252,7 +6873,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-Update a ridership passenger by Samsara ID. All provided fields will overwrite existing values (PUT semantics).
+Update a ridership passenger by ID. All provided fields will overwrite existing values (PUT semantics). The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -7278,7 +6899,6 @@ client.betaApIs().updateRidershipPassenger(
     RidershipPassengersUpdateRidershipPassengerRequestBody
         .builder()
         .id("id")
-        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
         .firstName("John")
         .lastName("Doe")
         .build()
@@ -7297,15 +6917,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**id:** `String` — The Samsara UUID of the ridership passenger.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**accountId:** `String` — The Samsara UUID of the ridership account this passenger belongs to.
+**id:** `String` — ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `student:STU-001`.
     
 </dd>
 </dl>
@@ -7357,6 +6969,14 @@ client.betaApIs().updateRidershipPassenger(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<List<String>>` — IDs of tags to associate with the passenger.
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -7377,7 +6997,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-Delete a ridership passenger by Samsara ID.
+Delete a ridership passenger by ID. The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -7419,7 +7039,7 @@ client.betaApIs().deleteRidershipPassenger(
 <dl>
 <dd>
 
-**id:** `String` — The Samsara UUID of the ridership passenger.
+**id:** `String` — ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `student:STU-001`.
     
 </dd>
 </dl>
@@ -7624,7 +7244,6 @@ To use this endpoint, select **Write Ridership** under the Ridership category wh
 client.betaApIs().createRidershipRouteSetup(
     RidershipRouteSetupsCreateRidershipRouteSetupRequestBody
         .builder()
-        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
         .routeId("123456")
         .passengers(
             Arrays.asList(
@@ -7646,14 +7265,6 @@ client.betaApIs().createRidershipRouteSetup(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**accountId:** `String` — The Samsara UUID of the ridership account.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -7716,7 +7327,6 @@ client.betaApIs().updateRidershipRouteSetup(
     RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody
         .builder()
         .routeId("routeId")
-        .accountId("e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b")
         .passengers(
             Arrays.asList(
                 RidershipRouteSetupPassengerInputRequestBody
@@ -7742,14 +7352,6 @@ client.betaApIs().updateRidershipRouteSetup(
 <dd>
 
 **routeId:** `String` — The route ID. This is the Samsara route ID returned by the Routing API.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**accountId:** `String` — The Samsara UUID of the ridership account.
     
 </dd>
 </dl>
