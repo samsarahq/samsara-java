@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AssetResponseBody.Builder.class)
 public final class AssetResponseBody {
+    private final Optional<List<GoaAttributeTinyResponseBody>> attributes;
+
     private final String createdAtTime;
 
     private final Optional<Map<String, String>> externalIds;
@@ -57,6 +59,7 @@ public final class AssetResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private AssetResponseBody(
+            Optional<List<GoaAttributeTinyResponseBody>> attributes,
             String createdAtTime,
             Optional<Map<String, String>> externalIds,
             String id,
@@ -74,6 +77,7 @@ public final class AssetResponseBody {
             Optional<String> vin,
             Optional<Long> year,
             Map<String, Object> additionalProperties) {
+        this.attributes = attributes;
         this.createdAtTime = createdAtTime;
         this.externalIds = externalIds;
         this.id = id;
@@ -91,6 +95,14 @@ public final class AssetResponseBody {
         this.vin = vin;
         this.year = year;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return List of attributes associated with the entity
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyResponseBody>> getAttributes() {
+        return attributes;
     }
 
     /**
@@ -233,7 +245,8 @@ public final class AssetResponseBody {
     }
 
     private boolean equalTo(AssetResponseBody other) {
-        return createdAtTime.equals(other.createdAtTime)
+        return attributes.equals(other.attributes)
+                && createdAtTime.equals(other.createdAtTime)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
                 && licensePlate.equals(other.licensePlate)
@@ -254,6 +267,7 @@ public final class AssetResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.attributes,
                 this.createdAtTime,
                 this.externalIds,
                 this.id,
@@ -306,6 +320,13 @@ public final class AssetResponseBody {
 
     public interface _FinalStage {
         AssetResponseBody build();
+
+        /**
+         * <p>List of attributes associated with the entity</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes);
 
         /**
          * <p>A map of external ids</p>
@@ -433,6 +454,8 @@ public final class AssetResponseBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<List<GoaAttributeTinyResponseBody>> attributes = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -440,6 +463,7 @@ public final class AssetResponseBody {
 
         @java.lang.Override
         public Builder from(AssetResponseBody other) {
+            attributes(other.getAttributes());
             createdAtTime(other.getCreatedAtTime());
             externalIds(other.getExternalIds());
             id(other.getId());
@@ -755,9 +779,30 @@ public final class AssetResponseBody {
             return this;
         }
 
+        /**
+         * <p>List of attributes associated with the entity</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>List of attributes associated with the entity</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
         @java.lang.Override
         public AssetResponseBody build() {
             return new AssetResponseBody(
+                    attributes,
                     createdAtTime,
                     externalIds,
                     id,

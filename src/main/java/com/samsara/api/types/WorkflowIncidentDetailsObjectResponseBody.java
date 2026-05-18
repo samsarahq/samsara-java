@@ -94,6 +94,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<OutOfRouteResponseBody> outOfRoute;
 
+    private final Optional<OutOfSequenceStopArrivalDataResponseBody> outOfSequenceStopArrival;
+
     private final Optional<OutsideGeofenceDataResponseBody> outsideGeofence;
 
     private final Optional<PanicButtonResponseBody> panicButton;
@@ -190,6 +192,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<MissingDvirPastDueResponseBody> missingDvirPastDue,
             Optional<MotionDetectedResponseBody> motionDetected,
             Optional<OutOfRouteResponseBody> outOfRoute,
+            Optional<OutOfSequenceStopArrivalDataResponseBody> outOfSequenceStopArrival,
             Optional<OutsideGeofenceDataResponseBody> outsideGeofence,
             Optional<PanicButtonResponseBody> panicButton,
             Optional<PersonDetectedResponseBody> personDetected,
@@ -256,6 +259,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.missingDvirPastDue = missingDvirPastDue;
         this.motionDetected = motionDetected;
         this.outOfRoute = outOfRoute;
+        this.outOfSequenceStopArrival = outOfSequenceStopArrival;
         this.outsideGeofence = outsideGeofence;
         this.panicButton = panicButton;
         this.personDetected = personDetected;
@@ -472,6 +476,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return outOfRoute;
     }
 
+    @JsonProperty("outOfSequenceStopArrival")
+    public Optional<OutOfSequenceStopArrivalDataResponseBody> getOutOfSequenceStopArrival() {
+        return outOfSequenceStopArrival;
+    }
+
     @JsonProperty("outsideGeofence")
     public Optional<OutsideGeofenceDataResponseBody> getOutsideGeofence() {
         return outsideGeofence;
@@ -662,6 +671,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && missingDvirPastDue.equals(other.missingDvirPastDue)
                 && motionDetected.equals(other.motionDetected)
                 && outOfRoute.equals(other.outOfRoute)
+                && outOfSequenceStopArrival.equals(other.outOfSequenceStopArrival)
                 && outsideGeofence.equals(other.outsideGeofence)
                 && panicButton.equals(other.panicButton)
                 && personDetected.equals(other.personDetected)
@@ -732,6 +742,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.missingDvirPastDue,
                 this.motionDetected,
                 this.outOfRoute,
+                this.outOfSequenceStopArrival,
                 this.outsideGeofence,
                 this.panicButton,
                 this.personDetected,
@@ -847,6 +858,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<OutOfRouteResponseBody> outOfRoute = Optional.empty();
 
+        private Optional<OutOfSequenceStopArrivalDataResponseBody> outOfSequenceStopArrival = Optional.empty();
+
         private Optional<OutsideGeofenceDataResponseBody> outsideGeofence = Optional.empty();
 
         private Optional<PanicButtonResponseBody> panicButton = Optional.empty();
@@ -947,6 +960,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             missingDvirPastDue(other.getMissingDvirPastDue());
             motionDetected(other.getMotionDetected());
             outOfRoute(other.getOutOfRoute());
+            outOfSequenceStopArrival(other.getOutOfSequenceStopArrival());
             outsideGeofence(other.getOutsideGeofence());
             panicButton(other.getPanicButton());
             personDetected(other.getPersonDetected());
@@ -1387,6 +1401,18 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "outOfSequenceStopArrival", nulls = Nulls.SKIP)
+        public Builder outOfSequenceStopArrival(
+                Optional<OutOfSequenceStopArrivalDataResponseBody> outOfSequenceStopArrival) {
+            this.outOfSequenceStopArrival = outOfSequenceStopArrival;
+            return this;
+        }
+
+        public Builder outOfSequenceStopArrival(OutOfSequenceStopArrivalDataResponseBody outOfSequenceStopArrival) {
+            this.outOfSequenceStopArrival = Optional.ofNullable(outOfSequenceStopArrival);
+            return this;
+        }
+
         @JsonSetter(value = "outsideGeofence", nulls = Nulls.SKIP)
         public Builder outsideGeofence(Optional<OutsideGeofenceDataResponseBody> outsideGeofence) {
             this.outsideGeofence = outsideGeofence;
@@ -1741,6 +1767,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     missingDvirPastDue,
                     motionDetected,
                     outOfRoute,
+                    outOfSequenceStopArrival,
                     outsideGeofence,
                     panicButton,
                     personDetected,

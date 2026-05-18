@@ -33,6 +33,10 @@ public final class FetchRoutesRequest {
 
     private final Optional<String> after;
 
+    private final Optional<String> tagIds;
+
+    private final Optional<String> parentTagIds;
+
     private final Map<String, Object> additionalProperties;
 
     private FetchRoutesRequest(
@@ -41,12 +45,16 @@ public final class FetchRoutesRequest {
             String endTime,
             Optional<Long> limit,
             Optional<String> after,
+            Optional<String> tagIds,
+            Optional<String> parentTagIds,
             Map<String, Object> additionalProperties) {
         this.include = include;
         this.startTime = startTime;
         this.endTime = endTime;
         this.limit = limit;
         this.after = after;
+        this.tagIds = tagIds;
+        this.parentTagIds = parentTagIds;
         this.additionalProperties = additionalProperties;
     }
 
@@ -90,6 +98,22 @@ public final class FetchRoutesRequest {
         return after;
     }
 
+    /**
+     * @return A filter on the data based on this comma-separated list of tag IDs. Example: <code>tagIds=1234,5678</code>
+     */
+    @JsonProperty("tagIds")
+    public Optional<String> getTagIds() {
+        return tagIds;
+    }
+
+    /**
+     * @return A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: <code>parentTagIds=345,678</code>
+     */
+    @JsonProperty("parentTagIds")
+    public Optional<String> getParentTagIds() {
+        return parentTagIds;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -106,12 +130,15 @@ public final class FetchRoutesRequest {
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
                 && limit.equals(other.limit)
-                && after.equals(other.after);
+                && after.equals(other.after)
+                && tagIds.equals(other.tagIds)
+                && parentTagIds.equals(other.parentTagIds);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.include, this.startTime, this.endTime, this.limit, this.after);
+        return Objects.hash(
+                this.include, this.startTime, this.endTime, this.limit, this.after, this.tagIds, this.parentTagIds);
     }
 
     @java.lang.Override
@@ -164,6 +191,20 @@ public final class FetchRoutesRequest {
         _FinalStage after(Optional<String> after);
 
         _FinalStage after(String after);
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of tag IDs. Example: <code>tagIds=1234,5678</code></p>
+         */
+        _FinalStage tagIds(Optional<String> tagIds);
+
+        _FinalStage tagIds(String tagIds);
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: <code>parentTagIds=345,678</code></p>
+         */
+        _FinalStage parentTagIds(Optional<String> parentTagIds);
+
+        _FinalStage parentTagIds(String parentTagIds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -171,6 +212,10 @@ public final class FetchRoutesRequest {
         private String startTime;
 
         private String endTime;
+
+        private Optional<String> parentTagIds = Optional.empty();
+
+        private Optional<String> tagIds = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -190,6 +235,8 @@ public final class FetchRoutesRequest {
             endTime(other.getEndTime());
             limit(other.getLimit());
             after(other.getAfter());
+            tagIds(other.getTagIds());
+            parentTagIds(other.getParentTagIds());
             return this;
         }
 
@@ -214,6 +261,46 @@ public final class FetchRoutesRequest {
         @JsonSetter("endTime")
         public _FinalStage endTime(@NotNull String endTime) {
             this.endTime = Objects.requireNonNull(endTime, "endTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: <code>parentTagIds=345,678</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage parentTagIds(String parentTagIds) {
+            this.parentTagIds = Optional.ofNullable(parentTagIds);
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: <code>parentTagIds=345,678</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "parentTagIds", nulls = Nulls.SKIP)
+        public _FinalStage parentTagIds(Optional<String> parentTagIds) {
+            this.parentTagIds = parentTagIds;
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of tag IDs. Example: <code>tagIds=1234,5678</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tagIds(String tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on this comma-separated list of tag IDs. Example: <code>tagIds=1234,5678</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public _FinalStage tagIds(Optional<String> tagIds) {
+            this.tagIds = tagIds;
             return this;
         }
 
@@ -285,7 +372,8 @@ public final class FetchRoutesRequest {
 
         @java.lang.Override
         public FetchRoutesRequest build() {
-            return new FetchRoutesRequest(include, startTime, endTime, limit, after, additionalProperties);
+            return new FetchRoutesRequest(
+                    include, startTime, endTime, limit, after, tagIds, parentTagIds, additionalProperties);
         }
     }
 }

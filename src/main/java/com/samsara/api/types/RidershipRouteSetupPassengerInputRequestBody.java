@@ -41,7 +41,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
     }
 
     /**
-     * @return The stop ID for the passenger's drop-off. This is the stop task ID returned by the Routing API.
+     * @return The stop task ID returned by the Routing API for the passenger's drop-off, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-456</code>.
      */
     @JsonProperty("dropOffStopId")
     public Optional<String> getDropOffStopId() {
@@ -49,7 +49,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
     }
 
     /**
-     * @return The Samsara UUID of the passenger.
+     * @return The Samsara UUID of the passenger, or an external ID in <code>key:value</code> format. For example, <code>student:STU-001</code>.
      */
     @JsonProperty("passengerId")
     public String getPassengerId() {
@@ -57,7 +57,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
     }
 
     /**
-     * @return The stop ID for the passenger's pick-up. This is the stop task ID returned by the Routing API.
+     * @return The stop task ID returned by the Routing API for the passenger's pick-up, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-123</code>.
      */
     @JsonProperty("pickUpStopId")
     public Optional<String> getPickUpStopId() {
@@ -98,7 +98,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
 
     public interface PassengerIdStage {
         /**
-         * <p>The Samsara UUID of the passenger.</p>
+         * <p>The Samsara UUID of the passenger, or an external ID in <code>key:value</code> format. For example, <code>student:STU-001</code>.</p>
          */
         _FinalStage passengerId(@NotNull String passengerId);
 
@@ -109,14 +109,14 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
         RidershipRouteSetupPassengerInputRequestBody build();
 
         /**
-         * <p>The stop ID for the passenger's drop-off. This is the stop task ID returned by the Routing API.</p>
+         * <p>The stop task ID returned by the Routing API for the passenger's drop-off, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-456</code>.</p>
          */
         _FinalStage dropOffStopId(Optional<String> dropOffStopId);
 
         _FinalStage dropOffStopId(String dropOffStopId);
 
         /**
-         * <p>The stop ID for the passenger's pick-up. This is the stop task ID returned by the Routing API.</p>
+         * <p>The stop task ID returned by the Routing API for the passenger's pick-up, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-123</code>.</p>
          */
         _FinalStage pickUpStopId(Optional<String> pickUpStopId);
 
@@ -145,8 +145,8 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
         }
 
         /**
-         * <p>The Samsara UUID of the passenger.</p>
-         * <p>The Samsara UUID of the passenger.</p>
+         * <p>The Samsara UUID of the passenger, or an external ID in <code>key:value</code> format. For example, <code>student:STU-001</code>.</p>
+         * <p>The Samsara UUID of the passenger, or an external ID in <code>key:value</code> format. For example, <code>student:STU-001</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -157,7 +157,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's pick-up. This is the stop task ID returned by the Routing API.</p>
+         * <p>The stop task ID returned by the Routing API for the passenger's pick-up, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-123</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -167,7 +167,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's pick-up. This is the stop task ID returned by the Routing API.</p>
+         * <p>The stop task ID returned by the Routing API for the passenger's pick-up, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-123</code>.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "pickUpStopId", nulls = Nulls.SKIP)
@@ -177,7 +177,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's drop-off. This is the stop task ID returned by the Routing API.</p>
+         * <p>The stop task ID returned by the Routing API for the passenger's drop-off, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-456</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -187,7 +187,7 @@ public final class RidershipRouteSetupPassengerInputRequestBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's drop-off. This is the stop task ID returned by the Routing API.</p>
+         * <p>The stop task ID returned by the Routing API for the passenger's drop-off, or an external ID in <code>key:value</code> format. For example, <code>stopKey:stop-456</code>.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "dropOffStopId", nulls = Nulls.SKIP)

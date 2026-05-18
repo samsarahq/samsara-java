@@ -114,7 +114,7 @@ public final class FormTemplateResponseObjectResponseBody {
     }
 
     /**
-     * @return Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code>
+     * @return Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code>, <code>assetInspection</code>
      */
     @JsonProperty("formCategory")
     public Optional<FormTemplateResponseObjectResponseBodyFormCategory> getFormCategory() {
@@ -288,7 +288,7 @@ public final class FormTemplateResponseObjectResponseBody {
         _FinalStage addAllFields(List<FormsFieldDefinitionObjectResponseBody> fields);
 
         /**
-         * <p>Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code></p>
+         * <p>Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code>, <code>assetInspection</code></p>
          */
         _FinalStage formCategory(Optional<FormTemplateResponseObjectResponseBodyFormCategory> formCategory);
 
@@ -470,7 +470,7 @@ public final class FormTemplateResponseObjectResponseBody {
         }
 
         /**
-         * <p>Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code></p>
+         * <p>Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code>, <code>assetInspection</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -480,7 +480,7 @@ public final class FormTemplateResponseObjectResponseBody {
         }
 
         /**
-         * <p>Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code></p>
+         * <p>Category of the form template.  Valid values: <code>general</code>, <code>routing</code>, <code>fuel</code>, <code>safety</code>, <code>assetInspection</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "formCategory", nulls = Nulls.SKIP)

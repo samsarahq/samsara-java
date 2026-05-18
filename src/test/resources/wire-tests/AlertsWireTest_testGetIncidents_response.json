@@ -381,6 +381,17 @@
                 "serial": "serial"
               }
             },
+            "outOfSequenceStopArrival": {
+              "actualStopName": "actualStopName",
+              "driver": {
+                "id": "id"
+              },
+              "expectedStopName": "expectedStopName",
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "outsideGeofence": {
               "driver": {
                 "id": "id"
@@ -1113,6 +1124,17 @@
               "trailer": {
                 "id": "id"
               },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
+            "outOfSequenceStopArrival": {
+              "actualStopName": "actualStopName",
+              "driver": {
+                "id": "id"
+              },
+              "expectedStopName": "expectedStopName",
               "vehicle": {
                 "id": "id",
                 "serial": "serial"
@@ -1865,6 +1887,17 @@
                 "serial": "serial"
               }
             },
+            "outOfSequenceStopArrival": {
+              "actualStopName": "actualStopName",
+              "driver": {
+                "id": "id"
+              },
+              "expectedStopName": "expectedStopName",
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "outsideGeofence": {
               "driver": {
                 "id": "id"
@@ -2597,6 +2630,17 @@
               "trailer": {
                 "id": "id"
               },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
+            "outOfSequenceStopArrival": {
+              "actualStopName": "actualStopName",
+              "driver": {
+                "id": "id"
+              },
+              "expectedStopName": "expectedStopName",
               "vehicle": {
                 "id": "id",
                 "serial": "serial"

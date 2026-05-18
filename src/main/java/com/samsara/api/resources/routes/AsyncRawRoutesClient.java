@@ -87,6 +87,14 @@ public class AsyncRawRoutesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "after", request.getAfter().get(), false);
         }
+        if (request.getTagIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "tagIds", request.getTagIds().get(), false);
+        }
+        if (request.getParentTagIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "parentTagIds", request.getParentTagIds().get(), false);
+        }
         if (request.getInclude().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "include", request.getInclude().get(), true);
