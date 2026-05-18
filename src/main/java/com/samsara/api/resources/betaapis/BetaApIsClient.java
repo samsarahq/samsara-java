@@ -21,6 +21,7 @@ import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentReques
 import com.samsara.api.resources.betaapis.requests.FunctionsCreateFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsPatchFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
+import com.samsara.api.resources.betaapis.requests.FunctionsStorageCreateFunctionStorageFileRequestBody;
 import com.samsara.api.resources.betaapis.requests.GetAempEquipmentListRequest;
 import com.samsara.api.resources.betaapis.requests.GetAssetsInputsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDatasetsRequest;
@@ -32,6 +33,7 @@ import com.samsara.api.resources.betaapis.requests.GetEngineImmobilizerStatesReq
 import com.samsara.api.resources.betaapis.requests.GetFunctionLogsRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionRunRequest;
+import com.samsara.api.resources.betaapis.requests.GetFunctionStorageFileRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
@@ -68,6 +70,7 @@ import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRide
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.SafetyEventsV2PatchSafetyEventsV2BatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.UpdateFunctionStorageFileRequest;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
@@ -89,7 +92,10 @@ import com.samsara.api.types.FunctionsGetFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionRunResponseBody;
 import com.samsara.api.types.FunctionsPatchFunctionResponseBody;
 import com.samsara.api.types.FunctionsStartFunctionRunResponseBody;
+import com.samsara.api.types.FunctionsStorageCreateFunctionStorageFileResponseBody;
+import com.samsara.api.types.FunctionsStorageGetFunctionStorageFileResponseBody;
 import com.samsara.api.types.FunctionsStorageListFunctionsStorageFilesResponseBody;
+import com.samsara.api.types.FunctionsStorageUpdateFunctionStorageFileResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosEldEventsGetHosEldEventsResponseBody;
 import com.samsara.api.types.HubRouteTemplatesListHubRouteTemplatesResponseBody;
@@ -914,6 +920,92 @@ public class BetaApIsClient {
     }
 
     /**
+     * Get a file from Functions storage by name. Returns file metadata and a presigned download URL.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsStorageGetFunctionStorageFileResponseBody getFunctionStorageFile(
+            GetFunctionStorageFileRequest request) {
+        return this.rawClient.getFunctionStorageFile(request).body();
+    }
+
+    /**
+     * Get a file from Functions storage by name. Returns file metadata and a presigned download URL.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsStorageGetFunctionStorageFileResponseBody getFunctionStorageFile(
+            GetFunctionStorageFileRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getFunctionStorageFile(request, requestOptions).body();
+    }
+
+    /**
+     * Create a new file in Functions storage. Returns a presigned upload URL. Returns an error if the file already exists.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsStorageCreateFunctionStorageFileResponseBody createFunctionStorageFile(
+            FunctionsStorageCreateFunctionStorageFileRequestBody request) {
+        return this.rawClient.createFunctionStorageFile(request).body();
+    }
+
+    /**
+     * Create a new file in Functions storage. Returns a presigned upload URL. Returns an error if the file already exists.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsStorageCreateFunctionStorageFileResponseBody createFunctionStorageFile(
+            FunctionsStorageCreateFunctionStorageFileRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createFunctionStorageFile(request, requestOptions).body();
+    }
+
+    /**
+     * Get a presigned upload URL for overwriting an existing file in Functions storage. Returns an error if the file does not exist.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsStorageUpdateFunctionStorageFileResponseBody updateFunctionStorageFile(
+            UpdateFunctionStorageFileRequest request) {
+        return this.rawClient.updateFunctionStorageFile(request).body();
+    }
+
+    /**
+     * Get a presigned upload URL for overwriting an existing file in Functions storage. Returns an error if the file does not exist.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FunctionsStorageUpdateFunctionStorageFileResponseBody updateFunctionStorageFile(
+            UpdateFunctionStorageFileRequest request, RequestOptions requestOptions) {
+        return this.rawClient.updateFunctionStorageFile(request, requestOptions).body();
+    }
+
+    /**
+     * Delete a file from Functions storage by name.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteFunctionStorageFile(DeleteFunctionStorageFileRequest request) {
+        this.rawClient.deleteFunctionStorageFile(request).body();
+    }
+
+    /**
+     * Delete a file from Functions storage by name.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteFunctionStorageFile(DeleteFunctionStorageFileRequest request, RequestOptions requestOptions) {
+        this.rawClient.deleteFunctionStorageFile(request, requestOptions).body();
+    }
+
+    /**
      * List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -954,26 +1046,6 @@ public class BetaApIsClient {
     public FunctionsStorageListFunctionsStorageFilesResponseBody listFunctionsStorageFiles(
             ListFunctionsStorageFilesRequest request, RequestOptions requestOptions) {
         return this.rawClient.listFunctionsStorageFiles(request, requestOptions).body();
-    }
-
-    /**
-     * Delete a file from Functions storage by name.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public void deleteFunctionStorageFile(DeleteFunctionStorageFileRequest request) {
-        this.rawClient.deleteFunctionStorageFile(request).body();
-    }
-
-    /**
-     * Delete a file from Functions storage by name.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Functions Storage</strong> under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public void deleteFunctionStorageFile(DeleteFunctionStorageFileRequest request, RequestOptions requestOptions) {
-        this.rawClient.deleteFunctionStorageFile(request, requestOptions).body();
     }
 
     /**

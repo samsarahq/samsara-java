@@ -9,23 +9,37 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = SignatoryUserObjectResponseBody.Builder.class)
 public final class SignatoryUserObjectResponseBody {
+    private final Optional<Map<String, String>> externalIds;
+
     private final String id;
 
     private final Map<String, Object> additionalProperties;
 
-    private SignatoryUserObjectResponseBody(String id, Map<String, Object> additionalProperties) {
+    private SignatoryUserObjectResponseBody(
+            Optional<Map<String, String>> externalIds, String id, Map<String, Object> additionalProperties) {
+        this.externalIds = externalIds;
         this.id = id;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return A map of external ids
+     */
+    @JsonProperty("externalIds")
+    public Optional<Map<String, String>> getExternalIds() {
+        return externalIds;
     }
 
     /**
@@ -48,12 +62,12 @@ public final class SignatoryUserObjectResponseBody {
     }
 
     private boolean equalTo(SignatoryUserObjectResponseBody other) {
-        return id.equals(other.id);
+        return externalIds.equals(other.externalIds) && id.equals(other.id);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.externalIds, this.id);
     }
 
     @java.lang.Override
@@ -76,11 +90,20 @@ public final class SignatoryUserObjectResponseBody {
 
     public interface _FinalStage {
         SignatoryUserObjectResponseBody build();
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        _FinalStage externalIds(Optional<Map<String, String>> externalIds);
+
+        _FinalStage externalIds(Map<String, String> externalIds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private String id;
+
+        private Optional<Map<String, String>> externalIds = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -89,6 +112,7 @@ public final class SignatoryUserObjectResponseBody {
 
         @java.lang.Override
         public Builder from(SignatoryUserObjectResponseBody other) {
+            externalIds(other.getExternalIds());
             id(other.getId());
             return this;
         }
@@ -105,9 +129,29 @@ public final class SignatoryUserObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>A map of external ids</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalIds(Map<String, String> externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public _FinalStage externalIds(Optional<Map<String, String>> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
         @java.lang.Override
         public SignatoryUserObjectResponseBody build() {
-            return new SignatoryUserObjectResponseBody(id, additionalProperties);
+            return new SignatoryUserObjectResponseBody(externalIds, id, additionalProperties);
         }
     }
 }

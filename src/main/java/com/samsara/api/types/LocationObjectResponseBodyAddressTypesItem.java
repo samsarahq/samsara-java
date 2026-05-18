@@ -40,6 +40,9 @@ public final class LocationObjectResponseBodyAddressTypesItem {
     public static final LocationObjectResponseBodyAddressTypesItem AGRICULTURE_SOURCE =
             new LocationObjectResponseBodyAddressTypesItem(Value.AGRICULTURE_SOURCE, "agricultureSource");
 
+    public static final LocationObjectResponseBodyAddressTypesItem CUSTOMER_SITE =
+            new LocationObjectResponseBodyAddressTypesItem(Value.CUSTOMER_SITE, "customerSite");
+
     public static final LocationObjectResponseBodyAddressTypesItem KNOWN_GPS_JAMMING_ZONE =
             new LocationObjectResponseBodyAddressTypesItem(Value.KNOWN_GPS_JAMMING_ZONE, "knownGPSJammingZone");
 
@@ -104,6 +107,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
                 return visitor.visitUndefined();
             case AGRICULTURE_SOURCE:
                 return visitor.visitAgricultureSource();
+            case CUSTOMER_SITE:
+                return visitor.visitCustomerSite();
             case KNOWN_GPS_JAMMING_ZONE:
                 return visitor.visitKnownGpsJammingZone();
             case WORKFORCE_SITE:
@@ -141,6 +146,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
                 return UNDEFINED;
             case "agricultureSource":
                 return AGRICULTURE_SOURCE;
+            case "customerSite":
+                return CUSTOMER_SITE;
             case "knownGPSJammingZone":
                 return KNOWN_GPS_JAMMING_ZONE;
             case "workforceSite":
@@ -160,6 +167,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
         AUTHORIZED_ZONE,
 
         AVOIDANCE_ZONE,
+
+        CUSTOMER_SITE,
 
         INDUSTRIAL_SITE,
 
@@ -192,6 +201,8 @@ public final class LocationObjectResponseBodyAddressTypesItem {
         T visitAuthorizedZone();
 
         T visitAvoidanceZone();
+
+        T visitCustomerSite();
 
         T visitIndustrialSite();
 

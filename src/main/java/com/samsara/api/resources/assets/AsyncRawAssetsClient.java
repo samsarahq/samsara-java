@@ -141,6 +141,10 @@ public class AsyncRawAssetsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "attributeValueIds", request.getAttributeValueIds().get(), false);
         }
+        if (request.getIncludeAttributes().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "includeAttributes", request.getIncludeAttributes().get(), false);
+        }
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }

@@ -29,7 +29,7 @@ public final class DeleteRidershipRouteSetupRequest {
     }
 
     /**
-     * @return The route ID. This is the Samsara route ID returned by the Routing API.
+     * @return The Samsara route ID returned by the Routing API, or an external ID in <code>key:value</code> format. For example, <code>extRoute:WB-12</code>.
      */
     @JsonProperty("routeId")
     public String getRouteId() {
@@ -67,7 +67,7 @@ public final class DeleteRidershipRouteSetupRequest {
 
     public interface RouteIdStage {
         /**
-         * <p>The route ID. This is the Samsara route ID returned by the Routing API.</p>
+         * <p>The Samsara route ID returned by the Routing API, or an external ID in <code>key:value</code> format. For example, <code>extRoute:WB-12</code>.</p>
          */
         _FinalStage routeId(@NotNull String routeId);
 
@@ -94,8 +94,8 @@ public final class DeleteRidershipRouteSetupRequest {
         }
 
         /**
-         * <p>The route ID. This is the Samsara route ID returned by the Routing API.</p>
-         * <p>The route ID. This is the Samsara route ID returned by the Routing API.</p>
+         * <p>The Samsara route ID returned by the Routing API, or an external ID in <code>key:value</code> format. For example, <code>extRoute:WB-12</code>.</p>
+         * <p>The Samsara route ID returned by the Routing API, or an external ID in <code>key:value</code> format. For example, <code>extRoute:WB-12</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

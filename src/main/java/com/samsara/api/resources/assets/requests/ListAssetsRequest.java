@@ -45,6 +45,8 @@ public final class ListAssetsRequest {
 
     private final Optional<String> attributeValueIds;
 
+    private final Optional<Boolean> includeAttributes;
+
     private final Map<String, Object> additionalProperties;
 
     private ListAssetsRequest(
@@ -59,6 +61,7 @@ public final class ListAssetsRequest {
             Optional<String> tagIds,
             Optional<String> parentTagIds,
             Optional<String> attributeValueIds,
+            Optional<Boolean> includeAttributes,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
         this.externalIds = externalIds;
@@ -71,6 +74,7 @@ public final class ListAssetsRequest {
         this.tagIds = tagIds;
         this.parentTagIds = parentTagIds;
         this.attributeValueIds = attributeValueIds;
+        this.includeAttributes = includeAttributes;
         this.additionalProperties = additionalProperties;
     }
 
@@ -162,6 +166,14 @@ public final class ListAssetsRequest {
         return attributeValueIds;
     }
 
+    /**
+     * @return Optional boolean indicating whether to return attributes on supported entities
+     */
+    @JsonProperty("includeAttributes")
+    public Optional<Boolean> getIncludeAttributes() {
+        return includeAttributes;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -184,7 +196,8 @@ public final class ListAssetsRequest {
                 && includeTags.equals(other.includeTags)
                 && tagIds.equals(other.tagIds)
                 && parentTagIds.equals(other.parentTagIds)
-                && attributeValueIds.equals(other.attributeValueIds);
+                && attributeValueIds.equals(other.attributeValueIds)
+                && includeAttributes.equals(other.includeAttributes);
     }
 
     @java.lang.Override
@@ -200,7 +213,8 @@ public final class ListAssetsRequest {
                 this.includeTags,
                 this.tagIds,
                 this.parentTagIds,
-                this.attributeValueIds);
+                this.attributeValueIds,
+                this.includeAttributes);
     }
 
     @java.lang.Override
@@ -236,6 +250,8 @@ public final class ListAssetsRequest {
 
         private Optional<String> attributeValueIds = Optional.empty();
 
+        private Optional<Boolean> includeAttributes = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -253,6 +269,7 @@ public final class ListAssetsRequest {
             tagIds(other.getTagIds());
             parentTagIds(other.getParentTagIds());
             attributeValueIds(other.getAttributeValueIds());
+            includeAttributes(other.getIncludeAttributes());
             return this;
         }
 
@@ -425,6 +442,20 @@ public final class ListAssetsRequest {
             return this;
         }
 
+        /**
+         * <p>Optional boolean indicating whether to return attributes on supported entities</p>
+         */
+        @JsonSetter(value = "includeAttributes", nulls = Nulls.SKIP)
+        public Builder includeAttributes(Optional<Boolean> includeAttributes) {
+            this.includeAttributes = includeAttributes;
+            return this;
+        }
+
+        public Builder includeAttributes(Boolean includeAttributes) {
+            this.includeAttributes = Optional.ofNullable(includeAttributes);
+            return this;
+        }
+
         public ListAssetsRequest build() {
             return new ListAssetsRequest(
                     ids,
@@ -438,6 +469,7 @@ public final class ListAssetsRequest {
                     tagIds,
                     parentTagIds,
                     attributeValueIds,
+                    includeAttributes,
                     additionalProperties);
         }
     }

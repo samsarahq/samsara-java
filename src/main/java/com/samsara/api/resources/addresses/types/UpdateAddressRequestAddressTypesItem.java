@@ -37,6 +37,9 @@ public final class UpdateAddressRequestAddressTypesItem {
     public static final UpdateAddressRequestAddressTypesItem AGRICULTURE_SOURCE =
             new UpdateAddressRequestAddressTypesItem(Value.AGRICULTURE_SOURCE, "agricultureSource");
 
+    public static final UpdateAddressRequestAddressTypesItem CUSTOMER_SITE =
+            new UpdateAddressRequestAddressTypesItem(Value.CUSTOMER_SITE, "customerSite");
+
     public static final UpdateAddressRequestAddressTypesItem WORKFORCE_SITE =
             new UpdateAddressRequestAddressTypesItem(Value.WORKFORCE_SITE, "workforceSite");
 
@@ -99,6 +102,8 @@ public final class UpdateAddressRequestAddressTypesItem {
                 return visitor.visitAlertsOnly();
             case AGRICULTURE_SOURCE:
                 return visitor.visitAgricultureSource();
+            case CUSTOMER_SITE:
+                return visitor.visitCustomerSite();
             case WORKFORCE_SITE:
                 return visitor.visitWorkforceSite();
             case KNOWN_GPS_JAMMING_ZONE:
@@ -134,6 +139,8 @@ public final class UpdateAddressRequestAddressTypesItem {
                 return ALERTS_ONLY;
             case "agricultureSource":
                 return AGRICULTURE_SOURCE;
+            case "customerSite":
+                return CUSTOMER_SITE;
             case "workforceSite":
                 return WORKFORCE_SITE;
             case "knownGPSJammingZone":
@@ -172,6 +179,8 @@ public final class UpdateAddressRequestAddressTypesItem {
 
         INVENTORY,
 
+        CUSTOMER_SITE,
+
         UNKNOWN
     }
 
@@ -201,6 +210,8 @@ public final class UpdateAddressRequestAddressTypesItem {
         T visitVendor();
 
         T visitInventory();
+
+        T visitCustomerSite();
 
         T visitUnknown(String unknownType);
     }

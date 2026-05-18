@@ -52,11 +52,9 @@ public class AssetsWireTest {
 
     @Test
     public void testList() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource("/wire-tests/AssetsWireTest_testList_response.json")));
         SyncPagingIterable<AssetResponseBody> response =
                 client.assets().list(ListAssetsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -75,7 +73,7 @@ public class AssetsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
+                                "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
         AssetsCreateAssetResponseBody response = client.assets()
                 .createAsset(AssetsCreateAssetRequestBody.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -117,6 +115,24 @@ public class AssetsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
+                + "    \"attributes\": [\n"
+                + "      {\n"
+                + "        \"dateValues\": [\n"
+                + "          \"2024-01-15\",\n"
+                + "          \"2024-12-31\"\n"
+                + "        ],\n"
+                + "        \"id\": \"494123\",\n"
+                + "        \"name\": \"Compliance/ELD\",\n"
+                + "        \"numberValues\": [\n"
+                + "          867,\n"
+                + "          5309\n"
+                + "        ],\n"
+                + "        \"stringValues\": [\n"
+                + "          \"HQ\",\n"
+                + "          \"Leased\"\n"
+                + "        ]\n"
+                + "      }\n"
+                + "    ],\n"
                 + "    \"createdAtTime\": \"2020-01-27T07:06:25Z\",\n"
                 + "    \"externalIds\": {\n"
                 + "      \"key\": \"value\"\n"
@@ -189,7 +205,7 @@ public class AssetsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
+                                "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
         AssetsUpdateAssetResponseBody response = client.assets()
                 .updateAsset(AssetsUpdateAssetRequestBody.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -231,6 +247,24 @@ public class AssetsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
+                + "    \"attributes\": [\n"
+                + "      {\n"
+                + "        \"dateValues\": [\n"
+                + "          \"2024-01-15\",\n"
+                + "          \"2024-12-31\"\n"
+                + "        ],\n"
+                + "        \"id\": \"494123\",\n"
+                + "        \"name\": \"Compliance/ELD\",\n"
+                + "        \"numberValues\": [\n"
+                + "          867,\n"
+                + "          5309\n"
+                + "        ],\n"
+                + "        \"stringValues\": [\n"
+                + "          \"HQ\",\n"
+                + "          \"Leased\"\n"
+                + "        ]\n"
+                + "      }\n"
+                + "    ],\n"
                 + "    \"createdAtTime\": \"2020-01-27T07:06:25Z\",\n"
                 + "    \"externalIds\": {\n"
                 + "      \"key\": \"value\"\n"
