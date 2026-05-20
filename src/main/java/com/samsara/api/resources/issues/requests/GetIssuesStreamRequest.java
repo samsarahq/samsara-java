@@ -27,6 +27,8 @@ public final class GetIssuesStreamRequest {
 
     private final Optional<List<String>> assetIds;
 
+    private final Optional<List<String>> assetExternalIds;
+
     private final Optional<List<String>> include;
 
     private final Optional<List<String>> assignedToRouteStopIds;
@@ -42,6 +44,7 @@ public final class GetIssuesStreamRequest {
     private GetIssuesStreamRequest(
             Optional<List<String>> status,
             Optional<List<String>> assetIds,
+            Optional<List<String>> assetExternalIds,
             Optional<List<String>> include,
             Optional<List<String>> assignedToRouteStopIds,
             String startTime,
@@ -50,6 +53,7 @@ public final class GetIssuesStreamRequest {
             Map<String, Object> additionalProperties) {
         this.status = status;
         this.assetIds = assetIds;
+        this.assetExternalIds = assetExternalIds;
         this.include = include;
         this.assignedToRouteStopIds = assignedToRouteStopIds;
         this.startTime = startTime;
@@ -67,11 +71,19 @@ public final class GetIssuesStreamRequest {
     }
 
     /**
-     * @return A comma-separated list containing up to 50 asset IDs to filter issues on. Issues with untracked assets can also be included by passing the value: 'untracked'.
+     * @return A comma-separated list containing up to 50 asset IDs to filter issues on. Each value can be a Samsara asset ID, an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> (<code>key:value</code> format), or the literal <code>untracked</code> to include issues with untracked assets.
      */
     @JsonProperty("assetIds")
     public Optional<List<String>> getAssetIds() {
         return assetIds;
+    }
+
+    /**
+     * @return A comma-separated list containing up to 50 asset <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> (<code>key:value</code> format) to filter issues on.
+     */
+    @JsonProperty("assetExternalIds")
+    public Optional<List<String>> getAssetExternalIds() {
+        return assetExternalIds;
     }
 
     /**
@@ -128,6 +140,7 @@ public final class GetIssuesStreamRequest {
     private boolean equalTo(GetIssuesStreamRequest other) {
         return status.equals(other.status)
                 && assetIds.equals(other.assetIds)
+                && assetExternalIds.equals(other.assetExternalIds)
                 && include.equals(other.include)
                 && assignedToRouteStopIds.equals(other.assignedToRouteStopIds)
                 && startTime.equals(other.startTime)
@@ -140,6 +153,7 @@ public final class GetIssuesStreamRequest {
         return Objects.hash(
                 this.status,
                 this.assetIds,
+                this.assetExternalIds,
                 this.include,
                 this.assignedToRouteStopIds,
                 this.startTime,
@@ -178,13 +192,22 @@ public final class GetIssuesStreamRequest {
         _FinalStage status(String status);
 
         /**
-         * <p>A comma-separated list containing up to 50 asset IDs to filter issues on. Issues with untracked assets can also be included by passing the value: 'untracked'.</p>
+         * <p>A comma-separated list containing up to 50 asset IDs to filter issues on. Each value can be a Samsara asset ID, an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> (<code>key:value</code> format), or the literal <code>untracked</code> to include issues with untracked assets.</p>
          */
         _FinalStage assetIds(Optional<List<String>> assetIds);
 
         _FinalStage assetIds(List<String> assetIds);
 
         _FinalStage assetIds(String assetIds);
+
+        /**
+         * <p>A comma-separated list containing up to 50 asset <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> (<code>key:value</code> format) to filter issues on.</p>
+         */
+        _FinalStage assetExternalIds(Optional<List<String>> assetExternalIds);
+
+        _FinalStage assetExternalIds(List<String> assetExternalIds);
+
+        _FinalStage assetExternalIds(String assetExternalIds);
 
         /**
          * <p>A comma separated list of additional fields to include on requested objects. Valid values: <code>externalIds</code></p>
@@ -231,6 +254,8 @@ public final class GetIssuesStreamRequest {
 
         private Optional<List<String>> include = Optional.empty();
 
+        private Optional<List<String>> assetExternalIds = Optional.empty();
+
         private Optional<List<String>> assetIds = Optional.empty();
 
         private Optional<List<String>> status = Optional.empty();
@@ -244,6 +269,7 @@ public final class GetIssuesStreamRequest {
         public Builder from(GetIssuesStreamRequest other) {
             status(other.getStatus());
             assetIds(other.getAssetIds());
+            assetExternalIds(other.getAssetExternalIds());
             include(other.getInclude());
             assignedToRouteStopIds(other.getAssignedToRouteStopIds());
             startTime(other.getStartTime());
@@ -357,13 +383,39 @@ public final class GetIssuesStreamRequest {
         }
 
         @java.lang.Override
+        public _FinalStage assetExternalIds(String assetExternalIds) {
+            this.assetExternalIds = Optional.of(Collections.singletonList(assetExternalIds));
+            return this;
+        }
+
+        /**
+         * <p>A comma-separated list containing up to 50 asset <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> (<code>key:value</code> format) to filter issues on.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assetExternalIds(List<String> assetExternalIds) {
+            this.assetExternalIds = Optional.ofNullable(assetExternalIds);
+            return this;
+        }
+
+        /**
+         * <p>A comma-separated list containing up to 50 asset <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> (<code>key:value</code> format) to filter issues on.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assetExternalIds", nulls = Nulls.SKIP)
+        public _FinalStage assetExternalIds(Optional<List<String>> assetExternalIds) {
+            this.assetExternalIds = assetExternalIds;
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage assetIds(String assetIds) {
             this.assetIds = Optional.of(Collections.singletonList(assetIds));
             return this;
         }
 
         /**
-         * <p>A comma-separated list containing up to 50 asset IDs to filter issues on. Issues with untracked assets can also be included by passing the value: 'untracked'.</p>
+         * <p>A comma-separated list containing up to 50 asset IDs to filter issues on. Each value can be a Samsara asset ID, an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> (<code>key:value</code> format), or the literal <code>untracked</code> to include issues with untracked assets.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -373,7 +425,7 @@ public final class GetIssuesStreamRequest {
         }
 
         /**
-         * <p>A comma-separated list containing up to 50 asset IDs to filter issues on. Issues with untracked assets can also be included by passing the value: 'untracked'.</p>
+         * <p>A comma-separated list containing up to 50 asset IDs to filter issues on. Each value can be a Samsara asset ID, an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> (<code>key:value</code> format), or the literal <code>untracked</code> to include issues with untracked assets.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "assetIds", nulls = Nulls.SKIP)
@@ -411,7 +463,15 @@ public final class GetIssuesStreamRequest {
         @java.lang.Override
         public GetIssuesStreamRequest build() {
             return new GetIssuesStreamRequest(
-                    status, assetIds, include, assignedToRouteStopIds, startTime, endTime, after, additionalProperties);
+                    status,
+                    assetIds,
+                    assetExternalIds,
+                    include,
+                    assignedToRouteStopIds,
+                    startTime,
+                    endTime,
+                    after,
+                    additionalProperties);
         }
     }
 }

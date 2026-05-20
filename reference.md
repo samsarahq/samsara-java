@@ -7747,7 +7747,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -23886,6 +23886,14 @@ client.issues().patchIssue(
 <dl>
 <dd>
 
+**description:** `Optional<String>` — Description of the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **dueDate:** `Optional<OffsetDateTime>` — Due date of the issue. UTC timestamp in RFC 3339 format.
     
 </dd>
@@ -23910,7 +23918,31 @@ client.issues().patchIssue(
 <dl>
 <dd>
 
+**media:** `Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>>` — Media items to append to the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priority:** `Optional<IssuesPatchIssueRequestBodyPriority>` — Priority of the issue. Requires the `issue-api-media-attachment-endpoints` feature.  Valid values: `low`, `medium`, `high`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **status:** `Optional<IssuesPatchIssueRequestBodyStatus>` — Status of the issue.  Valid values: `open`, `inProgress`, `resolved`, `dismissed`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**title:** `Optional<String>` — Title of the issue. Requires the `issue-api-media-attachment-endpoints` feature.
     
 </dd>
 </dl>
@@ -24008,7 +24040,15 @@ client.issues().getIssuesStream(
 <dl>
 <dd>
 
-**assetIds:** `Optional<String>` — A comma-separated list containing up to 50 asset IDs to filter issues on. Issues with untracked assets can also be included by passing the value: 'untracked'.
+**assetIds:** `Optional<String>` — A comma-separated list containing up to 50 asset IDs to filter issues on. Each value can be a Samsara asset ID, an [external ID](https://developers.samsara.com/docs/external-ids) (`key:value` format), or the literal `untracked` to include issues with untracked assets.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetExternalIds:** `Optional<String>` — A comma-separated list containing up to 50 asset [external IDs](https://developers.samsara.com/docs/external-ids) (`key:value` format) to filter issues on.
     
 </dd>
 </dl>

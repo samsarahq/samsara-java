@@ -12,10 +12,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.issues.types.IssuesPatchIssueRequestBodyPriority;
 import com.samsara.api.resources.issues.types.IssuesPatchIssueRequestBodyStatus;
+import com.samsara.api.types.FormSubmissionRequestMediaItemObjectRequestBody;
 import com.samsara.api.types.PatchIssueRequestBodyAssignedToRequestBody;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,34 +29,58 @@ import org.jetbrains.annotations.NotNull;
 public final class IssuesPatchIssueRequestBody {
     private final Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo;
 
+    private final Optional<String> description;
+
     private final Optional<OffsetDateTime> dueDate;
 
     private final Optional<Map<String, String>> externalIds;
 
     private final String id;
 
+    private final Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media;
+
+    private final Optional<IssuesPatchIssueRequestBodyPriority> priority;
+
     private final Optional<IssuesPatchIssueRequestBodyStatus> status;
+
+    private final Optional<String> title;
 
     private final Map<String, Object> additionalProperties;
 
     private IssuesPatchIssueRequestBody(
             Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo,
+            Optional<String> description,
             Optional<OffsetDateTime> dueDate,
             Optional<Map<String, String>> externalIds,
             String id,
+            Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media,
+            Optional<IssuesPatchIssueRequestBodyPriority> priority,
             Optional<IssuesPatchIssueRequestBodyStatus> status,
+            Optional<String> title,
             Map<String, Object> additionalProperties) {
         this.assignedTo = assignedTo;
+        this.description = description;
         this.dueDate = dueDate;
         this.externalIds = externalIds;
         this.id = id;
+        this.media = media;
+        this.priority = priority;
         this.status = status;
+        this.title = title;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("assignedTo")
     public Optional<PatchIssueRequestBodyAssignedToRequestBody> getAssignedTo() {
         return assignedTo;
+    }
+
+    /**
+     * @return Description of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.
+     */
+    @JsonProperty("description")
+    public Optional<String> getDescription() {
+        return description;
     }
 
     /**
@@ -81,11 +108,35 @@ public final class IssuesPatchIssueRequestBody {
     }
 
     /**
+     * @return Media items to append to the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.
+     */
+    @JsonProperty("media")
+    public Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> getMedia() {
+        return media;
+    }
+
+    /**
+     * @return Priority of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.  Valid values: <code>low</code>, <code>medium</code>, <code>high</code>
+     */
+    @JsonProperty("priority")
+    public Optional<IssuesPatchIssueRequestBodyPriority> getPriority() {
+        return priority;
+    }
+
+    /**
      * @return Status of the issue.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code>
      */
     @JsonProperty("status")
     public Optional<IssuesPatchIssueRequestBodyStatus> getStatus() {
         return status;
+    }
+
+    /**
+     * @return Title of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.
+     */
+    @JsonProperty("title")
+    public Optional<String> getTitle() {
+        return title;
     }
 
     @java.lang.Override
@@ -101,15 +152,28 @@ public final class IssuesPatchIssueRequestBody {
 
     private boolean equalTo(IssuesPatchIssueRequestBody other) {
         return assignedTo.equals(other.assignedTo)
+                && description.equals(other.description)
                 && dueDate.equals(other.dueDate)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
-                && status.equals(other.status);
+                && media.equals(other.media)
+                && priority.equals(other.priority)
+                && status.equals(other.status)
+                && title.equals(other.title);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.assignedTo, this.dueDate, this.externalIds, this.id, this.status);
+        return Objects.hash(
+                this.assignedTo,
+                this.description,
+                this.dueDate,
+                this.externalIds,
+                this.id,
+                this.media,
+                this.priority,
+                this.status,
+                this.title);
     }
 
     @java.lang.Override
@@ -138,6 +202,13 @@ public final class IssuesPatchIssueRequestBody {
         _FinalStage assignedTo(PatchIssueRequestBodyAssignedToRequestBody assignedTo);
 
         /**
+         * <p>Description of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         */
+        _FinalStage description(Optional<String> description);
+
+        _FinalStage description(String description);
+
+        /**
          * <p>Due date of the issue. UTC timestamp in RFC 3339 format.</p>
          */
         _FinalStage dueDate(Optional<OffsetDateTime> dueDate);
@@ -152,22 +223,51 @@ public final class IssuesPatchIssueRequestBody {
         _FinalStage externalIds(Map<String, String> externalIds);
 
         /**
+         * <p>Media items to append to the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         */
+        _FinalStage media(Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media);
+
+        _FinalStage media(List<FormSubmissionRequestMediaItemObjectRequestBody> media);
+
+        /**
+         * <p>Priority of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.  Valid values: <code>low</code>, <code>medium</code>, <code>high</code></p>
+         */
+        _FinalStage priority(Optional<IssuesPatchIssueRequestBodyPriority> priority);
+
+        _FinalStage priority(IssuesPatchIssueRequestBodyPriority priority);
+
+        /**
          * <p>Status of the issue.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
          */
         _FinalStage status(Optional<IssuesPatchIssueRequestBodyStatus> status);
 
         _FinalStage status(IssuesPatchIssueRequestBodyStatus status);
+
+        /**
+         * <p>Title of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         */
+        _FinalStage title(Optional<String> title);
+
+        _FinalStage title(String title);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private String id;
 
+        private Optional<String> title = Optional.empty();
+
         private Optional<IssuesPatchIssueRequestBodyStatus> status = Optional.empty();
+
+        private Optional<IssuesPatchIssueRequestBodyPriority> priority = Optional.empty();
+
+        private Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media = Optional.empty();
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
+
+        private Optional<String> description = Optional.empty();
 
         private Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo = Optional.empty();
 
@@ -179,10 +279,14 @@ public final class IssuesPatchIssueRequestBody {
         @java.lang.Override
         public Builder from(IssuesPatchIssueRequestBody other) {
             assignedTo(other.getAssignedTo());
+            description(other.getDescription());
             dueDate(other.getDueDate());
             externalIds(other.getExternalIds());
             id(other.getId());
+            media(other.getMedia());
+            priority(other.getPriority());
             status(other.getStatus());
+            title(other.getTitle());
             return this;
         }
 
@@ -195,6 +299,26 @@ public final class IssuesPatchIssueRequestBody {
         @JsonSetter("id")
         public _FinalStage id(@NotNull String id) {
             this.id = Objects.requireNonNull(id, "id must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Title of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage title(String title) {
+            this.title = Optional.ofNullable(title);
+            return this;
+        }
+
+        /**
+         * <p>Title of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "title", nulls = Nulls.SKIP)
+        public _FinalStage title(Optional<String> title) {
+            this.title = title;
             return this;
         }
 
@@ -215,6 +339,46 @@ public final class IssuesPatchIssueRequestBody {
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public _FinalStage status(Optional<IssuesPatchIssueRequestBodyStatus> status) {
             this.status = status;
+            return this;
+        }
+
+        /**
+         * <p>Priority of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.  Valid values: <code>low</code>, <code>medium</code>, <code>high</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage priority(IssuesPatchIssueRequestBodyPriority priority) {
+            this.priority = Optional.ofNullable(priority);
+            return this;
+        }
+
+        /**
+         * <p>Priority of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.  Valid values: <code>low</code>, <code>medium</code>, <code>high</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "priority", nulls = Nulls.SKIP)
+        public _FinalStage priority(Optional<IssuesPatchIssueRequestBodyPriority> priority) {
+            this.priority = priority;
+            return this;
+        }
+
+        /**
+         * <p>Media items to append to the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage media(List<FormSubmissionRequestMediaItemObjectRequestBody> media) {
+            this.media = Optional.ofNullable(media);
+            return this;
+        }
+
+        /**
+         * <p>Media items to append to the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "media", nulls = Nulls.SKIP)
+        public _FinalStage media(Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media) {
+            this.media = media;
             return this;
         }
 
@@ -258,6 +422,26 @@ public final class IssuesPatchIssueRequestBody {
             return this;
         }
 
+        /**
+         * <p>Description of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage description(String description) {
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        /**
+         * <p>Description of the issue. Requires the <code>issue-api-media-attachment-endpoints</code> feature.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "description", nulls = Nulls.SKIP)
+        public _FinalStage description(Optional<String> description) {
+            this.description = description;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage assignedTo(PatchIssueRequestBodyAssignedToRequestBody assignedTo) {
             this.assignedTo = Optional.ofNullable(assignedTo);
@@ -273,7 +457,17 @@ public final class IssuesPatchIssueRequestBody {
 
         @java.lang.Override
         public IssuesPatchIssueRequestBody build() {
-            return new IssuesPatchIssueRequestBody(assignedTo, dueDate, externalIds, id, status, additionalProperties);
+            return new IssuesPatchIssueRequestBody(
+                    assignedTo,
+                    description,
+                    dueDate,
+                    externalIds,
+                    id,
+                    media,
+                    priority,
+                    status,
+                    title,
+                    additionalProperties);
         }
     }
 }
