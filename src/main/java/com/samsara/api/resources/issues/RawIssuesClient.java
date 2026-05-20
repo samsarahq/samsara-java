@@ -286,6 +286,10 @@ public class RawIssuesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assetIds", request.getAssetIds().get(), true);
         }
+        if (request.getAssetExternalIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "assetExternalIds", request.getAssetExternalIds().get(), true);
+        }
         if (request.getInclude().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "include", request.getInclude().get(), true);
