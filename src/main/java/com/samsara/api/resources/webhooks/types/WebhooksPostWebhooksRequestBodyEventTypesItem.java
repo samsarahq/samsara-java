@@ -56,6 +56,10 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
     public static final WebhooksPostWebhooksRequestBodyEventTypesItem SPEEDING_EVENT_ENDED =
             new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.SPEEDING_EVENT_ENDED, "SpeedingEventEnded");
 
+    public static final WebhooksPostWebhooksRequestBodyEventTypesItem WORK_ORDER_CREATED_OR_CHANGED =
+            new WebhooksPostWebhooksRequestBodyEventTypesItem(
+                    Value.WORK_ORDER_CREATED_OR_CHANGED, "WorkOrderCreatedOrChanged");
+
     public static final WebhooksPostWebhooksRequestBodyEventTypesItem ISSUE_CREATED =
             new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.ISSUE_CREATED, "IssueCreated");
 
@@ -170,6 +174,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
                 return visitor.visitSuddenFuelLevelDrop();
             case SPEEDING_EVENT_ENDED:
                 return visitor.visitSpeedingEventEnded();
+            case WORK_ORDER_CREATED_OR_CHANGED:
+                return visitor.visitWorkOrderCreatedOrChanged();
             case ISSUE_CREATED:
                 return visitor.visitIssueCreated();
             case DRIVER_CREATED:
@@ -243,6 +249,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
                 return SUDDEN_FUEL_LEVEL_DROP;
             case "SpeedingEventEnded":
                 return SPEEDING_EVENT_ENDED;
+            case "WorkOrderCreatedOrChanged":
+                return WORK_ORDER_CREATED_OR_CHANGED;
             case "IssueCreated":
                 return ISSUE_CREATED;
             case "DriverCreated":
@@ -345,6 +353,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
 
         VEHICLE_UPDATED,
 
+        WORK_ORDER_CREATED_OR_CHANGED,
+
         UNKNOWN
     }
 
@@ -412,6 +422,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
         T visitVehicleCreated();
 
         T visitVehicleUpdated();
+
+        T visitWorkOrderCreatedOrChanged();
 
         T visitUnknown(String unknownType);
     }
