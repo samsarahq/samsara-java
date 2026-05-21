@@ -5655,6 +5655,534 @@ client.betaApIs().deleteHubRouteTemplate(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.getPlaces() -> PlacesGetPlacesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via `placeIds`.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Places** under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getPlaces(
+    GetPlacesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<String>` — Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. External id tokens (key:value) are not supported in this version.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<String>` — Reserved. Batch lookup by external IDs is not implemented in this API version.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeTags:** `Optional<Boolean>` — When true, expands tag objects on each place. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — When true, includes externalIds on each place. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — Comma-separated numeric tag IDs to filter places.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` — Reserved. Filtering by parent tag IDs is not implemented in this API version.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeTypes:** `Optional<String>` — Comma-separated place type tokens (e.g. yard,normalGeofence).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Filter places by name text.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.postPlace(request) -> PlacesPostPlaceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a place. Supply either a polygon `geofence` (at least three vertices) or `radiusMeters` with `latitude` and `longitude`.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Places** under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().postPlace(
+    PlacesPostPlaceRequestBody
+        .builder()
+        .address("123 Main St, Oakland, CA")
+        .name("Oakland Yard")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**address:** `String` — Single-line address string.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<PlacesPostPlaceRequestBodyExternalIds>` — External identifiers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**geofence:** `Optional<List<GeofenceVertexInputRequestBody>>` — Polygon vertices; at least three when using polygon mode (omit entirely when using latitude, longitude, and radiusMeters for a circle).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hubLocations:** `Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>>` — Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**latitude:** `Optional<Double>` — Center latitude when using a circle geofence with radiusMeters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**longitude:** `Optional<Double>` — Center longitude when using a circle geofence with radiusMeters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Place name.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**navigation:** `Optional<PostPlaceNavigationInputRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Optional notes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeTypes:** `Optional<List<String>>` — Unsupported on create; when provided this API returns InvalidArgument.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**radiusMeters:** `Optional<Long>` — Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tags:** `Optional<List<PostPlaceTagRefRequestBody>>` — Tags to associate.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deletePlace()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a place. Pass `placeId` (Samsara id) as a query parameter.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Places** under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deletePlace(
+    DeletePlaceRequest
+        .builder()
+        .placeId(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**placeId:** `Long` — Samsara place id to delete.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.patchPlace(request) -> PlacesPatchPlaceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a place. Query parameter `placeId` (Samsara id) is required. Optional `externalId` (key:value) is reserved for a future release and must not be combined with `placeId`. Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Places** under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().patchPlace(
+    PlacesPatchPlaceRequestBody
+        .builder()
+        .placeId(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**placeId:** `Long` — Samsara place id to update (required). Do not send `externalId` in the same request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` — External id token in `key:value` form (e.g. crmId:warehouse-east). Mutually exclusive with `placeId`. Batch lookup by external id is not implemented for this endpoint yet; callers should use `placeId` until supported.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `Optional<String>` — Single-line address string.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<PlacesPatchPlaceRequestBodyExternalIds>` — When present, replaces external ids for the place.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**geofence:** `Optional<List<GeofenceVertexInputRequestBody>>` — Polygon vertices; at least three when switching to polygon mode.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hubLocations:** `Optional<PatchPlaceHubLocationsBodyRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**latitude:** `Optional<Double>` — Center latitude when switching to or editing a circle geofence.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**longitude:** `Optional<Double>` — Center longitude when switching to or editing a circle geofence.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Place name.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**navigation:** `Optional<PostPlaceNavigationInputRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Notes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeTypes:** `Optional<List<String>>` — Unsupported on patch; when provided this API returns InvalidArgument.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**radiusMeters:** `Optional<Long>` — Circle radius in meters; use with latitude and longitude.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tags:** `Optional<List<PostPlaceTagRefRequestBody>>` — When present, replaces all tag associations for the place.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.getQualificationRecords() -> QualificationsGetQualificationRecordsResponseBody</code></summary>
 <dl>
 <dd>
@@ -7747,7 +8275,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -8645,7 +9173,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );

@@ -22,14 +22,14 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = WorkOrdersStreamWorkOrdersResponseBody.Builder.class)
 public final class WorkOrdersStreamWorkOrdersResponseBody {
-    private final List<WorkOrderObjectResponseBody> data;
+    private final List<WorkOrderWithTimeEntriesObjectResponseBody> data;
 
     private final GoaPaginationResponseResponseBody pagination;
 
     private final Map<String, Object> additionalProperties;
 
     private WorkOrdersStreamWorkOrdersResponseBody(
-            List<WorkOrderObjectResponseBody> data,
+            List<WorkOrderWithTimeEntriesObjectResponseBody> data,
             GoaPaginationResponseResponseBody pagination,
             Map<String, Object> additionalProperties) {
         this.data = data;
@@ -41,7 +41,7 @@ public final class WorkOrdersStreamWorkOrdersResponseBody {
      * @return Work Orders
      */
     @JsonProperty("data")
-    public List<WorkOrderObjectResponseBody> getData() {
+    public List<WorkOrderWithTimeEntriesObjectResponseBody> getData() {
         return data;
     }
 
@@ -92,18 +92,18 @@ public final class WorkOrdersStreamWorkOrdersResponseBody {
         /**
          * <p>Work Orders</p>
          */
-        _FinalStage data(List<WorkOrderObjectResponseBody> data);
+        _FinalStage data(List<WorkOrderWithTimeEntriesObjectResponseBody> data);
 
-        _FinalStage addData(WorkOrderObjectResponseBody data);
+        _FinalStage addData(WorkOrderWithTimeEntriesObjectResponseBody data);
 
-        _FinalStage addAllData(List<WorkOrderObjectResponseBody> data);
+        _FinalStage addAllData(List<WorkOrderWithTimeEntriesObjectResponseBody> data);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PaginationStage, _FinalStage {
         private GoaPaginationResponseResponseBody pagination;
 
-        private List<WorkOrderObjectResponseBody> data = new ArrayList<>();
+        private List<WorkOrderWithTimeEntriesObjectResponseBody> data = new ArrayList<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -129,7 +129,7 @@ public final class WorkOrdersStreamWorkOrdersResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllData(List<WorkOrderObjectResponseBody> data) {
+        public _FinalStage addAllData(List<WorkOrderWithTimeEntriesObjectResponseBody> data) {
             if (data != null) {
                 this.data.addAll(data);
             }
@@ -141,7 +141,7 @@ public final class WorkOrdersStreamWorkOrdersResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addData(WorkOrderObjectResponseBody data) {
+        public _FinalStage addData(WorkOrderWithTimeEntriesObjectResponseBody data) {
             this.data.add(data);
             return this;
         }
@@ -151,7 +151,7 @@ public final class WorkOrdersStreamWorkOrdersResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public _FinalStage data(List<WorkOrderObjectResponseBody> data) {
+        public _FinalStage data(List<WorkOrderWithTimeEntriesObjectResponseBody> data) {
             this.data.clear();
             if (data != null) {
                 this.data.addAll(data);
