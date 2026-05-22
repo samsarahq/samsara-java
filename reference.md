@@ -9604,7 +9604,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );
@@ -24783,6 +24783,142 @@ client.issues().getIssues(
 </dl>
 </details>
 
+<details><summary><code>client.issues.postIssue(request) -> IssuesPostIssueResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new issue associated with an asset, with optional media attachments uploaded inline as base64.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Issues** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.issues().postIssue(
+    IssuesPostIssueRequestBody
+        .builder()
+        .asset(
+            PostIssueRequestBodyAssetRequestBody
+                .builder()
+                .id("hertzAssetId:HZ-100423")
+                .build()
+        )
+        .title("Front bumper scratch")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**asset:** `PostIssueRequestBodyAssetRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assignedTo:** `Optional<PostIssueRequestBodyAssignedToRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the issue.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dueDate:** `Optional<OffsetDateTime>` — Due date of the issue. UTC timestamp in RFC 3339 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**media:** `Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>>` — Media items to attach to the issue.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priority:** `Optional<IssuesPostIssueRequestBodyPriority>` — Priority of the issue.  Valid values: `low`, `medium`, `high`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<IssuesPostIssueRequestBodyStatus>` — Status of the issue. Defaults to `open` when omitted.  Valid values: `open`, `inProgress`, `resolved`, `dismissed`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**title:** `String` — Title of the issue.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.issues.patchIssue(request) -> IssuesPatchIssueResponseBody</code></summary>
 <dl>
 <dd>
@@ -24845,7 +24981,7 @@ client.issues().patchIssue(
 <dl>
 <dd>
 
-**description:** `Optional<String>` — Description of the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+**description:** `Optional<String>` — Description of the issue.
     
 </dd>
 </dl>
@@ -24877,7 +25013,7 @@ client.issues().patchIssue(
 <dl>
 <dd>
 
-**media:** `Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>>` — Media items to append to the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+**media:** `Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>>` — Media items to append to the issue.
     
 </dd>
 </dl>
@@ -24885,7 +25021,7 @@ client.issues().patchIssue(
 <dl>
 <dd>
 
-**priority:** `Optional<IssuesPatchIssueRequestBodyPriority>` — Priority of the issue. Requires the `issue-api-media-attachment-endpoints` feature.  Valid values: `low`, `medium`, `high`
+**priority:** `Optional<IssuesPatchIssueRequestBodyPriority>` — Priority of the issue.  Valid values: `low`, `medium`, `high`
     
 </dd>
 </dl>
@@ -24901,7 +25037,7 @@ client.issues().patchIssue(
 <dl>
 <dd>
 
-**title:** `Optional<String>` — Title of the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+**title:** `Optional<String>` — Title of the issue.
     
 </dd>
 </dl>

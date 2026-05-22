@@ -12,10 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.resources.issues.types.IssuesPatchIssueRequestBodyPriority;
-import com.samsara.api.resources.issues.types.IssuesPatchIssueRequestBodyStatus;
+import com.samsara.api.resources.issues.types.IssuesPostIssueRequestBodyPriority;
+import com.samsara.api.resources.issues.types.IssuesPostIssueRequestBodyStatus;
 import com.samsara.api.types.FormSubmissionRequestMediaItemObjectRequestBody;
-import com.samsara.api.types.PatchIssueRequestBodyAssignedToRequestBody;
+import com.samsara.api.types.PostIssueRequestBodyAssetRequestBody;
+import com.samsara.api.types.PostIssueRequestBodyAssignedToRequestBody;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -25,9 +26,11 @@ import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = IssuesPatchIssueRequestBody.Builder.class)
-public final class IssuesPatchIssueRequestBody {
-    private final Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo;
+@JsonDeserialize(builder = IssuesPostIssueRequestBody.Builder.class)
+public final class IssuesPostIssueRequestBody {
+    private final PostIssueRequestBodyAssetRequestBody asset;
+
+    private final Optional<PostIssueRequestBodyAssignedToRequestBody> assignedTo;
 
     private final Optional<String> description;
 
@@ -35,34 +38,32 @@ public final class IssuesPatchIssueRequestBody {
 
     private final Optional<Map<String, String>> externalIds;
 
-    private final String id;
-
     private final Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media;
 
-    private final Optional<IssuesPatchIssueRequestBodyPriority> priority;
+    private final Optional<IssuesPostIssueRequestBodyPriority> priority;
 
-    private final Optional<IssuesPatchIssueRequestBodyStatus> status;
+    private final Optional<IssuesPostIssueRequestBodyStatus> status;
 
-    private final Optional<String> title;
+    private final String title;
 
     private final Map<String, Object> additionalProperties;
 
-    private IssuesPatchIssueRequestBody(
-            Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo,
+    private IssuesPostIssueRequestBody(
+            PostIssueRequestBodyAssetRequestBody asset,
+            Optional<PostIssueRequestBodyAssignedToRequestBody> assignedTo,
             Optional<String> description,
             Optional<OffsetDateTime> dueDate,
             Optional<Map<String, String>> externalIds,
-            String id,
             Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media,
-            Optional<IssuesPatchIssueRequestBodyPriority> priority,
-            Optional<IssuesPatchIssueRequestBodyStatus> status,
-            Optional<String> title,
+            Optional<IssuesPostIssueRequestBodyPriority> priority,
+            Optional<IssuesPostIssueRequestBodyStatus> status,
+            String title,
             Map<String, Object> additionalProperties) {
+        this.asset = asset;
         this.assignedTo = assignedTo;
         this.description = description;
         this.dueDate = dueDate;
         this.externalIds = externalIds;
-        this.id = id;
         this.media = media;
         this.priority = priority;
         this.status = status;
@@ -70,8 +71,13 @@ public final class IssuesPatchIssueRequestBody {
         this.additionalProperties = additionalProperties;
     }
 
+    @JsonProperty("asset")
+    public PostIssueRequestBodyAssetRequestBody getAsset() {
+        return asset;
+    }
+
     @JsonProperty("assignedTo")
-    public Optional<PatchIssueRequestBodyAssignedToRequestBody> getAssignedTo() {
+    public Optional<PostIssueRequestBodyAssignedToRequestBody> getAssignedTo() {
         return assignedTo;
     }
 
@@ -100,15 +106,7 @@ public final class IssuesPatchIssueRequestBody {
     }
 
     /**
-     * @return ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.
-     */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @return Media items to append to the issue.
+     * @return Media items to attach to the issue.
      */
     @JsonProperty("media")
     public Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> getMedia() {
@@ -119,15 +117,15 @@ public final class IssuesPatchIssueRequestBody {
      * @return Priority of the issue.  Valid values: <code>low</code>, <code>medium</code>, <code>high</code>
      */
     @JsonProperty("priority")
-    public Optional<IssuesPatchIssueRequestBodyPriority> getPriority() {
+    public Optional<IssuesPostIssueRequestBodyPriority> getPriority() {
         return priority;
     }
 
     /**
-     * @return Status of the issue.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code>
+     * @return Status of the issue. Defaults to <code>open</code> when omitted.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code>
      */
     @JsonProperty("status")
-    public Optional<IssuesPatchIssueRequestBodyStatus> getStatus() {
+    public Optional<IssuesPostIssueRequestBodyStatus> getStatus() {
         return status;
     }
 
@@ -135,14 +133,14 @@ public final class IssuesPatchIssueRequestBody {
      * @return Title of the issue.
      */
     @JsonProperty("title")
-    public Optional<String> getTitle() {
+    public String getTitle() {
         return title;
     }
 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof IssuesPatchIssueRequestBody && equalTo((IssuesPatchIssueRequestBody) other);
+        return other instanceof IssuesPostIssueRequestBody && equalTo((IssuesPostIssueRequestBody) other);
     }
 
     @JsonAnyGetter
@@ -150,12 +148,12 @@ public final class IssuesPatchIssueRequestBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(IssuesPatchIssueRequestBody other) {
-        return assignedTo.equals(other.assignedTo)
+    private boolean equalTo(IssuesPostIssueRequestBody other) {
+        return asset.equals(other.asset)
+                && assignedTo.equals(other.assignedTo)
                 && description.equals(other.description)
                 && dueDate.equals(other.dueDate)
                 && externalIds.equals(other.externalIds)
-                && id.equals(other.id)
                 && media.equals(other.media)
                 && priority.equals(other.priority)
                 && status.equals(other.status)
@@ -165,11 +163,11 @@ public final class IssuesPatchIssueRequestBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.asset,
                 this.assignedTo,
                 this.description,
                 this.dueDate,
                 this.externalIds,
-                this.id,
                 this.media,
                 this.priority,
                 this.status,
@@ -181,25 +179,29 @@ public final class IssuesPatchIssueRequestBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static IdStage builder() {
+    public static AssetStage builder() {
         return new Builder();
     }
 
-    public interface IdStage {
-        /**
-         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
-         */
-        _FinalStage id(@NotNull String id);
+    public interface AssetStage {
+        TitleStage asset(@NotNull PostIssueRequestBodyAssetRequestBody asset);
 
-        Builder from(IssuesPatchIssueRequestBody other);
+        Builder from(IssuesPostIssueRequestBody other);
+    }
+
+    public interface TitleStage {
+        /**
+         * <p>Title of the issue.</p>
+         */
+        _FinalStage title(@NotNull String title);
     }
 
     public interface _FinalStage {
-        IssuesPatchIssueRequestBody build();
+        IssuesPostIssueRequestBody build();
 
-        _FinalStage assignedTo(Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo);
+        _FinalStage assignedTo(Optional<PostIssueRequestBodyAssignedToRequestBody> assignedTo);
 
-        _FinalStage assignedTo(PatchIssueRequestBodyAssignedToRequestBody assignedTo);
+        _FinalStage assignedTo(PostIssueRequestBodyAssignedToRequestBody assignedTo);
 
         /**
          * <p>Description of the issue.</p>
@@ -223,7 +225,7 @@ public final class IssuesPatchIssueRequestBody {
         _FinalStage externalIds(Map<String, String> externalIds);
 
         /**
-         * <p>Media items to append to the issue.</p>
+         * <p>Media items to attach to the issue.</p>
          */
         _FinalStage media(Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media);
 
@@ -232,34 +234,27 @@ public final class IssuesPatchIssueRequestBody {
         /**
          * <p>Priority of the issue.  Valid values: <code>low</code>, <code>medium</code>, <code>high</code></p>
          */
-        _FinalStage priority(Optional<IssuesPatchIssueRequestBodyPriority> priority);
+        _FinalStage priority(Optional<IssuesPostIssueRequestBodyPriority> priority);
 
-        _FinalStage priority(IssuesPatchIssueRequestBodyPriority priority);
-
-        /**
-         * <p>Status of the issue.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
-         */
-        _FinalStage status(Optional<IssuesPatchIssueRequestBodyStatus> status);
-
-        _FinalStage status(IssuesPatchIssueRequestBodyStatus status);
+        _FinalStage priority(IssuesPostIssueRequestBodyPriority priority);
 
         /**
-         * <p>Title of the issue.</p>
+         * <p>Status of the issue. Defaults to <code>open</code> when omitted.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
          */
-        _FinalStage title(Optional<String> title);
+        _FinalStage status(Optional<IssuesPostIssueRequestBodyStatus> status);
 
-        _FinalStage title(String title);
+        _FinalStage status(IssuesPostIssueRequestBodyStatus status);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements IdStage, _FinalStage {
-        private String id;
+    public static final class Builder implements AssetStage, TitleStage, _FinalStage {
+        private PostIssueRequestBodyAssetRequestBody asset;
 
-        private Optional<String> title = Optional.empty();
+        private String title;
 
-        private Optional<IssuesPatchIssueRequestBodyStatus> status = Optional.empty();
+        private Optional<IssuesPostIssueRequestBodyStatus> status = Optional.empty();
 
-        private Optional<IssuesPatchIssueRequestBodyPriority> priority = Optional.empty();
+        private Optional<IssuesPostIssueRequestBodyPriority> priority = Optional.empty();
 
         private Optional<List<FormSubmissionRequestMediaItemObjectRequestBody>> media = Optional.empty();
 
@@ -269,7 +264,7 @@ public final class IssuesPatchIssueRequestBody {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo = Optional.empty();
+        private Optional<PostIssueRequestBodyAssignedToRequestBody> assignedTo = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -277,12 +272,12 @@ public final class IssuesPatchIssueRequestBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(IssuesPatchIssueRequestBody other) {
+        public Builder from(IssuesPostIssueRequestBody other) {
+            asset(other.getAsset());
             assignedTo(other.getAssignedTo());
             description(other.getDescription());
             dueDate(other.getDueDate());
             externalIds(other.getExternalIds());
-            id(other.getId());
             media(other.getMedia());
             priority(other.getPriority());
             status(other.getStatus());
@@ -290,54 +285,41 @@ public final class IssuesPatchIssueRequestBody {
             return this;
         }
 
-        /**
-         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
-         * <p>ID of the issue. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the issue.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @java.lang.Override
-        @JsonSetter("id")
-        public _FinalStage id(@NotNull String id) {
-            this.id = Objects.requireNonNull(id, "id must not be null");
+        @JsonSetter("asset")
+        public TitleStage asset(@NotNull PostIssueRequestBodyAssetRequestBody asset) {
+            this.asset = Objects.requireNonNull(asset, "asset must not be null");
             return this;
         }
 
         /**
          * <p>Title of the issue.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage title(String title) {
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        /**
          * <p>Title of the issue.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter(value = "title", nulls = Nulls.SKIP)
-        public _FinalStage title(Optional<String> title) {
-            this.title = title;
+        @JsonSetter("title")
+        public _FinalStage title(@NotNull String title) {
+            this.title = Objects.requireNonNull(title, "title must not be null");
             return this;
         }
 
         /**
-         * <p>Status of the issue.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
+         * <p>Status of the issue. Defaults to <code>open</code> when omitted.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage status(IssuesPatchIssueRequestBodyStatus status) {
+        public _FinalStage status(IssuesPostIssueRequestBodyStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
         /**
-         * <p>Status of the issue.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
+         * <p>Status of the issue. Defaults to <code>open</code> when omitted.  Valid values: <code>open</code>, <code>inProgress</code>, <code>resolved</code>, <code>dismissed</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public _FinalStage status(Optional<IssuesPatchIssueRequestBodyStatus> status) {
+        public _FinalStage status(Optional<IssuesPostIssueRequestBodyStatus> status) {
             this.status = status;
             return this;
         }
@@ -347,7 +329,7 @@ public final class IssuesPatchIssueRequestBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage priority(IssuesPatchIssueRequestBodyPriority priority) {
+        public _FinalStage priority(IssuesPostIssueRequestBodyPriority priority) {
             this.priority = Optional.ofNullable(priority);
             return this;
         }
@@ -357,13 +339,13 @@ public final class IssuesPatchIssueRequestBody {
          */
         @java.lang.Override
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
-        public _FinalStage priority(Optional<IssuesPatchIssueRequestBodyPriority> priority) {
+        public _FinalStage priority(Optional<IssuesPostIssueRequestBodyPriority> priority) {
             this.priority = priority;
             return this;
         }
 
         /**
-         * <p>Media items to append to the issue.</p>
+         * <p>Media items to attach to the issue.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -373,7 +355,7 @@ public final class IssuesPatchIssueRequestBody {
         }
 
         /**
-         * <p>Media items to append to the issue.</p>
+         * <p>Media items to attach to the issue.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "media", nulls = Nulls.SKIP)
@@ -443,26 +425,26 @@ public final class IssuesPatchIssueRequestBody {
         }
 
         @java.lang.Override
-        public _FinalStage assignedTo(PatchIssueRequestBodyAssignedToRequestBody assignedTo) {
+        public _FinalStage assignedTo(PostIssueRequestBodyAssignedToRequestBody assignedTo) {
             this.assignedTo = Optional.ofNullable(assignedTo);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "assignedTo", nulls = Nulls.SKIP)
-        public _FinalStage assignedTo(Optional<PatchIssueRequestBodyAssignedToRequestBody> assignedTo) {
+        public _FinalStage assignedTo(Optional<PostIssueRequestBodyAssignedToRequestBody> assignedTo) {
             this.assignedTo = assignedTo;
             return this;
         }
 
         @java.lang.Override
-        public IssuesPatchIssueRequestBody build() {
-            return new IssuesPatchIssueRequestBody(
+        public IssuesPostIssueRequestBody build() {
+            return new IssuesPostIssueRequestBody(
+                    asset,
                     assignedTo,
                     description,
                     dueDate,
                     externalIds,
-                    id,
                     media,
                     priority,
                     status,
