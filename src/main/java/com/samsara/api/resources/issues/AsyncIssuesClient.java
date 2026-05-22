@@ -8,9 +8,11 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.issues.requests.GetIssuesRequest;
 import com.samsara.api.resources.issues.requests.GetIssuesStreamRequest;
 import com.samsara.api.resources.issues.requests.IssuesPatchIssueRequestBody;
+import com.samsara.api.resources.issues.requests.IssuesPostIssueRequestBody;
 import com.samsara.api.types.IssuesGetIssuesResponseBody;
 import com.samsara.api.types.IssuesGetIssuesStreamResponseBody;
 import com.samsara.api.types.IssuesPatchIssueResponseBody;
+import com.samsara.api.types.IssuesPostIssueResponseBody;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncIssuesClient {
@@ -69,6 +71,27 @@ public class AsyncIssuesClient {
     public CompletableFuture<IssuesGetIssuesResponseBody> getIssues(
             GetIssuesRequest request, RequestOptions requestOptions) {
         return this.rawClient.getIssues(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a new issue associated with an asset, with optional media attachments uploaded inline as base64.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Issues</strong> under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<IssuesPostIssueResponseBody> postIssue(IssuesPostIssueRequestBody request) {
+        return this.rawClient.postIssue(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a new issue associated with an asset, with optional media attachments uploaded inline as base64.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Issues</strong> under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<IssuesPostIssueResponseBody> postIssue(
+            IssuesPostIssueRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postIssue(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
