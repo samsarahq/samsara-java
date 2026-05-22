@@ -9,6 +9,7 @@ import com.samsara.api.resources.betaapis.requests.DeleteHubRouteTemplateRequest
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlaceRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
+import com.samsara.api.resources.betaapis.requests.DeletePreferredStationRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipRouteSetupRequest;
 import com.samsara.api.resources.betaapis.requests.DeployFunctionRequest;
@@ -36,6 +37,7 @@ import com.samsara.api.resources.betaapis.requests.GetFunctionStorageFileRequest
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlacesRequest;
+import com.samsara.api.resources.betaapis.requests.GetPreferredStationRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationTypesRequest;
@@ -53,12 +55,15 @@ import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequ
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
+import com.samsara.api.resources.betaapis.requests.ListPreferredStationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPostPlaceRequestBody;
+import com.samsara.api.resources.betaapis.requests.PreferredStationsPatchPreferredStationRequestBody;
+import com.samsara.api.resources.betaapis.requests.PreferredStationsPostPreferredStationRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsDeleteQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsPatchQualificationRecordRequestBody;
@@ -122,6 +127,11 @@ import com.samsara.api.types.PlacesPatchPlaceResponseBody;
 import com.samsara.api.types.PlacesPostPlaceResponseBody;
 import com.samsara.api.types.PlanOrdersListPlanOrdersResponseBody;
 import com.samsara.api.types.PostJobObjectRequestBody;
+import com.samsara.api.types.PreferredStationAddressRequestBody;
+import com.samsara.api.types.PreferredStationsGetPreferredStationResponseBody;
+import com.samsara.api.types.PreferredStationsListPreferredStationsResponseBody;
+import com.samsara.api.types.PreferredStationsPatchPreferredStationResponseBody;
+import com.samsara.api.types.PreferredStationsPostPreferredStationResponseBody;
 import com.samsara.api.types.QualificationOwnerRequestObjectRequestBody;
 import com.samsara.api.types.QualificationOwnerRequestObjectRequestBodyEntityType;
 import com.samsara.api.types.QualificationRecordRequestFieldInputObjectRequestBody;
@@ -3403,6 +3413,472 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testListPreferredStations() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        PreferredStationsListPreferredStationsResponseBody response = client.betaApIs()
+                .listPreferredStations(ListPreferredStationsRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"address\": {\n"
+                + "        \"city\": \"Green River\",\n"
+                + "        \"country\": \"US\",\n"
+                + "        \"line1\": \"8901 US Hwy 374\",\n"
+                + "        \"postalCode\": \"82935\",\n"
+                + "        \"state\": \"WY\"\n"
+                + "      },\n"
+                + "      \"discounts\": [\n"
+                + "        {\n"
+                + "          \"discount\": {\n"
+                + "            \"amount\": \"640.2\",\n"
+                + "            \"currency\": \"usd\"\n"
+                + "          },\n"
+                + "          \"discountPercent\": \"3.5\",\n"
+                + "          \"discountType\": \"centsPerUnit\",\n"
+                + "          \"fuelType\": \"gasoline\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"externalIds\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"id\": \"sta_abc123\",\n"
+                + "      \"latitude\": 41.5168,\n"
+                + "      \"longitude\": -109.471,\n"
+                + "      \"name\": \"Pilot Travel Center #432\",\n"
+                + "      \"prices\": [\n"
+                + "        {\n"
+                + "          \"fuelType\": \"gasoline\",\n"
+                + "          \"grossPrice\": {\n"
+                + "            \"amount\": \"640.2\",\n"
+                + "            \"currency\": \"usd\"\n"
+                + "          },\n"
+                + "          \"netPrice\": {\n"
+                + "            \"amount\": \"640.2\",\n"
+                + "            \"currency\": \"usd\"\n"
+                + "          },\n"
+                + "          \"volumeUnit\": \"liter\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testPostPreferredStation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}}"));
+        PreferredStationsPostPreferredStationResponseBody response = client.betaApIs()
+                .postPreferredStation(PreferredStationsPostPreferredStationRequestBody.builder()
+                        .address(PreferredStationAddressRequestBody.builder()
+                                .city("Green River")
+                                .country("US")
+                                .line1("8901 US Hwy 374")
+                                .postalCode("82935")
+                                .build())
+                        .name("Station #432")
+                        .externalIds(new HashMap<String, String>() {
+                            {
+                                put("key", "value");
+                            }
+                        })
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"address\": {\n"
+                + "    \"city\": \"Green River\",\n"
+                + "    \"country\": \"US\",\n"
+                + "    \"line1\": \"8901 US Hwy 374\",\n"
+                + "    \"postalCode\": \"82935\"\n"
+                + "  },\n"
+                + "  \"externalIds\": {\n"
+                + "    \"key\": \"value\"\n"
+                + "  },\n"
+                + "  \"name\": \"Station #432\"\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"address\": {\n"
+                + "      \"city\": \"Green River\",\n"
+                + "      \"country\": \"US\",\n"
+                + "      \"line1\": \"8901 US Hwy 374\",\n"
+                + "      \"postalCode\": \"82935\",\n"
+                + "      \"state\": \"WY\"\n"
+                + "    },\n"
+                + "    \"discounts\": [\n"
+                + "      {\n"
+                + "        \"discount\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"discountPercent\": \"3.5\",\n"
+                + "        \"discountType\": \"centsPerUnit\",\n"
+                + "        \"fuelType\": \"gasoline\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"externalIds\": {\n"
+                + "      \"key\": \"value\"\n"
+                + "    },\n"
+                + "    \"id\": \"sta_abc123\",\n"
+                + "    \"latitude\": 41.5168,\n"
+                + "    \"longitude\": -109.471,\n"
+                + "    \"name\": \"Pilot Travel Center #432\",\n"
+                + "    \"prices\": [\n"
+                + "      {\n"
+                + "        \"fuelType\": \"gasoline\",\n"
+                + "        \"grossPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"netPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"volumeUnit\": \"liter\"\n"
+                + "      }\n"
+                + "    ]\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testDeletePreferredStation() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.betaApIs()
+                .deletePreferredStation(
+                        DeletePreferredStationRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testPatchPreferredStation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}}"));
+        PreferredStationsPatchPreferredStationResponseBody response = client.betaApIs()
+                .patchPreferredStation(PreferredStationsPatchPreferredStationRequestBody.builder()
+                        .id("id")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"address\": {\n"
+                + "      \"city\": \"Green River\",\n"
+                + "      \"country\": \"US\",\n"
+                + "      \"line1\": \"8901 US Hwy 374\",\n"
+                + "      \"postalCode\": \"82935\",\n"
+                + "      \"state\": \"WY\"\n"
+                + "    },\n"
+                + "    \"discounts\": [\n"
+                + "      {\n"
+                + "        \"discount\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"discountPercent\": \"3.5\",\n"
+                + "        \"discountType\": \"centsPerUnit\",\n"
+                + "        \"fuelType\": \"gasoline\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"externalIds\": {\n"
+                + "      \"key\": \"value\"\n"
+                + "    },\n"
+                + "    \"id\": \"sta_abc123\",\n"
+                + "    \"latitude\": 41.5168,\n"
+                + "    \"longitude\": -109.471,\n"
+                + "    \"name\": \"Pilot Travel Center #432\",\n"
+                + "    \"prices\": [\n"
+                + "      {\n"
+                + "        \"fuelType\": \"gasoline\",\n"
+                + "        \"grossPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"netPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"volumeUnit\": \"liter\"\n"
+                + "      }\n"
+                + "    ]\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetPreferredStation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}}"));
+        PreferredStationsGetPreferredStationResponseBody response = client.betaApIs()
+                .getPreferredStation("id", GetPreferredStationRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"address\": {\n"
+                + "      \"city\": \"Green River\",\n"
+                + "      \"country\": \"US\",\n"
+                + "      \"line1\": \"8901 US Hwy 374\",\n"
+                + "      \"postalCode\": \"82935\",\n"
+                + "      \"state\": \"WY\"\n"
+                + "    },\n"
+                + "    \"discounts\": [\n"
+                + "      {\n"
+                + "        \"discount\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"discountPercent\": \"3.5\",\n"
+                + "        \"discountType\": \"centsPerUnit\",\n"
+                + "        \"fuelType\": \"gasoline\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"externalIds\": {\n"
+                + "      \"key\": \"value\"\n"
+                + "    },\n"
+                + "    \"id\": \"sta_abc123\",\n"
+                + "    \"latitude\": 41.5168,\n"
+                + "    \"longitude\": -109.471,\n"
+                + "    \"name\": \"Pilot Travel Center #432\",\n"
+                + "    \"prices\": [\n"
+                + "      {\n"
+                + "        \"fuelType\": \"gasoline\",\n"
+                + "        \"grossPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"netPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"volumeUnit\": \"liter\"\n"
+                + "      }\n"
+                + "    ]\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testGetQualificationRecords() throws Exception {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
@@ -4234,7 +4710,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunDataResponseBody response = client.betaApIs()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -4260,11 +4736,6 @@ public class BetaApIsWireTest {
                 + "        },\n"
                 + "        {\n"
                 + "          \"key\": \"value\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      [\n"
-                + "        {\n"
-                + "          \"key\": \"value\"\n"
                 + "        },\n"
                 + "        {\n"
                 + "          \"key\": \"value\"\n"
@@ -4274,6 +4745,9 @@ public class BetaApIsWireTest {
                 + "        }\n"
                 + "      ],\n"
                 + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
                 + "        {\n"
                 + "          \"key\": \"value\"\n"
                 + "        },\n"
@@ -4326,7 +4800,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Adipisci rerum.\",\"Sit pariatur voluptatem.\",\"Aliquam quia qui et alias.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipPassengersListRidershipPassengersResponseBody response = client.betaApIs()
                 .listRidershipPassengers(
                         ListRidershipPassengersRequest.builder().tagId("tagId").build());
@@ -4363,9 +4837,9 @@ public class BetaApIsWireTest {
                 + "        \"isSpecialEducation\": false\n"
                 + "      },\n"
                 + "      \"tagIds\": [\n"
-                + "        \"Adipisci rerum.\",\n"
-                + "        \"Sit pariatur voluptatem.\",\n"
-                + "        \"Aliquam quia qui et alias.\"\n"
+                + "        \"Doloribus quia eos soluta in.\",\n"
+                + "        \"Sunt eum explicabo amet eum.\",\n"
+                + "        \"Dignissimos quaerat debitis.\"\n"
                 + "      ],\n"
                 + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "    }\n"
@@ -4412,7 +4886,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Adipisci rerum.\",\"Sit pariatur voluptatem.\",\"Aliquam quia qui et alias.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersCreateRidershipPassengerResponseBody response = client.betaApIs()
                 .createRidershipPassenger(RidershipPassengersCreateRidershipPassengerRequestBody.builder()
                         .firstName("John")
@@ -4479,9 +4953,9 @@ public class BetaApIsWireTest {
                 + "      \"isSpecialEducation\": false\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Adipisci rerum.\",\n"
-                + "      \"Sit pariatur voluptatem.\",\n"
-                + "      \"Aliquam quia qui et alias.\"\n"
+                + "      \"Doloribus quia eos soluta in.\",\n"
+                + "      \"Sunt eum explicabo amet eum.\",\n"
+                + "      \"Dignissimos quaerat debitis.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -4523,7 +4997,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Adipisci rerum.\",\"Sit pariatur voluptatem.\",\"Aliquam quia qui et alias.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersUpdateRidershipPassengerResponseBody response = client.betaApIs()
                 .updateRidershipPassenger(RidershipPassengersUpdateRidershipPassengerRequestBody.builder()
                         .id("id")
@@ -4591,9 +5065,9 @@ public class BetaApIsWireTest {
                 + "      \"isSpecialEducation\": false\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Adipisci rerum.\",\n"
-                + "      \"Sit pariatur voluptatem.\",\n"
-                + "      \"Aliquam quia qui et alias.\"\n"
+                + "      \"Doloribus quia eos soluta in.\",\n"
+                + "      \"Sunt eum explicabo amet eum.\",\n"
+                + "      \"Dignissimos quaerat debitis.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -4646,7 +5120,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Adipisci rerum.\",\"Sit pariatur voluptatem.\",\"Aliquam quia qui et alias.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersGetRidershipPassengerResponseBody response = client.betaApIs()
                 .getRidershipPassenger(
                         "id", GetRidershipPassengerRequest.builder().build());
@@ -4682,9 +5156,9 @@ public class BetaApIsWireTest {
                 + "      \"isSpecialEducation\": false\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Adipisci rerum.\",\n"
-                + "      \"Sit pariatur voluptatem.\",\n"
-                + "      \"Aliquam quia qui et alias.\"\n"
+                + "      \"Doloribus quia eos soluta in.\",\n"
+                + "      \"Sunt eum explicabo amet eum.\",\n"
+                + "      \"Dignissimos quaerat debitis.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
