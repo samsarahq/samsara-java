@@ -5855,6 +5855,14 @@ client.betaApIs().postPlace(
 <dl>
 <dd>
 
+**cameraRecordingModeType:** `Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType>` — Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: `fullRecording`, `driverPrivacy`, `completePrivacy`, `inherit`, `unknown`, `unspecified`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<PlacesPostPlaceRequestBodyExternalIds>` — External identifiers.
     
 </dd>
@@ -5872,6 +5880,14 @@ client.betaApIs().postPlace(
 <dd>
 
 **hubLocations:** `Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>>` — Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iftaExemptionTypes:** `Optional<List<String>>` — IFTA exemption types for this place.
     
 </dd>
 </dl>
@@ -5928,6 +5944,22 @@ client.betaApIs().postPlace(
 <dd>
 
 **radiusMeters:** `Optional<Long>` — Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**safetyEventExclusions:** `Optional<List<String>>` — Safety event types excluded at this place.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**streetView:** `Optional<PlaceStreetViewResponseRequestBody>` 
     
 </dd>
 </dl>
@@ -6091,6 +6123,14 @@ client.betaApIs().patchPlace(
 <dl>
 <dd>
 
+**cameraRecordingModeType:** `Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType>` — Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: `fullRecording`, `driverPrivacy`, `completePrivacy`, `inherit`, `unknown`, `unspecified`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<PlacesPatchPlaceRequestBodyExternalIds>` — When present, replaces external ids for the place.
     
 </dd>
@@ -6108,6 +6148,14 @@ client.betaApIs().patchPlace(
 <dd>
 
 **hubLocations:** `Optional<PatchPlaceHubLocationsBodyRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iftaExemptionTypes:** `Optional<List<String>>` — When present, replaces IFTA exemption types for the place.
     
 </dd>
 </dl>
@@ -6164,6 +6212,22 @@ client.betaApIs().patchPlace(
 <dd>
 
 **radiusMeters:** `Optional<Long>` — Circle radius in meters; use with latitude and longitude.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**safetyEventExclusions:** `Optional<List<String>>` — When present, replaces safety event exclusions for the place.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**streetView:** `Optional<PlaceStreetViewResponseRequestBody>` 
     
 </dd>
 </dl>

@@ -28,6 +28,8 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
 
     private final Optional<Integer> laborTimeMinutes;
 
+    private final Optional<String> notes;
+
     private final Optional<List<PartInstanceInputObjectRequestBody>> parts;
 
     private final Optional<WorkOrderMoneyObjectRequestBody> partsCost;
@@ -42,6 +44,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
             Optional<String> id,
             Optional<WorkOrderMoneyObjectRequestBody> laborHourlyCost,
             Optional<Integer> laborTimeMinutes,
+            Optional<String> notes,
             Optional<List<PartInstanceInputObjectRequestBody>> parts,
             Optional<WorkOrderMoneyObjectRequestBody> partsCost,
             String serviceTaskId,
@@ -50,6 +53,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         this.id = id;
         this.laborHourlyCost = laborHourlyCost;
         this.laborTimeMinutes = laborTimeMinutes;
+        this.notes = notes;
         this.parts = parts;
         this.partsCost = partsCost;
         this.serviceTaskId = serviceTaskId;
@@ -76,6 +80,14 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
     @JsonProperty("laborTimeMinutes")
     public Optional<Integer> getLaborTimeMinutes() {
         return laborTimeMinutes;
+    }
+
+    /**
+     * @return Free-form technician notes for the service task.
+     */
+    @JsonProperty("notes")
+    public Optional<String> getNotes() {
+        return notes;
     }
 
     /**
@@ -123,6 +135,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         return id.equals(other.id)
                 && laborHourlyCost.equals(other.laborHourlyCost)
                 && laborTimeMinutes.equals(other.laborTimeMinutes)
+                && notes.equals(other.notes)
                 && parts.equals(other.parts)
                 && partsCost.equals(other.partsCost)
                 && serviceTaskId.equals(other.serviceTaskId)
@@ -135,6 +148,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
                 this.id,
                 this.laborHourlyCost,
                 this.laborTimeMinutes,
+                this.notes,
                 this.parts,
                 this.partsCost,
                 this.serviceTaskId,
@@ -188,6 +202,13 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         _FinalStage laborTimeMinutes(Integer laborTimeMinutes);
 
         /**
+         * <p>Free-form technician notes for the service task.</p>
+         */
+        _FinalStage notes(Optional<String> notes);
+
+        _FinalStage notes(String notes);
+
+        /**
          * <p>Parts for the service task.</p>
          */
         _FinalStage parts(Optional<List<PartInstanceInputObjectRequestBody>> parts);
@@ -209,6 +230,8 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
 
         private Optional<List<PartInstanceInputObjectRequestBody>> parts = Optional.empty();
 
+        private Optional<String> notes = Optional.empty();
+
         private Optional<Integer> laborTimeMinutes = Optional.empty();
 
         private Optional<WorkOrderMoneyObjectRequestBody> laborHourlyCost = Optional.empty();
@@ -225,6 +248,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
             id(other.getId());
             laborHourlyCost(other.getLaborHourlyCost());
             laborTimeMinutes(other.getLaborTimeMinutes());
+            notes(other.getNotes());
             parts(other.getParts());
             partsCost(other.getPartsCost());
             serviceTaskId(other.getServiceTaskId());
@@ -290,6 +314,26 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         }
 
         /**
+         * <p>Free-form technician notes for the service task.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage notes(String notes) {
+            this.notes = Optional.ofNullable(notes);
+            return this;
+        }
+
+        /**
+         * <p>Free-form technician notes for the service task.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "notes", nulls = Nulls.SKIP)
+        public _FinalStage notes(Optional<String> notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        /**
          * <p>The time of labor needed</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -348,6 +392,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
                     id,
                     laborHourlyCost,
                     laborTimeMinutes,
+                    notes,
                     parts,
                     partsCost,
                     serviceTaskId,

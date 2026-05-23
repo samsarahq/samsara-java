@@ -28,6 +28,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
 
     private final Optional<Integer> laborTimeMinutes;
 
+    private final Optional<String> notes;
+
     private final Optional<List<PartInstanceObjectResponseBody>> parts;
 
     private final Optional<WorkOrderMoneyObjectResponseBody> partsCost;
@@ -42,6 +44,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
             String id,
             Optional<WorkOrderMoneyObjectResponseBody> laborHourlyCost,
             Optional<Integer> laborTimeMinutes,
+            Optional<String> notes,
             Optional<List<PartInstanceObjectResponseBody>> parts,
             Optional<WorkOrderMoneyObjectResponseBody> partsCost,
             String serviceTaskId,
@@ -50,6 +53,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
         this.id = id;
         this.laborHourlyCost = laborHourlyCost;
         this.laborTimeMinutes = laborTimeMinutes;
+        this.notes = notes;
         this.parts = parts;
         this.partsCost = partsCost;
         this.serviceTaskId = serviceTaskId;
@@ -76,6 +80,14 @@ public final class ServiceTaskInstanceObjectResponseBody {
     @JsonProperty("laborTimeMinutes")
     public Optional<Integer> getLaborTimeMinutes() {
         return laborTimeMinutes;
+    }
+
+    /**
+     * @return Free-form technician notes for the service task.
+     */
+    @JsonProperty("notes")
+    public Optional<String> getNotes() {
+        return notes;
     }
 
     /**
@@ -123,6 +135,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
         return id.equals(other.id)
                 && laborHourlyCost.equals(other.laborHourlyCost)
                 && laborTimeMinutes.equals(other.laborTimeMinutes)
+                && notes.equals(other.notes)
                 && parts.equals(other.parts)
                 && partsCost.equals(other.partsCost)
                 && serviceTaskId.equals(other.serviceTaskId)
@@ -135,6 +148,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
                 this.id,
                 this.laborHourlyCost,
                 this.laborTimeMinutes,
+                this.notes,
                 this.parts,
                 this.partsCost,
                 this.serviceTaskId,
@@ -188,6 +202,13 @@ public final class ServiceTaskInstanceObjectResponseBody {
         _FinalStage laborTimeMinutes(Integer laborTimeMinutes);
 
         /**
+         * <p>Free-form technician notes for the service task.</p>
+         */
+        _FinalStage notes(Optional<String> notes);
+
+        _FinalStage notes(String notes);
+
+        /**
          * <p>Parts for the service task.</p>
          */
         _FinalStage parts(Optional<List<PartInstanceObjectResponseBody>> parts);
@@ -211,6 +232,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
 
         private Optional<List<PartInstanceObjectResponseBody>> parts = Optional.empty();
 
+        private Optional<String> notes = Optional.empty();
+
         private Optional<Integer> laborTimeMinutes = Optional.empty();
 
         private Optional<WorkOrderMoneyObjectResponseBody> laborHourlyCost = Optional.empty();
@@ -225,6 +248,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
             id(other.getId());
             laborHourlyCost(other.getLaborHourlyCost());
             laborTimeMinutes(other.getLaborTimeMinutes());
+            notes(other.getNotes());
             parts(other.getParts());
             partsCost(other.getPartsCost());
             serviceTaskId(other.getServiceTaskId());
@@ -302,6 +326,26 @@ public final class ServiceTaskInstanceObjectResponseBody {
         }
 
         /**
+         * <p>Free-form technician notes for the service task.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage notes(String notes) {
+            this.notes = Optional.ofNullable(notes);
+            return this;
+        }
+
+        /**
+         * <p>Free-form technician notes for the service task.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "notes", nulls = Nulls.SKIP)
+        public _FinalStage notes(Optional<String> notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        /**
          * <p>The time of labor needed</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -340,6 +384,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
                     id,
                     laborHourlyCost,
                     laborTimeMinutes,
+                    notes,
                     parts,
                     partsCost,
                     serviceTaskId,
