@@ -4800,7 +4800,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Dolorem quis autem nostrum voluptas et quasi.\",\"Tenetur eveniet aliquid.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipPassengersListRidershipPassengersResponseBody response = client.betaApIs()
                 .listRidershipPassengers(
                         ListRidershipPassengersRequest.builder().tagId("tagId").build());
@@ -4834,12 +4834,11 @@ public class BetaApIsWireTest {
                 + "      \"lastName\": \"Doe\",\n"
                 + "      \"specialInstructions\": {\n"
                 + "        \"isGuardianRequired\": false,\n"
-                + "        \"isSpecialEducation\": false\n"
+                + "        \"isSpecialEducation\": true\n"
                 + "      },\n"
                 + "      \"tagIds\": [\n"
-                + "        \"Doloribus quia eos soluta in.\",\n"
-                + "        \"Sunt eum explicabo amet eum.\",\n"
-                + "        \"Dignissimos quaerat debitis.\"\n"
+                + "        \"Dolorem quis autem nostrum voluptas et quasi.\",\n"
+                + "        \"Tenetur eveniet aliquid.\"\n"
                 + "      ],\n"
                 + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "    }\n"
@@ -4886,7 +4885,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Dolorem quis autem nostrum voluptas et quasi.\",\"Tenetur eveniet aliquid.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersCreateRidershipPassengerResponseBody response = client.betaApIs()
                 .createRidershipPassenger(RidershipPassengersCreateRidershipPassengerRequestBody.builder()
                         .firstName("John")
@@ -4950,12 +4949,11 @@ public class BetaApIsWireTest {
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
                 + "      \"isGuardianRequired\": false,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Doloribus quia eos soluta in.\",\n"
-                + "      \"Sunt eum explicabo amet eum.\",\n"
-                + "      \"Dignissimos quaerat debitis.\"\n"
+                + "      \"Dolorem quis autem nostrum voluptas et quasi.\",\n"
+                + "      \"Tenetur eveniet aliquid.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -4997,7 +4995,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Dolorem quis autem nostrum voluptas et quasi.\",\"Tenetur eveniet aliquid.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersUpdateRidershipPassengerResponseBody response = client.betaApIs()
                 .updateRidershipPassenger(RidershipPassengersUpdateRidershipPassengerRequestBody.builder()
                         .id("id")
@@ -5062,12 +5060,11 @@ public class BetaApIsWireTest {
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
                 + "      \"isGuardianRequired\": false,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Doloribus quia eos soluta in.\",\n"
-                + "      \"Sunt eum explicabo amet eum.\",\n"
-                + "      \"Dignissimos quaerat debitis.\"\n"
+                + "      \"Dolorem quis autem nostrum voluptas et quasi.\",\n"
+                + "      \"Tenetur eveniet aliquid.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -5120,7 +5117,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Doloribus quia eos soluta in.\",\"Sunt eum explicabo amet eum.\",\"Dignissimos quaerat debitis.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Dolorem quis autem nostrum voluptas et quasi.\",\"Tenetur eveniet aliquid.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersGetRidershipPassengerResponseBody response = client.betaApIs()
                 .getRidershipPassenger(
                         "id", GetRidershipPassengerRequest.builder().build());
@@ -5153,12 +5150,11 @@ public class BetaApIsWireTest {
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
                 + "      \"isGuardianRequired\": false,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Doloribus quia eos soluta in.\",\n"
-                + "      \"Sunt eum explicabo amet eum.\",\n"
-                + "      \"Dignissimos quaerat debitis.\"\n"
+                + "      \"Dolorem quis autem nostrum voluptas et quasi.\",\n"
+                + "      \"Tenetur eveniet aliquid.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"

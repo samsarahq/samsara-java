@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.betaapis.types.PlacesPatchPlaceRequestBodyCameraRecordingModeType;
 import com.samsara.api.resources.betaapis.types.PlacesPatchPlaceRequestBodyExternalIds;
 import com.samsara.api.types.GeofenceVertexInputRequestBody;
 import com.samsara.api.types.PatchPlaceHubLocationsBodyRequestBody;
+import com.samsara.api.types.PlaceStreetViewResponseRequestBody;
 import com.samsara.api.types.PostPlaceNavigationInputRequestBody;
 import com.samsara.api.types.PostPlaceTagRefRequestBody;
 import java.util.HashMap;
@@ -32,11 +34,15 @@ public final class PlacesPatchPlaceRequestBody {
 
     private final Optional<String> address;
 
+    private final Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType;
+
     private final Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds;
 
     private final Optional<List<GeofenceVertexInputRequestBody>> geofence;
 
     private final Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations;
+
+    private final Optional<List<String>> iftaExemptionTypes;
 
     private final Optional<Double> latitude;
 
@@ -52,6 +58,10 @@ public final class PlacesPatchPlaceRequestBody {
 
     private final Optional<Long> radiusMeters;
 
+    private final Optional<List<String>> safetyEventExclusions;
+
+    private final Optional<PlaceStreetViewResponseRequestBody> streetView;
+
     private final Optional<List<PostPlaceTagRefRequestBody>> tags;
 
     private final Map<String, Object> additionalProperties;
@@ -60,9 +70,11 @@ public final class PlacesPatchPlaceRequestBody {
             long placeId,
             Optional<String> externalId,
             Optional<String> address,
+            Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
             Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds,
             Optional<List<GeofenceVertexInputRequestBody>> geofence,
             Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations,
+            Optional<List<String>> iftaExemptionTypes,
             Optional<Double> latitude,
             Optional<Double> longitude,
             Optional<String> name,
@@ -70,14 +82,18 @@ public final class PlacesPatchPlaceRequestBody {
             Optional<String> notes,
             Optional<List<String>> placeTypes,
             Optional<Long> radiusMeters,
+            Optional<List<String>> safetyEventExclusions,
+            Optional<PlaceStreetViewResponseRequestBody> streetView,
             Optional<List<PostPlaceTagRefRequestBody>> tags,
             Map<String, Object> additionalProperties) {
         this.placeId = placeId;
         this.externalId = externalId;
         this.address = address;
+        this.cameraRecordingModeType = cameraRecordingModeType;
         this.externalIds = externalIds;
         this.geofence = geofence;
         this.hubLocations = hubLocations;
+        this.iftaExemptionTypes = iftaExemptionTypes;
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
@@ -85,6 +101,8 @@ public final class PlacesPatchPlaceRequestBody {
         this.notes = notes;
         this.placeTypes = placeTypes;
         this.radiusMeters = radiusMeters;
+        this.safetyEventExclusions = safetyEventExclusions;
+        this.streetView = streetView;
         this.tags = tags;
         this.additionalProperties = additionalProperties;
     }
@@ -114,6 +132,14 @@ public final class PlacesPatchPlaceRequestBody {
     }
 
     /**
+     * @return Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code>
+     */
+    @JsonProperty("cameraRecordingModeType")
+    public Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> getCameraRecordingModeType() {
+        return cameraRecordingModeType;
+    }
+
+    /**
      * @return When present, replaces external ids for the place.
      */
     @JsonProperty("externalIds")
@@ -132,6 +158,14 @@ public final class PlacesPatchPlaceRequestBody {
     @JsonProperty("hubLocations")
     public Optional<PatchPlaceHubLocationsBodyRequestBody> getHubLocations() {
         return hubLocations;
+    }
+
+    /**
+     * @return When present, replaces IFTA exemption types for the place.
+     */
+    @JsonProperty("iftaExemptionTypes")
+    public Optional<List<String>> getIftaExemptionTypes() {
+        return iftaExemptionTypes;
     }
 
     /**
@@ -188,6 +222,19 @@ public final class PlacesPatchPlaceRequestBody {
     }
 
     /**
+     * @return When present, replaces safety event exclusions for the place.
+     */
+    @JsonProperty("safetyEventExclusions")
+    public Optional<List<String>> getSafetyEventExclusions() {
+        return safetyEventExclusions;
+    }
+
+    @JsonProperty("streetView")
+    public Optional<PlaceStreetViewResponseRequestBody> getStreetView() {
+        return streetView;
+    }
+
+    /**
      * @return When present, replaces all tag associations for the place.
      */
     @JsonProperty("tags")
@@ -210,9 +257,11 @@ public final class PlacesPatchPlaceRequestBody {
         return placeId == other.placeId
                 && externalId.equals(other.externalId)
                 && address.equals(other.address)
+                && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && externalIds.equals(other.externalIds)
                 && geofence.equals(other.geofence)
                 && hubLocations.equals(other.hubLocations)
+                && iftaExemptionTypes.equals(other.iftaExemptionTypes)
                 && latitude.equals(other.latitude)
                 && longitude.equals(other.longitude)
                 && name.equals(other.name)
@@ -220,6 +269,8 @@ public final class PlacesPatchPlaceRequestBody {
                 && notes.equals(other.notes)
                 && placeTypes.equals(other.placeTypes)
                 && radiusMeters.equals(other.radiusMeters)
+                && safetyEventExclusions.equals(other.safetyEventExclusions)
+                && streetView.equals(other.streetView)
                 && tags.equals(other.tags);
     }
 
@@ -229,9 +280,11 @@ public final class PlacesPatchPlaceRequestBody {
                 this.placeId,
                 this.externalId,
                 this.address,
+                this.cameraRecordingModeType,
                 this.externalIds,
                 this.geofence,
                 this.hubLocations,
+                this.iftaExemptionTypes,
                 this.latitude,
                 this.longitude,
                 this.name,
@@ -239,6 +292,8 @@ public final class PlacesPatchPlaceRequestBody {
                 this.notes,
                 this.placeTypes,
                 this.radiusMeters,
+                this.safetyEventExclusions,
+                this.streetView,
                 this.tags);
     }
 
@@ -278,6 +333,14 @@ public final class PlacesPatchPlaceRequestBody {
         _FinalStage address(String address);
 
         /**
+         * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
+         */
+        _FinalStage cameraRecordingModeType(
+                Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType);
+
+        _FinalStage cameraRecordingModeType(PlacesPatchPlaceRequestBodyCameraRecordingModeType cameraRecordingModeType);
+
+        /**
          * <p>When present, replaces external ids for the place.</p>
          */
         _FinalStage externalIds(Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds);
@@ -294,6 +357,13 @@ public final class PlacesPatchPlaceRequestBody {
         _FinalStage hubLocations(Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations);
 
         _FinalStage hubLocations(PatchPlaceHubLocationsBodyRequestBody hubLocations);
+
+        /**
+         * <p>When present, replaces IFTA exemption types for the place.</p>
+         */
+        _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes);
+
+        _FinalStage iftaExemptionTypes(List<String> iftaExemptionTypes);
 
         /**
          * <p>Center latitude when switching to or editing a circle geofence.</p>
@@ -342,6 +412,17 @@ public final class PlacesPatchPlaceRequestBody {
         _FinalStage radiusMeters(Long radiusMeters);
 
         /**
+         * <p>When present, replaces safety event exclusions for the place.</p>
+         */
+        _FinalStage safetyEventExclusions(Optional<List<String>> safetyEventExclusions);
+
+        _FinalStage safetyEventExclusions(List<String> safetyEventExclusions);
+
+        _FinalStage streetView(Optional<PlaceStreetViewResponseRequestBody> streetView);
+
+        _FinalStage streetView(PlaceStreetViewResponseRequestBody streetView);
+
+        /**
          * <p>When present, replaces all tag associations for the place.</p>
          */
         _FinalStage tags(Optional<List<PostPlaceTagRefRequestBody>> tags);
@@ -354,6 +435,10 @@ public final class PlacesPatchPlaceRequestBody {
         private long placeId;
 
         private Optional<List<PostPlaceTagRefRequestBody>> tags = Optional.empty();
+
+        private Optional<PlaceStreetViewResponseRequestBody> streetView = Optional.empty();
+
+        private Optional<List<String>> safetyEventExclusions = Optional.empty();
 
         private Optional<Long> radiusMeters = Optional.empty();
 
@@ -369,11 +454,15 @@ public final class PlacesPatchPlaceRequestBody {
 
         private Optional<Double> latitude = Optional.empty();
 
+        private Optional<List<String>> iftaExemptionTypes = Optional.empty();
+
         private Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations = Optional.empty();
 
         private Optional<List<GeofenceVertexInputRequestBody>> geofence = Optional.empty();
 
         private Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds = Optional.empty();
+
+        private Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType = Optional.empty();
 
         private Optional<String> address = Optional.empty();
 
@@ -389,9 +478,11 @@ public final class PlacesPatchPlaceRequestBody {
             placeId(other.getPlaceId());
             externalId(other.getExternalId());
             address(other.getAddress());
+            cameraRecordingModeType(other.getCameraRecordingModeType());
             externalIds(other.getExternalIds());
             geofence(other.getGeofence());
             hubLocations(other.getHubLocations());
+            iftaExemptionTypes(other.getIftaExemptionTypes());
             latitude(other.getLatitude());
             longitude(other.getLongitude());
             name(other.getName());
@@ -399,6 +490,8 @@ public final class PlacesPatchPlaceRequestBody {
             notes(other.getNotes());
             placeTypes(other.getPlaceTypes());
             radiusMeters(other.getRadiusMeters());
+            safetyEventExclusions(other.getSafetyEventExclusions());
+            streetView(other.getStreetView());
             tags(other.getTags());
             return this;
         }
@@ -432,6 +525,39 @@ public final class PlacesPatchPlaceRequestBody {
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
         public _FinalStage tags(Optional<List<PostPlaceTagRefRequestBody>> tags) {
             this.tags = tags;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage streetView(PlaceStreetViewResponseRequestBody streetView) {
+            this.streetView = Optional.ofNullable(streetView);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "streetView", nulls = Nulls.SKIP)
+        public _FinalStage streetView(Optional<PlaceStreetViewResponseRequestBody> streetView) {
+            this.streetView = streetView;
+            return this;
+        }
+
+        /**
+         * <p>When present, replaces safety event exclusions for the place.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage safetyEventExclusions(List<String> safetyEventExclusions) {
+            this.safetyEventExclusions = Optional.ofNullable(safetyEventExclusions);
+            return this;
+        }
+
+        /**
+         * <p>When present, replaces safety event exclusions for the place.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "safetyEventExclusions", nulls = Nulls.SKIP)
+        public _FinalStage safetyEventExclusions(Optional<List<String>> safetyEventExclusions) {
+            this.safetyEventExclusions = safetyEventExclusions;
             return this;
         }
 
@@ -568,6 +694,26 @@ public final class PlacesPatchPlaceRequestBody {
             return this;
         }
 
+        /**
+         * <p>When present, replaces IFTA exemption types for the place.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage iftaExemptionTypes(List<String> iftaExemptionTypes) {
+            this.iftaExemptionTypes = Optional.ofNullable(iftaExemptionTypes);
+            return this;
+        }
+
+        /**
+         * <p>When present, replaces IFTA exemption types for the place.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "iftaExemptionTypes", nulls = Nulls.SKIP)
+        public _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes) {
+            this.iftaExemptionTypes = iftaExemptionTypes;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage hubLocations(PatchPlaceHubLocationsBodyRequestBody hubLocations) {
             this.hubLocations = Optional.ofNullable(hubLocations);
@@ -622,6 +768,28 @@ public final class PlacesPatchPlaceRequestBody {
         }
 
         /**
+         * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage cameraRecordingModeType(
+                PlacesPatchPlaceRequestBodyCameraRecordingModeType cameraRecordingModeType) {
+            this.cameraRecordingModeType = Optional.ofNullable(cameraRecordingModeType);
+            return this;
+        }
+
+        /**
+         * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "cameraRecordingModeType", nulls = Nulls.SKIP)
+        public _FinalStage cameraRecordingModeType(
+                Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType) {
+            this.cameraRecordingModeType = cameraRecordingModeType;
+            return this;
+        }
+
+        /**
          * <p>Single-line address string.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -667,9 +835,11 @@ public final class PlacesPatchPlaceRequestBody {
                     placeId,
                     externalId,
                     address,
+                    cameraRecordingModeType,
                     externalIds,
                     geofence,
                     hubLocations,
+                    iftaExemptionTypes,
                     latitude,
                     longitude,
                     name,
@@ -677,6 +847,8 @@ public final class PlacesPatchPlaceRequestBody {
                     notes,
                     placeTypes,
                     radiusMeters,
+                    safetyEventExclusions,
+                    streetView,
                     tags,
                     additionalProperties);
         }
