@@ -1407,7 +1407,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code>.
+     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code> or by external ids via <code>externalIds</code> (mutually exclusive).
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -1417,7 +1417,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code>.
+     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code> or by external ids via <code>externalIds</code> (mutually exclusive).
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -1427,7 +1427,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code>.
+     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code> or by external ids via <code>externalIds</code> (mutually exclusive).
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -1437,7 +1437,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code>.
+     * Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via <code>placeIds</code> or by external ids via <code>externalIds</code> (mutually exclusive).
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -1487,7 +1487,27 @@ public class BetaApIsClient {
     }
 
     /**
-     * Updates a place. Query parameter <code>placeId</code> (Samsara id) is required. Optional <code>externalId</code> (key:value) is reserved for a future release and must not be combined with <code>placeId</code>. Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+     * Updates a place. Provide exactly one of query parameter <code>placeId</code> (Samsara id) or <code>externalId</code> (key:value). Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PlacesPatchPlaceResponseBody patchPlace() {
+        return this.rawClient.patchPlace().body();
+    }
+
+    /**
+     * Updates a place. Provide exactly one of query parameter <code>placeId</code> (Samsara id) or <code>externalId</code> (key:value). Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PlacesPatchPlaceResponseBody patchPlace(RequestOptions requestOptions) {
+        return this.rawClient.patchPlace(requestOptions).body();
+    }
+
+    /**
+     * Updates a place. Provide exactly one of query parameter <code>placeId</code> (Samsara id) or <code>externalId</code> (key:value). Only fields present in the JSON body are changed; omit a field to leave it unchanged.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -1497,7 +1517,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Updates a place. Query parameter <code>placeId</code> (Samsara id) is required. Optional <code>externalId</code> (key:value) is reserved for a future release and must not be combined with <code>placeId</code>. Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+     * Updates a place. Provide exactly one of query parameter <code>placeId</code> (Samsara id) or <code>externalId</code> (key:value). Only fields present in the JSON body are changed; omit a field to leave it unchanged.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>

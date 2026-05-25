@@ -28,7 +28,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PlacesPatchPlaceRequestBody.Builder.class)
 public final class PlacesPatchPlaceRequestBody {
-    private final long placeId;
+    private final Optional<Long> placeId;
 
     private final Optional<String> externalId;
 
@@ -67,7 +67,7 @@ public final class PlacesPatchPlaceRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private PlacesPatchPlaceRequestBody(
-            long placeId,
+            Optional<Long> placeId,
             Optional<String> externalId,
             Optional<String> address,
             Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
@@ -108,15 +108,15 @@ public final class PlacesPatchPlaceRequestBody {
     }
 
     /**
-     * @return Samsara place id to update (required). Do not send <code>externalId</code> in the same request.
+     * @return Samsara place id to update. Mutually exclusive with <code>externalId</code>; provide exactly one.
      */
     @JsonProperty("placeId")
-    public long getPlaceId() {
+    public Optional<Long> getPlaceId() {
         return placeId;
     }
 
     /**
-     * @return External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>. Batch lookup by external id is not implemented for this endpoint yet; callers should use <code>placeId</code> until supported.
+     * @return External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>; provide exactly one.
      */
     @JsonProperty("externalId")
     public Optional<String> getExternalId() {
@@ -206,7 +206,7 @@ public final class PlacesPatchPlaceRequestBody {
     }
 
     /**
-     * @return Unsupported on patch; when provided this API returns InvalidArgument.
+     * @return When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and IFTA metadata after this request; conflicting combinations return InvalidArgument.
      */
     @JsonProperty("placeTypes")
     public Optional<List<String>> getPlaceTypes() {
@@ -254,7 +254,7 @@ public final class PlacesPatchPlaceRequestBody {
     }
 
     private boolean equalTo(PlacesPatchPlaceRequestBody other) {
-        return placeId == other.placeId
+        return placeId.equals(other.placeId)
                 && externalId.equals(other.externalId)
                 && address.equals(other.address)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
@@ -302,178 +302,53 @@ public final class PlacesPatchPlaceRequestBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static PlaceIdStage builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public interface PlaceIdStage {
-        /**
-         * <p>Samsara place id to update (required). Do not send <code>externalId</code> in the same request.</p>
-         */
-        _FinalStage placeId(long placeId);
-
-        Builder from(PlacesPatchPlaceRequestBody other);
-    }
-
-    public interface _FinalStage {
-        PlacesPatchPlaceRequestBody build();
-
-        /**
-         * <p>External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>. Batch lookup by external id is not implemented for this endpoint yet; callers should use <code>placeId</code> until supported.</p>
-         */
-        _FinalStage externalId(Optional<String> externalId);
-
-        _FinalStage externalId(String externalId);
-
-        /**
-         * <p>Single-line address string.</p>
-         */
-        _FinalStage address(Optional<String> address);
-
-        _FinalStage address(String address);
-
-        /**
-         * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
-         */
-        _FinalStage cameraRecordingModeType(
-                Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType);
-
-        _FinalStage cameraRecordingModeType(PlacesPatchPlaceRequestBodyCameraRecordingModeType cameraRecordingModeType);
-
-        /**
-         * <p>When present, replaces external ids for the place.</p>
-         */
-        _FinalStage externalIds(Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds);
-
-        _FinalStage externalIds(PlacesPatchPlaceRequestBodyExternalIds externalIds);
-
-        /**
-         * <p>Polygon vertices; at least three when switching to polygon mode.</p>
-         */
-        _FinalStage geofence(Optional<List<GeofenceVertexInputRequestBody>> geofence);
-
-        _FinalStage geofence(List<GeofenceVertexInputRequestBody> geofence);
-
-        _FinalStage hubLocations(Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations);
-
-        _FinalStage hubLocations(PatchPlaceHubLocationsBodyRequestBody hubLocations);
-
-        /**
-         * <p>When present, replaces IFTA exemption types for the place.</p>
-         */
-        _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes);
-
-        _FinalStage iftaExemptionTypes(List<String> iftaExemptionTypes);
-
-        /**
-         * <p>Center latitude when switching to or editing a circle geofence.</p>
-         */
-        _FinalStage latitude(Optional<Double> latitude);
-
-        _FinalStage latitude(Double latitude);
-
-        /**
-         * <p>Center longitude when switching to or editing a circle geofence.</p>
-         */
-        _FinalStage longitude(Optional<Double> longitude);
-
-        _FinalStage longitude(Double longitude);
-
-        /**
-         * <p>Place name.</p>
-         */
-        _FinalStage name(Optional<String> name);
-
-        _FinalStage name(String name);
-
-        _FinalStage navigation(Optional<PostPlaceNavigationInputRequestBody> navigation);
-
-        _FinalStage navigation(PostPlaceNavigationInputRequestBody navigation);
-
-        /**
-         * <p>Notes.</p>
-         */
-        _FinalStage notes(Optional<String> notes);
-
-        _FinalStage notes(String notes);
-
-        /**
-         * <p>Unsupported on patch; when provided this API returns InvalidArgument.</p>
-         */
-        _FinalStage placeTypes(Optional<List<String>> placeTypes);
-
-        _FinalStage placeTypes(List<String> placeTypes);
-
-        /**
-         * <p>Circle radius in meters; use with latitude and longitude.</p>
-         */
-        _FinalStage radiusMeters(Optional<Long> radiusMeters);
-
-        _FinalStage radiusMeters(Long radiusMeters);
-
-        /**
-         * <p>When present, replaces safety event exclusions for the place.</p>
-         */
-        _FinalStage safetyEventExclusions(Optional<List<String>> safetyEventExclusions);
-
-        _FinalStage safetyEventExclusions(List<String> safetyEventExclusions);
-
-        _FinalStage streetView(Optional<PlaceStreetViewResponseRequestBody> streetView);
-
-        _FinalStage streetView(PlaceStreetViewResponseRequestBody streetView);
-
-        /**
-         * <p>When present, replaces all tag associations for the place.</p>
-         */
-        _FinalStage tags(Optional<List<PostPlaceTagRefRequestBody>> tags);
-
-        _FinalStage tags(List<PostPlaceTagRefRequestBody> tags);
-    }
-
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements PlaceIdStage, _FinalStage {
-        private long placeId;
+    public static final class Builder {
+        private Optional<Long> placeId = Optional.empty();
 
-        private Optional<List<PostPlaceTagRefRequestBody>> tags = Optional.empty();
-
-        private Optional<PlaceStreetViewResponseRequestBody> streetView = Optional.empty();
-
-        private Optional<List<String>> safetyEventExclusions = Optional.empty();
-
-        private Optional<Long> radiusMeters = Optional.empty();
-
-        private Optional<List<String>> placeTypes = Optional.empty();
-
-        private Optional<String> notes = Optional.empty();
-
-        private Optional<PostPlaceNavigationInputRequestBody> navigation = Optional.empty();
-
-        private Optional<String> name = Optional.empty();
-
-        private Optional<Double> longitude = Optional.empty();
-
-        private Optional<Double> latitude = Optional.empty();
-
-        private Optional<List<String>> iftaExemptionTypes = Optional.empty();
-
-        private Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations = Optional.empty();
-
-        private Optional<List<GeofenceVertexInputRequestBody>> geofence = Optional.empty();
-
-        private Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds = Optional.empty();
-
-        private Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType = Optional.empty();
+        private Optional<String> externalId = Optional.empty();
 
         private Optional<String> address = Optional.empty();
 
-        private Optional<String> externalId = Optional.empty();
+        private Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType = Optional.empty();
+
+        private Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds = Optional.empty();
+
+        private Optional<List<GeofenceVertexInputRequestBody>> geofence = Optional.empty();
+
+        private Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations = Optional.empty();
+
+        private Optional<List<String>> iftaExemptionTypes = Optional.empty();
+
+        private Optional<Double> latitude = Optional.empty();
+
+        private Optional<Double> longitude = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
+
+        private Optional<PostPlaceNavigationInputRequestBody> navigation = Optional.empty();
+
+        private Optional<String> notes = Optional.empty();
+
+        private Optional<List<String>> placeTypes = Optional.empty();
+
+        private Optional<Long> radiusMeters = Optional.empty();
+
+        private Optional<List<String>> safetyEventExclusions = Optional.empty();
+
+        private Optional<PlaceStreetViewResponseRequestBody> streetView = Optional.empty();
+
+        private Optional<List<PostPlaceTagRefRequestBody>> tags = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
-        @java.lang.Override
         public Builder from(PlacesPatchPlaceRequestBody other) {
             placeId(other.getPlaceId());
             externalId(other.getExternalId());
@@ -497,339 +372,250 @@ public final class PlacesPatchPlaceRequestBody {
         }
 
         /**
-         * <p>Samsara place id to update (required). Do not send <code>externalId</code> in the same request.</p>
-         * <p>Samsara place id to update (required). Do not send <code>externalId</code> in the same request.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
+         * <p>Samsara place id to update. Mutually exclusive with <code>externalId</code>; provide exactly one.</p>
          */
-        @java.lang.Override
-        @JsonSetter("placeId")
-        public _FinalStage placeId(long placeId) {
+        @JsonSetter(value = "placeId", nulls = Nulls.SKIP)
+        public Builder placeId(Optional<Long> placeId) {
             this.placeId = placeId;
             return this;
         }
 
-        /**
-         * <p>When present, replaces all tag associations for the place.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage tags(List<PostPlaceTagRefRequestBody> tags) {
-            this.tags = Optional.ofNullable(tags);
+        public Builder placeId(Long placeId) {
+            this.placeId = Optional.ofNullable(placeId);
             return this;
         }
 
         /**
-         * <p>When present, replaces all tag associations for the place.</p>
+         * <p>External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>; provide exactly one.</p>
          */
-        @java.lang.Override
-        @JsonSetter(value = "tags", nulls = Nulls.SKIP)
-        public _FinalStage tags(Optional<List<PostPlaceTagRefRequestBody>> tags) {
-            this.tags = tags;
+        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
+        public Builder externalId(Optional<String> externalId) {
+            this.externalId = externalId;
             return this;
         }
 
-        @java.lang.Override
-        public _FinalStage streetView(PlaceStreetViewResponseRequestBody streetView) {
-            this.streetView = Optional.ofNullable(streetView);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "streetView", nulls = Nulls.SKIP)
-        public _FinalStage streetView(Optional<PlaceStreetViewResponseRequestBody> streetView) {
-            this.streetView = streetView;
+        public Builder externalId(String externalId) {
+            this.externalId = Optional.ofNullable(externalId);
             return this;
         }
 
         /**
-         * <p>When present, replaces safety event exclusions for the place.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
+         * <p>Single-line address string.</p>
          */
-        @java.lang.Override
-        public _FinalStage safetyEventExclusions(List<String> safetyEventExclusions) {
-            this.safetyEventExclusions = Optional.ofNullable(safetyEventExclusions);
+        @JsonSetter(value = "address", nulls = Nulls.SKIP)
+        public Builder address(Optional<String> address) {
+            this.address = address;
             return this;
         }
 
-        /**
-         * <p>When present, replaces safety event exclusions for the place.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "safetyEventExclusions", nulls = Nulls.SKIP)
-        public _FinalStage safetyEventExclusions(Optional<List<String>> safetyEventExclusions) {
-            this.safetyEventExclusions = safetyEventExclusions;
-            return this;
-        }
-
-        /**
-         * <p>Circle radius in meters; use with latitude and longitude.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage radiusMeters(Long radiusMeters) {
-            this.radiusMeters = Optional.ofNullable(radiusMeters);
-            return this;
-        }
-
-        /**
-         * <p>Circle radius in meters; use with latitude and longitude.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "radiusMeters", nulls = Nulls.SKIP)
-        public _FinalStage radiusMeters(Optional<Long> radiusMeters) {
-            this.radiusMeters = radiusMeters;
-            return this;
-        }
-
-        /**
-         * <p>Unsupported on patch; when provided this API returns InvalidArgument.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage placeTypes(List<String> placeTypes) {
-            this.placeTypes = Optional.ofNullable(placeTypes);
-            return this;
-        }
-
-        /**
-         * <p>Unsupported on patch; when provided this API returns InvalidArgument.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "placeTypes", nulls = Nulls.SKIP)
-        public _FinalStage placeTypes(Optional<List<String>> placeTypes) {
-            this.placeTypes = placeTypes;
-            return this;
-        }
-
-        /**
-         * <p>Notes.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage notes(String notes) {
-            this.notes = Optional.ofNullable(notes);
-            return this;
-        }
-
-        /**
-         * <p>Notes.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "notes", nulls = Nulls.SKIP)
-        public _FinalStage notes(Optional<String> notes) {
-            this.notes = notes;
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage navigation(PostPlaceNavigationInputRequestBody navigation) {
-            this.navigation = Optional.ofNullable(navigation);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "navigation", nulls = Nulls.SKIP)
-        public _FinalStage navigation(Optional<PostPlaceNavigationInputRequestBody> navigation) {
-            this.navigation = navigation;
-            return this;
-        }
-
-        /**
-         * <p>Place name.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage name(String name) {
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * <p>Place name.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "name", nulls = Nulls.SKIP)
-        public _FinalStage name(Optional<String> name) {
-            this.name = name;
-            return this;
-        }
-
-        /**
-         * <p>Center longitude when switching to or editing a circle geofence.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage longitude(Double longitude) {
-            this.longitude = Optional.ofNullable(longitude);
-            return this;
-        }
-
-        /**
-         * <p>Center longitude when switching to or editing a circle geofence.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
-        public _FinalStage longitude(Optional<Double> longitude) {
-            this.longitude = longitude;
-            return this;
-        }
-
-        /**
-         * <p>Center latitude when switching to or editing a circle geofence.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage latitude(Double latitude) {
-            this.latitude = Optional.ofNullable(latitude);
-            return this;
-        }
-
-        /**
-         * <p>Center latitude when switching to or editing a circle geofence.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
-        public _FinalStage latitude(Optional<Double> latitude) {
-            this.latitude = latitude;
-            return this;
-        }
-
-        /**
-         * <p>When present, replaces IFTA exemption types for the place.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage iftaExemptionTypes(List<String> iftaExemptionTypes) {
-            this.iftaExemptionTypes = Optional.ofNullable(iftaExemptionTypes);
-            return this;
-        }
-
-        /**
-         * <p>When present, replaces IFTA exemption types for the place.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "iftaExemptionTypes", nulls = Nulls.SKIP)
-        public _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes) {
-            this.iftaExemptionTypes = iftaExemptionTypes;
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage hubLocations(PatchPlaceHubLocationsBodyRequestBody hubLocations) {
-            this.hubLocations = Optional.ofNullable(hubLocations);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "hubLocations", nulls = Nulls.SKIP)
-        public _FinalStage hubLocations(Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations) {
-            this.hubLocations = hubLocations;
-            return this;
-        }
-
-        /**
-         * <p>Polygon vertices; at least three when switching to polygon mode.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage geofence(List<GeofenceVertexInputRequestBody> geofence) {
-            this.geofence = Optional.ofNullable(geofence);
-            return this;
-        }
-
-        /**
-         * <p>Polygon vertices; at least three when switching to polygon mode.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "geofence", nulls = Nulls.SKIP)
-        public _FinalStage geofence(Optional<List<GeofenceVertexInputRequestBody>> geofence) {
-            this.geofence = geofence;
-            return this;
-        }
-
-        /**
-         * <p>When present, replaces external ids for the place.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage externalIds(PlacesPatchPlaceRequestBodyExternalIds externalIds) {
-            this.externalIds = Optional.ofNullable(externalIds);
-            return this;
-        }
-
-        /**
-         * <p>When present, replaces external ids for the place.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
-        public _FinalStage externalIds(Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds) {
-            this.externalIds = externalIds;
+        public Builder address(String address) {
+            this.address = Optional.ofNullable(address);
             return this;
         }
 
         /**
          * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
-         * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @java.lang.Override
-        public _FinalStage cameraRecordingModeType(
+        @JsonSetter(value = "cameraRecordingModeType", nulls = Nulls.SKIP)
+        public Builder cameraRecordingModeType(
+                Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType) {
+            this.cameraRecordingModeType = cameraRecordingModeType;
+            return this;
+        }
+
+        public Builder cameraRecordingModeType(
                 PlacesPatchPlaceRequestBodyCameraRecordingModeType cameraRecordingModeType) {
             this.cameraRecordingModeType = Optional.ofNullable(cameraRecordingModeType);
             return this;
         }
 
         /**
-         * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
+         * <p>When present, replaces external ids for the place.</p>
          */
-        @java.lang.Override
-        @JsonSetter(value = "cameraRecordingModeType", nulls = Nulls.SKIP)
-        public _FinalStage cameraRecordingModeType(
-                Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType) {
-            this.cameraRecordingModeType = cameraRecordingModeType;
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public Builder externalIds(Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
+        public Builder externalIds(PlacesPatchPlaceRequestBodyExternalIds externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
             return this;
         }
 
         /**
-         * <p>Single-line address string.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
+         * <p>Polygon vertices; at least three when switching to polygon mode.</p>
          */
-        @java.lang.Override
-        public _FinalStage address(String address) {
-            this.address = Optional.ofNullable(address);
+        @JsonSetter(value = "geofence", nulls = Nulls.SKIP)
+        public Builder geofence(Optional<List<GeofenceVertexInputRequestBody>> geofence) {
+            this.geofence = geofence;
+            return this;
+        }
+
+        public Builder geofence(List<GeofenceVertexInputRequestBody> geofence) {
+            this.geofence = Optional.ofNullable(geofence);
+            return this;
+        }
+
+        @JsonSetter(value = "hubLocations", nulls = Nulls.SKIP)
+        public Builder hubLocations(Optional<PatchPlaceHubLocationsBodyRequestBody> hubLocations) {
+            this.hubLocations = hubLocations;
+            return this;
+        }
+
+        public Builder hubLocations(PatchPlaceHubLocationsBodyRequestBody hubLocations) {
+            this.hubLocations = Optional.ofNullable(hubLocations);
             return this;
         }
 
         /**
-         * <p>Single-line address string.</p>
+         * <p>When present, replaces IFTA exemption types for the place.</p>
          */
-        @java.lang.Override
-        @JsonSetter(value = "address", nulls = Nulls.SKIP)
-        public _FinalStage address(Optional<String> address) {
-            this.address = address;
+        @JsonSetter(value = "iftaExemptionTypes", nulls = Nulls.SKIP)
+        public Builder iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes) {
+            this.iftaExemptionTypes = iftaExemptionTypes;
+            return this;
+        }
+
+        public Builder iftaExemptionTypes(List<String> iftaExemptionTypes) {
+            this.iftaExemptionTypes = Optional.ofNullable(iftaExemptionTypes);
             return this;
         }
 
         /**
-         * <p>External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>. Batch lookup by external id is not implemented for this endpoint yet; callers should use <code>placeId</code> until supported.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
+         * <p>Center latitude when switching to or editing a circle geofence.</p>
          */
-        @java.lang.Override
-        public _FinalStage externalId(String externalId) {
-            this.externalId = Optional.ofNullable(externalId);
+        @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
+        public Builder latitude(Optional<Double> latitude) {
+            this.latitude = latitude;
+            return this;
+        }
+
+        public Builder latitude(Double latitude) {
+            this.latitude = Optional.ofNullable(latitude);
             return this;
         }
 
         /**
-         * <p>External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>. Batch lookup by external id is not implemented for this endpoint yet; callers should use <code>placeId</code> until supported.</p>
+         * <p>Center longitude when switching to or editing a circle geofence.</p>
          */
-        @java.lang.Override
-        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
-        public _FinalStage externalId(Optional<String> externalId) {
-            this.externalId = externalId;
+        @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
+        public Builder longitude(Optional<Double> longitude) {
+            this.longitude = longitude;
             return this;
         }
 
-        @java.lang.Override
+        public Builder longitude(Double longitude) {
+            this.longitude = Optional.ofNullable(longitude);
+            return this;
+        }
+
+        /**
+         * <p>Place name.</p>
+         */
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        @JsonSetter(value = "navigation", nulls = Nulls.SKIP)
+        public Builder navigation(Optional<PostPlaceNavigationInputRequestBody> navigation) {
+            this.navigation = navigation;
+            return this;
+        }
+
+        public Builder navigation(PostPlaceNavigationInputRequestBody navigation) {
+            this.navigation = Optional.ofNullable(navigation);
+            return this;
+        }
+
+        /**
+         * <p>Notes.</p>
+         */
+        @JsonSetter(value = "notes", nulls = Nulls.SKIP)
+        public Builder notes(Optional<String> notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        public Builder notes(String notes) {
+            this.notes = Optional.ofNullable(notes);
+            return this;
+        }
+
+        /**
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and IFTA metadata after this request; conflicting combinations return InvalidArgument.</p>
+         */
+        @JsonSetter(value = "placeTypes", nulls = Nulls.SKIP)
+        public Builder placeTypes(Optional<List<String>> placeTypes) {
+            this.placeTypes = placeTypes;
+            return this;
+        }
+
+        public Builder placeTypes(List<String> placeTypes) {
+            this.placeTypes = Optional.ofNullable(placeTypes);
+            return this;
+        }
+
+        /**
+         * <p>Circle radius in meters; use with latitude and longitude.</p>
+         */
+        @JsonSetter(value = "radiusMeters", nulls = Nulls.SKIP)
+        public Builder radiusMeters(Optional<Long> radiusMeters) {
+            this.radiusMeters = radiusMeters;
+            return this;
+        }
+
+        public Builder radiusMeters(Long radiusMeters) {
+            this.radiusMeters = Optional.ofNullable(radiusMeters);
+            return this;
+        }
+
+        /**
+         * <p>When present, replaces safety event exclusions for the place.</p>
+         */
+        @JsonSetter(value = "safetyEventExclusions", nulls = Nulls.SKIP)
+        public Builder safetyEventExclusions(Optional<List<String>> safetyEventExclusions) {
+            this.safetyEventExclusions = safetyEventExclusions;
+            return this;
+        }
+
+        public Builder safetyEventExclusions(List<String> safetyEventExclusions) {
+            this.safetyEventExclusions = Optional.ofNullable(safetyEventExclusions);
+            return this;
+        }
+
+        @JsonSetter(value = "streetView", nulls = Nulls.SKIP)
+        public Builder streetView(Optional<PlaceStreetViewResponseRequestBody> streetView) {
+            this.streetView = streetView;
+            return this;
+        }
+
+        public Builder streetView(PlaceStreetViewResponseRequestBody streetView) {
+            this.streetView = Optional.ofNullable(streetView);
+            return this;
+        }
+
+        /**
+         * <p>When present, replaces all tag associations for the place.</p>
+         */
+        @JsonSetter(value = "tags", nulls = Nulls.SKIP)
+        public Builder tags(Optional<List<PostPlaceTagRefRequestBody>> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+        public Builder tags(List<PostPlaceTagRefRequestBody> tags) {
+            this.tags = Optional.ofNullable(tags);
+            return this;
+        }
+
         public PlacesPatchPlaceRequestBody build() {
             return new PlacesPatchPlaceRequestBody(
                     placeId,

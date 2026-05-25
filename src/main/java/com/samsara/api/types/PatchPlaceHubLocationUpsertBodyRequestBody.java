@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -35,6 +36,12 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
 
     private final Optional<String> locationPositionType;
 
+    private final Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills;
+
+    private final Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows;
+
+    private final Optional<String> standardDriverInstructions;
+
     private final Map<String, Object> additionalProperties;
 
     private PatchPlaceHubLocationUpsertBodyRequestBody(
@@ -45,6 +52,9 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             Optional<Boolean> isDepot,
             Optional<Boolean> isIgnoreOrderServiceTimeEnabled,
             Optional<String> locationPositionType,
+            Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills,
+            Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows,
+            Optional<String> standardDriverInstructions,
             Map<String, Object> additionalProperties) {
         this.displayName = displayName;
         this.externalId = externalId;
@@ -53,6 +63,9 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         this.isDepot = isDepot;
         this.isIgnoreOrderServiceTimeEnabled = isIgnoreOrderServiceTimeEnabled;
         this.locationPositionType = locationPositionType;
+        this.requiredSkills = requiredSkills;
+        this.serviceWindows = serviceWindows;
+        this.standardDriverInstructions = standardDriverInstructions;
         this.additionalProperties = additionalProperties;
     }
 
@@ -112,6 +125,30 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         return locationPositionType;
     }
 
+    /**
+     * @return Required planner skills for this hub location.
+     */
+    @JsonProperty("requiredSkills")
+    public Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> getRequiredSkills() {
+        return requiredSkills;
+    }
+
+    /**
+     * @return Recurring local-time service windows for this hub location.
+     */
+    @JsonProperty("serviceWindows")
+    public Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> getServiceWindows() {
+        return serviceWindows;
+    }
+
+    /**
+     * @return Default instructions for drivers at this hub location.
+     */
+    @JsonProperty("standardDriverInstructions")
+    public Optional<String> getStandardDriverInstructions() {
+        return standardDriverInstructions;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -131,7 +168,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                 && hubLocationId.equals(other.hubLocationId)
                 && isDepot.equals(other.isDepot)
                 && isIgnoreOrderServiceTimeEnabled.equals(other.isIgnoreOrderServiceTimeEnabled)
-                && locationPositionType.equals(other.locationPositionType);
+                && locationPositionType.equals(other.locationPositionType)
+                && requiredSkills.equals(other.requiredSkills)
+                && serviceWindows.equals(other.serviceWindows)
+                && standardDriverInstructions.equals(other.standardDriverInstructions);
     }
 
     @java.lang.Override
@@ -143,7 +183,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                 this.hubLocationId,
                 this.isDepot,
                 this.isIgnoreOrderServiceTimeEnabled,
-                this.locationPositionType);
+                this.locationPositionType,
+                this.requiredSkills,
+                this.serviceWindows,
+                this.standardDriverInstructions);
     }
 
     @java.lang.Override
@@ -208,11 +251,38 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         _FinalStage locationPositionType(Optional<String> locationPositionType);
 
         _FinalStage locationPositionType(String locationPositionType);
+
+        /**
+         * <p>Required planner skills for this hub location.</p>
+         */
+        _FinalStage requiredSkills(Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills);
+
+        _FinalStage requiredSkills(List<PlaceHubLocationRequiredSkillInputRequestBody> requiredSkills);
+
+        /**
+         * <p>Recurring local-time service windows for this hub location.</p>
+         */
+        _FinalStage serviceWindows(Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows);
+
+        _FinalStage serviceWindows(List<PlaceHubLocationServiceWindowInputRequestBody> serviceWindows);
+
+        /**
+         * <p>Default instructions for drivers at this hub location.</p>
+         */
+        _FinalStage standardDriverInstructions(Optional<String> standardDriverInstructions);
+
+        _FinalStage standardDriverInstructions(String standardDriverInstructions);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements HubIdStage, _FinalStage {
         private String hubId;
+
+        private Optional<String> standardDriverInstructions = Optional.empty();
+
+        private Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows = Optional.empty();
+
+        private Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills = Optional.empty();
 
         private Optional<String> locationPositionType = Optional.empty();
 
@@ -240,6 +310,9 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             isDepot(other.getIsDepot());
             isIgnoreOrderServiceTimeEnabled(other.getIsIgnoreOrderServiceTimeEnabled());
             locationPositionType(other.getLocationPositionType());
+            requiredSkills(other.getRequiredSkills());
+            serviceWindows(other.getServiceWindows());
+            standardDriverInstructions(other.getStandardDriverInstructions());
             return this;
         }
 
@@ -252,6 +325,68 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         @JsonSetter("hubId")
         public _FinalStage hubId(@NotNull String hubId) {
             this.hubId = Objects.requireNonNull(hubId, "hubId must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Default instructions for drivers at this hub location.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage standardDriverInstructions(String standardDriverInstructions) {
+            this.standardDriverInstructions = Optional.ofNullable(standardDriverInstructions);
+            return this;
+        }
+
+        /**
+         * <p>Default instructions for drivers at this hub location.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "standardDriverInstructions", nulls = Nulls.SKIP)
+        public _FinalStage standardDriverInstructions(Optional<String> standardDriverInstructions) {
+            this.standardDriverInstructions = standardDriverInstructions;
+            return this;
+        }
+
+        /**
+         * <p>Recurring local-time service windows for this hub location.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage serviceWindows(List<PlaceHubLocationServiceWindowInputRequestBody> serviceWindows) {
+            this.serviceWindows = Optional.ofNullable(serviceWindows);
+            return this;
+        }
+
+        /**
+         * <p>Recurring local-time service windows for this hub location.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "serviceWindows", nulls = Nulls.SKIP)
+        public _FinalStage serviceWindows(
+                Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows) {
+            this.serviceWindows = serviceWindows;
+            return this;
+        }
+
+        /**
+         * <p>Required planner skills for this hub location.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage requiredSkills(List<PlaceHubLocationRequiredSkillInputRequestBody> requiredSkills) {
+            this.requiredSkills = Optional.ofNullable(requiredSkills);
+            return this;
+        }
+
+        /**
+         * <p>Required planner skills for this hub location.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "requiredSkills", nulls = Nulls.SKIP)
+        public _FinalStage requiredSkills(
+                Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills) {
+            this.requiredSkills = requiredSkills;
             return this;
         }
 
@@ -385,6 +520,9 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                     isDepot,
                     isIgnoreOrderServiceTimeEnabled,
                     locationPositionType,
+                    requiredSkills,
+                    serviceWindows,
+                    standardDriverInstructions,
                     additionalProperties);
         }
     }
