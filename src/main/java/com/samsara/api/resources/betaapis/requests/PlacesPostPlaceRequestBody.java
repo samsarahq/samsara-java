@@ -186,7 +186,7 @@ public final class PlacesPostPlaceRequestBody {
     }
 
     /**
-     * @return Unsupported on create; when provided this API returns InvalidArgument.
+     * @return When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
      */
     @JsonProperty("placeTypes")
     public Optional<List<String>> getPlaceTypes() {
@@ -363,7 +363,7 @@ public final class PlacesPostPlaceRequestBody {
         _FinalStage notes(String notes);
 
         /**
-         * <p>Unsupported on create; when provided this API returns InvalidArgument.</p>
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
          */
         _FinalStage placeTypes(Optional<List<String>> placeTypes);
 
@@ -553,7 +553,7 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         /**
-         * <p>Unsupported on create; when provided this API returns InvalidArgument.</p>
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -563,7 +563,7 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         /**
-         * <p>Unsupported on create; when provided this API returns InvalidArgument.</p>
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "placeTypes", nulls = Nulls.SKIP)

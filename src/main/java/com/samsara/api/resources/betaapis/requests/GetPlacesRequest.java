@@ -84,7 +84,7 @@ public final class GetPlacesRequest {
     }
 
     /**
-     * @return Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. External id tokens (key:value) are not supported in this version.
+     * @return Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with <code>externalIds</code>.
      */
     @JsonProperty("placeIds")
     public Optional<String> getPlaceIds() {
@@ -92,7 +92,7 @@ public final class GetPlacesRequest {
     }
 
     /**
-     * @return Reserved. Batch lookup by external IDs is not implemented in this API version.
+     * @return Comma-separated external ID tokens (<code>key:value</code>) for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with <code>placeIds</code>.
      */
     @JsonProperty("externalIds")
     public Optional<String> getExternalIds() {
@@ -265,7 +265,7 @@ public final class GetPlacesRequest {
         }
 
         /**
-         * <p>Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. External id tokens (key:value) are not supported in this version.</p>
+         * <p>Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with <code>externalIds</code>.</p>
          */
         @JsonSetter(value = "placeIds", nulls = Nulls.SKIP)
         public Builder placeIds(Optional<String> placeIds) {
@@ -279,7 +279,7 @@ public final class GetPlacesRequest {
         }
 
         /**
-         * <p>Reserved. Batch lookup by external IDs is not implemented in this API version.</p>
+         * <p>Comma-separated external ID tokens (<code>key:value</code>) for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with <code>placeIds</code>.</p>
          */
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
         public Builder externalIds(Optional<String> externalIds) {

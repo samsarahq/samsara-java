@@ -5667,7 +5667,7 @@ client.betaApIs().deleteHubRouteTemplate(
 <dl>
 <dd>
 
-Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via `placeIds`.
+Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via `placeIds` or by external ids via `externalIds` (mutually exclusive).
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5724,7 +5724,7 @@ client.betaApIs().getPlaces(
 <dl>
 <dd>
 
-**placeIds:** `Optional<String>` — Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. External id tokens (key:value) are not supported in this version.
+**placeIds:** `Optional<String>` — Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with `externalIds`.
     
 </dd>
 </dl>
@@ -5732,7 +5732,7 @@ client.betaApIs().getPlaces(
 <dl>
 <dd>
 
-**externalIds:** `Optional<String>` — Reserved. Batch lookup by external IDs is not implemented in this API version.
+**externalIds:** `Optional<String>` — Comma-separated external ID tokens (`key:value`) for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with `placeIds`.
     
 </dd>
 </dl>
@@ -5935,7 +5935,7 @@ client.betaApIs().postPlace(
 <dl>
 <dd>
 
-**placeTypes:** `Optional<List<String>>` — Unsupported on create; when provided this API returns InvalidArgument.
+**placeTypes:** `Optional<List<String>>` — When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
     
 </dd>
 </dl>
@@ -6057,7 +6057,7 @@ client.betaApIs().deletePlace(
 <dl>
 <dd>
 
-Updates a place. Query parameter `placeId` (Samsara id) is required. Optional `externalId` (key:value) is reserved for a future release and must not be combined with `placeId`. Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+Updates a place. Provide exactly one of query parameter `placeId` (Samsara id) or `externalId` (key:value). Only fields present in the JSON body are changed; omit a field to leave it unchanged.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -6082,7 +6082,6 @@ To use this endpoint, select **Write Places** under the Places category when cre
 client.betaApIs().patchPlace(
     PlacesPatchPlaceRequestBody
         .builder()
-        .placeId(1000000L)
         .build()
 );
 ```
@@ -6099,7 +6098,7 @@ client.betaApIs().patchPlace(
 <dl>
 <dd>
 
-**placeId:** `Long` — Samsara place id to update (required). Do not send `externalId` in the same request.
+**placeId:** `Optional<Long>` — Samsara place id to update. Mutually exclusive with `externalId`; provide exactly one.
     
 </dd>
 </dl>
@@ -6107,7 +6106,7 @@ client.betaApIs().patchPlace(
 <dl>
 <dd>
 
-**externalId:** `Optional<String>` — External id token in `key:value` form (e.g. crmId:warehouse-east). Mutually exclusive with `placeId`. Batch lookup by external id is not implemented for this endpoint yet; callers should use `placeId` until supported.
+**externalId:** `Optional<String>` — External id token in `key:value` form (e.g. crmId:warehouse-east). Mutually exclusive with `placeId`; provide exactly one.
     
 </dd>
 </dl>
@@ -6203,7 +6202,7 @@ client.betaApIs().patchPlace(
 <dl>
 <dd>
 
-**placeTypes:** `Optional<List<String>>` — Unsupported on patch; when provided this API returns InvalidArgument.
+**placeTypes:** `Optional<List<String>>` — When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and IFTA metadata after this request; conflicting combinations return InvalidArgument.
     
 </dd>
 </dl>
