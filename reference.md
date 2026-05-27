@@ -5895,6 +5895,14 @@ client.betaApIs().postPlace(
 <dl>
 <dd>
 
+**isShowAddressesEnabled:** `Optional<Boolean>` — When true, show addresses inside the geofence on the map.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **latitude:** `Optional<Double>` — Center latitude when using a circle geofence with radiusMeters.
     
 </dd>
@@ -6155,6 +6163,14 @@ client.betaApIs().patchPlace(
 <dd>
 
 **iftaExemptionTypes:** `Optional<List<String>>` — When present, replaces IFTA exemption types for the place.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isShowAddressesEnabled:** `Optional<Boolean>` — When true, show addresses inside the geofence on the map.
     
 </dd>
 </dl>
@@ -7411,7 +7427,33 @@ client.betaApIs().getQualificationTypes(
 
 Ingest new readings. This endpoint allows the ingestion of batches of readings.
 
-Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API. When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.
+Ingesting readings is only supported for assets created using the POST /assets API endpoint with readingsIngestionEnabled set to true. To see a full list of readings available for ingestion use the GET readings definitions API.
+
+
+Readings that currently support ingestion (by category):
+
+
+<details>
+<summary><strong>ingestible</strong></summary>
+
+* `batteryVoltage`
+* `coolantTemp`
+* `ecuFuelLevelMillipercent`
+* `engineHours`
+* `engineRpm`
+* `engineState` (values: off | running | idling)
+* `faultCodesJ1939`
+* `faultCodesOBDII`
+* `fuelLevelPerc`
+* `location`
+* `odometerEcu`
+* `oilPressure`
+
+</details>
+
+**Note:** Use the `GET /readings/definitions` endpoint and check the `ingestionEnabled` field for the authoritative, up-to-date set of ingestible readings for your organization.
+
+When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.
 
 Related guide: [Readings](https://developers.samsara.com/docs/readings).
 

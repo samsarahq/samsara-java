@@ -36,7 +36,13 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
 
     private final Optional<String> locationPositionType;
 
+    private final Optional<Integer> locationPriority;
+
+    private final Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime;
+
     private final Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills;
+
+    private final Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime;
 
     private final Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows;
 
@@ -52,7 +58,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             Optional<Boolean> isDepot,
             Optional<Boolean> isIgnoreOrderServiceTimeEnabled,
             Optional<String> locationPositionType,
+            Optional<Integer> locationPriority,
+            Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime,
             Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills,
+            Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime,
             Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows,
             Optional<String> standardDriverInstructions,
             Map<String, Object> additionalProperties) {
@@ -63,7 +72,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         this.isDepot = isDepot;
         this.isIgnoreOrderServiceTimeEnabled = isIgnoreOrderServiceTimeEnabled;
         this.locationPositionType = locationPositionType;
+        this.locationPriority = locationPriority;
+        this.orderServiceTime = orderServiceTime;
         this.requiredSkills = requiredSkills;
+        this.serviceTime = serviceTime;
         this.serviceWindows = serviceWindows;
         this.standardDriverInstructions = standardDriverInstructions;
         this.additionalProperties = additionalProperties;
@@ -126,11 +138,29 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
     }
 
     /**
+     * @return Route priority from 1 (lowest) to 5 (highest).
+     */
+    @JsonProperty("locationPriority")
+    public Optional<Integer> getLocationPriority() {
+        return locationPriority;
+    }
+
+    @JsonProperty("orderServiceTime")
+    public Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> getOrderServiceTime() {
+        return orderServiceTime;
+    }
+
+    /**
      * @return Required planner skills for this hub location.
      */
     @JsonProperty("requiredSkills")
     public Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> getRequiredSkills() {
         return requiredSkills;
+    }
+
+    @JsonProperty("serviceTime")
+    public Optional<PlaceHubLocationServiceTimeInputRequestBody> getServiceTime() {
+        return serviceTime;
     }
 
     /**
@@ -169,7 +199,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                 && isDepot.equals(other.isDepot)
                 && isIgnoreOrderServiceTimeEnabled.equals(other.isIgnoreOrderServiceTimeEnabled)
                 && locationPositionType.equals(other.locationPositionType)
+                && locationPriority.equals(other.locationPriority)
+                && orderServiceTime.equals(other.orderServiceTime)
                 && requiredSkills.equals(other.requiredSkills)
+                && serviceTime.equals(other.serviceTime)
                 && serviceWindows.equals(other.serviceWindows)
                 && standardDriverInstructions.equals(other.standardDriverInstructions);
     }
@@ -184,7 +217,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                 this.isDepot,
                 this.isIgnoreOrderServiceTimeEnabled,
                 this.locationPositionType,
+                this.locationPriority,
+                this.orderServiceTime,
                 this.requiredSkills,
+                this.serviceTime,
                 this.serviceWindows,
                 this.standardDriverInstructions);
     }
@@ -253,11 +289,26 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         _FinalStage locationPositionType(String locationPositionType);
 
         /**
+         * <p>Route priority from 1 (lowest) to 5 (highest).</p>
+         */
+        _FinalStage locationPriority(Optional<Integer> locationPriority);
+
+        _FinalStage locationPriority(Integer locationPriority);
+
+        _FinalStage orderServiceTime(Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime);
+
+        _FinalStage orderServiceTime(PlaceHubLocationOrderServiceTimeInputRequestBody orderServiceTime);
+
+        /**
          * <p>Required planner skills for this hub location.</p>
          */
         _FinalStage requiredSkills(Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills);
 
         _FinalStage requiredSkills(List<PlaceHubLocationRequiredSkillInputRequestBody> requiredSkills);
+
+        _FinalStage serviceTime(Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime);
+
+        _FinalStage serviceTime(PlaceHubLocationServiceTimeInputRequestBody serviceTime);
 
         /**
          * <p>Recurring local-time service windows for this hub location.</p>
@@ -282,7 +333,13 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
 
         private Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows = Optional.empty();
 
+        private Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime = Optional.empty();
+
         private Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills = Optional.empty();
+
+        private Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime = Optional.empty();
+
+        private Optional<Integer> locationPriority = Optional.empty();
 
         private Optional<String> locationPositionType = Optional.empty();
 
@@ -310,7 +367,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             isDepot(other.getIsDepot());
             isIgnoreOrderServiceTimeEnabled(other.getIsIgnoreOrderServiceTimeEnabled());
             locationPositionType(other.getLocationPositionType());
+            locationPriority(other.getLocationPriority());
+            orderServiceTime(other.getOrderServiceTime());
             requiredSkills(other.getRequiredSkills());
+            serviceTime(other.getServiceTime());
             serviceWindows(other.getServiceWindows());
             standardDriverInstructions(other.getStandardDriverInstructions());
             return this;
@@ -369,6 +429,19 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage serviceTime(PlaceHubLocationServiceTimeInputRequestBody serviceTime) {
+            this.serviceTime = Optional.ofNullable(serviceTime);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "serviceTime", nulls = Nulls.SKIP)
+        public _FinalStage serviceTime(Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime) {
+            this.serviceTime = serviceTime;
+            return this;
+        }
+
         /**
          * <p>Required planner skills for this hub location.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -387,6 +460,40 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         public _FinalStage requiredSkills(
                 Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills) {
             this.requiredSkills = requiredSkills;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage orderServiceTime(PlaceHubLocationOrderServiceTimeInputRequestBody orderServiceTime) {
+            this.orderServiceTime = Optional.ofNullable(orderServiceTime);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "orderServiceTime", nulls = Nulls.SKIP)
+        public _FinalStage orderServiceTime(
+                Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime) {
+            this.orderServiceTime = orderServiceTime;
+            return this;
+        }
+
+        /**
+         * <p>Route priority from 1 (lowest) to 5 (highest).</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage locationPriority(Integer locationPriority) {
+            this.locationPriority = Optional.ofNullable(locationPriority);
+            return this;
+        }
+
+        /**
+         * <p>Route priority from 1 (lowest) to 5 (highest).</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "locationPriority", nulls = Nulls.SKIP)
+        public _FinalStage locationPriority(Optional<Integer> locationPriority) {
+            this.locationPriority = locationPriority;
             return this;
         }
 
@@ -520,7 +627,10 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                     isDepot,
                     isIgnoreOrderServiceTimeEnabled,
                     locationPositionType,
+                    locationPriority,
+                    orderServiceTime,
                     requiredSkills,
+                    serviceTime,
                     serviceWindows,
                     standardDriverInstructions,
                     additionalProperties);

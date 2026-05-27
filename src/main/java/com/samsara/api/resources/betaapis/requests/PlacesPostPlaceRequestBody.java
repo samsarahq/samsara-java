@@ -41,6 +41,8 @@ public final class PlacesPostPlaceRequestBody {
 
     private final Optional<List<String>> iftaExemptionTypes;
 
+    private final Optional<Boolean> isShowAddressesEnabled;
+
     private final Optional<Double> latitude;
 
     private final Optional<Double> longitude;
@@ -70,6 +72,7 @@ public final class PlacesPostPlaceRequestBody {
             Optional<List<GeofenceVertexInputRequestBody>> geofence,
             Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations,
             Optional<List<String>> iftaExemptionTypes,
+            Optional<Boolean> isShowAddressesEnabled,
             Optional<Double> latitude,
             Optional<Double> longitude,
             String name,
@@ -87,6 +90,7 @@ public final class PlacesPostPlaceRequestBody {
         this.geofence = geofence;
         this.hubLocations = hubLocations;
         this.iftaExemptionTypes = iftaExemptionTypes;
+        this.isShowAddressesEnabled = isShowAddressesEnabled;
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
@@ -146,6 +150,14 @@ public final class PlacesPostPlaceRequestBody {
     @JsonProperty("iftaExemptionTypes")
     public Optional<List<String>> getIftaExemptionTypes() {
         return iftaExemptionTypes;
+    }
+
+    /**
+     * @return When true, show addresses inside the geofence on the map.
+     */
+    @JsonProperty("isShowAddressesEnabled")
+    public Optional<Boolean> getIsShowAddressesEnabled() {
+        return isShowAddressesEnabled;
     }
 
     /**
@@ -240,6 +252,7 @@ public final class PlacesPostPlaceRequestBody {
                 && geofence.equals(other.geofence)
                 && hubLocations.equals(other.hubLocations)
                 && iftaExemptionTypes.equals(other.iftaExemptionTypes)
+                && isShowAddressesEnabled.equals(other.isShowAddressesEnabled)
                 && latitude.equals(other.latitude)
                 && longitude.equals(other.longitude)
                 && name.equals(other.name)
@@ -261,6 +274,7 @@ public final class PlacesPostPlaceRequestBody {
                 this.geofence,
                 this.hubLocations,
                 this.iftaExemptionTypes,
+                this.isShowAddressesEnabled,
                 this.latitude,
                 this.longitude,
                 this.name,
@@ -336,6 +350,13 @@ public final class PlacesPostPlaceRequestBody {
         _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes);
 
         _FinalStage iftaExemptionTypes(List<String> iftaExemptionTypes);
+
+        /**
+         * <p>When true, show addresses inside the geofence on the map.</p>
+         */
+        _FinalStage isShowAddressesEnabled(Optional<Boolean> isShowAddressesEnabled);
+
+        _FinalStage isShowAddressesEnabled(Boolean isShowAddressesEnabled);
 
         /**
          * <p>Center latitude when using a circle geofence with radiusMeters.</p>
@@ -419,6 +440,8 @@ public final class PlacesPostPlaceRequestBody {
 
         private Optional<Double> latitude = Optional.empty();
 
+        private Optional<Boolean> isShowAddressesEnabled = Optional.empty();
+
         private Optional<List<String>> iftaExemptionTypes = Optional.empty();
 
         private Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations = Optional.empty();
@@ -442,6 +465,7 @@ public final class PlacesPostPlaceRequestBody {
             geofence(other.getGeofence());
             hubLocations(other.getHubLocations());
             iftaExemptionTypes(other.getIftaExemptionTypes());
+            isShowAddressesEnabled(other.getIsShowAddressesEnabled());
             latitude(other.getLatitude());
             longitude(other.getLongitude());
             name(other.getName());
@@ -646,6 +670,26 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         /**
+         * <p>When true, show addresses inside the geofence on the map.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isShowAddressesEnabled(Boolean isShowAddressesEnabled) {
+            this.isShowAddressesEnabled = Optional.ofNullable(isShowAddressesEnabled);
+            return this;
+        }
+
+        /**
+         * <p>When true, show addresses inside the geofence on the map.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "isShowAddressesEnabled", nulls = Nulls.SKIP)
+        public _FinalStage isShowAddressesEnabled(Optional<Boolean> isShowAddressesEnabled) {
+            this.isShowAddressesEnabled = isShowAddressesEnabled;
+            return this;
+        }
+
+        /**
          * <p>IFTA exemption types for this place.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -756,6 +800,7 @@ public final class PlacesPostPlaceRequestBody {
                     geofence,
                     hubLocations,
                     iftaExemptionTypes,
+                    isShowAddressesEnabled,
                     latitude,
                     longitude,
                     name,
