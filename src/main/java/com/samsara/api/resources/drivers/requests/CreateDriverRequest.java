@@ -33,6 +33,8 @@ public final class CreateDriverRequest {
 
     private final Optional<String> currentIdCardCode;
 
+    private final Optional<String> dateOfBirth;
+
     private final Optional<Boolean> eldAdverseWeatherExemptionEnabled;
 
     private final Optional<Boolean> eldBigDayExemptionEnabled;
@@ -99,6 +101,7 @@ public final class CreateDriverRequest {
             Optional<List<CreateDriverRequestAttributes>> attributes,
             Optional<DriverCarrierSettings> carrierSettings,
             Optional<String> currentIdCardCode,
+            Optional<String> dateOfBirth,
             Optional<Boolean> eldAdverseWeatherExemptionEnabled,
             Optional<Boolean> eldBigDayExemptionEnabled,
             Optional<Long> eldDayStartHour,
@@ -133,6 +136,7 @@ public final class CreateDriverRequest {
         this.attributes = attributes;
         this.carrierSettings = carrierSettings;
         this.currentIdCardCode = currentIdCardCode;
+        this.dateOfBirth = dateOfBirth;
         this.eldAdverseWeatherExemptionEnabled = eldAdverseWeatherExemptionEnabled;
         this.eldBigDayExemptionEnabled = eldBigDayExemptionEnabled;
         this.eldDayStartHour = eldDayStartHour;
@@ -182,6 +186,11 @@ public final class CreateDriverRequest {
     @JsonProperty("currentIdCardCode")
     public Optional<String> getCurrentIdCardCode() {
         return currentIdCardCode;
+    }
+
+    @JsonProperty("dateOfBirth")
+    public Optional<String> getDateOfBirth() {
+        return dateOfBirth;
     }
 
     /**
@@ -421,6 +430,7 @@ public final class CreateDriverRequest {
         return attributes.equals(other.attributes)
                 && carrierSettings.equals(other.carrierSettings)
                 && currentIdCardCode.equals(other.currentIdCardCode)
+                && dateOfBirth.equals(other.dateOfBirth)
                 && eldAdverseWeatherExemptionEnabled.equals(other.eldAdverseWeatherExemptionEnabled)
                 && eldBigDayExemptionEnabled.equals(other.eldBigDayExemptionEnabled)
                 && eldDayStartHour.equals(other.eldDayStartHour)
@@ -459,6 +469,7 @@ public final class CreateDriverRequest {
                 this.attributes,
                 this.carrierSettings,
                 this.currentIdCardCode,
+                this.dateOfBirth,
                 this.eldAdverseWeatherExemptionEnabled,
                 this.eldBigDayExemptionEnabled,
                 this.eldDayStartHour,
@@ -540,6 +551,10 @@ public final class CreateDriverRequest {
         _FinalStage currentIdCardCode(Optional<String> currentIdCardCode);
 
         _FinalStage currentIdCardCode(String currentIdCardCode);
+
+        _FinalStage dateOfBirth(Optional<String> dateOfBirth);
+
+        _FinalStage dateOfBirth(String dateOfBirth);
 
         /**
          * <p>Flag indicating this driver may use Adverse Weather exemptions in ELD logs.</p>
@@ -775,6 +790,8 @@ public final class CreateDriverRequest {
 
         private Optional<Boolean> eldAdverseWeatherExemptionEnabled = Optional.empty();
 
+        private Optional<String> dateOfBirth = Optional.empty();
+
         private Optional<String> currentIdCardCode = Optional.empty();
 
         private Optional<DriverCarrierSettings> carrierSettings = Optional.empty();
@@ -791,6 +808,7 @@ public final class CreateDriverRequest {
             attributes(other.getAttributes());
             carrierSettings(other.getCarrierSettings());
             currentIdCardCode(other.getCurrentIdCardCode());
+            dateOfBirth(other.getDateOfBirth());
             eldAdverseWeatherExemptionEnabled(other.getEldAdverseWeatherExemptionEnabled());
             eldBigDayExemptionEnabled(other.getEldBigDayExemptionEnabled());
             eldDayStartHour(other.getEldDayStartHour());
@@ -1358,6 +1376,19 @@ public final class CreateDriverRequest {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage dateOfBirth(String dateOfBirth) {
+            this.dateOfBirth = Optional.ofNullable(dateOfBirth);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "dateOfBirth", nulls = Nulls.SKIP)
+        public _FinalStage dateOfBirth(Optional<String> dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
         /**
          * <p>The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -1410,6 +1441,7 @@ public final class CreateDriverRequest {
                     attributes,
                     carrierSettings,
                     currentIdCardCode,
+                    dateOfBirth,
                     eldAdverseWeatherExemptionEnabled,
                     eldBigDayExemptionEnabled,
                     eldDayStartHour,

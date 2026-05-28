@@ -309,6 +309,13 @@ public class RawWorkOrdersClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "after", request.getAfter().get(), false);
         }
+        if (request.getIncludeExternalIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl,
+                    "includeExternalIds",
+                    request.getIncludeExternalIds().get(),
+                    false);
+        }
         if (request.getIds().isPresent()) {
             QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), true);
         }
@@ -681,6 +688,13 @@ public class RawWorkOrdersClient {
         if (request.getEndTime().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "endTime", request.getEndTime().get(), false);
+        }
+        if (request.getIncludeExternalIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl,
+                    "includeExternalIds",
+                    request.getIncludeExternalIds().get(),
+                    false);
         }
         if (request.getWorkOrderStatuses().isPresent()) {
             QueryStringMapper.addQueryParameter(
