@@ -53,6 +53,10 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
     private final Optional<Long> odometerMeters;
 
+    private final Optional<String> placeExternalId;
+
+    private final Optional<String> placeId;
+
     private final Optional<String> poNumber;
 
     private final Optional<WorkOrdersPatchWorkOrdersRequestBodyPriority> priority;
@@ -80,6 +84,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             Optional<String> invoiceNumber,
             Optional<List<WorkOrderItemObjectRequestBody>> items,
             Optional<Long> odometerMeters,
+            Optional<String> placeExternalId,
+            Optional<String> placeId,
             Optional<String> poNumber,
             Optional<WorkOrdersPatchWorkOrdersRequestBodyPriority> priority,
             Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances,
@@ -99,6 +105,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         this.invoiceNumber = invoiceNumber;
         this.items = items;
         this.odometerMeters = odometerMeters;
+        this.placeExternalId = placeExternalId;
+        this.placeId = placeId;
         this.poNumber = poNumber;
         this.priority = priority;
         this.serviceTaskInstances = serviceTaskInstances;
@@ -202,6 +210,22 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     }
 
     /**
+     * @return External ID (<code>key:value</code>) of the Place where the work is performed. Resolved against the organization's external IDs for places. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeId</code>.
+     */
+    @JsonProperty("placeExternalId")
+    public Optional<String> getPlaceExternalId() {
+        return placeExternalId;
+    }
+
+    /**
+     * @return ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeExternalId</code>.
+     */
+    @JsonProperty("placeId")
+    public Optional<String> getPlaceId() {
+        return placeId;
+    }
+
+    /**
      * @return The purchase order number for the work order.
      */
     @JsonProperty("poNumber")
@@ -271,6 +295,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
                 && invoiceNumber.equals(other.invoiceNumber)
                 && items.equals(other.items)
                 && odometerMeters.equals(other.odometerMeters)
+                && placeExternalId.equals(other.placeExternalId)
+                && placeId.equals(other.placeId)
                 && poNumber.equals(other.poNumber)
                 && priority.equals(other.priority)
                 && serviceTaskInstances.equals(other.serviceTaskInstances)
@@ -294,6 +320,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
                 this.invoiceNumber,
                 this.items,
                 this.odometerMeters,
+                this.placeExternalId,
+                this.placeId,
                 this.poNumber,
                 this.priority,
                 this.serviceTaskInstances,
@@ -398,6 +426,20 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         _FinalStage odometerMeters(Long odometerMeters);
 
         /**
+         * <p>External ID (<code>key:value</code>) of the Place where the work is performed. Resolved against the organization's external IDs for places. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeId</code>.</p>
+         */
+        _FinalStage placeExternalId(Optional<String> placeExternalId);
+
+        _FinalStage placeExternalId(String placeExternalId);
+
+        /**
+         * <p>ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeExternalId</code>.</p>
+         */
+        _FinalStage placeId(Optional<String> placeId);
+
+        _FinalStage placeId(String placeId);
+
+        /**
          * <p>The purchase order number for the work order.</p>
          */
         _FinalStage poNumber(Optional<String> poNumber);
@@ -454,6 +496,10 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
         private Optional<String> poNumber = Optional.empty();
 
+        private Optional<String> placeId = Optional.empty();
+
+        private Optional<String> placeExternalId = Optional.empty();
+
         private Optional<Long> odometerMeters = Optional.empty();
 
         private Optional<List<WorkOrderItemObjectRequestBody>> items = Optional.empty();
@@ -495,6 +541,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             invoiceNumber(other.getInvoiceNumber());
             items(other.getItems());
             odometerMeters(other.getOdometerMeters());
+            placeExternalId(other.getPlaceExternalId());
+            placeId(other.getPlaceId());
             poNumber(other.getPoNumber());
             priority(other.getPriority());
             serviceTaskInstances(other.getServiceTaskInstances());
@@ -627,6 +675,46 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         @JsonSetter(value = "poNumber", nulls = Nulls.SKIP)
         public _FinalStage poNumber(Optional<String> poNumber) {
             this.poNumber = poNumber;
+            return this;
+        }
+
+        /**
+         * <p>ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeExternalId</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage placeId(String placeId) {
+            this.placeId = Optional.ofNullable(placeId);
+            return this;
+        }
+
+        /**
+         * <p>ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeExternalId</code>.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "placeId", nulls = Nulls.SKIP)
+        public _FinalStage placeId(Optional<String> placeId) {
+            this.placeId = placeId;
+            return this;
+        }
+
+        /**
+         * <p>External ID (<code>key:value</code>) of the Place where the work is performed. Resolved against the organization's external IDs for places. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeId</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage placeExternalId(String placeExternalId) {
+            this.placeExternalId = Optional.ofNullable(placeExternalId);
+            return this;
+        }
+
+        /**
+         * <p>External ID (<code>key:value</code>) of the Place where the work is performed. Resolved against the organization's external IDs for places. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with <code>placeId</code>.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "placeExternalId", nulls = Nulls.SKIP)
+        public _FinalStage placeExternalId(Optional<String> placeExternalId) {
+            this.placeExternalId = placeExternalId;
             return this;
         }
 
@@ -858,6 +946,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
                     invoiceNumber,
                     items,
                     odometerMeters,
+                    placeExternalId,
+                    placeId,
                     poNumber,
                     priority,
                     serviceTaskInstances,

@@ -33,6 +33,8 @@ public final class UpdateDriverRequest {
 
     private final Optional<String> currentIdCardCode;
 
+    private final Optional<String> dateOfBirth;
+
     private final Optional<String> deactivatedAtTime;
 
     private final Optional<UpdateDriverRequestDriverActivationStatus> driverActivationStatus;
@@ -103,6 +105,7 @@ public final class UpdateDriverRequest {
             Optional<List<UpdateDriverRequestAttributes>> attributes,
             Optional<DriverCarrierSettings> carrierSettings,
             Optional<String> currentIdCardCode,
+            Optional<String> dateOfBirth,
             Optional<String> deactivatedAtTime,
             Optional<UpdateDriverRequestDriverActivationStatus> driverActivationStatus,
             Optional<Boolean> eldAdverseWeatherExemptionEnabled,
@@ -139,6 +142,7 @@ public final class UpdateDriverRequest {
         this.attributes = attributes;
         this.carrierSettings = carrierSettings;
         this.currentIdCardCode = currentIdCardCode;
+        this.dateOfBirth = dateOfBirth;
         this.deactivatedAtTime = deactivatedAtTime;
         this.driverActivationStatus = driverActivationStatus;
         this.eldAdverseWeatherExemptionEnabled = eldAdverseWeatherExemptionEnabled;
@@ -190,6 +194,11 @@ public final class UpdateDriverRequest {
     @JsonProperty("currentIdCardCode")
     public Optional<String> getCurrentIdCardCode() {
         return currentIdCardCode;
+    }
+
+    @JsonProperty("dateOfBirth")
+    public Optional<String> getDateOfBirth() {
+        return dateOfBirth;
     }
 
     /**
@@ -445,6 +454,7 @@ public final class UpdateDriverRequest {
         return attributes.equals(other.attributes)
                 && carrierSettings.equals(other.carrierSettings)
                 && currentIdCardCode.equals(other.currentIdCardCode)
+                && dateOfBirth.equals(other.dateOfBirth)
                 && deactivatedAtTime.equals(other.deactivatedAtTime)
                 && driverActivationStatus.equals(other.driverActivationStatus)
                 && eldAdverseWeatherExemptionEnabled.equals(other.eldAdverseWeatherExemptionEnabled)
@@ -485,6 +495,7 @@ public final class UpdateDriverRequest {
                 this.attributes,
                 this.carrierSettings,
                 this.currentIdCardCode,
+                this.dateOfBirth,
                 this.deactivatedAtTime,
                 this.driverActivationStatus,
                 this.eldAdverseWeatherExemptionEnabled,
@@ -535,6 +546,8 @@ public final class UpdateDriverRequest {
         private Optional<DriverCarrierSettings> carrierSettings = Optional.empty();
 
         private Optional<String> currentIdCardCode = Optional.empty();
+
+        private Optional<String> dateOfBirth = Optional.empty();
 
         private Optional<String> deactivatedAtTime = Optional.empty();
 
@@ -609,6 +622,7 @@ public final class UpdateDriverRequest {
             attributes(other.getAttributes());
             carrierSettings(other.getCarrierSettings());
             currentIdCardCode(other.getCurrentIdCardCode());
+            dateOfBirth(other.getDateOfBirth());
             deactivatedAtTime(other.getDeactivatedAtTime());
             driverActivationStatus(other.getDriverActivationStatus());
             eldAdverseWeatherExemptionEnabled(other.getEldAdverseWeatherExemptionEnabled());
@@ -677,6 +691,17 @@ public final class UpdateDriverRequest {
 
         public Builder currentIdCardCode(String currentIdCardCode) {
             this.currentIdCardCode = Optional.ofNullable(currentIdCardCode);
+            return this;
+        }
+
+        @JsonSetter(value = "dateOfBirth", nulls = Nulls.SKIP)
+        public Builder dateOfBirth(Optional<String> dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        public Builder dateOfBirth(String dateOfBirth) {
+            this.dateOfBirth = Optional.ofNullable(dateOfBirth);
             return this;
         }
 
@@ -1116,6 +1141,7 @@ public final class UpdateDriverRequest {
                     attributes,
                     carrierSettings,
                     currentIdCardCode,
+                    dateOfBirth,
                     deactivatedAtTime,
                     driverActivationStatus,
                     eldAdverseWeatherExemptionEnabled,

@@ -8811,7 +8811,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -14716,6 +14716,14 @@ client.drivers().create(
 <dl>
 <dd>
 
+**dateOfBirth:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **eldAdverseWeatherExemptionEnabled:** `Optional<Boolean>` — Flag indicating this driver may use Adverse Weather exemptions in ELD logs.
     
 </dd>
@@ -15214,6 +15222,14 @@ client.drivers().update(
 <dd>
 
 **currentIdCardCode:** `Optional<String>` — The ID Card Code on the back of the physical card assigned to the driver.  Contact Samsara if you would like to enable this feature.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dateOfBirth:** `Optional<String>` 
     
 </dd>
 </dl>
@@ -25873,6 +25889,14 @@ client.workOrders().getWorkOrders(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — When true, populates `maintenanceSite.placeExternalIds` on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -26008,6 +26032,22 @@ client.workOrders().postWorkOrders(
 <dd>
 
 **odometerMeters:** `Optional<Long>` — The odometer reading at the time of the work order. Will default to current asset reading if unset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeExternalId:** `Optional<String>` — External ID (`key:value`) of the Place where the work is performed. Resolved against the organization's external IDs for places; the resolved Place must be linked to a maintenance site. Mutually exclusive with `placeId`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Mutually exclusive with `placeExternalId`.
     
 </dd>
 </dl>
@@ -26275,6 +26315,22 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
+**placeExternalId:** `Optional<String>` — External ID (`key:value`) of the Place where the work is performed. Resolved against the organization's external IDs for places. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with `placeId`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Send an empty string to clear the maintenance site on the work order. Mutually exclusive with `placeExternalId`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **poNumber:** `Optional<String>` — The purchase order number for the work order.
     
 </dd>
@@ -26422,6 +26478,14 @@ client.workOrders().streamWorkOrders(
 <dd>
 
 **assignedUserIds:** `Optional<String>` — Work Order assigned user id filter. Up to 50 ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — When true, populates `maintenanceSite.placeExternalIds` on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
     
 </dd>
 </dl>

@@ -55,6 +55,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
     private final Optional<List<WorkOrderItemObjectResponseBody>> items;
 
+    private final Optional<WorkOrderMaintenanceSiteObjectResponseBody> maintenanceSite;
+
     private final Optional<Long> odometerMeters;
 
     private final Optional<String> poNumber;
@@ -92,6 +94,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             String id,
             Optional<String> invoiceNumber,
             Optional<List<WorkOrderItemObjectResponseBody>> items,
+            Optional<WorkOrderMaintenanceSiteObjectResponseBody> maintenanceSite,
             Optional<Long> odometerMeters,
             Optional<String> poNumber,
             Optional<WorkOrderWithTimeEntriesObjectResponseBodyPriority> priority,
@@ -118,6 +121,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         this.id = id;
         this.invoiceNumber = invoiceNumber;
         this.items = items;
+        this.maintenanceSite = maintenanceSite;
         this.odometerMeters = odometerMeters;
         this.poNumber = poNumber;
         this.priority = priority;
@@ -255,6 +259,11 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         return items;
     }
 
+    @JsonProperty("maintenanceSite")
+    public Optional<WorkOrderMaintenanceSiteObjectResponseBody> getMaintenanceSite() {
+        return maintenanceSite;
+    }
+
     /**
      * @return The odometer reading at the time of the work order.
      */
@@ -350,6 +359,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 && id.equals(other.id)
                 && invoiceNumber.equals(other.invoiceNumber)
                 && items.equals(other.items)
+                && maintenanceSite.equals(other.maintenanceSite)
                 && odometerMeters.equals(other.odometerMeters)
                 && poNumber.equals(other.poNumber)
                 && priority.equals(other.priority)
@@ -380,6 +390,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 this.id,
                 this.invoiceNumber,
                 this.items,
+                this.maintenanceSite,
                 this.odometerMeters,
                 this.poNumber,
                 this.priority,
@@ -528,6 +539,10 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
         _FinalStage items(List<WorkOrderItemObjectResponseBody> items);
 
+        _FinalStage maintenanceSite(Optional<WorkOrderMaintenanceSiteObjectResponseBody> maintenanceSite);
+
+        _FinalStage maintenanceSite(WorkOrderMaintenanceSiteObjectResponseBody maintenanceSite);
+
         /**
          * <p>The odometer reading at the time of the work order.</p>
          */
@@ -602,6 +617,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
         private Optional<Long> odometerMeters = Optional.empty();
 
+        private Optional<WorkOrderMaintenanceSiteObjectResponseBody> maintenanceSite = Optional.empty();
+
         private Optional<List<WorkOrderItemObjectResponseBody>> items = Optional.empty();
 
         private Optional<String> invoiceNumber = Optional.empty();
@@ -651,6 +668,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             id(other.getId());
             invoiceNumber(other.getInvoiceNumber());
             items(other.getItems());
+            maintenanceSite(other.getMaintenanceSite());
             odometerMeters(other.getOdometerMeters());
             poNumber(other.getPoNumber());
             priority(other.getPriority());
@@ -848,6 +866,19 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         @JsonSetter(value = "odometerMeters", nulls = Nulls.SKIP)
         public _FinalStage odometerMeters(Optional<Long> odometerMeters) {
             this.odometerMeters = odometerMeters;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage maintenanceSite(WorkOrderMaintenanceSiteObjectResponseBody maintenanceSite) {
+            this.maintenanceSite = Optional.ofNullable(maintenanceSite);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "maintenanceSite", nulls = Nulls.SKIP)
+        public _FinalStage maintenanceSite(Optional<WorkOrderMaintenanceSiteObjectResponseBody> maintenanceSite) {
+            this.maintenanceSite = maintenanceSite;
             return this;
         }
 
@@ -1123,6 +1154,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                     id,
                     invoiceNumber,
                     items,
+                    maintenanceSite,
                     odometerMeters,
                     poNumber,
                     priority,

@@ -26,12 +26,18 @@ public final class GetWorkOrdersRequest {
 
     private final Optional<String> after;
 
+    private final Optional<Boolean> includeExternalIds;
+
     private final Map<String, Object> additionalProperties;
 
     private GetWorkOrdersRequest(
-            Optional<List<String>> ids, Optional<String> after, Map<String, Object> additionalProperties) {
+            Optional<List<String>> ids,
+            Optional<String> after,
+            Optional<Boolean> includeExternalIds,
+            Map<String, Object> additionalProperties) {
         this.ids = ids;
         this.after = after;
+        this.includeExternalIds = includeExternalIds;
         this.additionalProperties = additionalProperties;
     }
 
@@ -51,6 +57,14 @@ public final class GetWorkOrdersRequest {
         return after;
     }
 
+    /**
+     * @return When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+     */
+    @JsonProperty("includeExternalIds")
+    public Optional<Boolean> getIncludeExternalIds() {
+        return includeExternalIds;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -63,12 +77,14 @@ public final class GetWorkOrdersRequest {
     }
 
     private boolean equalTo(GetWorkOrdersRequest other) {
-        return ids.equals(other.ids) && after.equals(other.after);
+        return ids.equals(other.ids)
+                && after.equals(other.after)
+                && includeExternalIds.equals(other.includeExternalIds);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.ids, this.after);
+        return Objects.hash(this.ids, this.after, this.includeExternalIds);
     }
 
     @java.lang.Override
@@ -86,6 +102,8 @@ public final class GetWorkOrdersRequest {
 
         private Optional<String> after = Optional.empty();
 
+        private Optional<Boolean> includeExternalIds = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -94,6 +112,7 @@ public final class GetWorkOrdersRequest {
         public Builder from(GetWorkOrdersRequest other) {
             ids(other.getIds());
             after(other.getAfter());
+            includeExternalIds(other.getIncludeExternalIds());
             return this;
         }
 
@@ -130,8 +149,22 @@ public final class GetWorkOrdersRequest {
             return this;
         }
 
+        /**
+         * <p>When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
+         */
+        @JsonSetter(value = "includeExternalIds", nulls = Nulls.SKIP)
+        public Builder includeExternalIds(Optional<Boolean> includeExternalIds) {
+            this.includeExternalIds = includeExternalIds;
+            return this;
+        }
+
+        public Builder includeExternalIds(Boolean includeExternalIds) {
+            this.includeExternalIds = Optional.ofNullable(includeExternalIds);
+            return this;
+        }
+
         public GetWorkOrdersRequest build() {
-            return new GetWorkOrdersRequest(ids, after, additionalProperties);
+            return new GetWorkOrdersRequest(ids, after, includeExternalIds, additionalProperties);
         }
     }
 }
