@@ -47,7 +47,7 @@ public final class V1MessageResponse {
     }
 
     /**
-     * @return ID of the driver for whom the message is sent to or sent by.
+     * @return ID of the driver associated with this message row. For organizations using Messages v2, this field uses 0 as a sentinel when the message belongs to a non–single-driver channel (for example Announcements channel, multi-member groups, or Driver-to-Admin channels): the API returns one row for the message instead of one row per recipient driver. For 1:1 conversations, this is the driver’s ID. Integrations that only need 1:1 messages should filter responses where driverId != 0.
      */
     @JsonProperty("driverId")
     public long getDriverId() {
@@ -118,7 +118,7 @@ public final class V1MessageResponse {
 
     public interface DriverIdStage {
         /**
-         * <p>ID of the driver for whom the message is sent to or sent by.</p>
+         * <p>ID of the driver associated with this message row. For organizations using Messages v2, this field uses 0 as a sentinel when the message belongs to a non–single-driver channel (for example Announcements channel, multi-member groups, or Driver-to-Admin channels): the API returns one row for the message instead of one row per recipient driver. For 1:1 conversations, this is the driver’s ID. Integrations that only need 1:1 messages should filter responses where driverId != 0.</p>
          */
         IsReadStage driverId(long driverId);
 
@@ -183,8 +183,8 @@ public final class V1MessageResponse {
         }
 
         /**
-         * <p>ID of the driver for whom the message is sent to or sent by.</p>
-         * <p>ID of the driver for whom the message is sent to or sent by.</p>
+         * <p>ID of the driver associated with this message row. For organizations using Messages v2, this field uses 0 as a sentinel when the message belongs to a non–single-driver channel (for example Announcements channel, multi-member groups, or Driver-to-Admin channels): the API returns one row for the message instead of one row per recipient driver. For 1:1 conversations, this is the driver’s ID. Integrations that only need 1:1 messages should filter responses where driverId != 0.</p>
+         * <p>ID of the driver associated with this message row. For organizations using Messages v2, this field uses 0 as a sentinel when the message belongs to a non–single-driver channel (for example Announcements channel, multi-member groups, or Driver-to-Admin channels): the API returns one row for the message instead of one row per recipient driver. For 1:1 conversations, this is the driver’s ID. Integrations that only need 1:1 messages should filter responses where driverId != 0.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
