@@ -94,6 +94,9 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
     public static final WebhooksPostWebhooksRequestBodyEventTypesItem SEVERE_SPEEDING_STARTED =
             new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.SEVERE_SPEEDING_STARTED, "SevereSpeedingStarted");
 
+    public static final WebhooksPostWebhooksRequestBodyEventTypesItem SHIPMENT_TRACKING_EVENT =
+            new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.SHIPMENT_TRACKING_EVENT, "ShipmentTrackingEvent");
+
     public static final WebhooksPostWebhooksRequestBodyEventTypesItem ENGINE_FAULT_OFF =
             new WebhooksPostWebhooksRequestBodyEventTypesItem(Value.ENGINE_FAULT_OFF, "EngineFaultOff");
 
@@ -198,6 +201,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
                 return visitor.visitAddressCreated();
             case SEVERE_SPEEDING_STARTED:
                 return visitor.visitSevereSpeedingStarted();
+            case SHIPMENT_TRACKING_EVENT:
+                return visitor.visitShipmentTrackingEvent();
             case ENGINE_FAULT_OFF:
                 return visitor.visitEngineFaultOff();
             case ROUTE_STOP_DEPARTURE:
@@ -273,6 +278,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
                 return ADDRESS_CREATED;
             case "SevereSpeedingStarted":
                 return SEVERE_SPEEDING_STARTED;
+            case "ShipmentTrackingEvent":
+                return SHIPMENT_TRACKING_EVENT;
             case "EngineFaultOff":
                 return ENGINE_FAULT_OFF;
             case "RouteStopDeparture":
@@ -340,6 +347,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
         SEVERE_SPEEDING_ENDED,
 
         SEVERE_SPEEDING_STARTED,
+
+        SHIPMENT_TRACKING_EVENT,
 
         SPEEDING_EVENT_ENDED,
 
@@ -410,6 +419,8 @@ public final class WebhooksPostWebhooksRequestBodyEventTypesItem {
         T visitSevereSpeedingEnded();
 
         T visitSevereSpeedingStarted();
+
+        T visitShipmentTrackingEvent();
 
         T visitSpeedingEventEnded();
 
