@@ -504,8 +504,8 @@ client.addresses().update(
 </dl>
 </details>
 
-## Alerts
-<details><summary><code>client.alerts.getConfigurations() -> AlertsGetConfigurationsResponseBody</code></summary>
+## Beta APIs
+<details><summary><code>client.betaApIs.getVoiceSessionsStream() -> AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -517,147 +517,11 @@ client.addresses().update(
 <dl>
 <dd>
 
-Get specified Alert Configurations.
-
-The following trigger types are API enabled and will show up in the results:
-Vehicle Speed
-Ambient Temperature
-Fuel Level (Percentage)
-Vehicle DEF Level (Percentage)
-Vehicle Battery
-Gateway Unplugged
-Dashcam Disconnected
-Camera Connector Disconnected
-Asset starts moving
-Inside Geofence
-Outside Geofence
-Unassigned Driving
-Driver HOS Violation
-Vehicle Engine Idle
-Asset Engine On
-Asset Engine Off
-Harsh Event
-Scheduled Maintenance
-Scheduled Maintenance by Odometer
-Scheduled Maintenance by Engine Hours
-Out of Route
-GPS Signal Loss
-Cell Signal Loss
-Fault Code
-Tire Faults
-Gateway Disconnected
-Panic Button
-Tampering Detected
-Asset Reading
-If vehicle is severely speeding (as defined by your organization)
-DVIR Submitted for Asset
-Driver Document Submitted
-Driver App Sign In
-Driver App Sign Out
-Geofence Entry
-Geofence Exit
-Route Stop ETA Alert
-Driver Recorded
-A safety event occurred with a driver assigned
-A safety event occurred
-Sudden Fuel Level Rise
-Sudden Fuel Level Drop
-Scheduled Date And Time
-Training Assignment Due Soon
-Training Assignment Past Due
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.alerts().getConfigurations(
-    GetConfigurationsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — Filter by the IDs. Returns all if no ids are provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `Optional<GetConfigurationsRequestStatus>` — The status of the alert configuration.  Valid values: `all`, `enabled`, `disabled`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.alerts.postConfigurations(request) -> AlertsPostConfigurationsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an alert configuration.
+Returns a paginated stream of voice agent session summaries, filterable by start time, agent, vehicle, driver, and status. Sessions are returned ordered by `happenedAtTime` descending (most recent first). Use this endpoint to discover sessions; pass the returned IDs to GET /agent-studio/voice-sessions to fetch full session details.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Agent Studio Voice Sessions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -675,333 +539,8 @@ To use this endpoint, select **Write Alerts** under the Alerts category when cre
 <dd>
 
 ```java
-client.alerts().postConfigurations(
-    AlertsPostConfigurationsRequestBody
-        .builder()
-        .isEnabled(true)
-        .name("My Harsh Event Alert")
-        .scope(
-            ScopeObjectRequestBody
-                .builder()
-                .all(false)
-                .build()
-        )
-        .actions(
-            Arrays.asList(
-                ActionObjectRequestBody
-                    .builder()
-                    .actionTypeId(1)
-                    .build()
-            )
-        )
-        .triggers(
-            Arrays.asList(
-                WorkflowTriggerObjectRequestBody
-                    .builder()
-                    .triggerTypeId(1000)
-                    .build()
-            )
-        )
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**actions:** `List<ActionObjectRequestBody>` — An array of actions.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isEnabled:** `Boolean` — Whether the alert is enabled or not.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — The custom name of the configuration.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**operationalSettings:** `Optional<OperationalSettingsObjectRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scope:** `ScopeObjectRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**triggers:** `List<WorkflowTriggerObjectRequestBody>` — An array of triggers.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.alerts.deleteConfigurations()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete an alert configuration.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.alerts().deleteConfigurations(
-    DeleteConfigurationsRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — The unqiue Samsara id of the alert configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.alerts.patchConfigurations(request) -> AlertsPatchConfigurationsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an alert configuration.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.alerts().patchConfigurations(
-    AlertsPatchConfigurationsRequestBody
-        .builder()
-        .id("e1c5dffc-c7b7-47b0-a778-6a65de638abf")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**actions:** `Optional<List<ActionObjectRequestBody>>` — An array of actions.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**id:** `String` — The unqiue Samsara id of the alert configuration.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isEnabled:** `Optional<Boolean>` — Whether the alert is enabled or not.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — The custom name of the configuration.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**operationalSettings:** `Optional<OperationalSettingsObjectRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scope:** `Optional<ScopeObjectRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**triggers:** `Optional<List<WorkflowTriggerObjectRequestBody>>` — An array of triggers.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.alerts.getIncidents() -> AlertsGetIncidentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get Alert Incidents for specific Alert Configurations over a specified period of time.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.alerts().getIncidents(
-    GetIncidentsRequest
+client.betaApIs().getVoiceSessionsStream(
+    GetVoiceSessionsStreamRequest
         .builder()
         .startTime("startTime")
         .build()
@@ -1020,7 +559,7 @@ client.alerts().getIncidents(
 <dl>
 <dd>
 
-**startTime:** `String` — Required RFC 3339 timestamp that indicates when to begin receiving data. This will be based on updatedAtTime.
+**startTime:** `String` — Lower bound on session start time, in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2026-05-19T14:23:11Z, 2026-05-19T14:23:11.455Z, OR 2026-05-19T10:23:11-04:00).
     
 </dd>
 </dl>
@@ -1028,7 +567,7 @@ client.alerts().getIncidents(
 <dl>
 <dd>
 
-**configurationIds:** `Optional<String>` — Required array of alert configuration ids to return incident data for.
+**endTime:** `Optional<String>` — Upper bound on session start time, in RFC 3339 format. Defaults to the current time when omitted. Millisecond precision and timezones are supported.
     
 </dd>
 </dl>
@@ -1036,7 +575,7 @@ client.alerts().getIncidents(
 <dl>
 <dd>
 
-**endTime:** `Optional<String>` — Optional RFC 3339 timestamp to stop receiving data. Defaults to now if not provided. This will be based on updatedAtTime.
+**agentIds:** `Optional<String>` — Required, comma-separated list of Agent Studio agent IDs to filter sessions on. Up to 100 agent IDs per call.
     
 </dd>
 </dl>
@@ -1044,73 +583,23 @@ client.alerts().getIncidents(
 <dl>
 <dd>
 
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+**vehicleIds:** `Optional<String>` — Optional, comma-separated list of vehicle IDs. When set, only sessions whose target device was associated with one of these vehicles are returned. Up to 100 vehicle IDs per call.
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**driverIds:** `Optional<String>` — Optional, comma-separated list of driver IDs. When set, only sessions whose target device was associated with one of these drivers are returned. Up to 100 driver IDs per call.
+    
 </dd>
 </dl>
 
-
-</dd>
-</dl>
-</details>
-
-## Assets
-<details><summary><code>client.assets.list() -> SyncPagingIterable&amp;lt;AssetResponseBody&amp;gt;</code></summary>
 <dl>
 <dd>
 
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List all assets. Up to 300 assets will be returned per page.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().list(
-    ListAssetsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**type:** `Optional<ListAssetsRequestType>` — The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
+**sessionStatus:** `Optional<String>` — Optional, comma-separated list of session statuses to filter on. Valid values: `completed`, `running`, `failed`, `unknown`. Defaults to `completed` when omitted.
     
 </dd>
 </dl>
@@ -1126,79 +615,7 @@ client.assets().list(
 <dl>
 <dd>
 
-**updatedAfterTime:** `Optional<String>` —  A filter on data to have an updated at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeTags:** `Optional<Boolean>` — Optional boolean indicating whether to return tags on supported entities
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of asset IDs and External IDs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs. Example: `externalIds=maintenanceId:250020,vin:1HGBH41JXMN109186`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**attributeValueIds:** `Optional<String>` — A filter on the data based on this comma-separated list of attribute value IDs. Only entities associated with ALL of the referenced values will be returned (i.e. the intersection of the sets of entities with each value). Example: `attributeValueIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**attributes:** `Optional<String>` — A filter on the data to return entities within given range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: `attributes=Length:range(8,)&attributes=Length:range(10,20)&attributes=Date:range(2025-01-01,2025-01-31)`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeAttributes:** `Optional<Boolean>` — Optional boolean indicating whether to return attributes on supported entities
+**limit:** `Optional<Long>` — Maximum number of sessions to return. Default 50, max 100.
     
 </dd>
 </dl>
@@ -1210,858 +627,6 @@ client.assets().list(
 </dl>
 </details>
 
-<details><summary><code>client.assets.createAsset(request) -> AssetsCreateAssetResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a new asset.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().createAsset(
-    AssetsCreateAssetRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**attributes:** `Optional<List<GoaAttributeTinyRequestBody>>` — A list of attributes to assign to the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**licensePlate:** `Optional<String>` — The license plate of the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**make:** `Optional<String>` — The OEM/manufacturer of the asset. Updates to this field are restricted.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**model:** `Optional<String>` — The model of the asset. Updates to this field are restricted.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — The human-readable name of the asset. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — These are generic notes about the asset. Can be set or updated through the Samsara Dashboard or the API at any time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**readingsIngestionEnabled:** `Optional<Boolean>` — Indicates whether the asset is expected to have data ingested using the Readings API.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**regulationMode:** `Optional<AssetsCreateAssetRequestBodyRegulationMode>` — Whether or not the asset is regulated, unregulated (non-CMV), or a mixed use unregulated asset. Primarily used with vehicles.  Valid values: `mixed`, `regulated`, `unregulated`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**serialNumber:** `Optional<String>` — The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<List<String>>` — An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**type:** `Optional<AssetsCreateAssetRequestBodyType>` — The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vin:** `Optional<String>` — The unique 17-digit VIN (Vehicle Identification Number) or PIN (Product Identification Number) of the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**year:** `Optional<Long>` — The model year of the asset. Updates to this field are restricted.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.deleteAsset()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete an existing asset.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().deleteAsset(
-    DeleteAssetRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — A filter selecting a single asset by id.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.updateAsset(request) -> AssetsUpdateAssetResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update an existing asset.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().updateAsset(
-    AssetsUpdateAssetRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — A filter selecting a single asset by id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**licensePlate:** `Optional<String>` — The license plate of the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**make:** `Optional<String>` — The OEM/manufacturer of the asset. Updates to this field are restricted.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**model:** `Optional<String>` — The model of the asset. Updates to this field are restricted.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — The human-readable name of the asset. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — These are generic notes about the asset. Can be set or updated through the Samsara Dashboard or the API at any time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**readingsIngestionEnabled:** `Optional<Boolean>` — Indicates whether the asset is expected to have data ingested using the Readings API.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**regulationMode:** `Optional<AssetsUpdateAssetRequestBodyRegulationMode>` — Whether or not the asset is regulated, unregulated (non-CMV), or a mixed use unregulated asset. Primarily used with vehicles.  Valid values: `mixed`, `regulated`, `unregulated`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**serialNumber:** `Optional<String>` — The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**type:** `Optional<AssetsUpdateAssetRequestBodyType>` — The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vin:** `Optional<String>` — The unique 17-digit VIN (Vehicle Identification Number) or PIN (Product Identification Number) of the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**year:** `Optional<Long>` — The model year of the asset. Updates to this field are restricted.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.v1GetAllAssetCurrentLocations() -> InlineResponse2002</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Fetch current locations of all assets. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().v1GetAllAssetCurrentLocations(
-    V1GetAllAssetCurrentLocationsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**startingAfter:** `Optional<String>` — Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endingBefore:** `Optional<String>` — Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.v1GetAssetsReefers() -> InlineResponse2003</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Fetches all reefers and reefer-specific stats. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().v1GetAssetsReefers(
-    V1GetAssetsReefersRequest
-        .builder()
-        .startMs(1000000L)
-        .endMs(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startingAfter:** `Optional<String>` — Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endingBefore:** `Optional<String>` — Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.v1GetAssetLocation(assetId) -> List&amp;lt;V1AssetLocationResponseItem&amp;gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-List historical locations for a given asset. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().v1GetAssetLocation(
-    1000000L,
-    V1GetAssetLocationRequest
-        .builder()
-        .startMs(1000000L)
-        .endMs(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `Long` — ID of the asset. Must contain only digits 0-9.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.v1GetAssetReefer(assetId) -> V1AssetReeferResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Fetch the reefer-specific stats of an asset. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().v1GetAssetReefer(
-    1000000L,
-    V1GetAssetReeferRequest
-        .builder()
-        .startMs(1000000L)
-        .endMs(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `Long` — ID of the asset. Must contain only digits 0-9.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.get(id)</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().get(
-    "id",
-    GetAssetsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.assets.update(id)</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.assets().update(
-    "id",
-    UpdateAssetsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Beta APIs
 <details><summary><code>client.betaApIs.getDepreciationTransactions() -> DepreciationGetDepreciationTransactionsResponseBody</code></summary>
 <dl>
 <dd>
@@ -8951,6 +7516,1564 @@ client.betaApIs().patchSafetyEventsV2Batch(
 <dd>
 
 **safetyEventIds:** `List<String>` — IDs of the Safety Events to update. Maximum 200.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Alerts
+<details><summary><code>client.alerts.getConfigurations() -> AlertsGetConfigurationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get specified Alert Configurations.
+
+The following trigger types are API enabled and will show up in the results:
+Vehicle Speed
+Ambient Temperature
+Fuel Level (Percentage)
+Vehicle DEF Level (Percentage)
+Vehicle Battery
+Gateway Unplugged
+Dashcam Disconnected
+Camera Connector Disconnected
+Asset starts moving
+Inside Geofence
+Outside Geofence
+Unassigned Driving
+Driver HOS Violation
+Vehicle Engine Idle
+Asset Engine On
+Asset Engine Off
+Harsh Event
+Scheduled Maintenance
+Scheduled Maintenance by Odometer
+Scheduled Maintenance by Engine Hours
+Out of Route
+GPS Signal Loss
+Cell Signal Loss
+Fault Code
+Tire Faults
+Gateway Disconnected
+Panic Button
+Tampering Detected
+Asset Reading
+If vehicle is severely speeding (as defined by your organization)
+DVIR Submitted for Asset
+Driver Document Submitted
+Driver App Sign In
+Driver App Sign Out
+Geofence Entry
+Geofence Exit
+Route Stop ETA Alert
+Driver Recorded
+A safety event occurred with a driver assigned
+A safety event occurred
+Sudden Fuel Level Rise
+Sudden Fuel Level Drop
+Scheduled Date And Time
+Training Assignment Due Soon
+Training Assignment Past Due
+Asset assignment past due
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.alerts().getConfigurations(
+    GetConfigurationsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — Filter by the IDs. Returns all if no ids are provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<GetConfigurationsRequestStatus>` — The status of the alert configuration.  Valid values: `all`, `enabled`, `disabled`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.alerts.postConfigurations(request) -> AlertsPostConfigurationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an alert configuration.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.alerts().postConfigurations(
+    AlertsPostConfigurationsRequestBody
+        .builder()
+        .isEnabled(true)
+        .name("My Harsh Event Alert")
+        .scope(
+            ScopeObjectRequestBody
+                .builder()
+                .all(false)
+                .build()
+        )
+        .actions(
+            Arrays.asList(
+                ActionObjectRequestBody
+                    .builder()
+                    .actionTypeId(1)
+                    .build()
+            )
+        )
+        .triggers(
+            Arrays.asList(
+                WorkflowTriggerObjectRequestBody
+                    .builder()
+                    .triggerTypeId(1000)
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**actions:** `List<ActionObjectRequestBody>` — An array of actions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isEnabled:** `Boolean` — Whether the alert is enabled or not.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — The custom name of the configuration.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationalSettings:** `Optional<OperationalSettingsObjectRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scope:** `ScopeObjectRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**triggers:** `List<WorkflowTriggerObjectRequestBody>` — An array of triggers.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.alerts.deleteConfigurations()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an alert configuration.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.alerts().deleteConfigurations(
+    DeleteConfigurationsRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The unqiue Samsara id of the alert configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.alerts.patchConfigurations(request) -> AlertsPatchConfigurationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an alert configuration.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.alerts().patchConfigurations(
+    AlertsPatchConfigurationsRequestBody
+        .builder()
+        .id("e1c5dffc-c7b7-47b0-a778-6a65de638abf")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**actions:** `Optional<List<ActionObjectRequestBody>>` — An array of actions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — The unqiue Samsara id of the alert configuration.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isEnabled:** `Optional<Boolean>` — Whether the alert is enabled or not.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — The custom name of the configuration.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**operationalSettings:** `Optional<OperationalSettingsObjectRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scope:** `Optional<ScopeObjectRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**triggers:** `Optional<List<WorkflowTriggerObjectRequestBody>>` — An array of triggers.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.alerts.getIncidents() -> AlertsGetIncidentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get Alert Incidents for specific Alert Configurations over a specified period of time.
+
+ <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Alerts** under the Alerts category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.alerts().getIncidents(
+    GetIncidentsRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Required RFC 3339 timestamp that indicates when to begin receiving data. This will be based on updatedAtTime.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**configurationIds:** `Optional<String>` — Required array of alert configuration ids to return incident data for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — Optional RFC 3339 timestamp to stop receiving data. Defaults to now if not provided. This will be based on updatedAtTime.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Assets
+<details><summary><code>client.assets.list() -> SyncPagingIterable&amp;lt;AssetResponseBody&amp;gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all assets. Up to 300 assets will be returned per page.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().list(
+    ListAssetsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**type:** `Optional<ListAssetsRequestType>` — The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**updatedAfterTime:** `Optional<String>` —  A filter on data to have an updated at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs on supported entities
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeTags:** `Optional<Boolean>` — Optional boolean indicating whether to return tags on supported entities
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of asset IDs and External IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs. Example: `externalIds=maintenanceId:250020,vin:1HGBH41JXMN109186`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attributeValueIds:** `Optional<String>` — A filter on the data based on this comma-separated list of attribute value IDs. Only entities associated with ALL of the referenced values will be returned (i.e. the intersection of the sets of entities with each value). Example: `attributeValueIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attributes:** `Optional<String>` — A filter on the data to return entities within given range query (only for numeric and date attributes) separated by a comma. Only entities meeting all the conditions will be returned. At least one bound must be provided. Example: `attributes=Length:range(8,)&attributes=Length:range(10,20)&attributes=Date:range(2025-01-01,2025-01-31)`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeAttributes:** `Optional<Boolean>` — Optional boolean indicating whether to return attributes on supported entities
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.createAsset(request) -> AssetsCreateAssetResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new asset.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().createAsset(
+    AssetsCreateAssetRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**attributes:** `Optional<List<GoaAttributeTinyRequestBody>>` — A list of attributes to assign to the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**licensePlate:** `Optional<String>` — The license plate of the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**make:** `Optional<String>` — The OEM/manufacturer of the asset. Updates to this field are restricted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `Optional<String>` — The model of the asset. Updates to this field are restricted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — The human-readable name of the asset. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — These are generic notes about the asset. Can be set or updated through the Samsara Dashboard or the API at any time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**readingsIngestionEnabled:** `Optional<Boolean>` — Indicates whether the asset is expected to have data ingested using the Readings API.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**regulationMode:** `Optional<AssetsCreateAssetRequestBodyRegulationMode>` — Whether or not the asset is regulated, unregulated (non-CMV), or a mixed use unregulated asset. Primarily used with vehicles.  Valid values: `mixed`, `regulated`, `unregulated`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serialNumber:** `Optional<String>` — The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<List<String>>` — An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `Optional<AssetsCreateAssetRequestBodyType>` — The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vin:** `Optional<String>` — The unique 17-digit VIN (Vehicle Identification Number) or PIN (Product Identification Number) of the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `Optional<Long>` — The model year of the asset. Updates to this field are restricted.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.deleteAsset()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an existing asset.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().deleteAsset(
+    DeleteAssetRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — A filter selecting a single asset by id.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.updateAsset(request) -> AssetsUpdateAssetResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an existing asset.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().updateAsset(
+    AssetsUpdateAssetRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — A filter selecting a single asset by id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**licensePlate:** `Optional<String>` — The license plate of the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**make:** `Optional<String>` — The OEM/manufacturer of the asset. Updates to this field are restricted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `Optional<String>` — The model of the asset. Updates to this field are restricted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — The human-readable name of the asset. This is set by a fleet administrator and will appear in both Samsara’s cloud dashboard as well as the Samsara Driver mobile app. By default, this name is the serial number of the Samsara Asset Gateway. It can be set or updated through the Samsara Dashboard or through the API at any time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — These are generic notes about the asset. Can be set or updated through the Samsara Dashboard or the API at any time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**readingsIngestionEnabled:** `Optional<Boolean>` — Indicates whether the asset is expected to have data ingested using the Readings API.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**regulationMode:** `Optional<AssetsUpdateAssetRequestBodyRegulationMode>` — Whether or not the asset is regulated, unregulated (non-CMV), or a mixed use unregulated asset. Primarily used with vehicles.  Valid values: `mixed`, `regulated`, `unregulated`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serialNumber:** `Optional<String>` — The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `Optional<AssetsUpdateAssetRequestBodyType>` — The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vin:** `Optional<String>` — The unique 17-digit VIN (Vehicle Identification Number) or PIN (Product Identification Number) of the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**year:** `Optional<Long>` — The model year of the asset. Updates to this field are restricted.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.v1GetAllAssetCurrentLocations() -> InlineResponse2002</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Fetch current locations of all assets. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().v1GetAllAssetCurrentLocations(
+    V1GetAllAssetCurrentLocationsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startingAfter:** `Optional<String>` — Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endingBefore:** `Optional<String>` — Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.v1GetAssetsReefers() -> InlineResponse2003</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Fetches all reefers and reefer-specific stats. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().v1GetAssetsReefers(
+    V1GetAssetsReefersRequest
+        .builder()
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startingAfter:** `Optional<String>` — Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'endingBefore' parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endingBefore:** `Optional<String>` — Pagination parameter indicating the cursor position to return results before. Used in conjunction with the 'limit' parameter. Mutually exclusive with 'startingAfter' parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Pagination parameter indicating the number of results to return in this request. Used in conjunction with either 'startingAfter' or 'endingBefore'.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.v1GetAssetLocation(assetId) -> List&amp;lt;V1AssetLocationResponseItem&amp;gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+List historical locations for a given asset. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().v1GetAssetLocation(
+    1000000L,
+    V1GetAssetLocationRequest
+        .builder()
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Long` — ID of the asset. Must contain only digits 0-9.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.v1GetAssetReefer(assetId) -> V1AssetReeferResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+<n class="warning">
+<nh>
+<i class="fa fa-exclamation-circle"></i>
+This endpoint is still on our legacy API.
+</nh>
+</n>
+
+Fetch the reefer-specific stats of an asset. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().v1GetAssetReefer(
+    1000000L,
+    V1GetAssetReeferRequest
+        .builder()
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Long` — ID of the asset. Must contain only digits 0-9.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.get(id)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().get(
+    "id",
+    GetAssetsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.update(id)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().update(
+    "id",
+    UpdateAssetsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
     
 </dd>
 </dl>

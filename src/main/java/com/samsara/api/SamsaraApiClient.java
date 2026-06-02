@@ -69,11 +69,11 @@ public class SamsaraApiClient {
 
     protected final Supplier<AddressesClient> addressesClient;
 
+    protected final Supplier<BetaApIsClient> betaApIsClient;
+
     protected final Supplier<AlertsClient> alertsClient;
 
     protected final Supplier<AssetsClient> assetsClient;
-
-    protected final Supplier<BetaApIsClient> betaApIsClient;
 
     protected final Supplier<LocationAndSpeedClient> locationAndSpeedClient;
 
@@ -184,9 +184,9 @@ public class SamsaraApiClient {
     public SamsaraApiClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
         this.addressesClient = Suppliers.memoize(() -> new AddressesClient(clientOptions));
+        this.betaApIsClient = Suppliers.memoize(() -> new BetaApIsClient(clientOptions));
         this.alertsClient = Suppliers.memoize(() -> new AlertsClient(clientOptions));
         this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
-        this.betaApIsClient = Suppliers.memoize(() -> new BetaApIsClient(clientOptions));
         this.locationAndSpeedClient = Suppliers.memoize(() -> new LocationAndSpeedClient(clientOptions));
         this.attributesClient = Suppliers.memoize(() -> new AttributesClient(clientOptions));
         this.mediaClient = Suppliers.memoize(() -> new MediaClient(clientOptions));
@@ -249,16 +249,16 @@ public class SamsaraApiClient {
         return this.addressesClient.get();
     }
 
+    public BetaApIsClient betaApIs() {
+        return this.betaApIsClient.get();
+    }
+
     public AlertsClient alerts() {
         return this.alertsClient.get();
     }
 
     public AssetsClient assets() {
         return this.assetsClient.get();
-    }
-
-    public BetaApIsClient betaApIs() {
-        return this.betaApIsClient.get();
     }
 
     public LocationAndSpeedClient locationAndSpeed() {

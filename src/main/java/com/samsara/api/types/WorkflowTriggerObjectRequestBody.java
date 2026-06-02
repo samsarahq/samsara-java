@@ -50,6 +50,7 @@ public final class WorkflowTriggerObjectRequestBody {
      * Sudden Fuel Level Drop = 5035
      * Training Assignment Due Soon = 8003
      * Training Assignment Past Due = 8004
+     * Asset assignment past due = 8014
      * Vehicle Speed = 1000
      * Fuel Level (Percentage) = 1005
      * Vehicle DEF Level (Percentage) = 1006
@@ -134,6 +135,7 @@ public final class WorkflowTriggerObjectRequestBody {
          * Sudden Fuel Level Drop = 5035
          * Training Assignment Due Soon = 8003
          * Training Assignment Past Due = 8004
+         * Asset assignment past due = 8014
          * Vehicle Speed = 1000
          * Fuel Level (Percentage) = 1005
          * Vehicle DEF Level (Percentage) = 1006
@@ -214,6 +216,7 @@ public final class WorkflowTriggerObjectRequestBody {
          * Sudden Fuel Level Drop = 5035
          * Training Assignment Due Soon = 8003
          * Training Assignment Past Due = 8004
+         * Asset assignment past due = 8014
          * Vehicle Speed = 1000
          * Fuel Level (Percentage) = 1005
          * Vehicle DEF Level (Percentage) = 1006
@@ -261,6 +264,7 @@ public final class WorkflowTriggerObjectRequestBody {
          * Sudden Fuel Level Drop = 5035
          * Training Assignment Due Soon = 8003
          * Training Assignment Past Due = 8004
+         * Asset assignment past due = 8014
          * Vehicle Speed = 1000
          * Fuel Level (Percentage) = 1005
          * Vehicle DEF Level (Percentage) = 1006

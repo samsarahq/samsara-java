@@ -21,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = UploadedMediaObjectResponseBody.Builder.class)
 public final class UploadedMediaObjectResponseBody {
+    private final Optional<String> auxCamSerial;
+
     private final String availableAtTime;
 
     private final Optional<UploadedMediaObjectResponseBodyCameraRole> cameraRole;
@@ -42,6 +44,7 @@ public final class UploadedMediaObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private UploadedMediaObjectResponseBody(
+            Optional<String> auxCamSerial,
             String availableAtTime,
             Optional<UploadedMediaObjectResponseBodyCameraRole> cameraRole,
             String endTime,
@@ -52,6 +55,7 @@ public final class UploadedMediaObjectResponseBody {
             Optional<UrlInfoObjectResponseBody> urlInfo,
             String vehicleId,
             Map<String, Object> additionalProperties) {
+        this.auxCamSerial = auxCamSerial;
         this.availableAtTime = availableAtTime;
         this.cameraRole = cameraRole;
         this.endTime = endTime;
@@ -62,6 +66,14 @@ public final class UploadedMediaObjectResponseBody {
         this.urlInfo = urlInfo;
         this.vehicleId = vehicleId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Serial number of the auxiliary camera that captured this media. Only present for analog inputs from auxiliary camera devices (e.g. Octo-1, Octo-4). Examples: ABDVJ123456789
+     */
+    @JsonProperty("auxCamSerial")
+    public Optional<String> getAuxCamSerial() {
+        return auxCamSerial;
     }
 
     /**
@@ -145,7 +157,8 @@ public final class UploadedMediaObjectResponseBody {
     }
 
     private boolean equalTo(UploadedMediaObjectResponseBody other) {
-        return availableAtTime.equals(other.availableAtTime)
+        return auxCamSerial.equals(other.auxCamSerial)
+                && availableAtTime.equals(other.availableAtTime)
                 && cameraRole.equals(other.cameraRole)
                 && endTime.equals(other.endTime)
                 && input.equals(other.input)
@@ -159,6 +172,7 @@ public final class UploadedMediaObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.auxCamSerial,
                 this.availableAtTime,
                 this.cameraRole,
                 this.endTime,
@@ -234,6 +248,13 @@ public final class UploadedMediaObjectResponseBody {
         UploadedMediaObjectResponseBody build();
 
         /**
+         * <p>Serial number of the auxiliary camera that captured this media. Only present for analog inputs from auxiliary camera devices (e.g. Octo-1, Octo-4). Examples: ABDVJ123456789</p>
+         */
+        _FinalStage auxCamSerial(Optional<String> auxCamSerial);
+
+        _FinalStage auxCamSerial(String auxCamSerial);
+
+        /**
          * <p>Camera role for this media.  Valid values: <code>leftMirrorMount</code>, <code>leftSide</code>, <code>rightMirrorMount</code>, <code>rightSide</code>, <code>rearHigh</code>, <code>rearBumper</code>, <code>inCab</code>, <code>front</code>, <code>hopper</code>, <code>other1</code>, <code>other2</code>, <code>other3</code>, <code>other4</code>, <code>leftBev</code>, <code>rightBev</code>, <code>rearBev</code>, <code>frontBev</code>, <code>otherBev</code>, <code>bevNotUsed</code></p>
          */
         _FinalStage cameraRole(Optional<UploadedMediaObjectResponseBodyCameraRole> cameraRole);
@@ -273,6 +294,8 @@ public final class UploadedMediaObjectResponseBody {
 
         private Optional<UploadedMediaObjectResponseBodyCameraRole> cameraRole = Optional.empty();
 
+        private Optional<String> auxCamSerial = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -280,6 +303,7 @@ public final class UploadedMediaObjectResponseBody {
 
         @java.lang.Override
         public Builder from(UploadedMediaObjectResponseBody other) {
+            auxCamSerial(other.getAuxCamSerial());
             availableAtTime(other.getAvailableAtTime());
             cameraRole(other.getCameraRole());
             endTime(other.getEndTime());
@@ -409,9 +433,30 @@ public final class UploadedMediaObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Serial number of the auxiliary camera that captured this media. Only present for analog inputs from auxiliary camera devices (e.g. Octo-1, Octo-4). Examples: ABDVJ123456789</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage auxCamSerial(String auxCamSerial) {
+            this.auxCamSerial = Optional.ofNullable(auxCamSerial);
+            return this;
+        }
+
+        /**
+         * <p>Serial number of the auxiliary camera that captured this media. Only present for analog inputs from auxiliary camera devices (e.g. Octo-1, Octo-4). Examples: ABDVJ123456789</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "auxCamSerial", nulls = Nulls.SKIP)
+        public _FinalStage auxCamSerial(Optional<String> auxCamSerial) {
+            this.auxCamSerial = auxCamSerial;
+            return this;
+        }
+
         @java.lang.Override
         public UploadedMediaObjectResponseBody build() {
             return new UploadedMediaObjectResponseBody(
+                    auxCamSerial,
                     availableAtTime,
                     cameraRole,
                     endTime,
