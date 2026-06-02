@@ -49,6 +49,7 @@ import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
+import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
@@ -82,6 +83,7 @@ import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRid
 import com.samsara.api.resources.betaapis.requests.SafetyEventsV2PatchSafetyEventsV2BatchRequestBody;
 import com.samsara.api.resources.betaapis.requests.UpdateFunctionStorageFileRequest;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
+import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
@@ -160,6 +162,28 @@ public class BetaApIsClient {
      */
     public RawBetaApIsClient withRawResponse() {
         return this.rawClient;
+    }
+
+    /**
+     * Returns a paginated stream of voice agent session summaries, filterable by start time, agent, vehicle, driver, and status. Sessions are returned ordered by <code>happenedAtTime</code> descending (most recent first). Use this endpoint to discover sessions; pass the returned IDs to GET /agent-studio/voice-sessions to fetch full session details.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Agent Studio Voice Sessions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody getVoiceSessionsStream(
+            GetVoiceSessionsStreamRequest request) {
+        return this.rawClient.getVoiceSessionsStream(request).body();
+    }
+
+    /**
+     * Returns a paginated stream of voice agent session summaries, filterable by start time, agent, vehicle, driver, and status. Sessions are returned ordered by <code>happenedAtTime</code> descending (most recent first). Use this endpoint to discover sessions; pass the returned IDs to GET /agent-studio/voice-sessions to fetch full session details.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Agent Studio Voice Sessions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody getVoiceSessionsStream(
+            GetVoiceSessionsStreamRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getVoiceSessionsStream(request, requestOptions).body();
     }
 
     /**

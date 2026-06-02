@@ -46,7 +46,7 @@ public class MediaWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"media\":[{\"availableAtTime\":\"2019-11-11T14:00:12-04:00\",\"endTime\":\"2019-06-13T19:08:25Z\",\"input\":\"dashcamForwardFacing\",\"mediaType\":\"image\",\"startTime\":\"2019-06-13T19:08:25Z\",\"triggerReason\":\"api\",\"urlInfo\":{\"url\":\"https://sample.s3.url.com/image.jpeg\",\"urlExpiryTime\":\"2019-11-11T14:00:12-04:00\"},\"vehicleId\":\"1234\"}]},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":{\"media\":[{\"auxCamSerial\":\"ABDVJ123456789\",\"availableAtTime\":\"2019-11-11T14:00:12-04:00\",\"endTime\":\"2019-06-13T19:08:25Z\",\"input\":\"dashcamForwardFacing\",\"mediaType\":\"image\",\"startTime\":\"2019-06-13T19:08:25Z\",\"triggerReason\":\"api\",\"urlInfo\":{\"url\":\"https://sample.s3.url.com/image.jpeg\",\"urlExpiryTime\":\"2019-11-11T14:00:12-04:00\"},\"vehicleId\":\"1234\"}]},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         MediaRetrievalListUploadedMediaResponseBody response = client.media()
                 .listUploadedMedia(ListUploadedMediaRequest.builder()
                         .vehicleIds("vehicleIds")
@@ -65,6 +65,7 @@ public class MediaWireTest {
                 + "  \"data\": {\n"
                 + "    \"media\": [\n"
                 + "      {\n"
+                + "        \"auxCamSerial\": \"ABDVJ123456789\",\n"
                 + "        \"availableAtTime\": \"2019-11-11T14:00:12-04:00\",\n"
                 + "        \"endTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "        \"input\": \"dashcamForwardFacing\",\n"
