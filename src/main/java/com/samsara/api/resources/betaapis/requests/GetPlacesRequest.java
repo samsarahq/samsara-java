@@ -124,7 +124,7 @@ public final class GetPlacesRequest {
     }
 
     /**
-     * @return Reserved. Filtering by parent tag IDs is not implemented in this API version.
+     * @return Comma-separated parent tag IDs to filter places. Includes places tagged with each parent tag and its descendant tags.
      */
     @JsonProperty("parentTagIds")
     public Optional<String> getParentTagIds() {
@@ -335,7 +335,7 @@ public final class GetPlacesRequest {
         }
 
         /**
-         * <p>Reserved. Filtering by parent tag IDs is not implemented in this API version.</p>
+         * <p>Comma-separated parent tag IDs to filter places. Includes places tagged with each parent tag and its descendant tags.</p>
          */
         @JsonSetter(value = "parentTagIds", nulls = Nulls.SKIP)
         public Builder parentTagIds(Optional<String> parentTagIds) {
