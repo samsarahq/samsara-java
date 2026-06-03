@@ -4329,7 +4329,7 @@ client.betaApIs().getPlaces(
 <dl>
 <dd>
 
-**parentTagIds:** `Optional<String>` — Reserved. Filtering by parent tag IDs is not implemented in this API version.
+**parentTagIds:** `Optional<String>` — Comma-separated parent tag IDs to filter places. Includes places tagged with each parent tag and its descendant tags.
     
 </dd>
 </dl>
