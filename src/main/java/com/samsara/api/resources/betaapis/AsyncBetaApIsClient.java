@@ -49,6 +49,7 @@ import com.samsara.api.resources.betaapis.requests.GetReportRunDataRequest;
 import com.samsara.api.resources.betaapis.requests.GetReportRunsRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
+import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
@@ -83,6 +84,7 @@ import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRid
 import com.samsara.api.resources.betaapis.requests.SafetyEventsV2PatchSafetyEventsV2BatchRequestBody;
 import com.samsara.api.resources.betaapis.requests.UpdateFunctionStorageFileRequest;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
+import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsResponseBody;
 import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
@@ -163,6 +165,49 @@ public class AsyncBetaApIsClient {
      */
     public AsyncRawBetaApIsClient withRawResponse() {
         return this.rawClient;
+    }
+
+    /**
+     * Returns full details — including the transcript, tool calls, lifecycle events, and a recording URL — for a batch of voice agent sessions identified by <code>ids</code>. Discover session IDs with GET /agent-studio/voice-sessions/stream. Up to 100 IDs may be requested per call; IDs that are not found are omitted from the response.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Agent Studio Voice Sessions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AgentStudioVoiceSessionsGetVoiceSessionsResponseBody> getVoiceSessions() {
+        return this.rawClient.getVoiceSessions().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns full details — including the transcript, tool calls, lifecycle events, and a recording URL — for a batch of voice agent sessions identified by <code>ids</code>. Discover session IDs with GET /agent-studio/voice-sessions/stream. Up to 100 IDs may be requested per call; IDs that are not found are omitted from the response.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Agent Studio Voice Sessions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AgentStudioVoiceSessionsGetVoiceSessionsResponseBody> getVoiceSessions(
+            RequestOptions requestOptions) {
+        return this.rawClient.getVoiceSessions(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns full details — including the transcript, tool calls, lifecycle events, and a recording URL — for a batch of voice agent sessions identified by <code>ids</code>. Discover session IDs with GET /agent-studio/voice-sessions/stream. Up to 100 IDs may be requested per call; IDs that are not found are omitted from the response.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Agent Studio Voice Sessions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AgentStudioVoiceSessionsGetVoiceSessionsResponseBody> getVoiceSessions(
+            GetVoiceSessionsRequest request) {
+        return this.rawClient.getVoiceSessions(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns full details — including the transcript, tool calls, lifecycle events, and a recording URL — for a batch of voice agent sessions identified by <code>ids</code>. Discover session IDs with GET /agent-studio/voice-sessions/stream. Up to 100 IDs may be requested per call; IDs that are not found are omitted from the response.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Agent Studio Voice Sessions</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AgentStudioVoiceSessionsGetVoiceSessionsResponseBody> getVoiceSessions(
+            GetVoiceSessionsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getVoiceSessions(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
