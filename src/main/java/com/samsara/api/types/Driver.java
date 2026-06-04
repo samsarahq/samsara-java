@@ -49,6 +49,8 @@ public final class Driver {
 
     private final Optional<Boolean> eldYmEnabled;
 
+    private final Optional<String> email;
+
     private final Optional<Map<String, Object>> externalIds;
 
     private final Optional<Boolean> hasDrivingFeaturesHidden;
@@ -112,6 +114,7 @@ public final class Driver {
             Optional<Boolean> eldPcEnabled,
             Optional<DriverEldSettings> eldSettings,
             Optional<Boolean> eldYmEnabled,
+            Optional<String> email,
             Optional<Map<String, Object>> externalIds,
             Optional<Boolean> hasDrivingFeaturesHidden,
             Optional<Boolean> hasVehicleUnpinningEnabled,
@@ -150,6 +153,7 @@ public final class Driver {
         this.eldPcEnabled = eldPcEnabled;
         this.eldSettings = eldSettings;
         this.eldYmEnabled = eldYmEnabled;
+        this.email = email;
         this.externalIds = externalIds;
         this.hasDrivingFeaturesHidden = hasDrivingFeaturesHidden;
         this.hasVehicleUnpinningEnabled = hasVehicleUnpinningEnabled;
@@ -247,6 +251,11 @@ public final class Driver {
     @JsonProperty("eldYmEnabled")
     public Optional<Boolean> getEldYmEnabled() {
         return eldYmEnabled;
+    }
+
+    @JsonProperty("email")
+    public Optional<String> getEmail() {
+        return email;
     }
 
     @JsonProperty("externalIds")
@@ -390,6 +399,7 @@ public final class Driver {
                 && eldPcEnabled.equals(other.eldPcEnabled)
                 && eldSettings.equals(other.eldSettings)
                 && eldYmEnabled.equals(other.eldYmEnabled)
+                && email.equals(other.email)
                 && externalIds.equals(other.externalIds)
                 && hasDrivingFeaturesHidden.equals(other.hasDrivingFeaturesHidden)
                 && hasVehicleUnpinningEnabled.equals(other.hasVehicleUnpinningEnabled)
@@ -432,6 +442,7 @@ public final class Driver {
                 this.eldPcEnabled,
                 this.eldSettings,
                 this.eldYmEnabled,
+                this.email,
                 this.externalIds,
                 this.hasDrivingFeaturesHidden,
                 this.hasVehicleUnpinningEnabled,
@@ -495,6 +506,8 @@ public final class Driver {
         private Optional<DriverEldSettings> eldSettings = Optional.empty();
 
         private Optional<Boolean> eldYmEnabled = Optional.empty();
+
+        private Optional<String> email = Optional.empty();
 
         private Optional<Map<String, Object>> externalIds = Optional.empty();
 
@@ -562,6 +575,7 @@ public final class Driver {
             eldPcEnabled(other.getEldPcEnabled());
             eldSettings(other.getEldSettings());
             eldYmEnabled(other.getEldYmEnabled());
+            email(other.getEmail());
             externalIds(other.getExternalIds());
             hasDrivingFeaturesHidden(other.getHasDrivingFeaturesHidden());
             hasVehicleUnpinningEnabled(other.getHasVehicleUnpinningEnabled());
@@ -742,6 +756,17 @@ public final class Driver {
 
         public Builder eldYmEnabled(Boolean eldYmEnabled) {
             this.eldYmEnabled = Optional.ofNullable(eldYmEnabled);
+            return this;
+        }
+
+        @JsonSetter(value = "email", nulls = Nulls.SKIP)
+        public Builder email(Optional<String> email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = Optional.ofNullable(email);
             return this;
         }
 
@@ -1014,6 +1039,7 @@ public final class Driver {
                     eldPcEnabled,
                     eldSettings,
                     eldYmEnabled,
+                    email,
                     externalIds,
                     hasDrivingFeaturesHidden,
                     hasVehicleUnpinningEnabled,
