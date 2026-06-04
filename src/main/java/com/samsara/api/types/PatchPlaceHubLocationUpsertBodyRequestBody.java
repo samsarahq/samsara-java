@@ -40,6 +40,8 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
 
     private final Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime;
 
+    private final Optional<String> plannerNotes;
+
     private final Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills;
 
     private final Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime;
@@ -60,6 +62,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             Optional<String> locationPositionType,
             Optional<Integer> locationPriority,
             Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime,
+            Optional<String> plannerNotes,
             Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills,
             Optional<PlaceHubLocationServiceTimeInputRequestBody> serviceTime,
             Optional<List<PlaceHubLocationServiceWindowInputRequestBody>> serviceWindows,
@@ -74,6 +77,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         this.locationPositionType = locationPositionType;
         this.locationPriority = locationPriority;
         this.orderServiceTime = orderServiceTime;
+        this.plannerNotes = plannerNotes;
         this.requiredSkills = requiredSkills;
         this.serviceTime = serviceTime;
         this.serviceWindows = serviceWindows;
@@ -82,7 +86,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
     }
 
     /**
-     * @return Optional label; stored as planner-facing notes for this hub row.
+     * @return Optional label override for this hub location row.
      */
     @JsonProperty("displayName")
     public Optional<String> getDisplayName() {
@@ -151,6 +155,14 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
     }
 
     /**
+     * @return Planner-facing notes for this hub location row.
+     */
+    @JsonProperty("plannerNotes")
+    public Optional<String> getPlannerNotes() {
+        return plannerNotes;
+    }
+
+    /**
      * @return Required planner skills for this hub location.
      */
     @JsonProperty("requiredSkills")
@@ -201,6 +213,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                 && locationPositionType.equals(other.locationPositionType)
                 && locationPriority.equals(other.locationPriority)
                 && orderServiceTime.equals(other.orderServiceTime)
+                && plannerNotes.equals(other.plannerNotes)
                 && requiredSkills.equals(other.requiredSkills)
                 && serviceTime.equals(other.serviceTime)
                 && serviceWindows.equals(other.serviceWindows)
@@ -219,6 +232,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                 this.locationPositionType,
                 this.locationPriority,
                 this.orderServiceTime,
+                this.plannerNotes,
                 this.requiredSkills,
                 this.serviceTime,
                 this.serviceWindows,
@@ -247,7 +261,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         PatchPlaceHubLocationUpsertBodyRequestBody build();
 
         /**
-         * <p>Optional label; stored as planner-facing notes for this hub row.</p>
+         * <p>Optional label override for this hub location row.</p>
          */
         _FinalStage displayName(Optional<String> displayName);
 
@@ -300,6 +314,13 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         _FinalStage orderServiceTime(PlaceHubLocationOrderServiceTimeInputRequestBody orderServiceTime);
 
         /**
+         * <p>Planner-facing notes for this hub location row.</p>
+         */
+        _FinalStage plannerNotes(Optional<String> plannerNotes);
+
+        _FinalStage plannerNotes(String plannerNotes);
+
+        /**
          * <p>Required planner skills for this hub location.</p>
          */
         _FinalStage requiredSkills(Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills);
@@ -337,6 +358,8 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
 
         private Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills = Optional.empty();
 
+        private Optional<String> plannerNotes = Optional.empty();
+
         private Optional<PlaceHubLocationOrderServiceTimeInputRequestBody> orderServiceTime = Optional.empty();
 
         private Optional<Integer> locationPriority = Optional.empty();
@@ -369,6 +392,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
             locationPositionType(other.getLocationPositionType());
             locationPriority(other.getLocationPriority());
             orderServiceTime(other.getOrderServiceTime());
+            plannerNotes(other.getPlannerNotes());
             requiredSkills(other.getRequiredSkills());
             serviceTime(other.getServiceTime());
             serviceWindows(other.getServiceWindows());
@@ -460,6 +484,26 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         public _FinalStage requiredSkills(
                 Optional<List<PlaceHubLocationRequiredSkillInputRequestBody>> requiredSkills) {
             this.requiredSkills = requiredSkills;
+            return this;
+        }
+
+        /**
+         * <p>Planner-facing notes for this hub location row.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage plannerNotes(String plannerNotes) {
+            this.plannerNotes = Optional.ofNullable(plannerNotes);
+            return this;
+        }
+
+        /**
+         * <p>Planner-facing notes for this hub location row.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "plannerNotes", nulls = Nulls.SKIP)
+        public _FinalStage plannerNotes(Optional<String> plannerNotes) {
+            this.plannerNotes = plannerNotes;
             return this;
         }
 
@@ -598,7 +642,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         }
 
         /**
-         * <p>Optional label; stored as planner-facing notes for this hub row.</p>
+         * <p>Optional label override for this hub location row.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -608,7 +652,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
         }
 
         /**
-         * <p>Optional label; stored as planner-facing notes for this hub row.</p>
+         * <p>Optional label override for this hub location row.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "displayName", nulls = Nulls.SKIP)
@@ -629,6 +673,7 @@ public final class PatchPlaceHubLocationUpsertBodyRequestBody {
                     locationPositionType,
                     locationPriority,
                     orderServiceTime,
+                    plannerNotes,
                     requiredSkills,
                     serviceTime,
                     serviceWindows,
