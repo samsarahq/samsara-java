@@ -49,6 +49,8 @@ public final class CreateDriverRequest {
 
     private final Optional<Boolean> eldYmEnabled;
 
+    private final Optional<String> email;
+
     private final Optional<Map<String, String>> externalIds;
 
     private final Optional<Boolean> hasDrivingFeaturesHidden;
@@ -109,6 +111,7 @@ public final class CreateDriverRequest {
             Optional<String> eldExemptReason,
             Optional<Boolean> eldPcEnabled,
             Optional<Boolean> eldYmEnabled,
+            Optional<String> email,
             Optional<Map<String, String>> externalIds,
             Optional<Boolean> hasDrivingFeaturesHidden,
             Optional<Boolean> hasVehicleUnpinningEnabled,
@@ -144,6 +147,7 @@ public final class CreateDriverRequest {
         this.eldExemptReason = eldExemptReason;
         this.eldPcEnabled = eldPcEnabled;
         this.eldYmEnabled = eldYmEnabled;
+        this.email = email;
         this.externalIds = externalIds;
         this.hasDrivingFeaturesHidden = hasDrivingFeaturesHidden;
         this.hasVehicleUnpinningEnabled = hasVehicleUnpinningEnabled;
@@ -247,6 +251,11 @@ public final class CreateDriverRequest {
     @JsonProperty("eldYmEnabled")
     public Optional<Boolean> getEldYmEnabled() {
         return eldYmEnabled;
+    }
+
+    @JsonProperty("email")
+    public Optional<String> getEmail() {
+        return email;
     }
 
     /**
@@ -438,6 +447,7 @@ public final class CreateDriverRequest {
                 && eldExemptReason.equals(other.eldExemptReason)
                 && eldPcEnabled.equals(other.eldPcEnabled)
                 && eldYmEnabled.equals(other.eldYmEnabled)
+                && email.equals(other.email)
                 && externalIds.equals(other.externalIds)
                 && hasDrivingFeaturesHidden.equals(other.hasDrivingFeaturesHidden)
                 && hasVehicleUnpinningEnabled.equals(other.hasVehicleUnpinningEnabled)
@@ -477,6 +487,7 @@ public final class CreateDriverRequest {
                 this.eldExemptReason,
                 this.eldPcEnabled,
                 this.eldYmEnabled,
+                this.email,
                 this.externalIds,
                 this.hasDrivingFeaturesHidden,
                 this.hasVehicleUnpinningEnabled,
@@ -604,6 +615,10 @@ public final class CreateDriverRequest {
         _FinalStage eldYmEnabled(Optional<Boolean> eldYmEnabled);
 
         _FinalStage eldYmEnabled(Boolean eldYmEnabled);
+
+        _FinalStage email(Optional<String> email);
+
+        _FinalStage email(String email);
 
         /**
          * <p>The <a href="https://developers.samsara.com/docs/external-ids">external IDs</a> for the given object.</p>
@@ -776,6 +791,8 @@ public final class CreateDriverRequest {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<String> email = Optional.empty();
+
         private Optional<Boolean> eldYmEnabled = Optional.empty();
 
         private Optional<Boolean> eldPcEnabled = Optional.empty();
@@ -816,6 +833,7 @@ public final class CreateDriverRequest {
             eldExemptReason(other.getEldExemptReason());
             eldPcEnabled(other.getEldPcEnabled());
             eldYmEnabled(other.getEldYmEnabled());
+            email(other.getEmail());
             externalIds(other.getExternalIds());
             hasDrivingFeaturesHidden(other.getHasDrivingFeaturesHidden());
             hasVehicleUnpinningEnabled(other.getHasVehicleUnpinningEnabled());
@@ -1236,6 +1254,19 @@ public final class CreateDriverRequest {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage email(String email) {
+            this.email = Optional.ofNullable(email);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "email", nulls = Nulls.SKIP)
+        public _FinalStage email(Optional<String> email) {
+            this.email = email;
+            return this;
+        }
+
         /**
          * <p>Flag indicating this driver may select the Yard Move duty status in ELD logs.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -1449,6 +1480,7 @@ public final class CreateDriverRequest {
                     eldExemptReason,
                     eldPcEnabled,
                     eldYmEnabled,
+                    email,
                     externalIds,
                     hasDrivingFeaturesHidden,
                     hasVehicleUnpinningEnabled,

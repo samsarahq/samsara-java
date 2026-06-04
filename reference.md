@@ -15041,6 +15041,14 @@ client.drivers().create(
 <dl>
 <dd>
 
+**email:** `Optional<String>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<Map<String, String>>` — The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
     
 </dd>
@@ -15563,6 +15571,14 @@ client.drivers().update(
 <dd>
 
 **eldYmEnabled:** `Optional<Boolean>` — Flag indicating this driver may select the Yard Move duty status in ELD logs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**email:** `Optional<String>` 
     
 </dd>
 </dl>
