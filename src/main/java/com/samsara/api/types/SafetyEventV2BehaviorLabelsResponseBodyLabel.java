@@ -13,6 +13,9 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel DEFENSIVE_DRIVING =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.DEFENSIVE_DRIVING, "DefensiveDriving");
 
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HARSH_IMPACT =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.HARSH_IMPACT, "HarshImpact");
+
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HARSH_TURN =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.HARSH_TURN, "HarshTurn");
 
@@ -231,6 +234,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitCrash();
             case DEFENSIVE_DRIVING:
                 return visitor.visitDefensiveDriving();
+            case HARSH_IMPACT:
+                return visitor.visitHarshImpact();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case OPERATIONAL_EVENT:
@@ -358,6 +363,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return CRASH;
             case "DefensiveDriving":
                 return DEFENSIVE_DRIVING;
+            case "HarshImpact":
+                return HARSH_IMPACT;
             case "HarshTurn":
                 return HARSH_TURN;
             case "OperationalEvent":
@@ -524,6 +531,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         GENERIC_TAILGATING,
 
+        HARSH_IMPACT,
+
         HARSH_TURN,
 
         HEAVY_SPEEDING,
@@ -645,6 +654,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
         T visitGenericDistraction();
 
         T visitGenericTailgating();
+
+        T visitHarshImpact();
 
         T visitHarshTurn();
 

@@ -14,6 +14,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
                     Value.DEFENSIVE_DRIVING, "DefensiveDriving");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem HARSH_IMPACT =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
+                    Value.HARSH_IMPACT, "HarshImpact");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem HARSH_TURN =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
                     Value.HARSH_TURN, "HarshTurn");
@@ -279,6 +283,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
                 return visitor.visitCrash();
             case DEFENSIVE_DRIVING:
                 return visitor.visitDefensiveDriving();
+            case HARSH_IMPACT:
+                return visitor.visitHarshImpact();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case OPERATIONAL_EVENT:
@@ -406,6 +412,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
                 return CRASH;
             case "DefensiveDriving":
                 return DEFENSIVE_DRIVING;
+            case "HarshImpact":
+                return HARSH_IMPACT;
             case "HarshTurn":
                 return HARSH_TURN;
             case "OperationalEvent":
@@ -573,6 +581,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
 
         GENERIC_TAILGATING,
 
+        HARSH_IMPACT,
+
         HARSH_TURN,
 
         HEAVY_SPEEDING,
@@ -694,6 +704,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
         T visitGenericDistraction();
 
         T visitGenericTailgating();
+
+        T visitHarshImpact();
 
         T visitHarshTurn();
 

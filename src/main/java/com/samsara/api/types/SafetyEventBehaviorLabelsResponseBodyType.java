@@ -16,6 +16,9 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
     public static final SafetyEventBehaviorLabelsResponseBodyType DEFENSIVE_DRIVING =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.DEFENSIVE_DRIVING, "DefensiveDriving");
 
+    public static final SafetyEventBehaviorLabelsResponseBodyType HARSH_IMPACT =
+            new SafetyEventBehaviorLabelsResponseBodyType(Value.HARSH_IMPACT, "HarshImpact");
+
     public static final SafetyEventBehaviorLabelsResponseBodyType NEAR_COLLISON =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.NEAR_COLLISON, "NearCollison");
 
@@ -168,6 +171,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitEating();
             case DEFENSIVE_DRIVING:
                 return visitor.visitDefensiveDriving();
+            case HARSH_IMPACT:
+                return visitor.visitHarshImpact();
             case NEAR_COLLISON:
                 return visitor.visitNearCollison();
             case HARSH_TURN:
@@ -255,6 +260,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return EATING;
             case "DefensiveDriving":
                 return DEFENSIVE_DRIVING;
+            case "HarshImpact":
+                return HARSH_IMPACT;
             case "NearCollison":
                 return NEAR_COLLISON;
             case "HarshTurn":
@@ -367,6 +374,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         GENERIC_TAILGATING,
 
+        HARSH_IMPACT,
+
         HARSH_TURN,
 
         HIGH_SPEED_SUDDEN_DISCONNECT,
@@ -448,6 +457,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         T visitGenericDistraction();
 
         T visitGenericTailgating();
+
+        T visitHarshImpact();
 
         T visitHarshTurn();
 

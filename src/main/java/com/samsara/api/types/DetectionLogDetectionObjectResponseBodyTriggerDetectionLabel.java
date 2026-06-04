@@ -83,6 +83,9 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
             VULNERABLE_ROAD_USER_COLLISION_WARNING = new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
                     Value.VULNERABLE_ROAD_USER_COLLISION_WARNING, "vulnerableRoadUserCollisionWarning");
 
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel HARSH_IMPACT =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.HARSH_IMPACT, "harshImpact");
+
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel SEVERE_SPEEDING =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.SEVERE_SPEEDING, "severeSpeeding");
 
@@ -194,6 +197,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitRearCollisionWarning();
             case VULNERABLE_ROAD_USER_COLLISION_WARNING:
                 return visitor.visitVulnerableRoadUserCollisionWarning();
+            case HARSH_IMPACT:
+                return visitor.visitHarshImpact();
             case SEVERE_SPEEDING:
                 return visitor.visitSevereSpeeding();
             case ROLLOVER_PROTECTION:
@@ -267,6 +272,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return REAR_COLLISION_WARNING;
             case "vulnerableRoadUserCollisionWarning":
                 return VULNERABLE_ROAD_USER_COLLISION_WARNING;
+            case "harshImpact":
+                return HARSH_IMPACT;
             case "severeSpeeding":
                 return SEVERE_SPEEDING;
             case "rolloverProtection":
@@ -308,6 +315,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
         FORWARD_COLLISION_WARNING,
 
         GENERIC_DISTRACTION,
+
+        HARSH_IMPACT,
 
         HARSH_TURN,
 
@@ -376,6 +385,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
         T visitForwardCollisionWarning();
 
         T visitGenericDistraction();
+
+        T visitHarshImpact();
 
         T visitHarshTurn();
 

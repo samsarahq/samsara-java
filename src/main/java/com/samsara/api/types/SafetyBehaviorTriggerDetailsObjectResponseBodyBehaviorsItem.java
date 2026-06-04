@@ -14,6 +14,9 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
             new SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem(
                     Value.DEFENSIVE_DRIVING, "DefensiveDriving");
 
+    public static final SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem HARSH_IMPACT =
+            new SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem(Value.HARSH_IMPACT, "HarshImpact");
+
     public static final SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem HARSH_TURN =
             new SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem(Value.HARSH_TURN, "HarshTurn");
 
@@ -319,6 +322,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
                 return visitor.visitCrash();
             case DEFENSIVE_DRIVING:
                 return visitor.visitDefensiveDriving();
+            case HARSH_IMPACT:
+                return visitor.visitHarshImpact();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case SPEEDING:
@@ -482,6 +487,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
                 return CRASH;
             case "DefensiveDriving":
                 return DEFENSIVE_DRIVING;
+            case "HarshImpact":
+                return HARSH_IMPACT;
             case "HarshTurn":
                 return HARSH_TURN;
             case "Speeding":
@@ -704,6 +711,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
 
         GENERIC_TAILGATING,
 
+        HARSH_IMPACT,
+
         HARSH_TURN,
 
         HEAVY_SPEEDING,
@@ -861,6 +870,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
         T visitGenericDistraction();
 
         T visitGenericTailgating();
+
+        T visitHarshImpact();
 
         T visitHarshTurn();
 

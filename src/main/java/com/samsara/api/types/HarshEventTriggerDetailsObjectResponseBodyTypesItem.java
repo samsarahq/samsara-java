@@ -115,6 +115,9 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
                     Value.HA_DROWSINESS_DETECTION, "haDrowsinessDetection");
 
+    public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_IMPACT =
+            new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_IMPACT, "haImpact");
+
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_VULNERABLE_ROAD_USER_COLLISION_WARNING =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
                     Value.HA_VULNERABLE_ROAD_USER_COLLISION_WARNING, "haVulnerableRoadUserCollisionWarning");
@@ -249,6 +252,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return visitor.visitHaSmokingPolicy();
             case HA_DROWSINESS_DETECTION:
                 return visitor.visitHaDrowsinessDetection();
+            case HA_IMPACT:
+                return visitor.visitHaImpact();
             case HA_VULNERABLE_ROAD_USER_COLLISION_WARNING:
                 return visitor.visitHaVulnerableRoadUserCollisionWarning();
             case HA_DRIVER_OBSTRUCTION_POLICY:
@@ -344,6 +349,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return HA_SMOKING_POLICY;
             case "haDrowsinessDetection":
                 return HA_DROWSINESS_DETECTION;
+            case "haImpact":
+                return HA_IMPACT;
             case "haVulnerableRoadUserCollisionWarning":
                 return HA_VULNERABLE_ROAD_USER_COLLISION_WARNING;
             case "haDriverObstructionPolicy":
@@ -399,6 +406,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         HA_FOOD_POLICY,
 
         HA_HIGH_SPEED_SUDDEN_DISCONNECT,
+
+        HA_IMPACT,
 
         HA_INVALID,
 
@@ -489,6 +498,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         T visitHaFoodPolicy();
 
         T visitHaHighSpeedSuddenDisconnect();
+
+        T visitHaImpact();
 
         T visitHaInvalid();
 
