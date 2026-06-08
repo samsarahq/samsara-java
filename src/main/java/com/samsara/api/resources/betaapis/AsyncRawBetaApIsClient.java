@@ -8644,6 +8644,7 @@ public class AsyncRawBetaApIsClient {
      * <li><code>faultCodesJ1939</code></li>
      * <li><code>faultCodesOBDII</code></li>
      * <li><code>fuelLevelPerc</code></li>
+     * <li><code>gps</code></li>
      * <li><code>location</code></li>
      * <li><code>odometerEcu</code></li>
      * <li><code>oilPressure</code></li>
@@ -8676,6 +8677,7 @@ public class AsyncRawBetaApIsClient {
      * <li><code>faultCodesJ1939</code></li>
      * <li><code>faultCodesOBDII</code></li>
      * <li><code>fuelLevelPerc</code></li>
+     * <li><code>gps</code></li>
      * <li><code>location</code></li>
      * <li><code>odometerEcu</code></li>
      * <li><code>oilPressure</code></li>
