@@ -425,9 +425,11 @@ public class SensorsWireTest {
 
     @Test
     public void testV1GetSensors() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody("{\"sensors\":[{\"id\":123,\"macAddress\":\"11:11:11:11:11:11\",\"name\":\"Freezer ABC\"}]}"));
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"sensors\":[{\"activatedAtMs\":1635881752799,\"healthStatus\":\"RequiresInvestigation\",\"id\":123,\"lastTransmissionAtMs\":1613440186723,\"macAddress\":\"11:11:11:11:11:11\",\"name\":\"Freezer ABC\",\"sensorType\":\"EM21\"}]}"));
         InlineResponse2009 response = client.sensors().v1GetSensors();
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -440,9 +442,13 @@ public class SensorsWireTest {
                 + "{\n"
                 + "  \"sensors\": [\n"
                 + "    {\n"
+                + "      \"activatedAtMs\": 1635881752799,\n"
+                + "      \"healthStatus\": \"RequiresInvestigation\",\n"
                 + "      \"id\": 123,\n"
+                + "      \"lastTransmissionAtMs\": 1613440186723,\n"
                 + "      \"macAddress\": \"11:11:11:11:11:11\",\n"
-                + "      \"name\": \"Freezer ABC\"\n"
+                + "      \"name\": \"Freezer ABC\",\n"
+                + "      \"sensorType\": \"EM21\"\n"
                 + "    }\n"
                 + "  ]\n"
                 + "}";
