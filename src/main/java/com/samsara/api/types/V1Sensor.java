@@ -20,20 +20,55 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = V1Sensor.Builder.class)
 public final class V1Sensor {
+    private final Optional<Long> activatedAtMs;
+
+    private final Optional<String> healthStatus;
+
     private final long id;
+
+    private final Optional<Long> lastTransmissionAtMs;
 
     private final Optional<String> macAddress;
 
     private final Optional<String> name;
 
+    private final Optional<String> sensorType;
+
     private final Map<String, Object> additionalProperties;
 
     private V1Sensor(
-            long id, Optional<String> macAddress, Optional<String> name, Map<String, Object> additionalProperties) {
+            Optional<Long> activatedAtMs,
+            Optional<String> healthStatus,
+            long id,
+            Optional<Long> lastTransmissionAtMs,
+            Optional<String> macAddress,
+            Optional<String> name,
+            Optional<String> sensorType,
+            Map<String, Object> additionalProperties) {
+        this.activatedAtMs = activatedAtMs;
+        this.healthStatus = healthStatus;
         this.id = id;
+        this.lastTransmissionAtMs = lastTransmissionAtMs;
         this.macAddress = macAddress;
         this.name = name;
+        this.sensorType = sensorType;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Sensor activation time in Unix milliseconds. Null if the sensor has no monitor.
+     */
+    @JsonProperty("activatedAtMs")
+    public Optional<Long> getActivatedAtMs() {
+        return activatedAtMs;
+    }
+
+    /**
+     * @return Current sensor health status.
+     */
+    @JsonProperty("healthStatus")
+    public Optional<String> getHealthStatus() {
+        return healthStatus;
     }
 
     /**
@@ -42,6 +77,14 @@ public final class V1Sensor {
     @JsonProperty("id")
     public long getId() {
         return id;
+    }
+
+    /**
+     * @return Last sensor transmission time in Unix milliseconds. Null when the sensor is connected or has never connected.
+     */
+    @JsonProperty("lastTransmissionAtMs")
+    public Optional<Long> getLastTransmissionAtMs() {
+        return lastTransmissionAtMs;
     }
 
     /**
@@ -60,6 +103,14 @@ public final class V1Sensor {
         return name;
     }
 
+    /**
+     * @return Product type of the sensor.
+     */
+    @JsonProperty("sensorType")
+    public Optional<String> getSensorType() {
+        return sensorType;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -72,12 +123,25 @@ public final class V1Sensor {
     }
 
     private boolean equalTo(V1Sensor other) {
-        return id == other.id && macAddress.equals(other.macAddress) && name.equals(other.name);
+        return activatedAtMs.equals(other.activatedAtMs)
+                && healthStatus.equals(other.healthStatus)
+                && id == other.id
+                && lastTransmissionAtMs.equals(other.lastTransmissionAtMs)
+                && macAddress.equals(other.macAddress)
+                && name.equals(other.name)
+                && sensorType.equals(other.sensorType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.macAddress, this.name);
+        return Objects.hash(
+                this.activatedAtMs,
+                this.healthStatus,
+                this.id,
+                this.lastTransmissionAtMs,
+                this.macAddress,
+                this.name,
+                this.sensorType);
     }
 
     @java.lang.Override
@@ -102,6 +166,27 @@ public final class V1Sensor {
         V1Sensor build();
 
         /**
+         * <p>Sensor activation time in Unix milliseconds. Null if the sensor has no monitor.</p>
+         */
+        _FinalStage activatedAtMs(Optional<Long> activatedAtMs);
+
+        _FinalStage activatedAtMs(Long activatedAtMs);
+
+        /**
+         * <p>Current sensor health status.</p>
+         */
+        _FinalStage healthStatus(Optional<String> healthStatus);
+
+        _FinalStage healthStatus(String healthStatus);
+
+        /**
+         * <p>Last sensor transmission time in Unix milliseconds. Null when the sensor is connected or has never connected.</p>
+         */
+        _FinalStage lastTransmissionAtMs(Optional<Long> lastTransmissionAtMs);
+
+        _FinalStage lastTransmissionAtMs(Long lastTransmissionAtMs);
+
+        /**
          * <p>MAC address of the sensor.</p>
          */
         _FinalStage macAddress(Optional<String> macAddress);
@@ -114,15 +199,30 @@ public final class V1Sensor {
         _FinalStage name(Optional<String> name);
 
         _FinalStage name(String name);
+
+        /**
+         * <p>Product type of the sensor.</p>
+         */
+        _FinalStage sensorType(Optional<String> sensorType);
+
+        _FinalStage sensorType(String sensorType);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private long id;
 
+        private Optional<String> sensorType = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<String> macAddress = Optional.empty();
+
+        private Optional<Long> lastTransmissionAtMs = Optional.empty();
+
+        private Optional<String> healthStatus = Optional.empty();
+
+        private Optional<Long> activatedAtMs = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -131,9 +231,13 @@ public final class V1Sensor {
 
         @java.lang.Override
         public Builder from(V1Sensor other) {
+            activatedAtMs(other.getActivatedAtMs());
+            healthStatus(other.getHealthStatus());
             id(other.getId());
+            lastTransmissionAtMs(other.getLastTransmissionAtMs());
             macAddress(other.getMacAddress());
             name(other.getName());
+            sensorType(other.getSensorType());
             return this;
         }
 
@@ -146,6 +250,26 @@ public final class V1Sensor {
         @JsonSetter("id")
         public _FinalStage id(long id) {
             this.id = id;
+            return this;
+        }
+
+        /**
+         * <p>Product type of the sensor.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage sensorType(String sensorType) {
+            this.sensorType = Optional.ofNullable(sensorType);
+            return this;
+        }
+
+        /**
+         * <p>Product type of the sensor.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "sensorType", nulls = Nulls.SKIP)
+        public _FinalStage sensorType(Optional<String> sensorType) {
+            this.sensorType = sensorType;
             return this;
         }
 
@@ -189,9 +313,77 @@ public final class V1Sensor {
             return this;
         }
 
+        /**
+         * <p>Last sensor transmission time in Unix milliseconds. Null when the sensor is connected or has never connected.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage lastTransmissionAtMs(Long lastTransmissionAtMs) {
+            this.lastTransmissionAtMs = Optional.ofNullable(lastTransmissionAtMs);
+            return this;
+        }
+
+        /**
+         * <p>Last sensor transmission time in Unix milliseconds. Null when the sensor is connected or has never connected.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "lastTransmissionAtMs", nulls = Nulls.SKIP)
+        public _FinalStage lastTransmissionAtMs(Optional<Long> lastTransmissionAtMs) {
+            this.lastTransmissionAtMs = lastTransmissionAtMs;
+            return this;
+        }
+
+        /**
+         * <p>Current sensor health status.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage healthStatus(String healthStatus) {
+            this.healthStatus = Optional.ofNullable(healthStatus);
+            return this;
+        }
+
+        /**
+         * <p>Current sensor health status.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "healthStatus", nulls = Nulls.SKIP)
+        public _FinalStage healthStatus(Optional<String> healthStatus) {
+            this.healthStatus = healthStatus;
+            return this;
+        }
+
+        /**
+         * <p>Sensor activation time in Unix milliseconds. Null if the sensor has no monitor.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage activatedAtMs(Long activatedAtMs) {
+            this.activatedAtMs = Optional.ofNullable(activatedAtMs);
+            return this;
+        }
+
+        /**
+         * <p>Sensor activation time in Unix milliseconds. Null if the sensor has no monitor.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "activatedAtMs", nulls = Nulls.SKIP)
+        public _FinalStage activatedAtMs(Optional<Long> activatedAtMs) {
+            this.activatedAtMs = activatedAtMs;
+            return this;
+        }
+
         @java.lang.Override
         public V1Sensor build() {
-            return new V1Sensor(id, macAddress, name, additionalProperties);
+            return new V1Sensor(
+                    activatedAtMs,
+                    healthStatus,
+                    id,
+                    lastTransmissionAtMs,
+                    macAddress,
+                    name,
+                    sensorType,
+                    additionalProperties);
         }
     }
 }

@@ -81,7 +81,7 @@ public final class PreferredStationAddressRequestBody {
     }
 
     /**
-     * @return State or province code.
+     * @return State or province code. Required when country is &quot;US&quot;.
      */
     @JsonProperty("state")
     public Optional<String> getState() {
@@ -156,7 +156,7 @@ public final class PreferredStationAddressRequestBody {
         PreferredStationAddressRequestBody build();
 
         /**
-         * <p>State or province code.</p>
+         * <p>State or province code. Required when country is &quot;US&quot;.</p>
          */
         _FinalStage state(Optional<String> state);
 
@@ -239,7 +239,7 @@ public final class PreferredStationAddressRequestBody {
         }
 
         /**
-         * <p>State or province code.</p>
+         * <p>State or province code. Required when country is &quot;US&quot;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -249,7 +249,7 @@ public final class PreferredStationAddressRequestBody {
         }
 
         /**
-         * <p>State or province code.</p>
+         * <p>State or province code. Required when country is &quot;US&quot;.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "state", nulls = Nulls.SKIP)
