@@ -2036,6 +2036,7 @@ public class AsyncBetaApIsClient {
      * <li><code>engineHours</code></li>
      * <li><code>engineRpm</code></li>
      * <li><code>engineState</code> (values: off | running | idling)</li>
+     * <li><code>faultCodes</code></li>
      * <li><code>faultCodesJ1939</code></li>
      * <li><code>faultCodesOBDII</code></li>
      * <li><code>fuelLevelPerc</code></li>
@@ -2069,6 +2070,7 @@ public class AsyncBetaApIsClient {
      * <li><code>engineHours</code></li>
      * <li><code>engineRpm</code></li>
      * <li><code>engineState</code> (values: off | running | idling)</li>
+     * <li><code>faultCodes</code></li>
      * <li><code>faultCodesJ1939</code></li>
      * <li><code>faultCodesOBDII</code></li>
      * <li><code>fuelLevelPerc</code></li>
