@@ -51,6 +51,7 @@ import com.samsara.api.resources.betaapis.requests.GetRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.GetRidershipRouteSetupRequest;
 import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsStreamRequest;
+import com.samsara.api.resources.betaapis.requests.GetWorkOrderTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
@@ -148,6 +149,7 @@ import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseB
 import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
 import com.samsara.api.types.SafetyEventsV2PatchSafetyEventsV2BatchResponseBody;
+import com.samsara.api.types.WorkOrdersGetWorkOrderTemplatesResponseBody;
 
 public class BetaApIsClient {
     protected final ClientOptions clientOptions;
@@ -1473,6 +1475,47 @@ public class BetaApIsClient {
      */
     public void deleteHubRouteTemplate(DeleteHubRouteTemplateRequest request, RequestOptions requestOptions) {
         this.rawClient.deleteHubRouteTemplate(request, requestOptions).body();
+    }
+
+    /**
+     * Gets work order templates by id. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public WorkOrdersGetWorkOrderTemplatesResponseBody getWorkOrderTemplates() {
+        return this.rawClient.getWorkOrderTemplates().body();
+    }
+
+    /**
+     * Gets work order templates by id. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public WorkOrdersGetWorkOrderTemplatesResponseBody getWorkOrderTemplates(RequestOptions requestOptions) {
+        return this.rawClient.getWorkOrderTemplates(requestOptions).body();
+    }
+
+    /**
+     * Gets work order templates by id. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public WorkOrdersGetWorkOrderTemplatesResponseBody getWorkOrderTemplates(GetWorkOrderTemplatesRequest request) {
+        return this.rawClient.getWorkOrderTemplates(request).body();
+    }
+
+    /**
+     * Gets work order templates by id. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public WorkOrdersGetWorkOrderTemplatesResponseBody getWorkOrderTemplates(
+            GetWorkOrderTemplatesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getWorkOrderTemplates(request, requestOptions).body();
     }
 
     /**
