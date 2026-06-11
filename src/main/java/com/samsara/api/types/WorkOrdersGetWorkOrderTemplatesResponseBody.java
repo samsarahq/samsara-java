@@ -17,17 +17,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = WorkOrdersGetWorkOrderTemplatesResponseBody.Builder.class)
 public final class WorkOrdersGetWorkOrderTemplatesResponseBody {
     private final List<WorkOrderTemplateObjectResponseBody> data;
 
+    private final GoaPaginationResponseResponseBody pagination;
+
     private final Map<String, Object> additionalProperties;
 
     private WorkOrdersGetWorkOrderTemplatesResponseBody(
-            List<WorkOrderTemplateObjectResponseBody> data, Map<String, Object> additionalProperties) {
+            List<WorkOrderTemplateObjectResponseBody> data,
+            GoaPaginationResponseResponseBody pagination,
+            Map<String, Object> additionalProperties) {
         this.data = data;
+        this.pagination = pagination;
         this.additionalProperties = additionalProperties;
     }
 
@@ -37,6 +43,11 @@ public final class WorkOrdersGetWorkOrderTemplatesResponseBody {
     @JsonProperty("data")
     public List<WorkOrderTemplateObjectResponseBody> getData() {
         return data;
+    }
+
+    @JsonProperty("pagination")
+    public GoaPaginationResponseResponseBody getPagination() {
+        return pagination;
     }
 
     @java.lang.Override
@@ -52,12 +63,12 @@ public final class WorkOrdersGetWorkOrderTemplatesResponseBody {
     }
 
     private boolean equalTo(WorkOrdersGetWorkOrderTemplatesResponseBody other) {
-        return data.equals(other.data);
+        return data.equals(other.data) && pagination.equals(other.pagination);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.data);
+        return Objects.hash(this.data, this.pagination);
     }
 
     @java.lang.Override
@@ -65,12 +76,33 @@ public final class WorkOrdersGetWorkOrderTemplatesResponseBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static Builder builder() {
+    public static PaginationStage builder() {
         return new Builder();
     }
 
+    public interface PaginationStage {
+        _FinalStage pagination(@NotNull GoaPaginationResponseResponseBody pagination);
+
+        Builder from(WorkOrdersGetWorkOrderTemplatesResponseBody other);
+    }
+
+    public interface _FinalStage {
+        WorkOrdersGetWorkOrderTemplatesResponseBody build();
+
+        /**
+         * <p>Work order templates.</p>
+         */
+        _FinalStage data(List<WorkOrderTemplateObjectResponseBody> data);
+
+        _FinalStage addData(WorkOrderTemplateObjectResponseBody data);
+
+        _FinalStage addAllData(List<WorkOrderTemplateObjectResponseBody> data);
+    }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder {
+    public static final class Builder implements PaginationStage, _FinalStage {
+        private GoaPaginationResponseResponseBody pagination;
+
         private List<WorkOrderTemplateObjectResponseBody> data = new ArrayList<>();
 
         @JsonAnySetter
@@ -78,16 +110,48 @@ public final class WorkOrdersGetWorkOrderTemplatesResponseBody {
 
         private Builder() {}
 
+        @java.lang.Override
         public Builder from(WorkOrdersGetWorkOrderTemplatesResponseBody other) {
             data(other.getData());
+            pagination(other.getPagination());
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter("pagination")
+        public _FinalStage pagination(@NotNull GoaPaginationResponseResponseBody pagination) {
+            this.pagination = Objects.requireNonNull(pagination, "pagination must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Work order templates.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addAllData(List<WorkOrderTemplateObjectResponseBody> data) {
+            if (data != null) {
+                this.data.addAll(data);
+            }
+            return this;
+        }
+
+        /**
+         * <p>Work order templates.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addData(WorkOrderTemplateObjectResponseBody data) {
+            this.data.add(data);
             return this;
         }
 
         /**
          * <p>Work order templates.</p>
          */
+        @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public Builder data(List<WorkOrderTemplateObjectResponseBody> data) {
+        public _FinalStage data(List<WorkOrderTemplateObjectResponseBody> data) {
             this.data.clear();
             if (data != null) {
                 this.data.addAll(data);
@@ -95,20 +159,9 @@ public final class WorkOrdersGetWorkOrderTemplatesResponseBody {
             return this;
         }
 
-        public Builder addData(WorkOrderTemplateObjectResponseBody data) {
-            this.data.add(data);
-            return this;
-        }
-
-        public Builder addAllData(List<WorkOrderTemplateObjectResponseBody> data) {
-            if (data != null) {
-                this.data.addAll(data);
-            }
-            return this;
-        }
-
+        @java.lang.Override
         public WorkOrdersGetWorkOrderTemplatesResponseBody build() {
-            return new WorkOrdersGetWorkOrderTemplatesResponseBody(data, additionalProperties);
+            return new WorkOrdersGetWorkOrderTemplatesResponseBody(data, pagination, additionalProperties);
         }
     }
 }

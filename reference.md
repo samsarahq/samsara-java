@@ -4297,7 +4297,7 @@ client.betaApIs().deleteHubRouteTemplate(
 <dl>
 <dd>
 
-Gets work order templates by id. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+Gets work order templates. Optionally filter to specific template ids; ids that do not resolve to a template (e.g. deleted) are omitted from the response.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -4338,7 +4338,15 @@ client.betaApIs().getWorkOrderTemplates(
 <dl>
 <dd>
 
-**ids:** `Optional<String>` — The work order template IDs to look up. Up to 100 ids. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+**ids:** `Optional<String>` — Filter by work order template IDs. Up to 100 ids. Returns all templates if no ids are provided. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>
