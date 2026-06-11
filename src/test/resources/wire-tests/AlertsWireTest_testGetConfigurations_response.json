@@ -19,7 +19,8 @@
         "timeRanges": [
           {
             "daysOfWeek": [
-              "WEDNESDAY",
+              "THURSDAY",
+              "SUNDAY",
               "SUNDAY"
             ],
             "endTime": "20:00",
@@ -29,7 +30,7 @@
         ]
       },
       "scope": {
-        "all": false,
+        "all": true,
         "assets": [
           {
             "assetId": "12443",
