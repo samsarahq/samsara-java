@@ -24,19 +24,31 @@ import java.util.Optional;
 public final class GetWorkOrderTemplatesRequest {
     private final Optional<List<String>> ids;
 
+    private final Optional<String> after;
+
     private final Map<String, Object> additionalProperties;
 
-    private GetWorkOrderTemplatesRequest(Optional<List<String>> ids, Map<String, Object> additionalProperties) {
+    private GetWorkOrderTemplatesRequest(
+            Optional<List<String>> ids, Optional<String> after, Map<String, Object> additionalProperties) {
         this.ids = ids;
+        this.after = after;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return The work order template IDs to look up. Up to 100 ids. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+     * @return Filter by work order template IDs. Up to 100 ids. Returns all templates if no ids are provided. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
      */
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
         return ids;
+    }
+
+    /**
+     * @return If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+     */
+    @JsonProperty("after")
+    public Optional<String> getAfter() {
+        return after;
     }
 
     @java.lang.Override
@@ -51,12 +63,12 @@ public final class GetWorkOrderTemplatesRequest {
     }
 
     private boolean equalTo(GetWorkOrderTemplatesRequest other) {
-        return ids.equals(other.ids);
+        return ids.equals(other.ids) && after.equals(other.after);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.ids);
+        return Objects.hash(this.ids, this.after);
     }
 
     @java.lang.Override
@@ -72,6 +84,8 @@ public final class GetWorkOrderTemplatesRequest {
     public static final class Builder {
         private Optional<List<String>> ids = Optional.empty();
 
+        private Optional<String> after = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -79,11 +93,12 @@ public final class GetWorkOrderTemplatesRequest {
 
         public Builder from(GetWorkOrderTemplatesRequest other) {
             ids(other.getIds());
+            after(other.getAfter());
             return this;
         }
 
         /**
-         * <p>The work order template IDs to look up. Up to 100 ids. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.</p>
+         * <p>Filter by work order template IDs. Up to 100 ids. Returns all templates if no ids are provided. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.</p>
          */
         @JsonSetter(value = "ids", nulls = Nulls.SKIP)
         public Builder ids(Optional<List<String>> ids) {
@@ -101,8 +116,22 @@ public final class GetWorkOrderTemplatesRequest {
             return this;
         }
 
+        /**
+         * <p>If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.</p>
+         */
+        @JsonSetter(value = "after", nulls = Nulls.SKIP)
+        public Builder after(Optional<String> after) {
+            this.after = after;
+            return this;
+        }
+
+        public Builder after(String after) {
+            this.after = Optional.ofNullable(after);
+            return this;
+        }
+
         public GetWorkOrderTemplatesRequest build() {
-            return new GetWorkOrderTemplatesRequest(ids, additionalProperties);
+            return new GetWorkOrderTemplatesRequest(ids, after, additionalProperties);
         }
     }
 }

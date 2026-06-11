@@ -3334,9 +3334,11 @@ public class BetaApIsWireTest {
 
     @Test
     public void testGetWorkOrderTemplates() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody("{\"data\":[{\"id\":\"id\",\"name\":\"name\"},{\"id\":\"id\",\"name\":\"name\"}]}"));
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"id\":\"5523a39f-42ef-4820-83d0-dfe73dbe7853\",\"name\":\"PM Service - 5000mi\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         WorkOrdersGetWorkOrderTemplatesResponseBody response = client.betaApIs()
                 .getWorkOrderTemplates(GetWorkOrderTemplatesRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -3350,14 +3352,14 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"name\": \"name\"\n"
-                + "    },\n"
-                + "    {\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"name\": \"name\"\n"
+                + "      \"id\": \"5523a39f-42ef-4820-83d0-dfe73dbe7853\",\n"
+                + "      \"name\": \"PM Service - 5000mi\"\n"
                 + "    }\n"
-                + "  ]\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
