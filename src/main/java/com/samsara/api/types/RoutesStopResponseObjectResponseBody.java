@@ -31,6 +31,8 @@ public final class RoutesStopResponseObjectResponseBody {
 
     private final Optional<GoaAddressTinyResponseResponseBody> address;
 
+    private final Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows;
+
     private final Optional<List<GoaDocumentTinyResponseResponseBody>> documents;
 
     private final Optional<OffsetDateTime> enRouteTime;
@@ -78,6 +80,7 @@ public final class RoutesStopResponseObjectResponseBody {
             Optional<OffsetDateTime> actualDepartureTime,
             Optional<Long> actualDistanceMeters,
             Optional<GoaAddressTinyResponseResponseBody> address,
+            Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows,
             Optional<List<GoaDocumentTinyResponseResponseBody>> documents,
             Optional<OffsetDateTime> enRouteTime,
             Optional<OffsetDateTime> eta,
@@ -103,6 +106,7 @@ public final class RoutesStopResponseObjectResponseBody {
         this.actualDepartureTime = actualDepartureTime;
         this.actualDistanceMeters = actualDistanceMeters;
         this.address = address;
+        this.appointmentWindows = appointmentWindows;
         this.documents = documents;
         this.enRouteTime = enRouteTime;
         this.eta = eta;
@@ -153,6 +157,14 @@ public final class RoutesStopResponseObjectResponseBody {
     @JsonProperty("address")
     public Optional<GoaAddressTinyResponseResponseBody> getAddress() {
         return address;
+    }
+
+    /**
+     * @return Appointment windows for the stop.
+     */
+    @JsonProperty("appointmentWindows")
+    public Optional<List<HosViolationDayObjectResponseBody>> getAppointmentWindows() {
+        return appointmentWindows;
     }
 
     /**
@@ -329,6 +341,7 @@ public final class RoutesStopResponseObjectResponseBody {
                 && actualDepartureTime.equals(other.actualDepartureTime)
                 && actualDistanceMeters.equals(other.actualDistanceMeters)
                 && address.equals(other.address)
+                && appointmentWindows.equals(other.appointmentWindows)
                 && documents.equals(other.documents)
                 && enRouteTime.equals(other.enRouteTime)
                 && eta.equals(other.eta)
@@ -358,6 +371,7 @@ public final class RoutesStopResponseObjectResponseBody {
                 this.actualDepartureTime,
                 this.actualDistanceMeters,
                 this.address,
+                this.appointmentWindows,
                 this.documents,
                 this.enRouteTime,
                 this.eta,
@@ -439,6 +453,13 @@ public final class RoutesStopResponseObjectResponseBody {
         _FinalStage address(Optional<GoaAddressTinyResponseResponseBody> address);
 
         _FinalStage address(GoaAddressTinyResponseResponseBody address);
+
+        /**
+         * <p>Appointment windows for the stop.</p>
+         */
+        _FinalStage appointmentWindows(Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows);
+
+        _FinalStage appointmentWindows(List<HosViolationDayObjectResponseBody> appointmentWindows);
 
         /**
          * <p>List of documents associated with the stop.</p>
@@ -600,6 +621,8 @@ public final class RoutesStopResponseObjectResponseBody {
 
         private Optional<List<GoaDocumentTinyResponseResponseBody>> documents = Optional.empty();
 
+        private Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows = Optional.empty();
+
         private Optional<GoaAddressTinyResponseResponseBody> address = Optional.empty();
 
         private Optional<Long> actualDistanceMeters = Optional.empty();
@@ -619,6 +642,7 @@ public final class RoutesStopResponseObjectResponseBody {
             actualDepartureTime(other.getActualDepartureTime());
             actualDistanceMeters(other.getActualDistanceMeters());
             address(other.getAddress());
+            appointmentWindows(other.getAppointmentWindows());
             documents(other.getDocuments());
             enRouteTime(other.getEnRouteTime());
             eta(other.getEta());
@@ -1013,6 +1037,26 @@ public final class RoutesStopResponseObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Appointment windows for the stop.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage appointmentWindows(List<HosViolationDayObjectResponseBody> appointmentWindows) {
+            this.appointmentWindows = Optional.ofNullable(appointmentWindows);
+            return this;
+        }
+
+        /**
+         * <p>Appointment windows for the stop.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "appointmentWindows", nulls = Nulls.SKIP)
+        public _FinalStage appointmentWindows(Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows) {
+            this.appointmentWindows = appointmentWindows;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage address(GoaAddressTinyResponseResponseBody address) {
             this.address = Optional.ofNullable(address);
@@ -1093,6 +1137,7 @@ public final class RoutesStopResponseObjectResponseBody {
                     actualDepartureTime,
                     actualDistanceMeters,
                     address,
+                    appointmentWindows,
                     documents,
                     enRouteTime,
                     eta,

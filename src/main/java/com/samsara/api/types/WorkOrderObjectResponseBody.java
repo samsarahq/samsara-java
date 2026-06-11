@@ -75,6 +75,8 @@ public final class WorkOrderObjectResponseBody {
 
     private final Optional<String> vendorUuid;
 
+    private final Optional<List<String>> workOrderTemplateIds;
+
     private final Map<String, Object> additionalProperties;
 
     private WorkOrderObjectResponseBody(
@@ -104,6 +106,7 @@ public final class WorkOrderObjectResponseBody {
             Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor,
             OffsetDateTime updatedAtTime,
             Optional<String> vendorUuid,
+            Optional<List<String>> workOrderTemplateIds,
             Map<String, Object> additionalProperties) {
         this.archivedAtTime = archivedAtTime;
         this.assetId = assetId;
@@ -131,6 +134,7 @@ public final class WorkOrderObjectResponseBody {
         this.unallocatedLabor = unallocatedLabor;
         this.updatedAtTime = updatedAtTime;
         this.vendorUuid = vendorUuid;
+        this.workOrderTemplateIds = workOrderTemplateIds;
         this.additionalProperties = additionalProperties;
     }
 
@@ -330,6 +334,14 @@ public final class WorkOrderObjectResponseBody {
         return vendorUuid;
     }
 
+    /**
+     * @return IDs of the work order template(s) this work order was created from. May include templates that have since been deleted.
+     */
+    @JsonProperty("workOrderTemplateIds")
+    public Optional<List<String>> getWorkOrderTemplateIds() {
+        return workOrderTemplateIds;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -367,7 +379,8 @@ public final class WorkOrderObjectResponseBody {
                 && tax.equals(other.tax)
                 && unallocatedLabor.equals(other.unallocatedLabor)
                 && updatedAtTime.equals(other.updatedAtTime)
-                && vendorUuid.equals(other.vendorUuid);
+                && vendorUuid.equals(other.vendorUuid)
+                && workOrderTemplateIds.equals(other.workOrderTemplateIds);
     }
 
     @java.lang.Override
@@ -398,7 +411,8 @@ public final class WorkOrderObjectResponseBody {
                 this.tax,
                 this.unallocatedLabor,
                 this.updatedAtTime,
-                this.vendorUuid);
+                this.vendorUuid,
+                this.workOrderTemplateIds);
     }
 
     @java.lang.Override
@@ -584,6 +598,13 @@ public final class WorkOrderObjectResponseBody {
         _FinalStage vendorUuid(Optional<String> vendorUuid);
 
         _FinalStage vendorUuid(String vendorUuid);
+
+        /**
+         * <p>IDs of the work order template(s) this work order was created from. May include templates that have since been deleted.</p>
+         */
+        _FinalStage workOrderTemplateIds(Optional<List<String>> workOrderTemplateIds);
+
+        _FinalStage workOrderTemplateIds(List<String> workOrderTemplateIds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -598,6 +619,8 @@ public final class WorkOrderObjectResponseBody {
         private WorkOrderObjectResponseBodyStatus status;
 
         private OffsetDateTime updatedAtTime;
+
+        private Optional<List<String>> workOrderTemplateIds = Optional.empty();
 
         private Optional<String> vendorUuid = Optional.empty();
 
@@ -674,6 +697,7 @@ public final class WorkOrderObjectResponseBody {
             unallocatedLabor(other.getUnallocatedLabor());
             updatedAtTime(other.getUpdatedAtTime());
             vendorUuid(other.getVendorUuid());
+            workOrderTemplateIds(other.getWorkOrderTemplateIds());
             return this;
         }
 
@@ -734,6 +758,26 @@ public final class WorkOrderObjectResponseBody {
         @JsonSetter("updatedAtTime")
         public _FinalStage updatedAtTime(@NotNull OffsetDateTime updatedAtTime) {
             this.updatedAtTime = Objects.requireNonNull(updatedAtTime, "updatedAtTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>IDs of the work order template(s) this work order was created from. May include templates that have since been deleted.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage workOrderTemplateIds(List<String> workOrderTemplateIds) {
+            this.workOrderTemplateIds = Optional.ofNullable(workOrderTemplateIds);
+            return this;
+        }
+
+        /**
+         * <p>IDs of the work order template(s) this work order was created from. May include templates that have since been deleted.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "workOrderTemplateIds", nulls = Nulls.SKIP)
+        public _FinalStage workOrderTemplateIds(Optional<List<String>> workOrderTemplateIds) {
+            this.workOrderTemplateIds = workOrderTemplateIds;
             return this;
         }
 
@@ -1159,6 +1203,7 @@ public final class WorkOrderObjectResponseBody {
                     unallocatedLabor,
                     updatedAtTime,
                     vendorUuid,
+                    workOrderTemplateIds,
                     additionalProperties);
         }
     }
