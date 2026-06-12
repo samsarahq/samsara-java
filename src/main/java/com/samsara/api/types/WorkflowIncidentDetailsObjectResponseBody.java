@@ -78,6 +78,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<HarshEventDataResponseBody> harshEvent;
 
+    private final Optional<HosDutyStatusDataResponseBody> hosDutyStatus;
+
     private final Optional<HosViolationDataResponseBody> hosViolation;
 
     private final Optional<InactivityResponseBody> inactivity;
@@ -184,6 +186,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<WorkflowGeofenceEventResponseObjectResponseBody> geofenceExit,
             Optional<GpsSignalLossResponseBody> gpsSignalLoss,
             Optional<HarshEventDataResponseBody> harshEvent,
+            Optional<HosDutyStatusDataResponseBody> hosDutyStatus,
             Optional<HosViolationDataResponseBody> hosViolation,
             Optional<InactivityResponseBody> inactivity,
             Optional<InsideGeofenceDataResponseBody> insideGeofence,
@@ -251,6 +254,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.geofenceExit = geofenceExit;
         this.gpsSignalLoss = gpsSignalLoss;
         this.harshEvent = harshEvent;
+        this.hosDutyStatus = hosDutyStatus;
         this.hosViolation = hosViolation;
         this.inactivity = inactivity;
         this.insideGeofence = insideGeofence;
@@ -434,6 +438,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
     @JsonProperty("harshEvent")
     public Optional<HarshEventDataResponseBody> getHarshEvent() {
         return harshEvent;
+    }
+
+    @JsonProperty("hosDutyStatus")
+    public Optional<HosDutyStatusDataResponseBody> getHosDutyStatus() {
+        return hosDutyStatus;
     }
 
     @JsonProperty("hosViolation")
@@ -663,6 +672,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && geofenceExit.equals(other.geofenceExit)
                 && gpsSignalLoss.equals(other.gpsSignalLoss)
                 && harshEvent.equals(other.harshEvent)
+                && hosDutyStatus.equals(other.hosDutyStatus)
                 && hosViolation.equals(other.hosViolation)
                 && inactivity.equals(other.inactivity)
                 && insideGeofence.equals(other.insideGeofence)
@@ -734,6 +744,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.geofenceExit,
                 this.gpsSignalLoss,
                 this.harshEvent,
+                this.hosDutyStatus,
                 this.hosViolation,
                 this.inactivity,
                 this.insideGeofence,
@@ -841,6 +852,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         private Optional<GpsSignalLossResponseBody> gpsSignalLoss = Optional.empty();
 
         private Optional<HarshEventDataResponseBody> harshEvent = Optional.empty();
+
+        private Optional<HosDutyStatusDataResponseBody> hosDutyStatus = Optional.empty();
 
         private Optional<HosViolationDataResponseBody> hosViolation = Optional.empty();
 
@@ -952,6 +965,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             geofenceExit(other.getGeofenceExit());
             gpsSignalLoss(other.getGpsSignalLoss());
             harshEvent(other.getHarshEvent());
+            hosDutyStatus(other.getHosDutyStatus());
             hosViolation(other.getHosViolation());
             inactivity(other.getInactivity());
             insideGeofence(other.getInsideGeofence());
@@ -1310,6 +1324,17 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         public Builder harshEvent(HarshEventDataResponseBody harshEvent) {
             this.harshEvent = Optional.ofNullable(harshEvent);
+            return this;
+        }
+
+        @JsonSetter(value = "hosDutyStatus", nulls = Nulls.SKIP)
+        public Builder hosDutyStatus(Optional<HosDutyStatusDataResponseBody> hosDutyStatus) {
+            this.hosDutyStatus = hosDutyStatus;
+            return this;
+        }
+
+        public Builder hosDutyStatus(HosDutyStatusDataResponseBody hosDutyStatus) {
+            this.hosDutyStatus = Optional.ofNullable(hosDutyStatus);
             return this;
         }
 
@@ -1759,6 +1784,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     geofenceExit,
                     gpsSignalLoss,
                     harshEvent,
+                    hosDutyStatus,
                     hosViolation,
                     inactivity,
                     insideGeofence,

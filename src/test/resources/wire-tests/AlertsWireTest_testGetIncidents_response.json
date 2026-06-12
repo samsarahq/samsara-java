@@ -301,6 +301,11 @@
                 "serial": "serial"
               }
             },
+            "hosDutyStatus": {
+              "driver": {
+                "id": "id"
+              }
+            },
             "hosViolation": {
               "driver": {
                 "id": "id"
@@ -1047,6 +1052,11 @@
               "vehicle": {
                 "id": "id",
                 "serial": "serial"
+              }
+            },
+            "hosDutyStatus": {
+              "driver": {
+                "id": "id"
               }
             },
             "hosViolation": {
@@ -1807,6 +1817,11 @@
                 "serial": "serial"
               }
             },
+            "hosDutyStatus": {
+              "driver": {
+                "id": "id"
+              }
+            },
             "hosViolation": {
               "driver": {
                 "id": "id"
@@ -2553,6 +2568,11 @@
               "vehicle": {
                 "id": "id",
                 "serial": "serial"
+              }
+            },
+            "hosDutyStatus": {
+              "driver": {
+                "id": "id"
               }
             },
             "hosViolation": {
