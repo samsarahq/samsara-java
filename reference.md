@@ -3861,6 +3861,88 @@ client.betaApIs().getFunctionRun(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.pairGateways(request) -> GatewaysPairGatewaysResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reassign one or more gateways to different devices in a single call. Mirrors the dashboard's "Pair Gateway" flow and accepts up to 50 gateway-device pairs per request. Works for any device type: vehicles, assets, equipment, trailers, industrial machines, and asset tags. By default, devices that the reassigned gateways were previously linked to remain in their current group. Pass `removeOrphanDevices: true` to move those orphaned devices to the unassigned group and clear their tags. The endpoint is currently in Beta and gated behind a feature configuration; contact your Samsara representative to enable access.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Gateways** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().pairGateways(
+    GatewaysPairGatewaysRequestBody
+        .builder()
+        .pairs(
+            Arrays.asList(
+                PairGatewayPairObjectRequestBody
+                    .builder()
+                    .deviceSerial("GFRV-43N-VGX")
+                    .gatewaySerial("GFRV-43N-VGX")
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**pairs:** `List<PairGatewayPairObjectRequestBody>` — Gateway-device pairs to apply.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**removeOrphanDevices:** `Optional<Boolean>` — When true, devices that the reassigned gateways were previously linked to are moved to the unassigned group and have their tags cleared as a side-effect of the pairing. The previousDevice fields in the response describe each orphaned device as it existed immediately before the pairing was applied, so they remain stable regardless of this flag. Defaults to false.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.updateShippingDocs(request) -> HosDailyLogsUpdateShippingDocsResponseBody</code></summary>
 <dl>
 <dd>
@@ -4274,6 +4356,176 @@ client.betaApIs().deleteHubRouteTemplate(
 <dd>
 
 **id:** `String` — The unique identifier of the route template to delete.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listPreventiveMaintenanceSchedules() -> EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of preventive maintenance schedules for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listPreventiveMaintenanceSchedules(
+    ListPreventiveMaintenanceSchedulesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**idIn:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listUpcomingPreventiveMaintenance() -> EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listUpcomingPreventiveMaintenance(
+    ListUpcomingPreventiveMaintenanceRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**preventativeMaintenanceScheduleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Preventive Maintenance Schedule ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
     
 </dd>
 </dl>
@@ -27123,94 +27375,6 @@ client.previewApIs().unlockVehicle(
 <dd>
 
 **id:** `String` — The ID of the vehicle to lock or unlock. This can be a Samsara internal ID or an external ID in the format `samsara.vin:{VIN}`.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.pairGateways(request) -> GatewaysPairGatewaysResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Reassign one or more gateways to different devices in a single call. Mirrors the dashboard's "Pair Gateway" flow and accepts up to 50 gateway-device pairs per request. Works for any device type: vehicles, assets, equipment, trailers, industrial machines, and asset tags. By default, devices that the reassigned gateways were previously linked to remain in their current group. Pass `removeOrphanDevices: true` to move those orphaned devices to the unassigned group and clear their tags. The endpoint is currently in Preview and gated behind a feature configuration; contact your Samsara representative to enable access.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Gateways** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().pairGateways(
-    GatewaysPairGatewaysRequestBody
-        .builder()
-        .pairs(
-            Arrays.asList(
-                PairGatewayPairObjectRequestBody
-                    .builder()
-                    .deviceSerial("GFRV-43N-VGX")
-                    .gatewaySerial("GFRV-43N-VGX")
-                    .build()
-            )
-        )
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**pairs:** `List<PairGatewayPairObjectRequestBody>` — Gateway-device pairs to apply.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**removeOrphanDevices:** `Optional<Boolean>` — When true, devices that the reassigned gateways were previously linked to are moved to the unassigned group and have their tags cleared as a side-effect of the pairing. The previousDevice fields in the response describe each orphaned device as it existed immediately before the pairing was applied, so they remain stable regardless of this flag. Defaults to false.
     
 </dd>
 </dl>

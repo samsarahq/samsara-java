@@ -17,15 +17,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = HosViolationDayObjectRequestBody.Builder.class)
-public final class HosViolationDayObjectRequestBody {
+@JsonDeserialize(builder = RouteStopAppointmentWindowRequestBody.Builder.class)
+public final class RouteStopAppointmentWindowRequestBody {
     private final String endTime;
 
     private final String startTime;
 
     private final Map<String, Object> additionalProperties;
 
-    private HosViolationDayObjectRequestBody(
+    private RouteStopAppointmentWindowRequestBody(
             String endTime, String startTime, Map<String, Object> additionalProperties) {
         this.endTime = endTime;
         this.startTime = startTime;
@@ -33,7 +33,7 @@ public final class HosViolationDayObjectRequestBody {
     }
 
     /**
-     * @return The end time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)
+     * @return The end time of the appointment window for the stop in RFC 3339 format.
      */
     @JsonProperty("endTime")
     public String getEndTime() {
@@ -41,7 +41,7 @@ public final class HosViolationDayObjectRequestBody {
     }
 
     /**
-     * @return The start time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)
+     * @return The start time of the appointment window for the stop in RFC 3339 format.
      */
     @JsonProperty("startTime")
     public String getStartTime() {
@@ -51,7 +51,8 @@ public final class HosViolationDayObjectRequestBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof HosViolationDayObjectRequestBody && equalTo((HosViolationDayObjectRequestBody) other);
+        return other instanceof RouteStopAppointmentWindowRequestBody
+                && equalTo((RouteStopAppointmentWindowRequestBody) other);
     }
 
     @JsonAnyGetter
@@ -59,7 +60,7 @@ public final class HosViolationDayObjectRequestBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(HosViolationDayObjectRequestBody other) {
+    private boolean equalTo(RouteStopAppointmentWindowRequestBody other) {
         return endTime.equals(other.endTime) && startTime.equals(other.startTime);
     }
 
@@ -79,22 +80,22 @@ public final class HosViolationDayObjectRequestBody {
 
     public interface EndTimeStage {
         /**
-         * <p>The end time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)</p>
+         * <p>The end time of the appointment window for the stop in RFC 3339 format.</p>
          */
         StartTimeStage endTime(@NotNull String endTime);
 
-        Builder from(HosViolationDayObjectRequestBody other);
+        Builder from(RouteStopAppointmentWindowRequestBody other);
     }
 
     public interface StartTimeStage {
         /**
-         * <p>The start time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)</p>
+         * <p>The start time of the appointment window for the stop in RFC 3339 format.</p>
          */
         _FinalStage startTime(@NotNull String startTime);
     }
 
     public interface _FinalStage {
-        HosViolationDayObjectRequestBody build();
+        RouteStopAppointmentWindowRequestBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -109,15 +110,15 @@ public final class HosViolationDayObjectRequestBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(HosViolationDayObjectRequestBody other) {
+        public Builder from(RouteStopAppointmentWindowRequestBody other) {
             endTime(other.getEndTime());
             startTime(other.getStartTime());
             return this;
         }
 
         /**
-         * <p>The end time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)</p>
-         * <p>The end time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)</p>
+         * <p>The end time of the appointment window for the stop in RFC 3339 format.</p>
+         * <p>The end time of the appointment window for the stop in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -128,8 +129,8 @@ public final class HosViolationDayObjectRequestBody {
         }
 
         /**
-         * <p>The start time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)</p>
-         * <p>The start time of the day on which the violation occurred in RFC 3339 format. This is determined by the driver's ELD start hour (00:00 or 12:00)</p>
+         * <p>The start time of the appointment window for the stop in RFC 3339 format.</p>
+         * <p>The start time of the appointment window for the stop in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -140,8 +141,8 @@ public final class HosViolationDayObjectRequestBody {
         }
 
         @java.lang.Override
-        public HosViolationDayObjectRequestBody build() {
-            return new HosViolationDayObjectRequestBody(endTime, startTime, additionalProperties);
+        public RouteStopAppointmentWindowRequestBody build() {
+            return new RouteStopAppointmentWindowRequestBody(endTime, startTime, additionalProperties);
         }
     }
 }

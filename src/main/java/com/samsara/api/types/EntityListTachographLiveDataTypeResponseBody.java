@@ -152,7 +152,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's cumulated driving time across the previous and current week, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's cumulated driving time across the previous and current week, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("cumulatedDrivingTimePreviousAndCurrentWeekMinute")
     public Optional<Long> getCumulatedDrivingTimePreviousAndCurrentWeekMinute() {
@@ -160,7 +160,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's cumulative break time, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's cumulative break time, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("cumulativeBreakTimeMinute")
     public Optional<Long> getCumulativeBreakTimeMinute() {
@@ -168,7 +168,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's current daily driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's current daily driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("currentDailyDrivingTimeMinute")
     public Optional<Long> getCurrentDailyDrivingTimeMinute() {
@@ -176,7 +176,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The duration of the driver's currently selected activity, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The duration of the driver's currently selected activity, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("currentDurationOfSelectedActivityMinute")
     public Optional<Long> getCurrentDurationOfSelectedActivityMinute() {
@@ -184,7 +184,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's current weekly driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's current weekly driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("currentWeeklyDrivingTimeMinute")
     public Optional<Long> getCurrentWeeklyDrivingTimeMinute() {
@@ -200,7 +200,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The expected duration of the driver's next break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The expected duration of the driver's next break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("durationOfNextBreakRestMinute")
     public Optional<Long> getDurationOfNextBreakRestMinute() {
@@ -208,7 +208,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The expected duration of the driver's next driving period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The expected duration of the driver's next driving period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("durationOfNextDrivingPeriodMinute")
     public Optional<Long> getDurationOfNextDrivingPeriodMinute() {
@@ -240,7 +240,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The maximum allowed daily driving time for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The maximum allowed daily driving time for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("maximumDailyDrivingTimeMinute")
     public Optional<Long> getMaximumDailyDrivingTimeMinute() {
@@ -248,7 +248,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The minimum required daily rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The minimum required daily rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("minimumDailyRestMinute")
     public Optional<Long> getMinimumDailyRestMinute() {
@@ -256,7 +256,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The minimum required weekly rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The minimum required weekly rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("minimumWeeklyRestMinute")
     public Optional<Long> getMinimumWeeklyRestMinute() {
@@ -280,7 +280,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Open rest compensation owed from the second week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Open rest compensation owed from the second week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("openCompensationInSecondWeekBeforeLastMinute")
     public Optional<Long> getOpenCompensationInSecondWeekBeforeLastMinute() {
@@ -288,7 +288,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Open rest compensation owed from the last week, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Open rest compensation owed from the last week, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("openCompensationInTheLastWeekMinute")
     public Optional<Long> getOpenCompensationInTheLastWeekMinute() {
@@ -296,7 +296,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Open rest compensation owed from the week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Open rest compensation owed from the week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("openCompensationInWeekBeforeLastMinute")
     public Optional<Long> getOpenCompensationInWeekBeforeLastMinute() {
@@ -304,7 +304,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's remaining driving time across the current two-week period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's remaining driving time across the current two-week period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("remaining2WeeksDrivingTimeMinute")
     public Optional<Long> getRemaining2WeeksDrivingTimeMinute() {
@@ -312,7 +312,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's remaining current continuous driving time before a break is required, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's remaining current continuous driving time before a break is required, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("remainingCurrentDrivingTimeMinute")
     public Optional<Long> getRemainingCurrentDrivingTimeMinute() {
@@ -320,7 +320,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's remaining driving time for the current week, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's remaining driving time for the current week, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("remainingDrivingTimeOfCurrentWeekMinute")
     public Optional<Long> getRemainingDrivingTimeOfCurrentWeekMinute() {
@@ -328,7 +328,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return The driver's remaining driving time on the current shift, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return The driver's remaining driving time on the current shift, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("remainingDrivingTimeOnCurrentShiftMinute")
     public Optional<Long> getRemainingDrivingTimeOnCurrentShiftMinute() {
@@ -336,7 +336,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Time remaining in the driver's current break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Time remaining in the driver's current break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("remainingTimeOfCurrentBreakRestMinute")
     public Optional<Long> getRemainingTimeOfCurrentBreakRestMinute() {
@@ -344,7 +344,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Time remaining until the driver's next required break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Time remaining until the driver's next required break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("remainingTimeUntilNextBreakOrRestMinute")
     public Optional<Long> getRemainingTimeUntilNextBreakOrRestMinute() {
@@ -360,7 +360,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Time remaining until the driver must begin a new daily rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Time remaining until the driver must begin a new daily rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("timeLeftUntilNewDailyRestPeriodMinute")
     public Optional<Long> getTimeLeftUntilNewDailyRestPeriodMinute() {
@@ -368,7 +368,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Time remaining until the driver must begin a new weekly rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Time remaining until the driver must begin a new weekly rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("timeLeftUntilNewWeeklyRestPeriodMinute")
     public Optional<Long> getTimeLeftUntilNewWeeklyRestPeriodMinute() {
@@ -376,7 +376,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
     }
 
     /**
-     * @return Time remaining until the driver's next driving period can begin, as defined by ISO 16844-7 (Tachograph - Digital data interface).
+     * @return Time remaining until the driver's next driving period can begin, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.
      */
     @JsonProperty("timeLeftUntilNextDrivingPeriodMinute")
     public Optional<Long> getTimeLeftUntilNextDrivingPeriodMinute() {
@@ -598,7 +598,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's cumulated driving time across the previous and current week, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's cumulated driving time across the previous and current week, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "cumulatedDrivingTimePreviousAndCurrentWeekMinute", nulls = Nulls.SKIP)
         public Builder cumulatedDrivingTimePreviousAndCurrentWeekMinute(
@@ -615,7 +615,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's cumulative break time, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's cumulative break time, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "cumulativeBreakTimeMinute", nulls = Nulls.SKIP)
         public Builder cumulativeBreakTimeMinute(Optional<Long> cumulativeBreakTimeMinute) {
@@ -629,7 +629,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's current daily driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's current daily driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "currentDailyDrivingTimeMinute", nulls = Nulls.SKIP)
         public Builder currentDailyDrivingTimeMinute(Optional<Long> currentDailyDrivingTimeMinute) {
@@ -643,7 +643,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The duration of the driver's currently selected activity, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The duration of the driver's currently selected activity, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "currentDurationOfSelectedActivityMinute", nulls = Nulls.SKIP)
         public Builder currentDurationOfSelectedActivityMinute(Optional<Long> currentDurationOfSelectedActivityMinute) {
@@ -657,7 +657,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's current weekly driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's current weekly driving time, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "currentWeeklyDrivingTimeMinute", nulls = Nulls.SKIP)
         public Builder currentWeeklyDrivingTimeMinute(Optional<Long> currentWeeklyDrivingTimeMinute) {
@@ -685,7 +685,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The expected duration of the driver's next break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The expected duration of the driver's next break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "durationOfNextBreakRestMinute", nulls = Nulls.SKIP)
         public Builder durationOfNextBreakRestMinute(Optional<Long> durationOfNextBreakRestMinute) {
@@ -699,7 +699,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The expected duration of the driver's next driving period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The expected duration of the driver's next driving period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "durationOfNextDrivingPeriodMinute", nulls = Nulls.SKIP)
         public Builder durationOfNextDrivingPeriodMinute(Optional<Long> durationOfNextDrivingPeriodMinute) {
@@ -755,7 +755,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The maximum allowed daily driving time for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The maximum allowed daily driving time for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "maximumDailyDrivingTimeMinute", nulls = Nulls.SKIP)
         public Builder maximumDailyDrivingTimeMinute(Optional<Long> maximumDailyDrivingTimeMinute) {
@@ -769,7 +769,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The minimum required daily rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The minimum required daily rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "minimumDailyRestMinute", nulls = Nulls.SKIP)
         public Builder minimumDailyRestMinute(Optional<Long> minimumDailyRestMinute) {
@@ -783,7 +783,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The minimum required weekly rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The minimum required weekly rest duration for the driver, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "minimumWeeklyRestMinute", nulls = Nulls.SKIP)
         public Builder minimumWeeklyRestMinute(Optional<Long> minimumWeeklyRestMinute) {
@@ -827,7 +827,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Open rest compensation owed from the second week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Open rest compensation owed from the second week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "openCompensationInSecondWeekBeforeLastMinute", nulls = Nulls.SKIP)
         public Builder openCompensationInSecondWeekBeforeLastMinute(
@@ -843,7 +843,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Open rest compensation owed from the last week, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Open rest compensation owed from the last week, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "openCompensationInTheLastWeekMinute", nulls = Nulls.SKIP)
         public Builder openCompensationInTheLastWeekMinute(Optional<Long> openCompensationInTheLastWeekMinute) {
@@ -857,7 +857,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Open rest compensation owed from the week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Open rest compensation owed from the week before last, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "openCompensationInWeekBeforeLastMinute", nulls = Nulls.SKIP)
         public Builder openCompensationInWeekBeforeLastMinute(Optional<Long> openCompensationInWeekBeforeLastMinute) {
@@ -871,7 +871,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's remaining driving time across the current two-week period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's remaining driving time across the current two-week period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "remaining2WeeksDrivingTimeMinute", nulls = Nulls.SKIP)
         public Builder remaining2WeeksDrivingTimeMinute(Optional<Long> remaining2WeeksDrivingTimeMinute) {
@@ -885,7 +885,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's remaining current continuous driving time before a break is required, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's remaining current continuous driving time before a break is required, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "remainingCurrentDrivingTimeMinute", nulls = Nulls.SKIP)
         public Builder remainingCurrentDrivingTimeMinute(Optional<Long> remainingCurrentDrivingTimeMinute) {
@@ -899,7 +899,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's remaining driving time for the current week, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's remaining driving time for the current week, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "remainingDrivingTimeOfCurrentWeekMinute", nulls = Nulls.SKIP)
         public Builder remainingDrivingTimeOfCurrentWeekMinute(Optional<Long> remainingDrivingTimeOfCurrentWeekMinute) {
@@ -913,7 +913,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>The driver's remaining driving time on the current shift, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>The driver's remaining driving time on the current shift, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "remainingDrivingTimeOnCurrentShiftMinute", nulls = Nulls.SKIP)
         public Builder remainingDrivingTimeOnCurrentShiftMinute(
@@ -929,7 +929,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Time remaining in the driver's current break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Time remaining in the driver's current break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "remainingTimeOfCurrentBreakRestMinute", nulls = Nulls.SKIP)
         public Builder remainingTimeOfCurrentBreakRestMinute(Optional<Long> remainingTimeOfCurrentBreakRestMinute) {
@@ -943,7 +943,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Time remaining until the driver's next required break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Time remaining until the driver's next required break or rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "remainingTimeUntilNextBreakOrRestMinute", nulls = Nulls.SKIP)
         public Builder remainingTimeUntilNextBreakOrRestMinute(Optional<Long> remainingTimeUntilNextBreakOrRestMinute) {
@@ -971,7 +971,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Time remaining until the driver must begin a new daily rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Time remaining until the driver must begin a new daily rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "timeLeftUntilNewDailyRestPeriodMinute", nulls = Nulls.SKIP)
         public Builder timeLeftUntilNewDailyRestPeriodMinute(Optional<Long> timeLeftUntilNewDailyRestPeriodMinute) {
@@ -985,7 +985,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Time remaining until the driver must begin a new weekly rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Time remaining until the driver must begin a new weekly rest period, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "timeLeftUntilNewWeeklyRestPeriodMinute", nulls = Nulls.SKIP)
         public Builder timeLeftUntilNewWeeklyRestPeriodMinute(Optional<Long> timeLeftUntilNewWeeklyRestPeriodMinute) {
@@ -999,7 +999,7 @@ public final class EntityListTachographLiveDataTypeResponseBody {
         }
 
         /**
-         * <p>Time remaining until the driver's next driving period can begin, as defined by ISO 16844-7 (Tachograph - Digital data interface).</p>
+         * <p>Time remaining until the driver's next driving period can begin, as defined by ISO 16844-7 (Tachograph - Digital data interface). Measured in minutes.</p>
          */
         @JsonSetter(value = "timeLeftUntilNextDrivingPeriodMinute", nulls = Nulls.SKIP)
         public Builder timeLeftUntilNextDrivingPeriodMinute(Optional<Long> timeLeftUntilNextDrivingPeriodMinute) {

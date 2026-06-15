@@ -24,6 +24,7 @@ import com.samsara.api.resources.betaapis.requests.FunctionsCreateFunctionReques
 import com.samsara.api.resources.betaapis.requests.FunctionsPatchFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStorageCreateFunctionStorageFileRequestBody;
+import com.samsara.api.resources.betaapis.requests.GatewaysPairGatewaysRequestBody;
 import com.samsara.api.resources.betaapis.requests.GetAempEquipmentListRequest;
 import com.samsara.api.resources.betaapis.requests.GetAssetsInputsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDatasetsRequest;
@@ -62,9 +63,11 @@ import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListPreferredStationsRequest;
+import com.samsara.api.resources.betaapis.requests.ListPreventiveMaintenanceSchedulesRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
+import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMaintenanceRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPostPlaceRequestBody;
@@ -98,7 +101,9 @@ import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody;
 import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
+import com.samsara.api.types.EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
+import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
@@ -111,6 +116,7 @@ import com.samsara.api.types.FunctionsStorageCreateFunctionStorageFileResponseBo
 import com.samsara.api.types.FunctionsStorageGetFunctionStorageFileResponseBody;
 import com.samsara.api.types.FunctionsStorageListFunctionsStorageFilesResponseBody;
 import com.samsara.api.types.FunctionsStorageUpdateFunctionStorageFileResponseBody;
+import com.samsara.api.types.GatewaysPairGatewaysResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosEldEventsGetHosEldEventsResponseBody;
 import com.samsara.api.types.HubRouteTemplatesListHubRouteTemplatesResponseBody;
@@ -1398,6 +1404,27 @@ public class AsyncBetaApIsClient {
     }
 
     /**
+     * Reassign one or more gateways to different devices in a single call. Mirrors the dashboard's &quot;Pair Gateway&quot; flow and accepts up to 50 gateway-device pairs per request. Works for any device type: vehicles, assets, equipment, trailers, industrial machines, and asset tags. By default, devices that the reassigned gateways were previously linked to remain in their current group. Pass <code>removeOrphanDevices: true</code> to move those orphaned devices to the unassigned group and clear their tags. The endpoint is currently in Beta and gated behind a feature configuration; contact your Samsara representative to enable access.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Gateways</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<GatewaysPairGatewaysResponseBody> pairGateways(GatewaysPairGatewaysRequestBody request) {
+        return this.rawClient.pairGateways(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Reassign one or more gateways to different devices in a single call. Mirrors the dashboard's &quot;Pair Gateway&quot; flow and accepts up to 50 gateway-device pairs per request. Works for any device type: vehicles, assets, equipment, trailers, industrial machines, and asset tags. By default, devices that the reassigned gateways were previously linked to remain in their current group. Pass <code>removeOrphanDevices: true</code> to move those orphaned devices to the unassigned group and clear their tags. The endpoint is currently in Beta and gated behind a feature configuration; contact your Samsara representative to enable access.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Gateways</strong> under the Setup &amp; Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<GatewaysPairGatewaysResponseBody> pairGateways(
+            GatewaysPairGatewaysRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.pairGateways(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
      * Update the shippingDocs field of an existing assignment.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -1505,6 +1532,104 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<Void> deleteHubRouteTemplate(
             DeleteHubRouteTemplateRequest request, RequestOptions requestOptions) {
         return this.rawClient.deleteHubRouteTemplate(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of preventive maintenance schedules for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Preventive Maintenance Schedules</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<
+                    EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>
+            listPreventiveMaintenanceSchedules() {
+        return this.rawClient.listPreventiveMaintenanceSchedules().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of preventive maintenance schedules for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Preventive Maintenance Schedules</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<
+                    EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>
+            listPreventiveMaintenanceSchedules(RequestOptions requestOptions) {
+        return this.rawClient.listPreventiveMaintenanceSchedules(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of preventive maintenance schedules for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Preventive Maintenance Schedules</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<
+                    EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>
+            listPreventiveMaintenanceSchedules(ListPreventiveMaintenanceSchedulesRequest request) {
+        return this.rawClient.listPreventiveMaintenanceSchedules(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of preventive maintenance schedules for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Preventive Maintenance Schedules</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<
+                    EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>
+            listPreventiveMaintenanceSchedules(
+                    ListPreventiveMaintenanceSchedulesRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .listPreventiveMaintenanceSchedules(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>
+            listUpcomingPreventiveMaintenance() {
+        return this.rawClient.listUpcomingPreventiveMaintenance().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>
+            listUpcomingPreventiveMaintenance(RequestOptions requestOptions) {
+        return this.rawClient.listUpcomingPreventiveMaintenance(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>
+            listUpcomingPreventiveMaintenance(ListUpcomingPreventiveMaintenanceRequest request) {
+        return this.rawClient.listUpcomingPreventiveMaintenance(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>
+            listUpcomingPreventiveMaintenance(
+                    ListUpcomingPreventiveMaintenanceRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .listUpcomingPreventiveMaintenance(request, requestOptions)
+                .thenApply(response -> response.body());
     }
 
     /**

@@ -24,7 +24,7 @@ import java.util.Optional;
 public final class CreateRoutesStopRequestObjectRequestBody {
     private final Optional<String> addressId;
 
-    private final Optional<List<HosViolationDayObjectRequestBody>> appointmentWindows;
+    private final Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows;
 
     private final Optional<Map<String, String>> externalIds;
 
@@ -48,7 +48,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
     private CreateRoutesStopRequestObjectRequestBody(
             Optional<String> addressId,
-            Optional<List<HosViolationDayObjectRequestBody>> appointmentWindows,
+            Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows,
             Optional<Map<String, String>> externalIds,
             Optional<String> name,
             Optional<String> notes,
@@ -85,7 +85,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
      * @return Appointment windows for the stop.
      */
     @JsonProperty("appointmentWindows")
-    public Optional<List<HosViolationDayObjectRequestBody>> getAppointmentWindows() {
+    public Optional<List<RouteStopAppointmentWindowRequestBody>> getAppointmentWindows() {
         return appointmentWindows;
     }
 
@@ -213,7 +213,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
     public static final class Builder {
         private Optional<String> addressId = Optional.empty();
 
-        private Optional<List<HosViolationDayObjectRequestBody>> appointmentWindows = Optional.empty();
+        private Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows = Optional.empty();
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
@@ -271,12 +271,12 @@ public final class CreateRoutesStopRequestObjectRequestBody {
          * <p>Appointment windows for the stop.</p>
          */
         @JsonSetter(value = "appointmentWindows", nulls = Nulls.SKIP)
-        public Builder appointmentWindows(Optional<List<HosViolationDayObjectRequestBody>> appointmentWindows) {
+        public Builder appointmentWindows(Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows) {
             this.appointmentWindows = appointmentWindows;
             return this;
         }
 
-        public Builder appointmentWindows(List<HosViolationDayObjectRequestBody> appointmentWindows) {
+        public Builder appointmentWindows(List<RouteStopAppointmentWindowRequestBody> appointmentWindows) {
             this.appointmentWindows = Optional.ofNullable(appointmentWindows);
             return this;
         }
