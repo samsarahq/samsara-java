@@ -31,7 +31,7 @@ public final class RoutesStopResponseObjectResponseBody {
 
     private final Optional<GoaAddressTinyResponseResponseBody> address;
 
-    private final Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows;
+    private final Optional<List<RouteStopAppointmentWindowResponseBody>> appointmentWindows;
 
     private final Optional<List<GoaDocumentTinyResponseResponseBody>> documents;
 
@@ -80,7 +80,7 @@ public final class RoutesStopResponseObjectResponseBody {
             Optional<OffsetDateTime> actualDepartureTime,
             Optional<Long> actualDistanceMeters,
             Optional<GoaAddressTinyResponseResponseBody> address,
-            Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows,
+            Optional<List<RouteStopAppointmentWindowResponseBody>> appointmentWindows,
             Optional<List<GoaDocumentTinyResponseResponseBody>> documents,
             Optional<OffsetDateTime> enRouteTime,
             Optional<OffsetDateTime> eta,
@@ -163,7 +163,7 @@ public final class RoutesStopResponseObjectResponseBody {
      * @return Appointment windows for the stop.
      */
     @JsonProperty("appointmentWindows")
-    public Optional<List<HosViolationDayObjectResponseBody>> getAppointmentWindows() {
+    public Optional<List<RouteStopAppointmentWindowResponseBody>> getAppointmentWindows() {
         return appointmentWindows;
     }
 
@@ -457,9 +457,9 @@ public final class RoutesStopResponseObjectResponseBody {
         /**
          * <p>Appointment windows for the stop.</p>
          */
-        _FinalStage appointmentWindows(Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows);
+        _FinalStage appointmentWindows(Optional<List<RouteStopAppointmentWindowResponseBody>> appointmentWindows);
 
-        _FinalStage appointmentWindows(List<HosViolationDayObjectResponseBody> appointmentWindows);
+        _FinalStage appointmentWindows(List<RouteStopAppointmentWindowResponseBody> appointmentWindows);
 
         /**
          * <p>List of documents associated with the stop.</p>
@@ -621,7 +621,7 @@ public final class RoutesStopResponseObjectResponseBody {
 
         private Optional<List<GoaDocumentTinyResponseResponseBody>> documents = Optional.empty();
 
-        private Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows = Optional.empty();
+        private Optional<List<RouteStopAppointmentWindowResponseBody>> appointmentWindows = Optional.empty();
 
         private Optional<GoaAddressTinyResponseResponseBody> address = Optional.empty();
 
@@ -1042,7 +1042,7 @@ public final class RoutesStopResponseObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage appointmentWindows(List<HosViolationDayObjectResponseBody> appointmentWindows) {
+        public _FinalStage appointmentWindows(List<RouteStopAppointmentWindowResponseBody> appointmentWindows) {
             this.appointmentWindows = Optional.ofNullable(appointmentWindows);
             return this;
         }
@@ -1052,7 +1052,8 @@ public final class RoutesStopResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "appointmentWindows", nulls = Nulls.SKIP)
-        public _FinalStage appointmentWindows(Optional<List<HosViolationDayObjectResponseBody>> appointmentWindows) {
+        public _FinalStage appointmentWindows(
+                Optional<List<RouteStopAppointmentWindowResponseBody>> appointmentWindows) {
             this.appointmentWindows = appointmentWindows;
             return this;
         }
