@@ -2207,17 +2207,13 @@ public class AsyncBetaApIsClient {
      * <li><code>engineRpm</code></li>
      * <li><code>engineState</code> (values: off | running | idling)</li>
      * <li><code>faultCodes</code></li>
-     * <li><code>faultCodesJ1939</code></li>
-     * <li><code>faultCodesOBDII</code></li>
      * <li><code>fuelLevelPerc</code></li>
      * <li><code>gps</code></li>
-     * <li><code>location</code></li>
      * <li><code>odometerEcu</code></li>
      * <li><code>oilPressure</code></li>
      * </ul>
      * <p>&lt;/details&gt;</p>
-     * <p><strong>Note:</strong> Use the <code>GET /readings/definitions</code> endpoint and check the <code>ingestionEnabled</code> field for the authoritative, up-to-date set of ingestible readings for your organization.</p>
-     * <p>When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.</p>
+     * <p>When ingesting GPS location data, use the readingID 'gps'. The value object must contain the following fields: 'latitude' (decimal degrees), 'longitude' (decimal degrees), and 'speed' (meters per second).</p>
      * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Readings</strong> under the Readings category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -2241,17 +2237,13 @@ public class AsyncBetaApIsClient {
      * <li><code>engineRpm</code></li>
      * <li><code>engineState</code> (values: off | running | idling)</li>
      * <li><code>faultCodes</code></li>
-     * <li><code>faultCodesJ1939</code></li>
-     * <li><code>faultCodesOBDII</code></li>
      * <li><code>fuelLevelPerc</code></li>
      * <li><code>gps</code></li>
-     * <li><code>location</code></li>
      * <li><code>odometerEcu</code></li>
      * <li><code>oilPressure</code></li>
      * </ul>
      * <p>&lt;/details&gt;</p>
-     * <p><strong>Note:</strong> Use the <code>GET /readings/definitions</code> endpoint and check the <code>ingestionEnabled</code> field for the authoritative, up-to-date set of ingestible readings for your organization.</p>
-     * <p>When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.</p>
+     * <p>When ingesting GPS location data, use the readingID 'gps'. The value object must contain the following fields: 'latitude' (decimal degrees), 'longitude' (decimal degrees), and 'speed' (meters per second).</p>
      * <p>Related guide: <a href="https://developers.samsara.com/docs/readings">Readings</a>.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Readings</strong> under the Readings category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>

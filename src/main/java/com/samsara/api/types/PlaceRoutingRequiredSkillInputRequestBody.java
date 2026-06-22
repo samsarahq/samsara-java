@@ -17,13 +17,13 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = HubLocationRequiredSkillResponseResponseBody.Builder.class)
-public final class HubLocationRequiredSkillResponseResponseBody {
+@JsonDeserialize(builder = PlaceRoutingRequiredSkillInputRequestBody.Builder.class)
+public final class PlaceRoutingRequiredSkillInputRequestBody {
     private final String id;
 
     private final Map<String, Object> additionalProperties;
 
-    private HubLocationRequiredSkillResponseResponseBody(String id, Map<String, Object> additionalProperties) {
+    private PlaceRoutingRequiredSkillInputRequestBody(String id, Map<String, Object> additionalProperties) {
         this.id = id;
         this.additionalProperties = additionalProperties;
     }
@@ -39,8 +39,8 @@ public final class HubLocationRequiredSkillResponseResponseBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof HubLocationRequiredSkillResponseResponseBody
-                && equalTo((HubLocationRequiredSkillResponseResponseBody) other);
+        return other instanceof PlaceRoutingRequiredSkillInputRequestBody
+                && equalTo((PlaceRoutingRequiredSkillInputRequestBody) other);
     }
 
     @JsonAnyGetter
@@ -48,7 +48,7 @@ public final class HubLocationRequiredSkillResponseResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(HubLocationRequiredSkillResponseResponseBody other) {
+    private boolean equalTo(PlaceRoutingRequiredSkillInputRequestBody other) {
         return id.equals(other.id);
     }
 
@@ -72,11 +72,11 @@ public final class HubLocationRequiredSkillResponseResponseBody {
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(HubLocationRequiredSkillResponseResponseBody other);
+        Builder from(PlaceRoutingRequiredSkillInputRequestBody other);
     }
 
     public interface _FinalStage {
-        HubLocationRequiredSkillResponseResponseBody build();
+        PlaceRoutingRequiredSkillInputRequestBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -89,7 +89,7 @@ public final class HubLocationRequiredSkillResponseResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(HubLocationRequiredSkillResponseResponseBody other) {
+        public Builder from(PlaceRoutingRequiredSkillInputRequestBody other) {
             id(other.getId());
             return this;
         }
@@ -107,8 +107,8 @@ public final class HubLocationRequiredSkillResponseResponseBody {
         }
 
         @java.lang.Override
-        public HubLocationRequiredSkillResponseResponseBody build() {
-            return new HubLocationRequiredSkillResponseResponseBody(id, additionalProperties);
+        public PlaceRoutingRequiredSkillInputRequestBody build() {
+            return new PlaceRoutingRequiredSkillInputRequestBody(id, additionalProperties);
         }
     }
 }

@@ -31,9 +31,7 @@ public final class PlaceResponseObjectResponseBody {
 
     private final Optional<PlaceResponseObjectResponseBodyExternalIds> externalIds;
 
-    private final Optional<List<PlaceGeofenceVertexResponseResponseBody>> geofence;
-
-    private final Optional<List<HubLocationResponseResponseBody>> hubLocations;
+    private final PlaceGeofenceResponseResponseBody geofence;
 
     private final String id;
 
@@ -43,10 +41,6 @@ public final class PlaceResponseObjectResponseBody {
 
     private final Optional<Boolean> isShowAddressesEnabled;
 
-    private final Optional<Double> latitude;
-
-    private final Optional<Double> longitude;
-
     private final String name;
 
     private final Optional<PlaceNavigationResponseResponseBody> navigation;
@@ -55,7 +49,7 @@ public final class PlaceResponseObjectResponseBody {
 
     private final Optional<List<String>> placeTypes;
 
-    private final Optional<Long> radiusMeters;
+    private final Optional<List<RoutingResponseResponseBody>> routing;
 
     private final Optional<List<String>> safetyEventExclusions;
 
@@ -72,19 +66,16 @@ public final class PlaceResponseObjectResponseBody {
             Optional<String> cameraRecordingModeType,
             OffsetDateTime createdAtTime,
             Optional<PlaceResponseObjectResponseBodyExternalIds> externalIds,
-            Optional<List<PlaceGeofenceVertexResponseResponseBody>> geofence,
-            Optional<List<HubLocationResponseResponseBody>> hubLocations,
+            PlaceGeofenceResponseResponseBody geofence,
             String id,
             Optional<List<String>> iftaExemptionTypes,
             Optional<Boolean> isAutoDismissRolledStopsEnabled,
             Optional<Boolean> isShowAddressesEnabled,
-            Optional<Double> latitude,
-            Optional<Double> longitude,
             String name,
             Optional<PlaceNavigationResponseResponseBody> navigation,
             Optional<String> notes,
             Optional<List<String>> placeTypes,
-            Optional<Long> radiusMeters,
+            Optional<List<RoutingResponseResponseBody>> routing,
             Optional<List<String>> safetyEventExclusions,
             Optional<PlaceStreetViewResponseResponseBody> streetView,
             Optional<List<PlaceTagResponseResponseBody>> tags,
@@ -95,18 +86,15 @@ public final class PlaceResponseObjectResponseBody {
         this.createdAtTime = createdAtTime;
         this.externalIds = externalIds;
         this.geofence = geofence;
-        this.hubLocations = hubLocations;
         this.id = id;
         this.iftaExemptionTypes = iftaExemptionTypes;
         this.isAutoDismissRolledStopsEnabled = isAutoDismissRolledStopsEnabled;
         this.isShowAddressesEnabled = isShowAddressesEnabled;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.name = name;
         this.navigation = navigation;
         this.notes = notes;
         this.placeTypes = placeTypes;
-        this.radiusMeters = radiusMeters;
+        this.routing = routing;
         this.safetyEventExclusions = safetyEventExclusions;
         this.streetView = streetView;
         this.tags = tags;
@@ -146,20 +134,9 @@ public final class PlaceResponseObjectResponseBody {
         return externalIds;
     }
 
-    /**
-     * @return Polygon vertices when applicable.
-     */
     @JsonProperty("geofence")
-    public Optional<List<PlaceGeofenceVertexResponseResponseBody>> getGeofence() {
+    public PlaceGeofenceResponseResponseBody getGeofence() {
         return geofence;
-    }
-
-    /**
-     * @return Route-planning hub location rows when present.
-     */
-    @JsonProperty("hubLocations")
-    public Optional<List<HubLocationResponseResponseBody>> getHubLocations() {
-        return hubLocations;
     }
 
     /**
@@ -195,22 +172,6 @@ public final class PlaceResponseObjectResponseBody {
     }
 
     /**
-     * @return Center latitude when applicable.
-     */
-    @JsonProperty("latitude")
-    public Optional<Double> getLatitude() {
-        return latitude;
-    }
-
-    /**
-     * @return Center longitude when applicable.
-     */
-    @JsonProperty("longitude")
-    public Optional<Double> getLongitude() {
-        return longitude;
-    }
-
-    /**
      * @return Place name.
      */
     @JsonProperty("name")
@@ -240,11 +201,11 @@ public final class PlaceResponseObjectResponseBody {
     }
 
     /**
-     * @return Circle radius in meters when geometry is a point + buffer.
+     * @return Route-planning rows when present.
      */
-    @JsonProperty("radiusMeters")
-    public Optional<Long> getRadiusMeters() {
-        return radiusMeters;
+    @JsonProperty("routing")
+    public Optional<List<RoutingResponseResponseBody>> getRouting() {
+        return routing;
     }
 
     /**
@@ -293,18 +254,15 @@ public final class PlaceResponseObjectResponseBody {
                 && createdAtTime.equals(other.createdAtTime)
                 && externalIds.equals(other.externalIds)
                 && geofence.equals(other.geofence)
-                && hubLocations.equals(other.hubLocations)
                 && id.equals(other.id)
                 && iftaExemptionTypes.equals(other.iftaExemptionTypes)
                 && isAutoDismissRolledStopsEnabled.equals(other.isAutoDismissRolledStopsEnabled)
                 && isShowAddressesEnabled.equals(other.isShowAddressesEnabled)
-                && latitude.equals(other.latitude)
-                && longitude.equals(other.longitude)
                 && name.equals(other.name)
                 && navigation.equals(other.navigation)
                 && notes.equals(other.notes)
                 && placeTypes.equals(other.placeTypes)
-                && radiusMeters.equals(other.radiusMeters)
+                && routing.equals(other.routing)
                 && safetyEventExclusions.equals(other.safetyEventExclusions)
                 && streetView.equals(other.streetView)
                 && tags.equals(other.tags)
@@ -319,18 +277,15 @@ public final class PlaceResponseObjectResponseBody {
                 this.createdAtTime,
                 this.externalIds,
                 this.geofence,
-                this.hubLocations,
                 this.id,
                 this.iftaExemptionTypes,
                 this.isAutoDismissRolledStopsEnabled,
                 this.isShowAddressesEnabled,
-                this.latitude,
-                this.longitude,
                 this.name,
                 this.navigation,
                 this.notes,
                 this.placeTypes,
-                this.radiusMeters,
+                this.routing,
                 this.safetyEventExclusions,
                 this.streetView,
                 this.tags,
@@ -359,7 +314,11 @@ public final class PlaceResponseObjectResponseBody {
         /**
          * <p>Created timestamp in RFC 3339 format.</p>
          */
-        IdStage createdAtTime(@NotNull OffsetDateTime createdAtTime);
+        GeofenceStage createdAtTime(@NotNull OffsetDateTime createdAtTime);
+    }
+
+    public interface GeofenceStage {
+        IdStage geofence(@NotNull PlaceGeofenceResponseResponseBody geofence);
     }
 
     public interface IdStage {
@@ -401,20 +360,6 @@ public final class PlaceResponseObjectResponseBody {
         _FinalStage externalIds(PlaceResponseObjectResponseBodyExternalIds externalIds);
 
         /**
-         * <p>Polygon vertices when applicable.</p>
-         */
-        _FinalStage geofence(Optional<List<PlaceGeofenceVertexResponseResponseBody>> geofence);
-
-        _FinalStage geofence(List<PlaceGeofenceVertexResponseResponseBody> geofence);
-
-        /**
-         * <p>Route-planning hub location rows when present.</p>
-         */
-        _FinalStage hubLocations(Optional<List<HubLocationResponseResponseBody>> hubLocations);
-
-        _FinalStage hubLocations(List<HubLocationResponseResponseBody> hubLocations);
-
-        /**
          * <p>IFTA exemption labels.</p>
          */
         _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes);
@@ -435,20 +380,6 @@ public final class PlaceResponseObjectResponseBody {
 
         _FinalStage isShowAddressesEnabled(Boolean isShowAddressesEnabled);
 
-        /**
-         * <p>Center latitude when applicable.</p>
-         */
-        _FinalStage latitude(Optional<Double> latitude);
-
-        _FinalStage latitude(Double latitude);
-
-        /**
-         * <p>Center longitude when applicable.</p>
-         */
-        _FinalStage longitude(Optional<Double> longitude);
-
-        _FinalStage longitude(Double longitude);
-
         _FinalStage navigation(Optional<PlaceNavigationResponseResponseBody> navigation);
 
         _FinalStage navigation(PlaceNavigationResponseResponseBody navigation);
@@ -468,11 +399,11 @@ public final class PlaceResponseObjectResponseBody {
         _FinalStage placeTypes(List<String> placeTypes);
 
         /**
-         * <p>Circle radius in meters when geometry is a point + buffer.</p>
+         * <p>Route-planning rows when present.</p>
          */
-        _FinalStage radiusMeters(Optional<Long> radiusMeters);
+        _FinalStage routing(Optional<List<RoutingResponseResponseBody>> routing);
 
-        _FinalStage radiusMeters(Long radiusMeters);
+        _FinalStage routing(List<RoutingResponseResponseBody> routing);
 
         /**
          * <p>Configured safety exclusions.</p>
@@ -495,10 +426,18 @@ public final class PlaceResponseObjectResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements AddressStage, CreatedAtTimeStage, IdStage, NameStage, UpdatedAtTimeStage, _FinalStage {
+            implements AddressStage,
+                    CreatedAtTimeStage,
+                    GeofenceStage,
+                    IdStage,
+                    NameStage,
+                    UpdatedAtTimeStage,
+                    _FinalStage {
         private String address;
 
         private OffsetDateTime createdAtTime;
+
+        private PlaceGeofenceResponseResponseBody geofence;
 
         private String id;
 
@@ -512,7 +451,7 @@ public final class PlaceResponseObjectResponseBody {
 
         private Optional<List<String>> safetyEventExclusions = Optional.empty();
 
-        private Optional<Long> radiusMeters = Optional.empty();
+        private Optional<List<RoutingResponseResponseBody>> routing = Optional.empty();
 
         private Optional<List<String>> placeTypes = Optional.empty();
 
@@ -520,19 +459,11 @@ public final class PlaceResponseObjectResponseBody {
 
         private Optional<PlaceNavigationResponseResponseBody> navigation = Optional.empty();
 
-        private Optional<Double> longitude = Optional.empty();
-
-        private Optional<Double> latitude = Optional.empty();
-
         private Optional<Boolean> isShowAddressesEnabled = Optional.empty();
 
         private Optional<Boolean> isAutoDismissRolledStopsEnabled = Optional.empty();
 
         private Optional<List<String>> iftaExemptionTypes = Optional.empty();
-
-        private Optional<List<HubLocationResponseResponseBody>> hubLocations = Optional.empty();
-
-        private Optional<List<PlaceGeofenceVertexResponseResponseBody>> geofence = Optional.empty();
 
         private Optional<PlaceResponseObjectResponseBodyExternalIds> externalIds = Optional.empty();
 
@@ -550,18 +481,15 @@ public final class PlaceResponseObjectResponseBody {
             createdAtTime(other.getCreatedAtTime());
             externalIds(other.getExternalIds());
             geofence(other.getGeofence());
-            hubLocations(other.getHubLocations());
             id(other.getId());
             iftaExemptionTypes(other.getIftaExemptionTypes());
             isAutoDismissRolledStopsEnabled(other.getIsAutoDismissRolledStopsEnabled());
             isShowAddressesEnabled(other.getIsShowAddressesEnabled());
-            latitude(other.getLatitude());
-            longitude(other.getLongitude());
             name(other.getName());
             navigation(other.getNavigation());
             notes(other.getNotes());
             placeTypes(other.getPlaceTypes());
-            radiusMeters(other.getRadiusMeters());
+            routing(other.getRouting());
             safetyEventExclusions(other.getSafetyEventExclusions());
             streetView(other.getStreetView());
             tags(other.getTags());
@@ -588,8 +516,15 @@ public final class PlaceResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("createdAtTime")
-        public IdStage createdAtTime(@NotNull OffsetDateTime createdAtTime) {
+        public GeofenceStage createdAtTime(@NotNull OffsetDateTime createdAtTime) {
             this.createdAtTime = Objects.requireNonNull(createdAtTime, "createdAtTime must not be null");
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter("geofence")
+        public IdStage geofence(@NotNull PlaceGeofenceResponseResponseBody geofence) {
+            this.geofence = Objects.requireNonNull(geofence, "geofence must not be null");
             return this;
         }
 
@@ -683,22 +618,22 @@ public final class PlaceResponseObjectResponseBody {
         }
 
         /**
-         * <p>Circle radius in meters when geometry is a point + buffer.</p>
+         * <p>Route-planning rows when present.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage radiusMeters(Long radiusMeters) {
-            this.radiusMeters = Optional.ofNullable(radiusMeters);
+        public _FinalStage routing(List<RoutingResponseResponseBody> routing) {
+            this.routing = Optional.ofNullable(routing);
             return this;
         }
 
         /**
-         * <p>Circle radius in meters when geometry is a point + buffer.</p>
+         * <p>Route-planning rows when present.</p>
          */
         @java.lang.Override
-        @JsonSetter(value = "radiusMeters", nulls = Nulls.SKIP)
-        public _FinalStage radiusMeters(Optional<Long> radiusMeters) {
-            this.radiusMeters = radiusMeters;
+        @JsonSetter(value = "routing", nulls = Nulls.SKIP)
+        public _FinalStage routing(Optional<List<RoutingResponseResponseBody>> routing) {
+            this.routing = routing;
             return this;
         }
 
@@ -752,46 +687,6 @@ public final class PlaceResponseObjectResponseBody {
         @JsonSetter(value = "navigation", nulls = Nulls.SKIP)
         public _FinalStage navigation(Optional<PlaceNavigationResponseResponseBody> navigation) {
             this.navigation = navigation;
-            return this;
-        }
-
-        /**
-         * <p>Center longitude when applicable.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage longitude(Double longitude) {
-            this.longitude = Optional.ofNullable(longitude);
-            return this;
-        }
-
-        /**
-         * <p>Center longitude when applicable.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
-        public _FinalStage longitude(Optional<Double> longitude) {
-            this.longitude = longitude;
-            return this;
-        }
-
-        /**
-         * <p>Center latitude when applicable.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage latitude(Double latitude) {
-            this.latitude = Optional.ofNullable(latitude);
-            return this;
-        }
-
-        /**
-         * <p>Center latitude when applicable.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
-        public _FinalStage latitude(Optional<Double> latitude) {
-            this.latitude = latitude;
             return this;
         }
 
@@ -856,46 +751,6 @@ public final class PlaceResponseObjectResponseBody {
         }
 
         /**
-         * <p>Route-planning hub location rows when present.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage hubLocations(List<HubLocationResponseResponseBody> hubLocations) {
-            this.hubLocations = Optional.ofNullable(hubLocations);
-            return this;
-        }
-
-        /**
-         * <p>Route-planning hub location rows when present.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "hubLocations", nulls = Nulls.SKIP)
-        public _FinalStage hubLocations(Optional<List<HubLocationResponseResponseBody>> hubLocations) {
-            this.hubLocations = hubLocations;
-            return this;
-        }
-
-        /**
-         * <p>Polygon vertices when applicable.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage geofence(List<PlaceGeofenceVertexResponseResponseBody> geofence) {
-            this.geofence = Optional.ofNullable(geofence);
-            return this;
-        }
-
-        /**
-         * <p>Polygon vertices when applicable.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "geofence", nulls = Nulls.SKIP)
-        public _FinalStage geofence(Optional<List<PlaceGeofenceVertexResponseResponseBody>> geofence) {
-            this.geofence = geofence;
-            return this;
-        }
-
-        /**
          * <p>External ids when includeExternalIds=true.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -943,18 +798,15 @@ public final class PlaceResponseObjectResponseBody {
                     createdAtTime,
                     externalIds,
                     geofence,
-                    hubLocations,
                     id,
                     iftaExemptionTypes,
                     isAutoDismissRolledStopsEnabled,
                     isShowAddressesEnabled,
-                    latitude,
-                    longitude,
                     name,
                     navigation,
                     notes,
                     placeTypes,
-                    radiusMeters,
+                    routing,
                     safetyEventExclusions,
                     streetView,
                     tags,

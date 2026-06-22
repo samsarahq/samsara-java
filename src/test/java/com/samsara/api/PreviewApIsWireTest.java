@@ -5,8 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
+import com.samsara.api.resources.previewapis.requests.TachographFileUploadsPostTachographFileUploadRequestBody;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
+import com.samsara.api.resources.previewapis.types.TachographFileUploadsPostTachographFileUploadRequestBodyContentType;
+import com.samsara.api.resources.previewapis.types.TachographFileUploadsPostTachographFileUploadRequestBodyFileType;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
+import com.samsara.api.types.TachographFileUploadsPostTachographFileUploadResponseBody;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -87,6 +91,108 @@ public class PreviewApIsWireTest {
                 + "  \"data\": {\n"
                 + "    \"expirationTime\": 1710000000000,\n"
                 + "    \"token\": \"ZmFrZVRva2VuXzMyQnl0ZXNMb25nRm9yVGVzdA\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testPostTachographFileUpload() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"expiresAtTime\":\"2024-01-01T13:00:00Z\",\"requiredHeaders\":[{\"name\":\"Content-MD5\",\"value\":\"rL0Y20zC+Fzt72VPzMSk2A==\"}],\"uploadUrl\":\"https://example-bucket.s3.amazonaws.com/tachograph-uploads/v1/...?X-Amz-Signature=...\"}}"));
+        TachographFileUploadsPostTachographFileUploadResponseBody response = client.previewApIs()
+                .postTachographFileUpload(TachographFileUploadsPostTachographFileUploadRequestBody.builder()
+                        .contentMd5("rL0Y20zC+Fzt72VPzMSk2A==")
+                        .contentType(
+                                TachographFileUploadsPostTachographFileUploadRequestBodyContentType
+                                        .APPLICATION_OCTET_STREAM)
+                        .fileSizeBytes(8192L)
+                        .fileType(TachographFileUploadsPostTachographFileUploadRequestBodyFileType.DRIVER_CARD)
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"contentMd5\": \"rL0Y20zC+Fzt72VPzMSk2A==\",\n"
+                + "  \"contentType\": \"application/octet-stream\",\n"
+                + "  \"fileSizeBytes\": 8192,\n"
+                + "  \"fileType\": \"driverCard\"\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"expiresAtTime\": \"2024-01-01T13:00:00Z\",\n"
+                + "    \"requiredHeaders\": [\n"
+                + "      {\n"
+                + "        \"name\": \"Content-MD5\",\n"
+                + "        \"value\": \"rL0Y20zC+Fzt72VPzMSk2A==\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"uploadUrl\": \"https://example-bucket.s3.amazonaws.com/tachograph-uploads/v1/...?X-Amz-Signature=...\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

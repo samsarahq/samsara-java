@@ -135,6 +135,7 @@ import com.samsara.api.types.MaintenanceVendorsListMaintenanceVendorsResponseBod
 import com.samsara.api.types.MaintenanceVendorsListVendorCategoriesResponseBody;
 import com.samsara.api.types.PairGatewayPairObjectRequestBody;
 import com.samsara.api.types.PatchJobObjectRequestBody;
+import com.samsara.api.types.PlaceGeofenceInputRequestBody;
 import com.samsara.api.types.PlacesGetPlaceDeletionsResponseBody;
 import com.samsara.api.types.PlacesGetPlacesResponseBody;
 import com.samsara.api.types.PlacesPatchPlaceResponseBody;
@@ -810,7 +811,7 @@ public class BetaApIsWireTest {
                                 .relayStates(
                                         Arrays.asList(UpdateEngineImmobilizerRelayStateRequestBodyRequestBody.builder()
                                                 .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                                                .isOpen(true)
+                                                .isOpen(false)
                                                 .build()))
                                 .build());
         RecordedRequest request = server.takeRequest();
@@ -823,7 +824,7 @@ public class BetaApIsWireTest {
                 + "  \"relayStates\": [\n"
                 + "    {\n"
                 + "      \"id\": \"relay1\",\n"
-                + "      \"isOpen\": true\n"
+                + "      \"isOpen\": false\n"
                 + "    }\n"
                 + "  ]\n"
                 + "}";
@@ -1996,7 +1997,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"addressId\":\"281474993384538\",\"categoryIds\":[\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"],\"externalIds\":{\"key\":\"value\"},\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"servicesProvided\":\"Oil changes, tire rotations, brake services\",\"vendorId\":\"0000000772\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"addressId\":\"281474993384538\",\"categoryIds\":[\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"],\"externalIds\":{\"key\":\"value\"},\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"servicesProvided\":\"Oil changes, tire rotations, brake services\",\"vendorId\":\"0000000772\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         MaintenanceVendorsListMaintenanceVendorsResponseBody response = client.betaApIs()
                 .listMaintenanceVendors(ListMaintenanceVendorsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -2012,6 +2013,7 @@ public class BetaApIsWireTest {
                 + "    {\n"
                 + "      \"addressId\": \"281474993384538\",\n"
                 + "      \"categoryIds\": [\n"
+                + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
                 + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
                 + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n"
                 + "      ],\n"
@@ -3725,6 +3727,7 @@ public class BetaApIsWireTest {
         PlacesPostPlaceResponseBody response = client.betaApIs()
                 .postPlace(PlacesPostPlaceRequestBody.builder()
                         .address("123 Main St, Oakland, CA")
+                        .geofence(PlaceGeofenceInputRequestBody.builder().build())
                         .name("Oakland Yard")
                         .build());
         RecordedRequest request = server.takeRequest();
@@ -3732,8 +3735,12 @@ public class BetaApIsWireTest {
         Assertions.assertEquals("POST", request.getMethod());
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody =
-                "" + "{\n" + "  \"address\": \"123 Main St, Oakland, CA\",\n" + "  \"name\": \"Oakland Yard\"\n" + "}";
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"address\": \"123 Main St, Oakland, CA\",\n"
+                + "  \"geofence\": {},\n"
+                + "  \"name\": \"Oakland Yard\"\n"
+                + "}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
@@ -5237,10 +5244,11 @@ public class BetaApIsWireTest {
 
     @Test
     public void testGetReportRunData() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(
-                        TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json")));
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunDataResponseBody response = client.betaApIs()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -5250,8 +5258,57 @@ public class BetaApIsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json");
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"columns\": [\n"
+                + "      {\n"
+                + "        \"dataType\": \"string\",\n"
+                + "        \"name\": \"Device Name\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"rows\": [\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    ],\n"
+                + "    \"status\": \"complete\"\n"
+                + "  },\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -5289,7 +5346,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":false},\"tagIds\":[\"Repudiandae et laborum commodi possimus.\",\"Consequatur eos voluptatibus.\",\"Harum rerum ut doloribus voluptatum quaerat.\",\"Voluptatem reiciendis consectetur praesentium.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipPassengersListRidershipPassengersResponseBody response = client.betaApIs()
                 .listRidershipPassengers(
                         ListRidershipPassengersRequest.builder().tagId("tagId").build());
@@ -5323,13 +5380,11 @@ public class BetaApIsWireTest {
                 + "      \"lastName\": \"Doe\",\n"
                 + "      \"specialInstructions\": {\n"
                 + "        \"isGuardianRequired\": true,\n"
-                + "        \"isSpecialEducation\": false\n"
+                + "        \"isSpecialEducation\": true\n"
                 + "      },\n"
                 + "      \"tagIds\": [\n"
-                + "        \"Repudiandae et laborum commodi possimus.\",\n"
-                + "        \"Consequatur eos voluptatibus.\",\n"
-                + "        \"Harum rerum ut doloribus voluptatum quaerat.\",\n"
-                + "        \"Voluptatem reiciendis consectetur praesentium.\"\n"
+                + "        \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
+                + "        \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
                 + "      ],\n"
                 + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "    }\n"
@@ -5376,7 +5431,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":false},\"tagIds\":[\"Repudiandae et laborum commodi possimus.\",\"Consequatur eos voluptatibus.\",\"Harum rerum ut doloribus voluptatum quaerat.\",\"Voluptatem reiciendis consectetur praesentium.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersCreateRidershipPassengerResponseBody response = client.betaApIs()
                 .createRidershipPassenger(RidershipPassengersCreateRidershipPassengerRequestBody.builder()
                         .firstName("John")
@@ -5440,13 +5495,11 @@ public class BetaApIsWireTest {
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
                 + "      \"isGuardianRequired\": true,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Repudiandae et laborum commodi possimus.\",\n"
-                + "      \"Consequatur eos voluptatibus.\",\n"
-                + "      \"Harum rerum ut doloribus voluptatum quaerat.\",\n"
-                + "      \"Voluptatem reiciendis consectetur praesentium.\"\n"
+                + "      \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
+                + "      \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -5488,7 +5541,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":false},\"tagIds\":[\"Repudiandae et laborum commodi possimus.\",\"Consequatur eos voluptatibus.\",\"Harum rerum ut doloribus voluptatum quaerat.\",\"Voluptatem reiciendis consectetur praesentium.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersUpdateRidershipPassengerResponseBody response = client.betaApIs()
                 .updateRidershipPassenger(RidershipPassengersUpdateRidershipPassengerRequestBody.builder()
                         .id("id")
@@ -5553,13 +5606,11 @@ public class BetaApIsWireTest {
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
                 + "      \"isGuardianRequired\": true,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Repudiandae et laborum commodi possimus.\",\n"
-                + "      \"Consequatur eos voluptatibus.\",\n"
-                + "      \"Harum rerum ut doloribus voluptatum quaerat.\",\n"
-                + "      \"Voluptatem reiciendis consectetur praesentium.\"\n"
+                + "      \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
+                + "      \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -5612,7 +5663,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":false},\"tagIds\":[\"Repudiandae et laborum commodi possimus.\",\"Consequatur eos voluptatibus.\",\"Harum rerum ut doloribus voluptatum quaerat.\",\"Voluptatem reiciendis consectetur praesentium.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersGetRidershipPassengerResponseBody response = client.betaApIs()
                 .getRidershipPassenger(
                         "id", GetRidershipPassengerRequest.builder().build());
@@ -5645,13 +5696,11 @@ public class BetaApIsWireTest {
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
                 + "      \"isGuardianRequired\": true,\n"
-                + "      \"isSpecialEducation\": false\n"
+                + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Repudiandae et laborum commodi possimus.\",\n"
-                + "      \"Consequatur eos voluptatibus.\",\n"
-                + "      \"Harum rerum ut doloribus voluptatum quaerat.\",\n"
-                + "      \"Voluptatem reiciendis consectetur praesentium.\"\n"
+                + "      \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
+                + "      \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -6051,6 +6100,7 @@ public class BetaApIsWireTest {
                         .safetyEventIds(Arrays.asList(
                                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
+                                "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590"))
                         .build());
         RecordedRequest request = server.takeRequest();
@@ -6061,6 +6111,7 @@ public class BetaApIsWireTest {
         String expectedRequestBody = ""
                 + "{\n"
                 + "  \"safetyEventIds\": [\n"
+                + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
                 + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
                 + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
                 + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\"\n"

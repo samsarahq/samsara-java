@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PlaceStreetViewResponseResponseBody.Builder.class)
 public final class PlaceStreetViewResponseResponseBody {
-    private final Optional<Double> heading;
+    private final Optional<Double> headingDegrees;
 
     private final boolean isEnabled;
 
@@ -28,35 +28,35 @@ public final class PlaceStreetViewResponseResponseBody {
 
     private final Optional<Double> longitude;
 
-    private final Optional<Double> pitch;
+    private final Optional<Double> pitchDegrees;
 
     private final Optional<Double> zoom;
 
     private final Map<String, Object> additionalProperties;
 
     private PlaceStreetViewResponseResponseBody(
-            Optional<Double> heading,
+            Optional<Double> headingDegrees,
             boolean isEnabled,
             Optional<Double> latitude,
             Optional<Double> longitude,
-            Optional<Double> pitch,
+            Optional<Double> pitchDegrees,
             Optional<Double> zoom,
             Map<String, Object> additionalProperties) {
-        this.heading = heading;
+        this.headingDegrees = headingDegrees;
         this.isEnabled = isEnabled;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.pitch = pitch;
+        this.pitchDegrees = pitchDegrees;
         this.zoom = zoom;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return Camera heading.
+     * @return Camera heading clockwise from true north; 0 ≤ headingDegrees &lt; 360 on write, normalized mod 360 on GET.
      */
-    @JsonProperty("heading")
-    public Optional<Double> getHeading() {
-        return heading;
+    @JsonProperty("headingDegrees")
+    public Optional<Double> getHeadingDegrees() {
+        return headingDegrees;
     }
 
     /**
@@ -84,11 +84,11 @@ public final class PlaceStreetViewResponseResponseBody {
     }
 
     /**
-     * @return Camera pitch.
+     * @return Camera pitch relative to the Street View horizon; −90 ≤ pitchDegrees ≤ 90.
      */
-    @JsonProperty("pitch")
-    public Optional<Double> getPitch() {
-        return pitch;
+    @JsonProperty("pitchDegrees")
+    public Optional<Double> getPitchDegrees() {
+        return pitchDegrees;
     }
 
     /**
@@ -112,17 +112,18 @@ public final class PlaceStreetViewResponseResponseBody {
     }
 
     private boolean equalTo(PlaceStreetViewResponseResponseBody other) {
-        return heading.equals(other.heading)
+        return headingDegrees.equals(other.headingDegrees)
                 && isEnabled == other.isEnabled
                 && latitude.equals(other.latitude)
                 && longitude.equals(other.longitude)
-                && pitch.equals(other.pitch)
+                && pitchDegrees.equals(other.pitchDegrees)
                 && zoom.equals(other.zoom);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.heading, this.isEnabled, this.latitude, this.longitude, this.pitch, this.zoom);
+        return Objects.hash(
+                this.headingDegrees, this.isEnabled, this.latitude, this.longitude, this.pitchDegrees, this.zoom);
     }
 
     @java.lang.Override
@@ -147,11 +148,11 @@ public final class PlaceStreetViewResponseResponseBody {
         PlaceStreetViewResponseResponseBody build();
 
         /**
-         * <p>Camera heading.</p>
+         * <p>Camera heading clockwise from true north; 0 ≤ headingDegrees &lt; 360 on write, normalized mod 360 on GET.</p>
          */
-        _FinalStage heading(Optional<Double> heading);
+        _FinalStage headingDegrees(Optional<Double> headingDegrees);
 
-        _FinalStage heading(Double heading);
+        _FinalStage headingDegrees(Double headingDegrees);
 
         /**
          * <p>Latitude.</p>
@@ -168,11 +169,11 @@ public final class PlaceStreetViewResponseResponseBody {
         _FinalStage longitude(Double longitude);
 
         /**
-         * <p>Camera pitch.</p>
+         * <p>Camera pitch relative to the Street View horizon; −90 ≤ pitchDegrees ≤ 90.</p>
          */
-        _FinalStage pitch(Optional<Double> pitch);
+        _FinalStage pitchDegrees(Optional<Double> pitchDegrees);
 
-        _FinalStage pitch(Double pitch);
+        _FinalStage pitchDegrees(Double pitchDegrees);
 
         /**
          * <p>Zoom level.</p>
@@ -188,13 +189,13 @@ public final class PlaceStreetViewResponseResponseBody {
 
         private Optional<Double> zoom = Optional.empty();
 
-        private Optional<Double> pitch = Optional.empty();
+        private Optional<Double> pitchDegrees = Optional.empty();
 
         private Optional<Double> longitude = Optional.empty();
 
         private Optional<Double> latitude = Optional.empty();
 
-        private Optional<Double> heading = Optional.empty();
+        private Optional<Double> headingDegrees = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -203,11 +204,11 @@ public final class PlaceStreetViewResponseResponseBody {
 
         @java.lang.Override
         public Builder from(PlaceStreetViewResponseResponseBody other) {
-            heading(other.getHeading());
+            headingDegrees(other.getHeadingDegrees());
             isEnabled(other.getIsEnabled());
             latitude(other.getLatitude());
             longitude(other.getLongitude());
-            pitch(other.getPitch());
+            pitchDegrees(other.getPitchDegrees());
             zoom(other.getZoom());
             return this;
         }
@@ -245,22 +246,22 @@ public final class PlaceStreetViewResponseResponseBody {
         }
 
         /**
-         * <p>Camera pitch.</p>
+         * <p>Camera pitch relative to the Street View horizon; −90 ≤ pitchDegrees ≤ 90.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage pitch(Double pitch) {
-            this.pitch = Optional.ofNullable(pitch);
+        public _FinalStage pitchDegrees(Double pitchDegrees) {
+            this.pitchDegrees = Optional.ofNullable(pitchDegrees);
             return this;
         }
 
         /**
-         * <p>Camera pitch.</p>
+         * <p>Camera pitch relative to the Street View horizon; −90 ≤ pitchDegrees ≤ 90.</p>
          */
         @java.lang.Override
-        @JsonSetter(value = "pitch", nulls = Nulls.SKIP)
-        public _FinalStage pitch(Optional<Double> pitch) {
-            this.pitch = pitch;
+        @JsonSetter(value = "pitchDegrees", nulls = Nulls.SKIP)
+        public _FinalStage pitchDegrees(Optional<Double> pitchDegrees) {
+            this.pitchDegrees = pitchDegrees;
             return this;
         }
 
@@ -305,29 +306,29 @@ public final class PlaceStreetViewResponseResponseBody {
         }
 
         /**
-         * <p>Camera heading.</p>
+         * <p>Camera heading clockwise from true north; 0 ≤ headingDegrees &lt; 360 on write, normalized mod 360 on GET.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage heading(Double heading) {
-            this.heading = Optional.ofNullable(heading);
+        public _FinalStage headingDegrees(Double headingDegrees) {
+            this.headingDegrees = Optional.ofNullable(headingDegrees);
             return this;
         }
 
         /**
-         * <p>Camera heading.</p>
+         * <p>Camera heading clockwise from true north; 0 ≤ headingDegrees &lt; 360 on write, normalized mod 360 on GET.</p>
          */
         @java.lang.Override
-        @JsonSetter(value = "heading", nulls = Nulls.SKIP)
-        public _FinalStage heading(Optional<Double> heading) {
-            this.heading = heading;
+        @JsonSetter(value = "headingDegrees", nulls = Nulls.SKIP)
+        public _FinalStage headingDegrees(Optional<Double> headingDegrees) {
+            this.headingDegrees = headingDegrees;
             return this;
         }
 
         @java.lang.Override
         public PlaceStreetViewResponseResponseBody build() {
             return new PlaceStreetViewResponseResponseBody(
-                    heading, isEnabled, latitude, longitude, pitch, zoom, additionalProperties);
+                    headingDegrees, isEnabled, latitude, longitude, pitchDegrees, zoom, additionalProperties);
         }
     }
 }
