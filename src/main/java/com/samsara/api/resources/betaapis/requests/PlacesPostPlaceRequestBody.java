@@ -14,9 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.betaapis.types.PlacesPostPlaceRequestBodyCameraRecordingModeType;
 import com.samsara.api.resources.betaapis.types.PlacesPostPlaceRequestBodyExternalIds;
-import com.samsara.api.types.GeofenceVertexInputRequestBody;
-import com.samsara.api.types.PatchPlaceHubLocationUpsertBodyRequestBody;
-import com.samsara.api.types.PlaceStreetViewResponseRequestBody;
+import com.samsara.api.types.PlaceGeofenceInputRequestBody;
+import com.samsara.api.types.PlaceRoutingInputRequestBody;
+import com.samsara.api.types.PlaceStreetViewInputRequestBody;
 import com.samsara.api.types.PostPlaceNavigationInputRequestBody;
 import com.samsara.api.types.PostPlaceTagRefRequestBody;
 import java.util.HashMap;
@@ -35,17 +35,11 @@ public final class PlacesPostPlaceRequestBody {
 
     private final Optional<PlacesPostPlaceRequestBodyExternalIds> externalIds;
 
-    private final Optional<List<GeofenceVertexInputRequestBody>> geofence;
-
-    private final Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations;
+    private final PlaceGeofenceInputRequestBody geofence;
 
     private final Optional<List<String>> iftaExemptionTypes;
 
     private final Optional<Boolean> isShowAddressesEnabled;
-
-    private final Optional<Double> latitude;
-
-    private final Optional<Double> longitude;
 
     private final String name;
 
@@ -55,11 +49,11 @@ public final class PlacesPostPlaceRequestBody {
 
     private final Optional<List<String>> placeTypes;
 
-    private final Optional<Long> radiusMeters;
+    private final Optional<List<PlaceRoutingInputRequestBody>> routing;
 
     private final Optional<List<String>> safetyEventExclusions;
 
-    private final Optional<PlaceStreetViewResponseRequestBody> streetView;
+    private final Optional<PlaceStreetViewInputRequestBody> streetView;
 
     private final Optional<List<PostPlaceTagRefRequestBody>> tags;
 
@@ -69,35 +63,29 @@ public final class PlacesPostPlaceRequestBody {
             String address,
             Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
             Optional<PlacesPostPlaceRequestBodyExternalIds> externalIds,
-            Optional<List<GeofenceVertexInputRequestBody>> geofence,
-            Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations,
+            PlaceGeofenceInputRequestBody geofence,
             Optional<List<String>> iftaExemptionTypes,
             Optional<Boolean> isShowAddressesEnabled,
-            Optional<Double> latitude,
-            Optional<Double> longitude,
             String name,
             Optional<PostPlaceNavigationInputRequestBody> navigation,
             Optional<String> notes,
             Optional<List<String>> placeTypes,
-            Optional<Long> radiusMeters,
+            Optional<List<PlaceRoutingInputRequestBody>> routing,
             Optional<List<String>> safetyEventExclusions,
-            Optional<PlaceStreetViewResponseRequestBody> streetView,
+            Optional<PlaceStreetViewInputRequestBody> streetView,
             Optional<List<PostPlaceTagRefRequestBody>> tags,
             Map<String, Object> additionalProperties) {
         this.address = address;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.externalIds = externalIds;
         this.geofence = geofence;
-        this.hubLocations = hubLocations;
         this.iftaExemptionTypes = iftaExemptionTypes;
         this.isShowAddressesEnabled = isShowAddressesEnabled;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.name = name;
         this.navigation = navigation;
         this.notes = notes;
         this.placeTypes = placeTypes;
-        this.radiusMeters = radiusMeters;
+        this.routing = routing;
         this.safetyEventExclusions = safetyEventExclusions;
         this.streetView = streetView;
         this.tags = tags;
@@ -128,20 +116,9 @@ public final class PlacesPostPlaceRequestBody {
         return externalIds;
     }
 
-    /**
-     * @return Polygon vertices; at least three when using polygon mode (omit entirely when using latitude, longitude, and radiusMeters for a circle).
-     */
     @JsonProperty("geofence")
-    public Optional<List<GeofenceVertexInputRequestBody>> getGeofence() {
+    public PlaceGeofenceInputRequestBody getGeofence() {
         return geofence;
-    }
-
-    /**
-     * @return Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.
-     */
-    @JsonProperty("hubLocations")
-    public Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> getHubLocations() {
-        return hubLocations;
     }
 
     /**
@@ -158,22 +135,6 @@ public final class PlacesPostPlaceRequestBody {
     @JsonProperty("isShowAddressesEnabled")
     public Optional<Boolean> getIsShowAddressesEnabled() {
         return isShowAddressesEnabled;
-    }
-
-    /**
-     * @return Center latitude when using a circle geofence with radiusMeters.
-     */
-    @JsonProperty("latitude")
-    public Optional<Double> getLatitude() {
-        return latitude;
-    }
-
-    /**
-     * @return Center longitude when using a circle geofence with radiusMeters.
-     */
-    @JsonProperty("longitude")
-    public Optional<Double> getLongitude() {
-        return longitude;
     }
 
     /**
@@ -198,7 +159,7 @@ public final class PlacesPostPlaceRequestBody {
     }
 
     /**
-     * @return When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
+     * @return When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match routing, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
      */
     @JsonProperty("placeTypes")
     public Optional<List<String>> getPlaceTypes() {
@@ -206,11 +167,11 @@ public final class PlacesPostPlaceRequestBody {
     }
 
     /**
-     * @return Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.
+     * @return Initial route-planning rows for the new place. Each entry requires hubId; (placeId, hubId) must be unique.
      */
-    @JsonProperty("radiusMeters")
-    public Optional<Long> getRadiusMeters() {
-        return radiusMeters;
+    @JsonProperty("routing")
+    public Optional<List<PlaceRoutingInputRequestBody>> getRouting() {
+        return routing;
     }
 
     /**
@@ -222,7 +183,7 @@ public final class PlacesPostPlaceRequestBody {
     }
 
     @JsonProperty("streetView")
-    public Optional<PlaceStreetViewResponseRequestBody> getStreetView() {
+    public Optional<PlaceStreetViewInputRequestBody> getStreetView() {
         return streetView;
     }
 
@@ -250,16 +211,13 @@ public final class PlacesPostPlaceRequestBody {
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && externalIds.equals(other.externalIds)
                 && geofence.equals(other.geofence)
-                && hubLocations.equals(other.hubLocations)
                 && iftaExemptionTypes.equals(other.iftaExemptionTypes)
                 && isShowAddressesEnabled.equals(other.isShowAddressesEnabled)
-                && latitude.equals(other.latitude)
-                && longitude.equals(other.longitude)
                 && name.equals(other.name)
                 && navigation.equals(other.navigation)
                 && notes.equals(other.notes)
                 && placeTypes.equals(other.placeTypes)
-                && radiusMeters.equals(other.radiusMeters)
+                && routing.equals(other.routing)
                 && safetyEventExclusions.equals(other.safetyEventExclusions)
                 && streetView.equals(other.streetView)
                 && tags.equals(other.tags);
@@ -272,16 +230,13 @@ public final class PlacesPostPlaceRequestBody {
                 this.cameraRecordingModeType,
                 this.externalIds,
                 this.geofence,
-                this.hubLocations,
                 this.iftaExemptionTypes,
                 this.isShowAddressesEnabled,
-                this.latitude,
-                this.longitude,
                 this.name,
                 this.navigation,
                 this.notes,
                 this.placeTypes,
-                this.radiusMeters,
+                this.routing,
                 this.safetyEventExclusions,
                 this.streetView,
                 this.tags);
@@ -300,9 +255,13 @@ public final class PlacesPostPlaceRequestBody {
         /**
          * <p>Single-line address string.</p>
          */
-        NameStage address(@NotNull String address);
+        GeofenceStage address(@NotNull String address);
 
         Builder from(PlacesPostPlaceRequestBody other);
+    }
+
+    public interface GeofenceStage {
+        NameStage geofence(@NotNull PlaceGeofenceInputRequestBody geofence);
     }
 
     public interface NameStage {
@@ -331,20 +290,6 @@ public final class PlacesPostPlaceRequestBody {
         _FinalStage externalIds(PlacesPostPlaceRequestBodyExternalIds externalIds);
 
         /**
-         * <p>Polygon vertices; at least three when using polygon mode (omit entirely when using latitude, longitude, and radiusMeters for a circle).</p>
-         */
-        _FinalStage geofence(Optional<List<GeofenceVertexInputRequestBody>> geofence);
-
-        _FinalStage geofence(List<GeofenceVertexInputRequestBody> geofence);
-
-        /**
-         * <p>Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.</p>
-         */
-        _FinalStage hubLocations(Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations);
-
-        _FinalStage hubLocations(List<PatchPlaceHubLocationUpsertBodyRequestBody> hubLocations);
-
-        /**
          * <p>IFTA exemption types for this place.</p>
          */
         _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes);
@@ -358,20 +303,6 @@ public final class PlacesPostPlaceRequestBody {
 
         _FinalStage isShowAddressesEnabled(Boolean isShowAddressesEnabled);
 
-        /**
-         * <p>Center latitude when using a circle geofence with radiusMeters.</p>
-         */
-        _FinalStage latitude(Optional<Double> latitude);
-
-        _FinalStage latitude(Double latitude);
-
-        /**
-         * <p>Center longitude when using a circle geofence with radiusMeters.</p>
-         */
-        _FinalStage longitude(Optional<Double> longitude);
-
-        _FinalStage longitude(Double longitude);
-
         _FinalStage navigation(Optional<PostPlaceNavigationInputRequestBody> navigation);
 
         _FinalStage navigation(PostPlaceNavigationInputRequestBody navigation);
@@ -384,18 +315,18 @@ public final class PlacesPostPlaceRequestBody {
         _FinalStage notes(String notes);
 
         /**
-         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match routing, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
          */
         _FinalStage placeTypes(Optional<List<String>> placeTypes);
 
         _FinalStage placeTypes(List<String> placeTypes);
 
         /**
-         * <p>Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.</p>
+         * <p>Initial route-planning rows for the new place. Each entry requires hubId; (placeId, hubId) must be unique.</p>
          */
-        _FinalStage radiusMeters(Optional<Long> radiusMeters);
+        _FinalStage routing(Optional<List<PlaceRoutingInputRequestBody>> routing);
 
-        _FinalStage radiusMeters(Long radiusMeters);
+        _FinalStage routing(List<PlaceRoutingInputRequestBody> routing);
 
         /**
          * <p>Safety event types excluded at this place.</p>
@@ -404,9 +335,9 @@ public final class PlacesPostPlaceRequestBody {
 
         _FinalStage safetyEventExclusions(List<String> safetyEventExclusions);
 
-        _FinalStage streetView(Optional<PlaceStreetViewResponseRequestBody> streetView);
+        _FinalStage streetView(Optional<PlaceStreetViewInputRequestBody> streetView);
 
-        _FinalStage streetView(PlaceStreetViewResponseRequestBody streetView);
+        _FinalStage streetView(PlaceStreetViewInputRequestBody streetView);
 
         /**
          * <p>Tags to associate.</p>
@@ -417,18 +348,20 @@ public final class PlacesPostPlaceRequestBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AddressStage, NameStage, _FinalStage {
+    public static final class Builder implements AddressStage, GeofenceStage, NameStage, _FinalStage {
         private String address;
+
+        private PlaceGeofenceInputRequestBody geofence;
 
         private String name;
 
         private Optional<List<PostPlaceTagRefRequestBody>> tags = Optional.empty();
 
-        private Optional<PlaceStreetViewResponseRequestBody> streetView = Optional.empty();
+        private Optional<PlaceStreetViewInputRequestBody> streetView = Optional.empty();
 
         private Optional<List<String>> safetyEventExclusions = Optional.empty();
 
-        private Optional<Long> radiusMeters = Optional.empty();
+        private Optional<List<PlaceRoutingInputRequestBody>> routing = Optional.empty();
 
         private Optional<List<String>> placeTypes = Optional.empty();
 
@@ -436,17 +369,9 @@ public final class PlacesPostPlaceRequestBody {
 
         private Optional<PostPlaceNavigationInputRequestBody> navigation = Optional.empty();
 
-        private Optional<Double> longitude = Optional.empty();
-
-        private Optional<Double> latitude = Optional.empty();
-
         private Optional<Boolean> isShowAddressesEnabled = Optional.empty();
 
         private Optional<List<String>> iftaExemptionTypes = Optional.empty();
-
-        private Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations = Optional.empty();
-
-        private Optional<List<GeofenceVertexInputRequestBody>> geofence = Optional.empty();
 
         private Optional<PlacesPostPlaceRequestBodyExternalIds> externalIds = Optional.empty();
 
@@ -463,16 +388,13 @@ public final class PlacesPostPlaceRequestBody {
             cameraRecordingModeType(other.getCameraRecordingModeType());
             externalIds(other.getExternalIds());
             geofence(other.getGeofence());
-            hubLocations(other.getHubLocations());
             iftaExemptionTypes(other.getIftaExemptionTypes());
             isShowAddressesEnabled(other.getIsShowAddressesEnabled());
-            latitude(other.getLatitude());
-            longitude(other.getLongitude());
             name(other.getName());
             navigation(other.getNavigation());
             notes(other.getNotes());
             placeTypes(other.getPlaceTypes());
-            radiusMeters(other.getRadiusMeters());
+            routing(other.getRouting());
             safetyEventExclusions(other.getSafetyEventExclusions());
             streetView(other.getStreetView());
             tags(other.getTags());
@@ -486,8 +408,15 @@ public final class PlacesPostPlaceRequestBody {
          */
         @java.lang.Override
         @JsonSetter("address")
-        public NameStage address(@NotNull String address) {
+        public GeofenceStage address(@NotNull String address) {
             this.address = Objects.requireNonNull(address, "address must not be null");
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter("geofence")
+        public NameStage geofence(@NotNull PlaceGeofenceInputRequestBody geofence) {
+            this.geofence = Objects.requireNonNull(geofence, "geofence must not be null");
             return this;
         }
 
@@ -524,14 +453,14 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         @java.lang.Override
-        public _FinalStage streetView(PlaceStreetViewResponseRequestBody streetView) {
+        public _FinalStage streetView(PlaceStreetViewInputRequestBody streetView) {
             this.streetView = Optional.ofNullable(streetView);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "streetView", nulls = Nulls.SKIP)
-        public _FinalStage streetView(Optional<PlaceStreetViewResponseRequestBody> streetView) {
+        public _FinalStage streetView(Optional<PlaceStreetViewInputRequestBody> streetView) {
             this.streetView = streetView;
             return this;
         }
@@ -557,27 +486,27 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         /**
-         * <p>Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.</p>
+         * <p>Initial route-planning rows for the new place. Each entry requires hubId; (placeId, hubId) must be unique.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage radiusMeters(Long radiusMeters) {
-            this.radiusMeters = Optional.ofNullable(radiusMeters);
+        public _FinalStage routing(List<PlaceRoutingInputRequestBody> routing) {
+            this.routing = Optional.ofNullable(routing);
             return this;
         }
 
         /**
-         * <p>Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.</p>
+         * <p>Initial route-planning rows for the new place. Each entry requires hubId; (placeId, hubId) must be unique.</p>
          */
         @java.lang.Override
-        @JsonSetter(value = "radiusMeters", nulls = Nulls.SKIP)
-        public _FinalStage radiusMeters(Optional<Long> radiusMeters) {
-            this.radiusMeters = radiusMeters;
+        @JsonSetter(value = "routing", nulls = Nulls.SKIP)
+        public _FinalStage routing(Optional<List<PlaceRoutingInputRequestBody>> routing) {
+            this.routing = routing;
             return this;
         }
 
         /**
-         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match routing, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -587,7 +516,7 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         /**
-         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
+         * <p>When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match routing, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "placeTypes", nulls = Nulls.SKIP)
@@ -630,46 +559,6 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         /**
-         * <p>Center longitude when using a circle geofence with radiusMeters.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage longitude(Double longitude) {
-            this.longitude = Optional.ofNullable(longitude);
-            return this;
-        }
-
-        /**
-         * <p>Center longitude when using a circle geofence with radiusMeters.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
-        public _FinalStage longitude(Optional<Double> longitude) {
-            this.longitude = longitude;
-            return this;
-        }
-
-        /**
-         * <p>Center latitude when using a circle geofence with radiusMeters.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage latitude(Double latitude) {
-            this.latitude = Optional.ofNullable(latitude);
-            return this;
-        }
-
-        /**
-         * <p>Center latitude when using a circle geofence with radiusMeters.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
-        public _FinalStage latitude(Optional<Double> latitude) {
-            this.latitude = latitude;
-            return this;
-        }
-
-        /**
          * <p>When true, show addresses inside the geofence on the map.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -706,46 +595,6 @@ public final class PlacesPostPlaceRequestBody {
         @JsonSetter(value = "iftaExemptionTypes", nulls = Nulls.SKIP)
         public _FinalStage iftaExemptionTypes(Optional<List<String>> iftaExemptionTypes) {
             this.iftaExemptionTypes = iftaExemptionTypes;
-            return this;
-        }
-
-        /**
-         * <p>Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage hubLocations(List<PatchPlaceHubLocationUpsertBodyRequestBody> hubLocations) {
-            this.hubLocations = Optional.ofNullable(hubLocations);
-            return this;
-        }
-
-        /**
-         * <p>Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "hubLocations", nulls = Nulls.SKIP)
-        public _FinalStage hubLocations(Optional<List<PatchPlaceHubLocationUpsertBodyRequestBody>> hubLocations) {
-            this.hubLocations = hubLocations;
-            return this;
-        }
-
-        /**
-         * <p>Polygon vertices; at least three when using polygon mode (omit entirely when using latitude, longitude, and radiusMeters for a circle).</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage geofence(List<GeofenceVertexInputRequestBody> geofence) {
-            this.geofence = Optional.ofNullable(geofence);
-            return this;
-        }
-
-        /**
-         * <p>Polygon vertices; at least three when using polygon mode (omit entirely when using latitude, longitude, and radiusMeters for a circle).</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "geofence", nulls = Nulls.SKIP)
-        public _FinalStage geofence(Optional<List<GeofenceVertexInputRequestBody>> geofence) {
-            this.geofence = geofence;
             return this;
         }
 
@@ -798,16 +647,13 @@ public final class PlacesPostPlaceRequestBody {
                     cameraRecordingModeType,
                     externalIds,
                     geofence,
-                    hubLocations,
                     iftaExemptionTypes,
                     isShowAddressesEnabled,
-                    latitude,
-                    longitude,
                     name,
                     navigation,
                     notes,
                     placeTypes,
-                    radiusMeters,
+                    routing,
                     safetyEventExclusions,
                     streetView,
                     tags,

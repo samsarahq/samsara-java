@@ -17,20 +17,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = PlaceHubLocationServiceWindowInputRequestBody.Builder.class)
-public final class PlaceHubLocationServiceWindowInputRequestBody {
+@JsonDeserialize(builder = RoutingServiceWindowResponseResponseBody.Builder.class)
+public final class RoutingServiceWindowResponseResponseBody {
     private final List<String> days;
 
-    private final long endTime;
+    private final String endTime;
 
-    private final long startTime;
+    private final String startTime;
 
     private final Map<String, Object> additionalProperties;
 
-    private PlaceHubLocationServiceWindowInputRequestBody(
-            List<String> days, long endTime, long startTime, Map<String, Object> additionalProperties) {
+    private RoutingServiceWindowResponseResponseBody(
+            List<String> days, String endTime, String startTime, Map<String, Object> additionalProperties) {
         this.days = days;
         this.endTime = endTime;
         this.startTime = startTime;
@@ -46,26 +47,26 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
     }
 
     /**
-     * @return End time as seconds since local midnight.
+     * @return End time as HH:MM:SS in the org timezone.
      */
     @JsonProperty("endTime")
-    public long getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
     /**
-     * @return Start time as seconds since local midnight.
+     * @return Start time as HH:MM:SS in the org timezone.
      */
     @JsonProperty("startTime")
-    public long getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof PlaceHubLocationServiceWindowInputRequestBody
-                && equalTo((PlaceHubLocationServiceWindowInputRequestBody) other);
+        return other instanceof RoutingServiceWindowResponseResponseBody
+                && equalTo((RoutingServiceWindowResponseResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -73,8 +74,8 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(PlaceHubLocationServiceWindowInputRequestBody other) {
-        return days.equals(other.days) && endTime == other.endTime && startTime == other.startTime;
+    private boolean equalTo(RoutingServiceWindowResponseResponseBody other) {
+        return days.equals(other.days) && endTime.equals(other.endTime) && startTime.equals(other.startTime);
     }
 
     @java.lang.Override
@@ -93,22 +94,22 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
 
     public interface EndTimeStage {
         /**
-         * <p>End time as seconds since local midnight.</p>
+         * <p>End time as HH:MM:SS in the org timezone.</p>
          */
-        StartTimeStage endTime(long endTime);
+        StartTimeStage endTime(@NotNull String endTime);
 
-        Builder from(PlaceHubLocationServiceWindowInputRequestBody other);
+        Builder from(RoutingServiceWindowResponseResponseBody other);
     }
 
     public interface StartTimeStage {
         /**
-         * <p>Start time as seconds since local midnight.</p>
+         * <p>Start time as HH:MM:SS in the org timezone.</p>
          */
-        _FinalStage startTime(long startTime);
+        _FinalStage startTime(@NotNull String startTime);
     }
 
     public interface _FinalStage {
-        PlaceHubLocationServiceWindowInputRequestBody build();
+        RoutingServiceWindowResponseResponseBody build();
 
         /**
          * <p>Days this window applies.</p>
@@ -122,9 +123,9 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements EndTimeStage, StartTimeStage, _FinalStage {
-        private long endTime;
+        private String endTime;
 
-        private long startTime;
+        private String startTime;
 
         private List<String> days = new ArrayList<>();
 
@@ -134,7 +135,7 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(PlaceHubLocationServiceWindowInputRequestBody other) {
+        public Builder from(RoutingServiceWindowResponseResponseBody other) {
             days(other.getDays());
             endTime(other.getEndTime());
             startTime(other.getStartTime());
@@ -142,26 +143,26 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
         }
 
         /**
-         * <p>End time as seconds since local midnight.</p>
-         * <p>End time as seconds since local midnight.</p>
+         * <p>End time as HH:MM:SS in the org timezone.</p>
+         * <p>End time as HH:MM:SS in the org timezone.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("endTime")
-        public StartTimeStage endTime(long endTime) {
-            this.endTime = endTime;
+        public StartTimeStage endTime(@NotNull String endTime) {
+            this.endTime = Objects.requireNonNull(endTime, "endTime must not be null");
             return this;
         }
 
         /**
-         * <p>Start time as seconds since local midnight.</p>
-         * <p>Start time as seconds since local midnight.</p>
+         * <p>Start time as HH:MM:SS in the org timezone.</p>
+         * <p>Start time as HH:MM:SS in the org timezone.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("startTime")
-        public _FinalStage startTime(long startTime) {
-            this.startTime = startTime;
+        public _FinalStage startTime(@NotNull String startTime) {
+            this.startTime = Objects.requireNonNull(startTime, "startTime must not be null");
             return this;
         }
 
@@ -201,8 +202,8 @@ public final class PlaceHubLocationServiceWindowInputRequestBody {
         }
 
         @java.lang.Override
-        public PlaceHubLocationServiceWindowInputRequestBody build() {
-            return new PlaceHubLocationServiceWindowInputRequestBody(days, endTime, startTime, additionalProperties);
+        public RoutingServiceWindowResponseResponseBody build() {
+            return new RoutingServiceWindowResponseResponseBody(days, endTime, startTime, additionalProperties);
         }
     }
 }

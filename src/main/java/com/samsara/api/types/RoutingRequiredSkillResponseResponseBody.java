@@ -9,22 +9,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = PlaceHubLocationRequiredSkillInputRequestBody.Builder.class)
-public final class PlaceHubLocationRequiredSkillInputRequestBody {
+@JsonDeserialize(builder = RoutingRequiredSkillResponseResponseBody.Builder.class)
+public final class RoutingRequiredSkillResponseResponseBody {
     private final String id;
+
+    private final Optional<String> name;
 
     private final Map<String, Object> additionalProperties;
 
-    private PlaceHubLocationRequiredSkillInputRequestBody(String id, Map<String, Object> additionalProperties) {
+    private RoutingRequiredSkillResponseResponseBody(
+            String id, Optional<String> name, Map<String, Object> additionalProperties) {
         this.id = id;
+        this.name = name;
         this.additionalProperties = additionalProperties;
     }
 
@@ -36,11 +42,19 @@ public final class PlaceHubLocationRequiredSkillInputRequestBody {
         return id;
     }
 
+    /**
+     * @return Skill display name when resolved on GET.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof PlaceHubLocationRequiredSkillInputRequestBody
-                && equalTo((PlaceHubLocationRequiredSkillInputRequestBody) other);
+        return other instanceof RoutingRequiredSkillResponseResponseBody
+                && equalTo((RoutingRequiredSkillResponseResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -48,13 +62,13 @@ public final class PlaceHubLocationRequiredSkillInputRequestBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(PlaceHubLocationRequiredSkillInputRequestBody other) {
-        return id.equals(other.id);
+    private boolean equalTo(RoutingRequiredSkillResponseResponseBody other) {
+        return id.equals(other.id) && name.equals(other.name);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.id, this.name);
     }
 
     @java.lang.Override
@@ -72,16 +86,25 @@ public final class PlaceHubLocationRequiredSkillInputRequestBody {
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(PlaceHubLocationRequiredSkillInputRequestBody other);
+        Builder from(RoutingRequiredSkillResponseResponseBody other);
     }
 
     public interface _FinalStage {
-        PlaceHubLocationRequiredSkillInputRequestBody build();
+        RoutingRequiredSkillResponseResponseBody build();
+
+        /**
+         * <p>Skill display name when resolved on GET.</p>
+         */
+        _FinalStage name(Optional<String> name);
+
+        _FinalStage name(String name);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private String id;
+
+        private Optional<String> name = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -89,8 +112,9 @@ public final class PlaceHubLocationRequiredSkillInputRequestBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(PlaceHubLocationRequiredSkillInputRequestBody other) {
+        public Builder from(RoutingRequiredSkillResponseResponseBody other) {
             id(other.getId());
+            name(other.getName());
             return this;
         }
 
@@ -106,9 +130,29 @@ public final class PlaceHubLocationRequiredSkillInputRequestBody {
             return this;
         }
 
+        /**
+         * <p>Skill display name when resolved on GET.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
-        public PlaceHubLocationRequiredSkillInputRequestBody build() {
-            return new PlaceHubLocationRequiredSkillInputRequestBody(id, additionalProperties);
+        public _FinalStage name(String name) {
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * <p>Skill display name when resolved on GET.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public _FinalStage name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        @java.lang.Override
+        public RoutingRequiredSkillResponseResponseBody build() {
+            return new RoutingRequiredSkillResponseResponseBody(id, name, additionalProperties);
         }
     }
 }
