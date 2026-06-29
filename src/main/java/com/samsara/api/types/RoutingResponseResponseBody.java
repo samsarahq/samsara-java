@@ -22,13 +22,15 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RoutingResponseResponseBody.Builder.class)
 public final class RoutingResponseResponseBody {
+    private final Optional<String> driverInstructions;
+
     private final String hubId;
+
+    private final Optional<String> hubNotes;
 
     private final boolean isDepot;
 
     private final Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime;
-
-    private final Optional<String> plannerNotes;
 
     private final String position;
 
@@ -42,35 +44,41 @@ public final class RoutingResponseResponseBody {
 
     private final Optional<List<RoutingServiceWindowResponseResponseBody>> serviceWindows;
 
-    private final Optional<String> standardDriverInstructions;
-
     private final Map<String, Object> additionalProperties;
 
     private RoutingResponseResponseBody(
+            Optional<String> driverInstructions,
             String hubId,
+            Optional<String> hubNotes,
             boolean isDepot,
             Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime,
-            Optional<String> plannerNotes,
             String position,
             Optional<Integer> priority,
             Optional<List<RoutingRequiredSkillResponseResponseBody>> requiredSkills,
             Optional<String> routingExternalId,
             Optional<RoutingServiceTimeResponseResponseBody> serviceTime,
             Optional<List<RoutingServiceWindowResponseResponseBody>> serviceWindows,
-            Optional<String> standardDriverInstructions,
             Map<String, Object> additionalProperties) {
+        this.driverInstructions = driverInstructions;
         this.hubId = hubId;
+        this.hubNotes = hubNotes;
         this.isDepot = isDepot;
         this.orderServiceTime = orderServiceTime;
-        this.plannerNotes = plannerNotes;
         this.position = position;
         this.priority = priority;
         this.requiredSkills = requiredSkills;
         this.routingExternalId = routingExternalId;
         this.serviceTime = serviceTime;
         this.serviceWindows = serviceWindows;
-        this.standardDriverInstructions = standardDriverInstructions;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Default instructions for drivers.
+     */
+    @JsonProperty("driverInstructions")
+    public Optional<String> getDriverInstructions() {
+        return driverInstructions;
     }
 
     /**
@@ -79,6 +87,14 @@ public final class RoutingResponseResponseBody {
     @JsonProperty("hubId")
     public String getHubId() {
         return hubId;
+    }
+
+    /**
+     * @return Hub-facing notes.
+     */
+    @JsonProperty("hubNotes")
+    public Optional<String> getHubNotes() {
+        return hubNotes;
     }
 
     /**
@@ -92,14 +108,6 @@ public final class RoutingResponseResponseBody {
     @JsonProperty("orderServiceTime")
     public Optional<RoutingOrderServiceTimeResponseResponseBody> getOrderServiceTime() {
         return orderServiceTime;
-    }
-
-    /**
-     * @return Planner-facing notes.
-     */
-    @JsonProperty("plannerNotes")
-    public Optional<String> getPlannerNotes() {
-        return plannerNotes;
     }
 
     /**
@@ -147,14 +155,6 @@ public final class RoutingResponseResponseBody {
         return serviceWindows;
     }
 
-    /**
-     * @return Default instructions for drivers.
-     */
-    @JsonProperty("standardDriverInstructions")
-    public Optional<String> getStandardDriverInstructions() {
-        return standardDriverInstructions;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -167,33 +167,33 @@ public final class RoutingResponseResponseBody {
     }
 
     private boolean equalTo(RoutingResponseResponseBody other) {
-        return hubId.equals(other.hubId)
+        return driverInstructions.equals(other.driverInstructions)
+                && hubId.equals(other.hubId)
+                && hubNotes.equals(other.hubNotes)
                 && isDepot == other.isDepot
                 && orderServiceTime.equals(other.orderServiceTime)
-                && plannerNotes.equals(other.plannerNotes)
                 && position.equals(other.position)
                 && priority.equals(other.priority)
                 && requiredSkills.equals(other.requiredSkills)
                 && routingExternalId.equals(other.routingExternalId)
                 && serviceTime.equals(other.serviceTime)
-                && serviceWindows.equals(other.serviceWindows)
-                && standardDriverInstructions.equals(other.standardDriverInstructions);
+                && serviceWindows.equals(other.serviceWindows);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.driverInstructions,
                 this.hubId,
+                this.hubNotes,
                 this.isDepot,
                 this.orderServiceTime,
-                this.plannerNotes,
                 this.position,
                 this.priority,
                 this.requiredSkills,
                 this.routingExternalId,
                 this.serviceTime,
-                this.serviceWindows,
-                this.standardDriverInstructions);
+                this.serviceWindows);
     }
 
     @java.lang.Override
@@ -231,16 +231,23 @@ public final class RoutingResponseResponseBody {
     public interface _FinalStage {
         RoutingResponseResponseBody build();
 
+        /**
+         * <p>Default instructions for drivers.</p>
+         */
+        _FinalStage driverInstructions(Optional<String> driverInstructions);
+
+        _FinalStage driverInstructions(String driverInstructions);
+
+        /**
+         * <p>Hub-facing notes.</p>
+         */
+        _FinalStage hubNotes(Optional<String> hubNotes);
+
+        _FinalStage hubNotes(String hubNotes);
+
         _FinalStage orderServiceTime(Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime);
 
         _FinalStage orderServiceTime(RoutingOrderServiceTimeResponseResponseBody orderServiceTime);
-
-        /**
-         * <p>Planner-facing notes.</p>
-         */
-        _FinalStage plannerNotes(Optional<String> plannerNotes);
-
-        _FinalStage plannerNotes(String plannerNotes);
 
         /**
          * <p>Route priority from 1 (lowest) to 5 (highest).</p>
@@ -273,13 +280,6 @@ public final class RoutingResponseResponseBody {
         _FinalStage serviceWindows(Optional<List<RoutingServiceWindowResponseResponseBody>> serviceWindows);
 
         _FinalStage serviceWindows(List<RoutingServiceWindowResponseResponseBody> serviceWindows);
-
-        /**
-         * <p>Default instructions for drivers.</p>
-         */
-        _FinalStage standardDriverInstructions(Optional<String> standardDriverInstructions);
-
-        _FinalStage standardDriverInstructions(String standardDriverInstructions);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -289,8 +289,6 @@ public final class RoutingResponseResponseBody {
         private boolean isDepot;
 
         private String position;
-
-        private Optional<String> standardDriverInstructions = Optional.empty();
 
         private Optional<List<RoutingServiceWindowResponseResponseBody>> serviceWindows = Optional.empty();
 
@@ -302,9 +300,11 @@ public final class RoutingResponseResponseBody {
 
         private Optional<Integer> priority = Optional.empty();
 
-        private Optional<String> plannerNotes = Optional.empty();
-
         private Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime = Optional.empty();
+
+        private Optional<String> hubNotes = Optional.empty();
+
+        private Optional<String> driverInstructions = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -313,17 +313,17 @@ public final class RoutingResponseResponseBody {
 
         @java.lang.Override
         public Builder from(RoutingResponseResponseBody other) {
+            driverInstructions(other.getDriverInstructions());
             hubId(other.getHubId());
+            hubNotes(other.getHubNotes());
             isDepot(other.getIsDepot());
             orderServiceTime(other.getOrderServiceTime());
-            plannerNotes(other.getPlannerNotes());
             position(other.getPosition());
             priority(other.getPriority());
             requiredSkills(other.getRequiredSkills());
             routingExternalId(other.getRoutingExternalId());
             serviceTime(other.getServiceTime());
             serviceWindows(other.getServiceWindows());
-            standardDriverInstructions(other.getStandardDriverInstructions());
             return this;
         }
 
@@ -360,26 +360,6 @@ public final class RoutingResponseResponseBody {
         @JsonSetter("position")
         public _FinalStage position(@NotNull String position) {
             this.position = Objects.requireNonNull(position, "position must not be null");
-            return this;
-        }
-
-        /**
-         * <p>Default instructions for drivers.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage standardDriverInstructions(String standardDriverInstructions) {
-            this.standardDriverInstructions = Optional.ofNullable(standardDriverInstructions);
-            return this;
-        }
-
-        /**
-         * <p>Default instructions for drivers.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "standardDriverInstructions", nulls = Nulls.SKIP)
-        public _FinalStage standardDriverInstructions(Optional<String> standardDriverInstructions) {
-            this.standardDriverInstructions = standardDriverInstructions;
             return this;
         }
 
@@ -476,26 +456,6 @@ public final class RoutingResponseResponseBody {
             return this;
         }
 
-        /**
-         * <p>Planner-facing notes.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage plannerNotes(String plannerNotes) {
-            this.plannerNotes = Optional.ofNullable(plannerNotes);
-            return this;
-        }
-
-        /**
-         * <p>Planner-facing notes.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "plannerNotes", nulls = Nulls.SKIP)
-        public _FinalStage plannerNotes(Optional<String> plannerNotes) {
-            this.plannerNotes = plannerNotes;
-            return this;
-        }
-
         @java.lang.Override
         public _FinalStage orderServiceTime(RoutingOrderServiceTimeResponseResponseBody orderServiceTime) {
             this.orderServiceTime = Optional.ofNullable(orderServiceTime);
@@ -509,20 +469,60 @@ public final class RoutingResponseResponseBody {
             return this;
         }
 
+        /**
+         * <p>Hub-facing notes.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage hubNotes(String hubNotes) {
+            this.hubNotes = Optional.ofNullable(hubNotes);
+            return this;
+        }
+
+        /**
+         * <p>Hub-facing notes.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "hubNotes", nulls = Nulls.SKIP)
+        public _FinalStage hubNotes(Optional<String> hubNotes) {
+            this.hubNotes = hubNotes;
+            return this;
+        }
+
+        /**
+         * <p>Default instructions for drivers.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage driverInstructions(String driverInstructions) {
+            this.driverInstructions = Optional.ofNullable(driverInstructions);
+            return this;
+        }
+
+        /**
+         * <p>Default instructions for drivers.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "driverInstructions", nulls = Nulls.SKIP)
+        public _FinalStage driverInstructions(Optional<String> driverInstructions) {
+            this.driverInstructions = driverInstructions;
+            return this;
+        }
+
         @java.lang.Override
         public RoutingResponseResponseBody build() {
             return new RoutingResponseResponseBody(
+                    driverInstructions,
                     hubId,
+                    hubNotes,
                     isDepot,
                     orderServiceTime,
-                    plannerNotes,
                     position,
                     priority,
                     requiredSkills,
                     routingExternalId,
                     serviceTime,
                     serviceWindows,
-                    standardDriverInstructions,
                     additionalProperties);
         }
     }

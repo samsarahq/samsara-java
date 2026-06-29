@@ -102,6 +102,7 @@ import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRide
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody;
 import com.samsara.api.resources.betaapis.requests.SafetyEventsV2PatchSafetyEventsV2BatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.TachographFileUploadsPostTachographFileUploadRequestBody;
 import com.samsara.api.resources.betaapis.requests.UpdateFunctionStorageFileRequest;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsResponseBody;
@@ -171,6 +172,7 @@ import com.samsara.api.types.RidershipRouteSetupsGetRidershipRouteSetupResponseB
 import com.samsara.api.types.RidershipRouteSetupsListRidershipRouteSetupsResponseBody;
 import com.samsara.api.types.RidershipRouteSetupsUpdateRidershipRouteSetupResponseBody;
 import com.samsara.api.types.SafetyEventsV2PatchSafetyEventsV2BatchResponseBody;
+import com.samsara.api.types.TachographFileUploadsPostTachographFileUploadResponseBody;
 import com.samsara.api.types.WorkOrdersGetWorkOrderTemplatesResponseBody;
 import java.io.IOException;
 import okhttp3.Headers;
@@ -2862,6 +2864,133 @@ public class RawBetaApIsClient {
                         ObjectMappers.JSON_MAPPER.readValue(
                                 responseBodyString,
                                 EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Reserve a tachograph file upload and return a presigned URL. Upload the file bytes directly to the URL with the returned headers. The driver or device the file belongs to is resolved from the file contents after upload.
+     * <p><strong>Uploading the file</strong></p>
+     * <p>Once you have the <code>uploadUrl</code> and <code>requiredHeaders</code> from the response, PUT the raw file bytes directly to the URL — do not send the request through the Samsara API servers:</p>
+     * <pre><code class="language-bash">curl -X PUT &quot;&lt;uploadUrl&gt;&quot; \
+     *   -H &quot;Content-Type: &lt;value from requiredHeaders&gt;&quot; \
+     *   -H &quot;Content-MD5: &lt;value from requiredHeaders&gt;&quot; \
+     *   -H &quot;Content-Length: &lt;value from requiredHeaders&gt;&quot; \
+     *   --data-binary @/path/to/file.ddd
+     * </code></pre>
+     * <p>Every header listed in <code>requiredHeaders</code> must be sent verbatim — they are part of the URL signature, and the upload is rejected with a <code>403</code> if any header is missing or has a different value.</p>
+     * <p><strong>Retrieving uploaded files</strong></p>
+     * <p>A successful response to this request reserves the upload; it does not indicate that a file has been received or processed. Uploaded files are processed asynchronously after the PUT completes. Once a file has been processed, it can be retrieved through the standard tachograph file endpoints:</p>
+     * <ul>
+     * <li><strong>Driver-card files</strong> — <code>GET /fleet/drivers/tachograph-files/history</code></li>
+     * <li><strong>Vehicle-unit files</strong> — <code>GET /fleet/vehicles/tachograph-files/history</code></li>
+     * </ul>
+     * <p>Files that cannot be processed — for example files that are corrupt, are not valid tachograph files, or cannot be matched to a driver or vehicle in your organization — are not retrievable through these endpoints.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Tachograph (EU)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<TachographFileUploadsPostTachographFileUploadResponseBody> postTachographFileUpload(
+            TachographFileUploadsPostTachographFileUploadRequestBody request) {
+        return postTachographFileUpload(request, null);
+    }
+
+    /**
+     * Reserve a tachograph file upload and return a presigned URL. Upload the file bytes directly to the URL with the returned headers. The driver or device the file belongs to is resolved from the file contents after upload.
+     * <p><strong>Uploading the file</strong></p>
+     * <p>Once you have the <code>uploadUrl</code> and <code>requiredHeaders</code> from the response, PUT the raw file bytes directly to the URL — do not send the request through the Samsara API servers:</p>
+     * <pre><code class="language-bash">curl -X PUT &quot;&lt;uploadUrl&gt;&quot; \
+     *   -H &quot;Content-Type: &lt;value from requiredHeaders&gt;&quot; \
+     *   -H &quot;Content-MD5: &lt;value from requiredHeaders&gt;&quot; \
+     *   -H &quot;Content-Length: &lt;value from requiredHeaders&gt;&quot; \
+     *   --data-binary @/path/to/file.ddd
+     * </code></pre>
+     * <p>Every header listed in <code>requiredHeaders</code> must be sent verbatim — they are part of the URL signature, and the upload is rejected with a <code>403</code> if any header is missing or has a different value.</p>
+     * <p><strong>Retrieving uploaded files</strong></p>
+     * <p>A successful response to this request reserves the upload; it does not indicate that a file has been received or processed. Uploaded files are processed asynchronously after the PUT completes. Once a file has been processed, it can be retrieved through the standard tachograph file endpoints:</p>
+     * <ul>
+     * <li><strong>Driver-card files</strong> — <code>GET /fleet/drivers/tachograph-files/history</code></li>
+     * <li><strong>Vehicle-unit files</strong> — <code>GET /fleet/vehicles/tachograph-files/history</code></li>
+     * </ul>
+     * <p>Files that cannot be processed — for example files that are corrupt, are not valid tachograph files, or cannot be matched to a driver or vehicle in your organization — are not retrievable through these endpoints.</p>
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Tachograph (EU)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<TachographFileUploadsPostTachographFileUploadResponseBody> postTachographFileUpload(
+            TachographFileUploadsPostTachographFileUploadRequestBody request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("fleet/tachograph/file-uploads");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (JsonProcessingException e) {
+            throw new SamsaraApiException("Failed to serialize request", e);
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString, TachographFileUploadsPostTachographFileUploadResponseBody.class),
                         response);
             }
             try {

@@ -21,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = MediaObjectResponseBody.Builder.class)
 public final class MediaObjectResponseBody {
+    private final Optional<String> auxcamSerial;
+
     private final Optional<String> availableAtTime;
 
     private final Optional<MediaObjectResponseBodyCameraRole> cameraRole;
@@ -42,6 +44,7 @@ public final class MediaObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private MediaObjectResponseBody(
+            Optional<String> auxcamSerial,
             Optional<String> availableAtTime,
             Optional<MediaObjectResponseBodyCameraRole> cameraRole,
             String endTime,
@@ -52,6 +55,7 @@ public final class MediaObjectResponseBody {
             Optional<UrlInfoObjectResponseBody> urlInfo,
             String vehicleId,
             Map<String, Object> additionalProperties) {
+        this.auxcamSerial = auxcamSerial;
         this.availableAtTime = availableAtTime;
         this.cameraRole = cameraRole;
         this.endTime = endTime;
@@ -62,6 +66,14 @@ public final class MediaObjectResponseBody {
         this.urlInfo = urlInfo;
         this.vehicleId = vehicleId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Serial number of the auxiliary camera (e.g. AI multicam) that captured this media. Only present for analog inputs. Examples: CSS6-23A-HJF
+     */
+    @JsonProperty("auxcamSerial")
+    public Optional<String> getAuxcamSerial() {
+        return auxcamSerial;
     }
 
     /**
@@ -145,7 +157,8 @@ public final class MediaObjectResponseBody {
     }
 
     private boolean equalTo(MediaObjectResponseBody other) {
-        return availableAtTime.equals(other.availableAtTime)
+        return auxcamSerial.equals(other.auxcamSerial)
+                && availableAtTime.equals(other.availableAtTime)
                 && cameraRole.equals(other.cameraRole)
                 && endTime.equals(other.endTime)
                 && input.equals(other.input)
@@ -159,6 +172,7 @@ public final class MediaObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.auxcamSerial,
                 this.availableAtTime,
                 this.cameraRole,
                 this.endTime,
@@ -227,6 +241,13 @@ public final class MediaObjectResponseBody {
         MediaObjectResponseBody build();
 
         /**
+         * <p>Serial number of the auxiliary camera (e.g. AI multicam) that captured this media. Only present for analog inputs. Examples: CSS6-23A-HJF</p>
+         */
+        _FinalStage auxcamSerial(Optional<String> auxcamSerial);
+
+        _FinalStage auxcamSerial(String auxcamSerial);
+
+        /**
          * <p>Timestamp, in RFC 3339 format, at which the media item was made available. Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00</p>
          */
         _FinalStage availableAtTime(Optional<String> availableAtTime);
@@ -272,6 +293,8 @@ public final class MediaObjectResponseBody {
 
         private Optional<String> availableAtTime = Optional.empty();
 
+        private Optional<String> auxcamSerial = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -279,6 +302,7 @@ public final class MediaObjectResponseBody {
 
         @java.lang.Override
         public Builder from(MediaObjectResponseBody other) {
+            auxcamSerial(other.getAuxcamSerial());
             availableAtTime(other.getAvailableAtTime());
             cameraRole(other.getCameraRole());
             endTime(other.getEndTime());
@@ -416,9 +440,30 @@ public final class MediaObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Serial number of the auxiliary camera (e.g. AI multicam) that captured this media. Only present for analog inputs. Examples: CSS6-23A-HJF</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage auxcamSerial(String auxcamSerial) {
+            this.auxcamSerial = Optional.ofNullable(auxcamSerial);
+            return this;
+        }
+
+        /**
+         * <p>Serial number of the auxiliary camera (e.g. AI multicam) that captured this media. Only present for analog inputs. Examples: CSS6-23A-HJF</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "auxcamSerial", nulls = Nulls.SKIP)
+        public _FinalStage auxcamSerial(Optional<String> auxcamSerial) {
+            this.auxcamSerial = auxcamSerial;
+            return this;
+        }
+
         @java.lang.Override
         public MediaObjectResponseBody build() {
             return new MediaObjectResponseBody(
+                    auxcamSerial,
                     availableAtTime,
                     cameraRole,
                     endTime,

@@ -36,6 +36,8 @@ public final class FormSubmissionResponseObjectResponseBody {
 
     private final Optional<OffsetDateTime> dueAtTime;
 
+    private final Optional<Long> durationMs;
+
     private final Optional<Map<String, String>> externalIds;
 
     private final List<FormsFieldInputObjectResponseBody> fields;
@@ -75,6 +77,7 @@ public final class FormSubmissionResponseObjectResponseBody {
             Optional<FormsPolymorphicUserObjectResponseBody> assignedTo,
             OffsetDateTime createdAtTime,
             Optional<OffsetDateTime> dueAtTime,
+            Optional<Long> durationMs,
             Optional<Map<String, String>> externalIds,
             List<FormsFieldInputObjectResponseBody> fields,
             FormTemplateReferenceObjectResponseBody formTemplate,
@@ -97,6 +100,7 @@ public final class FormSubmissionResponseObjectResponseBody {
         this.assignedTo = assignedTo;
         this.createdAtTime = createdAtTime;
         this.dueAtTime = dueAtTime;
+        this.durationMs = durationMs;
         this.externalIds = externalIds;
         this.fields = fields;
         this.formTemplate = formTemplate;
@@ -152,6 +156,14 @@ public final class FormSubmissionResponseObjectResponseBody {
     @JsonProperty("dueAtTime")
     public Optional<OffsetDateTime> getDueAtTime() {
         return dueAtTime;
+    }
+
+    /**
+     * @return Duration between when the form submission was started on the client and submitted, in milliseconds. Omitted until the form is actually submitted or when the client start timestamp was not recorded.
+     */
+    @JsonProperty("durationMs")
+    public Optional<Long> getDurationMs() {
+        return durationMs;
     }
 
     /**
@@ -278,6 +290,7 @@ public final class FormSubmissionResponseObjectResponseBody {
                 && assignedTo.equals(other.assignedTo)
                 && createdAtTime.equals(other.createdAtTime)
                 && dueAtTime.equals(other.dueAtTime)
+                && durationMs.equals(other.durationMs)
                 && externalIds.equals(other.externalIds)
                 && fields.equals(other.fields)
                 && formTemplate.equals(other.formTemplate)
@@ -304,6 +317,7 @@ public final class FormSubmissionResponseObjectResponseBody {
                 this.assignedTo,
                 this.createdAtTime,
                 this.dueAtTime,
+                this.durationMs,
                 this.externalIds,
                 this.fields,
                 this.formTemplate,
@@ -412,6 +426,13 @@ public final class FormSubmissionResponseObjectResponseBody {
         _FinalStage dueAtTime(OffsetDateTime dueAtTime);
 
         /**
+         * <p>Duration between when the form submission was started on the client and submitted, in milliseconds. Omitted until the form is actually submitted or when the client start timestamp was not recorded.</p>
+         */
+        _FinalStage durationMs(Optional<Long> durationMs);
+
+        _FinalStage durationMs(Long durationMs);
+
+        /**
          * <p>A map of external ids</p>
          */
         _FinalStage externalIds(Optional<Map<String, String>> externalIds);
@@ -504,6 +525,8 @@ public final class FormSubmissionResponseObjectResponseBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<Long> durationMs = Optional.empty();
+
         private Optional<OffsetDateTime> dueAtTime = Optional.empty();
 
         private Optional<FormsPolymorphicUserObjectResponseBody> assignedTo = Optional.empty();
@@ -527,6 +550,7 @@ public final class FormSubmissionResponseObjectResponseBody {
             assignedTo(other.getAssignedTo());
             createdAtTime(other.getCreatedAtTime());
             dueAtTime(other.getDueAtTime());
+            durationMs(other.getDurationMs());
             externalIds(other.getExternalIds());
             fields(other.getFields());
             formTemplate(other.getFormTemplate());
@@ -786,6 +810,26 @@ public final class FormSubmissionResponseObjectResponseBody {
         }
 
         /**
+         * <p>Duration between when the form submission was started on the client and submitted, in milliseconds. Omitted until the form is actually submitted or when the client start timestamp was not recorded.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage durationMs(Long durationMs) {
+            this.durationMs = Optional.ofNullable(durationMs);
+            return this;
+        }
+
+        /**
+         * <p>Duration between when the form submission was started on the client and submitted, in milliseconds. Omitted until the form is actually submitted or when the client start timestamp was not recorded.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "durationMs", nulls = Nulls.SKIP)
+        public _FinalStage durationMs(Optional<Long> durationMs) {
+            this.durationMs = durationMs;
+            return this;
+        }
+
+        /**
          * <p>Time of when the submission is due. Sometimes returned, if the submission has a due date. UTC timestamp in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -874,6 +918,7 @@ public final class FormSubmissionResponseObjectResponseBody {
                     assignedTo,
                     createdAtTime,
                     dueAtTime,
+                    durationMs,
                     externalIds,
                     fields,
                     formTemplate,
