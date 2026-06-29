@@ -122,7 +122,7 @@ public class MediaWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"media\":[{\"availableAtTime\":\"2019-11-11T14:00:12-04:00\",\"endTime\":\"2019-06-13T19:08:25Z\",\"input\":\"dashcamDriverFacing\",\"mediaType\":\"image\",\"startTime\":\"2019-06-13T19:08:25Z\",\"status\":\"available\",\"urlInfo\":{\"url\":\"https://sample.s3.url.com/image.jpeg\",\"urlExpiryTime\":\"2019-11-11T14:00:12-04:00\"},\"vehicleId\":\"1234\"}]}}"));
+                                "{\"data\":{\"media\":[{\"auxcamSerial\":\"CSS6-23A-HJF\",\"availableAtTime\":\"2019-11-11T14:00:12-04:00\",\"endTime\":\"2019-06-13T19:08:25Z\",\"input\":\"dashcamDriverFacing\",\"mediaType\":\"image\",\"startTime\":\"2019-06-13T19:08:25Z\",\"status\":\"available\",\"urlInfo\":{\"url\":\"https://sample.s3.url.com/image.jpeg\",\"urlExpiryTime\":\"2019-11-11T14:00:12-04:00\"},\"vehicleId\":\"1234\"}]}}"));
         MediaRetrievalGetMediaRetrievalResponseBody response = client.media()
                 .getMediaRetrieval(GetMediaRetrievalRequest.builder()
                         .retrievalId("retrievalId")
@@ -139,6 +139,7 @@ public class MediaWireTest {
                 + "  \"data\": {\n"
                 + "    \"media\": [\n"
                 + "      {\n"
+                + "        \"auxcamSerial\": \"CSS6-23A-HJF\",\n"
                 + "        \"availableAtTime\": \"2019-11-11T14:00:12-04:00\",\n"
                 + "        \"endTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "        \"input\": \"dashcamDriverFacing\",\n"

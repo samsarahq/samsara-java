@@ -19,6 +19,7 @@
       },
       "createdAtTime": "2024-01-15T09:30:00Z",
       "dueAtTime": "2024-01-15T09:30:00Z",
+      "durationMs": 1000000,
       "externalIds": {
         "externalIds": "externalIds"
       },
@@ -358,6 +359,7 @@
       },
       "createdAtTime": "2024-01-15T09:30:00Z",
       "dueAtTime": "2024-01-15T09:30:00Z",
+      "durationMs": 1000000,
       "externalIds": {
         "externalIds": "externalIds"
       },

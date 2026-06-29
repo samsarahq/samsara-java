@@ -22,13 +22,15 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PlaceRoutingInputRequestBody.Builder.class)
 public final class PlaceRoutingInputRequestBody {
+    private final Optional<String> driverInstructions;
+
     private final String hubId;
+
+    private final Optional<String> hubNotes;
 
     private final Optional<Boolean> isDepot;
 
     private final Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime;
-
-    private final Optional<String> plannerNotes;
 
     private final Optional<String> position;
 
@@ -42,35 +44,41 @@ public final class PlaceRoutingInputRequestBody {
 
     private final Optional<List<PlaceRoutingServiceWindowInputRequestBody>> serviceWindows;
 
-    private final Optional<String> standardDriverInstructions;
-
     private final Map<String, Object> additionalProperties;
 
     private PlaceRoutingInputRequestBody(
+            Optional<String> driverInstructions,
             String hubId,
+            Optional<String> hubNotes,
             Optional<Boolean> isDepot,
             Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime,
-            Optional<String> plannerNotes,
             Optional<String> position,
             Optional<Integer> priority,
             Optional<List<PlaceRoutingRequiredSkillInputRequestBody>> requiredSkills,
             Optional<String> routingExternalId,
             Optional<PlaceRoutingServiceTimeInputRequestBody> serviceTime,
             Optional<List<PlaceRoutingServiceWindowInputRequestBody>> serviceWindows,
-            Optional<String> standardDriverInstructions,
             Map<String, Object> additionalProperties) {
+        this.driverInstructions = driverInstructions;
         this.hubId = hubId;
+        this.hubNotes = hubNotes;
         this.isDepot = isDepot;
         this.orderServiceTime = orderServiceTime;
-        this.plannerNotes = plannerNotes;
         this.position = position;
         this.priority = priority;
         this.requiredSkills = requiredSkills;
         this.routingExternalId = routingExternalId;
         this.serviceTime = serviceTime;
         this.serviceWindows = serviceWindows;
-        this.standardDriverInstructions = standardDriverInstructions;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Default instructions for drivers at this stop.
+     */
+    @JsonProperty("driverInstructions")
+    public Optional<String> getDriverInstructions() {
+        return driverInstructions;
     }
 
     /**
@@ -79,6 +87,14 @@ public final class PlaceRoutingInputRequestBody {
     @JsonProperty("hubId")
     public String getHubId() {
         return hubId;
+    }
+
+    /**
+     * @return Hub-facing notes for this routing row.
+     */
+    @JsonProperty("hubNotes")
+    public Optional<String> getHubNotes() {
+        return hubNotes;
     }
 
     /**
@@ -92,14 +108,6 @@ public final class PlaceRoutingInputRequestBody {
     @JsonProperty("orderServiceTime")
     public Optional<PlaceRoutingOrderServiceTimeInputRequestBody> getOrderServiceTime() {
         return orderServiceTime;
-    }
-
-    /**
-     * @return Planner-facing notes for this routing row.
-     */
-    @JsonProperty("plannerNotes")
-    public Optional<String> getPlannerNotes() {
-        return plannerNotes;
     }
 
     /**
@@ -147,14 +155,6 @@ public final class PlaceRoutingInputRequestBody {
         return serviceWindows;
     }
 
-    /**
-     * @return Default instructions for drivers at this stop.
-     */
-    @JsonProperty("standardDriverInstructions")
-    public Optional<String> getStandardDriverInstructions() {
-        return standardDriverInstructions;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -167,33 +167,33 @@ public final class PlaceRoutingInputRequestBody {
     }
 
     private boolean equalTo(PlaceRoutingInputRequestBody other) {
-        return hubId.equals(other.hubId)
+        return driverInstructions.equals(other.driverInstructions)
+                && hubId.equals(other.hubId)
+                && hubNotes.equals(other.hubNotes)
                 && isDepot.equals(other.isDepot)
                 && orderServiceTime.equals(other.orderServiceTime)
-                && plannerNotes.equals(other.plannerNotes)
                 && position.equals(other.position)
                 && priority.equals(other.priority)
                 && requiredSkills.equals(other.requiredSkills)
                 && routingExternalId.equals(other.routingExternalId)
                 && serviceTime.equals(other.serviceTime)
-                && serviceWindows.equals(other.serviceWindows)
-                && standardDriverInstructions.equals(other.standardDriverInstructions);
+                && serviceWindows.equals(other.serviceWindows);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.driverInstructions,
                 this.hubId,
+                this.hubNotes,
                 this.isDepot,
                 this.orderServiceTime,
-                this.plannerNotes,
                 this.position,
                 this.priority,
                 this.requiredSkills,
                 this.routingExternalId,
                 this.serviceTime,
-                this.serviceWindows,
-                this.standardDriverInstructions);
+                this.serviceWindows);
     }
 
     @java.lang.Override
@@ -218,6 +218,20 @@ public final class PlaceRoutingInputRequestBody {
         PlaceRoutingInputRequestBody build();
 
         /**
+         * <p>Default instructions for drivers at this stop.</p>
+         */
+        _FinalStage driverInstructions(Optional<String> driverInstructions);
+
+        _FinalStage driverInstructions(String driverInstructions);
+
+        /**
+         * <p>Hub-facing notes for this routing row.</p>
+         */
+        _FinalStage hubNotes(Optional<String> hubNotes);
+
+        _FinalStage hubNotes(String hubNotes);
+
+        /**
          * <p>Whether this routing row is a depot.</p>
          */
         _FinalStage isDepot(Optional<Boolean> isDepot);
@@ -227,13 +241,6 @@ public final class PlaceRoutingInputRequestBody {
         _FinalStage orderServiceTime(Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime);
 
         _FinalStage orderServiceTime(PlaceRoutingOrderServiceTimeInputRequestBody orderServiceTime);
-
-        /**
-         * <p>Planner-facing notes for this routing row.</p>
-         */
-        _FinalStage plannerNotes(Optional<String> plannerNotes);
-
-        _FinalStage plannerNotes(String plannerNotes);
 
         /**
          * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
@@ -273,20 +280,11 @@ public final class PlaceRoutingInputRequestBody {
         _FinalStage serviceWindows(Optional<List<PlaceRoutingServiceWindowInputRequestBody>> serviceWindows);
 
         _FinalStage serviceWindows(List<PlaceRoutingServiceWindowInputRequestBody> serviceWindows);
-
-        /**
-         * <p>Default instructions for drivers at this stop.</p>
-         */
-        _FinalStage standardDriverInstructions(Optional<String> standardDriverInstructions);
-
-        _FinalStage standardDriverInstructions(String standardDriverInstructions);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements HubIdStage, _FinalStage {
         private String hubId;
-
-        private Optional<String> standardDriverInstructions = Optional.empty();
 
         private Optional<List<PlaceRoutingServiceWindowInputRequestBody>> serviceWindows = Optional.empty();
 
@@ -300,11 +298,13 @@ public final class PlaceRoutingInputRequestBody {
 
         private Optional<String> position = Optional.empty();
 
-        private Optional<String> plannerNotes = Optional.empty();
-
         private Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime = Optional.empty();
 
         private Optional<Boolean> isDepot = Optional.empty();
+
+        private Optional<String> hubNotes = Optional.empty();
+
+        private Optional<String> driverInstructions = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -313,17 +313,17 @@ public final class PlaceRoutingInputRequestBody {
 
         @java.lang.Override
         public Builder from(PlaceRoutingInputRequestBody other) {
+            driverInstructions(other.getDriverInstructions());
             hubId(other.getHubId());
+            hubNotes(other.getHubNotes());
             isDepot(other.getIsDepot());
             orderServiceTime(other.getOrderServiceTime());
-            plannerNotes(other.getPlannerNotes());
             position(other.getPosition());
             priority(other.getPriority());
             requiredSkills(other.getRequiredSkills());
             routingExternalId(other.getRoutingExternalId());
             serviceTime(other.getServiceTime());
             serviceWindows(other.getServiceWindows());
-            standardDriverInstructions(other.getStandardDriverInstructions());
             return this;
         }
 
@@ -336,26 +336,6 @@ public final class PlaceRoutingInputRequestBody {
         @JsonSetter("hubId")
         public _FinalStage hubId(@NotNull String hubId) {
             this.hubId = Objects.requireNonNull(hubId, "hubId must not be null");
-            return this;
-        }
-
-        /**
-         * <p>Default instructions for drivers at this stop.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage standardDriverInstructions(String standardDriverInstructions) {
-            this.standardDriverInstructions = Optional.ofNullable(standardDriverInstructions);
-            return this;
-        }
-
-        /**
-         * <p>Default instructions for drivers at this stop.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "standardDriverInstructions", nulls = Nulls.SKIP)
-        public _FinalStage standardDriverInstructions(Optional<String> standardDriverInstructions) {
-            this.standardDriverInstructions = standardDriverInstructions;
             return this;
         }
 
@@ -472,26 +452,6 @@ public final class PlaceRoutingInputRequestBody {
             return this;
         }
 
-        /**
-         * <p>Planner-facing notes for this routing row.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage plannerNotes(String plannerNotes) {
-            this.plannerNotes = Optional.ofNullable(plannerNotes);
-            return this;
-        }
-
-        /**
-         * <p>Planner-facing notes for this routing row.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "plannerNotes", nulls = Nulls.SKIP)
-        public _FinalStage plannerNotes(Optional<String> plannerNotes) {
-            this.plannerNotes = plannerNotes;
-            return this;
-        }
-
         @java.lang.Override
         public _FinalStage orderServiceTime(PlaceRoutingOrderServiceTimeInputRequestBody orderServiceTime) {
             this.orderServiceTime = Optional.ofNullable(orderServiceTime);
@@ -525,20 +485,60 @@ public final class PlaceRoutingInputRequestBody {
             return this;
         }
 
+        /**
+         * <p>Hub-facing notes for this routing row.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage hubNotes(String hubNotes) {
+            this.hubNotes = Optional.ofNullable(hubNotes);
+            return this;
+        }
+
+        /**
+         * <p>Hub-facing notes for this routing row.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "hubNotes", nulls = Nulls.SKIP)
+        public _FinalStage hubNotes(Optional<String> hubNotes) {
+            this.hubNotes = hubNotes;
+            return this;
+        }
+
+        /**
+         * <p>Default instructions for drivers at this stop.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage driverInstructions(String driverInstructions) {
+            this.driverInstructions = Optional.ofNullable(driverInstructions);
+            return this;
+        }
+
+        /**
+         * <p>Default instructions for drivers at this stop.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "driverInstructions", nulls = Nulls.SKIP)
+        public _FinalStage driverInstructions(Optional<String> driverInstructions) {
+            this.driverInstructions = driverInstructions;
+            return this;
+        }
+
         @java.lang.Override
         public PlaceRoutingInputRequestBody build() {
             return new PlaceRoutingInputRequestBody(
+                    driverInstructions,
                     hubId,
+                    hubNotes,
                     isDepot,
                     orderServiceTime,
-                    plannerNotes,
                     position,
                     priority,
                     requiredSkills,
                     routingExternalId,
                     serviceTime,
                     serviceWindows,
-                    standardDriverInstructions,
                     additionalProperties);
         }
     }
