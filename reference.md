@@ -28183,6 +28183,14 @@ Available reading IDs (by category):
 <dl>
 <dd>
 
+**assetTypes:** `Optional<String>` — A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<String>` — A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)
     
 </dd>
@@ -28588,6 +28596,14 @@ Available reading IDs (by category):
 <dd>
 
 **entityType:** `String` — The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetTypes:** `Optional<String>` — A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.
     
 </dd>
 </dl>

@@ -29,6 +29,8 @@ public final class GetReadingsHistoryRequest {
 
     private final String entityType;
 
+    private final Optional<String> assetTypes;
+
     private final Optional<String> externalIds;
 
     private final Optional<String> startTime;
@@ -46,6 +48,7 @@ public final class GetReadingsHistoryRequest {
             String readingId,
             Optional<String> entityIds,
             String entityType,
+            Optional<String> assetTypes,
             Optional<String> externalIds,
             Optional<String> startTime,
             Optional<String> endTime,
@@ -56,6 +59,7 @@ public final class GetReadingsHistoryRequest {
         this.readingId = readingId;
         this.entityIds = entityIds;
         this.entityType = entityType;
+        this.assetTypes = assetTypes;
         this.externalIds = externalIds;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -348,6 +352,14 @@ public final class GetReadingsHistoryRequest {
     }
 
     /**
+     * @return A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.
+     */
+    @JsonProperty("assetTypes")
+    public Optional<String> getAssetTypes() {
+        return assetTypes;
+    }
+
+    /**
      * @return A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)
      */
     @JsonProperty("externalIds")
@@ -403,6 +415,7 @@ public final class GetReadingsHistoryRequest {
                 && readingId.equals(other.readingId)
                 && entityIds.equals(other.entityIds)
                 && entityType.equals(other.entityType)
+                && assetTypes.equals(other.assetTypes)
                 && externalIds.equals(other.externalIds)
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
@@ -417,6 +430,7 @@ public final class GetReadingsHistoryRequest {
                 this.readingId,
                 this.entityIds,
                 this.entityType,
+                this.assetTypes,
                 this.externalIds,
                 this.startTime,
                 this.endTime,
@@ -718,6 +732,13 @@ public final class GetReadingsHistoryRequest {
         _FinalStage entityIds(String entityIds);
 
         /**
+         * <p>A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.</p>
+         */
+        _FinalStage assetTypes(Optional<String> assetTypes);
+
+        _FinalStage assetTypes(String assetTypes);
+
+        /**
          * <p>A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)</p>
          */
         _FinalStage externalIds(Optional<String> externalIds);
@@ -769,6 +790,8 @@ public final class GetReadingsHistoryRequest {
 
         private Optional<String> externalIds = Optional.empty();
 
+        private Optional<String> assetTypes = Optional.empty();
+
         private Optional<String> entityIds = Optional.empty();
 
         private Optional<String> after = Optional.empty();
@@ -784,6 +807,7 @@ public final class GetReadingsHistoryRequest {
             readingId(other.getReadingId());
             entityIds(other.getEntityIds());
             entityType(other.getEntityType());
+            assetTypes(other.getAssetTypes());
             externalIds(other.getExternalIds());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
@@ -1419,6 +1443,26 @@ public final class GetReadingsHistoryRequest {
         }
 
         /**
+         * <p>A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assetTypes(String assetTypes) {
+            this.assetTypes = Optional.ofNullable(assetTypes);
+            return this;
+        }
+
+        /**
+         * <p>A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assetTypes", nulls = Nulls.SKIP)
+        public _FinalStage assetTypes(Optional<String> assetTypes) {
+            this.assetTypes = assetTypes;
+            return this;
+        }
+
+        /**
          * <p>A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -1465,6 +1509,7 @@ public final class GetReadingsHistoryRequest {
                     readingId,
                     entityIds,
                     entityType,
+                    assetTypes,
                     externalIds,
                     startTime,
                     endTime,

@@ -235,6 +235,10 @@ public class AsyncRawReadingsClient {
                     httpUrl, "entityIds", request.getEntityIds().get(), false);
         }
         QueryStringMapper.addQueryParameter(httpUrl, "entityType", request.getEntityType(), false);
+        if (request.getAssetTypes().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "assetTypes", request.getAssetTypes().get(), false);
+        }
         if (request.getExternalIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "externalIds", request.getExternalIds().get(), false);
@@ -397,6 +401,10 @@ public class AsyncRawReadingsClient {
                     httpUrl, "asOfTime", request.getAsOfTime().get(), false);
         }
         QueryStringMapper.addQueryParameter(httpUrl, "entityType", request.getEntityType(), false);
+        if (request.getAssetTypes().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "assetTypes", request.getAssetTypes().get(), false);
+        }
         if (request.getIncludeExternalIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
