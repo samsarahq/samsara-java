@@ -33,6 +33,8 @@ public final class GetReadingsSnapshotRequest {
 
     private final String entityType;
 
+    private final Optional<String> assetTypes;
+
     private final Optional<Boolean> includeExternalIds;
 
     private final Map<String, Object> additionalProperties;
@@ -44,6 +46,7 @@ public final class GetReadingsSnapshotRequest {
             Optional<String> externalIds,
             Optional<String> asOfTime,
             String entityType,
+            Optional<String> assetTypes,
             Optional<Boolean> includeExternalIds,
             Map<String, Object> additionalProperties) {
         this.after = after;
@@ -52,6 +55,7 @@ public final class GetReadingsSnapshotRequest {
         this.externalIds = externalIds;
         this.asOfTime = asOfTime;
         this.entityType = entityType;
+        this.assetTypes = assetTypes;
         this.includeExternalIds = includeExternalIds;
         this.additionalProperties = additionalProperties;
     }
@@ -356,6 +360,14 @@ public final class GetReadingsSnapshotRequest {
     }
 
     /**
+     * @return A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.
+     */
+    @JsonProperty("assetTypes")
+    public Optional<String> getAssetTypes() {
+        return assetTypes;
+    }
+
+    /**
      * @return Optional boolean indicating whether to return external IDs on supported entities
      */
     @JsonProperty("includeExternalIds")
@@ -381,6 +393,7 @@ public final class GetReadingsSnapshotRequest {
                 && externalIds.equals(other.externalIds)
                 && asOfTime.equals(other.asOfTime)
                 && entityType.equals(other.entityType)
+                && assetTypes.equals(other.assetTypes)
                 && includeExternalIds.equals(other.includeExternalIds);
     }
 
@@ -393,6 +406,7 @@ public final class GetReadingsSnapshotRequest {
                 this.externalIds,
                 this.asOfTime,
                 this.entityType,
+                this.assetTypes,
                 this.includeExternalIds);
     }
 
@@ -704,6 +718,13 @@ public final class GetReadingsSnapshotRequest {
         _FinalStage asOfTime(String asOfTime);
 
         /**
+         * <p>A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.</p>
+         */
+        _FinalStage assetTypes(Optional<String> assetTypes);
+
+        _FinalStage assetTypes(String assetTypes);
+
+        /**
          * <p>Optional boolean indicating whether to return external IDs on supported entities</p>
          */
         _FinalStage includeExternalIds(Optional<Boolean> includeExternalIds);
@@ -718,6 +739,8 @@ public final class GetReadingsSnapshotRequest {
         private String entityType;
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
+
+        private Optional<String> assetTypes = Optional.empty();
 
         private Optional<String> asOfTime = Optional.empty();
 
@@ -740,6 +763,7 @@ public final class GetReadingsSnapshotRequest {
             externalIds(other.getExternalIds());
             asOfTime(other.getAsOfTime());
             entityType(other.getEntityType());
+            assetTypes(other.getAssetTypes());
             includeExternalIds(other.getIncludeExternalIds());
             return this;
         }
@@ -1291,6 +1315,26 @@ public final class GetReadingsSnapshotRequest {
         }
 
         /**
+         * <p>A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assetTypes(String assetTypes) {
+            this.assetTypes = Optional.ofNullable(assetTypes);
+            return this;
+        }
+
+        /**
+         * <p>A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assetTypes", nulls = Nulls.SKIP)
+        public _FinalStage assetTypes(Optional<String> assetTypes) {
+            this.assetTypes = assetTypes;
+            return this;
+        }
+
+        /**
          * <p>A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -1379,6 +1423,7 @@ public final class GetReadingsSnapshotRequest {
                     externalIds,
                     asOfTime,
                     entityType,
+                    assetTypes,
                     includeExternalIds,
                     additionalProperties);
         }
