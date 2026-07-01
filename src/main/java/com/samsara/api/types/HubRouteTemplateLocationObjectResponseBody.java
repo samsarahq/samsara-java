@@ -25,8 +25,6 @@ public final class HubRouteTemplateLocationObjectResponseBody {
 
     private final String formattedAddress;
 
-    private final String id;
-
     private final double latitude;
 
     private final double longitude;
@@ -40,7 +38,6 @@ public final class HubRouteTemplateLocationObjectResponseBody {
     private HubRouteTemplateLocationObjectResponseBody(
             Optional<String> externalId,
             String formattedAddress,
-            String id,
             double latitude,
             double longitude,
             String name,
@@ -48,7 +45,6 @@ public final class HubRouteTemplateLocationObjectResponseBody {
             Map<String, Object> additionalProperties) {
         this.externalId = externalId;
         this.formattedAddress = formattedAddress;
-        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
@@ -70,14 +66,6 @@ public final class HubRouteTemplateLocationObjectResponseBody {
     @JsonProperty("formattedAddress")
     public String getFormattedAddress() {
         return formattedAddress;
-    }
-
-    /**
-     * @return The unique identifier for the location.
-     */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
     }
 
     /**
@@ -127,7 +115,6 @@ public final class HubRouteTemplateLocationObjectResponseBody {
     private boolean equalTo(HubRouteTemplateLocationObjectResponseBody other) {
         return externalId.equals(other.externalId)
                 && formattedAddress.equals(other.formattedAddress)
-                && id.equals(other.id)
                 && latitude == other.latitude
                 && longitude == other.longitude
                 && name.equals(other.name)
@@ -137,13 +124,7 @@ public final class HubRouteTemplateLocationObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.externalId,
-                this.formattedAddress,
-                this.id,
-                this.latitude,
-                this.longitude,
-                this.name,
-                this.position);
+                this.externalId, this.formattedAddress, this.latitude, this.longitude, this.name, this.position);
     }
 
     @java.lang.Override
@@ -159,16 +140,9 @@ public final class HubRouteTemplateLocationObjectResponseBody {
         /**
          * <p>The formatted address of the location.</p>
          */
-        IdStage formattedAddress(@NotNull String formattedAddress);
+        LatitudeStage formattedAddress(@NotNull String formattedAddress);
 
         Builder from(HubRouteTemplateLocationObjectResponseBody other);
-    }
-
-    public interface IdStage {
-        /**
-         * <p>The unique identifier for the location.</p>
-         */
-        LatitudeStage id(@NotNull String id);
     }
 
     public interface LatitudeStage {
@@ -212,16 +186,8 @@ public final class HubRouteTemplateLocationObjectResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements FormattedAddressStage,
-                    IdStage,
-                    LatitudeStage,
-                    LongitudeStage,
-                    NameStage,
-                    PositionStage,
-                    _FinalStage {
+            implements FormattedAddressStage, LatitudeStage, LongitudeStage, NameStage, PositionStage, _FinalStage {
         private String formattedAddress;
-
-        private String id;
 
         private double latitude;
 
@@ -242,7 +208,6 @@ public final class HubRouteTemplateLocationObjectResponseBody {
         public Builder from(HubRouteTemplateLocationObjectResponseBody other) {
             externalId(other.getExternalId());
             formattedAddress(other.getFormattedAddress());
-            id(other.getId());
             latitude(other.getLatitude());
             longitude(other.getLongitude());
             name(other.getName());
@@ -257,20 +222,8 @@ public final class HubRouteTemplateLocationObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("formattedAddress")
-        public IdStage formattedAddress(@NotNull String formattedAddress) {
+        public LatitudeStage formattedAddress(@NotNull String formattedAddress) {
             this.formattedAddress = Objects.requireNonNull(formattedAddress, "formattedAddress must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The unique identifier for the location.</p>
-         * <p>The unique identifier for the location.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("id")
-        public LatitudeStage id(@NotNull String id) {
-            this.id = Objects.requireNonNull(id, "id must not be null");
             return this;
         }
 
@@ -345,7 +298,7 @@ public final class HubRouteTemplateLocationObjectResponseBody {
         @java.lang.Override
         public HubRouteTemplateLocationObjectResponseBody build() {
             return new HubRouteTemplateLocationObjectResponseBody(
-                    externalId, formattedAddress, id, latitude, longitude, name, position, additionalProperties);
+                    externalId, formattedAddress, latitude, longitude, name, position, additionalProperties);
         }
     }
 }

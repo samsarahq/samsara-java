@@ -4417,6 +4417,113 @@ client.betaApIs().listHubRouteTemplates(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.createHubRouteTemplate(request) -> HubRouteTemplatesCreateHubRouteTemplateResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new route template for a hub.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createHubRouteTemplate(
+    HubRouteTemplatesCreateHubRouteTemplateRequestBody
+        .builder()
+        .hubId("550e8400-e29b-41d4-a716-446655440000")
+        .name("Downtown Delivery Route")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**defaultDepotEnd:** `Optional<CreateHubRouteTemplateDepotEndInputRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultDepotStart:** `Optional<CreateHubRouteTemplateDepotStartInputRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultStartTimeOfDay:** `Optional<String>` — Default start time in HH:MM format in the hub's local timezone (e.g. '08:00').
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hubId:** `String` — The ID of the hub.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**locationExternalIds:** `Optional<List<String>>` — Stop locations referenced by external ID, in the order they should be visited.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — The name of the route template.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.deleteHubRouteTemplate()</code></summary>
 <dl>
 <dd>
