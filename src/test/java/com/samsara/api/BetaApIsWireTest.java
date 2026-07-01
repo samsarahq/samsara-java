@@ -52,6 +52,7 @@ import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetVoiceSessionsStreamRequest;
 import com.samsara.api.resources.betaapis.requests.GetWorkOrderTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.HosDailyLogsUpdateShippingDocsRequestBody;
+import com.samsara.api.resources.betaapis.requests.HubRouteTemplatesCreateHubRouteTemplateRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
@@ -129,6 +130,7 @@ import com.samsara.api.types.FunctionsStorageUpdateFunctionStorageFileResponseBo
 import com.samsara.api.types.GatewaysPairGatewaysResponseBody;
 import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosEldEventsGetHosEldEventsResponseBody;
+import com.samsara.api.types.HubRouteTemplatesCreateHubRouteTemplateResponseBody;
 import com.samsara.api.types.HubRouteTemplatesListHubRouteTemplatesResponseBody;
 import com.samsara.api.types.JobsCreateJobResponseBody;
 import com.samsara.api.types.JobsDeleteJobResponseBody;
@@ -3465,7 +3467,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"createdAtTime\":\"2024-01-15T10:30:00Z\",\"defaultDepotEnd\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultDepotStart\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"distanceMeters\":15000,\"durationSeconds\":3600,\"earliestStartTime\":\"08:00\",\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"hubTimezone\":\"America/Los_Angeles\",\"id\":\"660e8400-e29b-41d4-a716-446655440001\",\"locations\":[{\"externalId\":\"LOC-123\",\"formattedAddress\":\"456 Main St, Los Angeles, CA 90210, US\",\"id\":\"850e8400-e29b-41d4-a716-446655440003\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"position\":1}],\"name\":\"Downtown Delivery Route\",\"updatedAtTime\":\"2024-01-15T12:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"createdAtTime\":\"2024-01-15T10:30:00Z\",\"defaultDepotEnd\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultDepotStart\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultStartTimeOfDay\":\"08:00\",\"distanceMeters\":15000,\"durationSeconds\":3600,\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"hubTimezone\":\"America/Los_Angeles\",\"id\":\"660e8400-e29b-41d4-a716-446655440001\",\"locations\":[{\"externalId\":\"LOC-123\",\"formattedAddress\":\"456 Main St, Los Angeles, CA 90210, US\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"position\":1}],\"name\":\"Downtown Delivery Route\",\"updatedAtTime\":\"2024-01-15T12:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         HubRouteTemplatesListHubRouteTemplatesResponseBody response = client.betaApIs()
                 .listHubRouteTemplates(
                         ListHubRouteTemplatesRequest.builder().hubId("hubId").build());
@@ -3497,9 +3499,9 @@ public class BetaApIsWireTest {
                 + "        \"longitude\": -118.2437,\n"
                 + "        \"name\": \"Main Warehouse\"\n"
                 + "      },\n"
+                + "      \"defaultStartTimeOfDay\": \"08:00\",\n"
                 + "      \"distanceMeters\": 15000,\n"
                 + "      \"durationSeconds\": 3600,\n"
-                + "      \"earliestStartTime\": \"08:00\",\n"
                 + "      \"hubId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
                 + "      \"hubTimezone\": \"America/Los_Angeles\",\n"
                 + "      \"id\": \"660e8400-e29b-41d4-a716-446655440001\",\n"
@@ -3507,7 +3509,6 @@ public class BetaApIsWireTest {
                 + "        {\n"
                 + "          \"externalId\": \"LOC-123\",\n"
                 + "          \"formattedAddress\": \"456 Main St, Los Angeles, CA 90210, US\",\n"
-                + "          \"id\": \"850e8400-e29b-41d4-a716-446655440003\",\n"
                 + "          \"latitude\": 34.0522,\n"
                 + "          \"longitude\": -118.2437,\n"
                 + "          \"name\": \"Customer ABC Warehouse\",\n"
@@ -3521,6 +3522,128 @@ public class BetaApIsWireTest {
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCreateHubRouteTemplate() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"createdAtTime\":\"2024-01-15T10:30:00Z\",\"defaultDepotEnd\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultDepotStart\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultStartTimeOfDay\":\"08:00\",\"distanceMeters\":15000,\"durationSeconds\":3600,\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"660e8400-e29b-41d4-a716-446655440001\",\"locations\":[{\"externalId\":\"LOC-123\",\"formattedAddress\":\"456 Main St, Los Angeles, CA 90210, US\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"position\":1}],\"name\":\"Downtown Delivery Route\",\"updatedAtTime\":\"2024-01-15T12:00:00Z\"}}"));
+        HubRouteTemplatesCreateHubRouteTemplateResponseBody response = client.betaApIs()
+                .createHubRouteTemplate(HubRouteTemplatesCreateHubRouteTemplateRequestBody.builder()
+                        .hubId("550e8400-e29b-41d4-a716-446655440000")
+                        .name("Downtown Delivery Route")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"hubId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
+                + "  \"name\": \"Downtown Delivery Route\"\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"createdAtTime\": \"2024-01-15T10:30:00Z\",\n"
+                + "    \"defaultDepotEnd\": {\n"
+                + "      \"externalId\": \"DEPOT-001\",\n"
+                + "      \"formattedAddress\": \"123 Industrial Blvd, Los Angeles, CA 90210, US\",\n"
+                + "      \"id\": \"750e8400-e29b-41d4-a716-446655440002\",\n"
+                + "      \"latitude\": 34.0522,\n"
+                + "      \"longitude\": -118.2437,\n"
+                + "      \"name\": \"Main Warehouse\"\n"
+                + "    },\n"
+                + "    \"defaultDepotStart\": {\n"
+                + "      \"externalId\": \"DEPOT-001\",\n"
+                + "      \"formattedAddress\": \"123 Industrial Blvd, Los Angeles, CA 90210, US\",\n"
+                + "      \"id\": \"750e8400-e29b-41d4-a716-446655440002\",\n"
+                + "      \"latitude\": 34.0522,\n"
+                + "      \"longitude\": -118.2437,\n"
+                + "      \"name\": \"Main Warehouse\"\n"
+                + "    },\n"
+                + "    \"defaultStartTimeOfDay\": \"08:00\",\n"
+                + "    \"distanceMeters\": 15000,\n"
+                + "    \"durationSeconds\": 3600,\n"
+                + "    \"hubId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
+                + "    \"id\": \"660e8400-e29b-41d4-a716-446655440001\",\n"
+                + "    \"locations\": [\n"
+                + "      {\n"
+                + "        \"externalId\": \"LOC-123\",\n"
+                + "        \"formattedAddress\": \"456 Main St, Los Angeles, CA 90210, US\",\n"
+                + "        \"latitude\": 34.0522,\n"
+                + "        \"longitude\": -118.2437,\n"
+                + "        \"name\": \"Customer ABC Warehouse\",\n"
+                + "        \"position\": 1\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"name\": \"Downtown Delivery Route\",\n"
+                + "    \"updatedAtTime\": \"2024-01-15T12:00:00Z\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

@@ -22,8 +22,8 @@ import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = HubRouteTemplateObjectResponseBody.Builder.class)
-public final class HubRouteTemplateObjectResponseBody {
+@JsonDeserialize(builder = CreateHubRouteTemplateObjectResponseBody.Builder.class)
+public final class CreateHubRouteTemplateObjectResponseBody {
     private final OffsetDateTime createdAtTime;
 
     private final Optional<HubRouteTemplateDepotObjectResponseBody> defaultDepotEnd;
@@ -38,8 +38,6 @@ public final class HubRouteTemplateObjectResponseBody {
 
     private final String hubId;
 
-    private final String hubTimezone;
-
     private final String id;
 
     private final List<HubRouteTemplateLocationObjectResponseBody> locations;
@@ -50,7 +48,7 @@ public final class HubRouteTemplateObjectResponseBody {
 
     private final Map<String, Object> additionalProperties;
 
-    private HubRouteTemplateObjectResponseBody(
+    private CreateHubRouteTemplateObjectResponseBody(
             OffsetDateTime createdAtTime,
             Optional<HubRouteTemplateDepotObjectResponseBody> defaultDepotEnd,
             Optional<HubRouteTemplateDepotObjectResponseBody> defaultDepotStart,
@@ -58,7 +56,6 @@ public final class HubRouteTemplateObjectResponseBody {
             long distanceMeters,
             long durationSeconds,
             String hubId,
-            String hubTimezone,
             String id,
             List<HubRouteTemplateLocationObjectResponseBody> locations,
             String name,
@@ -71,7 +68,6 @@ public final class HubRouteTemplateObjectResponseBody {
         this.distanceMeters = distanceMeters;
         this.durationSeconds = durationSeconds;
         this.hubId = hubId;
-        this.hubTimezone = hubTimezone;
         this.id = id;
         this.locations = locations;
         this.name = name;
@@ -130,14 +126,6 @@ public final class HubRouteTemplateObjectResponseBody {
     }
 
     /**
-     * @return The IANA timezone of the hub (e.g. 'America/Los_Angeles').
-     */
-    @JsonProperty("hubTimezone")
-    public String getHubTimezone() {
-        return hubTimezone;
-    }
-
-    /**
      * @return The unique identifier for the route template.
      */
     @JsonProperty("id")
@@ -172,8 +160,8 @@ public final class HubRouteTemplateObjectResponseBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof HubRouteTemplateObjectResponseBody
-                && equalTo((HubRouteTemplateObjectResponseBody) other);
+        return other instanceof CreateHubRouteTemplateObjectResponseBody
+                && equalTo((CreateHubRouteTemplateObjectResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -181,7 +169,7 @@ public final class HubRouteTemplateObjectResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(HubRouteTemplateObjectResponseBody other) {
+    private boolean equalTo(CreateHubRouteTemplateObjectResponseBody other) {
         return createdAtTime.equals(other.createdAtTime)
                 && defaultDepotEnd.equals(other.defaultDepotEnd)
                 && defaultDepotStart.equals(other.defaultDepotStart)
@@ -189,7 +177,6 @@ public final class HubRouteTemplateObjectResponseBody {
                 && distanceMeters == other.distanceMeters
                 && durationSeconds == other.durationSeconds
                 && hubId.equals(other.hubId)
-                && hubTimezone.equals(other.hubTimezone)
                 && id.equals(other.id)
                 && locations.equals(other.locations)
                 && name.equals(other.name)
@@ -206,7 +193,6 @@ public final class HubRouteTemplateObjectResponseBody {
                 this.distanceMeters,
                 this.durationSeconds,
                 this.hubId,
-                this.hubTimezone,
                 this.id,
                 this.locations,
                 this.name,
@@ -228,7 +214,7 @@ public final class HubRouteTemplateObjectResponseBody {
          */
         DistanceMetersStage createdAtTime(@NotNull OffsetDateTime createdAtTime);
 
-        Builder from(HubRouteTemplateObjectResponseBody other);
+        Builder from(CreateHubRouteTemplateObjectResponseBody other);
     }
 
     public interface DistanceMetersStage {
@@ -249,14 +235,7 @@ public final class HubRouteTemplateObjectResponseBody {
         /**
          * <p>The hub identifier this route template belongs to.</p>
          */
-        HubTimezoneStage hubId(@NotNull String hubId);
-    }
-
-    public interface HubTimezoneStage {
-        /**
-         * <p>The IANA timezone of the hub (e.g. 'America/Los_Angeles').</p>
-         */
-        IdStage hubTimezone(@NotNull String hubTimezone);
+        IdStage hubId(@NotNull String hubId);
     }
 
     public interface IdStage {
@@ -281,7 +260,7 @@ public final class HubRouteTemplateObjectResponseBody {
     }
 
     public interface _FinalStage {
-        HubRouteTemplateObjectResponseBody build();
+        CreateHubRouteTemplateObjectResponseBody build();
 
         _FinalStage defaultDepotEnd(Optional<HubRouteTemplateDepotObjectResponseBody> defaultDepotEnd);
 
@@ -314,7 +293,6 @@ public final class HubRouteTemplateObjectResponseBody {
                     DistanceMetersStage,
                     DurationSecondsStage,
                     HubIdStage,
-                    HubTimezoneStage,
                     IdStage,
                     NameStage,
                     UpdatedAtTimeStage,
@@ -326,8 +304,6 @@ public final class HubRouteTemplateObjectResponseBody {
         private long durationSeconds;
 
         private String hubId;
-
-        private String hubTimezone;
 
         private String id;
 
@@ -349,7 +325,7 @@ public final class HubRouteTemplateObjectResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(HubRouteTemplateObjectResponseBody other) {
+        public Builder from(CreateHubRouteTemplateObjectResponseBody other) {
             createdAtTime(other.getCreatedAtTime());
             defaultDepotEnd(other.getDefaultDepotEnd());
             defaultDepotStart(other.getDefaultDepotStart());
@@ -357,7 +333,6 @@ public final class HubRouteTemplateObjectResponseBody {
             distanceMeters(other.getDistanceMeters());
             durationSeconds(other.getDurationSeconds());
             hubId(other.getHubId());
-            hubTimezone(other.getHubTimezone());
             id(other.getId());
             locations(other.getLocations());
             name(other.getName());
@@ -408,20 +383,8 @@ public final class HubRouteTemplateObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("hubId")
-        public HubTimezoneStage hubId(@NotNull String hubId) {
+        public IdStage hubId(@NotNull String hubId) {
             this.hubId = Objects.requireNonNull(hubId, "hubId must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The IANA timezone of the hub (e.g. 'America/Los_Angeles').</p>
-         * <p>The IANA timezone of the hub (e.g. 'America/Los_Angeles').</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("hubTimezone")
-        public IdStage hubTimezone(@NotNull String hubTimezone) {
-            this.hubTimezone = Objects.requireNonNull(hubTimezone, "hubTimezone must not be null");
             return this;
         }
 
@@ -543,8 +506,8 @@ public final class HubRouteTemplateObjectResponseBody {
         }
 
         @java.lang.Override
-        public HubRouteTemplateObjectResponseBody build() {
-            return new HubRouteTemplateObjectResponseBody(
+        public CreateHubRouteTemplateObjectResponseBody build() {
+            return new CreateHubRouteTemplateObjectResponseBody(
                     createdAtTime,
                     defaultDepotEnd,
                     defaultDepotStart,
@@ -552,7 +515,6 @@ public final class HubRouteTemplateObjectResponseBody {
                     distanceMeters,
                     durationSeconds,
                     hubId,
-                    hubTimezone,
                     id,
                     locations,
                     name,
