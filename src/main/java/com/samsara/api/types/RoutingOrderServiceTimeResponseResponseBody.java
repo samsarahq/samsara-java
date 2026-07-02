@@ -23,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 public final class RoutingOrderServiceTimeResponseResponseBody {
     private final Optional<RoutingCapacityServiceTimeResponseResponseBody> capacityServiceTime;
 
+    private final Optional<Long> fixedServiceTimeSeconds;
+
     private final boolean isEnabled;
 
     private final String modeType;
@@ -31,10 +33,12 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
 
     private RoutingOrderServiceTimeResponseResponseBody(
             Optional<RoutingCapacityServiceTimeResponseResponseBody> capacityServiceTime,
+            Optional<Long> fixedServiceTimeSeconds,
             boolean isEnabled,
             String modeType,
             Map<String, Object> additionalProperties) {
         this.capacityServiceTime = capacityServiceTime;
+        this.fixedServiceTimeSeconds = fixedServiceTimeSeconds;
         this.isEnabled = isEnabled;
         this.modeType = modeType;
         this.additionalProperties = additionalProperties;
@@ -43,6 +47,14 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
     @JsonProperty("capacityServiceTime")
     public Optional<RoutingCapacityServiceTimeResponseResponseBody> getCapacityServiceTime() {
         return capacityServiceTime;
+    }
+
+    /**
+     * @return Fixed order service time in seconds.
+     */
+    @JsonProperty("fixedServiceTimeSeconds")
+    public Optional<Long> getFixedServiceTimeSeconds() {
+        return fixedServiceTimeSeconds;
     }
 
     /**
@@ -75,13 +87,14 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
 
     private boolean equalTo(RoutingOrderServiceTimeResponseResponseBody other) {
         return capacityServiceTime.equals(other.capacityServiceTime)
+                && fixedServiceTimeSeconds.equals(other.fixedServiceTimeSeconds)
                 && isEnabled == other.isEnabled
                 && modeType.equals(other.modeType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.capacityServiceTime, this.isEnabled, this.modeType);
+        return Objects.hash(this.capacityServiceTime, this.fixedServiceTimeSeconds, this.isEnabled, this.modeType);
     }
 
     @java.lang.Override
@@ -115,6 +128,13 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
         _FinalStage capacityServiceTime(Optional<RoutingCapacityServiceTimeResponseResponseBody> capacityServiceTime);
 
         _FinalStage capacityServiceTime(RoutingCapacityServiceTimeResponseResponseBody capacityServiceTime);
+
+        /**
+         * <p>Fixed order service time in seconds.</p>
+         */
+        _FinalStage fixedServiceTimeSeconds(Optional<Long> fixedServiceTimeSeconds);
+
+        _FinalStage fixedServiceTimeSeconds(Long fixedServiceTimeSeconds);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -122,6 +142,8 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
         private boolean isEnabled;
 
         private String modeType;
+
+        private Optional<Long> fixedServiceTimeSeconds = Optional.empty();
 
         private Optional<RoutingCapacityServiceTimeResponseResponseBody> capacityServiceTime = Optional.empty();
 
@@ -133,6 +155,7 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
         @java.lang.Override
         public Builder from(RoutingOrderServiceTimeResponseResponseBody other) {
             capacityServiceTime(other.getCapacityServiceTime());
+            fixedServiceTimeSeconds(other.getFixedServiceTimeSeconds());
             isEnabled(other.getIsEnabled());
             modeType(other.getModeType());
             return this;
@@ -162,6 +185,26 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
             return this;
         }
 
+        /**
+         * <p>Fixed order service time in seconds.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage fixedServiceTimeSeconds(Long fixedServiceTimeSeconds) {
+            this.fixedServiceTimeSeconds = Optional.ofNullable(fixedServiceTimeSeconds);
+            return this;
+        }
+
+        /**
+         * <p>Fixed order service time in seconds.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "fixedServiceTimeSeconds", nulls = Nulls.SKIP)
+        public _FinalStage fixedServiceTimeSeconds(Optional<Long> fixedServiceTimeSeconds) {
+            this.fixedServiceTimeSeconds = fixedServiceTimeSeconds;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage capacityServiceTime(RoutingCapacityServiceTimeResponseResponseBody capacityServiceTime) {
             this.capacityServiceTime = Optional.ofNullable(capacityServiceTime);
@@ -179,7 +222,7 @@ public final class RoutingOrderServiceTimeResponseResponseBody {
         @java.lang.Override
         public RoutingOrderServiceTimeResponseResponseBody build() {
             return new RoutingOrderServiceTimeResponseResponseBody(
-                    capacityServiceTime, isEnabled, modeType, additionalProperties);
+                    capacityServiceTime, fixedServiceTimeSeconds, isEnabled, modeType, additionalProperties);
         }
     }
 }

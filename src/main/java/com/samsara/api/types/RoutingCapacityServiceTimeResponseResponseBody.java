@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public final class RoutingCapacityServiceTimeResponseResponseBody {
     private final String capacityId;
 
-    private final double quantityUnitPerServiceTime;
+    private final double quantityPerServiceTime;
 
     private final long serviceTimeSeconds;
 
@@ -29,11 +29,11 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
 
     private RoutingCapacityServiceTimeResponseResponseBody(
             String capacityId,
-            double quantityUnitPerServiceTime,
+            double quantityPerServiceTime,
             long serviceTimeSeconds,
             Map<String, Object> additionalProperties) {
         this.capacityId = capacityId;
-        this.quantityUnitPerServiceTime = quantityUnitPerServiceTime;
+        this.quantityPerServiceTime = quantityPerServiceTime;
         this.serviceTimeSeconds = serviceTimeSeconds;
         this.additionalProperties = additionalProperties;
     }
@@ -49,9 +49,9 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
     /**
      * @return Quantity units per service time chunk.
      */
-    @JsonProperty("quantityUnitPerServiceTime")
-    public double getQuantityUnitPerServiceTime() {
-        return quantityUnitPerServiceTime;
+    @JsonProperty("quantityPerServiceTime")
+    public double getQuantityPerServiceTime() {
+        return quantityPerServiceTime;
     }
 
     /**
@@ -76,13 +76,13 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
 
     private boolean equalTo(RoutingCapacityServiceTimeResponseResponseBody other) {
         return capacityId.equals(other.capacityId)
-                && quantityUnitPerServiceTime == other.quantityUnitPerServiceTime
+                && quantityPerServiceTime == other.quantityPerServiceTime
                 && serviceTimeSeconds == other.serviceTimeSeconds;
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.capacityId, this.quantityUnitPerServiceTime, this.serviceTimeSeconds);
+        return Objects.hash(this.capacityId, this.quantityPerServiceTime, this.serviceTimeSeconds);
     }
 
     @java.lang.Override
@@ -98,16 +98,16 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
         /**
          * <p>Capacity UUID.</p>
          */
-        QuantityUnitPerServiceTimeStage capacityId(@NotNull String capacityId);
+        QuantityPerServiceTimeStage capacityId(@NotNull String capacityId);
 
         Builder from(RoutingCapacityServiceTimeResponseResponseBody other);
     }
 
-    public interface QuantityUnitPerServiceTimeStage {
+    public interface QuantityPerServiceTimeStage {
         /**
          * <p>Quantity units per service time chunk.</p>
          */
-        ServiceTimeSecondsStage quantityUnitPerServiceTime(double quantityUnitPerServiceTime);
+        ServiceTimeSecondsStage quantityPerServiceTime(double quantityPerServiceTime);
     }
 
     public interface ServiceTimeSecondsStage {
@@ -123,10 +123,10 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
-            implements CapacityIdStage, QuantityUnitPerServiceTimeStage, ServiceTimeSecondsStage, _FinalStage {
+            implements CapacityIdStage, QuantityPerServiceTimeStage, ServiceTimeSecondsStage, _FinalStage {
         private String capacityId;
 
-        private double quantityUnitPerServiceTime;
+        private double quantityPerServiceTime;
 
         private long serviceTimeSeconds;
 
@@ -138,7 +138,7 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
         @java.lang.Override
         public Builder from(RoutingCapacityServiceTimeResponseResponseBody other) {
             capacityId(other.getCapacityId());
-            quantityUnitPerServiceTime(other.getQuantityUnitPerServiceTime());
+            quantityPerServiceTime(other.getQuantityPerServiceTime());
             serviceTimeSeconds(other.getServiceTimeSeconds());
             return this;
         }
@@ -150,7 +150,7 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
          */
         @java.lang.Override
         @JsonSetter("capacityId")
-        public QuantityUnitPerServiceTimeStage capacityId(@NotNull String capacityId) {
+        public QuantityPerServiceTimeStage capacityId(@NotNull String capacityId) {
             this.capacityId = Objects.requireNonNull(capacityId, "capacityId must not be null");
             return this;
         }
@@ -161,9 +161,9 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter("quantityUnitPerServiceTime")
-        public ServiceTimeSecondsStage quantityUnitPerServiceTime(double quantityUnitPerServiceTime) {
-            this.quantityUnitPerServiceTime = quantityUnitPerServiceTime;
+        @JsonSetter("quantityPerServiceTime")
+        public ServiceTimeSecondsStage quantityPerServiceTime(double quantityPerServiceTime) {
+            this.quantityPerServiceTime = quantityPerServiceTime;
             return this;
         }
 
@@ -182,7 +182,7 @@ public final class RoutingCapacityServiceTimeResponseResponseBody {
         @java.lang.Override
         public RoutingCapacityServiceTimeResponseResponseBody build() {
             return new RoutingCapacityServiceTimeResponseResponseBody(
-                    capacityId, quantityUnitPerServiceTime, serviceTimeSeconds, additionalProperties);
+                    capacityId, quantityPerServiceTime, serviceTimeSeconds, additionalProperties);
         }
     }
 }
