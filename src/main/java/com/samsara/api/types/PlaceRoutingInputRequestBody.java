@@ -32,7 +32,7 @@ public final class PlaceRoutingInputRequestBody {
 
     private final Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime;
 
-    private final Optional<String> position;
+    private final Optional<PlaceRoutingInputRequestBodyPosition> position;
 
     private final Optional<Integer> priority;
 
@@ -52,7 +52,7 @@ public final class PlaceRoutingInputRequestBody {
             Optional<String> hubNotes,
             Optional<Boolean> isDepot,
             Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime,
-            Optional<String> position,
+            Optional<PlaceRoutingInputRequestBodyPosition> position,
             Optional<Integer> priority,
             Optional<List<PlaceRoutingRequiredSkillInputRequestBody>> requiredSkills,
             Optional<String> routingExternalId,
@@ -111,10 +111,10 @@ public final class PlaceRoutingInputRequestBody {
     }
 
     /**
-     * @return Stop position preference: unknown, unspecified, any, first, or last.
+     * @return Stop position preference: first or last.  Valid values: <code>first</code>, <code>last</code>
      */
     @JsonProperty("position")
-    public Optional<String> getPosition() {
+    public Optional<PlaceRoutingInputRequestBodyPosition> getPosition() {
         return position;
     }
 
@@ -243,11 +243,11 @@ public final class PlaceRoutingInputRequestBody {
         _FinalStage orderServiceTime(PlaceRoutingOrderServiceTimeInputRequestBody orderServiceTime);
 
         /**
-         * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
+         * <p>Stop position preference: first or last.  Valid values: <code>first</code>, <code>last</code></p>
          */
-        _FinalStage position(Optional<String> position);
+        _FinalStage position(Optional<PlaceRoutingInputRequestBodyPosition> position);
 
-        _FinalStage position(String position);
+        _FinalStage position(PlaceRoutingInputRequestBodyPosition position);
 
         /**
          * <p>Route priority from 1 (lowest) to 5 (highest).</p>
@@ -296,7 +296,7 @@ public final class PlaceRoutingInputRequestBody {
 
         private Optional<Integer> priority = Optional.empty();
 
-        private Optional<String> position = Optional.empty();
+        private Optional<PlaceRoutingInputRequestBodyPosition> position = Optional.empty();
 
         private Optional<PlaceRoutingOrderServiceTimeInputRequestBody> orderServiceTime = Optional.empty();
 
@@ -433,21 +433,21 @@ public final class PlaceRoutingInputRequestBody {
         }
 
         /**
-         * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
+         * <p>Stop position preference: first or last.  Valid values: <code>first</code>, <code>last</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage position(String position) {
+        public _FinalStage position(PlaceRoutingInputRequestBodyPosition position) {
             this.position = Optional.ofNullable(position);
             return this;
         }
 
         /**
-         * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
+         * <p>Stop position preference: first or last.  Valid values: <code>first</code>, <code>last</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "position", nulls = Nulls.SKIP)
-        public _FinalStage position(Optional<String> position) {
+        public _FinalStage position(Optional<PlaceRoutingInputRequestBodyPosition> position) {
             this.position = position;
             return this;
         }

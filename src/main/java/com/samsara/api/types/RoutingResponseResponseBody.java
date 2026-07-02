@@ -32,7 +32,7 @@ public final class RoutingResponseResponseBody {
 
     private final Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime;
 
-    private final String position;
+    private final Optional<String> position;
 
     private final Optional<Integer> priority;
 
@@ -52,7 +52,7 @@ public final class RoutingResponseResponseBody {
             Optional<String> hubNotes,
             boolean isDepot,
             Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime,
-            String position,
+            Optional<String> position,
             Optional<Integer> priority,
             Optional<List<RoutingRequiredSkillResponseResponseBody>> requiredSkills,
             Optional<String> routingExternalId,
@@ -111,10 +111,10 @@ public final class RoutingResponseResponseBody {
     }
 
     /**
-     * @return Stop position preference: unknown, unspecified, any, first, or last.
+     * @return Stop position preference: first or last.
      */
     @JsonProperty("position")
-    public String getPosition() {
+    public Optional<String> getPosition() {
         return position;
     }
 
@@ -218,14 +218,7 @@ public final class RoutingResponseResponseBody {
         /**
          * <p>Whether this routing row is a depot.</p>
          */
-        PositionStage isDepot(boolean isDepot);
-    }
-
-    public interface PositionStage {
-        /**
-         * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
-         */
-        _FinalStage position(@NotNull String position);
+        _FinalStage isDepot(boolean isDepot);
     }
 
     public interface _FinalStage {
@@ -248,6 +241,13 @@ public final class RoutingResponseResponseBody {
         _FinalStage orderServiceTime(Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime);
 
         _FinalStage orderServiceTime(RoutingOrderServiceTimeResponseResponseBody orderServiceTime);
+
+        /**
+         * <p>Stop position preference: first or last.</p>
+         */
+        _FinalStage position(Optional<String> position);
+
+        _FinalStage position(String position);
 
         /**
          * <p>Route priority from 1 (lowest) to 5 (highest).</p>
@@ -283,12 +283,10 @@ public final class RoutingResponseResponseBody {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements HubIdStage, IsDepotStage, PositionStage, _FinalStage {
+    public static final class Builder implements HubIdStage, IsDepotStage, _FinalStage {
         private String hubId;
 
         private boolean isDepot;
-
-        private String position;
 
         private Optional<List<RoutingServiceWindowResponseResponseBody>> serviceWindows = Optional.empty();
 
@@ -299,6 +297,8 @@ public final class RoutingResponseResponseBody {
         private Optional<List<RoutingRequiredSkillResponseResponseBody>> requiredSkills = Optional.empty();
 
         private Optional<Integer> priority = Optional.empty();
+
+        private Optional<String> position = Optional.empty();
 
         private Optional<RoutingOrderServiceTimeResponseResponseBody> orderServiceTime = Optional.empty();
 
@@ -346,20 +346,8 @@ public final class RoutingResponseResponseBody {
          */
         @java.lang.Override
         @JsonSetter("isDepot")
-        public PositionStage isDepot(boolean isDepot) {
+        public _FinalStage isDepot(boolean isDepot) {
             this.isDepot = isDepot;
-            return this;
-        }
-
-        /**
-         * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
-         * <p>Stop position preference: unknown, unspecified, any, first, or last.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("position")
-        public _FinalStage position(@NotNull String position) {
-            this.position = Objects.requireNonNull(position, "position must not be null");
             return this;
         }
 
@@ -453,6 +441,26 @@ public final class RoutingResponseResponseBody {
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
         public _FinalStage priority(Optional<Integer> priority) {
             this.priority = priority;
+            return this;
+        }
+
+        /**
+         * <p>Stop position preference: first or last.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage position(String position) {
+            this.position = Optional.ofNullable(position);
+            return this;
+        }
+
+        /**
+         * <p>Stop position preference: first or last.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "position", nulls = Nulls.SKIP)
+        public _FinalStage position(Optional<String> position) {
+            this.position = position;
             return this;
         }
 
