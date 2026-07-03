@@ -148,6 +148,9 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(
                     Value.HA_RED_LIGHT_VIOLATION, "haRedLightViolation");
 
+    public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_PROXIMITY_WARNING =
+            new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_PROXIMITY_WARNING, "haProximityWarning");
+
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_INVALID =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_INVALID, "haInvalid");
 
@@ -272,6 +275,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return visitor.visitHaMaskPolicy();
             case HA_RED_LIGHT_VIOLATION:
                 return visitor.visitHaRedLightViolation();
+            case HA_PROXIMITY_WARNING:
+                return visitor.visitHaProximityWarning();
             case HA_INVALID:
                 return visitor.visitHaInvalid();
             case HA_REVERSING:
@@ -369,6 +374,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return HA_MASK_POLICY;
             case "haRedLightViolation":
                 return HA_RED_LIGHT_VIOLATION;
+            case "haProximityWarning":
+                return HA_PROXIMITY_WARNING;
             case "haInvalid":
                 return HA_INVALID;
             case "haReversing":
@@ -426,6 +433,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         HA_PHONE_POLICY,
 
         HA_POLICY_DETECTOR,
+
+        HA_PROXIMITY_WARNING,
 
         HA_REAR_COLLISION_WARNING,
 
@@ -518,6 +527,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         T visitHaPhonePolicy();
 
         T visitHaPolicyDetector();
+
+        T visitHaProximityWarning();
 
         T visitHaRearCollisionWarning();
 

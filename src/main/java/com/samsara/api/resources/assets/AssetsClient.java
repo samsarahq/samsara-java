@@ -165,13 +165,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch current locations of all assets.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch current locations of all assets.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -180,13 +177,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch current locations of all assets.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch current locations of all assets.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -195,13 +189,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch current locations of all assets.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch current locations of all assets.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -210,13 +201,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch current locations of all assets.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch current locations of all assets.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -228,13 +216,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetches all reefers and reefer-specific stats.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetches all reefers and reefer-specific stats.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -243,13 +228,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetches all reefers and reefer-specific stats.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetches all reefers and reefer-specific stats.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -258,13 +240,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * List historical locations for a given asset.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>List historical locations for a given asset.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -273,13 +252,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * List historical locations for a given asset.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>List historical locations for a given asset.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Equipment Statistics</strong> under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -291,13 +267,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch the reefer-specific stats of an asset.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch the reefer-specific stats of an asset.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -306,13 +279,10 @@ public class AssetsClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch the reefer-specific stats of an asset.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch the reefer-specific stats of an asset.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */

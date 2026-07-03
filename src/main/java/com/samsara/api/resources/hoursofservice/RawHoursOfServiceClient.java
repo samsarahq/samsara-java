@@ -542,13 +542,10 @@ public class RawHoursOfServiceClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Set an individual driver’s current duty status to 'On Duty' or 'Off Duty'.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Set an individual driver’s current duty status to 'On Duty' or 'Off Duty'.</p>
      * <p>To ensure compliance with the ELD Mandate, only  authenticated drivers can make direct duty status changes on their own logbook. Any system external to the Samsara Driver App using this endpoint to trigger duty status changes must ensure that such changes are only triggered directly by the driver in question and that the driver has been properly authenticated. This endpoint should not be used to algorithmically trigger duty status changes nor should it be used by personnel besides the driver to trigger duty status changes on the driver’s behalf. Carriers and their drivers are ultimately responsible for maintaining accurate logs and should confirm that their use of the endpoint is compliant with the ELD Mandate.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -558,13 +555,10 @@ public class RawHoursOfServiceClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Set an individual driver’s current duty status to 'On Duty' or 'Off Duty'.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Set an individual driver’s current duty status to 'On Duty' or 'Off Duty'.</p>
      * <p>To ensure compliance with the ELD Mandate, only  authenticated drivers can make direct duty status changes on their own logbook. Any system external to the Samsara Driver App using this endpoint to trigger duty status changes must ensure that such changes are only triggered directly by the driver in question and that the driver has been properly authenticated. This endpoint should not be used to algorithmically trigger duty status changes nor should it be used by personnel besides the driver to trigger duty status changes on the driver’s behalf. Carriers and their drivers are ultimately responsible for maintaining accurate logs and should confirm that their use of the endpoint is compliant with the ELD Mandate.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -614,13 +608,10 @@ public class RawHoursOfServiceClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.</p>
      * <p><strong>Note:</strong> If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -631,13 +622,10 @@ public class RawHoursOfServiceClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.</p>
      * <p><strong>Note:</strong> If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
