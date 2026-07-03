@@ -313,13 +313,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch all cameras.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch all cameras.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -328,13 +325,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch all cameras.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch all cameras.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -343,13 +337,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch configured programs on the camera.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -358,13 +349,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch configured programs on the camera.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -376,13 +364,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch configured programs on the camera.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -392,13 +377,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch configured programs on the camera.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch configured programs on the camera.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -452,13 +434,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -467,13 +446,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -482,13 +458,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs by camera.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs by camera.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -498,13 +471,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs by camera.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs by camera.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -516,13 +486,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs by camera and program.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs by camera and program.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -534,13 +501,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs by camera and program.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs by camera and program.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -552,13 +516,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs by camera and program.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs by camera and program.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -570,13 +531,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Fetch runs by camera and program.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Fetch runs by camera and program.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -592,13 +550,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get historical data for machine objects. This method returns a set of historical data for all machines.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get historical data for machine objects. This method returns a set of historical data for all machines.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -607,13 +562,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get historical data for machine objects. This method returns a set of historical data for all machines.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get historical data for machine objects. This method returns a set of historical data for all machines.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -622,13 +574,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -637,13 +586,10 @@ public class IndustrialClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Industrial</strong> under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */

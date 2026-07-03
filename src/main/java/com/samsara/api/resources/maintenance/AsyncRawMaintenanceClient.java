@@ -1017,13 +1017,10 @@ public class AsyncRawMaintenanceClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get list of the vehicles with any engine faults or check light data.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get list of the vehicles with any engine faults or check light data.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -1032,13 +1029,10 @@ public class AsyncRawMaintenanceClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get list of the vehicles with any engine faults or check light data.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get list of the vehicles with any engine faults or check light data.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read DVIRs</strong> under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */

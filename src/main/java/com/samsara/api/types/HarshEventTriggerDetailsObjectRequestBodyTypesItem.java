@@ -147,6 +147,9 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
     public static final HarshEventTriggerDetailsObjectRequestBodyTypesItem HA_RED_LIGHT_VIOLATION =
             new HarshEventTriggerDetailsObjectRequestBodyTypesItem(Value.HA_RED_LIGHT_VIOLATION, "haRedLightViolation");
 
+    public static final HarshEventTriggerDetailsObjectRequestBodyTypesItem HA_PROXIMITY_WARNING =
+            new HarshEventTriggerDetailsObjectRequestBodyTypesItem(Value.HA_PROXIMITY_WARNING, "haProximityWarning");
+
     public static final HarshEventTriggerDetailsObjectRequestBodyTypesItem HA_INVALID =
             new HarshEventTriggerDetailsObjectRequestBodyTypesItem(Value.HA_INVALID, "haInvalid");
 
@@ -271,6 +274,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
                 return visitor.visitHaMaskPolicy();
             case HA_RED_LIGHT_VIOLATION:
                 return visitor.visitHaRedLightViolation();
+            case HA_PROXIMITY_WARNING:
+                return visitor.visitHaProximityWarning();
             case HA_INVALID:
                 return visitor.visitHaInvalid();
             case HA_REVERSING:
@@ -368,6 +373,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
                 return HA_MASK_POLICY;
             case "haRedLightViolation":
                 return HA_RED_LIGHT_VIOLATION;
+            case "haProximityWarning":
+                return HA_PROXIMITY_WARNING;
             case "haInvalid":
                 return HA_INVALID;
             case "haReversing":
@@ -425,6 +432,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
         HA_PHONE_POLICY,
 
         HA_POLICY_DETECTOR,
+
+        HA_PROXIMITY_WARNING,
 
         HA_REAR_COLLISION_WARNING,
 
@@ -517,6 +526,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
         T visitHaPhonePolicy();
 
         T visitHaPolicyDetector();
+
+        T visitHaProximityWarning();
 
         T visitHaRearCollisionWarning();
 

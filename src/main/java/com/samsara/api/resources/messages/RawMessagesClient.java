@@ -33,13 +33,10 @@ public class RawMessagesClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get all messages.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get all messages.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Messages</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -49,13 +46,10 @@ public class RawMessagesClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get all messages.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get all messages.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Messages</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -65,13 +59,10 @@ public class RawMessagesClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get all messages.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get all messages.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Messages</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -81,13 +72,10 @@ public class RawMessagesClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Get all messages.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Get all messages.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Read Messages</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -136,13 +124,10 @@ public class RawMessagesClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Send a message to a list of driver ids.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Send a message to a list of driver ids.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Messages</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
@@ -151,13 +136,10 @@ public class RawMessagesClient {
     }
 
     /**
-     * <p>&lt;n class=&quot;warning&quot;&gt;
-     * &lt;nh&gt;
-     * <i class="fa fa-exclamation-circle"></i>
-     * This endpoint is still on our legacy API.
-     * &lt;/nh&gt;
-     * &lt;/n&gt;</p>
-     * Send a message to a list of driver ids.
+     * <blockquote>
+     * 🚧 This endpoint is still on our legacy API.
+     * </blockquote>
+     * <p>Send a message to a list of driver ids.</p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
      * <p>To use this endpoint, select <strong>Write Messages</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      */
