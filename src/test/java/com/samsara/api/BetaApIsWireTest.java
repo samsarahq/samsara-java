@@ -38,6 +38,7 @@ import com.samsara.api.resources.betaapis.requests.GetFunctionStorageFileRequest
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlaceDeletionsRequest;
+import com.samsara.api.resources.betaapis.requests.GetPlaceGeocodeRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlacesRequest;
 import com.samsara.api.resources.betaapis.requests.GetPreferredStationRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
@@ -142,6 +143,7 @@ import com.samsara.api.types.PairGatewayPairObjectRequestBody;
 import com.samsara.api.types.PatchJobObjectRequestBody;
 import com.samsara.api.types.PlaceGeofenceInputRequestBody;
 import com.samsara.api.types.PlacesGetPlaceDeletionsResponseBody;
+import com.samsara.api.types.PlacesGetPlaceGeocodeResponseBody;
 import com.samsara.api.types.PlacesGetPlacesResponseBody;
 import com.samsara.api.types.PlacesPatchPlaceResponseBody;
 import com.samsara.api.types.PlacesPostPlaceResponseBody;
@@ -4180,6 +4182,67 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testGetPlaceGeocode() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"latitude\":37.8044,\"longitude\":-122.2712}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        PlacesGetPlaceGeocodeResponseBody response = client.betaApIs()
+                .getPlaceGeocode(
+                        GetPlaceGeocodeRequest.builder().address("address").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"latitude\": 37.8044,\n"
+                + "      \"longitude\": -122.2712\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testListPreferredStations() throws Exception {
         server.enqueue(
                 new MockResponse()
@@ -5575,7 +5638,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Sed animi est quo.\",\"Quae voluptatibus ut voluptas.\",\"Accusantium est labore doloremque magni.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipPassengersListRidershipPassengersResponseBody response = client.betaApIs()
                 .listRidershipPassengers(
                         ListRidershipPassengersRequest.builder().tagId("tagId").build());
@@ -5608,12 +5671,13 @@ public class BetaApIsWireTest {
                 + "      \"isActive\": true,\n"
                 + "      \"lastName\": \"Doe\",\n"
                 + "      \"specialInstructions\": {\n"
-                + "        \"isGuardianRequired\": true,\n"
-                + "        \"isSpecialEducation\": true\n"
+                + "        \"isGuardianRequired\": false,\n"
+                + "        \"isSpecialEducation\": false\n"
                 + "      },\n"
                 + "      \"tagIds\": [\n"
-                + "        \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
-                + "        \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
+                + "        \"Sed animi est quo.\",\n"
+                + "        \"Quae voluptatibus ut voluptas.\",\n"
+                + "        \"Accusantium est labore doloremque magni.\"\n"
                 + "      ],\n"
                 + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "    }\n"
@@ -5660,7 +5724,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Sed animi est quo.\",\"Quae voluptatibus ut voluptas.\",\"Accusantium est labore doloremque magni.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersCreateRidershipPassengerResponseBody response = client.betaApIs()
                 .createRidershipPassenger(RidershipPassengersCreateRidershipPassengerRequestBody.builder()
                         .firstName("John")
@@ -5723,12 +5787,13 @@ public class BetaApIsWireTest {
                 + "    \"isActive\": true,\n"
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
-                + "      \"isGuardianRequired\": true,\n"
-                + "      \"isSpecialEducation\": true\n"
+                + "      \"isGuardianRequired\": false,\n"
+                + "      \"isSpecialEducation\": false\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
-                + "      \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
+                + "      \"Sed animi est quo.\",\n"
+                + "      \"Quae voluptatibus ut voluptas.\",\n"
+                + "      \"Accusantium est labore doloremque magni.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -5770,7 +5835,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Sed animi est quo.\",\"Quae voluptatibus ut voluptas.\",\"Accusantium est labore doloremque magni.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersUpdateRidershipPassengerResponseBody response = client.betaApIs()
                 .updateRidershipPassenger(RidershipPassengersUpdateRidershipPassengerRequestBody.builder()
                         .id("id")
@@ -5834,12 +5899,13 @@ public class BetaApIsWireTest {
                 + "    \"isActive\": true,\n"
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
-                + "      \"isGuardianRequired\": true,\n"
-                + "      \"isSpecialEducation\": true\n"
+                + "      \"isGuardianRequired\": false,\n"
+                + "      \"isSpecialEducation\": false\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
-                + "      \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
+                + "      \"Sed animi est quo.\",\n"
+                + "      \"Quae voluptatibus ut voluptas.\",\n"
+                + "      \"Accusantium est labore doloremque magni.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -5892,7 +5958,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":true,\"isSpecialEducation\":true},\"tagIds\":[\"Deserunt velit voluptatem atque deserunt voluptas sed.\",\"Magnam molestiae necessitatibus maiores dicta maiores.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":false},\"tagIds\":[\"Sed animi est quo.\",\"Quae voluptatibus ut voluptas.\",\"Accusantium est labore doloremque magni.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersGetRidershipPassengerResponseBody response = client.betaApIs()
                 .getRidershipPassenger(
                         "id", GetRidershipPassengerRequest.builder().build());
@@ -5924,12 +5990,13 @@ public class BetaApIsWireTest {
                 + "    \"isActive\": true,\n"
                 + "    \"lastName\": \"Doe\",\n"
                 + "    \"specialInstructions\": {\n"
-                + "      \"isGuardianRequired\": true,\n"
-                + "      \"isSpecialEducation\": true\n"
+                + "      \"isGuardianRequired\": false,\n"
+                + "      \"isSpecialEducation\": false\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Deserunt velit voluptatem atque deserunt voluptas sed.\",\n"
-                + "      \"Magnam molestiae necessitatibus maiores dicta maiores.\"\n"
+                + "      \"Sed animi est quo.\",\n"
+                + "      \"Quae voluptatibus ut voluptas.\",\n"
+                + "      \"Accusantium est labore doloremque magni.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
