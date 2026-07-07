@@ -14,7 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.assets.types.AssetsUpdateAssetRequestBodyRegulationMode;
 import com.samsara.api.resources.assets.types.AssetsUpdateAssetRequestBodyType;
+import com.samsara.api.types.GoaAttributeTinyRequestBody;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonDeserialize(builder = AssetsUpdateAssetRequestBody.Builder.class)
 public final class AssetsUpdateAssetRequestBody {
     private final String id;
+
+    private final Optional<List<GoaAttributeTinyRequestBody>> attributes;
 
     private final Optional<Map<String, String>> externalIds;
 
@@ -43,6 +47,8 @@ public final class AssetsUpdateAssetRequestBody {
 
     private final Optional<String> serialNumber;
 
+    private final Optional<List<String>> tagIds;
+
     private final Optional<AssetsUpdateAssetRequestBodyType> type;
 
     private final Optional<String> vin;
@@ -53,6 +59,7 @@ public final class AssetsUpdateAssetRequestBody {
 
     private AssetsUpdateAssetRequestBody(
             String id,
+            Optional<List<GoaAttributeTinyRequestBody>> attributes,
             Optional<Map<String, String>> externalIds,
             Optional<String> licensePlate,
             Optional<String> make,
@@ -62,11 +69,13 @@ public final class AssetsUpdateAssetRequestBody {
             Optional<Boolean> readingsIngestionEnabled,
             Optional<AssetsUpdateAssetRequestBodyRegulationMode> regulationMode,
             Optional<String> serialNumber,
+            Optional<List<String>> tagIds,
             Optional<AssetsUpdateAssetRequestBodyType> type,
             Optional<String> vin,
             Optional<Long> year,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.attributes = attributes;
         this.externalIds = externalIds;
         this.licensePlate = licensePlate;
         this.make = make;
@@ -76,6 +85,7 @@ public final class AssetsUpdateAssetRequestBody {
         this.readingsIngestionEnabled = readingsIngestionEnabled;
         this.regulationMode = regulationMode;
         this.serialNumber = serialNumber;
+        this.tagIds = tagIds;
         this.type = type;
         this.vin = vin;
         this.year = year;
@@ -88,6 +98,14 @@ public final class AssetsUpdateAssetRequestBody {
     @JsonProperty("id")
     public String getId() {
         return id;
+    }
+
+    /**
+     * @return A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyRequestBody>> getAttributes() {
+        return attributes;
     }
 
     /**
@@ -163,6 +181,14 @@ public final class AssetsUpdateAssetRequestBody {
     }
 
     /**
+     * @return An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.
+     */
+    @JsonProperty("tagIds")
+    public Optional<List<String>> getTagIds() {
+        return tagIds;
+    }
+
+    /**
      * @return The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: <code>uncategorized</code>, <code>trailer</code>, <code>equipment</code>, <code>unpowered</code>, <code>vehicle</code>
      */
     @JsonProperty("type")
@@ -199,6 +225,7 @@ public final class AssetsUpdateAssetRequestBody {
 
     private boolean equalTo(AssetsUpdateAssetRequestBody other) {
         return id.equals(other.id)
+                && attributes.equals(other.attributes)
                 && externalIds.equals(other.externalIds)
                 && licensePlate.equals(other.licensePlate)
                 && make.equals(other.make)
@@ -208,6 +235,7 @@ public final class AssetsUpdateAssetRequestBody {
                 && readingsIngestionEnabled.equals(other.readingsIngestionEnabled)
                 && regulationMode.equals(other.regulationMode)
                 && serialNumber.equals(other.serialNumber)
+                && tagIds.equals(other.tagIds)
                 && type.equals(other.type)
                 && vin.equals(other.vin)
                 && year.equals(other.year);
@@ -217,6 +245,7 @@ public final class AssetsUpdateAssetRequestBody {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.attributes,
                 this.externalIds,
                 this.licensePlate,
                 this.make,
@@ -226,6 +255,7 @@ public final class AssetsUpdateAssetRequestBody {
                 this.readingsIngestionEnabled,
                 this.regulationMode,
                 this.serialNumber,
+                this.tagIds,
                 this.type,
                 this.vin,
                 this.year);
@@ -251,6 +281,13 @@ public final class AssetsUpdateAssetRequestBody {
 
     public interface _FinalStage {
         AssetsUpdateAssetRequestBody build();
+
+        /**
+         * <p>A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyRequestBody> attributes);
 
         /**
          * <p>A map of external ids</p>
@@ -316,6 +353,13 @@ public final class AssetsUpdateAssetRequestBody {
         _FinalStage serialNumber(String serialNumber);
 
         /**
+         * <p>An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.</p>
+         */
+        _FinalStage tagIds(Optional<List<String>> tagIds);
+
+        _FinalStage tagIds(List<String> tagIds);
+
+        /**
          * <p>The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: <code>uncategorized</code>, <code>trailer</code>, <code>equipment</code>, <code>unpowered</code>, <code>vehicle</code></p>
          */
         _FinalStage type(Optional<AssetsUpdateAssetRequestBodyType> type);
@@ -347,6 +391,8 @@ public final class AssetsUpdateAssetRequestBody {
 
         private Optional<AssetsUpdateAssetRequestBodyType> type = Optional.empty();
 
+        private Optional<List<String>> tagIds = Optional.empty();
+
         private Optional<String> serialNumber = Optional.empty();
 
         private Optional<AssetsUpdateAssetRequestBodyRegulationMode> regulationMode = Optional.empty();
@@ -365,6 +411,8 @@ public final class AssetsUpdateAssetRequestBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<List<GoaAttributeTinyRequestBody>> attributes = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -373,6 +421,7 @@ public final class AssetsUpdateAssetRequestBody {
         @java.lang.Override
         public Builder from(AssetsUpdateAssetRequestBody other) {
             id(other.getId());
+            attributes(other.getAttributes());
             externalIds(other.getExternalIds());
             licensePlate(other.getLicensePlate());
             make(other.getMake());
@@ -382,6 +431,7 @@ public final class AssetsUpdateAssetRequestBody {
             readingsIngestionEnabled(other.getReadingsIngestionEnabled());
             regulationMode(other.getRegulationMode());
             serialNumber(other.getSerialNumber());
+            tagIds(other.getTagIds());
             type(other.getType());
             vin(other.getVin());
             year(other.getYear());
@@ -457,6 +507,26 @@ public final class AssetsUpdateAssetRequestBody {
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public _FinalStage type(Optional<AssetsUpdateAssetRequestBodyType> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * <p>An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tagIds(List<String> tagIds) {
+            this.tagIds = Optional.ofNullable(tagIds);
+            return this;
+        }
+
+        /**
+         * <p>An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
+        public _FinalStage tagIds(Optional<List<String>> tagIds) {
+            this.tagIds = tagIds;
             return this;
         }
 
@@ -640,10 +710,31 @@ public final class AssetsUpdateAssetRequestBody {
             return this;
         }
 
+        /**
+         * <p>A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyRequestBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
         @java.lang.Override
         public AssetsUpdateAssetRequestBody build() {
             return new AssetsUpdateAssetRequestBody(
                     id,
+                    attributes,
                     externalIds,
                     licensePlate,
                     make,
@@ -653,6 +744,7 @@ public final class AssetsUpdateAssetRequestBody {
                     readingsIngestionEnabled,
                     regulationMode,
                     serialNumber,
+                    tagIds,
                     type,
                     vin,
                     year,

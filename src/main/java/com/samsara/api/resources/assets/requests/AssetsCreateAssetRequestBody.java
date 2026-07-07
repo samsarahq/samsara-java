@@ -88,7 +88,7 @@ public final class AssetsCreateAssetRequestBody {
     }
 
     /**
-     * @return A list of attributes to assign to the asset.
+     * @return A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.
      */
     @JsonProperty("attributes")
     public Optional<List<GoaAttributeTinyRequestBody>> getAttributes() {
@@ -168,7 +168,7 @@ public final class AssetsCreateAssetRequestBody {
     }
 
     /**
-     * @return An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
+     * @return An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.
      */
     @JsonProperty("tagIds")
     public Optional<List<String>> getTagIds() {
@@ -309,7 +309,7 @@ public final class AssetsCreateAssetRequestBody {
         }
 
         /**
-         * <p>A list of attributes to assign to the asset.</p>
+         * <p>A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.</p>
          */
         @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
         public Builder attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes) {
@@ -449,7 +449,7 @@ public final class AssetsCreateAssetRequestBody {
         }
 
         /**
-         * <p>An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.</p>
+         * <p>An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.</p>
          */
         @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
         public Builder tagIds(Optional<List<String>> tagIds) {
