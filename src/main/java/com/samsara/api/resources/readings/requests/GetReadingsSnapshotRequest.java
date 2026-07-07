@@ -273,9 +273,6 @@ public final class GetReadingsSnapshotRequest {
      * <ul>
      * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
      * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
-     * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
-     * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
-     * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
      * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
      * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
      * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -284,6 +281,9 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
      * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
      * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
+     * <li><code>gatewayBatteryStatus</code> (Gateway Battery Status): Battery status of the gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+     * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
+     * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
      * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
      * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
      * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
@@ -625,9 +625,6 @@ public final class GetReadingsSnapshotRequest {
          * <ul>
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
-         * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
-         * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
-         * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
          * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -636,6 +633,9 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
+         * <li><code>gatewayBatteryStatus</code> (Gateway Battery Status): Battery status of the gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+         * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
+         * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
@@ -973,9 +973,6 @@ public final class GetReadingsSnapshotRequest {
          * <ul>
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
-         * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
-         * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
-         * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
          * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -984,6 +981,9 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
+         * <li><code>gatewayBatteryStatus</code> (Gateway Battery Status): Battery status of the gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+         * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
+         * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
@@ -1225,9 +1225,6 @@ public final class GetReadingsSnapshotRequest {
          * <ul>
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
-         * <li><code>ag51BatteryStatus</code> (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
-         * <li><code>ag51BatteryTemperature</code> (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)</li>
-         * <li><code>ag51BatteryVoltage</code> (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
          * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -1236,6 +1233,9 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>environmentMonitorAmbientTemperatureBLEConnection</code> (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperature</code> (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)</li>
          * <li><code>environmentMonitorThermistorTemperatureBLEConnection</code> (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)</li>
+         * <li><code>gatewayBatteryStatus</code> (Gateway Battery Status): Battery status of the gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)</li>
+         * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
+         * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>

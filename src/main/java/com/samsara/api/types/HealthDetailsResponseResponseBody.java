@@ -20,6 +20,10 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = HealthDetailsResponseResponseBody.Builder.class)
 public final class HealthDetailsResponseResponseBody {
+    private final Optional<BleAssetTagDetailsResponseResponseBody> bleAssetTagDetails;
+
+    private final Optional<CameraConnectorDetailsResponseResponseBody> cameraConnectorDetails;
+
     private final Optional<CameraDetailsResponseResponseBody> cameraDetails;
 
     private final Optional<GatewayDetailsResponseResponseBody> gatewayDetails;
@@ -27,12 +31,26 @@ public final class HealthDetailsResponseResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private HealthDetailsResponseResponseBody(
+            Optional<BleAssetTagDetailsResponseResponseBody> bleAssetTagDetails,
+            Optional<CameraConnectorDetailsResponseResponseBody> cameraConnectorDetails,
             Optional<CameraDetailsResponseResponseBody> cameraDetails,
             Optional<GatewayDetailsResponseResponseBody> gatewayDetails,
             Map<String, Object> additionalProperties) {
+        this.bleAssetTagDetails = bleAssetTagDetails;
+        this.cameraConnectorDetails = cameraConnectorDetails;
         this.cameraDetails = cameraDetails;
         this.gatewayDetails = gatewayDetails;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("bleAssetTagDetails")
+    public Optional<BleAssetTagDetailsResponseResponseBody> getBleAssetTagDetails() {
+        return bleAssetTagDetails;
+    }
+
+    @JsonProperty("cameraConnectorDetails")
+    public Optional<CameraConnectorDetailsResponseResponseBody> getCameraConnectorDetails() {
+        return cameraConnectorDetails;
     }
 
     @JsonProperty("cameraDetails")
@@ -57,12 +75,16 @@ public final class HealthDetailsResponseResponseBody {
     }
 
     private boolean equalTo(HealthDetailsResponseResponseBody other) {
-        return cameraDetails.equals(other.cameraDetails) && gatewayDetails.equals(other.gatewayDetails);
+        return bleAssetTagDetails.equals(other.bleAssetTagDetails)
+                && cameraConnectorDetails.equals(other.cameraConnectorDetails)
+                && cameraDetails.equals(other.cameraDetails)
+                && gatewayDetails.equals(other.gatewayDetails);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.cameraDetails, this.gatewayDetails);
+        return Objects.hash(
+                this.bleAssetTagDetails, this.cameraConnectorDetails, this.cameraDetails, this.gatewayDetails);
     }
 
     @java.lang.Override
@@ -76,6 +98,10 @@ public final class HealthDetailsResponseResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<BleAssetTagDetailsResponseResponseBody> bleAssetTagDetails = Optional.empty();
+
+        private Optional<CameraConnectorDetailsResponseResponseBody> cameraConnectorDetails = Optional.empty();
+
         private Optional<CameraDetailsResponseResponseBody> cameraDetails = Optional.empty();
 
         private Optional<GatewayDetailsResponseResponseBody> gatewayDetails = Optional.empty();
@@ -86,8 +112,33 @@ public final class HealthDetailsResponseResponseBody {
         private Builder() {}
 
         public Builder from(HealthDetailsResponseResponseBody other) {
+            bleAssetTagDetails(other.getBleAssetTagDetails());
+            cameraConnectorDetails(other.getCameraConnectorDetails());
             cameraDetails(other.getCameraDetails());
             gatewayDetails(other.getGatewayDetails());
+            return this;
+        }
+
+        @JsonSetter(value = "bleAssetTagDetails", nulls = Nulls.SKIP)
+        public Builder bleAssetTagDetails(Optional<BleAssetTagDetailsResponseResponseBody> bleAssetTagDetails) {
+            this.bleAssetTagDetails = bleAssetTagDetails;
+            return this;
+        }
+
+        public Builder bleAssetTagDetails(BleAssetTagDetailsResponseResponseBody bleAssetTagDetails) {
+            this.bleAssetTagDetails = Optional.ofNullable(bleAssetTagDetails);
+            return this;
+        }
+
+        @JsonSetter(value = "cameraConnectorDetails", nulls = Nulls.SKIP)
+        public Builder cameraConnectorDetails(
+                Optional<CameraConnectorDetailsResponseResponseBody> cameraConnectorDetails) {
+            this.cameraConnectorDetails = cameraConnectorDetails;
+            return this;
+        }
+
+        public Builder cameraConnectorDetails(CameraConnectorDetailsResponseResponseBody cameraConnectorDetails) {
+            this.cameraConnectorDetails = Optional.ofNullable(cameraConnectorDetails);
             return this;
         }
 
@@ -114,7 +165,8 @@ public final class HealthDetailsResponseResponseBody {
         }
 
         public HealthDetailsResponseResponseBody build() {
-            return new HealthDetailsResponseResponseBody(cameraDetails, gatewayDetails, additionalProperties);
+            return new HealthDetailsResponseResponseBody(
+                    bleAssetTagDetails, cameraConnectorDetails, cameraDetails, gatewayDetails, additionalProperties);
         }
     }
 }

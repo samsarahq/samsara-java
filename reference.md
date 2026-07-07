@@ -8098,7 +8098,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -8936,7 +8936,7 @@ client.assets().createAsset(
 <dl>
 <dd>
 
-**attributes:** `Optional<List<GoaAttributeTinyRequestBody>>` — A list of attributes to assign to the asset.
+**attributes:** `Optional<List<GoaAttributeTinyRequestBody>>` — A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.
     
 </dd>
 </dl>
@@ -9016,7 +9016,7 @@ client.assets().createAsset(
 <dl>
 <dd>
 
-**tagIds:** `Optional<List<String>>` — An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
+**tagIds:** `Optional<List<String>>` — An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.
     
 </dd>
 </dl>
@@ -9180,6 +9180,14 @@ client.assets().updateAsset(
 <dl>
 <dd>
 
+**attributes:** `Optional<List<GoaAttributeTinyRequestBody>>` — A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<Map<String, String>>` — A map of external ids
     
 </dd>
@@ -9245,6 +9253,14 @@ client.assets().updateAsset(
 <dd>
 
 **serialNumber:** `Optional<String>` — The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<List<String>>` — An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.
     
 </dd>
 </dl>
@@ -10534,7 +10550,7 @@ client.media().postMediaRetrieval(
         .startTime("2019-06-13T19:08:25Z")
         .vehicleId("1234")
         .inputs(
-            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
+            Arrays.asList(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING, MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING)
         )
         .build()
 );
@@ -28221,9 +28237,6 @@ Available reading IDs (by category):
 
 * `addressEntry` (Address Entry): Address data from the address entry event
 * `addressExit` (Address Exit): Address data from the address exit event
-* `ag51BatteryStatus` (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)
-* `ag51BatteryTemperature` (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)
-* `ag51BatteryVoltage` (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)
 * `atisLamp` (Atis Lamp status): Atis lamp on/off status (values: off | on)
 * `derivedCargoState` (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)
 * `doorClosedStatus` (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)
@@ -28232,6 +28245,9 @@ Available reading IDs (by category):
 * `environmentMonitorAmbientTemperatureBLEConnection` (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)
 * `environmentMonitorThermistorTemperature` (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)
 * `environmentMonitorThermistorTemperatureBLEConnection` (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)
+* `gatewayBatteryStatus` (Gateway Battery Status): Battery status of the gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)
+* `gatewayBatteryTemperature` (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)
+* `gatewayBatteryVoltage` (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)
 * `trailerMovingWithoutPower` (Trailer Moving Without Power): Trailer moving without power status (values: off | on)
 * `validBrakeScore` (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)
 * `widgetBatteryVoltage` (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)
@@ -28625,9 +28641,6 @@ Available reading IDs (by category):
 
 * `addressEntry` (Address Entry): Address data from the address entry event
 * `addressExit` (Address Exit): Address data from the address exit event
-* `ag51BatteryStatus` (AG51 Battery Status): Battery status of the AG51 gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)
-* `ag51BatteryTemperature` (AG51 Battery Temperature): Internal temperature of the AG51 gateway battery in degrees Celsius (celsius)
-* `ag51BatteryVoltage` (AG51 Battery Voltage): Total battery voltage of the AG51 gateway (sum of all 3 cells) in volts (volt)
 * `atisLamp` (Atis Lamp status): Atis lamp on/off status (values: off | on)
 * `derivedCargoState` (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)
 * `doorClosedStatus` (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)
@@ -28636,6 +28649,9 @@ Available reading IDs (by category):
 * `environmentMonitorAmbientTemperatureBLEConnection` (Ambient Temperature (BLE Connection)): Air temperature at the environmental monitor device (built-in sensor) via BLE Connection. (celsius)
 * `environmentMonitorThermistorTemperature` (Thermistor Temperature): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer). (celsius)
 * `environmentMonitorThermistorTemperatureBLEConnection` (Thermistor Temperature (BLE Connection)): Temperature from an external thermistor probe (e.g. cable probe in cargo or reefer) via BLE Connection. (celsius)
+* `gatewayBatteryStatus` (Gateway Battery Status): Battery status of the gateway based on temperature-compensated voltage threshold. The threshold varies from 3672mV at -40°C to 4579mV at 60°C. (values: ok | low)
+* `gatewayBatteryTemperature` (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)
+* `gatewayBatteryVoltage` (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)
 * `trailerMovingWithoutPower` (Trailer Moving Without Power): Trailer moving without power status (values: off | on)
 * `validBrakeScore` (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)
 * `widgetBatteryVoltage` (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)
