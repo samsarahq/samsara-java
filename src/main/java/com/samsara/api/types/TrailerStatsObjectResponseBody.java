@@ -24,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 public final class TrailerStatsObjectResponseBody {
     private final Optional<List<TrailerStatReeferStateWithDecorationsTypeResponseBody>> carrierReeferState;
 
+    private final Optional<Map<String, String>> externalIds;
+
     private final Optional<List<TrailerStatGpsWithDecorationsTypeResponseBody>> gps;
 
     private final Optional<List<TrailerStatGpsOdometerMetersWithDecorationsTypeResponseBody>> gpsOdometerMeters;
@@ -87,6 +89,7 @@ public final class TrailerStatsObjectResponseBody {
 
     private TrailerStatsObjectResponseBody(
             Optional<List<TrailerStatReeferStateWithDecorationsTypeResponseBody>> carrierReeferState,
+            Optional<Map<String, String>> externalIds,
             Optional<List<TrailerStatGpsWithDecorationsTypeResponseBody>> gps,
             Optional<List<TrailerStatGpsOdometerMetersWithDecorationsTypeResponseBody>> gpsOdometerMeters,
             String id,
@@ -123,6 +126,7 @@ public final class TrailerStatsObjectResponseBody {
                     reeferSupplyAirTemperatureMilliCZone3,
             Map<String, Object> additionalProperties) {
         this.carrierReeferState = carrierReeferState;
+        this.externalIds = externalIds;
         this.gps = gps;
         this.gpsOdometerMeters = gpsOdometerMeters;
         this.id = id;
@@ -156,6 +160,14 @@ public final class TrailerStatsObjectResponseBody {
     @JsonProperty("carrierReeferState")
     public Optional<List<TrailerStatReeferStateWithDecorationsTypeResponseBody>> getCarrierReeferState() {
         return carrierReeferState;
+    }
+
+    /**
+     * @return A map of external ids
+     */
+    @JsonProperty("externalIds")
+    public Optional<Map<String, String>> getExternalIds() {
+        return externalIds;
     }
 
     /**
@@ -374,6 +386,7 @@ public final class TrailerStatsObjectResponseBody {
 
     private boolean equalTo(TrailerStatsObjectResponseBody other) {
         return carrierReeferState.equals(other.carrierReeferState)
+                && externalIds.equals(other.externalIds)
                 && gps.equals(other.gps)
                 && gpsOdometerMeters.equals(other.gpsOdometerMeters)
                 && id.equals(other.id)
@@ -404,6 +417,7 @@ public final class TrailerStatsObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.carrierReeferState,
+                this.externalIds,
                 this.gps,
                 this.gpsOdometerMeters,
                 this.id,
@@ -465,6 +479,13 @@ public final class TrailerStatsObjectResponseBody {
                 Optional<List<TrailerStatReeferStateWithDecorationsTypeResponseBody>> carrierReeferState);
 
         _FinalStage carrierReeferState(List<TrailerStatReeferStateWithDecorationsTypeResponseBody> carrierReeferState);
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        _FinalStage externalIds(Optional<Map<String, String>> externalIds);
+
+        _FinalStage externalIds(Map<String, String> externalIds);
 
         /**
          * <p>A list of GPS points.</p>
@@ -748,6 +769,8 @@ public final class TrailerStatsObjectResponseBody {
 
         private Optional<List<TrailerStatGpsWithDecorationsTypeResponseBody>> gps = Optional.empty();
 
+        private Optional<Map<String, String>> externalIds = Optional.empty();
+
         private Optional<List<TrailerStatReeferStateWithDecorationsTypeResponseBody>> carrierReeferState =
                 Optional.empty();
 
@@ -759,6 +782,7 @@ public final class TrailerStatsObjectResponseBody {
         @java.lang.Override
         public Builder from(TrailerStatsObjectResponseBody other) {
             carrierReeferState(other.getCarrierReeferState());
+            externalIds(other.getExternalIds());
             gps(other.getGps());
             gpsOdometerMeters(other.getGpsOdometerMeters());
             id(other.getId());
@@ -1312,6 +1336,26 @@ public final class TrailerStatsObjectResponseBody {
         }
 
         /**
+         * <p>A map of external ids</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalIds(Map<String, String> externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public _FinalStage externalIds(Optional<Map<String, String>> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
+        /**
          * <p>A list of engine state points.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -1337,6 +1381,7 @@ public final class TrailerStatsObjectResponseBody {
         public TrailerStatsObjectResponseBody build() {
             return new TrailerStatsObjectResponseBody(
                     carrierReeferState,
+                    externalIds,
                     gps,
                     gpsOdometerMeters,
                     id,

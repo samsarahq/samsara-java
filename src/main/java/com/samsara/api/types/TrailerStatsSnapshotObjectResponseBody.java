@@ -23,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 public final class TrailerStatsSnapshotObjectResponseBody {
     private final Optional<TrailerStatReeferStateTypeResponseBody> carrierReeferState;
 
+    private final Optional<Map<String, String>> externalIds;
+
     private final Optional<TrailerStatGpsTypeResponseBody> gps;
 
     private final Optional<TrailerStatGpsOdometerMetersTypeResponseBody> gpsOdometerMeters;
@@ -85,6 +87,7 @@ public final class TrailerStatsSnapshotObjectResponseBody {
 
     private TrailerStatsSnapshotObjectResponseBody(
             Optional<TrailerStatReeferStateTypeResponseBody> carrierReeferState,
+            Optional<Map<String, String>> externalIds,
             Optional<TrailerStatGpsTypeResponseBody> gps,
             Optional<TrailerStatGpsOdometerMetersTypeResponseBody> gpsOdometerMeters,
             String id,
@@ -120,6 +123,7 @@ public final class TrailerStatsSnapshotObjectResponseBody {
                     reeferSupplyAirTemperatureMilliCZone3,
             Map<String, Object> additionalProperties) {
         this.carrierReeferState = carrierReeferState;
+        this.externalIds = externalIds;
         this.gps = gps;
         this.gpsOdometerMeters = gpsOdometerMeters;
         this.id = id;
@@ -150,6 +154,14 @@ public final class TrailerStatsSnapshotObjectResponseBody {
     @JsonProperty("carrierReeferState")
     public Optional<TrailerStatReeferStateTypeResponseBody> getCarrierReeferState() {
         return carrierReeferState;
+    }
+
+    /**
+     * @return A map of external ids
+     */
+    @JsonProperty("externalIds")
+    public Optional<Map<String, String>> getExternalIds() {
+        return externalIds;
     }
 
     @JsonProperty("gps")
@@ -302,6 +314,7 @@ public final class TrailerStatsSnapshotObjectResponseBody {
 
     private boolean equalTo(TrailerStatsSnapshotObjectResponseBody other) {
         return carrierReeferState.equals(other.carrierReeferState)
+                && externalIds.equals(other.externalIds)
                 && gps.equals(other.gps)
                 && gpsOdometerMeters.equals(other.gpsOdometerMeters)
                 && id.equals(other.id)
@@ -332,6 +345,7 @@ public final class TrailerStatsSnapshotObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.carrierReeferState,
+                this.externalIds,
                 this.gps,
                 this.gpsOdometerMeters,
                 this.id,
@@ -389,6 +403,13 @@ public final class TrailerStatsSnapshotObjectResponseBody {
         _FinalStage carrierReeferState(Optional<TrailerStatReeferStateTypeResponseBody> carrierReeferState);
 
         _FinalStage carrierReeferState(TrailerStatReeferStateTypeResponseBody carrierReeferState);
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        _FinalStage externalIds(Optional<Map<String, String>> externalIds);
+
+        _FinalStage externalIds(Map<String, String> externalIds);
 
         _FinalStage gps(Optional<TrailerStatGpsTypeResponseBody> gps);
 
@@ -573,6 +594,8 @@ public final class TrailerStatsSnapshotObjectResponseBody {
 
         private Optional<TrailerStatGpsTypeResponseBody> gps = Optional.empty();
 
+        private Optional<Map<String, String>> externalIds = Optional.empty();
+
         private Optional<TrailerStatReeferStateTypeResponseBody> carrierReeferState = Optional.empty();
 
         @JsonAnySetter
@@ -583,6 +606,7 @@ public final class TrailerStatsSnapshotObjectResponseBody {
         @java.lang.Override
         public Builder from(TrailerStatsSnapshotObjectResponseBody other) {
             carrierReeferState(other.getCarrierReeferState());
+            externalIds(other.getExternalIds());
             gps(other.getGps());
             gpsOdometerMeters(other.getGpsOdometerMeters());
             id(other.getId());
@@ -961,6 +985,26 @@ public final class TrailerStatsSnapshotObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>A map of external ids</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalIds(Map<String, String> externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        /**
+         * <p>A map of external ids</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public _FinalStage externalIds(Optional<Map<String, String>> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage carrierReeferState(TrailerStatReeferStateTypeResponseBody carrierReeferState) {
             this.carrierReeferState = Optional.ofNullable(carrierReeferState);
@@ -978,6 +1022,7 @@ public final class TrailerStatsSnapshotObjectResponseBody {
         public TrailerStatsSnapshotObjectResponseBody build() {
             return new TrailerStatsSnapshotObjectResponseBody(
                     carrierReeferState,
+                    externalIds,
                     gps,
                     gpsOdometerMeters,
                     id,
