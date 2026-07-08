@@ -17,6 +17,7 @@ import com.samsara.api.resources.betaapis.types.PlacesPatchPlaceRequestBodyExter
 import com.samsara.api.types.PlaceGeofenceInputRequestBody;
 import com.samsara.api.types.PlaceRoutingPatchInputRequestBody;
 import com.samsara.api.types.PlaceStreetViewInputRequestBody;
+import com.samsara.api.types.PostPlaceBusinessContactsInputRequestBody;
 import com.samsara.api.types.PostPlaceNavigationInputRequestBody;
 import com.samsara.api.types.PostPlaceTagRefRequestBody;
 import java.util.HashMap;
@@ -33,6 +34,8 @@ public final class PlacesPatchPlaceRequestBody {
     private final Optional<String> externalId;
 
     private final Optional<String> address;
+
+    private final Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts;
 
     private final Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType;
 
@@ -66,6 +69,7 @@ public final class PlacesPatchPlaceRequestBody {
             Optional<Long> placeId,
             Optional<String> externalId,
             Optional<String> address,
+            Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts,
             Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
             Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds,
             Optional<PlaceGeofenceInputRequestBody> geofence,
@@ -83,6 +87,7 @@ public final class PlacesPatchPlaceRequestBody {
         this.placeId = placeId;
         this.externalId = externalId;
         this.address = address;
+        this.businessContacts = businessContacts;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.externalIds = externalIds;
         this.geofence = geofence;
@@ -121,6 +126,11 @@ public final class PlacesPatchPlaceRequestBody {
     @JsonProperty("address")
     public Optional<String> getAddress() {
         return address;
+    }
+
+    @JsonProperty("businessContacts")
+    public Optional<PostPlaceBusinessContactsInputRequestBody> getBusinessContacts() {
+        return businessContacts;
     }
 
     /**
@@ -230,6 +240,7 @@ public final class PlacesPatchPlaceRequestBody {
         return placeId.equals(other.placeId)
                 && externalId.equals(other.externalId)
                 && address.equals(other.address)
+                && businessContacts.equals(other.businessContacts)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && externalIds.equals(other.externalIds)
                 && geofence.equals(other.geofence)
@@ -251,6 +262,7 @@ public final class PlacesPatchPlaceRequestBody {
                 this.placeId,
                 this.externalId,
                 this.address,
+                this.businessContacts,
                 this.cameraRecordingModeType,
                 this.externalIds,
                 this.geofence,
@@ -282,6 +294,8 @@ public final class PlacesPatchPlaceRequestBody {
         private Optional<String> externalId = Optional.empty();
 
         private Optional<String> address = Optional.empty();
+
+        private Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts = Optional.empty();
 
         private Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType = Optional.empty();
 
@@ -318,6 +332,7 @@ public final class PlacesPatchPlaceRequestBody {
             placeId(other.getPlaceId());
             externalId(other.getExternalId());
             address(other.getAddress());
+            businessContacts(other.getBusinessContacts());
             cameraRecordingModeType(other.getCameraRecordingModeType());
             externalIds(other.getExternalIds());
             geofence(other.getGeofence());
@@ -373,6 +388,17 @@ public final class PlacesPatchPlaceRequestBody {
 
         public Builder address(String address) {
             this.address = Optional.ofNullable(address);
+            return this;
+        }
+
+        @JsonSetter(value = "businessContacts", nulls = Nulls.SKIP)
+        public Builder businessContacts(Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts) {
+            this.businessContacts = businessContacts;
+            return this;
+        }
+
+        public Builder businessContacts(PostPlaceBusinessContactsInputRequestBody businessContacts) {
+            this.businessContacts = Optional.ofNullable(businessContacts);
             return this;
         }
 
@@ -553,6 +579,7 @@ public final class PlacesPatchPlaceRequestBody {
                     placeId,
                     externalId,
                     address,
+                    businessContacts,
                     cameraRecordingModeType,
                     externalIds,
                     geofence,

@@ -12,21 +12,24 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.media.types.MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem;
 import com.samsara.api.resources.media.types.MediaRetrievalPostMediaRetrievalRequestBodyInputsItem;
 import com.samsara.api.resources.media.types.MediaRetrievalPostMediaRetrievalRequestBodyMediaType;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = MediaRetrievalPostMediaRetrievalRequestBody.Builder.class)
 public final class MediaRetrievalPostMediaRetrievalRequestBody {
+    private final Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>> cameraRoles;
+
     private final String endTime;
 
-    private final List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs;
+    private final Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>> inputs;
 
     private final MediaRetrievalPostMediaRetrievalRequestBodyMediaType mediaType;
 
@@ -37,18 +40,28 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private MediaRetrievalPostMediaRetrievalRequestBody(
+            Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>> cameraRoles,
             String endTime,
-            List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs,
+            Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>> inputs,
             MediaRetrievalPostMediaRetrievalRequestBodyMediaType mediaType,
             String startTime,
             String vehicleId,
             Map<String, Object> additionalProperties) {
+        this.cameraRoles = cameraRoles;
         this.endTime = endTime;
         this.inputs = inputs;
         this.mediaType = mediaType;
         this.startTime = startTime;
         this.vehicleId = vehicleId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Optional list of camera roles to resolve to analog inputs at request time. Requires an AHD4 auxcam device. Can be used alone or combined with inputs.
+     */
+    @JsonProperty("cameraRoles")
+    public Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>> getCameraRoles() {
+        return cameraRoles;
     }
 
     /**
@@ -60,10 +73,10 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
     }
 
     /**
-     * @return A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. An empty list is invalid.
+     * @return A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. At least one of inputs or cameraRoles must be provided.
      */
     @JsonProperty("inputs")
-    public List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> getInputs() {
+    public Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>> getInputs() {
         return inputs;
     }
 
@@ -104,7 +117,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
     }
 
     private boolean equalTo(MediaRetrievalPostMediaRetrievalRequestBody other) {
-        return endTime.equals(other.endTime)
+        return cameraRoles.equals(other.cameraRoles)
+                && endTime.equals(other.endTime)
                 && inputs.equals(other.inputs)
                 && mediaType.equals(other.mediaType)
                 && startTime.equals(other.startTime)
@@ -113,7 +127,8 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.endTime, this.inputs, this.mediaType, this.startTime, this.vehicleId);
+        return Objects.hash(
+                this.cameraRoles, this.endTime, this.inputs, this.mediaType, this.startTime, this.vehicleId);
     }
 
     @java.lang.Override
@@ -159,13 +174,18 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
         MediaRetrievalPostMediaRetrievalRequestBody build();
 
         /**
-         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. An empty list is invalid.</p>
+         * <p>Optional list of camera roles to resolve to analog inputs at request time. Requires an AHD4 auxcam device. Can be used alone or combined with inputs.</p>
          */
+        _FinalStage cameraRoles(Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>> cameraRoles);
+
+        _FinalStage cameraRoles(List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem> cameraRoles);
+
+        /**
+         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. At least one of inputs or cameraRoles must be provided.</p>
+         */
+        _FinalStage inputs(Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>> inputs);
+
         _FinalStage inputs(List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs);
-
-        _FinalStage addInputs(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem inputs);
-
-        _FinalStage addAllInputs(List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -179,7 +199,10 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
 
         private String vehicleId;
 
-        private List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs = new ArrayList<>();
+        private Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>> inputs = Optional.empty();
+
+        private Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>> cameraRoles =
+                Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -188,6 +211,7 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
 
         @java.lang.Override
         public Builder from(MediaRetrievalPostMediaRetrievalRequestBody other) {
+            cameraRoles(other.getCameraRoles());
             endTime(other.getEndTime());
             inputs(other.getInputs());
             mediaType(other.getMediaType());
@@ -245,44 +269,50 @@ public final class MediaRetrievalPostMediaRetrievalRequestBody {
         }
 
         /**
-         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. An empty list is invalid.</p>
+         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. At least one of inputs or cameraRoles must be provided.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllInputs(List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs) {
-            if (inputs != null) {
-                this.inputs.addAll(inputs);
-            }
+        public _FinalStage inputs(List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs) {
+            this.inputs = Optional.ofNullable(inputs);
             return this;
         }
 
         /**
-         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. An empty list is invalid.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage addInputs(MediaRetrievalPostMediaRetrievalRequestBodyInputsItem inputs) {
-            this.inputs.add(inputs);
-            return this;
-        }
-
-        /**
-         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. An empty list is invalid.</p>
+         * <p>A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. At least one of inputs or cameraRoles must be provided.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "inputs", nulls = Nulls.SKIP)
-        public _FinalStage inputs(List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> inputs) {
-            this.inputs.clear();
-            if (inputs != null) {
-                this.inputs.addAll(inputs);
-            }
+        public _FinalStage inputs(Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>> inputs) {
+            this.inputs = inputs;
+            return this;
+        }
+
+        /**
+         * <p>Optional list of camera roles to resolve to analog inputs at request time. Requires an AHD4 auxcam device. Can be used alone or combined with inputs.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage cameraRoles(List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem> cameraRoles) {
+            this.cameraRoles = Optional.ofNullable(cameraRoles);
+            return this;
+        }
+
+        /**
+         * <p>Optional list of camera roles to resolve to analog inputs at request time. Requires an AHD4 auxcam device. Can be used alone or combined with inputs.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "cameraRoles", nulls = Nulls.SKIP)
+        public _FinalStage cameraRoles(
+                Optional<List<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>> cameraRoles) {
+            this.cameraRoles = cameraRoles;
             return this;
         }
 
         @java.lang.Override
         public MediaRetrievalPostMediaRetrievalRequestBody build() {
             return new MediaRetrievalPostMediaRetrievalRequestBody(
-                    endTime, inputs, mediaType, startTime, vehicleId, additionalProperties);
+                    cameraRoles, endTime, inputs, mediaType, startTime, vehicleId, additionalProperties);
         }
     }
 }

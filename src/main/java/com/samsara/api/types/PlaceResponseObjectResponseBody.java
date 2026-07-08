@@ -25,6 +25,8 @@ import org.jetbrains.annotations.NotNull;
 public final class PlaceResponseObjectResponseBody {
     private final String address;
 
+    private final Optional<PlaceBusinessContactsResponseResponseBody> businessContacts;
+
     private final Optional<String> cameraRecordingModeType;
 
     private final OffsetDateTime createdAtTime;
@@ -63,6 +65,7 @@ public final class PlaceResponseObjectResponseBody {
 
     private PlaceResponseObjectResponseBody(
             String address,
+            Optional<PlaceBusinessContactsResponseResponseBody> businessContacts,
             Optional<String> cameraRecordingModeType,
             OffsetDateTime createdAtTime,
             Optional<PlaceResponseObjectResponseBodyExternalIds> externalIds,
@@ -82,6 +85,7 @@ public final class PlaceResponseObjectResponseBody {
             OffsetDateTime updatedAtTime,
             Map<String, Object> additionalProperties) {
         this.address = address;
+        this.businessContacts = businessContacts;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.createdAtTime = createdAtTime;
         this.externalIds = externalIds;
@@ -108,6 +112,11 @@ public final class PlaceResponseObjectResponseBody {
     @JsonProperty("address")
     public String getAddress() {
         return address;
+    }
+
+    @JsonProperty("businessContacts")
+    public Optional<PlaceBusinessContactsResponseResponseBody> getBusinessContacts() {
+        return businessContacts;
     }
 
     /**
@@ -250,6 +259,7 @@ public final class PlaceResponseObjectResponseBody {
 
     private boolean equalTo(PlaceResponseObjectResponseBody other) {
         return address.equals(other.address)
+                && businessContacts.equals(other.businessContacts)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && createdAtTime.equals(other.createdAtTime)
                 && externalIds.equals(other.externalIds)
@@ -273,6 +283,7 @@ public final class PlaceResponseObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.address,
+                this.businessContacts,
                 this.cameraRecordingModeType,
                 this.createdAtTime,
                 this.externalIds,
@@ -344,6 +355,10 @@ public final class PlaceResponseObjectResponseBody {
 
     public interface _FinalStage {
         PlaceResponseObjectResponseBody build();
+
+        _FinalStage businessContacts(Optional<PlaceBusinessContactsResponseResponseBody> businessContacts);
+
+        _FinalStage businessContacts(PlaceBusinessContactsResponseResponseBody businessContacts);
 
         /**
          * <p>Camera recording mode: inherit, fullRecording, driverPrivacy, completePrivacy, or unknown.</p>
@@ -469,6 +484,8 @@ public final class PlaceResponseObjectResponseBody {
 
         private Optional<String> cameraRecordingModeType = Optional.empty();
 
+        private Optional<PlaceBusinessContactsResponseResponseBody> businessContacts = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -477,6 +494,7 @@ public final class PlaceResponseObjectResponseBody {
         @java.lang.Override
         public Builder from(PlaceResponseObjectResponseBody other) {
             address(other.getAddress());
+            businessContacts(other.getBusinessContacts());
             cameraRecordingModeType(other.getCameraRecordingModeType());
             createdAtTime(other.getCreatedAtTime());
             externalIds(other.getExternalIds());
@@ -791,9 +809,23 @@ public final class PlaceResponseObjectResponseBody {
         }
 
         @java.lang.Override
+        public _FinalStage businessContacts(PlaceBusinessContactsResponseResponseBody businessContacts) {
+            this.businessContacts = Optional.ofNullable(businessContacts);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "businessContacts", nulls = Nulls.SKIP)
+        public _FinalStage businessContacts(Optional<PlaceBusinessContactsResponseResponseBody> businessContacts) {
+            this.businessContacts = businessContacts;
+            return this;
+        }
+
+        @java.lang.Override
         public PlaceResponseObjectResponseBody build() {
             return new PlaceResponseObjectResponseBody(
                     address,
+                    businessContacts,
                     cameraRecordingModeType,
                     createdAtTime,
                     externalIds,
