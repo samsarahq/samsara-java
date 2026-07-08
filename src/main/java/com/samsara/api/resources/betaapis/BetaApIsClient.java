@@ -41,6 +41,7 @@ import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlaceDeletionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlaceGeocodeRequest;
+import com.samsara.api.resources.betaapis.requests.GetPlaceGeofenceRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlacesRequest;
 import com.samsara.api.resources.betaapis.requests.GetPreferredStationRequest;
 import com.samsara.api.resources.betaapis.requests.GetQualificationRecordsRequest;
@@ -132,6 +133,7 @@ import com.samsara.api.types.MaintenanceVendorsListMaintenanceVendorsResponseBod
 import com.samsara.api.types.MaintenanceVendorsListVendorCategoriesResponseBody;
 import com.samsara.api.types.PlacesGetPlaceDeletionsResponseBody;
 import com.samsara.api.types.PlacesGetPlaceGeocodeResponseBody;
+import com.samsara.api.types.PlacesGetPlaceGeofenceResponseBody;
 import com.samsara.api.types.PlacesGetPlacesResponseBody;
 import com.samsara.api.types.PlacesPatchPlaceResponseBody;
 import com.samsara.api.types.PlacesPostPlaceResponseBody;
@@ -1901,6 +1903,27 @@ public class BetaApIsClient {
     public PlacesGetPlaceGeocodeResponseBody getPlaceGeocode(
             GetPlaceGeocodeRequest request, RequestOptions requestOptions) {
         return this.rawClient.getPlaceGeocode(request, requestOptions).body();
+    }
+
+    /**
+     * Returns geofence suggestion candidates for a seed point. Does not create or update a Place. Applies the same selection rules as geofence.auto on Place write.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PlacesGetPlaceGeofenceResponseBody getPlaceGeofence(GetPlaceGeofenceRequest request) {
+        return this.rawClient.getPlaceGeofence(request).body();
+    }
+
+    /**
+     * Returns geofence suggestion candidates for a seed point. Does not create or update a Place. Applies the same selection rules as geofence.auto on Place write.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PlacesGetPlaceGeofenceResponseBody getPlaceGeofence(
+            GetPlaceGeofenceRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getPlaceGeofence(request, requestOptions).body();
     }
 
     /**

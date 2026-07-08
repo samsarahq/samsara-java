@@ -6,12 +6,10 @@ import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.media.requests.GetMediaRetrievalRequest;
 import com.samsara.api.resources.media.requests.ListUploadedMediaRequest;
 import com.samsara.api.resources.media.requests.MediaRetrievalPostMediaRetrievalRequestBody;
-import com.samsara.api.resources.media.types.MediaRetrievalPostMediaRetrievalRequestBodyInputsItem;
 import com.samsara.api.resources.media.types.MediaRetrievalPostMediaRetrievalRequestBodyMediaType;
 import com.samsara.api.types.MediaRetrievalGetMediaRetrievalResponseBody;
 import com.samsara.api.types.MediaRetrievalListUploadedMediaResponseBody;
 import com.samsara.api.types.MediaRetrievalPostMediaRetrievalResponseBody;
-import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -199,11 +197,6 @@ public class MediaWireTest {
                         .mediaType(MediaRetrievalPostMediaRetrievalRequestBodyMediaType.IMAGE)
                         .startTime("2019-06-13T19:08:25Z")
                         .vehicleId("1234")
-                        .inputs(Arrays.asList(
-                                MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING,
-                                MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING,
-                                MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING,
-                                MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DASHCAM_ROAD_FACING))
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -213,12 +206,6 @@ public class MediaWireTest {
         String expectedRequestBody = ""
                 + "{\n"
                 + "  \"endTime\": \"2019-06-13T19:08:55Z\",\n"
-                + "  \"inputs\": [\n"
-                + "    \"dashcamRoadFacing\",\n"
-                + "    \"dashcamRoadFacing\",\n"
-                + "    \"dashcamRoadFacing\",\n"
-                + "    \"dashcamRoadFacing\"\n"
-                + "  ],\n"
                 + "  \"mediaType\": \"image\",\n"
                 + "  \"startTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "  \"vehicleId\": \"1234\"\n"

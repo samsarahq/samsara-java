@@ -17,6 +17,7 @@ import com.samsara.api.resources.betaapis.types.PlacesPostPlaceRequestBodyExtern
 import com.samsara.api.types.PlaceGeofenceInputRequestBody;
 import com.samsara.api.types.PlaceRoutingInputRequestBody;
 import com.samsara.api.types.PlaceStreetViewInputRequestBody;
+import com.samsara.api.types.PostPlaceBusinessContactsInputRequestBody;
 import com.samsara.api.types.PostPlaceNavigationInputRequestBody;
 import com.samsara.api.types.PostPlaceTagRefRequestBody;
 import java.util.HashMap;
@@ -30,6 +31,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonDeserialize(builder = PlacesPostPlaceRequestBody.Builder.class)
 public final class PlacesPostPlaceRequestBody {
     private final String address;
+
+    private final Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts;
 
     private final Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType;
 
@@ -61,6 +64,7 @@ public final class PlacesPostPlaceRequestBody {
 
     private PlacesPostPlaceRequestBody(
             String address,
+            Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts,
             Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
             Optional<PlacesPostPlaceRequestBodyExternalIds> externalIds,
             PlaceGeofenceInputRequestBody geofence,
@@ -76,6 +80,7 @@ public final class PlacesPostPlaceRequestBody {
             Optional<List<PostPlaceTagRefRequestBody>> tags,
             Map<String, Object> additionalProperties) {
         this.address = address;
+        this.businessContacts = businessContacts;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.externalIds = externalIds;
         this.geofence = geofence;
@@ -98,6 +103,11 @@ public final class PlacesPostPlaceRequestBody {
     @JsonProperty("address")
     public String getAddress() {
         return address;
+    }
+
+    @JsonProperty("businessContacts")
+    public Optional<PostPlaceBusinessContactsInputRequestBody> getBusinessContacts() {
+        return businessContacts;
     }
 
     /**
@@ -208,6 +218,7 @@ public final class PlacesPostPlaceRequestBody {
 
     private boolean equalTo(PlacesPostPlaceRequestBody other) {
         return address.equals(other.address)
+                && businessContacts.equals(other.businessContacts)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && externalIds.equals(other.externalIds)
                 && geofence.equals(other.geofence)
@@ -227,6 +238,7 @@ public final class PlacesPostPlaceRequestBody {
     public int hashCode() {
         return Objects.hash(
                 this.address,
+                this.businessContacts,
                 this.cameraRecordingModeType,
                 this.externalIds,
                 this.geofence,
@@ -273,6 +285,10 @@ public final class PlacesPostPlaceRequestBody {
 
     public interface _FinalStage {
         PlacesPostPlaceRequestBody build();
+
+        _FinalStage businessContacts(Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts);
+
+        _FinalStage businessContacts(PostPlaceBusinessContactsInputRequestBody businessContacts);
 
         /**
          * <p>Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: <code>fullRecording</code>, <code>driverPrivacy</code>, <code>completePrivacy</code>, <code>inherit</code>, <code>unknown</code>, <code>unspecified</code></p>
@@ -377,6 +393,8 @@ public final class PlacesPostPlaceRequestBody {
 
         private Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType = Optional.empty();
 
+        private Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -385,6 +403,7 @@ public final class PlacesPostPlaceRequestBody {
         @java.lang.Override
         public Builder from(PlacesPostPlaceRequestBody other) {
             address(other.getAddress());
+            businessContacts(other.getBusinessContacts());
             cameraRecordingModeType(other.getCameraRecordingModeType());
             externalIds(other.getExternalIds());
             geofence(other.getGeofence());
@@ -641,9 +660,23 @@ public final class PlacesPostPlaceRequestBody {
         }
 
         @java.lang.Override
+        public _FinalStage businessContacts(PostPlaceBusinessContactsInputRequestBody businessContacts) {
+            this.businessContacts = Optional.ofNullable(businessContacts);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "businessContacts", nulls = Nulls.SKIP)
+        public _FinalStage businessContacts(Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts) {
+            this.businessContacts = businessContacts;
+            return this;
+        }
+
+        @java.lang.Override
         public PlacesPostPlaceRequestBody build() {
             return new PlacesPostPlaceRequestBody(
                     address,
+                    businessContacts,
                     cameraRecordingModeType,
                     externalIds,
                     geofence,
