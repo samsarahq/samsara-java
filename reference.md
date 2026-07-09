@@ -9653,6 +9653,90 @@ client.assets().v1GetAssetsReefers(
 </dl>
 </details>
 
+<details><summary><code>client.assets.getAssetReefer(assetId) -> AssetsGetAssetReeferResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetch the reefer-specific stats of an asset.
+
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.assets().getAssetReefer(
+    1000000L,
+    GetAssetReeferRequest
+        .builder()
+        .startMs(1000000L)
+        .endMs(1000000L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Long` — ID of the asset. Must contain only digits 0-9.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startMs:** `Long` — Timestamp in milliseconds representing the start of the period to fetch, inclusive. Used in combination with endMs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endMs:** `Long` — Timestamp in milliseconds representing the end of the period to fetch, inclusive. Used in combination with startMs.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.assets.v1GetAssetLocation(assetId) -> List&amp;lt;V1AssetLocationResponseItem&amp;gt;</code></summary>
 <dl>
 <dd>

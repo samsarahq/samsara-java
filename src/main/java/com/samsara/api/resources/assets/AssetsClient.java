@@ -9,6 +9,7 @@ import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
+import com.samsara.api.resources.assets.requests.GetAssetReeferRequest;
 import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
 import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
@@ -18,6 +19,7 @@ import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetsReefersRequest;
 import com.samsara.api.types.AssetResponseBody;
 import com.samsara.api.types.AssetsCreateAssetResponseBody;
+import com.samsara.api.types.AssetsGetAssetReeferResponseBody;
 import com.samsara.api.types.AssetsUpdateAssetResponseBody;
 import com.samsara.api.types.InlineResponse2002;
 import com.samsara.api.types.InlineResponse2003;
@@ -237,6 +239,27 @@ public class AssetsClient {
      */
     public InlineResponse2003 v1GetAssetsReefers(V1GetAssetsReefersRequest request, RequestOptions requestOptions) {
         return this.rawClient.v1GetAssetsReefers(request, requestOptions).body();
+    }
+
+    /**
+     * Fetch the reefer-specific stats of an asset.
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public AssetsGetAssetReeferResponseBody getAssetReefer(long assetId, GetAssetReeferRequest request) {
+        return this.rawClient.getAssetReefer(assetId, request).body();
+    }
+
+    /**
+     * Fetch the reefer-specific stats of an asset.
+     * <p><b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Trailers</strong> under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public AssetsGetAssetReeferResponseBody getAssetReefer(
+            long assetId, GetAssetReeferRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getAssetReefer(assetId, request, requestOptions).body();
     }
 
     /**
