@@ -7,6 +7,7 @@ import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
+import com.samsara.api.resources.assets.requests.GetAssetReeferRequest;
 import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
 import com.samsara.api.resources.assets.requests.UpdateAssetsRequest;
@@ -16,6 +17,7 @@ import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetsReefersRequest;
 import com.samsara.api.types.AssetResponseBody;
 import com.samsara.api.types.AssetsCreateAssetResponseBody;
+import com.samsara.api.types.AssetsGetAssetReeferResponseBody;
 import com.samsara.api.types.AssetsUpdateAssetResponseBody;
 import com.samsara.api.types.InlineResponse2002;
 import com.samsara.api.types.InlineResponse2003;
@@ -432,6 +434,101 @@ public class AssetsWireTest {
                 + "    \"hasNextPage\": true,\n"
                 + "    \"hasPrevPage\": true,\n"
                 + "    \"startCursor\": \"MTU5MTEzNjA2OTU0MzQ3\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetAssetReefer() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"assetType\":\"Thermo King\",\"id\":1,\"name\":\"Reefer 123\",\"reeferStats\":{\"alarms\":[{\"changedAtMs\":1453449599999}],\"engineHours\":[{\"changedAtMs\":1453449599999,\"engineHours\":1200}],\"fuelPercentages\":[{\"changedAtMs\":1453449599999,\"fuelPercentage\":99}],\"powerStatus\":[{\"changedAtMs\":1453449599999,\"status\":\"Active (Continuous)\"}],\"returnAirTemp\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}],\"setPoint\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}]}}"));
+        AssetsGetAssetReeferResponseBody response = client.assets()
+                .getAssetReefer(
+                        1000000L,
+                        GetAssetReeferRequest.builder()
+                                .startMs(1000000L)
+                                .endMs(1000000L)
+                                .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"assetType\": \"Thermo King\",\n"
+                + "  \"id\": 1,\n"
+                + "  \"name\": \"Reefer 123\",\n"
+                + "  \"reeferStats\": {\n"
+                + "    \"alarms\": [\n"
+                + "      {\n"
+                + "        \"changedAtMs\": 1453449599999\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"engineHours\": [\n"
+                + "      {\n"
+                + "        \"changedAtMs\": 1453449599999,\n"
+                + "        \"engineHours\": 1200\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"fuelPercentages\": [\n"
+                + "      {\n"
+                + "        \"changedAtMs\": 1453449599999,\n"
+                + "        \"fuelPercentage\": 99\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"powerStatus\": [\n"
+                + "      {\n"
+                + "        \"changedAtMs\": 1453449599999,\n"
+                + "        \"status\": \"Active (Continuous)\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"returnAirTemp\": [\n"
+                + "      {\n"
+                + "        \"changedAtMs\": 1453449599999,\n"
+                + "        \"tempInMilliC\": 31110\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"setPoint\": [\n"
+                + "      {\n"
+                + "        \"changedAtMs\": 1453449599999,\n"
+                + "        \"tempInMilliC\": 31110\n"
+                + "      }\n"
+                + "    ]\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
