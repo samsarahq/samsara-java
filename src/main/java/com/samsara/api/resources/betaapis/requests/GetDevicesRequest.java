@@ -62,7 +62,7 @@ public final class GetDevicesRequest {
     }
 
     /**
-     * @return Optional string of comma separated device models. Valid values: <code>CM31</code>, <code>CM32</code>, <code>CM33</code>, <code>CM34</code>, <code>VG34</code>, <code>VG34M</code>, <code>VG34EU</code>, <code>VG34FN</code>, <code>VG54NA</code>, <code>VG54EU</code>, <code>VG55NA</code>, <code>VG55EU</code>, <code>AG24</code>, <code>AG24EU</code>, <code>AG26</code>, <code>AG26EU</code>, <code>AG45</code>, <code>AG45EU</code>, <code>AG46</code>, <code>AG46EU</code>, <code>AG46P</code>, <code>AG46PEU</code>, <code>AG51</code>, <code>AG51EU</code>, <code>AG52</code>, <code>AG52EU</code>, <code>AG53</code>, <code>AG53EU</code>
+     * @return Optional string of comma separated device models. Valid values: <code>CM31</code>, <code>CM32</code>, <code>CM33</code>, <code>CM34</code>, <code>VG34</code>, <code>VG34M</code>, <code>VG34EU</code>, <code>VG34FN</code>, <code>VG54NA</code>, <code>VG54EU</code>, <code>VG55NA</code>, <code>VG55EU</code>, <code>AG24</code>, <code>AG24EU</code>, <code>AG26</code>, <code>AG26EU</code>, <code>AG45</code>, <code>AG45EU</code>, <code>AG46</code>, <code>AG46EU</code>, <code>AG46P</code>, <code>AG46PEU</code>, <code>AG51</code>, <code>AG51EU</code>, <code>AG52</code>, <code>AG52EU</code>, <code>AG53</code>, <code>AG53EU</code>, <code>AT11</code>, <code>AT11X</code>, <code>AT12</code>, <code>AT12X</code>, <code>AT13</code>, <code>LM11</code>, <code>AIM4</code>, <code>AHD1</code>
      */
     @JsonProperty("models")
     public Optional<List<String>> getModels() {
@@ -205,7 +205,7 @@ public final class GetDevicesRequest {
         }
 
         /**
-         * <p>Optional string of comma separated device models. Valid values: <code>CM31</code>, <code>CM32</code>, <code>CM33</code>, <code>CM34</code>, <code>VG34</code>, <code>VG34M</code>, <code>VG34EU</code>, <code>VG34FN</code>, <code>VG54NA</code>, <code>VG54EU</code>, <code>VG55NA</code>, <code>VG55EU</code>, <code>AG24</code>, <code>AG24EU</code>, <code>AG26</code>, <code>AG26EU</code>, <code>AG45</code>, <code>AG45EU</code>, <code>AG46</code>, <code>AG46EU</code>, <code>AG46P</code>, <code>AG46PEU</code>, <code>AG51</code>, <code>AG51EU</code>, <code>AG52</code>, <code>AG52EU</code>, <code>AG53</code>, <code>AG53EU</code></p>
+         * <p>Optional string of comma separated device models. Valid values: <code>CM31</code>, <code>CM32</code>, <code>CM33</code>, <code>CM34</code>, <code>VG34</code>, <code>VG34M</code>, <code>VG34EU</code>, <code>VG34FN</code>, <code>VG54NA</code>, <code>VG54EU</code>, <code>VG55NA</code>, <code>VG55EU</code>, <code>AG24</code>, <code>AG24EU</code>, <code>AG26</code>, <code>AG26EU</code>, <code>AG45</code>, <code>AG45EU</code>, <code>AG46</code>, <code>AG46EU</code>, <code>AG46P</code>, <code>AG46PEU</code>, <code>AG51</code>, <code>AG51EU</code>, <code>AG52</code>, <code>AG52EU</code>, <code>AG53</code>, <code>AG53EU</code>, <code>AT11</code>, <code>AT11X</code>, <code>AT12</code>, <code>AT12X</code>, <code>AT13</code>, <code>LM11</code>, <code>AIM4</code>, <code>AHD1</code></p>
          */
         @JsonSetter(value = "models", nulls = Nulls.SKIP)
         public Builder models(Optional<List<String>> models) {

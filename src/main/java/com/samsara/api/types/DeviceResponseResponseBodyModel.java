@@ -9,10 +9,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public final class DeviceResponseResponseBodyModel {
     public static final DeviceResponseResponseBodyModel AG24 = new DeviceResponseResponseBodyModel(Value.AG24, "AG24");
 
+    public static final DeviceResponseResponseBodyModel AT12 = new DeviceResponseResponseBodyModel(Value.AT12, "AT12");
+
+    public static final DeviceResponseResponseBodyModel AIM4 = new DeviceResponseResponseBodyModel(Value.AIM4, "AIM4");
+
     public static final DeviceResponseResponseBodyModel AG51 = new DeviceResponseResponseBodyModel(Value.AG51, "AG51");
 
     public static final DeviceResponseResponseBodyModel AG52EU =
             new DeviceResponseResponseBodyModel(Value.AG52EU, "AG52EU");
+
+    public static final DeviceResponseResponseBodyModel AT13 = new DeviceResponseResponseBodyModel(Value.AT13, "AT13");
+
+    public static final DeviceResponseResponseBodyModel LM11 = new DeviceResponseResponseBodyModel(Value.LM11, "LM11");
 
     public static final DeviceResponseResponseBodyModel VG54EU =
             new DeviceResponseResponseBodyModel(Value.VG54EU, "VG54EU");
@@ -22,6 +30,8 @@ public final class DeviceResponseResponseBodyModel {
     public static final DeviceResponseResponseBodyModel AG52 = new DeviceResponseResponseBodyModel(Value.AG52, "AG52");
 
     public static final DeviceResponseResponseBodyModel AG53 = new DeviceResponseResponseBodyModel(Value.AG53, "AG53");
+
+    public static final DeviceResponseResponseBodyModel AHD1 = new DeviceResponseResponseBodyModel(Value.AHD1, "AHD1");
 
     public static final DeviceResponseResponseBodyModel VG34EU =
             new DeviceResponseResponseBodyModel(Value.VG34EU, "VG34EU");
@@ -87,6 +97,9 @@ public final class DeviceResponseResponseBodyModel {
     public static final DeviceResponseResponseBodyModel VG55NA =
             new DeviceResponseResponseBodyModel(Value.VG55NA, "VG55NA");
 
+    public static final DeviceResponseResponseBodyModel AT12X =
+            new DeviceResponseResponseBodyModel(Value.AT12X, "AT12X");
+
     public static final DeviceResponseResponseBodyModel AG26EU =
             new DeviceResponseResponseBodyModel(Value.AG26EU, "AG26EU");
 
@@ -127,10 +140,18 @@ public final class DeviceResponseResponseBodyModel {
         switch (value) {
             case AG24:
                 return visitor.visitAg24();
+            case AT12:
+                return visitor.visitAt12();
+            case AIM4:
+                return visitor.visitAim4();
             case AG51:
                 return visitor.visitAg51();
             case AG52EU:
                 return visitor.visitAg52Eu();
+            case AT13:
+                return visitor.visitAt13();
+            case LM11:
+                return visitor.visitLm11();
             case VG54EU:
                 return visitor.visitVg54Eu();
             case AG26:
@@ -139,6 +160,8 @@ public final class DeviceResponseResponseBodyModel {
                 return visitor.visitAg52();
             case AG53:
                 return visitor.visitAg53();
+            case AHD1:
+                return visitor.visitAhd1();
             case VG34EU:
                 return visitor.visitVg34Eu();
             case AG46PEU:
@@ -189,6 +212,8 @@ public final class DeviceResponseResponseBodyModel {
                 return visitor.visitAg46();
             case VG55NA:
                 return visitor.visitVg55Na();
+            case AT12X:
+                return visitor.visitAt12X();
             case AG26EU:
                 return visitor.visitAg26Eu();
             case AT11:
@@ -204,10 +229,18 @@ public final class DeviceResponseResponseBodyModel {
         switch (value) {
             case "AG24":
                 return AG24;
+            case "AT12":
+                return AT12;
+            case "AIM4":
+                return AIM4;
             case "AG51":
                 return AG51;
             case "AG52EU":
                 return AG52EU;
+            case "AT13":
+                return AT13;
+            case "LM11":
+                return LM11;
             case "VG54EU":
                 return VG54EU;
             case "AG26":
@@ -216,6 +249,8 @@ public final class DeviceResponseResponseBodyModel {
                 return AG52;
             case "AG53":
                 return AG53;
+            case "AHD1":
+                return AHD1;
             case "VG34EU":
                 return VG34EU;
             case "AG46PEU":
@@ -266,6 +301,8 @@ public final class DeviceResponseResponseBodyModel {
                 return AG46;
             case "VG55NA":
                 return VG55NA;
+            case "AT12X":
+                return AT12X;
             case "AG26EU":
                 return AG26EU;
             case "AT11":
@@ -308,9 +345,19 @@ public final class DeviceResponseResponseBodyModel {
 
         AG53EU,
 
+        AHD1,
+
+        AIM4,
+
         AT11,
 
         AT11X,
+
+        AT12,
+
+        AT12X,
+
+        AT13,
 
         CM31,
 
@@ -319,6 +366,8 @@ public final class DeviceResponseResponseBodyModel {
         CM33,
 
         CM34,
+
+        LM11,
 
         OEM,
 
@@ -380,9 +429,19 @@ public final class DeviceResponseResponseBodyModel {
 
         T visitAg53Eu();
 
+        T visitAhd1();
+
+        T visitAim4();
+
         T visitAt11();
 
         T visitAt11X();
+
+        T visitAt12();
+
+        T visitAt12X();
+
+        T visitAt13();
 
         T visitCm31();
 
@@ -391,6 +450,8 @@ public final class DeviceResponseResponseBodyModel {
         T visitCm33();
 
         T visitCm34();
+
+        T visitLm11();
 
         T visitOem();
 

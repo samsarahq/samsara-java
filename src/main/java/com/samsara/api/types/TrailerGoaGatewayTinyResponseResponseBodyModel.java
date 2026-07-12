@@ -10,6 +10,9 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel AG24 =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AG24, "AG24");
 
+    public static final TrailerGoaGatewayTinyResponseResponseBodyModel AT12 =
+            new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AT12, "AT12");
+
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel AG51 =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AG51, "AG51");
 
@@ -18,6 +21,9 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
 
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel IG61 =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.IG61, "IG61");
+
+    public static final TrailerGoaGatewayTinyResponseResponseBodyModel AT13 =
+            new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AT13, "AT13");
 
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel VG54EU =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.VG54EU, "VG54EU");
@@ -97,6 +103,9 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel SG1G =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.SG1G, "SG1G");
 
+    public static final TrailerGoaGatewayTinyResponseResponseBodyModel AT11X =
+            new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AT11X, "AT11X");
+
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel AG24EU =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AG24EU, "AG24EU");
 
@@ -133,8 +142,14 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel VG55NA =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.VG55NA, "VG55NA");
 
+    public static final TrailerGoaGatewayTinyResponseResponseBodyModel AT12X =
+            new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AT12X, "AT12X");
+
     public static final TrailerGoaGatewayTinyResponseResponseBodyModel AG26EU =
             new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AG26EU, "AG26EU");
+
+    public static final TrailerGoaGatewayTinyResponseResponseBodyModel AT11 =
+            new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.AT11, "AT11");
 
     private final Value value;
 
@@ -171,12 +186,16 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
         switch (value) {
             case AG24:
                 return visitor.visitAg24();
+            case AT12:
+                return visitor.visitAt12();
             case AG51:
                 return visitor.visitAg51();
             case AG52EU:
                 return visitor.visitAg52Eu();
             case IG61:
                 return visitor.visitIg61();
+            case AT13:
+                return visitor.visitAt13();
             case VG54EU:
                 return visitor.visitVg54Eu();
             case AG26:
@@ -229,6 +248,8 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
                 return visitor.visitSg1G32();
             case SG1G:
                 return visitor.visitSg1G();
+            case AT11X:
+                return visitor.visitAt11X();
             case AG24EU:
                 return visitor.visitAg24Eu();
             case AG15:
@@ -253,8 +274,12 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
                 return visitor.visitAg41Eu();
             case VG55NA:
                 return visitor.visitVg55Na();
+            case AT12X:
+                return visitor.visitAt12X();
             case AG26EU:
                 return visitor.visitAg26Eu();
+            case AT11:
+                return visitor.visitAt11();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -266,12 +291,16 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
         switch (value) {
             case "AG24":
                 return AG24;
+            case "AT12":
+                return AT12;
             case "AG51":
                 return AG51;
             case "AG52EU":
                 return AG52EU;
             case "IG61":
                 return IG61;
+            case "AT13":
+                return AT13;
             case "VG54EU":
                 return VG54EU;
             case "AG26":
@@ -324,6 +353,8 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
                 return SG1G32;
             case "SG1G":
                 return SG1G;
+            case "AT11X":
+                return AT11X;
             case "AG24EU":
                 return AG24EU;
             case "AG15":
@@ -348,8 +379,12 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
                 return AG41EU;
             case "VG55NA":
                 return VG55NA;
+            case "AT12X":
+                return AT12X;
             case "AG26EU":
                 return AG26EU;
+            case "AT11":
+                return AT11;
             default:
                 return new TrailerGoaGatewayTinyResponseResponseBodyModel(Value.UNKNOWN, value);
         }
@@ -393,6 +428,16 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
         AG53,
 
         AG53EU,
+
+        AT11,
+
+        AT11X,
+
+        AT12,
+
+        AT12X,
+
+        AT13,
 
         IG15,
 
@@ -483,6 +528,16 @@ public final class TrailerGoaGatewayTinyResponseResponseBodyModel {
         T visitAg53();
 
         T visitAg53Eu();
+
+        T visitAt11();
+
+        T visitAt11X();
+
+        T visitAt12();
+
+        T visitAt12X();
+
+        T visitAt13();
 
         T visitIg15();
 

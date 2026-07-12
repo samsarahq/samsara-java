@@ -6,21 +6,18 @@ package com.samsara.api.types;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public final class PlaceGeofenceInputRequestBodyType {
-    public static final PlaceGeofenceInputRequestBodyType AUTO =
-            new PlaceGeofenceInputRequestBodyType(Value.AUTO, "auto");
+public final class PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType {
+    public static final PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType FAIL =
+            new PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType(Value.FAIL, "fail");
 
-    public static final PlaceGeofenceInputRequestBodyType POLYGON =
-            new PlaceGeofenceInputRequestBodyType(Value.POLYGON, "polygon");
-
-    public static final PlaceGeofenceInputRequestBodyType CIRCLE =
-            new PlaceGeofenceInputRequestBodyType(Value.CIRCLE, "circle");
+    public static final PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType CIRCLE =
+            new PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType(Value.CIRCLE, "circle");
 
     private final Value value;
 
     private final String string;
 
-    PlaceGeofenceInputRequestBodyType(Value value, String string) {
+    PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType(Value value, String string) {
         this.value = value;
         this.string = string;
     }
@@ -38,8 +35,9 @@ public final class PlaceGeofenceInputRequestBodyType {
     @java.lang.Override
     public boolean equals(Object other) {
         return (this == other)
-                || (other instanceof PlaceGeofenceInputRequestBodyType
-                        && this.string.equals(((PlaceGeofenceInputRequestBodyType) other).string));
+                || (other instanceof PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType
+                        && this.string.equals(
+                                ((PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType) other).string));
     }
 
     @java.lang.Override
@@ -49,10 +47,8 @@ public final class PlaceGeofenceInputRequestBodyType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
-            case AUTO:
-                return visitor.visitAuto();
-            case POLYGON:
-                return visitor.visitPolygon();
+            case FAIL:
+                return visitor.visitFail();
             case CIRCLE:
                 return visitor.visitCircle();
             case UNKNOWN:
@@ -62,35 +58,29 @@ public final class PlaceGeofenceInputRequestBodyType {
     }
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static PlaceGeofenceInputRequestBodyType valueOf(String value) {
+    public static PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType valueOf(String value) {
         switch (value) {
-            case "auto":
-                return AUTO;
-            case "polygon":
-                return POLYGON;
+            case "fail":
+                return FAIL;
             case "circle":
                 return CIRCLE;
             default:
-                return new PlaceGeofenceInputRequestBodyType(Value.UNKNOWN, value);
+                return new PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType(Value.UNKNOWN, value);
         }
     }
 
     public enum Value {
+        FAIL,
+
         CIRCLE,
-
-        POLYGON,
-
-        AUTO,
 
         UNKNOWN
     }
 
     public interface Visitor<T> {
+        T visitFail();
+
         T visitCircle();
-
-        T visitPolygon();
-
-        T visitAuto();
 
         T visitUnknown(String unknownType);
     }
