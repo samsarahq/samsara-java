@@ -20,6 +20,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PlaceGeofenceInputRequestBody.Builder.class)
 public final class PlaceGeofenceInputRequestBody {
+    private final Optional<PlaceGeofenceAutoInputRequestBody> auto;
+
     private final Optional<PlaceGeofenceCircleInputRequestBody> circle;
 
     private final Optional<PlaceGeofencePolygonInputRequestBody> polygon;
@@ -29,14 +31,21 @@ public final class PlaceGeofenceInputRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private PlaceGeofenceInputRequestBody(
+            Optional<PlaceGeofenceAutoInputRequestBody> auto,
             Optional<PlaceGeofenceCircleInputRequestBody> circle,
             Optional<PlaceGeofencePolygonInputRequestBody> polygon,
             Optional<PlaceGeofenceInputRequestBodyType> type,
             Map<String, Object> additionalProperties) {
+        this.auto = auto;
         this.circle = circle;
         this.polygon = polygon;
         this.type = type;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("auto")
+    public Optional<PlaceGeofenceAutoInputRequestBody> getAuto() {
+        return auto;
     }
 
     @JsonProperty("circle")
@@ -50,7 +59,7 @@ public final class PlaceGeofenceInputRequestBody {
     }
 
     /**
-     * @return Geofence type: circle or polygon. When present, must match the populated branch.  Valid values: <code>circle</code>, <code>polygon</code>
+     * @return Geofence type: circle, polygon, or auto (write only). When present, must match the populated branch.  Valid values: <code>circle</code>, <code>polygon</code>, <code>auto</code>
      */
     @JsonProperty("type")
     public Optional<PlaceGeofenceInputRequestBodyType> getType() {
@@ -69,12 +78,15 @@ public final class PlaceGeofenceInputRequestBody {
     }
 
     private boolean equalTo(PlaceGeofenceInputRequestBody other) {
-        return circle.equals(other.circle) && polygon.equals(other.polygon) && type.equals(other.type);
+        return auto.equals(other.auto)
+                && circle.equals(other.circle)
+                && polygon.equals(other.polygon)
+                && type.equals(other.type);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.circle, this.polygon, this.type);
+        return Objects.hash(this.auto, this.circle, this.polygon, this.type);
     }
 
     @java.lang.Override
@@ -88,6 +100,8 @@ public final class PlaceGeofenceInputRequestBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<PlaceGeofenceAutoInputRequestBody> auto = Optional.empty();
+
         private Optional<PlaceGeofenceCircleInputRequestBody> circle = Optional.empty();
 
         private Optional<PlaceGeofencePolygonInputRequestBody> polygon = Optional.empty();
@@ -100,9 +114,21 @@ public final class PlaceGeofenceInputRequestBody {
         private Builder() {}
 
         public Builder from(PlaceGeofenceInputRequestBody other) {
+            auto(other.getAuto());
             circle(other.getCircle());
             polygon(other.getPolygon());
             type(other.getType());
+            return this;
+        }
+
+        @JsonSetter(value = "auto", nulls = Nulls.SKIP)
+        public Builder auto(Optional<PlaceGeofenceAutoInputRequestBody> auto) {
+            this.auto = auto;
+            return this;
+        }
+
+        public Builder auto(PlaceGeofenceAutoInputRequestBody auto) {
+            this.auto = Optional.ofNullable(auto);
             return this;
         }
 
@@ -129,7 +155,7 @@ public final class PlaceGeofenceInputRequestBody {
         }
 
         /**
-         * <p>Geofence type: circle or polygon. When present, must match the populated branch.  Valid values: <code>circle</code>, <code>polygon</code></p>
+         * <p>Geofence type: circle, polygon, or auto (write only). When present, must match the populated branch.  Valid values: <code>circle</code>, <code>polygon</code>, <code>auto</code></p>
          */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public Builder type(Optional<PlaceGeofenceInputRequestBodyType> type) {
@@ -143,7 +169,7 @@ public final class PlaceGeofenceInputRequestBody {
         }
 
         public PlaceGeofenceInputRequestBody build() {
-            return new PlaceGeofenceInputRequestBody(circle, polygon, type, additionalProperties);
+            return new PlaceGeofenceInputRequestBody(auto, circle, polygon, type, additionalProperties);
         }
     }
 }

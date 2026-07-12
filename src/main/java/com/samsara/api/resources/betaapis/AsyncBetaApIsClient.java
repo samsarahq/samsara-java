@@ -617,7 +617,7 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * Returns all installed cameras (CM3x), vehicle gateways (VGs), and asset gateways (AGs) and their health information within an organization.
+     * Returns all installed cameras (CM3x, AIM4, AHD1), vehicle gateways (VGs), asset gateways (AGs), and asset tags (AT11–AT13) and their health information within an organization.
      * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Devices API enabled for your organization.</p>
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -628,7 +628,7 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * Returns all installed cameras (CM3x), vehicle gateways (VGs), and asset gateways (AGs) and their health information within an organization.
+     * Returns all installed cameras (CM3x, AIM4, AHD1), vehicle gateways (VGs), asset gateways (AGs), and asset tags (AT11–AT13) and their health information within an organization.
      * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Devices API enabled for your organization.</p>
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -639,7 +639,7 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * Returns all installed cameras (CM3x), vehicle gateways (VGs), and asset gateways (AGs) and their health information within an organization.
+     * Returns all installed cameras (CM3x, AIM4, AHD1), vehicle gateways (VGs), asset gateways (AGs), and asset tags (AT11–AT13) and their health information within an organization.
      * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Devices API enabled for your organization.</p>
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -650,7 +650,7 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * Returns all installed cameras (CM3x), vehicle gateways (VGs), and asset gateways (AGs) and their health information within an organization.
+     * Returns all installed cameras (CM3x, AIM4, AHD1), vehicle gateways (VGs), asset gateways (AGs), and asset tags (AT11–AT13) and their health information within an organization.
      * <p><strong>Beta:</strong> This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Devices API enabled for your organization.</p>
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -1801,7 +1801,7 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * Creates a place. Supply either a polygon <code>geofence</code> (at least three vertices) or <code>radiusMeters</code> with <code>latitude</code> and <code>longitude</code>.
+     * Creates a place. Supply a polygon <code>geofence</code>, a circle <code>geofence</code>, or an <code>auto</code> geofence that resolves geometry server-side.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -1811,7 +1811,7 @@ public class AsyncBetaApIsClient {
     }
 
     /**
-     * Creates a place. Supply either a polygon <code>geofence</code> (at least three vertices) or <code>radiusMeters</code> with <code>latitude</code> and <code>longitude</code>.
+     * Creates a place. Supply a polygon <code>geofence</code>, a circle <code>geofence</code>, or an <code>auto</code> geofence that resolves geometry server-side.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Places</strong> under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>

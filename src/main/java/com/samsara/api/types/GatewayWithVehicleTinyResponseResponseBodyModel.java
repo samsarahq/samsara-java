@@ -10,6 +10,9 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
     public static final GatewayWithVehicleTinyResponseResponseBodyModel AG24 =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AG24, "AG24");
 
+    public static final GatewayWithVehicleTinyResponseResponseBodyModel AT12 =
+            new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AT12, "AT12");
+
     public static final GatewayWithVehicleTinyResponseResponseBodyModel AG51 =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AG51, "AG51");
 
@@ -18,6 +21,9 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
 
     public static final GatewayWithVehicleTinyResponseResponseBodyModel IG61 =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.IG61, "IG61");
+
+    public static final GatewayWithVehicleTinyResponseResponseBodyModel AT13 =
+            new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AT13, "AT13");
 
     public static final GatewayWithVehicleTinyResponseResponseBodyModel VG54EU =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.VG54EU, "VG54EU");
@@ -97,6 +103,9 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
     public static final GatewayWithVehicleTinyResponseResponseBodyModel SG1G =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.SG1G, "SG1G");
 
+    public static final GatewayWithVehicleTinyResponseResponseBodyModel AT11X =
+            new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AT11X, "AT11X");
+
     public static final GatewayWithVehicleTinyResponseResponseBodyModel AG24EU =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AG24EU, "AG24EU");
 
@@ -133,8 +142,14 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
     public static final GatewayWithVehicleTinyResponseResponseBodyModel VG55NA =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.VG55NA, "VG55NA");
 
+    public static final GatewayWithVehicleTinyResponseResponseBodyModel AT12X =
+            new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AT12X, "AT12X");
+
     public static final GatewayWithVehicleTinyResponseResponseBodyModel AG26EU =
             new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AG26EU, "AG26EU");
+
+    public static final GatewayWithVehicleTinyResponseResponseBodyModel AT11 =
+            new GatewayWithVehicleTinyResponseResponseBodyModel(Value.AT11, "AT11");
 
     private final Value value;
 
@@ -171,12 +186,16 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
         switch (value) {
             case AG24:
                 return visitor.visitAg24();
+            case AT12:
+                return visitor.visitAt12();
             case AG51:
                 return visitor.visitAg51();
             case AG52EU:
                 return visitor.visitAg52Eu();
             case IG61:
                 return visitor.visitIg61();
+            case AT13:
+                return visitor.visitAt13();
             case VG54EU:
                 return visitor.visitVg54Eu();
             case AG26:
@@ -229,6 +248,8 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
                 return visitor.visitSg1G32();
             case SG1G:
                 return visitor.visitSg1G();
+            case AT11X:
+                return visitor.visitAt11X();
             case AG24EU:
                 return visitor.visitAg24Eu();
             case AG15:
@@ -253,8 +274,12 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
                 return visitor.visitAg41Eu();
             case VG55NA:
                 return visitor.visitVg55Na();
+            case AT12X:
+                return visitor.visitAt12X();
             case AG26EU:
                 return visitor.visitAg26Eu();
+            case AT11:
+                return visitor.visitAt11();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -266,12 +291,16 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
         switch (value) {
             case "AG24":
                 return AG24;
+            case "AT12":
+                return AT12;
             case "AG51":
                 return AG51;
             case "AG52EU":
                 return AG52EU;
             case "IG61":
                 return IG61;
+            case "AT13":
+                return AT13;
             case "VG54EU":
                 return VG54EU;
             case "AG26":
@@ -324,6 +353,8 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
                 return SG1G32;
             case "SG1G":
                 return SG1G;
+            case "AT11X":
+                return AT11X;
             case "AG24EU":
                 return AG24EU;
             case "AG15":
@@ -348,8 +379,12 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
                 return AG41EU;
             case "VG55NA":
                 return VG55NA;
+            case "AT12X":
+                return AT12X;
             case "AG26EU":
                 return AG26EU;
+            case "AT11":
+                return AT11;
             default:
                 return new GatewayWithVehicleTinyResponseResponseBodyModel(Value.UNKNOWN, value);
         }
@@ -393,6 +428,16 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
         AG53,
 
         AG53EU,
+
+        AT11,
+
+        AT11X,
+
+        AT12,
+
+        AT12X,
+
+        AT13,
 
         IG15,
 
@@ -483,6 +528,16 @@ public final class GatewayWithVehicleTinyResponseResponseBodyModel {
         T visitAg53();
 
         T visitAg53Eu();
+
+        T visitAt11();
+
+        T visitAt11X();
+
+        T visitAt12();
+
+        T visitAt12X();
+
+        T visitAt13();
 
         T visitIg15();
 
