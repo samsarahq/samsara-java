@@ -28,6 +28,8 @@ public final class DvirDefectGetDefectResponseBody {
 
     private final Optional<List<DefectPhotoResponseResponseBody>> defectPhotos;
 
+    private final Optional<DvirDefectGetDefectResponseBodyDefectSafetyStatus> defectSafetyStatus;
+
     private final Optional<String> defectTypeId;
 
     private final String dvirId;
@@ -54,6 +56,7 @@ public final class DvirDefectGetDefectResponseBody {
             String comment,
             Optional<String> createdAtTime,
             Optional<List<DefectPhotoResponseResponseBody>> defectPhotos,
+            Optional<DvirDefectGetDefectResponseBodyDefectSafetyStatus> defectSafetyStatus,
             Optional<String> defectTypeId,
             String dvirId,
             String id,
@@ -68,6 +71,7 @@ public final class DvirDefectGetDefectResponseBody {
         this.comment = comment;
         this.createdAtTime = createdAtTime;
         this.defectPhotos = defectPhotos;
+        this.defectSafetyStatus = defectSafetyStatus;
         this.defectTypeId = defectTypeId;
         this.dvirId = dvirId;
         this.id = id;
@@ -103,6 +107,14 @@ public final class DvirDefectGetDefectResponseBody {
     @JsonProperty("defectPhotos")
     public Optional<List<DefectPhotoResponseResponseBody>> getDefectPhotos() {
         return defectPhotos;
+    }
+
+    /**
+     * @return Driver-designated safety classification for this defect.  Valid values: <code>safe</code>, <code>unsafe</code>
+     */
+    @JsonProperty("defectSafetyStatus")
+    public Optional<DvirDefectGetDefectResponseBodyDefectSafetyStatus> getDefectSafetyStatus() {
+        return defectSafetyStatus;
     }
 
     /**
@@ -191,6 +203,7 @@ public final class DvirDefectGetDefectResponseBody {
         return comment.equals(other.comment)
                 && createdAtTime.equals(other.createdAtTime)
                 && defectPhotos.equals(other.defectPhotos)
+                && defectSafetyStatus.equals(other.defectSafetyStatus)
                 && defectTypeId.equals(other.defectTypeId)
                 && dvirId.equals(other.dvirId)
                 && id.equals(other.id)
@@ -209,6 +222,7 @@ public final class DvirDefectGetDefectResponseBody {
                 this.comment,
                 this.createdAtTime,
                 this.defectPhotos,
+                this.defectSafetyStatus,
                 this.defectTypeId,
                 this.dvirId,
                 this.id,
@@ -278,6 +292,13 @@ public final class DvirDefectGetDefectResponseBody {
         _FinalStage defectPhotos(List<DefectPhotoResponseResponseBody> defectPhotos);
 
         /**
+         * <p>Driver-designated safety classification for this defect.  Valid values: <code>safe</code>, <code>unsafe</code></p>
+         */
+        _FinalStage defectSafetyStatus(Optional<DvirDefectGetDefectResponseBodyDefectSafetyStatus> defectSafetyStatus);
+
+        _FinalStage defectSafetyStatus(DvirDefectGetDefectResponseBodyDefectSafetyStatus defectSafetyStatus);
+
+        /**
          * <p>The unique ID of the defect type.</p>
          */
         _FinalStage defectTypeId(Optional<String> defectTypeId);
@@ -342,6 +363,8 @@ public final class DvirDefectGetDefectResponseBody {
 
         private Optional<String> defectTypeId = Optional.empty();
 
+        private Optional<DvirDefectGetDefectResponseBodyDefectSafetyStatus> defectSafetyStatus = Optional.empty();
+
         private Optional<List<DefectPhotoResponseResponseBody>> defectPhotos = Optional.empty();
 
         private Optional<String> createdAtTime = Optional.empty();
@@ -356,6 +379,7 @@ public final class DvirDefectGetDefectResponseBody {
             comment(other.getComment());
             createdAtTime(other.getCreatedAtTime());
             defectPhotos(other.getDefectPhotos());
+            defectSafetyStatus(other.getDefectSafetyStatus());
             defectTypeId(other.getDefectTypeId());
             dvirId(other.getDvirId());
             id(other.getId());
@@ -537,6 +561,27 @@ public final class DvirDefectGetDefectResponseBody {
         }
 
         /**
+         * <p>Driver-designated safety classification for this defect.  Valid values: <code>safe</code>, <code>unsafe</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage defectSafetyStatus(DvirDefectGetDefectResponseBodyDefectSafetyStatus defectSafetyStatus) {
+            this.defectSafetyStatus = Optional.ofNullable(defectSafetyStatus);
+            return this;
+        }
+
+        /**
+         * <p>Driver-designated safety classification for this defect.  Valid values: <code>safe</code>, <code>unsafe</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "defectSafetyStatus", nulls = Nulls.SKIP)
+        public _FinalStage defectSafetyStatus(
+                Optional<DvirDefectGetDefectResponseBodyDefectSafetyStatus> defectSafetyStatus) {
+            this.defectSafetyStatus = defectSafetyStatus;
+            return this;
+        }
+
+        /**
          * <p>List of DVIR defect's photos</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -582,6 +627,7 @@ public final class DvirDefectGetDefectResponseBody {
                     comment,
                     createdAtTime,
                     defectPhotos,
+                    defectSafetyStatus,
                     defectTypeId,
                     dvirId,
                     id,

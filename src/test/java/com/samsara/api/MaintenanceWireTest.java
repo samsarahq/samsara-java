@@ -118,7 +118,7 @@ public class MaintenanceWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"comment\":\"Engine failure.\",\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"defectPhotos\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"url\":\"https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path\"}],\"defectTypeId\":\"25d6151e-29b5-453e-875a-7c5425332e09\",\"dvirId\":\"292371177\",\"id\":\"9700544\",\"isResolved\":true,\"mechanicNotes\":\"Broken passenger side window.\",\"resolvedAtTime\":\"2020-01-27T07:06:25Z\",\"resolvedBy\":{\"id\":\"8172\",\"name\":\"Jane Mechanic\",\"type\":\"driver\"},\"trailer\":{\"id\":\"494123\"},\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vehicle\":{\"id\":\"494125\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"comment\":\"Engine failure.\",\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"defectPhotos\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"url\":\"https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path\"}],\"defectSafetyStatus\":\"safe\",\"defectTypeId\":\"25d6151e-29b5-453e-875a-7c5425332e09\",\"dvirId\":\"292371177\",\"id\":\"9700544\",\"isResolved\":true,\"mechanicNotes\":\"Broken passenger side window.\",\"resolvedAtTime\":\"2020-01-27T07:06:25Z\",\"resolvedBy\":{\"id\":\"8172\",\"name\":\"Jane Mechanic\",\"type\":\"driver\"},\"trailer\":{\"id\":\"494123\"},\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vehicle\":{\"id\":\"494125\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DvirDefectStreamDefectsResponseBody response = client.maintenance()
                 .streamDefects(
                         StreamDefectsRequest.builder().startTime("startTime").build());
@@ -141,6 +141,7 @@ public class MaintenanceWireTest {
                 + "          \"url\": \"https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path\"\n"
                 + "        }\n"
                 + "      ],\n"
+                + "      \"defectSafetyStatus\": \"safe\",\n"
                 + "      \"defectTypeId\": \"25d6151e-29b5-453e-875a-7c5425332e09\",\n"
                 + "      \"dvirId\": \"292371177\",\n"
                 + "      \"id\": \"9700544\",\n"
@@ -203,7 +204,7 @@ public class MaintenanceWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"comment\":\"Engine failure.\",\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"defectPhotos\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"url\":\"https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path\"}],\"defectTypeId\":\"25d6151e-29b5-453e-875a-7c5425332e09\",\"dvirId\":\"292371177\",\"id\":\"9700544\",\"isResolved\":true,\"mechanicNotes\":\"Broken passenger side window.\",\"resolvedAtTime\":\"2020-01-27T07:06:25Z\",\"resolvedBy\":{\"id\":\"8172\",\"name\":\"Jane Mechanic\",\"type\":\"driver\"},\"trailer\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\"},\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vehicle\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"494125\"}}"));
+                                "{\"comment\":\"Engine failure.\",\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"defectPhotos\":[{\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"url\":\"https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path\"}],\"defectSafetyStatus\":\"safe\",\"defectTypeId\":\"25d6151e-29b5-453e-875a-7c5425332e09\",\"dvirId\":\"292371177\",\"id\":\"9700544\",\"isResolved\":true,\"mechanicNotes\":\"Broken passenger side window.\",\"resolvedAtTime\":\"2020-01-27T07:06:25Z\",\"resolvedBy\":{\"id\":\"8172\",\"name\":\"Jane Mechanic\",\"type\":\"driver\"},\"trailer\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"494123\"},\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vehicle\":{\"externalIds\":{\"key\":\"value\"},\"id\":\"494125\"}}"));
         DvirDefectGetDefectResponseBody response =
                 client.maintenance().getDefect("id", GetDefectRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -223,6 +224,7 @@ public class MaintenanceWireTest {
                 + "      \"url\": \"https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path\"\n"
                 + "    }\n"
                 + "  ],\n"
+                + "  \"defectSafetyStatus\": \"safe\",\n"
                 + "  \"defectTypeId\": \"25d6151e-29b5-453e-875a-7c5425332e09\",\n"
                 + "  \"dvirId\": \"292371177\",\n"
                 + "  \"id\": \"9700544\",\n"

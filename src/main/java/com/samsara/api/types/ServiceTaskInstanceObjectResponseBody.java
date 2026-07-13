@@ -38,6 +38,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
 
     private final ServiceTaskInstanceObjectResponseBodyStatus status;
 
+    private final Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks;
+
     private final Map<String, Object> additionalProperties;
 
     private ServiceTaskInstanceObjectResponseBody(
@@ -49,6 +51,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
             Optional<WorkOrderMoneyObjectResponseBody> partsCost,
             String serviceTaskId,
             ServiceTaskInstanceObjectResponseBodyStatus status,
+            Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.laborHourlyCost = laborHourlyCost;
@@ -58,6 +61,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
         this.partsCost = partsCost;
         this.serviceTaskId = serviceTaskId;
         this.status = status;
+        this.subtasks = subtasks;
         this.additionalProperties = additionalProperties;
     }
 
@@ -119,6 +123,14 @@ public final class ServiceTaskInstanceObjectResponseBody {
         return status;
     }
 
+    /**
+     * @return Subtasks for the service task.
+     */
+    @JsonProperty("subtasks")
+    public Optional<List<ServiceTaskSubtaskObjectResponseBody>> getSubtasks() {
+        return subtasks;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -139,7 +151,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
                 && parts.equals(other.parts)
                 && partsCost.equals(other.partsCost)
                 && serviceTaskId.equals(other.serviceTaskId)
-                && status.equals(other.status);
+                && status.equals(other.status)
+                && subtasks.equals(other.subtasks);
     }
 
     @java.lang.Override
@@ -152,7 +165,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
                 this.parts,
                 this.partsCost,
                 this.serviceTaskId,
-                this.status);
+                this.status,
+                this.subtasks);
     }
 
     @java.lang.Override
@@ -218,6 +232,13 @@ public final class ServiceTaskInstanceObjectResponseBody {
         _FinalStage partsCost(Optional<WorkOrderMoneyObjectResponseBody> partsCost);
 
         _FinalStage partsCost(WorkOrderMoneyObjectResponseBody partsCost);
+
+        /**
+         * <p>Subtasks for the service task.</p>
+         */
+        _FinalStage subtasks(Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks);
+
+        _FinalStage subtasks(List<ServiceTaskSubtaskObjectResponseBody> subtasks);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -227,6 +248,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
         private String serviceTaskId;
 
         private ServiceTaskInstanceObjectResponseBodyStatus status;
+
+        private Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks = Optional.empty();
 
         private Optional<WorkOrderMoneyObjectResponseBody> partsCost = Optional.empty();
 
@@ -253,6 +276,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
             partsCost(other.getPartsCost());
             serviceTaskId(other.getServiceTaskId());
             status(other.getStatus());
+            subtasks(other.getSubtasks());
             return this;
         }
 
@@ -289,6 +313,26 @@ public final class ServiceTaskInstanceObjectResponseBody {
         @JsonSetter("status")
         public _FinalStage status(@NotNull ServiceTaskInstanceObjectResponseBodyStatus status) {
             this.status = Objects.requireNonNull(status, "status must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Subtasks for the service task.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage subtasks(List<ServiceTaskSubtaskObjectResponseBody> subtasks) {
+            this.subtasks = Optional.ofNullable(subtasks);
+            return this;
+        }
+
+        /**
+         * <p>Subtasks for the service task.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "subtasks", nulls = Nulls.SKIP)
+        public _FinalStage subtasks(Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks) {
+            this.subtasks = subtasks;
             return this;
         }
 
@@ -389,6 +433,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
                     partsCost,
                     serviceTaskId,
                     status,
+                    subtasks,
                     additionalProperties);
         }
     }

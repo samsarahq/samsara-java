@@ -38,6 +38,8 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
 
     private final ServiceTaskInstanceWithTimeEntriesObjectResponseBodyStatus status;
 
+    private final Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks;
+
     private final Optional<List<WorkOrderTimeEntryObjectResponseBody>> timeEntries;
 
     private final Map<String, Object> additionalProperties;
@@ -51,6 +53,7 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
             Optional<WorkOrderMoneyObjectResponseBody> partsCost,
             String serviceTaskId,
             ServiceTaskInstanceWithTimeEntriesObjectResponseBodyStatus status,
+            Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks,
             Optional<List<WorkOrderTimeEntryObjectResponseBody>> timeEntries,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -61,6 +64,7 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
         this.partsCost = partsCost;
         this.serviceTaskId = serviceTaskId;
         this.status = status;
+        this.subtasks = subtasks;
         this.timeEntries = timeEntries;
         this.additionalProperties = additionalProperties;
     }
@@ -124,6 +128,14 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
     }
 
     /**
+     * @return Subtasks for the service task.
+     */
+    @JsonProperty("subtasks")
+    public Optional<List<ServiceTaskSubtaskObjectResponseBody>> getSubtasks() {
+        return subtasks;
+    }
+
+    /**
      * @return Technician time entries logged against this service task. Only returned for organizations using Technician Management. Includes both completed entries (clockOutAtTime is set) and entries that are still open (clockOutAtTime is null).
      */
     @JsonProperty("timeEntries")
@@ -152,6 +164,7 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
                 && partsCost.equals(other.partsCost)
                 && serviceTaskId.equals(other.serviceTaskId)
                 && status.equals(other.status)
+                && subtasks.equals(other.subtasks)
                 && timeEntries.equals(other.timeEntries);
     }
 
@@ -166,6 +179,7 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
                 this.partsCost,
                 this.serviceTaskId,
                 this.status,
+                this.subtasks,
                 this.timeEntries);
     }
 
@@ -234,6 +248,13 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
         _FinalStage partsCost(WorkOrderMoneyObjectResponseBody partsCost);
 
         /**
+         * <p>Subtasks for the service task.</p>
+         */
+        _FinalStage subtasks(Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks);
+
+        _FinalStage subtasks(List<ServiceTaskSubtaskObjectResponseBody> subtasks);
+
+        /**
          * <p>Technician time entries logged against this service task. Only returned for organizations using Technician Management. Includes both completed entries (clockOutAtTime is set) and entries that are still open (clockOutAtTime is null).</p>
          */
         _FinalStage timeEntries(Optional<List<WorkOrderTimeEntryObjectResponseBody>> timeEntries);
@@ -250,6 +271,8 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
         private ServiceTaskInstanceWithTimeEntriesObjectResponseBodyStatus status;
 
         private Optional<List<WorkOrderTimeEntryObjectResponseBody>> timeEntries = Optional.empty();
+
+        private Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks = Optional.empty();
 
         private Optional<WorkOrderMoneyObjectResponseBody> partsCost = Optional.empty();
 
@@ -276,6 +299,7 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
             partsCost(other.getPartsCost());
             serviceTaskId(other.getServiceTaskId());
             status(other.getStatus());
+            subtasks(other.getSubtasks());
             timeEntries(other.getTimeEntries());
             return this;
         }
@@ -333,6 +357,26 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
         @JsonSetter(value = "timeEntries", nulls = Nulls.SKIP)
         public _FinalStage timeEntries(Optional<List<WorkOrderTimeEntryObjectResponseBody>> timeEntries) {
             this.timeEntries = timeEntries;
+            return this;
+        }
+
+        /**
+         * <p>Subtasks for the service task.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage subtasks(List<ServiceTaskSubtaskObjectResponseBody> subtasks) {
+            this.subtasks = Optional.ofNullable(subtasks);
+            return this;
+        }
+
+        /**
+         * <p>Subtasks for the service task.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "subtasks", nulls = Nulls.SKIP)
+        public _FinalStage subtasks(Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks) {
+            this.subtasks = subtasks;
             return this;
         }
 
@@ -433,6 +477,7 @@ public final class ServiceTaskInstanceWithTimeEntriesObjectResponseBody {
                     partsCost,
                     serviceTaskId,
                     status,
+                    subtasks,
                     timeEntries,
                     additionalProperties);
         }
