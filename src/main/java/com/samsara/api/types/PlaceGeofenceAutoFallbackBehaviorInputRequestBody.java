@@ -36,7 +36,7 @@ public final class PlaceGeofenceAutoFallbackBehaviorInputRequestBody {
     }
 
     /**
-     * @return Fallback action: fail (default) or circle.  Valid values: <code>fail</code>, <code>circle</code>
+     * @return Fallback action: fail (default) or circle. Optional when fallbackBehavior.circle is set; inferred as circle.  Valid values: <code>fail</code>, <code>circle</code>
      */
     @JsonProperty("behaviorType")
     public Optional<PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType> getBehaviorType() {
@@ -96,7 +96,7 @@ public final class PlaceGeofenceAutoFallbackBehaviorInputRequestBody {
         }
 
         /**
-         * <p>Fallback action: fail (default) or circle.  Valid values: <code>fail</code>, <code>circle</code></p>
+         * <p>Fallback action: fail (default) or circle. Optional when fallbackBehavior.circle is set; inferred as circle.  Valid values: <code>fail</code>, <code>circle</code></p>
          */
         @JsonSetter(value = "behaviorType", nulls = Nulls.SKIP)
         public Builder behaviorType(
