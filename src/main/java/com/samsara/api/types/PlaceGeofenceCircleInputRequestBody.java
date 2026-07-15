@@ -9,25 +9,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PlaceGeofenceCircleInputRequestBody.Builder.class)
 public final class PlaceGeofenceCircleInputRequestBody {
-    private final double latitude;
+    private final Optional<Double> latitude;
 
-    private final double longitude;
+    private final Optional<Double> longitude;
 
     private final long radiusMeters;
 
     private final Map<String, Object> additionalProperties;
 
     private PlaceGeofenceCircleInputRequestBody(
-            double latitude, double longitude, long radiusMeters, Map<String, Object> additionalProperties) {
+            Optional<Double> latitude,
+            Optional<Double> longitude,
+            long radiusMeters,
+            Map<String, Object> additionalProperties) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.radiusMeters = radiusMeters;
@@ -35,18 +40,18 @@ public final class PlaceGeofenceCircleInputRequestBody {
     }
 
     /**
-     * @return Circle center latitude in decimal degrees.
+     * @return Circle center latitude in decimal degrees. Omit on POST to geocode from top-level address.
      */
     @JsonProperty("latitude")
-    public double getLatitude() {
+    public Optional<Double> getLatitude() {
         return latitude;
     }
 
     /**
-     * @return Circle center longitude in decimal degrees.
+     * @return Circle center longitude in decimal degrees. Omit on POST to geocode from top-level address.
      */
     @JsonProperty("longitude")
-    public double getLongitude() {
+    public Optional<Double> getLongitude() {
         return longitude;
     }
 
@@ -71,7 +76,9 @@ public final class PlaceGeofenceCircleInputRequestBody {
     }
 
     private boolean equalTo(PlaceGeofenceCircleInputRequestBody other) {
-        return latitude == other.latitude && longitude == other.longitude && radiusMeters == other.radiusMeters;
+        return latitude.equals(other.latitude)
+                && longitude.equals(other.longitude)
+                && radiusMeters == other.radiusMeters;
     }
 
     @java.lang.Override
@@ -84,24 +91,8 @@ public final class PlaceGeofenceCircleInputRequestBody {
         return ObjectMappers.stringify(this);
     }
 
-    public static LatitudeStage builder() {
+    public static RadiusMetersStage builder() {
         return new Builder();
-    }
-
-    public interface LatitudeStage {
-        /**
-         * <p>Circle center latitude in decimal degrees.</p>
-         */
-        LongitudeStage latitude(double latitude);
-
-        Builder from(PlaceGeofenceCircleInputRequestBody other);
-    }
-
-    public interface LongitudeStage {
-        /**
-         * <p>Circle center longitude in decimal degrees.</p>
-         */
-        RadiusMetersStage longitude(double longitude);
     }
 
     public interface RadiusMetersStage {
@@ -109,19 +100,35 @@ public final class PlaceGeofenceCircleInputRequestBody {
          * <p>Radius in meters; must be positive.</p>
          */
         _FinalStage radiusMeters(long radiusMeters);
+
+        Builder from(PlaceGeofenceCircleInputRequestBody other);
     }
 
     public interface _FinalStage {
         PlaceGeofenceCircleInputRequestBody build();
+
+        /**
+         * <p>Circle center latitude in decimal degrees. Omit on POST to geocode from top-level address.</p>
+         */
+        _FinalStage latitude(Optional<Double> latitude);
+
+        _FinalStage latitude(Double latitude);
+
+        /**
+         * <p>Circle center longitude in decimal degrees. Omit on POST to geocode from top-level address.</p>
+         */
+        _FinalStage longitude(Optional<Double> longitude);
+
+        _FinalStage longitude(Double longitude);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements LatitudeStage, LongitudeStage, RadiusMetersStage, _FinalStage {
-        private double latitude;
-
-        private double longitude;
-
+    public static final class Builder implements RadiusMetersStage, _FinalStage {
         private long radiusMeters;
+
+        private Optional<Double> longitude = Optional.empty();
+
+        private Optional<Double> latitude = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -137,30 +144,6 @@ public final class PlaceGeofenceCircleInputRequestBody {
         }
 
         /**
-         * <p>Circle center latitude in decimal degrees.</p>
-         * <p>Circle center latitude in decimal degrees.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("latitude")
-        public LongitudeStage latitude(double latitude) {
-            this.latitude = latitude;
-            return this;
-        }
-
-        /**
-         * <p>Circle center longitude in decimal degrees.</p>
-         * <p>Circle center longitude in decimal degrees.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("longitude")
-        public RadiusMetersStage longitude(double longitude) {
-            this.longitude = longitude;
-            return this;
-        }
-
-        /**
          * <p>Radius in meters; must be positive.</p>
          * <p>Radius in meters; must be positive.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -169,6 +152,46 @@ public final class PlaceGeofenceCircleInputRequestBody {
         @JsonSetter("radiusMeters")
         public _FinalStage radiusMeters(long radiusMeters) {
             this.radiusMeters = radiusMeters;
+            return this;
+        }
+
+        /**
+         * <p>Circle center longitude in decimal degrees. Omit on POST to geocode from top-level address.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage longitude(Double longitude) {
+            this.longitude = Optional.ofNullable(longitude);
+            return this;
+        }
+
+        /**
+         * <p>Circle center longitude in decimal degrees. Omit on POST to geocode from top-level address.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
+        public _FinalStage longitude(Optional<Double> longitude) {
+            this.longitude = longitude;
+            return this;
+        }
+
+        /**
+         * <p>Circle center latitude in decimal degrees. Omit on POST to geocode from top-level address.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage latitude(Double latitude) {
+            this.latitude = Optional.ofNullable(latitude);
+            return this;
+        }
+
+        /**
+         * <p>Circle center latitude in decimal degrees. Omit on POST to geocode from top-level address.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
+        public _FinalStage latitude(Optional<Double> latitude) {
+            this.latitude = latitude;
             return this;
         }
 

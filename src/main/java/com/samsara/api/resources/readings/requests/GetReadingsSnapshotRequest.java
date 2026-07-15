@@ -191,6 +191,8 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
      * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
      * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
+     * <li><code>totalCapacityMass</code> (Total Capacity Mass): Total mass capacity of the vessel. (kilogram)</li>
+     * <li><code>totalCapacityVolume</code> (Total Capacity Volume): Total volume capacity of the vessel. (liter)</li>
      * </ul>
      * <p>&lt;/details&gt;</p>
      * <p>&lt;details&gt;
@@ -547,6 +549,8 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
          * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
          * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
+         * <li><code>totalCapacityMass</code> (Total Capacity Mass): Total mass capacity of the vessel. (kilogram)</li>
+         * <li><code>totalCapacityVolume</code> (Total Capacity Volume): Total volume capacity of the vessel. (liter)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p>&lt;details&gt;
@@ -899,6 +903,8 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
          * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
          * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
+         * <li><code>totalCapacityMass</code> (Total Capacity Mass): Total mass capacity of the vessel. (kilogram)</li>
+         * <li><code>totalCapacityVolume</code> (Total Capacity Volume): Total volume capacity of the vessel. (liter)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p>&lt;details&gt;
@@ -1155,6 +1161,8 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>remoteSensingDistance</code> (Sensor distance measurement): Distance measured by remote sensing device (meter)</li>
          * <li><code>smoothedFillMass</code> (Smoothed Fill Mass): Algorithm smoothed mass value in the vessel. (kilogram)</li>
          * <li><code>smoothedFillVolume</code> (Smoothed Fill Volume): Algorithm smoothed volume value in the vessel. (liter)</li>
+         * <li><code>totalCapacityMass</code> (Total Capacity Mass): Total mass capacity of the vessel. (kilogram)</li>
+         * <li><code>totalCapacityVolume</code> (Total Capacity Volume): Total volume capacity of the vessel. (liter)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p>&lt;details&gt;
