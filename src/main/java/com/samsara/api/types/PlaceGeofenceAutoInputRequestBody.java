@@ -94,7 +94,7 @@ public final class PlaceGeofenceAutoInputRequestBody {
     }
 
     /**
-     * @return Seed latitude in WGS84 decimal degrees. Omit to geocode from top-level address.
+     * @return Seed latitude in WGS84 decimal degrees. Supply together with longitude, or omit both to geocode from top-level address.
      */
     @JsonProperty("latitude")
     public Optional<Double> getLatitude() {
@@ -102,7 +102,7 @@ public final class PlaceGeofenceAutoInputRequestBody {
     }
 
     /**
-     * @return Seed longitude in WGS84 decimal degrees. Omit to geocode from top-level address.
+     * @return Seed longitude in WGS84 decimal degrees. Supply together with latitude, or omit both to geocode from top-level address.
      */
     @JsonProperty("longitude")
     public Optional<Double> getLongitude() {
@@ -288,7 +288,7 @@ public final class PlaceGeofenceAutoInputRequestBody {
         }
 
         /**
-         * <p>Seed latitude in WGS84 decimal degrees. Omit to geocode from top-level address.</p>
+         * <p>Seed latitude in WGS84 decimal degrees. Supply together with longitude, or omit both to geocode from top-level address.</p>
          */
         @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
         public Builder latitude(Optional<Double> latitude) {
@@ -302,7 +302,7 @@ public final class PlaceGeofenceAutoInputRequestBody {
         }
 
         /**
-         * <p>Seed longitude in WGS84 decimal degrees. Omit to geocode from top-level address.</p>
+         * <p>Seed longitude in WGS84 decimal degrees. Supply together with latitude, or omit both to geocode from top-level address.</p>
          */
         @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
         public Builder longitude(Optional<Double> longitude) {
