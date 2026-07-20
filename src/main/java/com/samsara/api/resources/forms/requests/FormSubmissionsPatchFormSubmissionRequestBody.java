@@ -15,8 +15,10 @@ import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.forms.types.FormSubmissionsPatchFormSubmissionRequestBodyStatus;
 import com.samsara.api.types.FormSubmissionRequestApprovalDetailsRequestBody;
 import com.samsara.api.types.FormSubmissionRequestAssignedToRequestBody;
+import com.samsara.api.types.FormSubmissionRequestFieldInputObjectRequestBody;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,6 +32,8 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
     private final Optional<FormSubmissionRequestAssignedToRequestBody> assignedTo;
 
     private final Optional<OffsetDateTime> dueAtTime;
+
+    private final Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>> fields;
 
     private final String id;
 
@@ -47,6 +51,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
             Optional<FormSubmissionRequestApprovalDetailsRequestBody> approvalDetails,
             Optional<FormSubmissionRequestAssignedToRequestBody> assignedTo,
             Optional<OffsetDateTime> dueAtTime,
+            Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>> fields,
             String id,
             Optional<Boolean> isRequired,
             Optional<String> routeStopId,
@@ -56,6 +61,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         this.approvalDetails = approvalDetails;
         this.assignedTo = assignedTo;
         this.dueAtTime = dueAtTime;
+        this.fields = fields;
         this.id = id;
         this.isRequired = isRequired;
         this.routeStopId = routeStopId;
@@ -80,6 +86,14 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
     @JsonProperty("dueAtTime")
     public Optional<OffsetDateTime> getDueAtTime() {
         return dueAtTime;
+    }
+
+    /**
+     * @return List of field inputs to update in a form submission.
+     */
+    @JsonProperty("fields")
+    public Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>> getFields() {
+        return fields;
     }
 
     /**
@@ -138,6 +152,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         return approvalDetails.equals(other.approvalDetails)
                 && assignedTo.equals(other.assignedTo)
                 && dueAtTime.equals(other.dueAtTime)
+                && fields.equals(other.fields)
                 && id.equals(other.id)
                 && isRequired.equals(other.isRequired)
                 && routeStopId.equals(other.routeStopId)
@@ -151,6 +166,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
                 this.approvalDetails,
                 this.assignedTo,
                 this.dueAtTime,
+                this.fields,
                 this.id,
                 this.isRequired,
                 this.routeStopId,
@@ -195,6 +211,13 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         _FinalStage dueAtTime(OffsetDateTime dueAtTime);
 
         /**
+         * <p>List of field inputs to update in a form submission.</p>
+         */
+        _FinalStage fields(Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>> fields);
+
+        _FinalStage fields(List<FormSubmissionRequestFieldInputObjectRequestBody> fields);
+
+        /**
          * <p>Indicates whether the worker is required to complete this form or not at a specific route stop. Defaults to <code>true</code> if the form is assigned to a user or driver. When true, the worker cannot depart the route stop until this form submission is <code>submitted</code>.</p>
          */
         _FinalStage isRequired(Optional<Boolean> isRequired);
@@ -235,6 +258,8 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
 
         private Optional<Boolean> isRequired = Optional.empty();
 
+        private Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>> fields = Optional.empty();
+
         private Optional<OffsetDateTime> dueAtTime = Optional.empty();
 
         private Optional<FormSubmissionRequestAssignedToRequestBody> assignedTo = Optional.empty();
@@ -251,6 +276,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
             approvalDetails(other.getApprovalDetails());
             assignedTo(other.getAssignedTo());
             dueAtTime(other.getDueAtTime());
+            fields(other.getFields());
             id(other.getId());
             isRequired(other.getIsRequired());
             routeStopId(other.getRouteStopId());
@@ -352,6 +378,26 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         }
 
         /**
+         * <p>List of field inputs to update in a form submission.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage fields(List<FormSubmissionRequestFieldInputObjectRequestBody> fields) {
+            this.fields = Optional.ofNullable(fields);
+            return this;
+        }
+
+        /**
+         * <p>List of field inputs to update in a form submission.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "fields", nulls = Nulls.SKIP)
+        public _FinalStage fields(Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>> fields) {
+            this.fields = fields;
+            return this;
+        }
+
+        /**
          * <p>Due date of the form submission. UTC timestamp in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -403,6 +449,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
                     approvalDetails,
                     assignedTo,
                     dueAtTime,
+                    fields,
                     id,
                     isRequired,
                     routeStopId,

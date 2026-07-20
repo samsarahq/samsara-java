@@ -1390,7 +1390,7 @@ client.betaApIs().updateEngineImmobilizerState(
                 UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
                     .builder()
                     .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                    .isOpen(false)
+                    .isOpen(true)
                     .build()
             )
         )
@@ -2049,6 +2049,253 @@ client.betaApIs().getDevices(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listAssetAssignments() -> AssetAssignmentsListAssetAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listAssetAssignments(
+    ListAssetAssignmentsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Optional boolean indicating whether to return external IDs for the referenced asset and assignee objects. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — Optional comma-separated list of asset IDs to filter on. IDs may be Samsara asset IDs or external IDs in the format key:value. The response contains the union of matching assets.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assigneeIds:** `Optional<String>` — Optional comma-separated list of assignee IDs to filter on. IDs may be Samsara assignee IDs or external IDs in the format key:value. The response contains the union of matching assignees.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createAssetAssignment(request) -> AssetAssignmentsCreateAssetAssignmentResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create an asset assignment.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createAssetAssignment(
+    AssetAssignmentsCreateAssetAssignmentRequestBody
+        .builder()
+        .assetId("281474978683353")
+        .assigneeId("494123")
+        .assigneeType(AssetAssignmentsCreateAssetAssignmentRequestBodyAssigneeType.DRIVER)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` — Samsara ID of the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assigneeId:** `String` — Samsara ID of the assignee.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assigneeType:** `AssetAssignmentsCreateAssetAssignmentRequestBodyAssigneeType` — Type of the assignee. This required field has no default.  Valid values: `driver`, `asset`, `geofence`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**expectedEndTime:** `Optional<OffsetDateTime>` — Optional. The expected end time of the assignment in RFC 3339 format. Must be strictly after the current time.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.unassignAssetAssignment(request)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unassign an active asset assignment.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().unassignAssetAssignment(
+    AssetAssignmentsUnassignAssetAssignmentRequestBody
+        .builder()
+        .assetId("281474978683353")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` — Samsara ID of the asset.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listDeviceRecoveryMissingAssets() -> DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody</code></summary>
 <dl>
 <dd>
@@ -2524,6 +2771,95 @@ client.betaApIs().listDriverWorkflows(
 <dd>
 
 **workflowType:** `Optional<ListDriverWorkflowsRequestWorkflowType>` — Filter the result to workflows of a specific type. When omitted, workflows of all types are returned.  Valid values: `startOfDay`, `endOfDay`, `assetSelection`, `leaveAsset`, `ridershipSafetyCheck`, `stopArrival`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.getFleetInstallerPhotoUploads() -> FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns fleet installer photo upload sessions for the caller's org. Results are ordered by updatedAtTime ascending and paginated (up to 25 per page). Supports filtering by session IDs, startTime, and endTime. Omitting startTime returns all sessions for the org. endTime requires startTime.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getFleetInstallerPhotoUploads(
+    GetFleetInstallerPhotoUploadsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — Comma-separated list of upload session IDs to filter by. Max 100 IDs. When a single ID is provided and not found, returns 404. When multiple IDs are provided and any are not found, returns 400.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<String>` — A start time in RFC 3339 format. When provided, returns sessions where updatedAtTime >= startTime. Omit to return sessions regardless of time. Combine with endTime for a bounded window.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — An end time in RFC 3339 format. Returns sessions where updatedAtTime < endTime. Requires startTime — returns 400 if provided without startTime. Must be after startTime. Millisecond precision and timezones are supported. (Examples: 2026-06-13T19:08:25Z, 2026-06-13T19:08:25.455Z, OR 2026-06-13T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>
@@ -4579,6 +4915,112 @@ client.betaApIs().deleteHubRouteTemplate(
 <dd>
 
 **id:** `String` — The unique identifier of the route template to delete.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateHubRouteTemplate(request) -> HubRouteTemplatesUpdateHubRouteTemplateResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an existing route template by its unique identifier. Only the fields provided in the request body are changed.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateHubRouteTemplate(
+    HubRouteTemplatesUpdateHubRouteTemplateRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — The unique identifier of the route template to update.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultDepotEndExternalId:** `Optional<String>` — The external identifier of the default end depot, as configured in the hub. Send an empty string to clear it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultDepotStartExternalId:** `Optional<String>` — The external identifier of the default start depot, as configured in the hub. Send an empty string to clear it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultStartTimeOfDay:** `Optional<String>` — Default start time in HH:MM format in the hub's local timezone (e.g. '08:00'). Send an empty string to clear it.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**locationsByExternalIds:** `Optional<List<String>>` — Full replacement of the ordered stop list, referenced by external ID. Omit to leave stops unchanged; send an empty array to clear all stops.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — The new name of the route template.
     
 </dd>
 </dl>
@@ -8277,7 +8719,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -8535,7 +8977,7 @@ client.alerts().postConfigurations(
         .scope(
             ScopeObjectRequestBody
                 .builder()
-                .all(false)
+                .all(true)
                 .build()
         )
         .actions(
@@ -22705,6 +23147,14 @@ client.forms().patchFormSubmission(
 <dl>
 <dd>
 
+**fields:** `Optional<List<FormSubmissionRequestFieldInputObjectRequestBody>>` — List of field inputs to update in a form submission.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **id:** `String` — ID of the form submission.
     
 </dd>
@@ -27694,101 +28144,6 @@ client.previewApIs().createDriverAuthToken(
 <dd>
 
 **username:** `Optional<String>` — Optional. Username of the driver. This is the login identifier configured when the driver is created. One of `id`, `externalId`, or `username` is required.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.getFleetInstallerPhotoUploads() -> FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns fleet installer photo upload sessions for the caller's org. Results are ordered by updatedAtTime ascending and paginated (up to 25 per page). Supports filtering by session IDs, startTime, and endTime. Omitting startTime returns all sessions for the org. endTime requires startTime.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().getFleetInstallerPhotoUploads(
-    GetFleetInstallerPhotoUploadsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — Comma-separated list of upload session IDs to filter by. Max 100 IDs. When a single ID is provided and not found, returns 404. When multiple IDs are provided and any are not found, returns 400.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `Optional<String>` — A start time in RFC 3339 format. When provided, returns sessions where updatedAtTime >= startTime. Omit to return sessions regardless of time. Combine with endTime for a bounded window.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` — An end time in RFC 3339 format. Returns sessions where updatedAtTime < endTime. Requires startTime — returns 400 if provided without startTime. Must be after startTime. Millisecond precision and timezones are supported. (Examples: 2026-06-13T19:08:25Z, 2026-06-13T19:08:25.455Z, OR 2026-06-13T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>
