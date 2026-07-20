@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
 import com.samsara.api.resources.previewapis.requests.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody;
-import com.samsara.api.resources.previewapis.requests.GetFleetInstallerPhotoUploadsRequest;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
 import com.samsara.api.resources.previewapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
@@ -13,7 +12,6 @@ import com.samsara.api.resources.previewapis.types.FleetInstallerPhotoUploadsPos
 import com.samsara.api.resources.previewapis.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType;
 import com.samsara.api.resources.previewapis.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
-import com.samsara.api.types.FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody;
 import okhttp3.mockwebserver.MockResponse;
@@ -96,76 +94,6 @@ public class PreviewApIsWireTest {
                 + "  \"data\": {\n"
                 + "    \"expirationTime\": 1710000000000,\n"
                 + "    \"token\": \"ZmFrZVRva2VuXzMyQnl0ZXNMb25nRm9yVGVzdA\"\n"
-                + "  }\n"
-                + "}";
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetFleetInstallerPhotoUploads() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"contentMd5\":\"rL0Y20zC+Fzt72VPzMSk2A==\",\"createdAtTime\":\"2026-06-01T18:15:00Z\",\"deviceId\":\"281474977961335\",\"fileFormatType\":\"imageJpeg\",\"fileName\":\"front_camera_install.jpg\",\"hardwareType\":\"vehicleGateway\",\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"photoType\":\"installPhoto\",\"processingStatus\":\"awaitingUpload\",\"sizeBytes\":482193,\"updatedAtTime\":\"2026-06-01T18:15:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
-        FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody response = client.previewApIs()
-                .getFleetInstallerPhotoUploads(
-                        GetFleetInstallerPhotoUploadsRequest.builder().build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"contentMd5\": \"rL0Y20zC+Fzt72VPzMSk2A==\",\n"
-                + "      \"createdAtTime\": \"2026-06-01T18:15:00Z\",\n"
-                + "      \"deviceId\": \"281474977961335\",\n"
-                + "      \"fileFormatType\": \"imageJpeg\",\n"
-                + "      \"fileName\": \"front_camera_install.jpg\",\n"
-                + "      \"hardwareType\": \"vehicleGateway\",\n"
-                + "      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
-                + "      \"photoType\": \"installPhoto\",\n"
-                + "      \"processingStatus\": \"awaitingUpload\",\n"
-                + "      \"sizeBytes\": 482193,\n"
-                + "      \"updatedAtTime\": \"2026-06-01T18:15:00Z\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
