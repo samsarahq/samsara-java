@@ -20,18 +20,18 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RoutesPatchRouteResponseBody.Builder.class)
 public final class RoutesPatchRouteResponseBody {
-    private final Optional<BaseRouteResponseObjectResponseBody> data;
+    private final Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data;
 
     private final Map<String, Object> additionalProperties;
 
     private RoutesPatchRouteResponseBody(
-            Optional<BaseRouteResponseObjectResponseBody> data, Map<String, Object> additionalProperties) {
+            Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data, Map<String, Object> additionalProperties) {
         this.data = data;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public Optional<BaseRouteResponseObjectResponseBody> getData() {
+    public Optional<BaseRouteWithStopFormsResponseObjectResponseBody> getData() {
         return data;
     }
 
@@ -66,7 +66,7 @@ public final class RoutesPatchRouteResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<BaseRouteResponseObjectResponseBody> data = Optional.empty();
+        private Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -79,12 +79,12 @@ public final class RoutesPatchRouteResponseBody {
         }
 
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public Builder data(Optional<BaseRouteResponseObjectResponseBody> data) {
+        public Builder data(Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data) {
             this.data = data;
             return this;
         }
 
-        public Builder data(BaseRouteResponseObjectResponseBody data) {
+        public Builder data(BaseRouteWithStopFormsResponseObjectResponseBody data) {
             this.data = Optional.ofNullable(data);
             return this;
         }

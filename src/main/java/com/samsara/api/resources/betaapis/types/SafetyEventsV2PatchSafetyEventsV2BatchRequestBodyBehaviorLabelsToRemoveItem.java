@@ -18,6 +18,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
                     Value.HARSH_IMPACT, "HarshImpact");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem PROXIMITY_WARNING =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
+                    Value.PROXIMITY_WARNING, "ProximityWarning");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem HARSH_TURN =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
                     Value.HARSH_TURN, "HarshTurn");
@@ -285,6 +289,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
                 return visitor.visitDefensiveDriving();
             case HARSH_IMPACT:
                 return visitor.visitHarshImpact();
+            case PROXIMITY_WARNING:
+                return visitor.visitProximityWarning();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case OPERATIONAL_EVENT:
@@ -414,6 +420,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
                 return DEFENSIVE_DRIVING;
             case "HarshImpact":
                 return HARSH_IMPACT;
+            case "ProximityWarning":
+                return PROXIMITY_WARNING;
             case "HarshTurn":
                 return HARSH_TURN;
             case "OperationalEvent":
@@ -627,6 +635,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
 
         PROTECTIVE_EQUIPMENT,
 
+        PROXIMITY_WARNING,
+
         RAN_RED_LIGHT,
 
         REAR_COLLISION_WARNING,
@@ -750,6 +760,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
         T visitPolicyViolationMask();
 
         T visitProtectiveEquipment();
+
+        T visitProximityWarning();
 
         T visitRanRedLight();
 

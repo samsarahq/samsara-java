@@ -7,6 +7,7 @@ import com.samsara.api.core.pagination.SyncPagingIterable;
 import com.samsara.api.resources.assets.requests.AssetsCreateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.AssetsUpdateAssetRequestBody;
 import com.samsara.api.resources.assets.requests.DeleteAssetRequest;
+import com.samsara.api.resources.assets.requests.GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.GetAssetReeferRequest;
 import com.samsara.api.resources.assets.requests.GetAssetsRequest;
 import com.samsara.api.resources.assets.requests.ListAssetsRequest;
@@ -15,6 +16,7 @@ import com.samsara.api.resources.assets.requests.V1GetAllAssetCurrentLocationsRe
 import com.samsara.api.resources.assets.requests.V1GetAssetLocationRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetReeferRequest;
 import com.samsara.api.resources.assets.requests.V1GetAssetsReefersRequest;
+import com.samsara.api.types.AssetLocationsGetAssetLocationResponseBody;
 import com.samsara.api.types.AssetResponseBody;
 import com.samsara.api.types.AssetsCreateAssetResponseBody;
 import com.samsara.api.types.AssetsGetAssetReeferResponseBody;
@@ -435,6 +437,65 @@ public class AssetsWireTest {
                 + "    \"hasPrevPage\": true,\n"
                 + "    \"startCursor\": \"MTU5MTEzNjA2OTU0MzQ3\"\n"
                 + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetAssetLocation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"locations\":[{\"latitude\":37,\"location\":\"525 York, San Francisco, CA\",\"longitude\":-122.7,\"speedMilesPerHour\":35,\"time\":12314151}]}"));
+        AssetLocationsGetAssetLocationResponseBody response = client.assets()
+                .getAssetLocation(1000000L, GetAssetLocationRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"locations\": [\n"
+                + "    {\n"
+                + "      \"latitude\": 37,\n"
+                + "      \"location\": \"525 York, San Francisco, CA\",\n"
+                + "      \"longitude\": -122.7,\n"
+                + "      \"speedMilesPerHour\": 35,\n"
+                + "      \"time\": 12314151\n"
+                + "    }\n"
+                + "  ]\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);

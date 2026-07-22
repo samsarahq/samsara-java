@@ -54,6 +54,10 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel NO_SEATBELT =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.NO_SEATBELT, "noSeatbelt");
 
+    public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel PROXIMITY_WARNING =
+            new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(
+                    Value.PROXIMITY_WARNING, "proximityWarning");
+
     public static final DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel LIGHT_SPEEDING =
             new DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel(Value.LIGHT_SPEEDING, "lightSpeeding");
 
@@ -181,6 +185,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return visitor.visitEatingDrinking();
             case NO_SEATBELT:
                 return visitor.visitNoSeatbelt();
+            case PROXIMITY_WARNING:
+                return visitor.visitProximityWarning();
             case LIGHT_SPEEDING:
                 return visitor.visitLightSpeeding();
             case VEHICLE_IN_BLIND_SPOT_WARNING:
@@ -256,6 +262,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
                 return EATING_DRINKING;
             case "noSeatbelt":
                 return NO_SEATBELT;
+            case "proximityWarning":
+                return PROXIMITY_WARNING;
             case "lightSpeeding":
                 return LIGHT_SPEEDING;
             case "vehicleInBlindSpotWarning":
@@ -340,6 +348,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
 
         POLICY_VIOLATION_MASK,
 
+        PROXIMITY_WARNING,
+
         RAN_RED_LIGHT,
 
         REAR_COLLISION_WARNING,
@@ -409,6 +419,8 @@ public final class DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel 
         T visitPassenger();
 
         T visitPolicyViolationMask();
+
+        T visitProximityWarning();
 
         T visitRanRedLight();
 

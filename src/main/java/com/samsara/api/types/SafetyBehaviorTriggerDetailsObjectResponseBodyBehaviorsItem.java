@@ -17,6 +17,10 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
     public static final SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem HARSH_IMPACT =
             new SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem(Value.HARSH_IMPACT, "HarshImpact");
 
+    public static final SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem PROXIMITY_WARNING =
+            new SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem(
+                    Value.PROXIMITY_WARNING, "ProximityWarning");
+
     public static final SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem HARSH_TURN =
             new SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem(Value.HARSH_TURN, "HarshTurn");
 
@@ -324,6 +328,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
                 return visitor.visitDefensiveDriving();
             case HARSH_IMPACT:
                 return visitor.visitHarshImpact();
+            case PROXIMITY_WARNING:
+                return visitor.visitProximityWarning();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case SPEEDING:
@@ -489,6 +495,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
                 return DEFENSIVE_DRIVING;
             case "HarshImpact":
                 return HARSH_IMPACT;
+            case "ProximityWarning":
+                return PROXIMITY_WARNING;
             case "HarshTurn":
                 return HARSH_TURN;
             case "Speeding":
@@ -755,6 +763,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
 
         PROTECTIVE_EQUIPMENT,
 
+        PROXIMITY_WARNING,
+
         RAN_RED_LIGHT,
 
         REVERSING,
@@ -914,6 +924,8 @@ public final class SafetyBehaviorTriggerDetailsObjectResponseBodyBehaviorsItem {
         T visitPolicyViolationMask();
 
         T visitProtectiveEquipment();
+
+        T visitProximityWarning();
 
         T visitRanRedLight();
 

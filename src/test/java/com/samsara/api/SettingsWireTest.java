@@ -44,7 +44,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":true,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":false,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":true}}"));
+                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":true,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":false,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":true}}"));
         SettingsGetComplianceSettingsResponseBody response = client.settings().getComplianceSettings();
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -56,13 +56,13 @@ public class SettingsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"allowUnregulatedVehiclesEnabled\": false,\n"
+                + "    \"allowUnregulatedVehiclesEnabled\": true,\n"
                 + "    \"canadaHosEnabled\": true,\n"
                 + "    \"carrierName\": \"ABC Trucking\",\n"
                 + "    \"dotNumber\": 12345678,\n"
-                + "    \"driverAutoDutyEnabled\": true,\n"
+                + "    \"driverAutoDutyEnabled\": false,\n"
                 + "    \"editCertifiedLogsEnabled\": true,\n"
-                + "    \"forceManualLocationForDutyStatusChangesEnabled\": false,\n"
+                + "    \"forceManualLocationForDutyStatusChangesEnabled\": true,\n"
                 + "    \"forceReviewUnassignedHosEnabled\": true,\n"
                 + "    \"mainOfficeFormattedAddress\": \"123 Main Street\",\n"
                 + "    \"persistentDutyStatusEnabled\": true\n"
@@ -105,7 +105,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":true,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":false,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":true}}"));
+                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":true,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":false,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":true}}"));
         SettingsPatchComplianceSettingsResponseBody response = client.settings()
                 .patchComplianceSettings(
                         SettingsPatchComplianceSettingsRequestBody.builder().build());
@@ -148,13 +148,13 @@ public class SettingsWireTest {
         String expectedResponseBody = ""
                 + "{\n"
                 + "  \"data\": {\n"
-                + "    \"allowUnregulatedVehiclesEnabled\": false,\n"
+                + "    \"allowUnregulatedVehiclesEnabled\": true,\n"
                 + "    \"canadaHosEnabled\": true,\n"
                 + "    \"carrierName\": \"ABC Trucking\",\n"
                 + "    \"dotNumber\": 12345678,\n"
-                + "    \"driverAutoDutyEnabled\": true,\n"
+                + "    \"driverAutoDutyEnabled\": false,\n"
                 + "    \"editCertifiedLogsEnabled\": true,\n"
-                + "    \"forceManualLocationForDutyStatusChangesEnabled\": false,\n"
+                + "    \"forceManualLocationForDutyStatusChangesEnabled\": true,\n"
                 + "    \"forceReviewUnassignedHosEnabled\": true,\n"
                 + "    \"mainOfficeFormattedAddress\": \"123 Main Street\",\n"
                 + "    \"persistentDutyStatusEnabled\": true\n"
@@ -197,7 +197,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":true,\"gamificationConfig\":{\"anonymizeDriverNames\":false},\"orgVehicleSearch\":false,\"trailerSelection\":false,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":true,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":true}}}"));
+                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":false,\"gamificationConfig\":{\"anonymizeDriverNames\":false},\"orgVehicleSearch\":false,\"trailerSelection\":true,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":false,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":true}}}"));
         SettingsGetDriverAppSettingsResponseBody response = client.settings().getDriverAppSettings();
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -210,14 +210,14 @@ public class SettingsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"driverFleetId\": \"abc_trucking_co\",\n"
-                + "    \"gamification\": true,\n"
+                + "    \"gamification\": false,\n"
                 + "    \"gamificationConfig\": {\n"
                 + "      \"anonymizeDriverNames\": false\n"
                 + "    },\n"
                 + "    \"orgVehicleSearch\": false,\n"
-                + "    \"trailerSelection\": false,\n"
+                + "    \"trailerSelection\": true,\n"
                 + "    \"trailerSelectionConfig\": {\n"
-                + "      \"driverTrailerCreationEnabled\": true,\n"
+                + "      \"driverTrailerCreationEnabled\": false,\n"
                 + "      \"maxNumOfTrailersSelected\": 1000000,\n"
                 + "      \"orgTrailerSearch\": true\n"
                 + "    }\n"
@@ -260,7 +260,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":true,\"gamificationConfig\":{\"anonymizeDriverNames\":false},\"orgVehicleSearch\":false,\"trailerSelection\":false,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":true,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":true}}}"));
+                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":false,\"gamificationConfig\":{\"anonymizeDriverNames\":false},\"orgVehicleSearch\":false,\"trailerSelection\":true,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":false,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":true}}}"));
         SettingsPatchDriverAppSettingsResponseBody response = client.settings()
                 .patchDriverAppSettings(
                         SettingsPatchDriverAppSettingsRequestBody.builder().build());
@@ -304,14 +304,14 @@ public class SettingsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"driverFleetId\": \"abc_trucking_co\",\n"
-                + "    \"gamification\": true,\n"
+                + "    \"gamification\": false,\n"
                 + "    \"gamificationConfig\": {\n"
                 + "      \"anonymizeDriverNames\": false\n"
                 + "    },\n"
                 + "    \"orgVehicleSearch\": false,\n"
-                + "    \"trailerSelection\": false,\n"
+                + "    \"trailerSelection\": true,\n"
                 + "    \"trailerSelectionConfig\": {\n"
-                + "      \"driverTrailerCreationEnabled\": true,\n"
+                + "      \"driverTrailerCreationEnabled\": false,\n"
                 + "      \"maxNumOfTrailersSelected\": 1000000,\n"
                 + "      \"orgTrailerSearch\": true\n"
                 + "    }\n"

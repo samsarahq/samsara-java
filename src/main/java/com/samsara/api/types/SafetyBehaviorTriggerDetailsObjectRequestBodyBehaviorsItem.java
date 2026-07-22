@@ -16,6 +16,9 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
     public static final SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem HARSH_IMPACT =
             new SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem(Value.HARSH_IMPACT, "HarshImpact");
 
+    public static final SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem PROXIMITY_WARNING =
+            new SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem(Value.PROXIMITY_WARNING, "ProximityWarning");
+
     public static final SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem HARSH_TURN =
             new SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem(Value.HARSH_TURN, "HarshTurn");
 
@@ -320,6 +323,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
                 return visitor.visitDefensiveDriving();
             case HARSH_IMPACT:
                 return visitor.visitHarshImpact();
+            case PROXIMITY_WARNING:
+                return visitor.visitProximityWarning();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case SPEEDING:
@@ -485,6 +490,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
                 return DEFENSIVE_DRIVING;
             case "HarshImpact":
                 return HARSH_IMPACT;
+            case "ProximityWarning":
+                return PROXIMITY_WARNING;
             case "HarshTurn":
                 return HARSH_TURN;
             case "Speeding":
@@ -751,6 +758,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
 
         PROTECTIVE_EQUIPMENT,
 
+        PROXIMITY_WARNING,
+
         RAN_RED_LIGHT,
 
         REVERSING,
@@ -910,6 +919,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
         T visitPolicyViolationMask();
 
         T visitProtectiveEquipment();
+
+        T visitProximityWarning();
 
         T visitRanRedLight();
 

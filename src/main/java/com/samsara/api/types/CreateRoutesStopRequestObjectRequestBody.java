@@ -28,6 +28,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
     private final Optional<Map<String, String>> externalIds;
 
+    private final Optional<List<RouteStopFormRequestObjectRequestBody>> forms;
+
     private final Optional<String> name;
 
     private final Optional<String> notes;
@@ -50,6 +52,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             Optional<String> addressId,
             Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows,
             Optional<Map<String, String>> externalIds,
+            Optional<List<RouteStopFormRequestObjectRequestBody>> forms,
             Optional<String> name,
             Optional<String> notes,
             Optional<Long> ontimeWindowAfterArrivalMs,
@@ -62,6 +65,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         this.addressId = addressId;
         this.appointmentWindows = appointmentWindows;
         this.externalIds = externalIds;
+        this.forms = forms;
         this.name = name;
         this.notes = notes;
         this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
@@ -95,6 +99,14 @@ public final class CreateRoutesStopRequestObjectRequestBody {
     @JsonProperty("externalIds")
     public Optional<Map<String, String>> getExternalIds() {
         return externalIds;
+    }
+
+    /**
+     * @return Form attachments for the stop.
+     */
+    @JsonProperty("forms")
+    public Optional<List<RouteStopFormRequestObjectRequestBody>> getForms() {
+        return forms;
     }
 
     /**
@@ -174,6 +186,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         return addressId.equals(other.addressId)
                 && appointmentWindows.equals(other.appointmentWindows)
                 && externalIds.equals(other.externalIds)
+                && forms.equals(other.forms)
                 && name.equals(other.name)
                 && notes.equals(other.notes)
                 && ontimeWindowAfterArrivalMs.equals(other.ontimeWindowAfterArrivalMs)
@@ -190,6 +203,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                 this.addressId,
                 this.appointmentWindows,
                 this.externalIds,
+                this.forms,
                 this.name,
                 this.notes,
                 this.ontimeWindowAfterArrivalMs,
@@ -217,6 +231,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<List<RouteStopFormRequestObjectRequestBody>> forms = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<String> notes = Optional.empty();
@@ -242,6 +258,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             addressId(other.getAddressId());
             appointmentWindows(other.getAppointmentWindows());
             externalIds(other.getExternalIds());
+            forms(other.getForms());
             name(other.getName());
             notes(other.getNotes());
             ontimeWindowAfterArrivalMs(other.getOntimeWindowAfterArrivalMs());
@@ -292,6 +309,20 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
         public Builder externalIds(Map<String, String> externalIds) {
             this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        /**
+         * <p>Form attachments for the stop.</p>
+         */
+        @JsonSetter(value = "forms", nulls = Nulls.SKIP)
+        public Builder forms(Optional<List<RouteStopFormRequestObjectRequestBody>> forms) {
+            this.forms = forms;
+            return this;
+        }
+
+        public Builder forms(List<RouteStopFormRequestObjectRequestBody> forms) {
+            this.forms = Optional.ofNullable(forms);
             return this;
         }
 
@@ -409,6 +440,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                     addressId,
                     appointmentWindows,
                     externalIds,
+                    forms,
                     name,
                     notes,
                     ontimeWindowAfterArrivalMs,

@@ -45,7 +45,7 @@ public class IftaWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"jurisdictionReports\":[{\"jurisdiction\":\"GA\",\"taxPaidLiters\":25.5,\"taxableMeters\":2350,\"totalMeters\":2350}],\"month\":\"January\",\"quarter\":\"Q4\",\"troubleshooting\":{\"noPurchasesFound\":false,\"unassignedFuelTypePurchases\":200,\"unassignedFuelTypeVehicles\":2500,\"unassignedVehiclePurchases\":2500},\"year\":2021}}"));
+                                "{\"data\":{\"jurisdictionReports\":[{\"jurisdiction\":\"GA\",\"taxPaidLiters\":25.5,\"taxableMeters\":2350,\"totalMeters\":2350}],\"month\":\"January\",\"quarter\":\"Q4\",\"troubleshooting\":{\"noPurchasesFound\":true,\"unassignedFuelTypePurchases\":200,\"unassignedFuelTypeVehicles\":2500,\"unassignedVehiclePurchases\":2500},\"year\":2021}}"));
         IftaGetIftaJurisdictionReportsResponseBody response = client.ifta()
                 .getIftaJurisdictionReports(GetIftaJurisdictionReportsRequest.builder()
                         .year(1000000L)
@@ -71,7 +71,7 @@ public class IftaWireTest {
                 + "    \"month\": \"January\",\n"
                 + "    \"quarter\": \"Q4\",\n"
                 + "    \"troubleshooting\": {\n"
-                + "      \"noPurchasesFound\": false,\n"
+                + "      \"noPurchasesFound\": true,\n"
                 + "      \"unassignedFuelTypePurchases\": 200,\n"
                 + "      \"unassignedFuelTypeVehicles\": 2500,\n"
                 + "      \"unassignedVehiclePurchases\": 2500\n"
@@ -116,7 +116,7 @@ public class IftaWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"month\":\"January\",\"quarter\":\"Q4\",\"troubleshooting\":{\"noPurchasesFound\":false,\"unassignedFuelTypePurchases\":200,\"unassignedFuelTypeVehicles\":2500,\"unassignedVehiclePurchases\":2500},\"vehicleReports\":[{\"jurisdictions\":[{\"jurisdiction\":\"GA\",\"taxPaidLiters\":25.5,\"taxableMeters\":2350,\"totalMeters\":2350}],\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}],\"year\":2021},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":{\"month\":\"January\",\"quarter\":\"Q4\",\"troubleshooting\":{\"noPurchasesFound\":true,\"unassignedFuelTypePurchases\":200,\"unassignedFuelTypeVehicles\":2500,\"unassignedVehiclePurchases\":2500},\"vehicleReports\":[{\"jurisdictions\":[{\"jurisdiction\":\"GA\",\"taxPaidLiters\":25.5,\"taxableMeters\":2350,\"totalMeters\":2350}],\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}],\"year\":2021},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         IftaGetIftaVehicleReportsResponseBody response = client.ifta()
                 .getIftaVehicleReports(
                         GetIftaVehicleReportsRequest.builder().year(1000000L).build());
@@ -133,7 +133,7 @@ public class IftaWireTest {
                 + "    \"month\": \"January\",\n"
                 + "    \"quarter\": \"Q4\",\n"
                 + "    \"troubleshooting\": {\n"
-                + "      \"noPurchasesFound\": false,\n"
+                + "      \"noPurchasesFound\": true,\n"
                 + "      \"unassignedFuelTypePurchases\": 200,\n"
                 + "      \"unassignedFuelTypeVehicles\": 2500,\n"
                 + "      \"unassignedVehiclePurchases\": 2500\n"
@@ -198,7 +198,7 @@ public class IftaWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"args\":{\"endHour\":\"2019-06-13T19:00:00Z\",\"startHour\":\"2019-06-13T19:00:00Z\",\"vehicleIds\":[12345678,56789123]},\"completedAtTime\":\"2019-06-13T19:00:00Z\",\"details\":\"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\"failedAtTime\":\"2019-06-13T19:00:00Z\",\"files\":[{\"createdAtTime\":\"2019-06-13T19:00:00Z\",\"downloadUrl\":\"https://s3.download-url.com\",\"downloadUrlExpirationTime\":\"2019-06-13T19:00:00Z\",\"name\":\"output-001.csv.gz\",\"recordCount\":8529160667199005000}],\"jobId\":\"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\"jobStatus\":\"Requested\",\"requestedAtTime\":\"2019-06-13T19:00:00Z\",\"startedAtTime\":\"2019-06-13T19:00:00Z\"}}"));
+                                "{\"data\":{\"args\":{\"endHour\":\"2019-06-13T19:00:00Z\",\"startHour\":\"2019-06-13T19:00:00Z\",\"vehicleIds\":[12345678,56789123]},\"completedAtTime\":\"2019-06-13T19:00:00Z\",\"details\":\"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\"failedAtTime\":\"2019-06-13T19:00:00Z\",\"files\":[{\"createdAtTime\":\"2019-06-13T19:00:00Z\",\"downloadUrl\":\"https://s3.download-url.com\",\"downloadUrlExpirationTime\":\"2019-06-13T19:00:00Z\",\"name\":\"output-001.csv.gz\",\"recordCount\":6004255963498238000}],\"jobId\":\"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\"jobStatus\":\"Requested\",\"requestedAtTime\":\"2019-06-13T19:00:00Z\",\"startedAtTime\":\"2019-06-13T19:00:00Z\"}}"));
         IftaCreateIftaDetailJobResponseBody response = client.ifta()
                 .createIftaDetailJob(IftaCreateIftaDetailJobRequestBody.builder()
                         .endHour("2019-06-13T19:00:00Z")
@@ -264,7 +264,7 @@ public class IftaWireTest {
                 + "        \"downloadUrl\": \"https://s3.download-url.com\",\n"
                 + "        \"downloadUrlExpirationTime\": \"2019-06-13T19:00:00Z\",\n"
                 + "        \"name\": \"output-001.csv.gz\",\n"
-                + "        \"recordCount\": 8529160667199005000\n"
+                + "        \"recordCount\": 6004255963498238000\n"
                 + "      }\n"
                 + "    ],\n"
                 + "    \"jobId\": \"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\n"
@@ -310,7 +310,7 @@ public class IftaWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"args\":{\"endHour\":\"2019-06-13T19:00:00Z\",\"startHour\":\"2019-06-13T19:00:00Z\",\"vehicleIds\":[12345678,56789123]},\"completedAtTime\":\"2019-06-13T19:00:00Z\",\"details\":\"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\"failedAtTime\":\"2019-06-13T19:00:00Z\",\"files\":[{\"createdAtTime\":\"2019-06-13T19:00:00Z\",\"downloadUrl\":\"https://s3.download-url.com\",\"downloadUrlExpirationTime\":\"2019-06-13T19:00:00Z\",\"name\":\"output-001.csv.gz\",\"recordCount\":8529160667199005000}],\"jobId\":\"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\"jobStatus\":\"Requested\",\"requestedAtTime\":\"2019-06-13T19:00:00Z\",\"startedAtTime\":\"2019-06-13T19:00:00Z\"}}"));
+                                "{\"data\":{\"args\":{\"endHour\":\"2019-06-13T19:00:00Z\",\"startHour\":\"2019-06-13T19:00:00Z\",\"vehicleIds\":[12345678,56789123]},\"completedAtTime\":\"2019-06-13T19:00:00Z\",\"details\":\"Try limiting the number of vehicles requested per job to reduce the processing duration.\",\"failedAtTime\":\"2019-06-13T19:00:00Z\",\"files\":[{\"createdAtTime\":\"2019-06-13T19:00:00Z\",\"downloadUrl\":\"https://s3.download-url.com\",\"downloadUrlExpirationTime\":\"2019-06-13T19:00:00Z\",\"name\":\"output-001.csv.gz\",\"recordCount\":6004255963498238000}],\"jobId\":\"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\"jobStatus\":\"Requested\",\"requestedAtTime\":\"2019-06-13T19:00:00Z\",\"startedAtTime\":\"2019-06-13T19:00:00Z\"}}"));
         IftaGetIftaDetailJobResponseBody response = client.ifta()
                 .getIftaDetailJob("id", GetIftaDetailJobRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -340,7 +340,7 @@ public class IftaWireTest {
                 + "        \"downloadUrl\": \"https://s3.download-url.com\",\n"
                 + "        \"downloadUrlExpirationTime\": \"2019-06-13T19:00:00Z\",\n"
                 + "        \"name\": \"output-001.csv.gz\",\n"
-                + "        \"recordCount\": 8529160667199005000\n"
+                + "        \"recordCount\": 6004255963498238000\n"
                 + "      }\n"
                 + "    ],\n"
                 + "    \"jobId\": \"8cabba84-bef4-4951-8cd2-78ce898fd8e6\",\n"
