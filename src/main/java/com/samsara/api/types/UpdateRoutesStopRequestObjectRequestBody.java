@@ -28,6 +28,8 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
 
     private final Optional<Map<String, String>> externalIds;
 
+    private final Optional<List<RouteStopFormRequestObjectRequestBody>> forms;
+
     private final Optional<String> id;
 
     private final Optional<String> name;
@@ -52,6 +54,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             Optional<String> addressId,
             Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows,
             Optional<Map<String, String>> externalIds,
+            Optional<List<RouteStopFormRequestObjectRequestBody>> forms,
             Optional<String> id,
             Optional<String> name,
             Optional<String> notes,
@@ -65,6 +68,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         this.addressId = addressId;
         this.appointmentWindows = appointmentWindows;
         this.externalIds = externalIds;
+        this.forms = forms;
         this.id = id;
         this.name = name;
         this.notes = notes;
@@ -102,7 +106,15 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
     }
 
     /**
-     * @return ID of the stop
+     * @return Form attachments for the stop.
+     */
+    @JsonProperty("forms")
+    public Optional<List<RouteStopFormRequestObjectRequestBody>> getForms() {
+        return forms;
+    }
+
+    /**
+     * @return ID of the stop. This can either be the Samsara-specified ID or an external ID in <code>key:value</code> format.
      */
     @JsonProperty("id")
     public Optional<String> getId() {
@@ -186,6 +198,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         return addressId.equals(other.addressId)
                 && appointmentWindows.equals(other.appointmentWindows)
                 && externalIds.equals(other.externalIds)
+                && forms.equals(other.forms)
                 && id.equals(other.id)
                 && name.equals(other.name)
                 && notes.equals(other.notes)
@@ -203,6 +216,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                 this.addressId,
                 this.appointmentWindows,
                 this.externalIds,
+                this.forms,
                 this.id,
                 this.name,
                 this.notes,
@@ -231,6 +245,8 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<List<RouteStopFormRequestObjectRequestBody>> forms = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> name = Optional.empty();
@@ -258,6 +274,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             addressId(other.getAddressId());
             appointmentWindows(other.getAppointmentWindows());
             externalIds(other.getExternalIds());
+            forms(other.getForms());
             id(other.getId());
             name(other.getName());
             notes(other.getNotes());
@@ -313,7 +330,21 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         }
 
         /**
-         * <p>ID of the stop</p>
+         * <p>Form attachments for the stop.</p>
+         */
+        @JsonSetter(value = "forms", nulls = Nulls.SKIP)
+        public Builder forms(Optional<List<RouteStopFormRequestObjectRequestBody>> forms) {
+            this.forms = forms;
+            return this;
+        }
+
+        public Builder forms(List<RouteStopFormRequestObjectRequestBody> forms) {
+            this.forms = Optional.ofNullable(forms);
+            return this;
+        }
+
+        /**
+         * <p>ID of the stop. This can either be the Samsara-specified ID or an external ID in <code>key:value</code> format.</p>
          */
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public Builder id(Optional<String> id) {
@@ -440,6 +471,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                     addressId,
                     appointmentWindows,
                     externalIds,
+                    forms,
                     id,
                     name,
                     notes,

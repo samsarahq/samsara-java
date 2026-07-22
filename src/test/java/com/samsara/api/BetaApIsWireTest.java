@@ -3,8 +3,14 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.betaapis.requests.AcceptAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.AssetAssignmentsCreateAssetAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetAssignmentsUnassignAssetAssignmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCreateAssetSharingAgreementRequestBody;
+import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCreateSharedAssetsBatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsUpdateSharedAssetsBatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.CancelAssetSharingAgreementRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionStorageFileRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteHubRouteTemplateRequest;
@@ -62,6 +68,7 @@ import com.samsara.api.resources.betaapis.requests.HubRouteTemplatesUpdateHubRou
 import com.samsara.api.resources.betaapis.requests.JobsCreateJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.JobsPatchJobRequestBody;
 import com.samsara.api.resources.betaapis.requests.ListAssetAssignmentsRequest;
+import com.samsara.api.resources.betaapis.requests.ListAssetSharingAgreementsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
 import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequest;
@@ -72,6 +79,7 @@ import com.samsara.api.resources.betaapis.requests.ListPreferredStationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPreventiveMaintenanceSchedulesRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
+import com.samsara.api.resources.betaapis.requests.ListSharedAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
 import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMaintenanceRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
@@ -85,6 +93,7 @@ import com.samsara.api.resources.betaapis.requests.QualificationsPatchQualificat
 import com.samsara.api.resources.betaapis.requests.QualificationsPostQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
+import com.samsara.api.resources.betaapis.requests.RejectAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
 import com.samsara.api.resources.betaapis.requests.ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRidershipPassengerRequestBody;
@@ -95,6 +104,9 @@ import com.samsara.api.resources.betaapis.requests.SafetyEventsV2PatchSafetyEven
 import com.samsara.api.resources.betaapis.requests.TachographFileUploadsPostTachographFileUploadRequestBody;
 import com.samsara.api.resources.betaapis.requests.UpdateFunctionStorageFileRequest;
 import com.samsara.api.resources.betaapis.types.AssetAssignmentsCreateAssetAssignmentRequestBodyAssigneeType;
+import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyOperator;
+import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem;
+import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyMissingReason;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyStatus;
@@ -109,9 +121,18 @@ import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsResponseBod
 import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody;
 import com.samsara.api.types.AssetAssignmentsCreateAssetAssignmentResponseBody;
 import com.samsara.api.types.AssetAssignmentsListAssetAssignmentsResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsAcceptAssetSharingAgreementResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsCancelAssetSharingAgreementResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsCreateAssetSharingAgreementResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsCreateSharedAssetsBatchResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsListAssetSharingAgreementsResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsListSharedAssetsResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsRejectAssetSharingAgreementResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsUpdateSharedAssetsBatchResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.CreateFunctionRequestConfigRequestBody;
 import com.samsara.api.types.CreateReportConfigObjectRequestBody;
+import com.samsara.api.types.CreateSharedAssetRequestObjectRequestBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
 import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody;
@@ -197,6 +218,7 @@ import com.samsara.api.types.SafetyEventsV2PatchSafetyEventsV2BatchResponseBody;
 import com.samsara.api.types.TachographFileUploadsPostTachographFileUploadResponseBody;
 import com.samsara.api.types.UpdateEngineImmobilizerRelayStateRequestBodyRequestBody;
 import com.samsara.api.types.UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId;
+import com.samsara.api.types.UpdateSharedAssetRequestObjectRequestBody;
 import com.samsara.api.types.WorkOrdersGetWorkOrderTemplatesResponseBody;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -1430,6 +1452,759 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testListAssetSharingAgreements() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"acceptedAtTime\":\"2024-01-15T11:00:00Z\",\"acceptedByUserId\":\"678\",\"canceledAtTime\":\"2024-01-15T11:00:00Z\",\"canceledByParty\":\"provider\",\"canceledByUserId\":\"678\",\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"deletedByUserId\":\"111\",\"id\":\"33333333-3333-3333-3333-333333333333\",\"operator\":\"provider\",\"providerDataPackages\":[\"safety\",\"maintenance\"],\"providerOrganizationId\":\"123\",\"recipientDataPackages\":[\"telematics\",\"location\",\"telematics\",\"all\"],\"recipientOrganizationId\":\"456\",\"rejectedAtTime\":\"2024-01-15T11:00:00Z\",\"rejectedByUserId\":\"678\",\"status\":\"pending\",\"updatedAtTime\":\"2024-01-13T10:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        AssetSharingAgreementsListAssetSharingAgreementsResponseBody response = client.betaApIs()
+                .listAssetSharingAgreements(
+                        ListAssetSharingAgreementsRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"acceptedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "      \"acceptedByUserId\": \"678\",\n"
+                + "      \"canceledAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "      \"canceledByParty\": \"provider\",\n"
+                + "      \"canceledByUserId\": \"678\",\n"
+                + "      \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "      \"createdByUserId\": \"111\",\n"
+                + "      \"deletedByUserId\": \"111\",\n"
+                + "      \"id\": \"33333333-3333-3333-3333-333333333333\",\n"
+                + "      \"operator\": \"provider\",\n"
+                + "      \"providerDataPackages\": [\n"
+                + "        \"safety\",\n"
+                + "        \"maintenance\"\n"
+                + "      ],\n"
+                + "      \"providerOrganizationId\": \"123\",\n"
+                + "      \"recipientDataPackages\": [\n"
+                + "        \"telematics\",\n"
+                + "        \"location\",\n"
+                + "        \"telematics\",\n"
+                + "        \"all\"\n"
+                + "      ],\n"
+                + "      \"recipientOrganizationId\": \"456\",\n"
+                + "      \"rejectedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "      \"rejectedByUserId\": \"678\",\n"
+                + "      \"status\": \"pending\",\n"
+                + "      \"updatedAtTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCreateAssetSharingAgreement() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"acceptedAtTime\":\"2024-01-15T11:00:00Z\",\"acceptedByUserId\":\"678\",\"canceledAtTime\":\"2024-01-15T11:00:00Z\",\"canceledByParty\":\"provider\",\"canceledByUserId\":\"678\",\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"deletedByUserId\":\"111\",\"id\":\"33333333-3333-3333-3333-333333333333\",\"operator\":\"provider\",\"providerDataPackages\":[\"safety\",\"maintenance\"],\"providerOrganizationId\":\"123\",\"recipientDataPackages\":[\"telematics\",\"location\",\"telematics\",\"all\"],\"recipientOrganizationId\":\"456\",\"rejectedAtTime\":\"2024-01-15T11:00:00Z\",\"rejectedByUserId\":\"678\",\"status\":\"pending\",\"updatedAtTime\":\"2024-01-13T10:00:00Z\"}}"));
+        AssetSharingAgreementsCreateAssetSharingAgreementResponseBody response = client.betaApIs()
+                .createAssetSharingAgreement(AssetSharingAgreementsCreateAssetSharingAgreementRequestBody.builder()
+                        .operator(AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyOperator.PROVIDER)
+                        .recipientOrganizationId("456")
+                        .recipientOrganizationName("Acme Logistics")
+                        .providerDataPackages(Arrays.asList(
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem
+                                        .ALL,
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem
+                                        .MAINTENANCE,
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem
+                                        .MAINTENANCE,
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem
+                                        .MAINTENANCE))
+                        .recipientDataPackages(Arrays.asList(
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem
+                                        .ALL,
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem
+                                        .REEFER,
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem
+                                        .ALL,
+                                AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem
+                                        .MAINTENANCE))
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"operator\": \"provider\",\n"
+                + "  \"providerDataPackages\": [\n"
+                + "    \"all\",\n"
+                + "    \"maintenance\",\n"
+                + "    \"maintenance\",\n"
+                + "    \"maintenance\"\n"
+                + "  ],\n"
+                + "  \"recipientDataPackages\": [\n"
+                + "    \"all\",\n"
+                + "    \"reefer\",\n"
+                + "    \"all\",\n"
+                + "    \"maintenance\"\n"
+                + "  ],\n"
+                + "  \"recipientOrganizationId\": \"456\",\n"
+                + "  \"recipientOrganizationName\": \"Acme Logistics\"\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"acceptedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"acceptedByUserId\": \"678\",\n"
+                + "    \"canceledAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"canceledByParty\": \"provider\",\n"
+                + "    \"canceledByUserId\": \"678\",\n"
+                + "    \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "    \"createdByUserId\": \"111\",\n"
+                + "    \"deletedByUserId\": \"111\",\n"
+                + "    \"id\": \"33333333-3333-3333-3333-333333333333\",\n"
+                + "    \"operator\": \"provider\",\n"
+                + "    \"providerDataPackages\": [\n"
+                + "      \"safety\",\n"
+                + "      \"maintenance\"\n"
+                + "    ],\n"
+                + "    \"providerOrganizationId\": \"123\",\n"
+                + "    \"recipientDataPackages\": [\n"
+                + "      \"telematics\",\n"
+                + "      \"location\",\n"
+                + "      \"telematics\",\n"
+                + "      \"all\"\n"
+                + "    ],\n"
+                + "    \"recipientOrganizationId\": \"456\",\n"
+                + "    \"rejectedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"rejectedByUserId\": \"678\",\n"
+                + "    \"status\": \"pending\",\n"
+                + "    \"updatedAtTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testDeleteAssetSharingAgreement() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.betaApIs()
+                .deleteAssetSharingAgreement(
+                        DeleteAssetSharingAgreementRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testAcceptAssetSharingAgreement() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"acceptedAtTime\":\"2024-01-15T11:00:00Z\",\"acceptedByUserId\":\"678\",\"canceledAtTime\":\"2024-01-15T11:00:00Z\",\"canceledByParty\":\"provider\",\"canceledByUserId\":\"678\",\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"deletedByUserId\":\"111\",\"id\":\"33333333-3333-3333-3333-333333333333\",\"operator\":\"provider\",\"providerDataPackages\":[\"safety\",\"maintenance\"],\"providerOrganizationId\":\"123\",\"recipientDataPackages\":[\"telematics\",\"location\",\"telematics\",\"all\"],\"recipientOrganizationId\":\"456\",\"rejectedAtTime\":\"2024-01-15T11:00:00Z\",\"rejectedByUserId\":\"678\",\"status\":\"pending\",\"updatedAtTime\":\"2024-01-13T10:00:00Z\"}}"));
+        AssetSharingAgreementsAcceptAssetSharingAgreementResponseBody response = client.betaApIs()
+                .acceptAssetSharingAgreement(
+                        AcceptAssetSharingAgreementRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"acceptedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"acceptedByUserId\": \"678\",\n"
+                + "    \"canceledAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"canceledByParty\": \"provider\",\n"
+                + "    \"canceledByUserId\": \"678\",\n"
+                + "    \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "    \"createdByUserId\": \"111\",\n"
+                + "    \"deletedByUserId\": \"111\",\n"
+                + "    \"id\": \"33333333-3333-3333-3333-333333333333\",\n"
+                + "    \"operator\": \"provider\",\n"
+                + "    \"providerDataPackages\": [\n"
+                + "      \"safety\",\n"
+                + "      \"maintenance\"\n"
+                + "    ],\n"
+                + "    \"providerOrganizationId\": \"123\",\n"
+                + "    \"recipientDataPackages\": [\n"
+                + "      \"telematics\",\n"
+                + "      \"location\",\n"
+                + "      \"telematics\",\n"
+                + "      \"all\"\n"
+                + "    ],\n"
+                + "    \"recipientOrganizationId\": \"456\",\n"
+                + "    \"rejectedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"rejectedByUserId\": \"678\",\n"
+                + "    \"status\": \"pending\",\n"
+                + "    \"updatedAtTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListSharedAssets() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"endTime\":\"2025-01-13T10:00:00Z\",\"id\":\"11111111-1111-1111-1111-111111111111\",\"providerAssetId\":\"1234567890\",\"recipientAssetId\":\"9876543210\",\"serial\":\"GVJC-3VX-XXX\",\"startTime\":\"2024-01-13T10:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        AssetSharingAgreementsListSharedAssetsResponseBody response = client.betaApIs()
+                .listSharedAssets(
+                        ListSharedAssetsRequest.builder().dsaId("dsaId").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "      \"createdByUserId\": \"111\",\n"
+                + "      \"endTime\": \"2025-01-13T10:00:00Z\",\n"
+                + "      \"id\": \"11111111-1111-1111-1111-111111111111\",\n"
+                + "      \"providerAssetId\": \"1234567890\",\n"
+                + "      \"recipientAssetId\": \"9876543210\",\n"
+                + "      \"serial\": \"GVJC-3VX-XXX\",\n"
+                + "      \"startTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCreateSharedAssetsBatch() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"endTime\":\"2025-01-13T10:00:00Z\",\"id\":\"11111111-1111-1111-1111-111111111111\",\"providerAssetId\":\"1234567890\",\"recipientAssetId\":\"9876543210\",\"serial\":\"GVJC-3VX-XXX\",\"startTime\":\"2024-01-13T10:00:00Z\"}]}"));
+        AssetSharingAgreementsCreateSharedAssetsBatchResponseBody response = client.betaApIs()
+                .createSharedAssetsBatch(AssetSharingAgreementsCreateSharedAssetsBatchRequestBody.builder()
+                        .dsaId("dsaId")
+                        .data(Arrays.asList(CreateSharedAssetRequestObjectRequestBody.builder()
+                                .serial("GVJC3VXXXX")
+                                .build()))
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"serial\": \"GVJC3VXXXX\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "      \"createdByUserId\": \"111\",\n"
+                + "      \"endTime\": \"2025-01-13T10:00:00Z\",\n"
+                + "      \"id\": \"11111111-1111-1111-1111-111111111111\",\n"
+                + "      \"providerAssetId\": \"1234567890\",\n"
+                + "      \"recipientAssetId\": \"9876543210\",\n"
+                + "      \"serial\": \"GVJC-3VX-XXX\",\n"
+                + "      \"startTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testUpdateSharedAssetsBatch() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"endTime\":\"2025-01-13T10:00:00Z\",\"id\":\"11111111-1111-1111-1111-111111111111\",\"providerAssetId\":\"1234567890\",\"recipientAssetId\":\"9876543210\",\"serial\":\"GVJC-3VX-XXX\",\"startTime\":\"2024-01-13T10:00:00Z\"}]}"));
+        AssetSharingAgreementsUpdateSharedAssetsBatchResponseBody response = client.betaApIs()
+                .updateSharedAssetsBatch(AssetSharingAgreementsUpdateSharedAssetsBatchRequestBody.builder()
+                        .data(Arrays.asList(UpdateSharedAssetRequestObjectRequestBody.builder()
+                                .endTime("2025-01-13T10:00:00Z")
+                                .id("11111111-1111-1111-1111-111111111111")
+                                .build()))
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"endTime\": \"2025-01-13T10:00:00Z\",\n"
+                + "      \"id\": \"11111111-1111-1111-1111-111111111111\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "      \"createdByUserId\": \"111\",\n"
+                + "      \"endTime\": \"2025-01-13T10:00:00Z\",\n"
+                + "      \"id\": \"11111111-1111-1111-1111-111111111111\",\n"
+                + "      \"providerAssetId\": \"1234567890\",\n"
+                + "      \"recipientAssetId\": \"9876543210\",\n"
+                + "      \"serial\": \"GVJC-3VX-XXX\",\n"
+                + "      \"startTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCancelAssetSharingAgreement() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"acceptedAtTime\":\"2024-01-15T11:00:00Z\",\"acceptedByUserId\":\"678\",\"canceledAtTime\":\"2024-01-15T11:00:00Z\",\"canceledByParty\":\"provider\",\"canceledByUserId\":\"678\",\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"deletedByUserId\":\"111\",\"id\":\"33333333-3333-3333-3333-333333333333\",\"operator\":\"provider\",\"providerDataPackages\":[\"safety\",\"maintenance\"],\"providerOrganizationId\":\"123\",\"recipientDataPackages\":[\"telematics\",\"location\",\"telematics\",\"all\"],\"recipientOrganizationId\":\"456\",\"rejectedAtTime\":\"2024-01-15T11:00:00Z\",\"rejectedByUserId\":\"678\",\"status\":\"pending\",\"updatedAtTime\":\"2024-01-13T10:00:00Z\"}}"));
+        AssetSharingAgreementsCancelAssetSharingAgreementResponseBody response = client.betaApIs()
+                .cancelAssetSharingAgreement(
+                        CancelAssetSharingAgreementRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"acceptedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"acceptedByUserId\": \"678\",\n"
+                + "    \"canceledAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"canceledByParty\": \"provider\",\n"
+                + "    \"canceledByUserId\": \"678\",\n"
+                + "    \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "    \"createdByUserId\": \"111\",\n"
+                + "    \"deletedByUserId\": \"111\",\n"
+                + "    \"id\": \"33333333-3333-3333-3333-333333333333\",\n"
+                + "    \"operator\": \"provider\",\n"
+                + "    \"providerDataPackages\": [\n"
+                + "      \"safety\",\n"
+                + "      \"maintenance\"\n"
+                + "    ],\n"
+                + "    \"providerOrganizationId\": \"123\",\n"
+                + "    \"recipientDataPackages\": [\n"
+                + "      \"telematics\",\n"
+                + "      \"location\",\n"
+                + "      \"telematics\",\n"
+                + "      \"all\"\n"
+                + "    ],\n"
+                + "    \"recipientOrganizationId\": \"456\",\n"
+                + "    \"rejectedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"rejectedByUserId\": \"678\",\n"
+                + "    \"status\": \"pending\",\n"
+                + "    \"updatedAtTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testRejectAssetSharingAgreement() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"acceptedAtTime\":\"2024-01-15T11:00:00Z\",\"acceptedByUserId\":\"678\",\"canceledAtTime\":\"2024-01-15T11:00:00Z\",\"canceledByParty\":\"provider\",\"canceledByUserId\":\"678\",\"createdAtTime\":\"2024-01-13T10:00:00Z\",\"createdByUserId\":\"111\",\"deletedByUserId\":\"111\",\"id\":\"33333333-3333-3333-3333-333333333333\",\"operator\":\"provider\",\"providerDataPackages\":[\"safety\",\"maintenance\"],\"providerOrganizationId\":\"123\",\"recipientDataPackages\":[\"telematics\",\"location\",\"telematics\",\"all\"],\"recipientOrganizationId\":\"456\",\"rejectedAtTime\":\"2024-01-15T11:00:00Z\",\"rejectedByUserId\":\"678\",\"status\":\"pending\",\"updatedAtTime\":\"2024-01-13T10:00:00Z\"}}"));
+        AssetSharingAgreementsRejectAssetSharingAgreementResponseBody response = client.betaApIs()
+                .rejectAssetSharingAgreement(
+                        RejectAssetSharingAgreementRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"acceptedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"acceptedByUserId\": \"678\",\n"
+                + "    \"canceledAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"canceledByParty\": \"provider\",\n"
+                + "    \"canceledByUserId\": \"678\",\n"
+                + "    \"createdAtTime\": \"2024-01-13T10:00:00Z\",\n"
+                + "    \"createdByUserId\": \"111\",\n"
+                + "    \"deletedByUserId\": \"111\",\n"
+                + "    \"id\": \"33333333-3333-3333-3333-333333333333\",\n"
+                + "    \"operator\": \"provider\",\n"
+                + "    \"providerDataPackages\": [\n"
+                + "      \"safety\",\n"
+                + "      \"maintenance\"\n"
+                + "    ],\n"
+                + "    \"providerOrganizationId\": \"123\",\n"
+                + "    \"recipientDataPackages\": [\n"
+                + "      \"telematics\",\n"
+                + "      \"location\",\n"
+                + "      \"telematics\",\n"
+                + "      \"all\"\n"
+                + "    ],\n"
+                + "    \"recipientOrganizationId\": \"456\",\n"
+                + "    \"rejectedAtTime\": \"2024-01-15T11:00:00Z\",\n"
+                + "    \"rejectedByUserId\": \"678\",\n"
+                + "    \"status\": \"pending\",\n"
+                + "    \"updatedAtTime\": \"2024-01-13T10:00:00Z\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testListAssetAssignments() throws Exception {
         server.enqueue(
                 new MockResponse()
@@ -2562,7 +3337,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":false,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":false}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"isConnectedToVehicle\":false,\"relayStates\":[{\"id\":\"relay1\",\"isOpen\":true}],\"vehicleId\":\"1234\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EngineImmobilizerGetEngineImmobilizerStatesResponseBody response = client.betaApIs()
                 .getEngineImmobilizerStates(GetEngineImmobilizerStatesRequest.builder()
                         .vehicleIds("vehicleIds")
@@ -2584,7 +3359,7 @@ public class BetaApIsWireTest {
                 + "      \"relayStates\": [\n"
                 + "        {\n"
                 + "          \"id\": \"relay1\",\n"
-                + "          \"isOpen\": false\n"
+                + "          \"isOpen\": true\n"
                 + "        }\n"
                 + "      ],\n"
                 + "      \"vehicleId\": \"1234\"\n"
@@ -6051,10 +6826,11 @@ public class BetaApIsWireTest {
 
     @Test
     public void testGetReportRunData() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(
-                        TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json")));
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunDataResponseBody response = client.betaApIs()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -6064,8 +6840,49 @@ public class BetaApIsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json");
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"columns\": [\n"
+                + "      {\n"
+                + "        \"dataType\": \"string\",\n"
+                + "        \"name\": \"Device Name\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"rows\": [\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    ],\n"
+                + "    \"status\": \"complete\"\n"
+                + "  },\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -6865,6 +7682,7 @@ public class BetaApIsWireTest {
                         .safetyEventIds(Arrays.asList(
                                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
+                                "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590"))
                         .build());
         RecordedRequest request = server.takeRequest();
@@ -6875,6 +7693,7 @@ public class BetaApIsWireTest {
         String expectedRequestBody = ""
                 + "{\n"
                 + "  \"safetyEventIds\": [\n"
+                + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
                 + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
                 + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\",\n"
                 + "    \"bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590\"\n"

@@ -16,6 +16,9 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HARSH_IMPACT =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.HARSH_IMPACT, "HarshImpact");
 
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel PROXIMITY_WARNING =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.PROXIMITY_WARNING, "ProximityWarning");
+
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel HARSH_TURN =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.HARSH_TURN, "HarshTurn");
 
@@ -236,6 +239,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitDefensiveDriving();
             case HARSH_IMPACT:
                 return visitor.visitHarshImpact();
+            case PROXIMITY_WARNING:
+                return visitor.visitProximityWarning();
             case HARSH_TURN:
                 return visitor.visitHarshTurn();
             case OPERATIONAL_EVENT:
@@ -365,6 +370,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return DEFENSIVE_DRIVING;
             case "HarshImpact":
                 return HARSH_IMPACT;
+            case "ProximityWarning":
+                return PROXIMITY_WARNING;
             case "HarshTurn":
                 return HARSH_TURN;
             case "OperationalEvent":
@@ -577,6 +584,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         PROTECTIVE_EQUIPMENT,
 
+        PROXIMITY_WARNING,
+
         RAN_RED_LIGHT,
 
         REAR_COLLISION_WARNING,
@@ -700,6 +709,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
         T visitPolicyViolationMask();
 
         T visitProtectiveEquipment();
+
+        T visitProximityWarning();
 
         T visitRanRedLight();
 

@@ -19,6 +19,9 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
     public static final SafetyEventBehaviorLabelsResponseBodyType HARSH_IMPACT =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.HARSH_IMPACT, "HarshImpact");
 
+    public static final SafetyEventBehaviorLabelsResponseBodyType PROXIMITY_WARNING =
+            new SafetyEventBehaviorLabelsResponseBodyType(Value.PROXIMITY_WARNING, "ProximityWarning");
+
     public static final SafetyEventBehaviorLabelsResponseBodyType NEAR_COLLISON =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.NEAR_COLLISON, "NearCollison");
 
@@ -173,6 +176,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitDefensiveDriving();
             case HARSH_IMPACT:
                 return visitor.visitHarshImpact();
+            case PROXIMITY_WARNING:
+                return visitor.visitProximityWarning();
             case NEAR_COLLISON:
                 return visitor.visitNearCollison();
             case HARSH_TURN:
@@ -262,6 +267,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return DEFENSIVE_DRIVING;
             case "HarshImpact":
                 return HARSH_IMPACT;
+            case "ProximityWarning":
+                return PROXIMITY_WARNING;
             case "NearCollison":
                 return NEAR_COLLISON;
             case "HarshTurn":
@@ -402,6 +409,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
 
         PROTECTIVE_EQUIPMENT,
 
+        PROXIMITY_WARNING,
+
         RAN_RED_LIGHT,
 
         REAR_COLLISION_WARNING,
@@ -485,6 +494,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         T visitPolicyViolationMask();
 
         T visitProtectiveEquipment();
+
+        T visitProximityWarning();
 
         T visitRanRedLight();
 

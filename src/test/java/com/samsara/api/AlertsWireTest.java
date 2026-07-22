@@ -101,7 +101,7 @@ public class AlertsWireTest {
                 .postConfigurations(AlertsPostConfigurationsRequestBody.builder()
                         .isEnabled(true)
                         .name("My Harsh Event Alert")
-                        .scope(ScopeObjectRequestBody.builder().all(true).build())
+                        .scope(ScopeObjectRequestBody.builder().all(false).build())
                         .actions(Arrays.asList(ActionObjectRequestBody.builder()
                                 .actionTypeId(1)
                                 .build()))
@@ -124,7 +124,7 @@ public class AlertsWireTest {
                 + "  \"isEnabled\": true,\n"
                 + "  \"name\": \"My Harsh Event Alert\",\n"
                 + "  \"scope\": {\n"
-                + "    \"all\": true\n"
+                + "    \"all\": false\n"
                 + "  },\n"
                 + "  \"triggers\": [\n"
                 + "    {\n"
