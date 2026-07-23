@@ -394,6 +394,9 @@
                 "id": "id"
               },
               "expectedStopName": "expectedStopName",
+              "route": {
+                "id": "id"
+              },
               "vehicle": {
                 "id": "id",
                 "serial": "serial"
@@ -1149,6 +1152,9 @@
                 "id": "id"
               },
               "expectedStopName": "expectedStopName",
+              "route": {
+                "id": "id"
+              },
               "vehicle": {
                 "id": "id",
                 "serial": "serial"
@@ -1914,6 +1920,9 @@
                 "id": "id"
               },
               "expectedStopName": "expectedStopName",
+              "route": {
+                "id": "id"
+              },
               "vehicle": {
                 "id": "id",
                 "serial": "serial"
@@ -2669,6 +2678,9 @@
                 "id": "id"
               },
               "expectedStopName": "expectedStopName",
+              "route": {
+                "id": "id"
+              },
               "vehicle": {
                 "id": "id",
                 "serial": "serial"

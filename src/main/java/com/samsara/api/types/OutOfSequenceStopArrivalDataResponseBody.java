@@ -26,6 +26,8 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
 
     private final Optional<String> expectedStopName;
 
+    private final Optional<AlertObjectRouteResponseBody> route;
+
     private final Optional<AlertObjectVehicleResponseBody> vehicle;
 
     private final Map<String, Object> additionalProperties;
@@ -34,11 +36,13 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
             Optional<String> actualStopName,
             Optional<AlertObjectDriverResponseBody> driver,
             Optional<String> expectedStopName,
+            Optional<AlertObjectRouteResponseBody> route,
             Optional<AlertObjectVehicleResponseBody> vehicle,
             Map<String, Object> additionalProperties) {
         this.actualStopName = actualStopName;
         this.driver = driver;
         this.expectedStopName = expectedStopName;
+        this.route = route;
         this.vehicle = vehicle;
         this.additionalProperties = additionalProperties;
     }
@@ -64,6 +68,11 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
         return expectedStopName;
     }
 
+    @JsonProperty("route")
+    public Optional<AlertObjectRouteResponseBody> getRoute() {
+        return route;
+    }
+
     @JsonProperty("vehicle")
     public Optional<AlertObjectVehicleResponseBody> getVehicle() {
         return vehicle;
@@ -85,12 +94,13 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
         return actualStopName.equals(other.actualStopName)
                 && driver.equals(other.driver)
                 && expectedStopName.equals(other.expectedStopName)
+                && route.equals(other.route)
                 && vehicle.equals(other.vehicle);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.actualStopName, this.driver, this.expectedStopName, this.vehicle);
+        return Objects.hash(this.actualStopName, this.driver, this.expectedStopName, this.route, this.vehicle);
     }
 
     @java.lang.Override
@@ -110,6 +120,8 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
 
         private Optional<String> expectedStopName = Optional.empty();
 
+        private Optional<AlertObjectRouteResponseBody> route = Optional.empty();
+
         private Optional<AlertObjectVehicleResponseBody> vehicle = Optional.empty();
 
         @JsonAnySetter
@@ -121,6 +133,7 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
             actualStopName(other.getActualStopName());
             driver(other.getDriver());
             expectedStopName(other.getExpectedStopName());
+            route(other.getRoute());
             vehicle(other.getVehicle());
             return this;
         }
@@ -164,6 +177,17 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "route", nulls = Nulls.SKIP)
+        public Builder route(Optional<AlertObjectRouteResponseBody> route) {
+            this.route = route;
+            return this;
+        }
+
+        public Builder route(AlertObjectRouteResponseBody route) {
+            this.route = Optional.ofNullable(route);
+            return this;
+        }
+
         @JsonSetter(value = "vehicle", nulls = Nulls.SKIP)
         public Builder vehicle(Optional<AlertObjectVehicleResponseBody> vehicle) {
             this.vehicle = vehicle;
@@ -177,7 +201,7 @@ public final class OutOfSequenceStopArrivalDataResponseBody {
 
         public OutOfSequenceStopArrivalDataResponseBody build() {
             return new OutOfSequenceStopArrivalDataResponseBody(
-                    actualStopName, driver, expectedStopName, vehicle, additionalProperties);
+                    actualStopName, driver, expectedStopName, route, vehicle, additionalProperties);
         }
     }
 }
