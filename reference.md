@@ -3471,6 +3471,98 @@ client.betaApIs().listDriverWorkflows(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.setEquipmentDigitalOutput(id, request) -> EquipmentOutputControlSetEquipmentDigitalOutputResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set the state of a digital output on the gateway connected to a piece of powered equipment. The command is delivered to the device synchronously; a success response indicates the device acknowledged and applied the requested state. This requires an AG53 gateway connected to powered equipment via the CBL-AG-BEQP cable.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Equipment Output Control** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().setEquipmentDigitalOutput(
+    1000000L,
+    EquipmentOutputControlSetEquipmentDigitalOutputRequestBody
+        .builder()
+        .pinId(1L)
+        .state(true)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `Long` — The Samsara ID of the gateway whose digital output is being controlled. This must be an AG53 connected to powered equipment via the CBL-AG-BEQP cable.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationSeconds:** `Optional<Long>` — How long, in seconds, to hold the requested state before the device automatically reverts. Provide `0` (the default) to hold the state indefinitely. The maximum is 604800 seconds (7 days).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pinId:** `Long` — The digital output pin to control. Only pin `1` is currently supported.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**state:** `Boolean` — The desired output state. Provide `true` to energize the output, or `false` to de-energize it.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.getFleetInstallerPhotoUploads() -> FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody</code></summary>
 <dl>
 <dd>

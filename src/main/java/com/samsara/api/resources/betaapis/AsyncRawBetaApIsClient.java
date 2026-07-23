@@ -43,6 +43,7 @@ import com.samsara.api.resources.betaapis.requests.DeviceRecoveryMarkAssetMissin
 import com.samsara.api.resources.betaapis.requests.DeviceRecoveryRecoverAssetRequestBody;
 import com.samsara.api.resources.betaapis.requests.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
+import com.samsara.api.resources.betaapis.requests.EquipmentOutputControlSetEquipmentDigitalOutputRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsCreateFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsPatchFunctionRequestBody;
@@ -148,6 +149,7 @@ import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponse
 import com.samsara.api.types.EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
+import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
@@ -4735,6 +4737,139 @@ public class AsyncRawBetaApIsClient {
                         future.complete(new SamsaraApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
                                         responseBodyString, DriverWorkflowsListDriverWorkflowsResponseBody.class),
+                                response));
+                        return;
+                    }
+                    try {
+                        switch (response.code()) {
+                            case 401:
+                                future.completeExceptionally(new UnauthorizedError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 404:
+                                future.completeExceptionally(new NotFoundError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 405:
+                                future.completeExceptionally(new MethodNotAllowedError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 429:
+                                future.completeExceptionally(new TooManyRequestsError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 500:
+                                future.completeExceptionally(new InternalServerError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 501:
+                                future.completeExceptionally(new NotImplementedError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 502:
+                                future.completeExceptionally(new BadGatewayError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 503:
+                                future.completeExceptionally(new ServiceUnavailableError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                            case 504:
+                                future.completeExceptionally(new GatewayTimeoutError(
+                                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                                        response));
+                                return;
+                        }
+                    } catch (JsonProcessingException ignored) {
+                        // unable to map error response, throwing generic error
+                    }
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                    future.completeExceptionally(new SamsaraApiApiException(
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new SamsaraApiException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new SamsaraApiException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Set the state of a digital output on the gateway connected to a piece of powered equipment. The command is delivered to the device synchronously; a success response indicates the device acknowledged and applied the requested state. This requires an AG53 gateway connected to powered equipment via the CBL-AG-BEQP cable.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Equipment Output Control</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<EquipmentOutputControlSetEquipmentDigitalOutputResponseBody>>
+            setEquipmentDigitalOutput(long id, EquipmentOutputControlSetEquipmentDigitalOutputRequestBody request) {
+        return setEquipmentDigitalOutput(id, request, null);
+    }
+
+    /**
+     * Set the state of a digital output on the gateway connected to a piece of powered equipment. The command is delivered to the device synchronously; a success response indicates the device acknowledged and applied the requested state. This requires an AG53 gateway connected to powered equipment via the CBL-AG-BEQP cable.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Equipment Output Control</strong> under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<SamsaraApiHttpResponse<EquipmentOutputControlSetEquipmentDigitalOutputResponseBody>>
+            setEquipmentDigitalOutput(
+                    long id,
+                    EquipmentOutputControlSetEquipmentDigitalOutputRequestBody request,
+                    RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("fleet/equipment")
+                .addPathSegment(Long.toString(id))
+                .addPathSegments("digital-output");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (JsonProcessingException e) {
+            throw new SamsaraApiException("Failed to serialize request", e);
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
+                .method("PATCH", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<SamsaraApiHttpResponse<EquipmentOutputControlSetEquipmentDigitalOutputResponseBody>> future =
+                new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    if (response.isSuccessful()) {
+                        future.complete(new SamsaraApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(
+                                        responseBodyString,
+                                        EquipmentOutputControlSetEquipmentDigitalOutputResponseBody.class),
                                 response));
                         return;
                     }
