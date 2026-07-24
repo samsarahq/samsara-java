@@ -10,6 +10,9 @@ public final class WorkOrderWithTimeEntriesObjectResponseBodyStatus {
     public static final WorkOrderWithTimeEntriesObjectResponseBodyStatus ESTIMATE =
             new WorkOrderWithTimeEntriesObjectResponseBodyStatus(Value.ESTIMATE, "Estimate");
 
+    public static final WorkOrderWithTimeEntriesObjectResponseBodyStatus PLANNING =
+            new WorkOrderWithTimeEntriesObjectResponseBodyStatus(Value.PLANNING, "Planning");
+
     public static final WorkOrderWithTimeEntriesObjectResponseBodyStatus COMPLETED =
             new WorkOrderWithTimeEntriesObjectResponseBodyStatus(Value.COMPLETED, "Completed");
 
@@ -72,6 +75,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBodyStatus {
         switch (value) {
             case ESTIMATE:
                 return visitor.visitEstimate();
+            case PLANNING:
+                return visitor.visitPlanning();
             case COMPLETED:
                 return visitor.visitCompleted();
             case ASSIGNED:
@@ -101,6 +106,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBodyStatus {
         switch (value) {
             case "Estimate":
                 return ESTIMATE;
+            case "Planning":
+                return PLANNING;
             case "Completed":
                 return COMPLETED;
             case "Assigned":
@@ -145,6 +152,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBodyStatus {
 
         PENDING_PARTS,
 
+        PLANNING,
+
         UNKNOWN
     }
 
@@ -168,6 +177,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBodyStatus {
         T visitPendingApproval();
 
         T visitPendingParts();
+
+        T visitPlanning();
 
         T visitUnknown(String unknownType);
     }

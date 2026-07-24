@@ -301,7 +301,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     }
 
     /**
-     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>
+     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
     public WorkOrderWithTimeEntriesObjectResponseBodyStatus getStatus() {
@@ -450,7 +450,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
     public interface StatusStage {
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
+         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         UpdatedAtTimeStage status(@NotNull WorkOrderWithTimeEntriesObjectResponseBodyStatus status);
     }
@@ -742,8 +742,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code></p>
+         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

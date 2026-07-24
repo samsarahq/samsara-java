@@ -171,6 +171,8 @@ public class AsyncSamsaraApiClient {
 
     protected final Supplier<AsyncLegacyClient> legacyClient;
 
+    protected final Supplier<AsyncFleetClient> fleetClient;
+
     protected final Supplier<AsyncMessagesClient> messagesClient;
 
     protected final Supplier<AsyncTrailerAssignmentsClient> trailerAssignmentsClient;
@@ -178,8 +180,6 @@ public class AsyncSamsaraApiClient {
     protected final Supplier<AsyncSensorsClient> sensorsClient;
 
     protected final Supplier<AsyncWebhooksClient> webhooksClient;
-
-    protected final Supplier<AsyncFleetClient> fleetClient;
 
     public AsyncSamsaraApiClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
@@ -238,11 +238,11 @@ public class AsyncSamsaraApiClient {
         this.tripsClient = Suppliers.memoize(() -> new AsyncTripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new AsyncUsersClient(clientOptions));
         this.legacyClient = Suppliers.memoize(() -> new AsyncLegacyClient(clientOptions));
+        this.fleetClient = Suppliers.memoize(() -> new AsyncFleetClient(clientOptions));
         this.messagesClient = Suppliers.memoize(() -> new AsyncMessagesClient(clientOptions));
         this.trailerAssignmentsClient = Suppliers.memoize(() -> new AsyncTrailerAssignmentsClient(clientOptions));
         this.sensorsClient = Suppliers.memoize(() -> new AsyncSensorsClient(clientOptions));
         this.webhooksClient = Suppliers.memoize(() -> new AsyncWebhooksClient(clientOptions));
-        this.fleetClient = Suppliers.memoize(() -> new AsyncFleetClient(clientOptions));
     }
 
     public AsyncAddressesClient addresses() {
@@ -453,6 +453,10 @@ public class AsyncSamsaraApiClient {
         return this.legacyClient.get();
     }
 
+    public AsyncFleetClient fleet() {
+        return this.fleetClient.get();
+    }
+
     public AsyncMessagesClient messages() {
         return this.messagesClient.get();
     }
@@ -467,10 +471,6 @@ public class AsyncSamsaraApiClient {
 
     public AsyncWebhooksClient webhooks() {
         return this.webhooksClient.get();
-    }
-
-    public AsyncFleetClient fleet() {
-        return this.fleetClient.get();
     }
 
     public static AsyncSamsaraApiClientBuilder builder() {

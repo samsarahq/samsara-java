@@ -6370,7 +6370,7 @@ client.betaApIs().listUpcomingPreventiveMaintenance(
 <dl>
 <dd>
 
-**preventativeMaintenanceScheduleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Preventive Maintenance Schedule ID values.
+**scheduleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Preventive maintenance schedule ID values.
     
 </dd>
 </dl>
@@ -29165,7 +29165,7 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
-**status:** `Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus>` — The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`
+**status:** `Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus>` — The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     
 </dd>
 </dl>
@@ -29779,6 +29779,133 @@ client.previewApIs().unlockVehicle(
 <dd>
 
 **id:** `String` — The ID of the vehicle to lock or unlock. This can be a Samsara internal ID or an external ID in the format `samsara.vin:{VIN}`.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.previewApIs.updateUpcomingPreventiveMaintenance(request) -> EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().updateUpcomingPreventiveMaintenance(
+    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Samsara ID for the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule that the vehicle is scheduled to be serviced for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAt:** `Optional<String>` — Date and time when the prior instance was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAtEngineHours:** `Optional<Long>` — Engine hours at the time the prior instance was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time the prior instance was resolved. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextEngineHours:** `Optional<Long>` — The next engine hour value that the vehicle is scheduled to be serviced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextOdometer:** `Optional<Long>` — The next odometer value that the vehicle is scheduled to be serviced. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextTime:** `Optional<String>` — The next time that the vehicle is scheduled to be serviced for a date based PM.
     
 </dd>
 </dl>
@@ -33423,6 +33550,96 @@ To use this endpoint, select **Read Equipment** under the Equipment category whe
 ```java
 client.legacy().v1GetAllAssets();
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Fleet
+<details><summary><code>client.fleet.getFleetLocations() -> FleetLocationsGetFleetLocationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get current location of vehicles.
+
+ <b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fleet().getFleetLocations(
+    GetFleetLocationsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` — Pagination parameter indicating the cursor position to continue returning results after. Used in conjunction with the 'limit' parameter.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Pagination parameter indicating the number of results to return in this request. Used in conjunction with 'after'.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleIds:** `Optional<String>` — A comma-separated list of vehicle IDs. Example: `vehicleIds=1000,1001`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — A comma-separated list of tag IDs. Example: `tagIds=1000,1001`
+    
 </dd>
 </dl>
 </dd>

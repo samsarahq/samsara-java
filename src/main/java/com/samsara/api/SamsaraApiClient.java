@@ -171,6 +171,8 @@ public class SamsaraApiClient {
 
     protected final Supplier<LegacyClient> legacyClient;
 
+    protected final Supplier<FleetClient> fleetClient;
+
     protected final Supplier<MessagesClient> messagesClient;
 
     protected final Supplier<TrailerAssignmentsClient> trailerAssignmentsClient;
@@ -178,8 +180,6 @@ public class SamsaraApiClient {
     protected final Supplier<SensorsClient> sensorsClient;
 
     protected final Supplier<WebhooksClient> webhooksClient;
-
-    protected final Supplier<FleetClient> fleetClient;
 
     public SamsaraApiClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
@@ -238,11 +238,11 @@ public class SamsaraApiClient {
         this.tripsClient = Suppliers.memoize(() -> new TripsClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new UsersClient(clientOptions));
         this.legacyClient = Suppliers.memoize(() -> new LegacyClient(clientOptions));
+        this.fleetClient = Suppliers.memoize(() -> new FleetClient(clientOptions));
         this.messagesClient = Suppliers.memoize(() -> new MessagesClient(clientOptions));
         this.trailerAssignmentsClient = Suppliers.memoize(() -> new TrailerAssignmentsClient(clientOptions));
         this.sensorsClient = Suppliers.memoize(() -> new SensorsClient(clientOptions));
         this.webhooksClient = Suppliers.memoize(() -> new WebhooksClient(clientOptions));
-        this.fleetClient = Suppliers.memoize(() -> new FleetClient(clientOptions));
     }
 
     public AddressesClient addresses() {
@@ -453,6 +453,10 @@ public class SamsaraApiClient {
         return this.legacyClient.get();
     }
 
+    public FleetClient fleet() {
+        return this.fleetClient.get();
+    }
+
     public MessagesClient messages() {
         return this.messagesClient.get();
     }
@@ -467,10 +471,6 @@ public class SamsaraApiClient {
 
     public WebhooksClient webhooks() {
         return this.webhooksClient.get();
-    }
-
-    public FleetClient fleet() {
-        return this.fleetClient.get();
     }
 
     public static SamsaraApiClientBuilder builder() {

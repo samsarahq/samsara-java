@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListUpcomingPreventiveMaintenanceRequest.Builder.class)
 public final class ListUpcomingPreventiveMaintenanceRequest {
-    private final Optional<String> preventativeMaintenanceScheduleIds;
+    private final Optional<String> scheduleIds;
 
     private final Optional<String> assetIds;
 
@@ -31,12 +31,12 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
     private final Map<String, Object> additionalProperties;
 
     private ListUpcomingPreventiveMaintenanceRequest(
-            Optional<String> preventativeMaintenanceScheduleIds,
+            Optional<String> scheduleIds,
             Optional<String> assetIds,
             Optional<String> after,
             Optional<Long> limit,
             Map<String, Object> additionalProperties) {
-        this.preventativeMaintenanceScheduleIds = preventativeMaintenanceScheduleIds;
+        this.scheduleIds = scheduleIds;
         this.assetIds = assetIds;
         this.after = after;
         this.limit = limit;
@@ -44,11 +44,11 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
     }
 
     /**
-     * @return A filter on the data based on this comma-separated list of Preventive Maintenance Schedule ID values.
+     * @return A filter on the data based on this comma-separated list of Preventive maintenance schedule ID values.
      */
-    @JsonProperty("preventativeMaintenanceScheduleIds")
-    public Optional<String> getPreventativeMaintenanceScheduleIds() {
-        return preventativeMaintenanceScheduleIds;
+    @JsonProperty("scheduleIds")
+    public Optional<String> getScheduleIds() {
+        return scheduleIds;
     }
 
     /**
@@ -88,7 +88,7 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
     }
 
     private boolean equalTo(ListUpcomingPreventiveMaintenanceRequest other) {
-        return preventativeMaintenanceScheduleIds.equals(other.preventativeMaintenanceScheduleIds)
+        return scheduleIds.equals(other.scheduleIds)
                 && assetIds.equals(other.assetIds)
                 && after.equals(other.after)
                 && limit.equals(other.limit);
@@ -96,7 +96,7 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.preventativeMaintenanceScheduleIds, this.assetIds, this.after, this.limit);
+        return Objects.hash(this.scheduleIds, this.assetIds, this.after, this.limit);
     }
 
     @java.lang.Override
@@ -110,7 +110,7 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> preventativeMaintenanceScheduleIds = Optional.empty();
+        private Optional<String> scheduleIds = Optional.empty();
 
         private Optional<String> assetIds = Optional.empty();
 
@@ -124,7 +124,7 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
         private Builder() {}
 
         public Builder from(ListUpcomingPreventiveMaintenanceRequest other) {
-            preventativeMaintenanceScheduleIds(other.getPreventativeMaintenanceScheduleIds());
+            scheduleIds(other.getScheduleIds());
             assetIds(other.getAssetIds());
             after(other.getAfter());
             limit(other.getLimit());
@@ -132,16 +132,16 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
         }
 
         /**
-         * <p>A filter on the data based on this comma-separated list of Preventive Maintenance Schedule ID values.</p>
+         * <p>A filter on the data based on this comma-separated list of Preventive maintenance schedule ID values.</p>
          */
-        @JsonSetter(value = "preventativeMaintenanceScheduleIds", nulls = Nulls.SKIP)
-        public Builder preventativeMaintenanceScheduleIds(Optional<String> preventativeMaintenanceScheduleIds) {
-            this.preventativeMaintenanceScheduleIds = preventativeMaintenanceScheduleIds;
+        @JsonSetter(value = "scheduleIds", nulls = Nulls.SKIP)
+        public Builder scheduleIds(Optional<String> scheduleIds) {
+            this.scheduleIds = scheduleIds;
             return this;
         }
 
-        public Builder preventativeMaintenanceScheduleIds(String preventativeMaintenanceScheduleIds) {
-            this.preventativeMaintenanceScheduleIds = Optional.ofNullable(preventativeMaintenanceScheduleIds);
+        public Builder scheduleIds(String scheduleIds) {
+            this.scheduleIds = Optional.ofNullable(scheduleIds);
             return this;
         }
 
@@ -189,7 +189,7 @@ public final class ListUpcomingPreventiveMaintenanceRequest {
 
         public ListUpcomingPreventiveMaintenanceRequest build() {
             return new ListUpcomingPreventiveMaintenanceRequest(
-                    preventativeMaintenanceScheduleIds, assetIds, after, limit, additionalProperties);
+                    scheduleIds, assetIds, after, limit, additionalProperties);
         }
     }
 }

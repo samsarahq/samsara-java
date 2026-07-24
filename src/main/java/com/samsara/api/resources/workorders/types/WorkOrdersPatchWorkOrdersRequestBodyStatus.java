@@ -10,6 +10,9 @@ public final class WorkOrdersPatchWorkOrdersRequestBodyStatus {
     public static final WorkOrdersPatchWorkOrdersRequestBodyStatus ESTIMATE =
             new WorkOrdersPatchWorkOrdersRequestBodyStatus(Value.ESTIMATE, "Estimate");
 
+    public static final WorkOrdersPatchWorkOrdersRequestBodyStatus PLANNING =
+            new WorkOrdersPatchWorkOrdersRequestBodyStatus(Value.PLANNING, "Planning");
+
     public static final WorkOrdersPatchWorkOrdersRequestBodyStatus COMPLETED =
             new WorkOrdersPatchWorkOrdersRequestBodyStatus(Value.COMPLETED, "Completed");
 
@@ -72,6 +75,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBodyStatus {
         switch (value) {
             case ESTIMATE:
                 return visitor.visitEstimate();
+            case PLANNING:
+                return visitor.visitPlanning();
             case COMPLETED:
                 return visitor.visitCompleted();
             case ASSIGNED:
@@ -101,6 +106,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBodyStatus {
         switch (value) {
             case "Estimate":
                 return ESTIMATE;
+            case "Planning":
+                return PLANNING;
             case "Completed":
                 return COMPLETED;
             case "Assigned":
@@ -145,6 +152,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBodyStatus {
 
         PENDING_PARTS,
 
+        PLANNING,
+
         UNKNOWN
     }
 
@@ -168,6 +177,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBodyStatus {
         T visitPendingApproval();
 
         T visitPendingParts();
+
+        T visitPlanning();
 
         T visitUnknown(String unknownType);
     }

@@ -5347,7 +5347,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"asset\":{\"id\":\"281474976710656\"},\"currentEngineHours\":12345,\"currentOdometer\":12345,\"dueInDays\":12345,\"dueInEngineHours\":12345,\"dueInOdometer\":12345,\"lastResolvedAt\":\"2019-06-13T19:08:25Z\",\"lastResolvedAtEngineHours\":12345,\"lastResolvedAtOdometer\":12345,\"nextEngineHours\":12345,\"nextOdometer\":12345,\"nextTime\":\"2019-06-13T19:08:25Z\",\"preventativeMaintenanceSchedule\":{\"id\":\"281474976710656\"},\"status\":\"12345\",\"workOrder\":{\"id\":\"281474976710656\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"asset\":{\"id\":\"281474976710656\"},\"currentEngineHours\":12345,\"currentOdometer\":12345,\"dueInDays\":12345,\"dueInEngineHours\":12345,\"dueInOdometer\":12345,\"lastResolvedAt\":\"2019-06-13T19:08:25Z\",\"lastResolvedAtEngineHours\":12345,\"lastResolvedAtOdometer\":12345,\"nextEngineHours\":12345,\"nextOdometer\":12345,\"nextTime\":\"2019-06-13T19:08:25Z\",\"schedule\":{\"id\":\"281474976710656\"},\"status\":\"12345\",\"workOrder\":{\"id\":\"281474976710656\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody response =
                 client.betaApIs()
                         .listUpcomingPreventiveMaintenance(ListUpcomingPreventiveMaintenanceRequest.builder()
@@ -5377,7 +5377,7 @@ public class BetaApIsWireTest {
                 + "      \"nextEngineHours\": 12345,\n"
                 + "      \"nextOdometer\": 12345,\n"
                 + "      \"nextTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"preventativeMaintenanceSchedule\": {\n"
+                + "      \"schedule\": {\n"
                 + "        \"id\": \"281474976710656\"\n"
                 + "      },\n"
                 + "      \"status\": \"12345\",\n"

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
+import com.samsara.api.resources.previewapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
 import com.samsara.api.resources.previewapis.requests.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
 import com.samsara.api.resources.previewapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
@@ -12,6 +13,7 @@ import com.samsara.api.resources.previewapis.types.FleetInstallerPhotoUploadsPos
 import com.samsara.api.resources.previewapis.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType;
 import com.samsara.api.resources.previewapis.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
+import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody;
 import okhttp3.mockwebserver.MockResponse;
@@ -333,6 +335,116 @@ public class PreviewApIsWireTest {
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testUpdateUpcomingPreventiveMaintenance() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"asset\":{\"id\":\"281474976710656\"},\"currentEngineHours\":12345,\"currentOdometer\":12345,\"currentOdometerMiles\":12345,\"dueInDays\":12345,\"dueInEngineHours\":12345,\"dueInOdometer\":12345,\"dueInOdometerMiles\":12345,\"lastResolvedAt\":\"2019-06-13T19:08:25Z\",\"lastResolvedAtEngineHours\":12345,\"lastResolvedAtOdometer\":12345,\"nextEngineHours\":12345,\"nextOdometer\":12345,\"nextOdometerMiles\":12345,\"nextTime\":\"2019-06-13T19:08:25Z\",\"priority\":12345,\"schedule\":{\"id\":\"281474976710656\"},\"status\":\"12345\",\"workOrder\":{\"id\":\"281474976710656\"}}}"));
+        EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody response =
+                client.previewApIs()
+                        .updateUpcomingPreventiveMaintenance(
+                                EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
+                                        .builder()
+                                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"asset\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    },\n"
+                + "    \"currentEngineHours\": 12345,\n"
+                + "    \"currentOdometer\": 12345,\n"
+                + "    \"currentOdometerMiles\": 12345,\n"
+                + "    \"dueInDays\": 12345,\n"
+                + "    \"dueInEngineHours\": 12345,\n"
+                + "    \"dueInOdometer\": 12345,\n"
+                + "    \"dueInOdometerMiles\": 12345,\n"
+                + "    \"lastResolvedAt\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"lastResolvedAtEngineHours\": 12345,\n"
+                + "    \"lastResolvedAtOdometer\": 12345,\n"
+                + "    \"nextEngineHours\": 12345,\n"
+                + "    \"nextOdometer\": 12345,\n"
+                + "    \"nextOdometerMiles\": 12345,\n"
+                + "    \"nextTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"priority\": 12345,\n"
+                + "    \"schedule\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    },\n"
+                + "    \"status\": \"12345\",\n"
+                + "    \"workOrder\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
     }
 
     /**

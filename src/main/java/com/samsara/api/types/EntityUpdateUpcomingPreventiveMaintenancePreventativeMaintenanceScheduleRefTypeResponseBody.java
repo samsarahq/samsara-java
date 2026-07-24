@@ -17,20 +17,23 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody.Builder.class)
-public final class EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody {
+@JsonDeserialize(
+        builder =
+                EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody.Builder
+                        .class)
+public final class EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody {
     private final String id;
 
     private final Map<String, Object> additionalProperties;
 
-    private EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody(
+    private EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody(
             String id, Map<String, Object> additionalProperties) {
         this.id = id;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return The ID of the referenced WorkOrder.
+     * @return The ID of the referenced PreventativeMaintenanceSchedule.
      */
     @JsonProperty("id")
     public String getId() {
@@ -40,8 +43,11 @@ public final class EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponse
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody
-                && equalTo((EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody) other);
+        return other
+                        instanceof
+                        EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody
+                && equalTo((EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody)
+                        other);
     }
 
     @JsonAnyGetter
@@ -49,7 +55,8 @@ public final class EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponse
         return this.additionalProperties;
     }
 
-    private boolean equalTo(EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody other) {
+    private boolean equalTo(
+            EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody other) {
         return id.equals(other.id);
     }
 
@@ -69,15 +76,15 @@ public final class EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponse
 
     public interface IdStage {
         /**
-         * <p>The ID of the referenced WorkOrder.</p>
+         * <p>The ID of the referenced PreventativeMaintenanceSchedule.</p>
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody other);
+        Builder from(EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody other);
     }
 
     public interface _FinalStage {
-        EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody build();
+        EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -90,14 +97,15 @@ public final class EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponse
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody other) {
+        public Builder from(
+                EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody other) {
             id(other.getId());
             return this;
         }
 
         /**
-         * <p>The ID of the referenced WorkOrder.</p>
-         * <p>The ID of the referenced WorkOrder.</p>
+         * <p>The ID of the referenced PreventativeMaintenanceSchedule.</p>
+         * <p>The ID of the referenced PreventativeMaintenanceSchedule.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -108,8 +116,9 @@ public final class EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponse
         }
 
         @java.lang.Override
-        public EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody build() {
-            return new EntityUpcomingPreventativeMaintenanceWorkOrderRefTypeResponseBody(id, additionalProperties);
+        public EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody build() {
+            return new EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody(
+                    id, additionalProperties);
         }
     }
 }

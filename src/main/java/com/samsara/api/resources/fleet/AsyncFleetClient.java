@@ -4,13 +4,19 @@
 package com.samsara.api.resources.fleet;
 
 import com.samsara.api.core.ClientOptions;
+import com.samsara.api.core.RequestOptions;
 import com.samsara.api.core.Suppliers;
 import com.samsara.api.resources.fleet.attributes.AsyncAttributesClient;
 import com.samsara.api.resources.fleet.carrierproposedassignments.AsyncCarrierProposedAssignmentsClient;
+import com.samsara.api.resources.fleet.requests.GetFleetLocationsRequest;
+import com.samsara.api.types.FleetLocationsGetFleetLocationsResponseBody;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class AsyncFleetClient {
     protected final ClientOptions clientOptions;
+
+    private final AsyncRawFleetClient rawClient;
 
     protected final Supplier<AsyncCarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
 
@@ -18,9 +24,60 @@ public class AsyncFleetClient {
 
     public AsyncFleetClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new AsyncRawFleetClient(clientOptions);
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new AsyncCarrierProposedAssignmentsClient(clientOptions));
         this.attributesClient = Suppliers.memoize(() -> new AsyncAttributesClient(clientOptions));
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public AsyncRawFleetClient withRawResponse() {
+        return this.rawClient;
+    }
+
+    /**
+     * Get current location of vehicles.
+     * <p><b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FleetLocationsGetFleetLocationsResponseBody> getFleetLocations() {
+        return this.rawClient.getFleetLocations().thenApply(response -> response.body());
+    }
+
+    /**
+     * Get current location of vehicles.
+     * <p><b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FleetLocationsGetFleetLocationsResponseBody> getFleetLocations(
+            RequestOptions requestOptions) {
+        return this.rawClient.getFleetLocations(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get current location of vehicles.
+     * <p><b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FleetLocationsGetFleetLocationsResponseBody> getFleetLocations(
+            GetFleetLocationsRequest request) {
+        return this.rawClient.getFleetLocations(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get current location of vehicles.
+     * <p><b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Vehicle Statistics</strong> under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<FleetLocationsGetFleetLocationsResponseBody> getFleetLocations(
+            GetFleetLocationsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getFleetLocations(request, requestOptions).thenApply(response -> response.body());
     }
 
     public AsyncCarrierProposedAssignmentsClient carrierProposedAssignments() {
