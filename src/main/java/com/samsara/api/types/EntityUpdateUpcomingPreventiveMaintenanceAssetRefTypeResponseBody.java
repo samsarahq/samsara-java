@@ -17,13 +17,13 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody.Builder.class)
-public final class EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody {
+@JsonDeserialize(builder = EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody.Builder.class)
+public final class EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody {
     private final String id;
 
     private final Map<String, Object> additionalProperties;
 
-    private EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody(
+    private EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody(
             String id, Map<String, Object> additionalProperties) {
         this.id = id;
         this.additionalProperties = additionalProperties;
@@ -40,8 +40,8 @@ public final class EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody
-                && equalTo((EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody) other);
+        return other instanceof EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody
+                && equalTo((EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -49,7 +49,7 @@ public final class EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody
         return this.additionalProperties;
     }
 
-    private boolean equalTo(EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody other) {
+    private boolean equalTo(EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody other) {
         return id.equals(other.id);
     }
 
@@ -73,11 +73,11 @@ public final class EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody other);
+        Builder from(EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody other);
     }
 
     public interface _FinalStage {
-        EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody build();
+        EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -90,7 +90,7 @@ public final class EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody other) {
+        public Builder from(EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody other) {
             id(other.getId());
             return this;
         }
@@ -108,8 +108,8 @@ public final class EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody
         }
 
         @java.lang.Override
-        public EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody build() {
-            return new EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody(id, additionalProperties);
+        public EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody build() {
+            return new EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody(id, additionalProperties);
         }
     }
 }

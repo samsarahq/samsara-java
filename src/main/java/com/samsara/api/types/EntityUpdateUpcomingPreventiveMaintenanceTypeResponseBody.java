@@ -18,19 +18,23 @@ import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = EntityListUpcomingPreventiveMaintenanceTypeResponseBody.Builder.class)
-public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
-    private final Optional<EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset;
+@JsonDeserialize(builder = EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody.Builder.class)
+public final class EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody {
+    private final Optional<EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset;
 
     private final Optional<Long> currentEngineHours;
 
     private final Optional<Long> currentOdometer;
+
+    private final Optional<Long> currentOdometerMiles;
 
     private final Optional<Long> dueInDays;
 
     private final Optional<Long> dueInEngineHours;
 
     private final Optional<Long> dueInOdometer;
+
+    private final Optional<Long> dueInOdometerMiles;
 
     private final Optional<String> lastResolvedAt;
 
@@ -42,47 +46,59 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
     private final Optional<Long> nextOdometer;
 
+    private final Optional<Long> nextOdometerMiles;
+
     private final Optional<String> nextTime;
 
-    private final Optional<EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
+    private final Optional<Long> priority;
+
+    private final Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
             schedule;
 
     private final Optional<String> status;
 
-    private final Optional<EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder;
+    private final Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder;
 
     private final Map<String, Object> additionalProperties;
 
-    private EntityListUpcomingPreventiveMaintenanceTypeResponseBody(
-            Optional<EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset,
+    private EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody(
+            Optional<EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset,
             Optional<Long> currentEngineHours,
             Optional<Long> currentOdometer,
+            Optional<Long> currentOdometerMiles,
             Optional<Long> dueInDays,
             Optional<Long> dueInEngineHours,
             Optional<Long> dueInOdometer,
+            Optional<Long> dueInOdometerMiles,
             Optional<String> lastResolvedAt,
             Optional<Long> lastResolvedAtEngineHours,
             Optional<Long> lastResolvedAtOdometer,
             Optional<Long> nextEngineHours,
             Optional<Long> nextOdometer,
+            Optional<Long> nextOdometerMiles,
             Optional<String> nextTime,
-            Optional<EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
+            Optional<Long> priority,
+            Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
                     schedule,
             Optional<String> status,
-            Optional<EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder,
+            Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder,
             Map<String, Object> additionalProperties) {
         this.asset = asset;
         this.currentEngineHours = currentEngineHours;
         this.currentOdometer = currentOdometer;
+        this.currentOdometerMiles = currentOdometerMiles;
         this.dueInDays = dueInDays;
         this.dueInEngineHours = dueInEngineHours;
         this.dueInOdometer = dueInOdometer;
+        this.dueInOdometerMiles = dueInOdometerMiles;
         this.lastResolvedAt = lastResolvedAt;
         this.lastResolvedAtEngineHours = lastResolvedAtEngineHours;
         this.lastResolvedAtOdometer = lastResolvedAtOdometer;
         this.nextEngineHours = nextEngineHours;
         this.nextOdometer = nextOdometer;
+        this.nextOdometerMiles = nextOdometerMiles;
         this.nextTime = nextTime;
+        this.priority = priority;
         this.schedule = schedule;
         this.status = status;
         this.workOrder = workOrder;
@@ -90,7 +106,7 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
     }
 
     @JsonProperty("asset")
-    public Optional<EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> getAsset() {
+    public Optional<EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> getAsset() {
         return asset;
     }
 
@@ -108,6 +124,14 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
     @JsonProperty("currentOdometer")
     public Optional<Long> getCurrentOdometer() {
         return currentOdometer;
+    }
+
+    /**
+     * @return Current odometer reading for the asset at the time of query. Measured in miles.
+     */
+    @JsonProperty("currentOdometerMiles")
+    public Optional<Long> getCurrentOdometerMiles() {
+        return currentOdometerMiles;
     }
 
     /**
@@ -132,6 +156,14 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
     @JsonProperty("dueInOdometer")
     public Optional<Long> getDueInOdometer() {
         return dueInOdometer;
+    }
+
+    /**
+     * @return The odometer distance until the next scheduled service. Measured in miles.
+     */
+    @JsonProperty("dueInOdometerMiles")
+    public Optional<Long> getDueInOdometerMiles() {
+        return dueInOdometerMiles;
     }
 
     /**
@@ -175,6 +207,14 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
     }
 
     /**
+     * @return The next odometer value that the vehicle is scheduled to be serviced. Measured in miles.
+     */
+    @JsonProperty("nextOdometerMiles")
+    public Optional<Long> getNextOdometerMiles() {
+        return nextOdometerMiles;
+    }
+
+    /**
      * @return The next time that the vehicle is scheduled to be serviced for a date based PM.
      */
     @JsonProperty("nextTime")
@@ -182,8 +222,16 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
         return nextTime;
     }
 
+    /**
+     * @return Estimated number of days until the next scheduled service, calculated by converting mileage and engine hour schedules to approximate daily rates. We take the minimum value for schedules with multiple interval types.
+     */
+    @JsonProperty("priority")
+    public Optional<Long> getPriority() {
+        return priority;
+    }
+
     @JsonProperty("schedule")
-    public Optional<EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
+    public Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
             getSchedule() {
         return schedule;
     }
@@ -197,15 +245,15 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
     }
 
     @JsonProperty("workOrder")
-    public Optional<EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> getWorkOrder() {
+    public Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> getWorkOrder() {
         return workOrder;
     }
 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof EntityListUpcomingPreventiveMaintenanceTypeResponseBody
-                && equalTo((EntityListUpcomingPreventiveMaintenanceTypeResponseBody) other);
+        return other instanceof EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody
+                && equalTo((EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -213,19 +261,23 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(EntityListUpcomingPreventiveMaintenanceTypeResponseBody other) {
+    private boolean equalTo(EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody other) {
         return asset.equals(other.asset)
                 && currentEngineHours.equals(other.currentEngineHours)
                 && currentOdometer.equals(other.currentOdometer)
+                && currentOdometerMiles.equals(other.currentOdometerMiles)
                 && dueInDays.equals(other.dueInDays)
                 && dueInEngineHours.equals(other.dueInEngineHours)
                 && dueInOdometer.equals(other.dueInOdometer)
+                && dueInOdometerMiles.equals(other.dueInOdometerMiles)
                 && lastResolvedAt.equals(other.lastResolvedAt)
                 && lastResolvedAtEngineHours.equals(other.lastResolvedAtEngineHours)
                 && lastResolvedAtOdometer.equals(other.lastResolvedAtOdometer)
                 && nextEngineHours.equals(other.nextEngineHours)
                 && nextOdometer.equals(other.nextOdometer)
+                && nextOdometerMiles.equals(other.nextOdometerMiles)
                 && nextTime.equals(other.nextTime)
+                && priority.equals(other.priority)
                 && schedule.equals(other.schedule)
                 && status.equals(other.status)
                 && workOrder.equals(other.workOrder);
@@ -237,15 +289,19 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
                 this.asset,
                 this.currentEngineHours,
                 this.currentOdometer,
+                this.currentOdometerMiles,
                 this.dueInDays,
                 this.dueInEngineHours,
                 this.dueInOdometer,
+                this.dueInOdometerMiles,
                 this.lastResolvedAt,
                 this.lastResolvedAtEngineHours,
                 this.lastResolvedAtOdometer,
                 this.nextEngineHours,
                 this.nextOdometer,
+                this.nextOdometerMiles,
                 this.nextTime,
+                this.priority,
                 this.schedule,
                 this.status,
                 this.workOrder);
@@ -262,17 +318,21 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset = Optional.empty();
+        private Optional<EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset = Optional.empty();
 
         private Optional<Long> currentEngineHours = Optional.empty();
 
         private Optional<Long> currentOdometer = Optional.empty();
+
+        private Optional<Long> currentOdometerMiles = Optional.empty();
 
         private Optional<Long> dueInDays = Optional.empty();
 
         private Optional<Long> dueInEngineHours = Optional.empty();
 
         private Optional<Long> dueInOdometer = Optional.empty();
+
+        private Optional<Long> dueInOdometerMiles = Optional.empty();
 
         private Optional<String> lastResolvedAt = Optional.empty();
 
@@ -284,14 +344,18 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
         private Optional<Long> nextOdometer = Optional.empty();
 
+        private Optional<Long> nextOdometerMiles = Optional.empty();
+
         private Optional<String> nextTime = Optional.empty();
 
-        private Optional<EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
+        private Optional<Long> priority = Optional.empty();
+
+        private Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
                 schedule = Optional.empty();
 
         private Optional<String> status = Optional.empty();
 
-        private Optional<EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder =
+        private Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder =
                 Optional.empty();
 
         @JsonAnySetter
@@ -299,19 +363,23 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
         private Builder() {}
 
-        public Builder from(EntityListUpcomingPreventiveMaintenanceTypeResponseBody other) {
+        public Builder from(EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody other) {
             asset(other.getAsset());
             currentEngineHours(other.getCurrentEngineHours());
             currentOdometer(other.getCurrentOdometer());
+            currentOdometerMiles(other.getCurrentOdometerMiles());
             dueInDays(other.getDueInDays());
             dueInEngineHours(other.getDueInEngineHours());
             dueInOdometer(other.getDueInOdometer());
+            dueInOdometerMiles(other.getDueInOdometerMiles());
             lastResolvedAt(other.getLastResolvedAt());
             lastResolvedAtEngineHours(other.getLastResolvedAtEngineHours());
             lastResolvedAtOdometer(other.getLastResolvedAtOdometer());
             nextEngineHours(other.getNextEngineHours());
             nextOdometer(other.getNextOdometer());
+            nextOdometerMiles(other.getNextOdometerMiles());
             nextTime(other.getNextTime());
+            priority(other.getPriority());
             schedule(other.getSchedule());
             status(other.getStatus());
             workOrder(other.getWorkOrder());
@@ -319,12 +387,12 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
         }
 
         @JsonSetter(value = "asset", nulls = Nulls.SKIP)
-        public Builder asset(Optional<EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset) {
+        public Builder asset(Optional<EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody> asset) {
             this.asset = asset;
             return this;
         }
 
-        public Builder asset(EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody asset) {
+        public Builder asset(EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody asset) {
             this.asset = Optional.ofNullable(asset);
             return this;
         }
@@ -354,6 +422,20 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
         public Builder currentOdometer(Long currentOdometer) {
             this.currentOdometer = Optional.ofNullable(currentOdometer);
+            return this;
+        }
+
+        /**
+         * <p>Current odometer reading for the asset at the time of query. Measured in miles.</p>
+         */
+        @JsonSetter(value = "currentOdometerMiles", nulls = Nulls.SKIP)
+        public Builder currentOdometerMiles(Optional<Long> currentOdometerMiles) {
+            this.currentOdometerMiles = currentOdometerMiles;
+            return this;
+        }
+
+        public Builder currentOdometerMiles(Long currentOdometerMiles) {
+            this.currentOdometerMiles = Optional.ofNullable(currentOdometerMiles);
             return this;
         }
 
@@ -396,6 +478,20 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
         public Builder dueInOdometer(Long dueInOdometer) {
             this.dueInOdometer = Optional.ofNullable(dueInOdometer);
+            return this;
+        }
+
+        /**
+         * <p>The odometer distance until the next scheduled service. Measured in miles.</p>
+         */
+        @JsonSetter(value = "dueInOdometerMiles", nulls = Nulls.SKIP)
+        public Builder dueInOdometerMiles(Optional<Long> dueInOdometerMiles) {
+            this.dueInOdometerMiles = dueInOdometerMiles;
+            return this;
+        }
+
+        public Builder dueInOdometerMiles(Long dueInOdometerMiles) {
+            this.dueInOdometerMiles = Optional.ofNullable(dueInOdometerMiles);
             return this;
         }
 
@@ -470,6 +566,20 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
         }
 
         /**
+         * <p>The next odometer value that the vehicle is scheduled to be serviced. Measured in miles.</p>
+         */
+        @JsonSetter(value = "nextOdometerMiles", nulls = Nulls.SKIP)
+        public Builder nextOdometerMiles(Optional<Long> nextOdometerMiles) {
+            this.nextOdometerMiles = nextOdometerMiles;
+            return this;
+        }
+
+        public Builder nextOdometerMiles(Long nextOdometerMiles) {
+            this.nextOdometerMiles = Optional.ofNullable(nextOdometerMiles);
+            return this;
+        }
+
+        /**
          * <p>The next time that the vehicle is scheduled to be serviced for a date based PM.</p>
          */
         @JsonSetter(value = "nextTime", nulls = Nulls.SKIP)
@@ -483,16 +593,30 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
             return this;
         }
 
+        /**
+         * <p>Estimated number of days until the next scheduled service, calculated by converting mileage and engine hour schedules to approximate daily rates. We take the minimum value for schedules with multiple interval types.</p>
+         */
+        @JsonSetter(value = "priority", nulls = Nulls.SKIP)
+        public Builder priority(Optional<Long> priority) {
+            this.priority = priority;
+            return this;
+        }
+
+        public Builder priority(Long priority) {
+            this.priority = Optional.ofNullable(priority);
+            return this;
+        }
+
         @JsonSetter(value = "schedule", nulls = Nulls.SKIP)
         public Builder schedule(
-                Optional<EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
+                Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
                         schedule) {
             this.schedule = schedule;
             return this;
         }
 
         public Builder schedule(
-                EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody schedule) {
+                EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody schedule) {
             this.schedule = Optional.ofNullable(schedule);
             return this;
         }
@@ -513,30 +637,34 @@ public final class EntityListUpcomingPreventiveMaintenanceTypeResponseBody {
 
         @JsonSetter(value = "workOrder", nulls = Nulls.SKIP)
         public Builder workOrder(
-                Optional<EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder) {
+                Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder) {
             this.workOrder = workOrder;
             return this;
         }
 
-        public Builder workOrder(EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody workOrder) {
+        public Builder workOrder(EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody workOrder) {
             this.workOrder = Optional.ofNullable(workOrder);
             return this;
         }
 
-        public EntityListUpcomingPreventiveMaintenanceTypeResponseBody build() {
-            return new EntityListUpcomingPreventiveMaintenanceTypeResponseBody(
+        public EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody build() {
+            return new EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody(
                     asset,
                     currentEngineHours,
                     currentOdometer,
+                    currentOdometerMiles,
                     dueInDays,
                     dueInEngineHours,
                     dueInOdometer,
+                    dueInOdometerMiles,
                     lastResolvedAt,
                     lastResolvedAtEngineHours,
                     lastResolvedAtOdometer,
                     nextEngineHours,
                     nextOdometer,
+                    nextOdometerMiles,
                     nextTime,
+                    priority,
                     schedule,
                     status,
                     workOrder,

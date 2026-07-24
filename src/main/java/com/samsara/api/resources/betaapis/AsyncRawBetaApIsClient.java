@@ -9380,12 +9380,9 @@ public class AsyncRawBetaApIsClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("maintenance/preventive/upcoming");
-        if (request.getPreventativeMaintenanceScheduleIds().isPresent()) {
+        if (request.getScheduleIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "preventativeMaintenanceScheduleIds",
-                    request.getPreventativeMaintenanceScheduleIds().get(),
-                    false);
+                    httpUrl, "scheduleIds", request.getScheduleIds().get(), false);
         }
         if (request.getAssetIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
