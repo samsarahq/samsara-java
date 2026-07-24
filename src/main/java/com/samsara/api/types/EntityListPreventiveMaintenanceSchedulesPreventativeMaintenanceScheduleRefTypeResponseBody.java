@@ -18,13 +18,15 @@ import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
-        builder = EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody.Builder.class)
-public final class EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody {
+        builder =
+                EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody.Builder
+                        .class)
+public final class EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody {
     private final String id;
 
     private final Map<String, Object> additionalProperties;
 
-    private EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody(
+    private EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody(
             String id, Map<String, Object> additionalProperties) {
         this.id = id;
         this.additionalProperties = additionalProperties;
@@ -41,8 +43,10 @@ public final class EntityPreventativeMaintenanceSchedulePreventativeMaintenanceS
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody
-                && equalTo((EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody)
+        return other
+                        instanceof
+                        EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody
+                && equalTo((EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody)
                         other);
     }
 
@@ -52,7 +56,7 @@ public final class EntityPreventativeMaintenanceSchedulePreventativeMaintenanceS
     }
 
     private boolean equalTo(
-            EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody other) {
+            EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody other) {
         return id.equals(other.id);
     }
 
@@ -76,11 +80,11 @@ public final class EntityPreventativeMaintenanceSchedulePreventativeMaintenanceS
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody other);
+        Builder from(EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody other);
     }
 
     public interface _FinalStage {
-        EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody build();
+        EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -94,7 +98,7 @@ public final class EntityPreventativeMaintenanceSchedulePreventativeMaintenanceS
 
         @java.lang.Override
         public Builder from(
-                EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody other) {
+                EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody other) {
             id(other.getId());
             return this;
         }
@@ -112,8 +116,8 @@ public final class EntityPreventativeMaintenanceSchedulePreventativeMaintenanceS
         }
 
         @java.lang.Override
-        public EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody build() {
-            return new EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody(
+        public EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody build() {
+            return new EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody(
                     id, additionalProperties);
         }
     }

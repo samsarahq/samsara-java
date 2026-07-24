@@ -3652,6 +3652,192 @@ client.betaApIs().getFleetInstallerPhotoUploads(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.postFleetInstallerPhotoUpload(request) -> FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().postFleetInstallerPhotoUpload(
+    FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody
+        .builder()
+        .contentMd5("rL0Y20zC+Fzt72VPzMSk2A==")
+        .deviceId("281474977961335")
+        .fileFormatType(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType.IMAGE_JPEG)
+        .fileName("front_camera_install.jpg")
+        .hardwareType(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType.VEHICLE_GATEWAY)
+        .photoType(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType.INSTALL_PHOTO)
+        .sizeBytes(482193L)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contentMd5:** `String` — Base64-encoded MD5 of the file bytes. Signed into the presigned URL as Content-MD5; object storage verifies upload integrity on PUT. Must be exactly 24 characters (base64-encoded 16-byte MD5 digest).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**deviceId:** `String` — Samsara device ID. The device must belong to the caller's organization.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fileFormatType:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType` — File format. Samsara maps this to the corresponding MIME type for the presigned URL.  Valid values: `imageJpeg`, `imagePng`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fileName:** `String` — Original file name. Max 255 characters; printable characters only; no null bytes or path separators (/ or \).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hardwareType:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType` — Hardware category of the device being installed.  Valid values: `vehicleGateway`, `assetGateway`, `camera`, `cameraConnector`, `environmentalMonitor`, `assetTag`, `trackingLabel`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**photoType:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType` — Purpose of the photo.  Valid values: `installPhoto`, `assetPhoto`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sizeBytes:** `Long` — File size in bytes. Validated against the maximum allowed size (10 MB) and signed into the presigned URL as Content-Length.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.postFleetInstallerPhotoUploadComplete() -> FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().postFleetInstallerPhotoUploadComplete(
+    PostFleetInstallerPhotoUploadCompleteRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Upload session ID to mark as complete. Accepts exactly one ID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listVendorCategories() -> MaintenanceVendorsListVendorCategoriesResponseBody</code></summary>
 <dl>
 <dd>
@@ -6289,7 +6475,7 @@ client.betaApIs().listPreventiveMaintenanceSchedules(
 <dl>
 <dd>
 
-**idIn:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
     
 </dd>
 </dl>
@@ -29437,204 +29623,6 @@ client.previewApIs().createDriverAuthToken(
 <dd>
 
 **username:** `Optional<String>` — Optional. Username of the driver. This is the login identifier configured when the driver is created. One of `id`, `externalId`, or `username` is required.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.postFleetInstallerPhotoUpload(request) -> FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().postFleetInstallerPhotoUpload(
-    FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody
-        .builder()
-        .contentMd5("rL0Y20zC+Fzt72VPzMSk2A==")
-        .deviceId("281474977961335")
-        .fileFormatType(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType.IMAGE_JPEG)
-        .fileName("front_camera_install.jpg")
-        .hardwareType(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType.VEHICLE_GATEWAY)
-        .photoType(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType.INSTALL_PHOTO)
-        .sizeBytes(482193L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**contentMd5:** `String` — Base64-encoded MD5 of the file bytes. Signed into the presigned URL as Content-MD5; object storage verifies upload integrity on PUT. Must be exactly 24 characters (base64-encoded 16-byte MD5 digest).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**deviceId:** `String` — Samsara device ID. The device must belong to the caller's organization.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**fileFormatType:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType` — File format. Samsara maps this to the corresponding MIME type for the presigned URL.  Valid values: `imageJpeg`, `imagePng`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**fileName:** `String` — Original file name. Max 255 characters; printable characters only; no null bytes or path separators (/ or \).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**hardwareType:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType` — Hardware category of the device being installed.  Valid values: `vehicleGateway`, `assetGateway`, `camera`, `cameraConnector`, `environmentalMonitor`, `assetTag`, `trackingLabel`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**photoType:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType` — Purpose of the photo.  Valid values: `installPhoto`, `assetPhoto`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sizeBytes:** `Long` — File size in bytes. Validated against the maximum allowed size (10 MB) and signed into the presigned URL as Content-Length.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.postFleetInstallerPhotoUploadComplete() -> FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().postFleetInstallerPhotoUploadComplete(
-    PostFleetInstallerPhotoUploadCompleteRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Upload session ID to mark as complete. Accepts exactly one ID.
     
 </dd>
 </dl>

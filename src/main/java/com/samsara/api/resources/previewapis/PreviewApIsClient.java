@@ -7,14 +7,10 @@ import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
 import com.samsara.api.resources.previewapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
-import com.samsara.api.resources.previewapis.requests.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
-import com.samsara.api.resources.previewapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody;
-import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody;
-import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody;
 
 public class PreviewApIsClient {
     protected final ClientOptions clientOptions;
@@ -71,91 +67,6 @@ public class PreviewApIsClient {
     public DriversAuthTokenCreateDriverAuthTokenResponseBody createDriverAuthToken(
             DriversAuthTokenCreateDriverAuthTokenRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.createDriverAuthToken(request, requestOptions).body();
-    }
-
-    /**
-     * Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody postFleetInstallerPhotoUpload(
-            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request) {
-        return this.rawClient.postFleetInstallerPhotoUpload(request).body();
-    }
-
-    /**
-     * Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody postFleetInstallerPhotoUpload(
-            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request, RequestOptions requestOptions) {
-        return this.rawClient
-                .postFleetInstallerPhotoUpload(request, requestOptions)
-                .body();
-    }
-
-    /**
-     * Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody
-            postFleetInstallerPhotoUploadComplete(PostFleetInstallerPhotoUploadCompleteRequest request) {
-        return this.rawClient.postFleetInstallerPhotoUploadComplete(request).body();
-    }
-
-    /**
-     * Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
-     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody
-            postFleetInstallerPhotoUploadComplete(
-                    PostFleetInstallerPhotoUploadCompleteRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .postFleetInstallerPhotoUploadComplete(request, requestOptions)
-                .body();
     }
 
     /**
