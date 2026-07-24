@@ -48,6 +48,7 @@ import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceC
 import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentOutputControlSetEquipmentDigitalOutputRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsCreateFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsPatchFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
@@ -108,6 +109,7 @@ import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMainten
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPostPlaceRequestBody;
+import com.samsara.api.resources.betaapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
 import com.samsara.api.resources.betaapis.requests.PreferredStationsPatchPreferredStationRequestBody;
 import com.samsara.api.resources.betaapis.requests.PreferredStationsPostPreferredStationRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
@@ -159,6 +161,8 @@ import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUp
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody;
+import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody;
+import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionLogsResponseBody;
@@ -3984,6 +3988,194 @@ public class RawBetaApIsClient {
     }
 
     /**
+     * Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody>
+            postFleetInstallerPhotoUpload(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request) {
+        return postFleetInstallerPhotoUpload(request, null);
+    }
+
+    /**
+     * Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody>
+            postFleetInstallerPhotoUpload(
+                    FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request,
+                    RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("fleet/installer/photo-uploads");
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (JsonProcessingException e) {
+            throw new SamsaraApiException("Failed to serialize request", e);
+        }
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString,
+                                FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody>
+            postFleetInstallerPhotoUploadComplete(PostFleetInstallerPhotoUploadCompleteRequest request) {
+        return postFleetInstallerPhotoUploadComplete(request, null);
+    }
+
+    /**
+     * Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody>
+            postFleetInstallerPhotoUploadComplete(
+                    PostFleetInstallerPhotoUploadCompleteRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("fleet/installer/photo-uploads/complete");
+        QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", RequestBody.create("", null))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString,
+                                FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
      * Returns the list of vendor categories available for maintenance vendors.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
@@ -7103,9 +7295,8 @@ public class RawBetaApIsClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("maintenance/preventive/schedules");
-        if (request.getIdIn().isPresent()) {
-            QueryStringMapper.addQueryParameter(
-                    httpUrl, "idIn", request.getIdIn().get(), false);
+        if (request.getIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(httpUrl, "ids", request.getIds().get(), false);
         }
         if (request.getAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(

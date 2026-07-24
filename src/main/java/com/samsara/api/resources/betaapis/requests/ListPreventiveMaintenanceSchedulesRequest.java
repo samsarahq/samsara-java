@@ -20,7 +20,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ListPreventiveMaintenanceSchedulesRequest.Builder.class)
 public final class ListPreventiveMaintenanceSchedulesRequest {
-    private final Optional<String> idIn;
+    private final Optional<String> ids;
 
     private final Optional<String> after;
 
@@ -29,11 +29,11 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
     private final Map<String, Object> additionalProperties;
 
     private ListPreventiveMaintenanceSchedulesRequest(
-            Optional<String> idIn,
+            Optional<String> ids,
             Optional<String> after,
             Optional<Long> limit,
             Map<String, Object> additionalProperties) {
-        this.idIn = idIn;
+        this.ids = ids;
         this.after = after;
         this.limit = limit;
         this.additionalProperties = additionalProperties;
@@ -42,9 +42,9 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
     /**
      * @return A filter on the data based on this comma-separated list of ID values.
      */
-    @JsonProperty("idIn")
-    public Optional<String> getIdIn() {
-        return idIn;
+    @JsonProperty("ids")
+    public Optional<String> getIds() {
+        return ids;
     }
 
     /**
@@ -76,12 +76,12 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
     }
 
     private boolean equalTo(ListPreventiveMaintenanceSchedulesRequest other) {
-        return idIn.equals(other.idIn) && after.equals(other.after) && limit.equals(other.limit);
+        return ids.equals(other.ids) && after.equals(other.after) && limit.equals(other.limit);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.idIn, this.after, this.limit);
+        return Objects.hash(this.ids, this.after, this.limit);
     }
 
     @java.lang.Override
@@ -95,7 +95,7 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> idIn = Optional.empty();
+        private Optional<String> ids = Optional.empty();
 
         private Optional<String> after = Optional.empty();
 
@@ -107,7 +107,7 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
         private Builder() {}
 
         public Builder from(ListPreventiveMaintenanceSchedulesRequest other) {
-            idIn(other.getIdIn());
+            ids(other.getIds());
             after(other.getAfter());
             limit(other.getLimit());
             return this;
@@ -116,14 +116,14 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
         /**
          * <p>A filter on the data based on this comma-separated list of ID values.</p>
          */
-        @JsonSetter(value = "idIn", nulls = Nulls.SKIP)
-        public Builder idIn(Optional<String> idIn) {
-            this.idIn = idIn;
+        @JsonSetter(value = "ids", nulls = Nulls.SKIP)
+        public Builder ids(Optional<String> ids) {
+            this.ids = ids;
             return this;
         }
 
-        public Builder idIn(String idIn) {
-            this.idIn = Optional.ofNullable(idIn);
+        public Builder ids(String ids) {
+            this.ids = Optional.ofNullable(ids);
             return this;
         }
 
@@ -156,7 +156,7 @@ public final class ListPreventiveMaintenanceSchedulesRequest {
         }
 
         public ListPreventiveMaintenanceSchedulesRequest build() {
-            return new ListPreventiveMaintenanceSchedulesRequest(idIn, after, limit, additionalProperties);
+            return new ListPreventiveMaintenanceSchedulesRequest(ids, after, limit, additionalProperties);
         }
     }
 }

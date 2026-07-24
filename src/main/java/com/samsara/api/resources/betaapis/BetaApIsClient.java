@@ -32,6 +32,7 @@ import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceC
 import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentOutputControlSetEquipmentDigitalOutputRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsCreateFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsPatchFunctionRequestBody;
 import com.samsara.api.resources.betaapis.requests.FunctionsStartFunctionRunRequestBody;
@@ -92,6 +93,7 @@ import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMainten
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPostPlaceRequestBody;
+import com.samsara.api.resources.betaapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
 import com.samsara.api.resources.betaapis.requests.PreferredStationsPatchPreferredStationRequestBody;
 import com.samsara.api.resources.betaapis.requests.PreferredStationsPostPreferredStationRequestBody;
 import com.samsara.api.resources.betaapis.requests.QualificationsArchiveQualificationRecordRequestBody;
@@ -143,6 +145,8 @@ import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUp
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody;
+import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody;
+import com.samsara.api.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody;
 import com.samsara.api.types.FunctionsCreateFunctionResponseBody;
 import com.samsara.api.types.FunctionsDeployFunctionResponseBody;
 import com.samsara.api.types.FunctionsGetFunctionLogsResponseBody;
@@ -1261,6 +1265,55 @@ public class BetaApIsClient {
             GetFleetInstallerPhotoUploadsRequest request, RequestOptions requestOptions) {
         return this.rawClient
                 .getFleetInstallerPhotoUploads(request, requestOptions)
+                .body();
+    }
+
+    /**
+     * Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody postFleetInstallerPhotoUpload(
+            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request) {
+        return this.rawClient.postFleetInstallerPhotoUpload(request).body();
+    }
+
+    /**
+     * Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody postFleetInstallerPhotoUpload(
+            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient
+                .postFleetInstallerPhotoUpload(request, requestOptions)
+                .body();
+    }
+
+    /**
+     * Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody
+            postFleetInstallerPhotoUploadComplete(PostFleetInstallerPhotoUploadCompleteRequest request) {
+        return this.rawClient.postFleetInstallerPhotoUploadComplete(request).body();
+    }
+
+    /**
+     * Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Devices</strong> under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody
+            postFleetInstallerPhotoUploadComplete(
+                    PostFleetInstallerPhotoUploadCompleteRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .postFleetInstallerPhotoUploadComplete(request, requestOptions)
                 .body();
     }
 

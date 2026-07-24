@@ -32,7 +32,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
     private final Optional<String> id;
 
     private final Optional<
-                    List<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>>
+                    List<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
             linkedSchedules;
 
     private final Optional<String> title;
@@ -47,7 +47,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
             Optional<Long> distanceInterval,
             Optional<Long> engineHourInterval,
             Optional<String> id,
-            Optional<List<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>>
+            Optional<List<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
                     linkedSchedules,
             Optional<String> title,
             Optional<String> workOrderTemplateId,
@@ -107,7 +107,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
      * @return IDs of other preventive maintenance schedules linked to this schedule.
      */
     @JsonProperty("linkedSchedules")
-    public Optional<List<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>>
+    public Optional<List<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
             getLinkedSchedules() {
         return linkedSchedules;
     }
@@ -185,7 +185,9 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<List<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>>
+        private Optional<
+                        List<
+                                EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
                 linkedSchedules = Optional.empty();
 
         private Optional<String> title = Optional.empty();
@@ -284,14 +286,16 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
          */
         @JsonSetter(value = "linkedSchedules", nulls = Nulls.SKIP)
         public Builder linkedSchedules(
-                Optional<List<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>>
+                Optional<
+                                List<
+                                        EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
                         linkedSchedules) {
             this.linkedSchedules = linkedSchedules;
             return this;
         }
 
         public Builder linkedSchedules(
-                List<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>
+                List<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>
                         linkedSchedules) {
             this.linkedSchedules = Optional.ofNullable(linkedSchedules);
             return this;
