@@ -2985,6 +2985,96 @@ client.betaApIs().unassignAssetAssignment(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listAssociations() -> AssociationsListAssociationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List associations between vehicles and peripheral devices within a given time range. Associations represent the relationship between a central device (vehicle) and a peripheral device (e.g. asset tag). An association with a null endTime is still active. If no endTime query parameter is provided, all associations from startTime onward are returned, including currently active (open) associations.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listAssociations(
+    ListAssociationsRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**peripheralIds:** `Optional<String>` — A comma-separated list of peripheral asset IDs to filter associations by. (Example: 1234,5678)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). If not provided, all associations from startTime onward are returned, including currently active (open) associations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listDeviceRecoveryMissingAssets() -> DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody</code></summary>
 <dl>
 <dd>
@@ -6411,6 +6501,401 @@ client.betaApIs().updatePart(
 <dd>
 
 **vmrsCode:** `Optional<String>` — VMRS code associated with the part definition.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listPartInventory() -> EntityPartInventoryLocationsServiceListPartInventoryResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of per-part, per-location inventory levels for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listPartInventory(
+    ListPartInventoryRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isLowStock:** `Optional<Boolean>` — A filter on the data based on Low stock. Whether the available quantity is greater than zero and at or below the reorder threshold.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partSamsaraIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createPartInventoryLocation(request) -> EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createPartInventoryLocation(
+    EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partSamsaraId:** `Optional<String>` — Unique identifier for the part definition these inventory levels are tracked for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — Unique identifier for the place linked to the maintenance site holding this inventory. The internal location identifier is never exposed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aisle:** `Optional<String>` — Aisle within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bin:** `Optional<String>` — Bin within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currentQuantity:** `Optional<Double>` — Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Read-only; changes only via stock movements.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isCostTracked:** `Optional<Boolean>` — Whether costing is tracked at this location. Defaults to false; once enabled it cannot be turned back off.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maxStockLevel:** `Optional<Double>` — Maximum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minStockLevel:** `Optional<Double>` — Minimum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderQuantity:** `Optional<Double>` — Quantity to reorder when stock reaches the reorder threshold.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderThreshold:** `Optional<Double>` — Available quantity at or below which the part should be reordered at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**row:** `Optional<String>` — Row within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<CreatePartInventoryLocationEntityPartInventoryLocationMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updatePartInventoryLocation(request) -> EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates existing per-part, per-location inventory metadata for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updatePartInventoryLocation(
+    EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partSamsaraId:** `Optional<String>` — Unique identifier for the part definition these inventory levels are tracked for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — Unique identifier for the place linked to the maintenance site holding this inventory. The internal location identifier is never exposed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aisle:** `Optional<String>` — Aisle within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bin:** `Optional<String>` — Bin within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isCostTracked:** `Optional<Boolean>` — Whether costing is tracked at this location. Defaults to false; once enabled it cannot be turned back off.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maxStockLevel:** `Optional<Double>` — Maximum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minStockLevel:** `Optional<Double>` — Minimum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderQuantity:** `Optional<Double>` — Quantity to reorder when stock reaches the reorder threshold.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderThreshold:** `Optional<Double>` — Available quantity at or below which the part should be reordered at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**row:** `Optional<String>` — Row within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<UpdatePartInventoryLocationEntityPartInventoryLocationMoneyInputTypeRequestBody>` 
     
 </dd>
 </dl>
@@ -29794,7 +30279,7 @@ Patches the due-target and last-resolved values on the open preventive maintenan
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
 
 Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
 
