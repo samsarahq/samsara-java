@@ -431,6 +431,25 @@
                 "id": "id"
               }
             },
+            "preventiveMaintenanceScheduleDue": {
+              "driver": {
+                "id": "id"
+              },
+              "dueReasons": [
+                "date",
+                "date"
+              ],
+              "scheduleDescription": "scheduleDescription",
+              "scheduleId": "scheduleId",
+              "scheduleTitle": "scheduleTitle",
+              "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "reading": {
               "asset": {
                 "id": "id",
@@ -1187,6 +1206,25 @@
             "personDetected": {
               "cameraStream": {
                 "id": "id"
+              }
+            },
+            "preventiveMaintenanceScheduleDue": {
+              "driver": {
+                "id": "id"
+              },
+              "dueReasons": [
+                "date",
+                "date"
+              ],
+              "scheduleDescription": "scheduleDescription",
+              "scheduleId": "scheduleId",
+              "scheduleTitle": "scheduleTitle",
+              "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
               }
             },
             "reading": {
@@ -1957,6 +1995,25 @@
                 "id": "id"
               }
             },
+            "preventiveMaintenanceScheduleDue": {
+              "driver": {
+                "id": "id"
+              },
+              "dueReasons": [
+                "date",
+                "date"
+              ],
+              "scheduleDescription": "scheduleDescription",
+              "scheduleId": "scheduleId",
+              "scheduleTitle": "scheduleTitle",
+              "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
+              }
+            },
             "reading": {
               "asset": {
                 "id": "id",
@@ -2713,6 +2770,25 @@
             "personDetected": {
               "cameraStream": {
                 "id": "id"
+              }
+            },
+            "preventiveMaintenanceScheduleDue": {
+              "driver": {
+                "id": "id"
+              },
+              "dueReasons": [
+                "date",
+                "date"
+              ],
+              "scheduleDescription": "scheduleDescription",
+              "scheduleId": "scheduleId",
+              "scheduleTitle": "scheduleTitle",
+              "trailer": {
+                "id": "id"
+              },
+              "vehicle": {
+                "id": "id",
+                "serial": "serial"
               }
             },
             "reading": {
