@@ -19,18 +19,18 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = HubRouteTemplatesCreateHubRouteTemplateResponseBody.Builder.class)
 public final class HubRouteTemplatesCreateHubRouteTemplateResponseBody {
-    private final CreateHubRouteTemplateObjectResponseBody data;
+    private final HubRouteTemplateObjectResponseBody data;
 
     private final Map<String, Object> additionalProperties;
 
     private HubRouteTemplatesCreateHubRouteTemplateResponseBody(
-            CreateHubRouteTemplateObjectResponseBody data, Map<String, Object> additionalProperties) {
+            HubRouteTemplateObjectResponseBody data, Map<String, Object> additionalProperties) {
         this.data = data;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public CreateHubRouteTemplateObjectResponseBody getData() {
+    public HubRouteTemplateObjectResponseBody getData() {
         return data;
     }
 
@@ -65,7 +65,7 @@ public final class HubRouteTemplatesCreateHubRouteTemplateResponseBody {
     }
 
     public interface DataStage {
-        _FinalStage data(@NotNull CreateHubRouteTemplateObjectResponseBody data);
+        _FinalStage data(@NotNull HubRouteTemplateObjectResponseBody data);
 
         Builder from(HubRouteTemplatesCreateHubRouteTemplateResponseBody other);
     }
@@ -76,7 +76,7 @@ public final class HubRouteTemplatesCreateHubRouteTemplateResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements DataStage, _FinalStage {
-        private CreateHubRouteTemplateObjectResponseBody data;
+        private HubRouteTemplateObjectResponseBody data;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -91,7 +91,7 @@ public final class HubRouteTemplatesCreateHubRouteTemplateResponseBody {
 
         @java.lang.Override
         @JsonSetter("data")
-        public _FinalStage data(@NotNull CreateHubRouteTemplateObjectResponseBody data) {
+        public _FinalStage data(@NotNull HubRouteTemplateObjectResponseBody data) {
             this.data = Objects.requireNonNull(data, "data must not be null");
             return this;
         }
