@@ -104,6 +104,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<PersonDetectedResponseBody> personDetected;
 
+    private final Optional<PreventiveMaintenanceScheduleDueDataResponseBody> preventiveMaintenanceScheduleDue;
+
     private final Optional<ReadingTriggerDetailsResponseBody> reading;
 
     private final Optional<ReeferTemperatureResponseBody> reeferTemperature;
@@ -199,6 +201,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<OutsideGeofenceDataResponseBody> outsideGeofence,
             Optional<PanicButtonResponseBody> panicButton,
             Optional<PersonDetectedResponseBody> personDetected,
+            Optional<PreventiveMaintenanceScheduleDueDataResponseBody> preventiveMaintenanceScheduleDue,
             Optional<ReadingTriggerDetailsResponseBody> reading,
             Optional<ReeferTemperatureResponseBody> reeferTemperature,
             Optional<RouteStartDelayedDataResponseBody> routeStartDelayed,
@@ -267,6 +270,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.outsideGeofence = outsideGeofence;
         this.panicButton = panicButton;
         this.personDetected = personDetected;
+        this.preventiveMaintenanceScheduleDue = preventiveMaintenanceScheduleDue;
         this.reading = reading;
         this.reeferTemperature = reeferTemperature;
         this.routeStartDelayed = routeStartDelayed;
@@ -505,6 +509,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return personDetected;
     }
 
+    @JsonProperty("preventiveMaintenanceScheduleDue")
+    public Optional<PreventiveMaintenanceScheduleDueDataResponseBody> getPreventiveMaintenanceScheduleDue() {
+        return preventiveMaintenanceScheduleDue;
+    }
+
     @JsonProperty("reading")
     public Optional<ReadingTriggerDetailsResponseBody> getReading() {
         return reading;
@@ -685,6 +694,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && outsideGeofence.equals(other.outsideGeofence)
                 && panicButton.equals(other.panicButton)
                 && personDetected.equals(other.personDetected)
+                && preventiveMaintenanceScheduleDue.equals(other.preventiveMaintenanceScheduleDue)
                 && reading.equals(other.reading)
                 && reeferTemperature.equals(other.reeferTemperature)
                 && routeStartDelayed.equals(other.routeStartDelayed)
@@ -757,6 +767,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.outsideGeofence,
                 this.panicButton,
                 this.personDetected,
+                this.preventiveMaintenanceScheduleDue,
                 this.reading,
                 this.reeferTemperature,
                 this.routeStartDelayed,
@@ -879,6 +890,9 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<PersonDetectedResponseBody> personDetected = Optional.empty();
 
+        private Optional<PreventiveMaintenanceScheduleDueDataResponseBody> preventiveMaintenanceScheduleDue =
+                Optional.empty();
+
         private Optional<ReadingTriggerDetailsResponseBody> reading = Optional.empty();
 
         private Optional<ReeferTemperatureResponseBody> reeferTemperature = Optional.empty();
@@ -978,6 +992,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             outsideGeofence(other.getOutsideGeofence());
             panicButton(other.getPanicButton());
             personDetected(other.getPersonDetected());
+            preventiveMaintenanceScheduleDue(other.getPreventiveMaintenanceScheduleDue());
             reading(other.getReading());
             reeferTemperature(other.getReeferTemperature());
             routeStartDelayed(other.getRouteStartDelayed());
@@ -1471,6 +1486,19 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "preventiveMaintenanceScheduleDue", nulls = Nulls.SKIP)
+        public Builder preventiveMaintenanceScheduleDue(
+                Optional<PreventiveMaintenanceScheduleDueDataResponseBody> preventiveMaintenanceScheduleDue) {
+            this.preventiveMaintenanceScheduleDue = preventiveMaintenanceScheduleDue;
+            return this;
+        }
+
+        public Builder preventiveMaintenanceScheduleDue(
+                PreventiveMaintenanceScheduleDueDataResponseBody preventiveMaintenanceScheduleDue) {
+            this.preventiveMaintenanceScheduleDue = Optional.ofNullable(preventiveMaintenanceScheduleDue);
+            return this;
+        }
+
         @JsonSetter(value = "reading", nulls = Nulls.SKIP)
         public Builder reading(Optional<ReadingTriggerDetailsResponseBody> reading) {
             this.reading = reading;
@@ -1797,6 +1825,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     outsideGeofence,
                     panicButton,
                     personDetected,
+                    preventiveMaintenanceScheduleDue,
                     reading,
                     reeferTemperature,
                     routeStartDelayed,

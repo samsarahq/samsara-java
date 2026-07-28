@@ -1390,7 +1390,7 @@ client.betaApIs().updateEngineImmobilizerState(
                 UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
                     .builder()
                     .id(UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.RELAY1)
-                    .isOpen(true)
+                    .isOpen(false)
                     .build()
             )
         )
@@ -5441,6 +5441,112 @@ client.betaApIs().pairGateways(
 <dd>
 
 **removeOrphanDevices:** `Optional<Boolean>` — When true, devices that the reassigned gateways were previously linked to are moved to the unassigned group and have their tags cleared as a side-effect of the pairing. The previousDevice fields in the response describe each orphaned device as it existed immediately before the pairing was applied, so they remain stable regardless of this flag. Defaults to false.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createWatchpoint(request) -> EntityWatchpointsServiceCreateWatchpointResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a Ground Intelligence watchpoint for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Watchpoints** under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createWatchpoint(
+    EntityWatchpointsServiceCreateWatchpointRequestBody
+        .builder()
+        .location(
+            WatchpointLatLngTypeRequestBody
+                .builder()
+                .latitude(37.7749)
+                .longitude(-122.4194)
+                .build()
+        )
+        .mode(EntityWatchpointsServiceCreateWatchpointRequestBodyMode.JUST_ONCE)
+        .observationType(EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType.ROAD_DEFECT)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**location:** `WatchpointLatLngTypeRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mode:** `EntityWatchpointsServiceCreateWatchpointRequestBodyMode` — Recurrence frequency for observations.  Valid values: `justOnce`, `daily`, `weekly`, `monthly`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Customer-provided name for the watchpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**note:** `Optional<String>` — Customer-provided note about the watchpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**observationType:** `EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType` — Type of condition to observe at this watchpoint.  Valid values: `roadDefect`, `utilityCut`, `guardrail`, `streetlight`, `signage`, `stormDrain`, `graffiti`, `vegetation`, `blight`, `illegalDumping`, `littering`, `highVegetationWeeds`, `fire`, `other`
     
 </dd>
 </dl>
@@ -10750,7 +10856,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -30408,6 +30514,109 @@ client.previewApIs().unlockVehicle(
 <dd>
 
 **id:** `String` — The ID of the vehicle to lock or unlock. This can be a Samsara internal ID or an external ID in the format `samsara.vin:{VIN}`.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.previewApIs.resolvePreventiveMaintenance(request) -> ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().resolvePreventiveMaintenance(
+    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Samsara ID of the asset the instance is being resolved for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule to resolve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAt:** `Optional<String>` — When the maintenance was resolved, in epoch milliseconds. Defaults to the current time if not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAtEngineHours:** `Optional<Long>` — Engine hours reading at the time of resolution.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time of resolution. Measured in meters.
     
 </dd>
 </dl>
