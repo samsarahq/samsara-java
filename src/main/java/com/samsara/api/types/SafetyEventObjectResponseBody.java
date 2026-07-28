@@ -29,6 +29,8 @@ public final class SafetyEventObjectResponseBody {
 
     private final Optional<String> time;
 
+    private final Optional<String> uuid;
+
     private final Optional<SafetyEventVehicleObjectResponseBody> vehicle;
 
     private final Map<String, Object> additionalProperties;
@@ -38,12 +40,14 @@ public final class SafetyEventObjectResponseBody {
             Optional<SafetyEventDriverObjectResponseBody> driver,
             Optional<String> id,
             Optional<String> time,
+            Optional<String> uuid,
             Optional<SafetyEventVehicleObjectResponseBody> vehicle,
             Map<String, Object> additionalProperties) {
         this.behaviorLabels = behaviorLabels;
         this.driver = driver;
         this.id = id;
         this.time = time;
+        this.uuid = uuid;
         this.vehicle = vehicle;
         this.additionalProperties = additionalProperties;
     }
@@ -77,6 +81,14 @@ public final class SafetyEventObjectResponseBody {
         return time;
     }
 
+    /**
+     * @return The unique Samsara ID (uuid) of the safety event.
+     */
+    @JsonProperty("uuid")
+    public Optional<String> getUuid() {
+        return uuid;
+    }
+
     @JsonProperty("vehicle")
     public Optional<SafetyEventVehicleObjectResponseBody> getVehicle() {
         return vehicle;
@@ -98,12 +110,13 @@ public final class SafetyEventObjectResponseBody {
                 && driver.equals(other.driver)
                 && id.equals(other.id)
                 && time.equals(other.time)
+                && uuid.equals(other.uuid)
                 && vehicle.equals(other.vehicle);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.behaviorLabels, this.driver, this.id, this.time, this.vehicle);
+        return Objects.hash(this.behaviorLabels, this.driver, this.id, this.time, this.uuid, this.vehicle);
     }
 
     @java.lang.Override
@@ -125,6 +138,8 @@ public final class SafetyEventObjectResponseBody {
 
         private Optional<String> time = Optional.empty();
 
+        private Optional<String> uuid = Optional.empty();
+
         private Optional<SafetyEventVehicleObjectResponseBody> vehicle = Optional.empty();
 
         @JsonAnySetter
@@ -137,6 +152,7 @@ public final class SafetyEventObjectResponseBody {
             driver(other.getDriver());
             id(other.getId());
             time(other.getTime());
+            uuid(other.getUuid());
             vehicle(other.getVehicle());
             return this;
         }
@@ -194,6 +210,20 @@ public final class SafetyEventObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>The unique Samsara ID (uuid) of the safety event.</p>
+         */
+        @JsonSetter(value = "uuid", nulls = Nulls.SKIP)
+        public Builder uuid(Optional<String> uuid) {
+            this.uuid = uuid;
+            return this;
+        }
+
+        public Builder uuid(String uuid) {
+            this.uuid = Optional.ofNullable(uuid);
+            return this;
+        }
+
         @JsonSetter(value = "vehicle", nulls = Nulls.SKIP)
         public Builder vehicle(Optional<SafetyEventVehicleObjectResponseBody> vehicle) {
             this.vehicle = vehicle;
@@ -206,7 +236,8 @@ public final class SafetyEventObjectResponseBody {
         }
 
         public SafetyEventObjectResponseBody build() {
-            return new SafetyEventObjectResponseBody(behaviorLabels, driver, id, time, vehicle, additionalProperties);
+            return new SafetyEventObjectResponseBody(
+                    behaviorLabels, driver, id, time, uuid, vehicle, additionalProperties);
         }
     }
 }

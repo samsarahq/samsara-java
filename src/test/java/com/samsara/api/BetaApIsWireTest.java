@@ -5128,7 +5128,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2024-01-15T10:30:00Z\",\"defaultDepotEnd\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultDepotStart\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultStartTimeOfDay\":\"08:00\",\"distanceMeters\":15000,\"durationSeconds\":3600,\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"id\":\"660e8400-e29b-41d4-a716-446655440001\",\"locations\":[{\"externalId\":\"LOC-123\",\"formattedAddress\":\"456 Main St, Los Angeles, CA 90210, US\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"position\":1}],\"name\":\"Downtown Delivery Route\",\"updatedAtTime\":\"2024-01-15T12:00:00Z\"}}"));
+                                "{\"data\":{\"createdAtTime\":\"2024-01-15T10:30:00Z\",\"defaultDepotEnd\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultDepotStart\":{\"externalId\":\"DEPOT-001\",\"formattedAddress\":\"123 Industrial Blvd, Los Angeles, CA 90210, US\",\"id\":\"750e8400-e29b-41d4-a716-446655440002\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Main Warehouse\"},\"defaultStartTimeOfDay\":\"08:00\",\"distanceMeters\":15000,\"durationSeconds\":3600,\"hubId\":\"550e8400-e29b-41d4-a716-446655440000\",\"hubTimezone\":\"America/Los_Angeles\",\"id\":\"660e8400-e29b-41d4-a716-446655440001\",\"locations\":[{\"externalId\":\"LOC-123\",\"formattedAddress\":\"456 Main St, Los Angeles, CA 90210, US\",\"latitude\":34.0522,\"longitude\":-118.2437,\"name\":\"Customer ABC Warehouse\",\"position\":1}],\"name\":\"Downtown Delivery Route\",\"updatedAtTime\":\"2024-01-15T12:00:00Z\"}}"));
         HubRouteTemplatesCreateHubRouteTemplateResponseBody response = client.betaApIs()
                 .createHubRouteTemplate(HubRouteTemplatesCreateHubRouteTemplateRequestBody.builder()
                         .hubId("550e8400-e29b-41d4-a716-446655440000")
@@ -5198,6 +5198,7 @@ public class BetaApIsWireTest {
                 + "    \"distanceMeters\": 15000,\n"
                 + "    \"durationSeconds\": 3600,\n"
                 + "    \"hubId\": \"550e8400-e29b-41d4-a716-446655440000\",\n"
+                + "    \"hubTimezone\": \"America/Los_Angeles\",\n"
                 + "    \"id\": \"660e8400-e29b-41d4-a716-446655440001\",\n"
                 + "    \"locations\": [\n"
                 + "      {\n"
