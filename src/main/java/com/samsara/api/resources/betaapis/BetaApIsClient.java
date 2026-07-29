@@ -95,6 +95,7 @@ import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersReques
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.ListSharedAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
+import com.samsara.api.resources.betaapis.requests.ListTimeEntriesRequest;
 import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMaintenanceRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
@@ -152,6 +153,7 @@ import com.samsara.api.types.EntityPartInventoryLocationsServiceListPartInventor
 import com.samsara.api.types.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody;
 import com.samsara.api.types.EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
+import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceCreateWatchpointResponseBody;
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
@@ -2488,6 +2490,27 @@ public class BetaApIsClient {
         return this.rawClient
                 .listUpcomingPreventiveMaintenance(request, requestOptions)
                 .body();
+    }
+
+    /**
+     * Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Time Entries</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityTimeEntriesServiceListTimeEntriesResponseBody listTimeEntries(ListTimeEntriesRequest request) {
+        return this.rawClient.listTimeEntries(request).body();
+    }
+
+    /**
+     * Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Time Entries</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityTimeEntriesServiceListTimeEntriesResponseBody listTimeEntries(
+            ListTimeEntriesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listTimeEntries(request, requestOptions).body();
     }
 
     /**

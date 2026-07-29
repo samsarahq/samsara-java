@@ -93,6 +93,7 @@ import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersReques
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.ListSharedAssetsRequest;
 import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest;
+import com.samsara.api.resources.betaapis.requests.ListTimeEntriesRequest;
 import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMaintenanceRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
@@ -171,6 +172,7 @@ import com.samsara.api.types.EntityPartInventoryLocationsServiceListPartInventor
 import com.samsara.api.types.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody;
 import com.samsara.api.types.EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
+import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceCreateWatchpointResponseBody;
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
@@ -6169,6 +6171,93 @@ public class BetaApIsWireTest {
                 + "      \"workOrder\": {\n"
                 + "        \"id\": \"281474976710656\"\n"
                 + "      }\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListTimeEntries() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"activityType\":\"12345\",\"clockInAtTime\":\"2019-06-13T19:08:25Z\",\"clockInLocation\":{\"latitude\":123.45,\"longitude\":123.45},\"clockInSource\":\"12345\",\"clockOutAtTime\":\"2019-06-13T19:08:25Z\",\"clockOutLocation\":{\"latitude\":123.45,\"longitude\":123.45},\"clockOutMethodType\":\"12345\",\"clockOutSource\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"deletedByUserId\":\"12345\",\"hourlyRate\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"id\":\"12345\",\"placeId\":\"12345\",\"serviceTaskId\":\"12345\",\"timeEntryStatus\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"userId\":\"12345\",\"workOrderId\":\"12345\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        EntityTimeEntriesServiceListTimeEntriesResponseBody response = client.betaApIs()
+                .listTimeEntries(
+                        ListTimeEntriesRequest.builder().startTime("startTime").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"activityType\": \"12345\",\n"
+                + "      \"clockInAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"clockInLocation\": {\n"
+                + "        \"latitude\": 123.45,\n"
+                + "        \"longitude\": 123.45\n"
+                + "      },\n"
+                + "      \"clockInSource\": \"12345\",\n"
+                + "      \"clockOutAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"clockOutLocation\": {\n"
+                + "        \"latitude\": 123.45,\n"
+                + "        \"longitude\": 123.45\n"
+                + "      },\n"
+                + "      \"clockOutMethodType\": \"12345\",\n"
+                + "      \"clockOutSource\": \"12345\",\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"deletedByUserId\": \"12345\",\n"
+                + "      \"hourlyRate\": {\n"
+                + "        \"amount\": \"12345\",\n"
+                + "        \"currency\": \"12345\"\n"
+                + "      },\n"
+                + "      \"id\": \"12345\",\n"
+                + "      \"placeId\": \"12345\",\n"
+                + "      \"serviceTaskId\": \"12345\",\n"
+                + "      \"timeEntryStatus\": \"12345\",\n"
+                + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"userId\": \"12345\",\n"
+                + "      \"workOrderId\": \"12345\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
