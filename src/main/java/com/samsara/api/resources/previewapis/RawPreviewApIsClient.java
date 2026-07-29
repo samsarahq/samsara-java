@@ -23,10 +23,12 @@ import com.samsara.api.errors.TooManyRequestsError;
 import com.samsara.api.errors.UnauthorizedError;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
 import com.samsara.api.resources.previewapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
+import com.samsara.api.resources.previewapis.requests.ListPartTransactionsRequest;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
 import com.samsara.api.resources.previewapis.requests.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
+import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody;
 import java.io.IOException;
@@ -399,6 +401,137 @@ public class RawPreviewApIsClient {
                 return new SamsaraApiHttpResponse<>(null, response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>
+            listPartTransactions(ListPartTransactionsRequest request) {
+        return listPartTransactions(request, null);
+    }
+
+    /**
+     * Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>
+            listPartTransactions(ListPartTransactionsRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("preview/maintenance/parts/transactions");
+        QueryStringMapper.addQueryParameter(httpUrl, "happenedAtTimeStart", request.getHappenedAtTimeStart(), false);
+        if (request.getHappenedAtTimeEnd().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "happenedAtTimeEnd", request.getHappenedAtTimeEnd().get(), false);
+        }
+        if (request.getPartSamsaraIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "partSamsaraIds", request.getPartSamsaraIds().get(), false);
+        }
+        if (request.getPlaceIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "placeIds", request.getPlaceIds().get(), false);
+        }
+        if (request.getTransactionTypeIn().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "transactionTypeIn", request.getTransactionTypeIn().get(), false);
+        }
+        if (request.getAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "after", request.getAfter().get(), false);
+        }
+        if (request.getLimit().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "limit", request.getLimit().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString,
+                                EntityInventoryTransactionsServiceListPartTransactionsResponseBody.class),
+                        response);
+            }
             try {
                 switch (response.code()) {
                     case 401:

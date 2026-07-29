@@ -50,6 +50,7 @@ import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceU
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceCreateWatchpointRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceUpdateWatchpointRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentOutputControlSetEquipmentDigitalOutputRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentPatchEquipmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody;
@@ -172,6 +173,7 @@ import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachograp
 import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceCreateWatchpointResponseBody;
+import com.samsara.api.types.EntityWatchpointsServiceUpdateWatchpointResponseBody;
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
 import com.samsara.api.types.EquipmentPatchEquipmentResponseBody;
 import com.samsara.api.types.FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody;
@@ -6334,6 +6336,102 @@ public class RawBetaApIsClient {
                 return new SamsaraApiHttpResponse<>(
                         ObjectMappers.JSON_MAPPER.readValue(
                                 responseBodyString, EntityWatchpointsServiceCreateWatchpointResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Updates the name, note, or observation type for an existing Ground Intelligence watchpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Watchpoints</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<EntityWatchpointsServiceUpdateWatchpointResponseBody> updateWatchpoint(
+            EntityWatchpointsServiceUpdateWatchpointRequestBody request) {
+        return updateWatchpoint(request, null);
+    }
+
+    /**
+     * Updates the name, note, or observation type for an existing Ground Intelligence watchpoint.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Watchpoints</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<EntityWatchpointsServiceUpdateWatchpointResponseBody> updateWatchpoint(
+            EntityWatchpointsServiceUpdateWatchpointRequestBody request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("ground-intelligence/watchpoints");
+        QueryStringMapper.addQueryParameter(httpUrl, "id", request.getId(), false);
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("PATCH", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString, EntityWatchpointsServiceUpdateWatchpointResponseBody.class),
                         response);
             }
             try {
