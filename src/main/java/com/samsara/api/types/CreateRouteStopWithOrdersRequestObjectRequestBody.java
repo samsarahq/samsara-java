@@ -20,8 +20,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = CreateRoutesStopRequestObjectRequestBody.Builder.class)
-public final class CreateRoutesStopRequestObjectRequestBody {
+@JsonDeserialize(builder = CreateRouteStopWithOrdersRequestObjectRequestBody.Builder.class)
+public final class CreateRouteStopWithOrdersRequestObjectRequestBody {
     private final Optional<String> addressId;
 
     private final Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows;
@@ -38,6 +38,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
     private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
+    private final Optional<List<RouteStopOrderUpsertInputRequestBody>> orders;
+
     private final Optional<OffsetDateTime> scheduledArrivalTime;
 
     private final Optional<OffsetDateTime> scheduledDepartureTime;
@@ -48,7 +50,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
     private final Map<String, Object> additionalProperties;
 
-    private CreateRoutesStopRequestObjectRequestBody(
+    private CreateRouteStopWithOrdersRequestObjectRequestBody(
             Optional<String> addressId,
             Optional<List<RouteStopAppointmentWindowRequestBody>> appointmentWindows,
             Optional<Map<String, String>> externalIds,
@@ -57,6 +59,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             Optional<String> notes,
             Optional<Long> ontimeWindowAfterArrivalMs,
             Optional<Long> ontimeWindowBeforeArrivalMs,
+            Optional<List<RouteStopOrderUpsertInputRequestBody>> orders,
             Optional<OffsetDateTime> scheduledArrivalTime,
             Optional<OffsetDateTime> scheduledDepartureTime,
             Optional<Long> sequenceNumber,
@@ -70,6 +73,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         this.notes = notes;
         this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
         this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
+        this.orders = orders;
         this.scheduledArrivalTime = scheduledArrivalTime;
         this.scheduledDepartureTime = scheduledDepartureTime;
         this.sequenceNumber = sequenceNumber;
@@ -142,6 +146,14 @@ public final class CreateRoutesStopRequestObjectRequestBody {
     }
 
     /**
+     * @return Orders to upsert and attach to this stop.
+     */
+    @JsonProperty("orders")
+    public Optional<List<RouteStopOrderUpsertInputRequestBody>> getOrders() {
+        return orders;
+    }
+
+    /**
      * @return This is a required field for all stops EXCEPT the start and end, based on route start and stop settings selected.
      */
     @JsonProperty("scheduledArrivalTime")
@@ -173,8 +185,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof CreateRoutesStopRequestObjectRequestBody
-                && equalTo((CreateRoutesStopRequestObjectRequestBody) other);
+        return other instanceof CreateRouteStopWithOrdersRequestObjectRequestBody
+                && equalTo((CreateRouteStopWithOrdersRequestObjectRequestBody) other);
     }
 
     @JsonAnyGetter
@@ -182,7 +194,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(CreateRoutesStopRequestObjectRequestBody other) {
+    private boolean equalTo(CreateRouteStopWithOrdersRequestObjectRequestBody other) {
         return addressId.equals(other.addressId)
                 && appointmentWindows.equals(other.appointmentWindows)
                 && externalIds.equals(other.externalIds)
@@ -191,6 +203,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                 && notes.equals(other.notes)
                 && ontimeWindowAfterArrivalMs.equals(other.ontimeWindowAfterArrivalMs)
                 && ontimeWindowBeforeArrivalMs.equals(other.ontimeWindowBeforeArrivalMs)
+                && orders.equals(other.orders)
                 && scheduledArrivalTime.equals(other.scheduledArrivalTime)
                 && scheduledDepartureTime.equals(other.scheduledDepartureTime)
                 && sequenceNumber.equals(other.sequenceNumber)
@@ -208,6 +221,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                 this.notes,
                 this.ontimeWindowAfterArrivalMs,
                 this.ontimeWindowBeforeArrivalMs,
+                this.orders,
                 this.scheduledArrivalTime,
                 this.scheduledDepartureTime,
                 this.sequenceNumber,
@@ -241,6 +255,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
         private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
+        private Optional<List<RouteStopOrderUpsertInputRequestBody>> orders = Optional.empty();
+
         private Optional<OffsetDateTime> scheduledArrivalTime = Optional.empty();
 
         private Optional<OffsetDateTime> scheduledDepartureTime = Optional.empty();
@@ -254,7 +270,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
 
         private Builder() {}
 
-        public Builder from(CreateRoutesStopRequestObjectRequestBody other) {
+        public Builder from(CreateRouteStopWithOrdersRequestObjectRequestBody other) {
             addressId(other.getAddressId());
             appointmentWindows(other.getAppointmentWindows());
             externalIds(other.getExternalIds());
@@ -263,6 +279,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             notes(other.getNotes());
             ontimeWindowAfterArrivalMs(other.getOntimeWindowAfterArrivalMs());
             ontimeWindowBeforeArrivalMs(other.getOntimeWindowBeforeArrivalMs());
+            orders(other.getOrders());
             scheduledArrivalTime(other.getScheduledArrivalTime());
             scheduledDepartureTime(other.getScheduledDepartureTime());
             sequenceNumber(other.getSequenceNumber());
@@ -383,6 +400,20 @@ public final class CreateRoutesStopRequestObjectRequestBody {
         }
 
         /**
+         * <p>Orders to upsert and attach to this stop.</p>
+         */
+        @JsonSetter(value = "orders", nulls = Nulls.SKIP)
+        public Builder orders(Optional<List<RouteStopOrderUpsertInputRequestBody>> orders) {
+            this.orders = orders;
+            return this;
+        }
+
+        public Builder orders(List<RouteStopOrderUpsertInputRequestBody> orders) {
+            this.orders = Optional.ofNullable(orders);
+            return this;
+        }
+
+        /**
          * <p>This is a required field for all stops EXCEPT the start and end, based on route start and stop settings selected.</p>
          */
         @JsonSetter(value = "scheduledArrivalTime", nulls = Nulls.SKIP)
@@ -435,8 +466,8 @@ public final class CreateRoutesStopRequestObjectRequestBody {
             return this;
         }
 
-        public CreateRoutesStopRequestObjectRequestBody build() {
-            return new CreateRoutesStopRequestObjectRequestBody(
+        public CreateRouteStopWithOrdersRequestObjectRequestBody build() {
+            return new CreateRouteStopWithOrdersRequestObjectRequestBody(
                     addressId,
                     appointmentWindows,
                     externalIds,
@@ -445,6 +476,7 @@ public final class CreateRoutesStopRequestObjectRequestBody {
                     notes,
                     ontimeWindowAfterArrivalMs,
                     ontimeWindowBeforeArrivalMs,
+                    orders,
                     scheduledArrivalTime,
                     scheduledDepartureTime,
                     sequenceNumber,

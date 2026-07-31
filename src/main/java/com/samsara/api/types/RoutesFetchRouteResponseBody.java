@@ -20,18 +20,18 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RoutesFetchRouteResponseBody.Builder.class)
 public final class RoutesFetchRouteResponseBody {
-    private final Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data;
+    private final Optional<BaseRouteWithOrdersResponseObjectResponseBody> data;
 
     private final Map<String, Object> additionalProperties;
 
     private RoutesFetchRouteResponseBody(
-            Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data, Map<String, Object> additionalProperties) {
+            Optional<BaseRouteWithOrdersResponseObjectResponseBody> data, Map<String, Object> additionalProperties) {
         this.data = data;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public Optional<BaseRouteWithStopFormsResponseObjectResponseBody> getData() {
+    public Optional<BaseRouteWithOrdersResponseObjectResponseBody> getData() {
         return data;
     }
 
@@ -66,7 +66,7 @@ public final class RoutesFetchRouteResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data = Optional.empty();
+        private Optional<BaseRouteWithOrdersResponseObjectResponseBody> data = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -79,12 +79,12 @@ public final class RoutesFetchRouteResponseBody {
         }
 
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public Builder data(Optional<BaseRouteWithStopFormsResponseObjectResponseBody> data) {
+        public Builder data(Optional<BaseRouteWithOrdersResponseObjectResponseBody> data) {
             this.data = data;
             return this;
         }
 
-        public Builder data(BaseRouteWithStopFormsResponseObjectResponseBody data) {
+        public Builder data(BaseRouteWithOrdersResponseObjectResponseBody data) {
             this.data = Optional.ofNullable(data);
             return this;
         }

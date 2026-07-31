@@ -31,6 +31,9 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
     public static final FormSubmissionRequestFieldInputObjectRequestBodyType CHECK_BOXES =
             new FormSubmissionRequestFieldInputObjectRequestBodyType(Value.CHECK_BOXES, "check_boxes");
 
+    public static final FormSubmissionRequestFieldInputObjectRequestBodyType MEDIA =
+            new FormSubmissionRequestFieldInputObjectRequestBodyType(Value.MEDIA, "media");
+
     public static final FormSubmissionRequestFieldInputObjectRequestBodyType MULTIPLE_CHOICE =
             new FormSubmissionRequestFieldInputObjectRequestBodyType(Value.MULTIPLE_CHOICE, "multiple_choice");
 
@@ -86,6 +89,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
                 return visitor.visitGeofence();
             case CHECK_BOXES:
                 return visitor.visitCheckBoxes();
+            case MEDIA:
+                return visitor.visitMedia();
             case MULTIPLE_CHOICE:
                 return visitor.visitMultipleChoice();
             case ASSET:
@@ -115,6 +120,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
                 return GEOFENCE;
             case "check_boxes":
                 return CHECK_BOXES;
+            case "media":
+                return MEDIA;
             case "multiple_choice":
                 return MULTIPLE_CHOICE;
             case "asset":
@@ -145,6 +152,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
 
         BARCODE,
 
+        MEDIA,
+
         UNKNOWN
     }
 
@@ -168,6 +177,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBodyType {
         T visitGeofence();
 
         T visitBarcode();
+
+        T visitMedia();
 
         T visitUnknown(String unknownType);
     }

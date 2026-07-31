@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +22,8 @@ import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = RoutesStopWithFormsResponseObjectResponseBody.Builder.class)
-public final class RoutesStopWithFormsResponseObjectResponseBody {
+@JsonDeserialize(builder = RouteStopWithOrdersResponseObjectResponseBody.Builder.class)
+public final class RouteStopWithOrdersResponseObjectResponseBody {
     private final Optional<OffsetDateTime> actualArrivalTime;
 
     private final Optional<OffsetDateTime> actualDepartureTime;
@@ -59,6 +60,8 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
 
     private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
+    private final List<RouteStopOrderTaskReferenceObjectResponseBody> orders;
+
     private final Optional<Long> plannedDistanceMeters;
 
     private final Optional<OffsetDateTime> scheduledArrivalTime;
@@ -71,11 +74,11 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
 
     private final Optional<OffsetDateTime> skippedTime;
 
-    private final RoutesStopWithFormsResponseObjectResponseBodyState state;
+    private final RouteStopWithOrdersResponseObjectResponseBodyState state;
 
     private final Map<String, Object> additionalProperties;
 
-    private RoutesStopWithFormsResponseObjectResponseBody(
+    private RouteStopWithOrdersResponseObjectResponseBody(
             Optional<OffsetDateTime> actualArrivalTime,
             Optional<OffsetDateTime> actualDepartureTime,
             Optional<Long> actualDistanceMeters,
@@ -94,13 +97,14 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
             Optional<String> notes,
             Optional<Long> ontimeWindowAfterArrivalMs,
             Optional<Long> ontimeWindowBeforeArrivalMs,
+            List<RouteStopOrderTaskReferenceObjectResponseBody> orders,
             Optional<Long> plannedDistanceMeters,
             Optional<OffsetDateTime> scheduledArrivalTime,
             Optional<OffsetDateTime> scheduledDepartureTime,
             Optional<Long> sequenceNumber,
             Optional<RoutesSingleUseAddressObjectResponseBody> singleUseLocation,
             Optional<OffsetDateTime> skippedTime,
-            RoutesStopWithFormsResponseObjectResponseBodyState state,
+            RouteStopWithOrdersResponseObjectResponseBodyState state,
             Map<String, Object> additionalProperties) {
         this.actualArrivalTime = actualArrivalTime;
         this.actualDepartureTime = actualDepartureTime;
@@ -120,6 +124,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         this.notes = notes;
         this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
         this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
+        this.orders = orders;
         this.plannedDistanceMeters = plannedDistanceMeters;
         this.scheduledArrivalTime = scheduledArrivalTime;
         this.scheduledDepartureTime = scheduledDepartureTime;
@@ -272,6 +277,14 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
     }
 
     /**
+     * @return Canonical order tasks attached to this stop.
+     */
+    @JsonProperty("orders")
+    public List<RouteStopOrderTaskReferenceObjectResponseBody> getOrders() {
+        return orders;
+    }
+
+    /**
      * @return Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.
      */
     @JsonProperty("plannedDistanceMeters")
@@ -320,15 +333,15 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
      * @return The current state of the route stop.  Valid values: <code>unassigned</code>, <code>scheduled</code>, <code>en route</code>, <code>skipped</code>, <code>arrived</code>, <code>departed</code>
      */
     @JsonProperty("state")
-    public RoutesStopWithFormsResponseObjectResponseBodyState getState() {
+    public RouteStopWithOrdersResponseObjectResponseBodyState getState() {
         return state;
     }
 
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof RoutesStopWithFormsResponseObjectResponseBody
-                && equalTo((RoutesStopWithFormsResponseObjectResponseBody) other);
+        return other instanceof RouteStopWithOrdersResponseObjectResponseBody
+                && equalTo((RouteStopWithOrdersResponseObjectResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -336,7 +349,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(RoutesStopWithFormsResponseObjectResponseBody other) {
+    private boolean equalTo(RouteStopWithOrdersResponseObjectResponseBody other) {
         return actualArrivalTime.equals(other.actualArrivalTime)
                 && actualDepartureTime.equals(other.actualDepartureTime)
                 && actualDistanceMeters.equals(other.actualDistanceMeters)
@@ -355,6 +368,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
                 && notes.equals(other.notes)
                 && ontimeWindowAfterArrivalMs.equals(other.ontimeWindowAfterArrivalMs)
                 && ontimeWindowBeforeArrivalMs.equals(other.ontimeWindowBeforeArrivalMs)
+                && orders.equals(other.orders)
                 && plannedDistanceMeters.equals(other.plannedDistanceMeters)
                 && scheduledArrivalTime.equals(other.scheduledArrivalTime)
                 && scheduledDepartureTime.equals(other.scheduledDepartureTime)
@@ -385,6 +399,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
                 this.notes,
                 this.ontimeWindowAfterArrivalMs,
                 this.ontimeWindowBeforeArrivalMs,
+                this.orders,
                 this.plannedDistanceMeters,
                 this.scheduledArrivalTime,
                 this.scheduledDepartureTime,
@@ -409,7 +424,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
          */
         NameStage id(@NotNull String id);
 
-        Builder from(RoutesStopWithFormsResponseObjectResponseBody other);
+        Builder from(RouteStopWithOrdersResponseObjectResponseBody other);
     }
 
     public interface NameStage {
@@ -423,11 +438,11 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         /**
          * <p>The current state of the route stop.  Valid values: <code>unassigned</code>, <code>scheduled</code>, <code>en route</code>, <code>skipped</code>, <code>arrived</code>, <code>departed</code></p>
          */
-        _FinalStage state(@NotNull RoutesStopWithFormsResponseObjectResponseBodyState state);
+        _FinalStage state(@NotNull RouteStopWithOrdersResponseObjectResponseBodyState state);
     }
 
     public interface _FinalStage {
-        RoutesStopWithFormsResponseObjectResponseBody build();
+        RouteStopWithOrdersResponseObjectResponseBody build();
 
         /**
          * <p>Actual arrival time, if it exists, for the route stop in RFC 3339 format.</p>
@@ -540,6 +555,15 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         _FinalStage ontimeWindowBeforeArrivalMs(Long ontimeWindowBeforeArrivalMs);
 
         /**
+         * <p>Canonical order tasks attached to this stop.</p>
+         */
+        _FinalStage orders(List<RouteStopOrderTaskReferenceObjectResponseBody> orders);
+
+        _FinalStage addOrders(RouteStopOrderTaskReferenceObjectResponseBody orders);
+
+        _FinalStage addAllOrders(List<RouteStopOrderTaskReferenceObjectResponseBody> orders);
+
+        /**
          * <p>Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.</p>
          */
         _FinalStage plannedDistanceMeters(Optional<Long> plannedDistanceMeters);
@@ -585,7 +609,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
 
         private String name;
 
-        private RoutesStopWithFormsResponseObjectResponseBodyState state;
+        private RouteStopWithOrdersResponseObjectResponseBodyState state;
 
         private Optional<OffsetDateTime> skippedTime = Optional.empty();
 
@@ -598,6 +622,8 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         private Optional<OffsetDateTime> scheduledArrivalTime = Optional.empty();
 
         private Optional<Long> plannedDistanceMeters = Optional.empty();
+
+        private List<RouteStopOrderTaskReferenceObjectResponseBody> orders = new ArrayList<>();
 
         private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
@@ -637,7 +663,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(RoutesStopWithFormsResponseObjectResponseBody other) {
+        public Builder from(RouteStopWithOrdersResponseObjectResponseBody other) {
             actualArrivalTime(other.getActualArrivalTime());
             actualDepartureTime(other.getActualDepartureTime());
             actualDistanceMeters(other.getActualDistanceMeters());
@@ -656,6 +682,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
             notes(other.getNotes());
             ontimeWindowAfterArrivalMs(other.getOntimeWindowAfterArrivalMs());
             ontimeWindowBeforeArrivalMs(other.getOntimeWindowBeforeArrivalMs());
+            orders(other.getOrders());
             plannedDistanceMeters(other.getPlannedDistanceMeters());
             scheduledArrivalTime(other.getScheduledArrivalTime());
             scheduledDepartureTime(other.getScheduledDepartureTime());
@@ -697,7 +724,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("state")
-        public _FinalStage state(@NotNull RoutesStopWithFormsResponseObjectResponseBodyState state) {
+        public _FinalStage state(@NotNull RouteStopWithOrdersResponseObjectResponseBodyState state) {
             this.state = Objects.requireNonNull(state, "state must not be null");
             return this;
         }
@@ -812,6 +839,41 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         @JsonSetter(value = "plannedDistanceMeters", nulls = Nulls.SKIP)
         public _FinalStage plannedDistanceMeters(Optional<Long> plannedDistanceMeters) {
             this.plannedDistanceMeters = plannedDistanceMeters;
+            return this;
+        }
+
+        /**
+         * <p>Canonical order tasks attached to this stop.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addAllOrders(List<RouteStopOrderTaskReferenceObjectResponseBody> orders) {
+            if (orders != null) {
+                this.orders.addAll(orders);
+            }
+            return this;
+        }
+
+        /**
+         * <p>Canonical order tasks attached to this stop.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addOrders(RouteStopOrderTaskReferenceObjectResponseBody orders) {
+            this.orders.add(orders);
+            return this;
+        }
+
+        /**
+         * <p>Canonical order tasks attached to this stop.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "orders", nulls = Nulls.SKIP)
+        public _FinalStage orders(List<RouteStopOrderTaskReferenceObjectResponseBody> orders) {
+            this.orders.clear();
+            if (orders != null) {
+                this.orders.addAll(orders);
+            }
             return this;
         }
 
@@ -1132,8 +1194,8 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
         }
 
         @java.lang.Override
-        public RoutesStopWithFormsResponseObjectResponseBody build() {
-            return new RoutesStopWithFormsResponseObjectResponseBody(
+        public RouteStopWithOrdersResponseObjectResponseBody build() {
+            return new RouteStopWithOrdersResponseObjectResponseBody(
                     actualArrivalTime,
                     actualDepartureTime,
                     actualDistanceMeters,
@@ -1152,6 +1214,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBody {
                     notes,
                     ontimeWindowAfterArrivalMs,
                     ontimeWindowBeforeArrivalMs,
+                    orders,
                     plannedDistanceMeters,
                     scheduledArrivalTime,
                     scheduledDepartureTime,

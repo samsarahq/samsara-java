@@ -5,16 +5,21 @@ package com.samsara.api.resources.previewapis;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.previewapis.requests.DeleteOrderRequest;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
-import com.samsara.api.resources.previewapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
+import com.samsara.api.resources.previewapis.requests.GetOrderDeletionsRequest;
+import com.samsara.api.resources.previewapis.requests.GetOrdersRequest;
+import com.samsara.api.resources.previewapis.requests.GetOrdersStreamRequest;
 import com.samsara.api.resources.previewapis.requests.ListPartTransactionsRequest;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
-import com.samsara.api.resources.previewapis.requests.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody;
+import com.samsara.api.resources.previewapis.requests.OrdersPostOrdersBatchRequestBody;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
 import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
-import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody;
-import com.samsara.api.types.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody;
+import com.samsara.api.types.OrdersGetOrderDeletionsResponseBody;
+import com.samsara.api.types.OrdersGetOrdersResponseBody;
+import com.samsara.api.types.OrdersGetOrdersStreamResponseBody;
+import com.samsara.api.types.OrdersPostOrdersBatchResponseBody;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncPreviewApIsClient {
@@ -72,6 +77,277 @@ public class AsyncPreviewApIsClient {
     public CompletableFuture<DriversAuthTokenCreateDriverAuthTokenResponseBody> createDriverAuthToken(
             DriversAuthTokenCreateDriverAuthTokenRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.createDriverAuthToken(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns current canonical order state for up to 100 supplied order IDs.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrdersResponseBody> getOrders() {
+        return this.rawClient.getOrders().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns current canonical order state for up to 100 supplied order IDs.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrdersResponseBody> getOrders(RequestOptions requestOptions) {
+        return this.rawClient.getOrders(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns current canonical order state for up to 100 supplied order IDs.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrdersResponseBody> getOrders(GetOrdersRequest request) {
+        return this.rawClient.getOrders(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns current canonical order state for up to 100 supplied order IDs.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrdersResponseBody> getOrders(
+            GetOrdersRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getOrders(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes one canonical order by Samsara UUID or external ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteOrder(DeleteOrderRequest request) {
+        return this.rawClient.deleteOrder(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes one canonical order by Samsara UUID or external ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteOrder(DeleteOrderRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteOrder(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Atomically creates or updates up to 250 canonical orders.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersPostOrdersBatchResponseBody> postOrdersBatch(
+            OrdersPostOrdersBatchRequestBody request) {
+        return this.rawClient.postOrdersBatch(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Atomically creates or updates up to 250 canonical orders.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersPostOrdersBatchResponseBody> postOrdersBatch(
+            OrdersPostOrdersBatchRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postOrdersBatch(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns deletion markers for order replication.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrderDeletionsResponseBody> getOrderDeletions() {
+        return this.rawClient.getOrderDeletions().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns deletion markers for order replication.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrderDeletionsResponseBody> getOrderDeletions(RequestOptions requestOptions) {
+        return this.rawClient.getOrderDeletions(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns deletion markers for order replication.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrderDeletionsResponseBody> getOrderDeletions(GetOrderDeletionsRequest request) {
+        return this.rawClient.getOrderDeletions(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns deletion markers for order replication.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrderDeletionsResponseBody> getOrderDeletions(
+            GetOrderDeletionsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getOrderDeletions(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns live order create and update state for replication.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrdersStreamResponseBody> getOrdersStream(GetOrdersStreamRequest request) {
+        return this.rawClient.getOrdersStream(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns live order create and update state for replication.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<OrdersGetOrdersStreamResponseBody> getOrdersStream(
+            GetOrdersStreamRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getOrdersStream(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -265,182 +541,5 @@ public class AsyncPreviewApIsClient {
     public CompletableFuture<EntityInventoryTransactionsServiceListPartTransactionsResponseBody> listPartTransactions(
             ListPartTransactionsRequest request, RequestOptions requestOptions) {
         return this.rawClient.listPartTransactions(request, requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Preventive Maintenance Resolve</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>
-            resolvePreventiveMaintenance() {
-        return this.rawClient.resolvePreventiveMaintenance().thenApply(response -> response.body());
-    }
-
-    /**
-     * Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Preventive Maintenance Resolve</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>
-            resolvePreventiveMaintenance(RequestOptions requestOptions) {
-        return this.rawClient.resolvePreventiveMaintenance(requestOptions).thenApply(response -> response.body());
-    }
-
-    /**
-     * Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Preventive Maintenance Resolve</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>
-            resolvePreventiveMaintenance(
-                    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody request) {
-        return this.rawClient.resolvePreventiveMaintenance(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Preventive Maintenance Resolve</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>
-            resolvePreventiveMaintenance(
-                    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody request,
-                    RequestOptions requestOptions) {
-        return this.rawClient
-                .resolvePreventiveMaintenance(request, requestOptions)
-                .thenApply(response -> response.body());
-    }
-
-    /**
-     * Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<
-                    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>
-            updateUpcomingPreventiveMaintenance() {
-        return this.rawClient.updateUpcomingPreventiveMaintenance().thenApply(response -> response.body());
-    }
-
-    /**
-     * Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<
-                    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>
-            updateUpcomingPreventiveMaintenance(RequestOptions requestOptions) {
-        return this.rawClient
-                .updateUpcomingPreventiveMaintenance(requestOptions)
-                .thenApply(response -> response.body());
-    }
-
-    /**
-     * Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<
-                    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>
-            updateUpcomingPreventiveMaintenance(
-                    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
-                            request) {
-        return this.rawClient.updateUpcomingPreventiveMaintenance(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Write Upcoming Preventive Maintenance</strong> under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
-     * <ul>
-     * <li>
-     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
-     * </li>
-     * <li>
-     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
-     * </li>
-     * </ul>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<
-                    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>
-            updateUpcomingPreventiveMaintenance(
-                    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody request,
-                    RequestOptions requestOptions) {
-        return this.rawClient
-                .updateUpcomingPreventiveMaintenance(request, requestOptions)
-                .thenApply(response -> response.body());
     }
 }

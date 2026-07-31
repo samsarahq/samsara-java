@@ -33,6 +33,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
 
     private final String id;
 
+    private final Optional<FormSubmissionRequestMediaValueObjectRequestBody> mediaValue;
+
     private final Optional<FormSubmissionRequestMultipleChoiceValueObjectRequestBody> multipleChoiceValue;
 
     private final Optional<FormSubmissionRequestNumberValueObjectRequestBody> numberValue;
@@ -54,6 +56,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
             Optional<FormSubmissionRequestDateTimeValueObjectRequestBody> dateTimeValue,
             Optional<FormSubmissionRequestGeofenceValueObjectRequestBody> geofenceValue,
             String id,
+            Optional<FormSubmissionRequestMediaValueObjectRequestBody> mediaValue,
             Optional<FormSubmissionRequestMultipleChoiceValueObjectRequestBody> multipleChoiceValue,
             Optional<FormSubmissionRequestNumberValueObjectRequestBody> numberValue,
             Optional<FormSubmissionRequestPersonValueObjectRequestBody> personValue,
@@ -67,6 +70,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         this.dateTimeValue = dateTimeValue;
         this.geofenceValue = geofenceValue;
         this.id = id;
+        this.mediaValue = mediaValue;
         this.multipleChoiceValue = multipleChoiceValue;
         this.numberValue = numberValue;
         this.personValue = personValue;
@@ -109,6 +113,11 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         return id;
     }
 
+    @JsonProperty("mediaValue")
+    public Optional<FormSubmissionRequestMediaValueObjectRequestBody> getMediaValue() {
+        return mediaValue;
+    }
+
     @JsonProperty("multipleChoiceValue")
     public Optional<FormSubmissionRequestMultipleChoiceValueObjectRequestBody> getMultipleChoiceValue() {
         return multipleChoiceValue;
@@ -135,7 +144,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
     }
 
     /**
-     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code>
+     * @return Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code>, <code>media</code>
      */
     @JsonProperty("type")
     public FormSubmissionRequestFieldInputObjectRequestBodyType getType() {
@@ -161,6 +170,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
                 && dateTimeValue.equals(other.dateTimeValue)
                 && geofenceValue.equals(other.geofenceValue)
                 && id.equals(other.id)
+                && mediaValue.equals(other.mediaValue)
                 && multipleChoiceValue.equals(other.multipleChoiceValue)
                 && numberValue.equals(other.numberValue)
                 && personValue.equals(other.personValue)
@@ -178,6 +188,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
                 this.dateTimeValue,
                 this.geofenceValue,
                 this.id,
+                this.mediaValue,
                 this.multipleChoiceValue,
                 this.numberValue,
                 this.personValue,
@@ -206,7 +217,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
 
     public interface TypeStage {
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code>, <code>media</code></p>
          */
         _FinalStage type(@NotNull FormSubmissionRequestFieldInputObjectRequestBodyType type);
     }
@@ -233,6 +244,10 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         _FinalStage geofenceValue(Optional<FormSubmissionRequestGeofenceValueObjectRequestBody> geofenceValue);
 
         _FinalStage geofenceValue(FormSubmissionRequestGeofenceValueObjectRequestBody geofenceValue);
+
+        _FinalStage mediaValue(Optional<FormSubmissionRequestMediaValueObjectRequestBody> mediaValue);
+
+        _FinalStage mediaValue(FormSubmissionRequestMediaValueObjectRequestBody mediaValue);
 
         _FinalStage multipleChoiceValue(
                 Optional<FormSubmissionRequestMultipleChoiceValueObjectRequestBody> multipleChoiceValue);
@@ -273,6 +288,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         private Optional<FormSubmissionRequestMultipleChoiceValueObjectRequestBody> multipleChoiceValue =
                 Optional.empty();
 
+        private Optional<FormSubmissionRequestMediaValueObjectRequestBody> mediaValue = Optional.empty();
+
         private Optional<FormSubmissionRequestGeofenceValueObjectRequestBody> geofenceValue = Optional.empty();
 
         private Optional<FormSubmissionRequestDateTimeValueObjectRequestBody> dateTimeValue = Optional.empty();
@@ -296,6 +313,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
             dateTimeValue(other.getDateTimeValue());
             geofenceValue(other.getGeofenceValue());
             id(other.getId());
+            mediaValue(other.getMediaValue());
             multipleChoiceValue(other.getMultipleChoiceValue());
             numberValue(other.getNumberValue());
             personValue(other.getPersonValue());
@@ -318,8 +336,8 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         }
 
         /**
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code></p>
-         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code>, <code>media</code></p>
+         * <p>Type of the field.  Valid values: <code>number</code>, <code>text</code>, <code>multiple_choice</code>, <code>check_boxes</code>, <code>datetime</code>, <code>asset</code>, <code>person</code>, <code>table</code>, <code>geofence</code>, <code>barcode</code>, <code>media</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -393,6 +411,19 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
         public _FinalStage multipleChoiceValue(
                 Optional<FormSubmissionRequestMultipleChoiceValueObjectRequestBody> multipleChoiceValue) {
             this.multipleChoiceValue = multipleChoiceValue;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage mediaValue(FormSubmissionRequestMediaValueObjectRequestBody mediaValue) {
+            this.mediaValue = Optional.ofNullable(mediaValue);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "mediaValue", nulls = Nulls.SKIP)
+        public _FinalStage mediaValue(Optional<FormSubmissionRequestMediaValueObjectRequestBody> mediaValue) {
+            this.mediaValue = mediaValue;
             return this;
         }
 
@@ -471,6 +502,7 @@ public final class FormSubmissionRequestFieldInputObjectRequestBody {
                     dateTimeValue,
                     geofenceValue,
                     id,
+                    mediaValue,
                     multipleChoiceValue,
                     numberValue,
                     personValue,
