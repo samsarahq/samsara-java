@@ -21,8 +21,8 @@ import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = BaseRouteWithStopFormsResponseObjectResponseBody.Builder.class)
-public final class BaseRouteWithStopFormsResponseObjectResponseBody {
+@JsonDeserialize(builder = BaseRouteWithOrdersResponseObjectResponseBody.Builder.class)
+public final class BaseRouteWithOrdersResponseObjectResponseBody {
     private final Optional<OffsetDateTime> actualRouteEndTime;
 
     private final Optional<OffsetDateTime> actualRouteStartTime;
@@ -47,7 +47,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
 
     private final Optional<RouteSettingsResponseBody> settings;
 
-    private final Optional<List<RoutesStopWithFormsResponseObjectResponseBody>> stops;
+    private final Optional<List<RouteStopWithOrdersResponseObjectResponseBody>> stops;
 
     private final Optional<List<String>> tagIds;
 
@@ -55,7 +55,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
 
     private final Map<String, Object> additionalProperties;
 
-    private BaseRouteWithStopFormsResponseObjectResponseBody(
+    private BaseRouteWithOrdersResponseObjectResponseBody(
             Optional<OffsetDateTime> actualRouteEndTime,
             Optional<OffsetDateTime> actualRouteStartTime,
             Optional<GoaDriverTinyResponseResponseBody> driver,
@@ -68,7 +68,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
             Optional<OffsetDateTime> scheduledRouteEndTime,
             Optional<OffsetDateTime> scheduledRouteStartTime,
             Optional<RouteSettingsResponseBody> settings,
-            Optional<List<RoutesStopWithFormsResponseObjectResponseBody>> stops,
+            Optional<List<RouteStopWithOrdersResponseObjectResponseBody>> stops,
             Optional<List<String>> tagIds,
             Optional<GoaVehicleTinyResponseResponseBody> vehicle,
             Map<String, Object> additionalProperties) {
@@ -184,7 +184,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
      * @return List of stops along the route
      */
     @JsonProperty("stops")
-    public Optional<List<RoutesStopWithFormsResponseObjectResponseBody>> getStops() {
+    public Optional<List<RouteStopWithOrdersResponseObjectResponseBody>> getStops() {
         return stops;
     }
 
@@ -204,8 +204,8 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof BaseRouteWithStopFormsResponseObjectResponseBody
-                && equalTo((BaseRouteWithStopFormsResponseObjectResponseBody) other);
+        return other instanceof BaseRouteWithOrdersResponseObjectResponseBody
+                && equalTo((BaseRouteWithOrdersResponseObjectResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -213,7 +213,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(BaseRouteWithStopFormsResponseObjectResponseBody other) {
+    private boolean equalTo(BaseRouteWithOrdersResponseObjectResponseBody other) {
         return actualRouteEndTime.equals(other.actualRouteEndTime)
                 && actualRouteStartTime.equals(other.actualRouteStartTime)
                 && driver.equals(other.driver)
@@ -266,11 +266,11 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(BaseRouteWithStopFormsResponseObjectResponseBody other);
+        Builder from(BaseRouteWithOrdersResponseObjectResponseBody other);
     }
 
     public interface _FinalStage {
-        BaseRouteWithStopFormsResponseObjectResponseBody build();
+        BaseRouteWithOrdersResponseObjectResponseBody build();
 
         /**
          * <p>Actual end time, if it exists, for the route in RFC 3339 format.</p>
@@ -348,9 +348,9 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
         /**
          * <p>List of stops along the route</p>
          */
-        _FinalStage stops(Optional<List<RoutesStopWithFormsResponseObjectResponseBody>> stops);
+        _FinalStage stops(Optional<List<RouteStopWithOrdersResponseObjectResponseBody>> stops);
 
-        _FinalStage stops(List<RoutesStopWithFormsResponseObjectResponseBody> stops);
+        _FinalStage stops(List<RouteStopWithOrdersResponseObjectResponseBody> stops);
 
         /**
          * <p>An array of IDs of tags to associate with this route.</p>
@@ -372,7 +372,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
 
         private Optional<List<String>> tagIds = Optional.empty();
 
-        private Optional<List<RoutesStopWithFormsResponseObjectResponseBody>> stops = Optional.empty();
+        private Optional<List<RouteStopWithOrdersResponseObjectResponseBody>> stops = Optional.empty();
 
         private Optional<RouteSettingsResponseBody> settings = Optional.empty();
 
@@ -403,7 +403,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(BaseRouteWithStopFormsResponseObjectResponseBody other) {
+        public Builder from(BaseRouteWithOrdersResponseObjectResponseBody other) {
             actualRouteEndTime(other.getActualRouteEndTime());
             actualRouteStartTime(other.getActualRouteStartTime());
             driver(other.getDriver());
@@ -472,7 +472,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage stops(List<RoutesStopWithFormsResponseObjectResponseBody> stops) {
+        public _FinalStage stops(List<RouteStopWithOrdersResponseObjectResponseBody> stops) {
             this.stops = Optional.ofNullable(stops);
             return this;
         }
@@ -482,7 +482,7 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "stops", nulls = Nulls.SKIP)
-        public _FinalStage stops(Optional<List<RoutesStopWithFormsResponseObjectResponseBody>> stops) {
+        public _FinalStage stops(Optional<List<RouteStopWithOrdersResponseObjectResponseBody>> stops) {
             this.stops = stops;
             return this;
         }
@@ -696,8 +696,8 @@ public final class BaseRouteWithStopFormsResponseObjectResponseBody {
         }
 
         @java.lang.Override
-        public BaseRouteWithStopFormsResponseObjectResponseBody build() {
-            return new BaseRouteWithStopFormsResponseObjectResponseBody(
+        public BaseRouteWithOrdersResponseObjectResponseBody build() {
+            return new BaseRouteWithOrdersResponseObjectResponseBody(
                     actualRouteEndTime,
                     actualRouteStartTime,
                     driver,

@@ -22,14 +22,14 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RoutesFetchRoutesResponseBody.Builder.class)
 public final class RoutesFetchRoutesResponseBody {
-    private final List<BaseRouteWithStopFormsResponseObjectResponseBody> data;
+    private final List<BaseRouteWithOrdersResponseObjectResponseBody> data;
 
     private final GoaPaginationResponseResponseBody pagination;
 
     private final Map<String, Object> additionalProperties;
 
     private RoutesFetchRoutesResponseBody(
-            List<BaseRouteWithStopFormsResponseObjectResponseBody> data,
+            List<BaseRouteWithOrdersResponseObjectResponseBody> data,
             GoaPaginationResponseResponseBody pagination,
             Map<String, Object> additionalProperties) {
         this.data = data;
@@ -41,7 +41,7 @@ public final class RoutesFetchRoutesResponseBody {
      * @return An array containing multiple routes.
      */
     @JsonProperty("data")
-    public List<BaseRouteWithStopFormsResponseObjectResponseBody> getData() {
+    public List<BaseRouteWithOrdersResponseObjectResponseBody> getData() {
         return data;
     }
 
@@ -91,18 +91,18 @@ public final class RoutesFetchRoutesResponseBody {
         /**
          * <p>An array containing multiple routes.</p>
          */
-        _FinalStage data(List<BaseRouteWithStopFormsResponseObjectResponseBody> data);
+        _FinalStage data(List<BaseRouteWithOrdersResponseObjectResponseBody> data);
 
-        _FinalStage addData(BaseRouteWithStopFormsResponseObjectResponseBody data);
+        _FinalStage addData(BaseRouteWithOrdersResponseObjectResponseBody data);
 
-        _FinalStage addAllData(List<BaseRouteWithStopFormsResponseObjectResponseBody> data);
+        _FinalStage addAllData(List<BaseRouteWithOrdersResponseObjectResponseBody> data);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PaginationStage, _FinalStage {
         private GoaPaginationResponseResponseBody pagination;
 
-        private List<BaseRouteWithStopFormsResponseObjectResponseBody> data = new ArrayList<>();
+        private List<BaseRouteWithOrdersResponseObjectResponseBody> data = new ArrayList<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -128,7 +128,7 @@ public final class RoutesFetchRoutesResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllData(List<BaseRouteWithStopFormsResponseObjectResponseBody> data) {
+        public _FinalStage addAllData(List<BaseRouteWithOrdersResponseObjectResponseBody> data) {
             if (data != null) {
                 this.data.addAll(data);
             }
@@ -140,7 +140,7 @@ public final class RoutesFetchRoutesResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addData(BaseRouteWithStopFormsResponseObjectResponseBody data) {
+        public _FinalStage addData(BaseRouteWithOrdersResponseObjectResponseBody data) {
             this.data.add(data);
             return this;
         }
@@ -150,7 +150,7 @@ public final class RoutesFetchRoutesResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public _FinalStage data(List<BaseRouteWithStopFormsResponseObjectResponseBody> data) {
+        public _FinalStage data(List<BaseRouteWithOrdersResponseObjectResponseBody> data) {
             this.data.clear();
             if (data != null) {
                 this.data.addAll(data);

@@ -6,30 +6,30 @@ package com.samsara.api.types;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public final class RoutesStopWithFormsResponseObjectResponseBodyState {
-    public static final RoutesStopWithFormsResponseObjectResponseBodyState ARRIVED =
-            new RoutesStopWithFormsResponseObjectResponseBodyState(Value.ARRIVED, "arrived");
+public final class RouteStopWithOrdersResponseObjectResponseBodyState {
+    public static final RouteStopWithOrdersResponseObjectResponseBodyState ARRIVED =
+            new RouteStopWithOrdersResponseObjectResponseBodyState(Value.ARRIVED, "arrived");
 
-    public static final RoutesStopWithFormsResponseObjectResponseBodyState UNASSIGNED =
-            new RoutesStopWithFormsResponseObjectResponseBodyState(Value.UNASSIGNED, "unassigned");
+    public static final RouteStopWithOrdersResponseObjectResponseBodyState UNASSIGNED =
+            new RouteStopWithOrdersResponseObjectResponseBodyState(Value.UNASSIGNED, "unassigned");
 
-    public static final RoutesStopWithFormsResponseObjectResponseBodyState SKIPPED =
-            new RoutesStopWithFormsResponseObjectResponseBodyState(Value.SKIPPED, "skipped");
+    public static final RouteStopWithOrdersResponseObjectResponseBodyState SKIPPED =
+            new RouteStopWithOrdersResponseObjectResponseBodyState(Value.SKIPPED, "skipped");
 
-    public static final RoutesStopWithFormsResponseObjectResponseBodyState DEPARTED =
-            new RoutesStopWithFormsResponseObjectResponseBodyState(Value.DEPARTED, "departed");
+    public static final RouteStopWithOrdersResponseObjectResponseBodyState DEPARTED =
+            new RouteStopWithOrdersResponseObjectResponseBodyState(Value.DEPARTED, "departed");
 
-    public static final RoutesStopWithFormsResponseObjectResponseBodyState EN_ROUTE =
-            new RoutesStopWithFormsResponseObjectResponseBodyState(Value.EN_ROUTE, "en route");
+    public static final RouteStopWithOrdersResponseObjectResponseBodyState EN_ROUTE =
+            new RouteStopWithOrdersResponseObjectResponseBodyState(Value.EN_ROUTE, "en route");
 
-    public static final RoutesStopWithFormsResponseObjectResponseBodyState SCHEDULED =
-            new RoutesStopWithFormsResponseObjectResponseBodyState(Value.SCHEDULED, "scheduled");
+    public static final RouteStopWithOrdersResponseObjectResponseBodyState SCHEDULED =
+            new RouteStopWithOrdersResponseObjectResponseBodyState(Value.SCHEDULED, "scheduled");
 
     private final Value value;
 
     private final String string;
 
-    RoutesStopWithFormsResponseObjectResponseBodyState(Value value, String string) {
+    RouteStopWithOrdersResponseObjectResponseBodyState(Value value, String string) {
         this.value = value;
         this.string = string;
     }
@@ -47,8 +47,8 @@ public final class RoutesStopWithFormsResponseObjectResponseBodyState {
     @java.lang.Override
     public boolean equals(Object other) {
         return (this == other)
-                || (other instanceof RoutesStopWithFormsResponseObjectResponseBodyState
-                        && this.string.equals(((RoutesStopWithFormsResponseObjectResponseBodyState) other).string));
+                || (other instanceof RouteStopWithOrdersResponseObjectResponseBodyState
+                        && this.string.equals(((RouteStopWithOrdersResponseObjectResponseBodyState) other).string));
     }
 
     @java.lang.Override
@@ -77,7 +77,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBodyState {
     }
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static RoutesStopWithFormsResponseObjectResponseBodyState valueOf(String value) {
+    public static RouteStopWithOrdersResponseObjectResponseBodyState valueOf(String value) {
         switch (value) {
             case "arrived":
                 return ARRIVED;
@@ -92,7 +92,7 @@ public final class RoutesStopWithFormsResponseObjectResponseBodyState {
             case "scheduled":
                 return SCHEDULED;
             default:
-                return new RoutesStopWithFormsResponseObjectResponseBodyState(Value.UNKNOWN, value);
+                return new RouteStopWithOrdersResponseObjectResponseBodyState(Value.UNKNOWN, value);
         }
     }
 

@@ -11,7 +11,7 @@ import com.samsara.api.resources.routes.requests.InlineObject;
 import com.samsara.api.resources.routes.requests.ListHubPlanRoutesRequest;
 import com.samsara.api.resources.routes.requests.RoutesCreateRouteRequestBody;
 import com.samsara.api.resources.routes.requests.RoutesPatchRouteRequestBody;
-import com.samsara.api.types.CreateRoutesStopRequestObjectRequestBody;
+import com.samsara.api.types.CreateRouteStopWithOrdersRequestObjectRequestBody;
 import com.samsara.api.types.HubPlanRoutesListHubPlanRoutesResponseBody;
 import com.samsara.api.types.RoutesCreateRouteResponseBody;
 import com.samsara.api.types.RoutesFetchRouteResponseBody;
@@ -105,7 +105,7 @@ public class RoutesWireTest {
         RoutesCreateRouteResponseBody response = client.routes()
                 .createRoute(RoutesCreateRouteRequestBody.builder()
                         .name("Bid 123")
-                        .stops(Arrays.asList(CreateRoutesStopRequestObjectRequestBody.builder()
+                        .stops(Arrays.asList(CreateRouteStopWithOrdersRequestObjectRequestBody.builder()
                                 .build()))
                         .build());
         RecordedRequest request = server.takeRequest();

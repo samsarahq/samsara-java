@@ -44,7 +44,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":false,\"editCertifiedLogsEnabled\":false,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":false}}"));
+                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":false,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":false,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":false}}"));
         SettingsGetComplianceSettingsResponseBody response = client.settings().getComplianceSettings();
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -61,9 +61,9 @@ public class SettingsWireTest {
                 + "    \"carrierName\": \"ABC Trucking\",\n"
                 + "    \"dotNumber\": 12345678,\n"
                 + "    \"driverAutoDutyEnabled\": false,\n"
-                + "    \"editCertifiedLogsEnabled\": false,\n"
+                + "    \"editCertifiedLogsEnabled\": true,\n"
                 + "    \"forceManualLocationForDutyStatusChangesEnabled\": true,\n"
-                + "    \"forceReviewUnassignedHosEnabled\": true,\n"
+                + "    \"forceReviewUnassignedHosEnabled\": false,\n"
                 + "    \"mainOfficeFormattedAddress\": \"123 Main Street\",\n"
                 + "    \"persistentDutyStatusEnabled\": false\n"
                 + "  }\n"
@@ -105,7 +105,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":false,\"editCertifiedLogsEnabled\":false,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":true,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":false}}"));
+                                "{\"data\":{\"allowUnregulatedVehiclesEnabled\":false,\"canadaHosEnabled\":true,\"carrierName\":\"ABC Trucking\",\"dotNumber\":12345678,\"driverAutoDutyEnabled\":false,\"editCertifiedLogsEnabled\":true,\"forceManualLocationForDutyStatusChangesEnabled\":true,\"forceReviewUnassignedHosEnabled\":false,\"mainOfficeFormattedAddress\":\"123 Main Street\",\"persistentDutyStatusEnabled\":false}}"));
         SettingsPatchComplianceSettingsResponseBody response = client.settings()
                 .patchComplianceSettings(
                         SettingsPatchComplianceSettingsRequestBody.builder().build());
@@ -153,9 +153,9 @@ public class SettingsWireTest {
                 + "    \"carrierName\": \"ABC Trucking\",\n"
                 + "    \"dotNumber\": 12345678,\n"
                 + "    \"driverAutoDutyEnabled\": false,\n"
-                + "    \"editCertifiedLogsEnabled\": false,\n"
+                + "    \"editCertifiedLogsEnabled\": true,\n"
                 + "    \"forceManualLocationForDutyStatusChangesEnabled\": true,\n"
-                + "    \"forceReviewUnassignedHosEnabled\": true,\n"
+                + "    \"forceReviewUnassignedHosEnabled\": false,\n"
                 + "    \"mainOfficeFormattedAddress\": \"123 Main Street\",\n"
                 + "    \"persistentDutyStatusEnabled\": false\n"
                 + "  }\n"
@@ -197,7 +197,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":true,\"gamificationConfig\":{\"anonymizeDriverNames\":false},\"orgVehicleSearch\":true,\"trailerSelection\":false,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":false,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":false}}}"));
+                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":false,\"gamificationConfig\":{\"anonymizeDriverNames\":true},\"orgVehicleSearch\":false,\"trailerSelection\":false,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":true,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":false}}}"));
         SettingsGetDriverAppSettingsResponseBody response = client.settings().getDriverAppSettings();
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -210,14 +210,14 @@ public class SettingsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"driverFleetId\": \"abc_trucking_co\",\n"
-                + "    \"gamification\": true,\n"
+                + "    \"gamification\": false,\n"
                 + "    \"gamificationConfig\": {\n"
-                + "      \"anonymizeDriverNames\": false\n"
+                + "      \"anonymizeDriverNames\": true\n"
                 + "    },\n"
-                + "    \"orgVehicleSearch\": true,\n"
+                + "    \"orgVehicleSearch\": false,\n"
                 + "    \"trailerSelection\": false,\n"
                 + "    \"trailerSelectionConfig\": {\n"
-                + "      \"driverTrailerCreationEnabled\": false,\n"
+                + "      \"driverTrailerCreationEnabled\": true,\n"
                 + "      \"maxNumOfTrailersSelected\": 1000000,\n"
                 + "      \"orgTrailerSearch\": false\n"
                 + "    }\n"
@@ -260,7 +260,7 @@ public class SettingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":true,\"gamificationConfig\":{\"anonymizeDriverNames\":false},\"orgVehicleSearch\":true,\"trailerSelection\":false,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":false,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":false}}}"));
+                                "{\"data\":{\"driverFleetId\":\"abc_trucking_co\",\"gamification\":false,\"gamificationConfig\":{\"anonymizeDriverNames\":true},\"orgVehicleSearch\":false,\"trailerSelection\":false,\"trailerSelectionConfig\":{\"driverTrailerCreationEnabled\":true,\"maxNumOfTrailersSelected\":1000000,\"orgTrailerSearch\":false}}}"));
         SettingsPatchDriverAppSettingsResponseBody response = client.settings()
                 .patchDriverAppSettings(
                         SettingsPatchDriverAppSettingsRequestBody.builder().build());
@@ -304,14 +304,14 @@ public class SettingsWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"driverFleetId\": \"abc_trucking_co\",\n"
-                + "    \"gamification\": true,\n"
+                + "    \"gamification\": false,\n"
                 + "    \"gamificationConfig\": {\n"
-                + "      \"anonymizeDriverNames\": false\n"
+                + "      \"anonymizeDriverNames\": true\n"
                 + "    },\n"
-                + "    \"orgVehicleSearch\": true,\n"
+                + "    \"orgVehicleSearch\": false,\n"
                 + "    \"trailerSelection\": false,\n"
                 + "    \"trailerSelectionConfig\": {\n"
-                + "      \"driverTrailerCreationEnabled\": false,\n"
+                + "      \"driverTrailerCreationEnabled\": true,\n"
                 + "      \"maxNumOfTrailersSelected\": 1000000,\n"
                 + "      \"orgTrailerSearch\": false\n"
                 + "    }\n"

@@ -7259,6 +7259,103 @@ client.betaApIs().createStockMovement(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.resolvePreventiveMaintenance(request) -> ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().resolvePreventiveMaintenance(
+    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Samsara ID of the asset the instance is being resolved for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule to resolve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAt:** `Optional<String>` — RFC3339 time when the maintenance was resolved. Defaults to the current time if not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAtEngineHours:** `Optional<Long>` — Engine hours reading at the time of resolution.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time of resolution. Measured in meters.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listPreventiveMaintenanceSchedules() -> EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody</code></summary>
 <dl>
 <dd>
@@ -7418,6 +7515,127 @@ client.betaApIs().listUpcomingPreventiveMaintenance(
 <dd>
 
 **limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateUpcomingPreventiveMaintenance(request) -> EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateUpcomingPreventiveMaintenance(
+    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Samsara ID for the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule that the vehicle is scheduled to be serviced for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAt:** `Optional<String>` — Date and time when the prior instance was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAtEngineHours:** `Optional<Long>` — Engine hours at the time the prior instance was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time the prior instance was resolved. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextEngineHours:** `Optional<Long>` — The next engine hour value that the vehicle is scheduled to be serviced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextOdometer:** `Optional<Long>` — The next odometer value that the vehicle is scheduled to be serviced. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextTime:** `Optional<String>` — The next time that the vehicle is scheduled to be serviced for a date based PM.
     
 </dd>
 </dl>
@@ -11294,7 +11512,7 @@ client.alerts().postConfigurations(
         .scope(
             ScopeObjectRequestBody
                 .builder()
-                .all(false)
+                .all(true)
                 .build()
         )
         .actions(
@@ -21877,7 +22095,7 @@ client.routes().createRoute(
         .name("Bid 123")
         .stops(
             Arrays.asList(
-                CreateRoutesStopRequestObjectRequestBody
+                CreateRouteStopWithOrdersRequestObjectRequestBody
                     .builder()
                     .build()
             )
@@ -21946,7 +22164,7 @@ client.routes().createRoute(
 <dl>
 <dd>
 
-**stops:** `List<CreateRoutesStopRequestObjectRequestBody>` — List of stops along the route. For each stop, exactly one of `addressId` and `singleUseLocation` are required. Depending on the `settings` on your route, either a `scheduledArrivalTime` or `scheduledDepartureTime` must be specified for the first job.
+**stops:** `List<CreateRouteStopWithOrdersRequestObjectRequestBody>` — List of stops along the route. For each stop, exactly one of `addressId` and `singleUseLocation` are required. Depending on the `settings` on your route, either a `scheduledArrivalTime` or `scheduledDepartureTime` must be specified for the first job.
     
 </dd>
 </dl>
@@ -30561,6 +30779,434 @@ client.previewApIs().createDriverAuthToken(
 </dl>
 </details>
 
+<details><summary><code>client.previewApIs.getOrders() -> OrdersGetOrdersResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns current canonical order state for up to 100 supplied order IDs.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().getOrders(
+    GetOrdersRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderIds:** `Optional<String>` — Comma-separated Samsara order UUIDs or external ID tokens. Maximum 100.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include external IDs in returned orders.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.previewApIs.deleteOrder()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes one canonical order by Samsara UUID or external ID.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().deleteOrder(
+    DeleteOrderRequest
+        .builder()
+        .orderId("orderId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` — One Samsara order UUID or external ID token.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.previewApIs.postOrdersBatch(request) -> OrdersPostOrdersBatchResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Atomically creates or updates up to 250 canonical orders.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().postOrdersBatch(
+    OrdersPostOrdersBatchRequestBody
+        .builder()
+        .data(
+            Arrays.asList(
+                FleetOrderBatchUpsertInputRequestBody
+                    .builder()
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**data:** `List<FleetOrderBatchUpsertInputRequestBody>` — Orders to upsert atomically. Maximum 250.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.previewApIs.getOrderDeletions() -> OrdersGetOrderDeletionsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns deletion markers for order replication.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().getOrderDeletions(
+    GetOrderDeletionsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<OffsetDateTime>` — Optional deletedAtTime lower bound in RFC 3339 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<OffsetDateTime>` — Optional deletedAtTime upper bound in RFC 3339 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Maximum number of deletion markers to return.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.previewApIs.getOrdersStream() -> OrdersGetOrdersStreamResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns live order create and update state for replication.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.previewApIs().getOrdersStream(
+    GetOrdersStreamRequest
+        .builder()
+        .startTime(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `OffsetDateTime` — Inclusive updatedAtTime lower bound in RFC 3339 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<OffsetDateTime>` — Exclusive updatedAtTime upper bound in RFC 3339 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**routeId:** `Optional<String>` — Optional route ID scope.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include external IDs in returned orders.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.previewApIs.lockVehicle(id)</code></summary>
 <dl>
 <dd>
@@ -30814,236 +31460,6 @@ client.previewApIs().listPartTransactions(
 <dd>
 
 **limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.resolvePreventiveMaintenance(request) -> ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().resolvePreventiveMaintenance(
-    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `Optional<String>` — Samsara ID of the asset the instance is being resolved for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule to resolve.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolvedAt:** `Optional<String>` — When the maintenance was resolved, in epoch milliseconds. Defaults to the current time if not provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolvedAtEngineHours:** `Optional<Long>` — Engine hours reading at the time of resolution.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time of resolution. Measured in meters.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.updateUpcomingPreventiveMaintenance(request) -> EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().updateUpcomingPreventiveMaintenance(
-    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `Optional<String>` — Samsara ID for the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule that the vehicle is scheduled to be serviced for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lastResolvedAt:** `Optional<String>` — Date and time when the prior instance was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lastResolvedAtEngineHours:** `Optional<Long>` — Engine hours at the time the prior instance was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lastResolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time the prior instance was resolved. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**nextEngineHours:** `Optional<Long>` — The next engine hour value that the vehicle is scheduled to be serviced.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**nextOdometer:** `Optional<Long>` — The next odometer value that the vehicle is scheduled to be serviced. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**nextTime:** `Optional<String>` — The next time that the vehicle is scheduled to be serviced for a date based PM.
     
 </dd>
 </dl>

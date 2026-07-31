@@ -45,7 +45,7 @@ public class DriverVehicleAssignmentsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"assignedAtTime\":\"2019-06-13T19:08:25Z\",\"assignmentType\":\"invalid\",\"driver\":{\"id\":\"45646\",\"name\":\"Driver Bob\"},\"endTime\":\"2019-06-13T19:08:25Z\",\"isPassenger\":false,\"metadata\":{\"sourceName\":\"ExternalSourceName\"},\"startTime\":\"2019-06-13T19:08:25Z\",\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"assignedAtTime\":\"2019-06-13T19:08:25Z\",\"assignmentType\":\"invalid\",\"driver\":{\"id\":\"45646\",\"name\":\"Driver Bob\"},\"endTime\":\"2019-06-13T19:08:25Z\",\"isPassenger\":true,\"metadata\":{\"sourceName\":\"ExternalSourceName\"},\"startTime\":\"2019-06-13T19:08:25Z\",\"vehicle\":{\"id\":\"494123\",\"name\":\"Fleet Truck #1\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DriverVehicleAssignmentsV2GetDriverVehicleAssignmentsResponseBody response = client.driverVehicleAssignments()
                 .getDriverVehicleAssignments(GetDriverVehicleAssignmentsRequest.builder()
                         .filterBy(GetDriverVehicleAssignmentsRequestFilterBy.DRIVERS)
@@ -68,7 +68,7 @@ public class DriverVehicleAssignmentsWireTest {
                 + "        \"name\": \"Driver Bob\"\n"
                 + "      },\n"
                 + "      \"endTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"isPassenger\": false,\n"
+                + "      \"isPassenger\": true,\n"
                 + "      \"metadata\": {\n"
                 + "        \"sourceName\": \"ExternalSourceName\"\n"
                 + "      },\n"

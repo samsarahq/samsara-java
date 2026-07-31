@@ -31,6 +31,7 @@ import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceC
 import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceCreateWatchpointRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceUpdateWatchpointRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentOutputControlSetEquipmentDigitalOutputRequestBody;
@@ -111,6 +112,7 @@ import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBo
 import com.samsara.api.resources.betaapis.requests.RejectAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
 import com.samsara.api.resources.betaapis.requests.ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody;
+import com.samsara.api.resources.betaapis.requests.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersCreateRidershipPassengerRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipPassengersUpdateRidershipPassengerRequestBody;
 import com.samsara.api.resources.betaapis.requests.RidershipRouteSetupsCreateRidershipRouteSetupRequestBody;
@@ -175,6 +177,7 @@ import com.samsara.api.types.EntityPreventativeMaintenanceSchedulesServiceListPr
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
+import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceCreateWatchpointResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceUpdateWatchpointResponseBody;
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
@@ -239,6 +242,7 @@ import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
 import com.samsara.api.types.ReportsGetReportRunDataResponseBody;
 import com.samsara.api.types.ReportsGetReportRunsResponseBody;
 import com.samsara.api.types.ResolveAssignmentByDetailsResolveAssignmentByDetailsResponseBody;
+import com.samsara.api.types.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody;
 import com.samsara.api.types.RidershipPassengersCreateRidershipPassengerResponseBody;
 import com.samsara.api.types.RidershipPassengersGetRidershipPassengerResponseBody;
 import com.samsara.api.types.RidershipPassengersListRidershipPassengersResponseBody;
@@ -3461,7 +3465,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"addressId\":\"281474993384538\",\"categoryIds\":[\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"],\"externalIds\":{\"key\":\"value\"},\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"servicesProvided\":\"Oil changes, tire rotations, brake services\",\"vendorId\":\"0000000772\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"addressId\":\"281474993384538\",\"categoryIds\":[\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"],\"externalIds\":{\"key\":\"value\"},\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"servicesProvided\":\"Oil changes, tire rotations, brake services\",\"vendorId\":\"0000000772\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         MaintenanceVendorsListMaintenanceVendorsResponseBody response = client.betaApIs()
                 .listMaintenanceVendors(ListMaintenanceVendorsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -3477,6 +3481,7 @@ public class BetaApIsWireTest {
                 + "    {\n"
                 + "      \"addressId\": \"281474993384538\",\n"
                 + "      \"categoryIds\": [\n"
+                + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
                 + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
                 + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n"
                 + "        \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n"
@@ -6159,6 +6164,81 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testResolvePreventiveMaintenance() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{\"data\":{\"key\":\"value\"}}"));
+        ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody response = client.betaApIs()
+                .resolvePreventiveMaintenance(
+                        ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody.builder()
+                                .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = "" + "{\n" + "  \"data\": {\n" + "    \"key\": \"value\"\n" + "  }\n" + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testListPreventiveMaintenanceSchedules() throws Exception {
         server.enqueue(
                 new MockResponse()
@@ -6278,6 +6358,116 @@ public class BetaApIsWireTest {
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testUpdateUpcomingPreventiveMaintenance() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"asset\":{\"id\":\"281474976710656\"},\"currentEngineHours\":12345,\"currentOdometer\":12345,\"currentOdometerMiles\":12345,\"dueInDays\":12345,\"dueInEngineHours\":12345,\"dueInOdometer\":12345,\"dueInOdometerMiles\":12345,\"lastResolvedAt\":\"2019-06-13T19:08:25Z\",\"lastResolvedAtEngineHours\":12345,\"lastResolvedAtOdometer\":12345,\"nextEngineHours\":12345,\"nextOdometer\":12345,\"nextOdometerMiles\":12345,\"nextTime\":\"2019-06-13T19:08:25Z\",\"priority\":12345,\"schedule\":{\"id\":\"281474976710656\"},\"status\":\"12345\",\"workOrder\":{\"id\":\"281474976710656\"}}}"));
+        EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody response =
+                client.betaApIs()
+                        .updateUpcomingPreventiveMaintenance(
+                                EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
+                                        .builder()
+                                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"asset\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    },\n"
+                + "    \"currentEngineHours\": 12345,\n"
+                + "    \"currentOdometer\": 12345,\n"
+                + "    \"currentOdometerMiles\": 12345,\n"
+                + "    \"dueInDays\": 12345,\n"
+                + "    \"dueInEngineHours\": 12345,\n"
+                + "    \"dueInOdometer\": 12345,\n"
+                + "    \"dueInOdometerMiles\": 12345,\n"
+                + "    \"lastResolvedAt\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"lastResolvedAtEngineHours\": 12345,\n"
+                + "    \"lastResolvedAtOdometer\": 12345,\n"
+                + "    \"nextEngineHours\": 12345,\n"
+                + "    \"nextOdometer\": 12345,\n"
+                + "    \"nextOdometerMiles\": 12345,\n"
+                + "    \"nextTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"priority\": 12345,\n"
+                + "    \"schedule\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    },\n"
+                + "    \"status\": \"12345\",\n"
+                + "    \"workOrder\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    }\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
@@ -8192,10 +8382,11 @@ public class BetaApIsWireTest {
 
     @Test
     public void testGetReportRunData() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(
-                        TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json")));
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"columns\":[{\"dataType\":\"string\",\"name\":\"Device Name\"}],\"rows\":[[{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}],[{\"key\":\"value\"},{\"key\":\"value\"}]],\"status\":\"complete\"},\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReportsGetReportRunDataResponseBody response = client.betaApIs()
                 .getReportRunData(GetReportRunDataRequest.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -8205,8 +8396,54 @@ public class BetaApIsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testGetReportRunData_response.json");
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"columns\": [\n"
+                + "      {\n"
+                + "        \"dataType\": \"string\",\n"
+                + "        \"name\": \"Device Name\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"rows\": [\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      [\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"key\": \"value\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    ],\n"
+                + "    \"status\": \"complete\"\n"
+                + "  },\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -8244,7 +8481,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Recusandae temporibus eveniet nostrum autem.\",\"A harum temporibus aliquid eum exercitationem.\",\"Amet laborum odit.\",\"Ullam totam esse dolorum quis numquam.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Sit sint totam quod.\",\"Ratione sed repellat labore quas corrupti qui.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         RidershipPassengersListRidershipPassengersResponseBody response = client.betaApIs()
                 .listRidershipPassengers(
                         ListRidershipPassengersRequest.builder().tagId("tagId").build());
@@ -8281,10 +8518,8 @@ public class BetaApIsWireTest {
                 + "        \"isSpecialEducation\": true\n"
                 + "      },\n"
                 + "      \"tagIds\": [\n"
-                + "        \"Recusandae temporibus eveniet nostrum autem.\",\n"
-                + "        \"A harum temporibus aliquid eum exercitationem.\",\n"
-                + "        \"Amet laborum odit.\",\n"
-                + "        \"Ullam totam esse dolorum quis numquam.\"\n"
+                + "        \"Sit sint totam quod.\",\n"
+                + "        \"Ratione sed repellat labore quas corrupti qui.\"\n"
                 + "      ],\n"
                 + "      \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "    }\n"
@@ -8331,7 +8566,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Recusandae temporibus eveniet nostrum autem.\",\"A harum temporibus aliquid eum exercitationem.\",\"Amet laborum odit.\",\"Ullam totam esse dolorum quis numquam.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Sit sint totam quod.\",\"Ratione sed repellat labore quas corrupti qui.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersCreateRidershipPassengerResponseBody response = client.betaApIs()
                 .createRidershipPassenger(RidershipPassengersCreateRidershipPassengerRequestBody.builder()
                         .firstName("John")
@@ -8398,10 +8633,8 @@ public class BetaApIsWireTest {
                 + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Recusandae temporibus eveniet nostrum autem.\",\n"
-                + "      \"A harum temporibus aliquid eum exercitationem.\",\n"
-                + "      \"Amet laborum odit.\",\n"
-                + "      \"Ullam totam esse dolorum quis numquam.\"\n"
+                + "      \"Sit sint totam quod.\",\n"
+                + "      \"Ratione sed repellat labore quas corrupti qui.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -8443,7 +8676,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Recusandae temporibus eveniet nostrum autem.\",\"A harum temporibus aliquid eum exercitationem.\",\"Amet laborum odit.\",\"Ullam totam esse dolorum quis numquam.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Sit sint totam quod.\",\"Ratione sed repellat labore quas corrupti qui.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersUpdateRidershipPassengerResponseBody response = client.betaApIs()
                 .updateRidershipPassenger(RidershipPassengersUpdateRidershipPassengerRequestBody.builder()
                         .id("id")
@@ -8511,10 +8744,8 @@ public class BetaApIsWireTest {
                 + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Recusandae temporibus eveniet nostrum autem.\",\n"
-                + "      \"A harum temporibus aliquid eum exercitationem.\",\n"
-                + "      \"Amet laborum odit.\",\n"
-                + "      \"Ullam totam esse dolorum quis numquam.\"\n"
+                + "      \"Sit sint totam quod.\",\n"
+                + "      \"Ratione sed repellat labore quas corrupti qui.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"
@@ -8567,7 +8798,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Recusandae temporibus eveniet nostrum autem.\",\"A harum temporibus aliquid eum exercitationem.\",\"Amet laborum odit.\",\"Ullam totam esse dolorum quis numquam.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
+                                "{\"data\":{\"classification\":\"grade5\",\"createdAtTime\":\"2024-11-15T10:00:00Z\",\"externalIds\":{\"key\":\"value\"},\"firstName\":\"John\",\"id\":\"a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d\",\"identifiers\":[{\"id\":\"b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e\",\"status\":\"active\",\"type\":\"rfid\",\"value\":\"0418A2BC93\"}],\"isActive\":true,\"lastName\":\"Doe\",\"specialInstructions\":{\"isGuardianRequired\":false,\"isSpecialEducation\":true},\"tagIds\":[\"Sit sint totam quod.\",\"Ratione sed repellat labore quas corrupti qui.\"],\"updatedAtTime\":\"2024-11-15T10:30:00Z\"}}"));
         RidershipPassengersGetRidershipPassengerResponseBody response = client.betaApIs()
                 .getRidershipPassenger(
                         "id", GetRidershipPassengerRequest.builder().build());
@@ -8603,10 +8834,8 @@ public class BetaApIsWireTest {
                 + "      \"isSpecialEducation\": true\n"
                 + "    },\n"
                 + "    \"tagIds\": [\n"
-                + "      \"Recusandae temporibus eveniet nostrum autem.\",\n"
-                + "      \"A harum temporibus aliquid eum exercitationem.\",\n"
-                + "      \"Amet laborum odit.\",\n"
-                + "      \"Ullam totam esse dolorum quis numquam.\"\n"
+                + "      \"Sit sint totam quod.\",\n"
+                + "      \"Ratione sed repellat labore quas corrupti qui.\"\n"
                 + "    ],\n"
                 + "    \"updatedAtTime\": \"2024-11-15T10:30:00Z\"\n"
                 + "  }\n"

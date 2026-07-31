@@ -40,6 +40,8 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
 
     private final Optional<Long> ontimeWindowBeforeArrivalMs;
 
+    private final Optional<List<RouteStopOrderUpsertInputRequestBody>> orders;
+
     private final Optional<OffsetDateTime> scheduledArrivalTime;
 
     private final Optional<OffsetDateTime> scheduledDepartureTime;
@@ -60,6 +62,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             Optional<String> notes,
             Optional<Long> ontimeWindowAfterArrivalMs,
             Optional<Long> ontimeWindowBeforeArrivalMs,
+            Optional<List<RouteStopOrderUpsertInputRequestBody>> orders,
             Optional<OffsetDateTime> scheduledArrivalTime,
             Optional<OffsetDateTime> scheduledDepartureTime,
             Optional<Long> sequenceNumber,
@@ -74,6 +77,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         this.notes = notes;
         this.ontimeWindowAfterArrivalMs = ontimeWindowAfterArrivalMs;
         this.ontimeWindowBeforeArrivalMs = ontimeWindowBeforeArrivalMs;
+        this.orders = orders;
         this.scheduledArrivalTime = scheduledArrivalTime;
         this.scheduledDepartureTime = scheduledDepartureTime;
         this.sequenceNumber = sequenceNumber;
@@ -154,6 +158,14 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
     }
 
     /**
+     * @return Orders to replace on this stop. Omit this field to preserve existing order attachments; provide an empty array to clear them.
+     */
+    @JsonProperty("orders")
+    public Optional<List<RouteStopOrderUpsertInputRequestBody>> getOrders() {
+        return orders;
+    }
+
+    /**
      * @return This is a required field for all stops EXCEPT the start and end, based on route start and stop settings selected.
      */
     @JsonProperty("scheduledArrivalTime")
@@ -204,6 +216,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                 && notes.equals(other.notes)
                 && ontimeWindowAfterArrivalMs.equals(other.ontimeWindowAfterArrivalMs)
                 && ontimeWindowBeforeArrivalMs.equals(other.ontimeWindowBeforeArrivalMs)
+                && orders.equals(other.orders)
                 && scheduledArrivalTime.equals(other.scheduledArrivalTime)
                 && scheduledDepartureTime.equals(other.scheduledDepartureTime)
                 && sequenceNumber.equals(other.sequenceNumber)
@@ -222,6 +235,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                 this.notes,
                 this.ontimeWindowAfterArrivalMs,
                 this.ontimeWindowBeforeArrivalMs,
+                this.orders,
                 this.scheduledArrivalTime,
                 this.scheduledDepartureTime,
                 this.sequenceNumber,
@@ -257,6 +271,8 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
 
         private Optional<Long> ontimeWindowBeforeArrivalMs = Optional.empty();
 
+        private Optional<List<RouteStopOrderUpsertInputRequestBody>> orders = Optional.empty();
+
         private Optional<OffsetDateTime> scheduledArrivalTime = Optional.empty();
 
         private Optional<OffsetDateTime> scheduledDepartureTime = Optional.empty();
@@ -280,6 +296,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
             notes(other.getNotes());
             ontimeWindowAfterArrivalMs(other.getOntimeWindowAfterArrivalMs());
             ontimeWindowBeforeArrivalMs(other.getOntimeWindowBeforeArrivalMs());
+            orders(other.getOrders());
             scheduledArrivalTime(other.getScheduledArrivalTime());
             scheduledDepartureTime(other.getScheduledDepartureTime());
             sequenceNumber(other.getSequenceNumber());
@@ -414,6 +431,20 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
         }
 
         /**
+         * <p>Orders to replace on this stop. Omit this field to preserve existing order attachments; provide an empty array to clear them.</p>
+         */
+        @JsonSetter(value = "orders", nulls = Nulls.SKIP)
+        public Builder orders(Optional<List<RouteStopOrderUpsertInputRequestBody>> orders) {
+            this.orders = orders;
+            return this;
+        }
+
+        public Builder orders(List<RouteStopOrderUpsertInputRequestBody> orders) {
+            this.orders = Optional.ofNullable(orders);
+            return this;
+        }
+
+        /**
          * <p>This is a required field for all stops EXCEPT the start and end, based on route start and stop settings selected.</p>
          */
         @JsonSetter(value = "scheduledArrivalTime", nulls = Nulls.SKIP)
@@ -477,6 +508,7 @@ public final class UpdateRoutesStopRequestObjectRequestBody {
                     notes,
                     ontimeWindowAfterArrivalMs,
                     ontimeWindowBeforeArrivalMs,
+                    orders,
                     scheduledArrivalTime,
                     scheduledDepartureTime,
                     sequenceNumber,

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.types.CreateRoutesStopRequestObjectRequestBody;
+import com.samsara.api.types.CreateRouteStopWithOrdersRequestObjectRequestBody;
 import com.samsara.api.types.RouteSettingsRequestBody;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public final class RoutesCreateRouteRequestBody {
 
     private final Optional<RouteSettingsRequestBody> settings;
 
-    private final List<CreateRoutesStopRequestObjectRequestBody> stops;
+    private final List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops;
 
     private final Optional<List<String>> tagIds;
 
@@ -52,7 +52,7 @@ public final class RoutesCreateRouteRequestBody {
             Optional<String> notes,
             Optional<Boolean> recomputeScheduledTimes,
             Optional<RouteSettingsRequestBody> settings,
-            List<CreateRoutesStopRequestObjectRequestBody> stops,
+            List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops,
             Optional<List<String>> tagIds,
             Optional<String> vehicleId,
             Map<String, Object> additionalProperties) {
@@ -117,7 +117,7 @@ public final class RoutesCreateRouteRequestBody {
      * @return List of stops along the route. For each stop, exactly one of <code>addressId</code> and <code>singleUseLocation</code> are required. Depending on the <code>settings</code> on your route, either a <code>scheduledArrivalTime</code> or <code>scheduledDepartureTime</code> must be specified for the first job.
      */
     @JsonProperty("stops")
-    public List<CreateRoutesStopRequestObjectRequestBody> getStops() {
+    public List<CreateRouteStopWithOrdersRequestObjectRequestBody> getStops() {
         return stops;
     }
 
@@ -230,11 +230,11 @@ public final class RoutesCreateRouteRequestBody {
         /**
          * <p>List of stops along the route. For each stop, exactly one of <code>addressId</code> and <code>singleUseLocation</code> are required. Depending on the <code>settings</code> on your route, either a <code>scheduledArrivalTime</code> or <code>scheduledDepartureTime</code> must be specified for the first job.</p>
          */
-        _FinalStage stops(List<CreateRoutesStopRequestObjectRequestBody> stops);
+        _FinalStage stops(List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops);
 
-        _FinalStage addStops(CreateRoutesStopRequestObjectRequestBody stops);
+        _FinalStage addStops(CreateRouteStopWithOrdersRequestObjectRequestBody stops);
 
-        _FinalStage addAllStops(List<CreateRoutesStopRequestObjectRequestBody> stops);
+        _FinalStage addAllStops(List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops);
 
         /**
          * <p>An array of IDs of tags to associate with this route.</p>
@@ -259,7 +259,7 @@ public final class RoutesCreateRouteRequestBody {
 
         private Optional<List<String>> tagIds = Optional.empty();
 
-        private List<CreateRoutesStopRequestObjectRequestBody> stops = new ArrayList<>();
+        private List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops = new ArrayList<>();
 
         private Optional<RouteSettingsRequestBody> settings = Optional.empty();
 
@@ -347,7 +347,7 @@ public final class RoutesCreateRouteRequestBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllStops(List<CreateRoutesStopRequestObjectRequestBody> stops) {
+        public _FinalStage addAllStops(List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops) {
             if (stops != null) {
                 this.stops.addAll(stops);
             }
@@ -359,7 +359,7 @@ public final class RoutesCreateRouteRequestBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addStops(CreateRoutesStopRequestObjectRequestBody stops) {
+        public _FinalStage addStops(CreateRouteStopWithOrdersRequestObjectRequestBody stops) {
             this.stops.add(stops);
             return this;
         }
@@ -369,7 +369,7 @@ public final class RoutesCreateRouteRequestBody {
          */
         @java.lang.Override
         @JsonSetter(value = "stops", nulls = Nulls.SKIP)
-        public _FinalStage stops(List<CreateRoutesStopRequestObjectRequestBody> stops) {
+        public _FinalStage stops(List<CreateRouteStopWithOrdersRequestObjectRequestBody> stops) {
             this.stops.clear();
             if (stops != null) {
                 this.stops.addAll(stops);
