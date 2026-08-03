@@ -4,16 +4,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.previewapis.requests.DeleteOrderRequest;
+import com.samsara.api.resources.previewapis.requests.DeletePurchaseOrderRequest;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
+import com.samsara.api.resources.previewapis.requests.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody;
+import com.samsara.api.resources.previewapis.requests.EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody;
 import com.samsara.api.resources.previewapis.requests.GetOrderDeletionsRequest;
 import com.samsara.api.resources.previewapis.requests.GetOrdersRequest;
 import com.samsara.api.resources.previewapis.requests.GetOrdersStreamRequest;
 import com.samsara.api.resources.previewapis.requests.ListPartTransactionsRequest;
+import com.samsara.api.resources.previewapis.requests.ListPurchaseOrdersRequest;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
 import com.samsara.api.resources.previewapis.requests.OrdersPostOrdersBatchRequestBody;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
 import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody;
 import com.samsara.api.types.FleetOrderBatchUpsertInputRequestBody;
 import com.samsara.api.types.OrdersGetOrderDeletionsResponseBody;
 import com.samsara.api.types.OrdersGetOrdersResponseBody;
@@ -447,6 +454,324 @@ public class PreviewApIsWireTest {
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListPurchaseOrders() throws Exception {
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/PreviewApIsWireTest_testListPurchaseOrders_response.json")));
+        EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody response = client.previewApIs()
+                .listPurchaseOrders(ListPurchaseOrdersRequest.builder()
+                        .startTime("startTime")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/PreviewApIsWireTest_testListPurchaseOrders_response.json");
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCreatePurchaseOrder() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+        EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody response = client.previewApIs()
+                .createPurchaseOrder(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody.builder()
+                        .orderStatus("12345")
+                        .vendorId("281474976710656")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody =
+                "" + "{\n" + "  \"orderStatus\": \"12345\",\n" + "  \"vendorId\": \"281474976710656\"\n" + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"creationSource\": \"12345\",\n"
+                + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"glCode\": \"12345\",\n"
+                + "    \"id\": \"12345\",\n"
+                + "    \"invoiceNumber\": \"12345\",\n"
+                + "    \"mediaItemIds\": [\n"
+                + "      \"12345\",\n"
+                + "      \"12345\",\n"
+                + "      \"12345\",\n"
+                + "      \"12345\"\n"
+                + "    ],\n"
+                + "    \"notes\": \"12345\",\n"
+                + "    \"orderStatus\": \"12345\",\n"
+                + "    \"otherCost\": {\n"
+                + "      \"amount\": \"12345\",\n"
+                + "      \"currency\": \"12345\"\n"
+                + "    },\n"
+                + "    \"parts\": [\n"
+                + "      {\n"
+                + "        \"batchNumber\": \"12345\",\n"
+                + "        \"description\": \"12345\",\n"
+                + "        \"lineItemId\": \"12345\",\n"
+                + "        \"partSamsara\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"place\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"quantityOrdered\": 123.45,\n"
+                + "        \"quantityReceived\": 123.45,\n"
+                + "        \"unitOfMeasureType\": \"12345\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"poNumber\": \"12345\",\n"
+                + "    \"poNumberPrefix\": \"12345\",\n"
+                + "    \"poNumberSuffix\": \"12345\",\n"
+                + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"trackingNumber\": \"12345\",\n"
+                + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"vendor\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testDeletePurchaseOrder() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.previewApIs()
+                .deletePurchaseOrder(
+                        DeletePurchaseOrderRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testUpdatePurchaseOrder() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+        EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody response = client.previewApIs()
+                .updatePurchaseOrder(EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody.builder()
+                        .id("id")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"creationSource\": \"12345\",\n"
+                + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"glCode\": \"12345\",\n"
+                + "    \"id\": \"12345\",\n"
+                + "    \"invoiceNumber\": \"12345\",\n"
+                + "    \"mediaItemIds\": [\n"
+                + "      \"12345\",\n"
+                + "      \"12345\",\n"
+                + "      \"12345\"\n"
+                + "    ],\n"
+                + "    \"notes\": \"12345\",\n"
+                + "    \"orderStatus\": \"12345\",\n"
+                + "    \"otherCost\": {\n"
+                + "      \"amount\": \"12345\",\n"
+                + "      \"currency\": \"12345\"\n"
+                + "    },\n"
+                + "    \"parts\": [\n"
+                + "      {\n"
+                + "        \"batchNumber\": \"12345\",\n"
+                + "        \"description\": \"12345\",\n"
+                + "        \"lineItemId\": \"12345\",\n"
+                + "        \"partSamsara\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"place\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"quantityOrdered\": 123.45,\n"
+                + "        \"quantityReceived\": 123.45,\n"
+                + "        \"unitOfMeasureType\": \"12345\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"poNumber\": \"12345\",\n"
+                + "    \"poNumberPrefix\": \"12345\",\n"
+                + "    \"poNumberSuffix\": \"12345\",\n"
+                + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"trackingNumber\": \"12345\",\n"
+                + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"vendor\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    }\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

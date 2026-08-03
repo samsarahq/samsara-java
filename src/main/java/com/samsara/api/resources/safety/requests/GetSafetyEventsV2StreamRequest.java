@@ -132,7 +132,7 @@ public final class GetSafetyEventsV2StreamRequest {
     }
 
     /**
-     * @return RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.
+     * @return RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.
      */
     @JsonProperty("startTime")
     public String getStartTime() {
@@ -140,7 +140,7 @@ public final class GetSafetyEventsV2StreamRequest {
     }
 
     /**
-     * @return RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.
+     * @return RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.
      */
     @JsonProperty("endTime")
     public Optional<String> getEndTime() {
@@ -148,7 +148,7 @@ public final class GetSafetyEventsV2StreamRequest {
     }
 
     /**
-     * @return Optional string that decides which field to compare against the provided time range.  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code>
+     * @return Optional string that decides which timestamp to compare against the provided time range. <code>updatedAtTime</code> filters by when the Safety Event was last updated in Samsara. <code>createdAtTime</code> filters by when the Safety Event was detected (<code>startMs</code> in the response).  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code>
      */
     @JsonProperty("queryByTimeField")
     public Optional<GetSafetyEventsV2StreamRequestQueryByTimeField> getQueryByTimeField() {
@@ -243,7 +243,7 @@ public final class GetSafetyEventsV2StreamRequest {
 
     public interface StartTimeStage {
         /**
-         * <p>RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.</p>
+         * <p>RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.</p>
          */
         _FinalStage startTime(@NotNull String startTime);
 
@@ -308,14 +308,14 @@ public final class GetSafetyEventsV2StreamRequest {
         _FinalStage eventStates(String eventStates);
 
         /**
-         * <p>RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.</p>
+         * <p>RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.</p>
          */
         _FinalStage endTime(Optional<String> endTime);
 
         _FinalStage endTime(String endTime);
 
         /**
-         * <p>Optional string that decides which field to compare against the provided time range.  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code></p>
+         * <p>Optional string that decides which timestamp to compare against the provided time range. <code>updatedAtTime</code> filters by when the Safety Event was last updated in Samsara. <code>createdAtTime</code> filters by when the Safety Event was detected (<code>startMs</code> in the response).  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code></p>
          */
         _FinalStage queryByTimeField(Optional<GetSafetyEventsV2StreamRequestQueryByTimeField> queryByTimeField);
 
@@ -402,8 +402,8 @@ public final class GetSafetyEventsV2StreamRequest {
         }
 
         /**
-         * <p>RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.</p>
-         * <p>RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.</p>
+         * <p>RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.</p>
+         * <p>RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -494,7 +494,7 @@ public final class GetSafetyEventsV2StreamRequest {
         }
 
         /**
-         * <p>Optional string that decides which field to compare against the provided time range.  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code></p>
+         * <p>Optional string that decides which timestamp to compare against the provided time range. <code>updatedAtTime</code> filters by when the Safety Event was last updated in Samsara. <code>createdAtTime</code> filters by when the Safety Event was detected (<code>startMs</code> in the response).  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -504,7 +504,7 @@ public final class GetSafetyEventsV2StreamRequest {
         }
 
         /**
-         * <p>Optional string that decides which field to compare against the provided time range.  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code></p>
+         * <p>Optional string that decides which timestamp to compare against the provided time range. <code>updatedAtTime</code> filters by when the Safety Event was last updated in Samsara. <code>createdAtTime</code> filters by when the Safety Event was detected (<code>startMs</code> in the response).  Valid values: <code>updatedAtTime</code>, <code>createdAtTime</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "queryByTimeField", nulls = Nulls.SKIP)
@@ -514,7 +514,7 @@ public final class GetSafetyEventsV2StreamRequest {
         }
 
         /**
-         * <p>RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.</p>
+         * <p>RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -524,7 +524,7 @@ public final class GetSafetyEventsV2StreamRequest {
         }
 
         /**
-         * <p>RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or <code>createdAtTime</code> depending on the <code>queryByTimeField</code> parameter.</p>
+         * <p>RFC 3339 timestamp. If not provided and filtering by <code>updatedAtTime</code> then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against <code>updatedAtTime</code> or the event detection time (<code>startMs</code>) depending on the <code>queryByTimeField</code> parameter.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "endTime", nulls = Nulls.SKIP)

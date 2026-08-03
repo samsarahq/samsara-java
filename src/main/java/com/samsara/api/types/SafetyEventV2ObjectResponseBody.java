@@ -148,7 +148,7 @@ public final class SafetyEventV2ObjectResponseBody {
     }
 
     /**
-     * @return UTC time the Safety Event was created in Samsara in RFC 3339 format.
+     * @return UTC time the Safety Event was created in Samsara in RFC 3339 format. This field may differ from when the event was detected (<code>startMs</code>).
      */
     @JsonProperty("createdAtTime")
     public String getCreatedAtTime() {
@@ -174,7 +174,7 @@ public final class SafetyEventV2ObjectResponseBody {
     }
 
     /**
-     * @return UTC time the Safety Event ended in RFC 3339 format.
+     * @return UTC time the Safety Event detection ended in RFC 3339 format.
      */
     @JsonProperty("endMs")
     public String getEndMs() {
@@ -240,7 +240,7 @@ public final class SafetyEventV2ObjectResponseBody {
     }
 
     /**
-     * @return UTC time the Safety Event started in RFC 3339 format.
+     * @return UTC time the Safety Event was detected in RFC 3339 format.
      */
     @JsonProperty("startMs")
     public String getStartMs() {
@@ -359,7 +359,7 @@ public final class SafetyEventV2ObjectResponseBody {
 
     public interface CreatedAtTimeStage {
         /**
-         * <p>UTC time the Safety Event was created in Samsara in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event was created in Samsara in RFC 3339 format. This field may differ from when the event was detected (<code>startMs</code>).</p>
          */
         DriverStage createdAtTime(@NotNull String createdAtTime);
     }
@@ -370,7 +370,7 @@ public final class SafetyEventV2ObjectResponseBody {
 
     public interface EndMsStage {
         /**
-         * <p>UTC time the Safety Event ended in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event detection ended in RFC 3339 format.</p>
          */
         EventStateStage endMs(@NotNull String endMs);
     }
@@ -416,7 +416,7 @@ public final class SafetyEventV2ObjectResponseBody {
 
     public interface StartMsStage {
         /**
-         * <p>UTC time the Safety Event started in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event was detected in RFC 3339 format.</p>
          */
         UpdatedAtTimeStage startMs(@NotNull String startMs);
     }
@@ -599,8 +599,8 @@ public final class SafetyEventV2ObjectResponseBody {
         }
 
         /**
-         * <p>UTC time the Safety Event was created in Samsara in RFC 3339 format.</p>
-         * <p>UTC time the Safety Event was created in Samsara in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event was created in Samsara in RFC 3339 format. This field may differ from when the event was detected (<code>startMs</code>).</p>
+         * <p>UTC time the Safety Event was created in Samsara in RFC 3339 format. This field may differ from when the event was detected (<code>startMs</code>).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -618,8 +618,8 @@ public final class SafetyEventV2ObjectResponseBody {
         }
 
         /**
-         * <p>UTC time the Safety Event ended in RFC 3339 format.</p>
-         * <p>UTC time the Safety Event ended in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event detection ended in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event detection ended in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -697,8 +697,8 @@ public final class SafetyEventV2ObjectResponseBody {
         }
 
         /**
-         * <p>UTC time the Safety Event started in RFC 3339 format.</p>
-         * <p>UTC time the Safety Event started in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event was detected in RFC 3339 format.</p>
+         * <p>UTC time the Safety Event was detected in RFC 3339 format.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
