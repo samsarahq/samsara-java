@@ -6,16 +6,23 @@ package com.samsara.api.resources.previewapis;
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.previewapis.requests.DeleteOrderRequest;
+import com.samsara.api.resources.previewapis.requests.DeletePurchaseOrderRequest;
 import com.samsara.api.resources.previewapis.requests.DriversAuthTokenCreateDriverAuthTokenRequestBody;
+import com.samsara.api.resources.previewapis.requests.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody;
+import com.samsara.api.resources.previewapis.requests.EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody;
 import com.samsara.api.resources.previewapis.requests.GetOrderDeletionsRequest;
 import com.samsara.api.resources.previewapis.requests.GetOrdersRequest;
 import com.samsara.api.resources.previewapis.requests.GetOrdersStreamRequest;
 import com.samsara.api.resources.previewapis.requests.ListPartTransactionsRequest;
+import com.samsara.api.resources.previewapis.requests.ListPurchaseOrdersRequest;
 import com.samsara.api.resources.previewapis.requests.LockVehicleRequest;
 import com.samsara.api.resources.previewapis.requests.OrdersPostOrdersBatchRequestBody;
 import com.samsara.api.resources.previewapis.requests.UnlockVehicleRequest;
 import com.samsara.api.types.DriversAuthTokenCreateDriverAuthTokenResponseBody;
 import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody;
 import com.samsara.api.types.OrdersGetOrderDeletionsResponseBody;
 import com.samsara.api.types.OrdersGetOrdersResponseBody;
 import com.samsara.api.types.OrdersGetOrdersStreamResponseBody;
@@ -537,5 +544,163 @@ public class PreviewApIsClient {
     public EntityInventoryTransactionsServiceListPartTransactionsResponseBody listPartTransactions(
             ListPartTransactionsRequest request, RequestOptions requestOptions) {
         return this.rawClient.listPartTransactions(request, requestOptions).body();
+    }
+
+    /**
+     * Returns a paginated list of purchase orders ordered by last update time.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody listPurchaseOrders(
+            ListPurchaseOrdersRequest request) {
+        return this.rawClient.listPurchaseOrders(request).body();
+    }
+
+    /**
+     * Returns a paginated list of purchase orders ordered by last update time.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody listPurchaseOrders(
+            ListPurchaseOrdersRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listPurchaseOrders(request, requestOptions).body();
+    }
+
+    /**
+     * Creates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody createPurchaseOrder(
+            EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody request) {
+        return this.rawClient.createPurchaseOrder(request).body();
+    }
+
+    /**
+     * Creates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody createPurchaseOrder(
+            EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createPurchaseOrder(request, requestOptions).body();
+    }
+
+    /**
+     * Deletes a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deletePurchaseOrder(DeletePurchaseOrderRequest request) {
+        this.rawClient.deletePurchaseOrder(request).body();
+    }
+
+    /**
+     * Deletes a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deletePurchaseOrder(DeletePurchaseOrderRequest request, RequestOptions requestOptions) {
+        this.rawClient.deletePurchaseOrder(request, requestOptions).body();
+    }
+
+    /**
+     * Updates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody updatePurchaseOrder(
+            EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody request) {
+        return this.rawClient.updatePurchaseOrder(request).body();
+    }
+
+    /**
+     * Updates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p>Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should <strong>NOT</strong> rely on these APIs to build business critical applications</p>
+     * <ul>
+     * <li>
+     * <p>Samsara may change the structure of a preview API's interface without versioning or any notice to API users.</p>
+     * </li>
+     * <li>
+     * <p>When an endpoint becomes generally available, it will be announced in the API <a href="https://developers.samsara.com/changelog">changelog</a>.</p>
+     * </li>
+     * </ul>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody updatePurchaseOrder(
+            EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updatePurchaseOrder(request, requestOptions).body();
     }
 }
