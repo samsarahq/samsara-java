@@ -7647,6 +7647,455 @@ client.betaApIs().updateUpcomingPreventiveMaintenance(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listPurchaseOrders() -> EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of purchase orders ordered by last update time.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listPurchaseOrders(
+    ListPurchaseOrdersRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**poNumbers:** `Optional<String>` — A filter on the data based on this comma-separated list of PO number values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — Optional end of the updated time range, exclusive. Defaults to the server's current time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Required start of the updated time range, inclusive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createPurchaseOrder(request) -> EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a purchase order for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createPurchaseOrder(
+    EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
+        .builder()
+        .orderStatus("12345")
+        .vendorId("281474976710656")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Free-text notes for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderStatus:** `String` — Current customer-visible status of the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>>` — Parts ordered on the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**poNumberPrefix:** `Optional<String>` — Optional prefix included in the purchase order number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**poNumberSuffix:** `Optional<String>` — Optional suffix included in the purchase order number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `String` — ID of the vendor supplying this purchase order.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deletePurchaseOrder()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a purchase order for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deletePurchaseOrder(
+    DeletePurchaseOrderRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the PurchaseOrder record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updatePurchaseOrder(request) -> EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a purchase order for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updatePurchaseOrder(
+    EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the PurchaseOrder record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Free-text notes for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderStatus:** `Optional<String>` — Current customer-visible status of the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>>` — Parts ordered on the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — ID of the vendor supplying this purchase order.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listTimeEntries() -> EntityTimeEntriesServiceListTimeEntriesResponseBody</code></summary>
 <dl>
 <dd>
@@ -31460,479 +31909,6 @@ client.previewApIs().listPartTransactions(
 <dd>
 
 **limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.listPurchaseOrders() -> EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of purchase orders ordered by last update time.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().listPurchaseOrders(
-    ListPurchaseOrdersRequest
-        .builder()
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**poNumbers:** `Optional<String>` — A filter on the data based on this comma-separated list of PO number values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` — Optional end of the updated time range, exclusive. Defaults to the server's current time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — Required start of the updated time range, inclusive.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.createPurchaseOrder(request) -> EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a purchase order for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().createPurchaseOrder(
-    EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
-        .builder()
-        .orderStatus("12345")
-        .vendorId("281474976710656")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — Free-text notes for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**orderStatus:** `String` — Current customer-visible status of the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>>` — Parts ordered on the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**poNumberPrefix:** `Optional<String>` — Optional prefix included in the purchase order number.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**poNumberSuffix:** `Optional<String>` — Optional suffix included in the purchase order number.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `String` — ID of the vendor supplying this purchase order.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.deletePurchaseOrder()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a purchase order for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().deletePurchaseOrder(
-    DeletePurchaseOrderRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the PurchaseOrder record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.updatePurchaseOrder(request) -> EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a purchase order for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().updatePurchaseOrder(
-    EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the PurchaseOrder record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — Free-text notes for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**orderStatus:** `Optional<String>` — Current customer-visible status of the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>>` — Parts ordered on the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — ID of the vendor supplying this purchase order.
     
 </dd>
 </dl>
