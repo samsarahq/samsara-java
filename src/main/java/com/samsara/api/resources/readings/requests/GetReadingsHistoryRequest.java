@@ -299,6 +299,7 @@ public final class GetReadingsHistoryRequest {
      * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
      * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
      * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+     * <li><code>trailerVoltage</code> (Trailer Voltage): Represents the voltage reading off the primary power of the trailer (volt)</li>
      * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
      * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
      * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
@@ -677,6 +678,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
          * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+         * <li><code>trailerVoltage</code> (Trailer Voltage): Represents the voltage reading off the primary power of the trailer (volt)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
@@ -1051,6 +1053,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
          * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+         * <li><code>trailerVoltage</code> (Trailer Voltage): Represents the voltage reading off the primary power of the trailer (volt)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
@@ -1309,6 +1312,7 @@ public final class GetReadingsHistoryRequest {
          * <li><code>gatewayBatteryTemperature</code> (Gateway Battery Temperature): Internal temperature of the gateway battery in degrees Celsius (celsius)</li>
          * <li><code>gatewayBatteryVoltage</code> (Gateway Battery Voltage): Total battery voltage of the gateway (sum of all 3 cells) in volts (volt)</li>
          * <li><code>trailerMovingWithoutPower</code> (Trailer Moving Without Power): Trailer moving without power status (values: off | on)</li>
+         * <li><code>trailerVoltage</code> (Trailer Voltage): Represents the voltage reading off the primary power of the trailer (volt)</li>
          * <li><code>validBrakeScore</code> (Braking Performance Value): Percent score representing trailer braking effectiveness using regression analysis over the past 90 days, guaranteed to have under 3% margin of error. (percent)</li>
          * <li><code>widgetBatteryVoltage</code> (Widget Battery Voltage): Battery voltage level of the widget sensor in millivolts (volt)</li>
          * <li><code>widgetBatteryVoltageLow</code> (Widget Battery Voltage Low): Indicates if widget battery voltage is below 1500mV threshold (values: normal | low)</li>
