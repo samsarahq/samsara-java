@@ -20,6 +20,7 @@ import com.samsara.api.resources.betaapis.requests.DeletePartRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlaceRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePreferredStationRequest;
+import com.samsara.api.resources.betaapis.requests.DeletePurchaseOrderRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipRouteSetupRequest;
 import com.samsara.api.resources.betaapis.requests.DeployFunctionRequest;
@@ -31,6 +32,8 @@ import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceC
 import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceCreateWatchpointRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceUpdateWatchpointRequestBody;
@@ -91,6 +94,7 @@ import com.samsara.api.resources.betaapis.requests.ListPartsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListPreferredStationsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPreventiveMaintenanceSchedulesRequest;
+import com.samsara.api.resources.betaapis.requests.ListPurchaseOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipPassengersRequest;
 import com.samsara.api.resources.betaapis.requests.ListRidershipRouteSetupsRequest;
 import com.samsara.api.resources.betaapis.requests.ListSharedAssetsRequest;
@@ -174,6 +178,9 @@ import com.samsara.api.types.EntityPartInventoryLocationsServiceCreatePartInvent
 import com.samsara.api.types.EntityPartInventoryLocationsServiceListPartInventoryResponseBody;
 import com.samsara.api.types.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody;
 import com.samsara.api.types.EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody;
 import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody;
 import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
@@ -6466,6 +6473,324 @@ public class BetaApIsWireTest {
                 + "    },\n"
                 + "    \"status\": \"12345\",\n"
                 + "    \"workOrder\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListPurchaseOrders() throws Exception {
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/BetaApIsWireTest_testListPurchaseOrders_response.json")));
+        EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody response = client.betaApIs()
+                .listPurchaseOrders(ListPurchaseOrdersRequest.builder()
+                        .startTime("startTime")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testListPurchaseOrders_response.json");
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testCreatePurchaseOrder() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+        EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody response = client.betaApIs()
+                .createPurchaseOrder(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody.builder()
+                        .orderStatus("12345")
+                        .vendorId("281474976710656")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody =
+                "" + "{\n" + "  \"orderStatus\": \"12345\",\n" + "  \"vendorId\": \"281474976710656\"\n" + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"creationSource\": \"12345\",\n"
+                + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"glCode\": \"12345\",\n"
+                + "    \"id\": \"12345\",\n"
+                + "    \"invoiceNumber\": \"12345\",\n"
+                + "    \"mediaItemIds\": [\n"
+                + "      \"12345\",\n"
+                + "      \"12345\",\n"
+                + "      \"12345\",\n"
+                + "      \"12345\"\n"
+                + "    ],\n"
+                + "    \"notes\": \"12345\",\n"
+                + "    \"orderStatus\": \"12345\",\n"
+                + "    \"otherCost\": {\n"
+                + "      \"amount\": \"12345\",\n"
+                + "      \"currency\": \"12345\"\n"
+                + "    },\n"
+                + "    \"parts\": [\n"
+                + "      {\n"
+                + "        \"batchNumber\": \"12345\",\n"
+                + "        \"description\": \"12345\",\n"
+                + "        \"lineItemId\": \"12345\",\n"
+                + "        \"partSamsara\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"place\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"quantityOrdered\": 123.45,\n"
+                + "        \"quantityReceived\": 123.45,\n"
+                + "        \"unitOfMeasureType\": \"12345\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"poNumber\": \"12345\",\n"
+                + "    \"poNumberPrefix\": \"12345\",\n"
+                + "    \"poNumberSuffix\": \"12345\",\n"
+                + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"trackingNumber\": \"12345\",\n"
+                + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"vendor\": {\n"
+                + "      \"id\": \"281474976710656\"\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testDeletePurchaseOrder() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.betaApIs()
+                .deletePurchaseOrder(
+                        DeletePurchaseOrderRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testUpdatePurchaseOrder() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+        EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody response = client.betaApIs()
+                .updatePurchaseOrder(EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody.builder()
+                        .id("id")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"creationSource\": \"12345\",\n"
+                + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"glCode\": \"12345\",\n"
+                + "    \"id\": \"12345\",\n"
+                + "    \"invoiceNumber\": \"12345\",\n"
+                + "    \"mediaItemIds\": [\n"
+                + "      \"12345\",\n"
+                + "      \"12345\",\n"
+                + "      \"12345\"\n"
+                + "    ],\n"
+                + "    \"notes\": \"12345\",\n"
+                + "    \"orderStatus\": \"12345\",\n"
+                + "    \"otherCost\": {\n"
+                + "      \"amount\": \"12345\",\n"
+                + "      \"currency\": \"12345\"\n"
+                + "    },\n"
+                + "    \"parts\": [\n"
+                + "      {\n"
+                + "        \"batchNumber\": \"12345\",\n"
+                + "        \"description\": \"12345\",\n"
+                + "        \"lineItemId\": \"12345\",\n"
+                + "        \"partSamsara\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"place\": {\n"
+                + "          \"id\": \"281474976710656\"\n"
+                + "        },\n"
+                + "        \"quantityOrdered\": 123.45,\n"
+                + "        \"quantityReceived\": 123.45,\n"
+                + "        \"unitOfMeasureType\": \"12345\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"poNumber\": \"12345\",\n"
+                + "    \"poNumberPrefix\": \"12345\",\n"
+                + "    \"poNumberSuffix\": \"12345\",\n"
+                + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"trackingNumber\": \"12345\",\n"
+                + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "    \"vendor\": {\n"
                 + "      \"id\": \"281474976710656\"\n"
                 + "    }\n"
                 + "  }\n"

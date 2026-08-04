@@ -19,6 +19,9 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType
     public static final AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType ASSET =
             new AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType(Value.ASSET, "asset");
 
+    public static final AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType JOB =
+            new AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType(Value.JOB, "job");
+
     private final Value value;
 
     private final String string;
@@ -61,6 +64,8 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType
                 return visitor.visitGeofence();
             case ASSET:
                 return visitor.visitAsset();
+            case JOB:
+                return visitor.visitJob();
             case _UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -78,6 +83,8 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType
                 return GEOFENCE;
             case "asset":
                 return ASSET;
+            case "job":
+                return JOB;
             default:
                 return new AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType(Value._UNKNOWN, value);
         }
@@ -92,6 +99,8 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType
 
         GEOFENCE,
 
+        JOB,
+
         _UNKNOWN
     }
 
@@ -103,6 +112,8 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType
         T visitAsset();
 
         T visitGeofence();
+
+        T visitJob();
 
         T visitUnknown(String unknownType);
     }

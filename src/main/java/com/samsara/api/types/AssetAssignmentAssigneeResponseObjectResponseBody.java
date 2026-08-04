@@ -41,7 +41,7 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBody {
     }
 
     /**
-     * @return Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code>
+     * @return Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code>, <code>job</code>
      */
     @JsonProperty("assigneeType")
     public AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType getAssigneeType() {
@@ -96,7 +96,7 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBody {
 
     public interface AssigneeTypeStage {
         /**
-         * <p>Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code></p>
+         * <p>Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code>, <code>job</code></p>
          */
         IdStage assigneeType(@NotNull AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType assigneeType);
 
@@ -143,8 +143,8 @@ public final class AssetAssignmentAssigneeResponseObjectResponseBody {
         }
 
         /**
-         * <p>Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code></p>
-         * <p>Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code></p>
+         * <p>Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code>, <code>job</code></p>
+         * <p>Type of the assignee.  Valid values: <code>unknown</code>, <code>driver</code>, <code>asset</code>, <code>geofence</code>, <code>job</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
