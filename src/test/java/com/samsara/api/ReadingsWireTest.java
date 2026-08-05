@@ -43,7 +43,7 @@ public class ReadingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"category\":\"smartTrailer\",\"description\":\"Engine Speed\",\"entityType\":\"sensor\",\"enumValues\":[{\"label\":\"Critically High\",\"symbol\":\"criticallyHigh\"}],\"ingestionEnabled\":true,\"label\":\"engineRpm\",\"readingId\":\"12345\",\"type\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"category\":\"smartTrailer\",\"description\":\"Engine Speed\",\"entityType\":\"sensor\",\"enumValues\":[{\"label\":\"Critically High\",\"symbol\":\"criticallyHigh\"}],\"grouping\":{\"id\":\"brakeLiningRemaining\",\"label\":\"Brake Lining Remaining\"},\"ingestionEnabled\":true,\"label\":\"engineRpm\",\"readingId\":\"12345\",\"type\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReadingsListReadingsDefinitionsResponseBody response = client.readings()
                 .listReadingsDefinitions(
                         ListReadingsDefinitionsRequest.builder().build());
@@ -67,6 +67,10 @@ public class ReadingsWireTest {
                 + "          \"symbol\": \"criticallyHigh\"\n"
                 + "        }\n"
                 + "      ],\n"
+                + "      \"grouping\": {\n"
+                + "        \"id\": \"brakeLiningRemaining\",\n"
+                + "        \"label\": \"Brake Lining Remaining\"\n"
+                + "      },\n"
                 + "      \"ingestionEnabled\": true,\n"
                 + "      \"label\": \"engineRpm\",\n"
                 + "      \"readingId\": \"12345\",\n"

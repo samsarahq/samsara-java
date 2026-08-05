@@ -31,6 +31,8 @@ public final class ReadingDefinitionResponseBody {
 
     private final Optional<List<EnumValueResponseBody>> enumValues;
 
+    private final Optional<ReadingGroupingResponseBody> grouping;
+
     private final boolean ingestionEnabled;
 
     private final String label;
@@ -46,6 +48,7 @@ public final class ReadingDefinitionResponseBody {
             String description,
             String entityType,
             Optional<List<EnumValueResponseBody>> enumValues,
+            Optional<ReadingGroupingResponseBody> grouping,
             boolean ingestionEnabled,
             String label,
             String readingId,
@@ -55,6 +58,7 @@ public final class ReadingDefinitionResponseBody {
         this.description = description;
         this.entityType = entityType;
         this.enumValues = enumValues;
+        this.grouping = grouping;
         this.ingestionEnabled = ingestionEnabled;
         this.label = label;
         this.readingId = readingId;
@@ -92,6 +96,11 @@ public final class ReadingDefinitionResponseBody {
     @JsonProperty("enumValues")
     public Optional<List<EnumValueResponseBody>> getEnumValues() {
         return enumValues;
+    }
+
+    @JsonProperty("grouping")
+    public Optional<ReadingGroupingResponseBody> getGrouping() {
+        return grouping;
     }
 
     /**
@@ -142,6 +151,7 @@ public final class ReadingDefinitionResponseBody {
                 && description.equals(other.description)
                 && entityType.equals(other.entityType)
                 && enumValues.equals(other.enumValues)
+                && grouping.equals(other.grouping)
                 && ingestionEnabled == other.ingestionEnabled
                 && label.equals(other.label)
                 && readingId.equals(other.readingId)
@@ -155,6 +165,7 @@ public final class ReadingDefinitionResponseBody {
                 this.description,
                 this.entityType,
                 this.enumValues,
+                this.grouping,
                 this.ingestionEnabled,
                 this.label,
                 this.readingId,
@@ -224,6 +235,10 @@ public final class ReadingDefinitionResponseBody {
 
         _FinalStage enumValues(List<EnumValueResponseBody> enumValues);
 
+        _FinalStage grouping(Optional<ReadingGroupingResponseBody> grouping);
+
+        _FinalStage grouping(ReadingGroupingResponseBody grouping);
+
         /**
          * <p>The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.</p>
          */
@@ -257,6 +272,8 @@ public final class ReadingDefinitionResponseBody {
 
         private Map<String, Object> type = new LinkedHashMap<>();
 
+        private Optional<ReadingGroupingResponseBody> grouping = Optional.empty();
+
         private Optional<List<EnumValueResponseBody>> enumValues = Optional.empty();
 
         @JsonAnySetter
@@ -270,6 +287,7 @@ public final class ReadingDefinitionResponseBody {
             description(other.getDescription());
             entityType(other.getEntityType());
             enumValues(other.getEnumValues());
+            grouping(other.getGrouping());
             ingestionEnabled(other.getIngestionEnabled());
             label(other.getLabel());
             readingId(other.getReadingId());
@@ -384,6 +402,19 @@ public final class ReadingDefinitionResponseBody {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage grouping(ReadingGroupingResponseBody grouping) {
+            this.grouping = Optional.ofNullable(grouping);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "grouping", nulls = Nulls.SKIP)
+        public _FinalStage grouping(Optional<ReadingGroupingResponseBody> grouping) {
+            this.grouping = grouping;
+            return this;
+        }
+
         /**
          * <p>Array of enumeration values</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -411,6 +442,7 @@ public final class ReadingDefinitionResponseBody {
                     description,
                     entityType,
                     enumValues,
+                    grouping,
                     ingestionEnabled,
                     label,
                     readingId,

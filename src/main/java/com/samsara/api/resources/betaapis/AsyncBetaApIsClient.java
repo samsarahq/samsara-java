@@ -90,6 +90,7 @@ import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAsse
 import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
 import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
+import com.samsara.api.resources.betaapis.requests.ListIssuesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartInventoryRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartsRequest;
@@ -152,6 +153,7 @@ import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody;
 import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
+import com.samsara.api.types.EntityGroundIntelligenceIssuesServiceListIssuesResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceCreatePartResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceListPartsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceUpdatePartResponseBody;
@@ -2012,6 +2014,49 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<GatewaysPairGatewaysResponseBody> pairGateways(
             GatewaysPairGatewaysRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.pairGateways(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of Ground Intelligence issues for an organization, ordered by updatedAtTime descending and then id ascending.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ground Intelligence Issues</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityGroundIntelligenceIssuesServiceListIssuesResponseBody> listIssues() {
+        return this.rawClient.listIssues().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of Ground Intelligence issues for an organization, ordered by updatedAtTime descending and then id ascending.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ground Intelligence Issues</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityGroundIntelligenceIssuesServiceListIssuesResponseBody> listIssues(
+            RequestOptions requestOptions) {
+        return this.rawClient.listIssues(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of Ground Intelligence issues for an organization, ordered by updatedAtTime descending and then id ascending.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ground Intelligence Issues</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityGroundIntelligenceIssuesServiceListIssuesResponseBody> listIssues(
+            ListIssuesRequest request) {
+        return this.rawClient.listIssues(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of Ground Intelligence issues for an organization, ordered by updatedAtTime descending and then id ascending.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Ground Intelligence Issues</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityGroundIntelligenceIssuesServiceListIssuesResponseBody> listIssues(
+            ListIssuesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listIssues(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
