@@ -88,6 +88,7 @@ import com.samsara.api.resources.betaapis.requests.ListDeviceRecoveryMissingAsse
 import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
 import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
+import com.samsara.api.resources.betaapis.requests.ListIssuesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartInventoryRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartsRequest;
@@ -171,6 +172,7 @@ import com.samsara.api.types.DriverEfficienciesResponse;
 import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentResponseBody;
 import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
+import com.samsara.api.types.EntityGroundIntelligenceIssuesServiceListIssuesResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceCreatePartResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceListPartsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceUpdatePartResponseBody;
@@ -4776,6 +4778,80 @@ public class BetaApIsWireTest {
     }
 
     @Test
+    public void testListIssues() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"dashboardUrl\":\"https://cloud.samsara.com/o/123456/ground-intelligence/issues/123e4567-e89b-12d3-a456-426614174000\",\"firstSeenTime\":\"2019-06-13T19:08:25Z\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"lastSeenTime\":\"2019-06-13T19:08:25Z\",\"location\":{\"type\":\"point\"},\"observationCount\":3,\"roadSegment\":{\"roadName\":\"Market Street\"},\"severity\":\"high\",\"status\":\"needsReview\",\"type\":\"pothole\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        EntityGroundIntelligenceIssuesServiceListIssuesResponseBody response =
+                client.betaApIs().listIssues(ListIssuesRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"dashboardUrl\": \"https://cloud.samsara.com/o/123456/ground-intelligence/issues/123e4567-e89b-12d3-a456-426614174000\",\n"
+                + "      \"firstSeenTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n"
+                + "      \"lastSeenTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"location\": {\n"
+                + "        \"type\": \"point\"\n"
+                + "      },\n"
+                + "      \"observationCount\": 3,\n"
+                + "      \"roadSegment\": {\n"
+                + "        \"roadName\": \"Market Street\"\n"
+                + "      },\n"
+                + "      \"severity\": \"high\",\n"
+                + "      \"status\": \"needsReview\",\n"
+                + "      \"type\": \"pothole\",\n"
+                + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
     public void testCreateWatchpoint() throws Exception {
         server.enqueue(
                 new MockResponse()
@@ -5496,7 +5572,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"archivedAtTime\":\"2019-06-13T19:08:25Z\",\"barcodeString\":\"12345\",\"category\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"12345\",\"id\":\"12345\",\"isInventoryTracked\":true,\"manufacturerPartNumber\":\"12345\",\"name\":\"12345\",\"partNumber\":\"12345\",\"partStatus\":\"12345\",\"subcategory\":\"12345\",\"unitCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"unitOfMeasureType\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vmrsCode\":\"12345\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"archivedAtTime\":\"2019-06-13T19:08:25Z\",\"barcodeString\":\"12345\",\"barcodeType\":\"12345\",\"category\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"12345\",\"externalId\":\"12345\",\"id\":\"12345\",\"isInventoryTracked\":true,\"manufacturerName\":\"12345\",\"manufacturerPartNumber\":\"12345\",\"name\":\"12345\",\"partNumber\":\"12345\",\"partStatus\":\"12345\",\"subcategory\":\"12345\",\"unitCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"unitOfMeasureType\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vmrsCode\":\"12345\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EntityPartDefinitionsServiceListPartsResponseBody response =
                 client.betaApIs().listParts(ListPartsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -5512,12 +5588,15 @@ public class BetaApIsWireTest {
                 + "    {\n"
                 + "      \"archivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"barcodeString\": \"12345\",\n"
+                + "      \"barcodeType\": \"12345\",\n"
                 + "      \"category\": \"12345\",\n"
                 + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"description\": \"12345\",\n"
+                + "      \"externalId\": \"12345\",\n"
                 + "      \"id\": \"12345\",\n"
                 + "      \"isInventoryTracked\": true,\n"
+                + "      \"manufacturerName\": \"12345\",\n"
                 + "      \"manufacturerPartNumber\": \"12345\",\n"
                 + "      \"name\": \"12345\",\n"
                 + "      \"partNumber\": \"12345\",\n"
@@ -5574,7 +5653,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"archivedAtTime\":\"2019-06-13T19:08:25Z\",\"barcodeString\":\"12345\",\"category\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"12345\",\"id\":\"12345\",\"isInventoryTracked\":true,\"manufacturerPartNumber\":\"12345\",\"name\":\"12345\",\"partNumber\":\"12345\",\"partStatus\":\"12345\",\"subcategory\":\"12345\",\"unitCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"unitOfMeasureType\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vmrsCode\":\"12345\"}}"));
+                                "{\"data\":{\"archivedAtTime\":\"2019-06-13T19:08:25Z\",\"barcodeString\":\"12345\",\"barcodeType\":\"12345\",\"category\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"12345\",\"externalId\":\"12345\",\"id\":\"12345\",\"isInventoryTracked\":true,\"manufacturerName\":\"12345\",\"manufacturerPartNumber\":\"12345\",\"name\":\"12345\",\"partNumber\":\"12345\",\"partStatus\":\"12345\",\"subcategory\":\"12345\",\"unitCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"unitOfMeasureType\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vmrsCode\":\"12345\"}}"));
         EntityPartDefinitionsServiceCreatePartResponseBody response = client.betaApIs()
                 .createPart(EntityPartDefinitionsServiceCreatePartRequestBody.builder()
                         .partNumber("12345")
@@ -5620,12 +5699,15 @@ public class BetaApIsWireTest {
                 + "  \"data\": {\n"
                 + "    \"archivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"barcodeString\": \"12345\",\n"
+                + "    \"barcodeType\": \"12345\",\n"
                 + "    \"category\": \"12345\",\n"
                 + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"description\": \"12345\",\n"
+                + "    \"externalId\": \"12345\",\n"
                 + "    \"id\": \"12345\",\n"
                 + "    \"isInventoryTracked\": true,\n"
+                + "    \"manufacturerName\": \"12345\",\n"
                 + "    \"manufacturerPartNumber\": \"12345\",\n"
                 + "    \"name\": \"12345\",\n"
                 + "    \"partNumber\": \"12345\",\n"
@@ -5686,7 +5768,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"archivedAtTime\":\"2019-06-13T19:08:25Z\",\"barcodeString\":\"12345\",\"category\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"12345\",\"id\":\"12345\",\"isInventoryTracked\":true,\"manufacturerPartNumber\":\"12345\",\"name\":\"12345\",\"partNumber\":\"12345\",\"partStatus\":\"12345\",\"subcategory\":\"12345\",\"unitCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"unitOfMeasureType\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vmrsCode\":\"12345\"}}"));
+                                "{\"data\":{\"archivedAtTime\":\"2019-06-13T19:08:25Z\",\"barcodeString\":\"12345\",\"barcodeType\":\"12345\",\"category\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"12345\",\"externalId\":\"12345\",\"id\":\"12345\",\"isInventoryTracked\":true,\"manufacturerName\":\"12345\",\"manufacturerPartNumber\":\"12345\",\"name\":\"12345\",\"partNumber\":\"12345\",\"partStatus\":\"12345\",\"subcategory\":\"12345\",\"unitCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"unitOfMeasureType\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vmrsCode\":\"12345\"}}"));
         EntityPartDefinitionsServiceUpdatePartResponseBody response = client.betaApIs()
                 .updatePart(EntityPartDefinitionsServiceUpdatePartRequestBody.builder()
                         .id("id")
@@ -5732,12 +5814,15 @@ public class BetaApIsWireTest {
                 + "  \"data\": {\n"
                 + "    \"archivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"barcodeString\": \"12345\",\n"
+                + "    \"barcodeType\": \"12345\",\n"
                 + "    \"category\": \"12345\",\n"
                 + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"description\": \"12345\",\n"
+                + "    \"externalId\": \"12345\",\n"
                 + "    \"id\": \"12345\",\n"
                 + "    \"isInventoryTracked\": true,\n"
+                + "    \"manufacturerName\": \"12345\",\n"
                 + "    \"manufacturerPartNumber\": \"12345\",\n"
                 + "    \"name\": \"12345\",\n"
                 + "    \"partNumber\": \"12345\",\n"
@@ -6705,7 +6790,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
         EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody response = client.betaApIs()
                 .updatePurchaseOrder(EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody.builder()
                         .id("id")
@@ -6758,7 +6843,6 @@ public class BetaApIsWireTest {
                 + "    \"id\": \"12345\",\n"
                 + "    \"invoiceNumber\": \"12345\",\n"
                 + "    \"mediaItemIds\": [\n"
-                + "      \"12345\",\n"
                 + "      \"12345\",\n"
                 + "      \"12345\"\n"
                 + "    ],\n"

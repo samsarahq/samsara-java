@@ -26,9 +26,15 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
 
     private final Optional<String> barcodeString;
 
+    private final Optional<String> barcodeType;
+
     private final Optional<String> description;
 
+    private final Optional<String> externalId;
+
     private final Optional<Boolean> isInventoryTracked;
+
+    private final Optional<String> manufacturerName;
 
     private final Optional<String> manufacturerPartNumber;
 
@@ -45,8 +51,11 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
     private EntityPartDefinitionsServiceUpdatePartRequestBody(
             String id,
             Optional<String> barcodeString,
+            Optional<String> barcodeType,
             Optional<String> description,
+            Optional<String> externalId,
             Optional<Boolean> isInventoryTracked,
+            Optional<String> manufacturerName,
             Optional<String> manufacturerPartNumber,
             Optional<String> name,
             Optional<String> partNumber,
@@ -55,8 +64,11 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.barcodeString = barcodeString;
+        this.barcodeType = barcodeType;
         this.description = description;
+        this.externalId = externalId;
         this.isInventoryTracked = isInventoryTracked;
+        this.manufacturerName = manufacturerName;
         this.manufacturerPartNumber = manufacturerPartNumber;
         this.name = name;
         this.partNumber = partNumber;
@@ -82,6 +94,14 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
     }
 
     /**
+     * @return Type of barcode associated with the part definition.
+     */
+    @JsonProperty("barcodeType")
+    public Optional<String> getBarcodeType() {
+        return barcodeType;
+    }
+
+    /**
      * @return Description of the part definition.
      */
     @JsonProperty("description")
@@ -90,11 +110,27 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
     }
 
     /**
+     * @return Customer-supplied external identifier for the part.
+     */
+    @JsonProperty("externalId")
+    public Optional<String> getExternalId() {
+        return externalId;
+    }
+
+    /**
      * @return Whether inventory tracking is enabled for this part.
      */
     @JsonProperty("isInventoryTracked")
     public Optional<Boolean> getIsInventoryTracked() {
         return isInventoryTracked;
+    }
+
+    /**
+     * @return Name of the manufacturer for the part definition.
+     */
+    @JsonProperty("manufacturerName")
+    public Optional<String> getManufacturerName() {
+        return manufacturerName;
     }
 
     /**
@@ -149,8 +185,11 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
     private boolean equalTo(EntityPartDefinitionsServiceUpdatePartRequestBody other) {
         return id.equals(other.id)
                 && barcodeString.equals(other.barcodeString)
+                && barcodeType.equals(other.barcodeType)
                 && description.equals(other.description)
+                && externalId.equals(other.externalId)
                 && isInventoryTracked.equals(other.isInventoryTracked)
+                && manufacturerName.equals(other.manufacturerName)
                 && manufacturerPartNumber.equals(other.manufacturerPartNumber)
                 && name.equals(other.name)
                 && partNumber.equals(other.partNumber)
@@ -163,8 +202,11 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         return Objects.hash(
                 this.id,
                 this.barcodeString,
+                this.barcodeType,
                 this.description,
+                this.externalId,
                 this.isInventoryTracked,
+                this.manufacturerName,
                 this.manufacturerPartNumber,
                 this.name,
                 this.partNumber,
@@ -201,6 +243,13 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         _FinalStage barcodeString(String barcodeString);
 
         /**
+         * <p>Type of barcode associated with the part definition.</p>
+         */
+        _FinalStage barcodeType(Optional<String> barcodeType);
+
+        _FinalStage barcodeType(String barcodeType);
+
+        /**
          * <p>Description of the part definition.</p>
          */
         _FinalStage description(Optional<String> description);
@@ -208,11 +257,25 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         _FinalStage description(String description);
 
         /**
+         * <p>Customer-supplied external identifier for the part.</p>
+         */
+        _FinalStage externalId(Optional<String> externalId);
+
+        _FinalStage externalId(String externalId);
+
+        /**
          * <p>Whether inventory tracking is enabled for this part.</p>
          */
         _FinalStage isInventoryTracked(Optional<Boolean> isInventoryTracked);
 
         _FinalStage isInventoryTracked(Boolean isInventoryTracked);
+
+        /**
+         * <p>Name of the manufacturer for the part definition.</p>
+         */
+        _FinalStage manufacturerName(Optional<String> manufacturerName);
+
+        _FinalStage manufacturerName(String manufacturerName);
 
         /**
          * <p>Manufacturer-supplied part number.</p>
@@ -261,9 +324,15 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
 
         private Optional<String> manufacturerPartNumber = Optional.empty();
 
+        private Optional<String> manufacturerName = Optional.empty();
+
         private Optional<Boolean> isInventoryTracked = Optional.empty();
 
+        private Optional<String> externalId = Optional.empty();
+
         private Optional<String> description = Optional.empty();
+
+        private Optional<String> barcodeType = Optional.empty();
 
         private Optional<String> barcodeString = Optional.empty();
 
@@ -276,8 +345,11 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         public Builder from(EntityPartDefinitionsServiceUpdatePartRequestBody other) {
             id(other.getId());
             barcodeString(other.getBarcodeString());
+            barcodeType(other.getBarcodeType());
             description(other.getDescription());
+            externalId(other.getExternalId());
             isInventoryTracked(other.getIsInventoryTracked());
+            manufacturerName(other.getManufacturerName());
             manufacturerPartNumber(other.getManufacturerPartNumber());
             name(other.getName());
             partNumber(other.getPartNumber());
@@ -392,6 +464,26 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         }
 
         /**
+         * <p>Name of the manufacturer for the part definition.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage manufacturerName(String manufacturerName) {
+            this.manufacturerName = Optional.ofNullable(manufacturerName);
+            return this;
+        }
+
+        /**
+         * <p>Name of the manufacturer for the part definition.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "manufacturerName", nulls = Nulls.SKIP)
+        public _FinalStage manufacturerName(Optional<String> manufacturerName) {
+            this.manufacturerName = manufacturerName;
+            return this;
+        }
+
+        /**
          * <p>Whether inventory tracking is enabled for this part.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -412,6 +504,26 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         }
 
         /**
+         * <p>Customer-supplied external identifier for the part.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalId(String externalId) {
+            this.externalId = Optional.ofNullable(externalId);
+            return this;
+        }
+
+        /**
+         * <p>Customer-supplied external identifier for the part.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
+        public _FinalStage externalId(Optional<String> externalId) {
+            this.externalId = externalId;
+            return this;
+        }
+
+        /**
          * <p>Description of the part definition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -428,6 +540,26 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public _FinalStage description(Optional<String> description) {
             this.description = description;
+            return this;
+        }
+
+        /**
+         * <p>Type of barcode associated with the part definition.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage barcodeType(String barcodeType) {
+            this.barcodeType = Optional.ofNullable(barcodeType);
+            return this;
+        }
+
+        /**
+         * <p>Type of barcode associated with the part definition.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "barcodeType", nulls = Nulls.SKIP)
+        public _FinalStage barcodeType(Optional<String> barcodeType) {
+            this.barcodeType = barcodeType;
             return this;
         }
 
@@ -456,8 +588,11 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
             return new EntityPartDefinitionsServiceUpdatePartRequestBody(
                     id,
                     barcodeString,
+                    barcodeType,
                     description,
+                    externalId,
                     isInventoryTracked,
+                    manufacturerName,
                     manufacturerPartNumber,
                     name,
                     partNumber,

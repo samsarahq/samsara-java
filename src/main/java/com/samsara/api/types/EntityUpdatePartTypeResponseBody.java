@@ -24,6 +24,8 @@ public final class EntityUpdatePartTypeResponseBody {
 
     private final Optional<String> barcodeString;
 
+    private final Optional<String> barcodeType;
+
     private final Optional<String> category;
 
     private final Optional<String> createdAtTime;
@@ -32,9 +34,13 @@ public final class EntityUpdatePartTypeResponseBody {
 
     private final Optional<String> description;
 
+    private final Optional<String> externalId;
+
     private final Optional<String> id;
 
     private final Optional<Boolean> isInventoryTracked;
+
+    private final Optional<String> manufacturerName;
 
     private final Optional<String> manufacturerPartNumber;
 
@@ -59,12 +65,15 @@ public final class EntityUpdatePartTypeResponseBody {
     private EntityUpdatePartTypeResponseBody(
             Optional<String> archivedAtTime,
             Optional<String> barcodeString,
+            Optional<String> barcodeType,
             Optional<String> category,
             Optional<String> createdAtTime,
             Optional<String> deletedAtTime,
             Optional<String> description,
+            Optional<String> externalId,
             Optional<String> id,
             Optional<Boolean> isInventoryTracked,
+            Optional<String> manufacturerName,
             Optional<String> manufacturerPartNumber,
             Optional<String> name,
             Optional<String> partNumber,
@@ -77,12 +86,15 @@ public final class EntityUpdatePartTypeResponseBody {
             Map<String, Object> additionalProperties) {
         this.archivedAtTime = archivedAtTime;
         this.barcodeString = barcodeString;
+        this.barcodeType = barcodeType;
         this.category = category;
         this.createdAtTime = createdAtTime;
         this.deletedAtTime = deletedAtTime;
         this.description = description;
+        this.externalId = externalId;
         this.id = id;
         this.isInventoryTracked = isInventoryTracked;
+        this.manufacturerName = manufacturerName;
         this.manufacturerPartNumber = manufacturerPartNumber;
         this.name = name;
         this.partNumber = partNumber;
@@ -109,6 +121,14 @@ public final class EntityUpdatePartTypeResponseBody {
     @JsonProperty("barcodeString")
     public Optional<String> getBarcodeString() {
         return barcodeString;
+    }
+
+    /**
+     * @return Type of barcode associated with the part definition.
+     */
+    @JsonProperty("barcodeType")
+    public Optional<String> getBarcodeType() {
+        return barcodeType;
     }
 
     /**
@@ -144,6 +164,14 @@ public final class EntityUpdatePartTypeResponseBody {
     }
 
     /**
+     * @return Customer-supplied external identifier for the part.
+     */
+    @JsonProperty("externalId")
+    public Optional<String> getExternalId() {
+        return externalId;
+    }
+
+    /**
      * @return Unique identifier for the part.
      */
     @JsonProperty("id")
@@ -157,6 +185,14 @@ public final class EntityUpdatePartTypeResponseBody {
     @JsonProperty("isInventoryTracked")
     public Optional<Boolean> getIsInventoryTracked() {
         return isInventoryTracked;
+    }
+
+    /**
+     * @return Name of the manufacturer for the part definition.
+     */
+    @JsonProperty("manufacturerName")
+    public Optional<String> getManufacturerName() {
+        return manufacturerName;
     }
 
     /**
@@ -242,12 +278,15 @@ public final class EntityUpdatePartTypeResponseBody {
     private boolean equalTo(EntityUpdatePartTypeResponseBody other) {
         return archivedAtTime.equals(other.archivedAtTime)
                 && barcodeString.equals(other.barcodeString)
+                && barcodeType.equals(other.barcodeType)
                 && category.equals(other.category)
                 && createdAtTime.equals(other.createdAtTime)
                 && deletedAtTime.equals(other.deletedAtTime)
                 && description.equals(other.description)
+                && externalId.equals(other.externalId)
                 && id.equals(other.id)
                 && isInventoryTracked.equals(other.isInventoryTracked)
+                && manufacturerName.equals(other.manufacturerName)
                 && manufacturerPartNumber.equals(other.manufacturerPartNumber)
                 && name.equals(other.name)
                 && partNumber.equals(other.partNumber)
@@ -264,12 +303,15 @@ public final class EntityUpdatePartTypeResponseBody {
         return Objects.hash(
                 this.archivedAtTime,
                 this.barcodeString,
+                this.barcodeType,
                 this.category,
                 this.createdAtTime,
                 this.deletedAtTime,
                 this.description,
+                this.externalId,
                 this.id,
                 this.isInventoryTracked,
+                this.manufacturerName,
                 this.manufacturerPartNumber,
                 this.name,
                 this.partNumber,
@@ -296,6 +338,8 @@ public final class EntityUpdatePartTypeResponseBody {
 
         private Optional<String> barcodeString = Optional.empty();
 
+        private Optional<String> barcodeType = Optional.empty();
+
         private Optional<String> category = Optional.empty();
 
         private Optional<String> createdAtTime = Optional.empty();
@@ -304,9 +348,13 @@ public final class EntityUpdatePartTypeResponseBody {
 
         private Optional<String> description = Optional.empty();
 
+        private Optional<String> externalId = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<Boolean> isInventoryTracked = Optional.empty();
+
+        private Optional<String> manufacturerName = Optional.empty();
 
         private Optional<String> manufacturerPartNumber = Optional.empty();
 
@@ -334,12 +382,15 @@ public final class EntityUpdatePartTypeResponseBody {
         public Builder from(EntityUpdatePartTypeResponseBody other) {
             archivedAtTime(other.getArchivedAtTime());
             barcodeString(other.getBarcodeString());
+            barcodeType(other.getBarcodeType());
             category(other.getCategory());
             createdAtTime(other.getCreatedAtTime());
             deletedAtTime(other.getDeletedAtTime());
             description(other.getDescription());
+            externalId(other.getExternalId());
             id(other.getId());
             isInventoryTracked(other.getIsInventoryTracked());
+            manufacturerName(other.getManufacturerName());
             manufacturerPartNumber(other.getManufacturerPartNumber());
             name(other.getName());
             partNumber(other.getPartNumber());
@@ -377,6 +428,20 @@ public final class EntityUpdatePartTypeResponseBody {
 
         public Builder barcodeString(String barcodeString) {
             this.barcodeString = Optional.ofNullable(barcodeString);
+            return this;
+        }
+
+        /**
+         * <p>Type of barcode associated with the part definition.</p>
+         */
+        @JsonSetter(value = "barcodeType", nulls = Nulls.SKIP)
+        public Builder barcodeType(Optional<String> barcodeType) {
+            this.barcodeType = barcodeType;
+            return this;
+        }
+
+        public Builder barcodeType(String barcodeType) {
+            this.barcodeType = Optional.ofNullable(barcodeType);
             return this;
         }
 
@@ -437,6 +502,20 @@ public final class EntityUpdatePartTypeResponseBody {
         }
 
         /**
+         * <p>Customer-supplied external identifier for the part.</p>
+         */
+        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
+        public Builder externalId(Optional<String> externalId) {
+            this.externalId = externalId;
+            return this;
+        }
+
+        public Builder externalId(String externalId) {
+            this.externalId = Optional.ofNullable(externalId);
+            return this;
+        }
+
+        /**
          * <p>Unique identifier for the part.</p>
          */
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
@@ -461,6 +540,20 @@ public final class EntityUpdatePartTypeResponseBody {
 
         public Builder isInventoryTracked(Boolean isInventoryTracked) {
             this.isInventoryTracked = Optional.ofNullable(isInventoryTracked);
+            return this;
+        }
+
+        /**
+         * <p>Name of the manufacturer for the part definition.</p>
+         */
+        @JsonSetter(value = "manufacturerName", nulls = Nulls.SKIP)
+        public Builder manufacturerName(Optional<String> manufacturerName) {
+            this.manufacturerName = manufacturerName;
+            return this;
+        }
+
+        public Builder manufacturerName(String manufacturerName) {
+            this.manufacturerName = Optional.ofNullable(manufacturerName);
             return this;
         }
 
@@ -591,12 +684,15 @@ public final class EntityUpdatePartTypeResponseBody {
             return new EntityUpdatePartTypeResponseBody(
                     archivedAtTime,
                     barcodeString,
+                    barcodeType,
                     category,
                     createdAtTime,
                     deletedAtTime,
                     description,
+                    externalId,
                     id,
                     isInventoryTracked,
+                    manufacturerName,
                     manufacturerPartNumber,
                     name,
                     partNumber,
