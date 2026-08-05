@@ -109,6 +109,7 @@ import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListIssuesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartInventoryRequest;
+import com.samsara.api.resources.betaapis.requests.ListPartTransactionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListPreferredStationsRequest;
@@ -170,6 +171,7 @@ import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignme
 import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
 import com.samsara.api.types.EntityGroundIntelligenceIssuesServiceListIssuesResponseBody;
+import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceCreatePartResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceListPartsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceUpdatePartResponseBody;
@@ -8158,6 +8160,119 @@ public class RawBetaApIsClient {
                         ObjectMappers.JSON_MAPPER.readValue(
                                 responseBodyString,
                                 CreateStockMovementActionServiceCreateStockMovementResponseBody.class),
+                        response);
+            }
+            try {
+                switch (response.code()) {
+                    case 401:
+                        throw new UnauthorizedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 404:
+                        throw new NotFoundError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 405:
+                        throw new MethodNotAllowedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 429:
+                        throw new TooManyRequestsError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 500:
+                        throw new InternalServerError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 501:
+                        throw new NotImplementedError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 502:
+                        throw new BadGatewayError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 503:
+                        throw new ServiceUnavailableError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                    case 504:
+                        throw new GatewayTimeoutError(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class), response);
+                }
+            } catch (JsonProcessingException ignored) {
+                // unable to map error response, throwing generic error
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new SamsaraApiApiException(
+                    "Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new SamsaraApiException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>
+            listPartTransactions(ListPartTransactionsRequest request) {
+        return listPartTransactions(request, null);
+    }
+
+    /**
+     * Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public SamsaraApiHttpResponse<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>
+            listPartTransactions(ListPartTransactionsRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("maintenance/parts/transactions");
+        QueryStringMapper.addQueryParameter(httpUrl, "happenedAtTimeStart", request.getHappenedAtTimeStart(), false);
+        if (request.getHappenedAtTimeEnd().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "happenedAtTimeEnd", request.getHappenedAtTimeEnd().get(), false);
+        }
+        if (request.getPartSamsaraIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "partSamsaraIds", request.getPartSamsaraIds().get(), false);
+        }
+        if (request.getPlaceIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "placeIds", request.getPlaceIds().get(), false);
+        }
+        if (request.getTransactionTypeIn().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "transactionTypeIn", request.getTransactionTypeIn().get(), false);
+        }
+        if (request.getAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "after", request.getAfter().get(), false);
+        }
+        if (request.getLimit().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "limit", request.getLimit().get(), false);
+        }
+        if (requestOptions != null) {
+            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                httpUrl.addQueryParameter(_key, _value);
+            });
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new SamsaraApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(
+                                responseBodyString,
+                                EntityInventoryTransactionsServiceListPartTransactionsResponseBody.class),
                         response);
             }
             try {

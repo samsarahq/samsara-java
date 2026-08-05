@@ -91,6 +91,7 @@ import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListIssuesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartInventoryRequest;
+import com.samsara.api.resources.betaapis.requests.ListPartTransactionsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPartsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListPreferredStationsRequest;
@@ -173,6 +174,7 @@ import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignme
 import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
 import com.samsara.api.types.EntityGroundIntelligenceIssuesServiceListIssuesResponseBody;
+import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceCreatePartResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceListPartsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceUpdatePartResponseBody;
@@ -6224,6 +6226,87 @@ public class BetaApIsWireTest {
         String actualResponseJson = objectMapper.writeValueAsString(response);
         String expectedResponseBody =
                 TestResources.loadResource("/wire-tests/BetaApIsWireTest_testCreateStockMovement_response.json");
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListPartTransactions() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"batch\":\"12345\",\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdByUserId\":\"12345\",\"fromPlaceId\":\"12345\",\"happenedAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"12345\",\"notes\":\"12345\",\"part\":{\"id\":\"281474976710656\"},\"placeId\":\"12345\",\"purchaseOrder\":\"12345\",\"quantity\":123.45,\"resultingQuantity\":123.45,\"toPlaceId\":\"12345\",\"transactionType\":\"12345\",\"unitCost\":123.45,\"vendorId\":\"12345\",\"workOrder\":{\"id\":\"281474976710656\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        EntityInventoryTransactionsServiceListPartTransactionsResponseBody response = client.betaApIs()
+                .listPartTransactions(ListPartTransactionsRequest.builder()
+                        .happenedAtTimeStart("happenedAtTimeStart")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"batch\": \"12345\",\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"createdByUserId\": \"12345\",\n"
+                + "      \"fromPlaceId\": \"12345\",\n"
+                + "      \"happenedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"id\": \"12345\",\n"
+                + "      \"notes\": \"12345\",\n"
+                + "      \"part\": {\n"
+                + "        \"id\": \"281474976710656\"\n"
+                + "      },\n"
+                + "      \"placeId\": \"12345\",\n"
+                + "      \"purchaseOrder\": \"12345\",\n"
+                + "      \"quantity\": 123.45,\n"
+                + "      \"resultingQuantity\": 123.45,\n"
+                + "      \"toPlaceId\": \"12345\",\n"
+                + "      \"transactionType\": \"12345\",\n"
+                + "      \"unitCost\": 123.45,\n"
+                + "      \"vendorId\": \"12345\",\n"
+                + "      \"workOrder\": {\n"
+                + "        \"id\": \"281474976710656\"\n"
+                + "      }\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
