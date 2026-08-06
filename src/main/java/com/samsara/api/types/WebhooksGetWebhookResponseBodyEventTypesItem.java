@@ -29,6 +29,9 @@ public final class WebhooksGetWebhookResponseBodyEventTypesItem {
     public static final WebhooksGetWebhookResponseBodyEventTypesItem VEHICLE_CREATED =
             new WebhooksGetWebhookResponseBodyEventTypesItem(Value.VEHICLE_CREATED, "VehicleCreated");
 
+    public static final WebhooksGetWebhookResponseBodyEventTypesItem VISUAL_SEARCH_MATCH =
+            new WebhooksGetWebhookResponseBodyEventTypesItem(Value.VISUAL_SEARCH_MATCH, "VisualSearchMatch");
+
     public static final WebhooksGetWebhookResponseBodyEventTypesItem DOCUMENT_SUBMITTED =
             new WebhooksGetWebhookResponseBodyEventTypesItem(Value.DOCUMENT_SUBMITTED, "DocumentSubmitted");
 
@@ -159,6 +162,8 @@ public final class WebhooksGetWebhookResponseBodyEventTypesItem {
                 return visitor.visitRouteStopArrival();
             case VEHICLE_CREATED:
                 return visitor.visitVehicleCreated();
+            case VISUAL_SEARCH_MATCH:
+                return visitor.visitVisualSearchMatch();
             case DOCUMENT_SUBMITTED:
                 return visitor.visitDocumentSubmitted();
             case DVIR_SUBMITTED:
@@ -236,6 +241,8 @@ public final class WebhooksGetWebhookResponseBodyEventTypesItem {
                 return ROUTE_STOP_ARRIVAL;
             case "VehicleCreated":
                 return VEHICLE_CREATED;
+            case "VisualSearchMatch":
+                return VISUAL_SEARCH_MATCH;
             case "DocumentSubmitted":
                 return DOCUMENT_SUBMITTED;
             case "DvirSubmitted":
@@ -362,6 +369,8 @@ public final class WebhooksGetWebhookResponseBodyEventTypesItem {
 
         VEHICLE_UPDATED,
 
+        VISUAL_SEARCH_MATCH,
+
         WORK_ORDER_CREATED_OR_CHANGED,
 
         UNKNOWN
@@ -433,6 +442,8 @@ public final class WebhooksGetWebhookResponseBodyEventTypesItem {
         T visitVehicleCreated();
 
         T visitVehicleUpdated();
+
+        T visitVisualSearchMatch();
 
         T visitWorkOrderCreatedOrChanged();
 
