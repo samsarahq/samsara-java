@@ -157,7 +157,7 @@ public final class AssetsUpdateAssetRequestBody {
     }
 
     /**
-     * @return Indicates whether the asset is expected to have data ingested using the Readings API.
+     * @return Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.
      */
     @JsonProperty("readingsIngestionEnabled")
     public Optional<Boolean> getReadingsIngestionEnabled() {
@@ -332,7 +332,7 @@ public final class AssetsUpdateAssetRequestBody {
         _FinalStage notes(String notes);
 
         /**
-         * <p>Indicates whether the asset is expected to have data ingested using the Readings API.</p>
+         * <p>Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.</p>
          */
         _FinalStage readingsIngestionEnabled(Optional<Boolean> readingsIngestionEnabled);
 
@@ -571,7 +571,7 @@ public final class AssetsUpdateAssetRequestBody {
         }
 
         /**
-         * <p>Indicates whether the asset is expected to have data ingested using the Readings API.</p>
+         * <p>Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -581,7 +581,7 @@ public final class AssetsUpdateAssetRequestBody {
         }
 
         /**
-         * <p>Indicates whether the asset is expected to have data ingested using the Readings API.</p>
+         * <p>Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "readingsIngestionEnabled", nulls = Nulls.SKIP)

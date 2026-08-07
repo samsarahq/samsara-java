@@ -144,7 +144,7 @@ public final class AssetsCreateAssetRequestBody {
     }
 
     /**
-     * @return Indicates whether the asset is expected to have data ingested using the Readings API.
+     * @return Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.
      */
     @JsonProperty("readingsIngestionEnabled")
     public Optional<Boolean> getReadingsIngestionEnabled() {
@@ -407,7 +407,7 @@ public final class AssetsCreateAssetRequestBody {
         }
 
         /**
-         * <p>Indicates whether the asset is expected to have data ingested using the Readings API.</p>
+         * <p>Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.</p>
          */
         @JsonSetter(value = "readingsIngestionEnabled", nulls = Nulls.SKIP)
         public Builder readingsIngestionEnabled(Optional<Boolean> readingsIngestionEnabled) {

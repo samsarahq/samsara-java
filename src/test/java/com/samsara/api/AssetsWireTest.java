@@ -77,7 +77,7 @@ public class AssetsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
+                                "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":false,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
         AssetsCreateAssetResponseBody response = client.assets()
                 .createAsset(AssetsCreateAssetRequestBody.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -147,7 +147,7 @@ public class AssetsWireTest {
                 + "    \"model\": \"S630 T4\",\n"
                 + "    \"name\": \"MyAsset-1234\",\n"
                 + "    \"notes\": \"These are notes.\",\n"
-                + "    \"readingsIngestionEnabled\": true,\n"
+                + "    \"readingsIngestionEnabled\": false,\n"
                 + "    \"regulationMode\": \"mixed\",\n"
                 + "    \"serialNumber\": \"LN016251\",\n"
                 + "    \"tags\": [\n"
@@ -209,7 +209,7 @@ public class AssetsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":true,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
+                                "{\"data\":{\"attributes\":[{\"dateValues\":[\"2024-01-15\",\"2024-12-31\"],\"id\":\"494123\",\"name\":\"Compliance/ELD\",\"numberValues\":[867,5309],\"stringValues\":[\"HQ\",\"Leased\"]}],\"createdAtTime\":\"2020-01-27T07:06:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"12345\",\"licensePlate\":\"XHK1234\",\"make\":\"Bobcat\",\"model\":\"S630 T4\",\"name\":\"MyAsset-1234\",\"notes\":\"These are notes.\",\"readingsIngestionEnabled\":false,\"regulationMode\":\"mixed\",\"serialNumber\":\"LN016251\",\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}],\"type\":\"uncategorized\",\"updatedAtTime\":\"2020-01-27T07:06:25Z\",\"vin\":\"1FUJBBCKXCLBZ1234\",\"year\":2015}}"));
         AssetsUpdateAssetResponseBody response = client.assets()
                 .updateAsset(AssetsUpdateAssetRequestBody.builder().id("id").build());
         RecordedRequest request = server.takeRequest();
@@ -279,7 +279,7 @@ public class AssetsWireTest {
                 + "    \"model\": \"S630 T4\",\n"
                 + "    \"name\": \"MyAsset-1234\",\n"
                 + "    \"notes\": \"These are notes.\",\n"
-                + "    \"readingsIngestionEnabled\": true,\n"
+                + "    \"readingsIngestionEnabled\": false,\n"
                 + "    \"regulationMode\": \"mixed\",\n"
                 + "    \"serialNumber\": \"LN016251\",\n"
                 + "    \"tags\": [\n"
