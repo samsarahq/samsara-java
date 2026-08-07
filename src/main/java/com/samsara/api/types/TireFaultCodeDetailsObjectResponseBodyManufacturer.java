@@ -28,6 +28,10 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
             new TireFaultCodeDetailsObjectResponseBodyManufacturer(
                     Value.MANUFACTURER_UNIVERSAL_R141, "MANUFACTURER_UNIVERSAL_R141");
 
+    public static final TireFaultCodeDetailsObjectResponseBodyManufacturer MANUFACTURER_SYSGRATION =
+            new TireFaultCodeDetailsObjectResponseBodyManufacturer(
+                    Value.MANUFACTURER_SYSGRATION, "MANUFACTURER_SYSGRATION");
+
     public static final TireFaultCodeDetailsObjectResponseBodyManufacturer MANUFACTURER_PRESSURE_PRO =
             new TireFaultCodeDetailsObjectResponseBodyManufacturer(
                     Value.MANUFACTURER_PRESSURE_PRO, "MANUFACTURER_PRESSURE_PRO");
@@ -84,6 +88,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
                 return visitor.visitManufacturerInvalid();
             case MANUFACTURER_UNIVERSAL_R141:
                 return visitor.visitManufacturerUniversalR141();
+            case MANUFACTURER_SYSGRATION:
+                return visitor.visitManufacturerSysgration();
             case MANUFACTURER_PRESSURE_PRO:
                 return visitor.visitManufacturerPressurePro();
             case MANUFACTURER_CONTINENTAL:
@@ -111,6 +117,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
                 return MANUFACTURER_INVALID;
             case "MANUFACTURER_UNIVERSAL_R141":
                 return MANUFACTURER_UNIVERSAL_R141;
+            case "MANUFACTURER_SYSGRATION":
+                return MANUFACTURER_SYSGRATION;
             case "MANUFACTURER_PRESSURE_PRO":
                 return MANUFACTURER_PRESSURE_PRO;
             case "MANUFACTURER_CONTINENTAL":
@@ -137,6 +145,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
 
         MANUFACTURER_SENSATA,
 
+        MANUFACTURER_SYSGRATION,
+
         MANUFACTURER_UNIVERSAL_J1939,
 
         MANUFACTURER_UNIVERSAL_R141,
@@ -158,6 +168,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
         T visitManufacturerPressurePro();
 
         T visitManufacturerSensata();
+
+        T visitManufacturerSysgration();
 
         T visitManufacturerUniversalJ1939();
 
