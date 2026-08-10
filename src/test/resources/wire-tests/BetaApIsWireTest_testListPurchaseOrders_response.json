@@ -7,7 +7,7 @@
       "firstReceivedAtTime": "2019-06-13T19:08:25Z",
       "fullyReceivedAtTime": "2019-06-13T19:08:25Z",
       "glCode": "12345",
-      "id": "12345",
+      "id": "281474976710656",
       "invoiceNumber": "12345",
       "mediaItemIds": [
         "12345",
@@ -36,7 +36,7 @@
           "unitOfMeasureType": "12345"
         }
       ],
-      "poNumber": "12345",
+      "poNumber": "PO-1001",
       "poNumberPrefix": "12345",
       "poNumberSuffix": "12345",
       "sentAtTime": "2019-06-13T19:08:25Z",

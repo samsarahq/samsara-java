@@ -33,7 +33,7 @@ public final class PostMediaRetrievalObjectResponseBody {
     }
 
     /**
-     * @return Quota status for this media capture request. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.
+     * @return Quota status for this media capture request. Reflects completed retrievals only; retrievals still uploading, including this request, are not yet counted and may push usage higher once they complete. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.
      */
     @JsonProperty("quotaStatus")
     public String getQuotaStatus() {
@@ -80,7 +80,7 @@ public final class PostMediaRetrievalObjectResponseBody {
 
     public interface QuotaStatusStage {
         /**
-         * <p>Quota status for this media capture request. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.</p>
+         * <p>Quota status for this media capture request. Reflects completed retrievals only; retrievals still uploading, including this request, are not yet counted and may push usage higher once they complete. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.</p>
          */
         RetrievalIdStage quotaStatus(@NotNull String quotaStatus);
 
@@ -117,8 +117,8 @@ public final class PostMediaRetrievalObjectResponseBody {
         }
 
         /**
-         * <p>Quota status for this media capture request. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.</p>
-         * <p>Quota status for this media capture request. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.</p>
+         * <p>Quota status for this media capture request. Reflects completed retrievals only; retrievals still uploading, including this request, are not yet counted and may push usage higher once they complete. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.</p>
+         * <p>Quota status for this media capture request. Reflects completed retrievals only; retrievals still uploading, including this request, are not yet counted and may push usage higher once they complete. Examples: Current monthly usage is 80000.4 seconds of high-res video out of 900000.0 available.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

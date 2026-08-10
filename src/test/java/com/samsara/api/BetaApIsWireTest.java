@@ -6684,7 +6684,11 @@ public class BetaApIsWireTest {
                         "/wire-tests/BetaApIsWireTest_testListPurchaseOrders_response.json")));
         EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody response = client.betaApIs()
                 .listPurchaseOrders(ListPurchaseOrdersRequest.builder()
-                        .startTime("startTime")
+                        .startTime("2026-07-01T00:00:00Z")
+                        .ids("281474976710656")
+                        .poNumbers("PO-1001")
+                        .vendorIds("281474976710656")
+                        .endTime("2026-07-31T00:00:00Z")
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -6732,10 +6736,10 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"GL-4000\",\"id\":\"12345\",\"invoiceNumber\":\"INV-12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\",\"12345\"],\"notes\":\"Deliver to maintenance shop.\",\"orderStatus\":\"draft\",\"otherCost\":{\"amount\":\"24.50\",\"currency\":\"usd\"},\"parts\":[{\"batchNumber\":\"LOT-42\",\"description\":\"Oil filter\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":10,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"each\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"PO\",\"poNumberSuffix\":\"A\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"1Z999AA10123456784\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
         EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody response = client.betaApIs()
                 .createPurchaseOrder(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody.builder()
-                        .orderStatus("12345")
+                        .orderStatus("draft")
                         .vendorId("281474976710656")
                         .build());
         RecordedRequest request = server.takeRequest();
@@ -6744,7 +6748,7 @@ public class BetaApIsWireTest {
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
         String expectedRequestBody =
-                "" + "{\n" + "  \"orderStatus\": \"12345\",\n" + "  \"vendorId\": \"281474976710656\"\n" + "}";
+                "" + "{\n" + "  \"orderStatus\": \"draft\",\n" + "  \"vendorId\": \"281474976710656\"\n" + "}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
@@ -6783,25 +6787,25 @@ public class BetaApIsWireTest {
                 + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"glCode\": \"12345\",\n"
+                + "    \"glCode\": \"GL-4000\",\n"
                 + "    \"id\": \"12345\",\n"
-                + "    \"invoiceNumber\": \"12345\",\n"
+                + "    \"invoiceNumber\": \"INV-12345\",\n"
                 + "    \"mediaItemIds\": [\n"
                 + "      \"12345\",\n"
                 + "      \"12345\",\n"
                 + "      \"12345\",\n"
                 + "      \"12345\"\n"
                 + "    ],\n"
-                + "    \"notes\": \"12345\",\n"
-                + "    \"orderStatus\": \"12345\",\n"
+                + "    \"notes\": \"Deliver to maintenance shop.\",\n"
+                + "    \"orderStatus\": \"draft\",\n"
                 + "    \"otherCost\": {\n"
-                + "      \"amount\": \"12345\",\n"
-                + "      \"currency\": \"12345\"\n"
+                + "      \"amount\": \"24.50\",\n"
+                + "      \"currency\": \"usd\"\n"
                 + "    },\n"
                 + "    \"parts\": [\n"
                 + "      {\n"
-                + "        \"batchNumber\": \"12345\",\n"
-                + "        \"description\": \"12345\",\n"
+                + "        \"batchNumber\": \"LOT-42\",\n"
+                + "        \"description\": \"Oil filter\",\n"
                 + "        \"lineItemId\": \"12345\",\n"
                 + "        \"partSamsara\": {\n"
                 + "          \"id\": \"281474976710656\"\n"
@@ -6809,16 +6813,16 @@ public class BetaApIsWireTest {
                 + "        \"place\": {\n"
                 + "          \"id\": \"281474976710656\"\n"
                 + "        },\n"
-                + "        \"quantityOrdered\": 123.45,\n"
+                + "        \"quantityOrdered\": 10,\n"
                 + "        \"quantityReceived\": 123.45,\n"
-                + "        \"unitOfMeasureType\": \"12345\"\n"
+                + "        \"unitOfMeasureType\": \"each\"\n"
                 + "      }\n"
                 + "    ],\n"
                 + "    \"poNumber\": \"12345\",\n"
-                + "    \"poNumberPrefix\": \"12345\",\n"
-                + "    \"poNumberSuffix\": \"12345\",\n"
+                + "    \"poNumberPrefix\": \"PO\",\n"
+                + "    \"poNumberSuffix\": \"A\",\n"
                 + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"trackingNumber\": \"12345\",\n"
+                + "    \"trackingNumber\": \"1Z999AA10123456784\",\n"
                 + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"vendor\": {\n"
                 + "      \"id\": \"281474976710656\"\n"
@@ -6873,7 +6877,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"12345\",\"id\":\"12345\",\"invoiceNumber\":\"12345\",\"mediaItemIds\":[\"12345\",\"12345\"],\"notes\":\"12345\",\"orderStatus\":\"12345\",\"otherCost\":{\"amount\":\"12345\",\"currency\":\"12345\"},\"parts\":[{\"batchNumber\":\"12345\",\"description\":\"12345\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":123.45,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"12345\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"12345\",\"poNumberSuffix\":\"12345\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"12345\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"GL-4000\",\"id\":\"12345\",\"invoiceNumber\":\"INV-12345\",\"mediaItemIds\":[\"12345\",\"12345\"],\"notes\":\"Deliver to maintenance shop.\",\"orderStatus\":\"draft\",\"otherCost\":{\"amount\":\"24.50\",\"currency\":\"usd\"},\"parts\":[{\"batchNumber\":\"LOT-42\",\"description\":\"Oil filter\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":10,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"each\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"PO\",\"poNumberSuffix\":\"A\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"1Z999AA10123456784\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
         EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody response = client.betaApIs()
                 .updatePurchaseOrder(EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody.builder()
                         .id("id")
@@ -6922,23 +6926,23 @@ public class BetaApIsWireTest {
                 + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"glCode\": \"12345\",\n"
+                + "    \"glCode\": \"GL-4000\",\n"
                 + "    \"id\": \"12345\",\n"
-                + "    \"invoiceNumber\": \"12345\",\n"
+                + "    \"invoiceNumber\": \"INV-12345\",\n"
                 + "    \"mediaItemIds\": [\n"
                 + "      \"12345\",\n"
                 + "      \"12345\"\n"
                 + "    ],\n"
-                + "    \"notes\": \"12345\",\n"
-                + "    \"orderStatus\": \"12345\",\n"
+                + "    \"notes\": \"Deliver to maintenance shop.\",\n"
+                + "    \"orderStatus\": \"draft\",\n"
                 + "    \"otherCost\": {\n"
-                + "      \"amount\": \"12345\",\n"
-                + "      \"currency\": \"12345\"\n"
+                + "      \"amount\": \"24.50\",\n"
+                + "      \"currency\": \"usd\"\n"
                 + "    },\n"
                 + "    \"parts\": [\n"
                 + "      {\n"
-                + "        \"batchNumber\": \"12345\",\n"
-                + "        \"description\": \"12345\",\n"
+                + "        \"batchNumber\": \"LOT-42\",\n"
+                + "        \"description\": \"Oil filter\",\n"
                 + "        \"lineItemId\": \"12345\",\n"
                 + "        \"partSamsara\": {\n"
                 + "          \"id\": \"281474976710656\"\n"
@@ -6946,16 +6950,16 @@ public class BetaApIsWireTest {
                 + "        \"place\": {\n"
                 + "          \"id\": \"281474976710656\"\n"
                 + "        },\n"
-                + "        \"quantityOrdered\": 123.45,\n"
+                + "        \"quantityOrdered\": 10,\n"
                 + "        \"quantityReceived\": 123.45,\n"
-                + "        \"unitOfMeasureType\": \"12345\"\n"
+                + "        \"unitOfMeasureType\": \"each\"\n"
                 + "      }\n"
                 + "    ],\n"
                 + "    \"poNumber\": \"12345\",\n"
-                + "    \"poNumberPrefix\": \"12345\",\n"
-                + "    \"poNumberSuffix\": \"12345\",\n"
+                + "    \"poNumberPrefix\": \"PO\",\n"
+                + "    \"poNumberSuffix\": \"A\",\n"
                 + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"trackingNumber\": \"12345\",\n"
+                + "    \"trackingNumber\": \"1Z999AA10123456784\",\n"
                 + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "    \"vendor\": {\n"
                 + "      \"id\": \"281474976710656\"\n"
