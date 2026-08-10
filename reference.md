@@ -7975,7 +7975,11 @@ To use this endpoint, select **Read Purchase Orders** under the Work Orders cate
 client.betaApIs().listPurchaseOrders(
     ListPurchaseOrdersRequest
         .builder()
-        .startTime("startTime")
+        .startTime("2026-07-01T00:00:00Z")
+        .ids("281474976710656")
+        .poNumbers("PO-1001")
+        .vendorIds("281474976710656")
+        .endTime("2026-07-31T00:00:00Z")
         .build()
 );
 ```
@@ -8089,7 +8093,7 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 client.betaApIs().createPurchaseOrder(
     EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
         .builder()
-        .orderStatus("12345")
+        .orderStatus("draft")
         .vendorId("281474976710656")
         .build()
 );
@@ -8139,7 +8143,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody>` 
+**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody>` 
     
 </dd>
 </dl>
@@ -8147,7 +8151,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>>` — Parts ordered on the purchase order.
+**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>` — Parts ordered on the purchase order.
     
 </dd>
 </dl>
@@ -8351,7 +8355,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody>` 
+**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>` 
     
 </dd>
 </dl>
@@ -8359,7 +8363,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>>` — Parts ordered on the purchase order.
+**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>` — Parts ordered on the purchase order.
     
 </dd>
 </dl>

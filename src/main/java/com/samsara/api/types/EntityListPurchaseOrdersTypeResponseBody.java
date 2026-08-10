@@ -59,7 +59,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
 
     private final Optional<String> updatedAtTime;
 
-    private final Optional<EntityListPurchaseOrdersVendorRefTypeResponseBody> vendor;
+    private final Optional<EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody> vendor;
 
     private final Map<String, Object> additionalProperties;
 
@@ -83,7 +83,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
             Optional<String> sentAtTime,
             Optional<String> trackingNumber,
             Optional<String> updatedAtTime,
-            Optional<EntityListPurchaseOrdersVendorRefTypeResponseBody> vendor,
+            Optional<EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody> vendor,
             Map<String, Object> additionalProperties) {
         this.createdAtTime = createdAtTime;
         this.creationSource = creationSource;
@@ -258,7 +258,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
     }
 
     @JsonProperty("vendor")
-    public Optional<EntityListPurchaseOrdersVendorRefTypeResponseBody> getVendor() {
+    public Optional<EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody> getVendor() {
         return vendor;
     }
 
@@ -372,7 +372,8 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
 
         private Optional<String> updatedAtTime = Optional.empty();
 
-        private Optional<EntityListPurchaseOrdersVendorRefTypeResponseBody> vendor = Optional.empty();
+        private Optional<EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody> vendor =
+                Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -668,12 +669,13 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
         }
 
         @JsonSetter(value = "vendor", nulls = Nulls.SKIP)
-        public Builder vendor(Optional<EntityListPurchaseOrdersVendorRefTypeResponseBody> vendor) {
+        public Builder vendor(
+                Optional<EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody> vendor) {
             this.vendor = vendor;
             return this;
         }
 
-        public Builder vendor(EntityListPurchaseOrdersVendorRefTypeResponseBody vendor) {
+        public Builder vendor(EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody vendor) {
             this.vendor = Optional.ofNullable(vendor);
             return this;
         }

@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
-import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody;
-import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody;
+import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody;
+import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,9 +34,13 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
 
     private final Optional<String> orderStatus;
 
-    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> otherCost;
+    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
+            otherCost;
 
-    private final Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>> parts;
+    private final Optional<
+                    List<
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+            parts;
 
     private final Optional<String> trackingNumber;
 
@@ -50,8 +54,12 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
             Optional<String> invoiceNumber,
             Optional<String> notes,
             Optional<String> orderStatus,
-            Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> otherCost,
-            Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>> parts,
+            Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
+                    otherCost,
+            Optional<
+                            List<
+                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                    parts,
             Optional<String> trackingNumber,
             Optional<String> vendorId,
             Map<String, Object> additionalProperties) {
@@ -108,7 +116,8 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
     }
 
     @JsonProperty("otherCost")
-    public Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> getOtherCost() {
+    public Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
+            getOtherCost() {
         return otherCost;
     }
 
@@ -116,7 +125,10 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
      * @return Parts ordered on the purchase order.
      */
     @JsonProperty("parts")
-    public Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>> getParts() {
+    public Optional<
+                    List<
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+            getParts() {
         return parts;
     }
 
@@ -223,17 +235,26 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
 
         _FinalStage orderStatus(String orderStatus);
 
-        _FinalStage otherCost(Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> otherCost);
+        _FinalStage otherCost(
+                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
+                        otherCost);
 
-        _FinalStage otherCost(UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody otherCost);
+        _FinalStage otherCost(
+                UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody otherCost);
 
         /**
          * <p>Parts ordered on the purchase order.</p>
          */
         _FinalStage parts(
-                Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>> parts);
+                Optional<
+                                List<
+                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                        parts);
 
-        _FinalStage parts(List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody> parts);
+        _FinalStage parts(
+                List<
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>
+                        parts);
 
         /**
          * <p>Shipment tracking number for the purchase order.</p>
@@ -258,10 +279,13 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
 
         private Optional<String> trackingNumber = Optional.empty();
 
-        private Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>> parts =
-                Optional.empty();
+        private Optional<
+                        List<
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                parts = Optional.empty();
 
-        private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> otherCost = Optional.empty();
+        private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
+                otherCost = Optional.empty();
 
         private Optional<String> orderStatus = Optional.empty();
 
@@ -348,7 +372,9 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
          */
         @java.lang.Override
         public _FinalStage parts(
-                List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody> parts) {
+                List<
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>
+                        parts) {
             this.parts = Optional.ofNullable(parts);
             return this;
         }
@@ -359,13 +385,17 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         @java.lang.Override
         @JsonSetter(value = "parts", nulls = Nulls.SKIP)
         public _FinalStage parts(
-                Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>> parts) {
+                Optional<
+                                List<
+                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                        parts) {
             this.parts = parts;
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage otherCost(UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody otherCost) {
+        public _FinalStage otherCost(
+                UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody otherCost) {
             this.otherCost = Optional.ofNullable(otherCost);
             return this;
         }
@@ -373,7 +403,8 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         @java.lang.Override
         @JsonSetter(value = "otherCost", nulls = Nulls.SKIP)
         public _FinalStage otherCost(
-                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> otherCost) {
+                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
+                        otherCost) {
             this.otherCost = otherCost;
             return this;
         }

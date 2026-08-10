@@ -18,40 +18,44 @@ import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody.Builder.class)
-public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody {
+@JsonDeserialize(
+        builder =
+                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody.Builder
+                        .class)
+public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody {
     private final Optional<String> batchNumber;
 
-    private final Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge;
+    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge;
 
     private final Optional<String> description;
 
     private final Optional<String> lineItemId;
 
-    private final Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara;
+    private final Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara;
 
-    private final Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place;
+    private final Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place;
 
     private final Optional<Double> quantityOrdered;
 
     private final Optional<Double> quantityReceived;
 
-    private final Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody> unitCost;
+    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+            unitCost;
 
     private final Optional<String> unitOfMeasureType;
 
     private final Map<String, Object> additionalProperties;
 
-    private CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody(
+    private UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody(
             Optional<String> batchNumber,
-            Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge,
+            Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge,
             Optional<String> description,
             Optional<String> lineItemId,
-            Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara,
-            Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place,
+            Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara,
+            Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place,
             Optional<Double> quantityOrdered,
             Optional<Double> quantityReceived,
-            Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody> unitCost,
+            Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody> unitCost,
             Optional<String> unitOfMeasureType,
             Map<String, Object> additionalProperties) {
         this.batchNumber = batchNumber;
@@ -76,7 +80,7 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
     }
 
     @JsonProperty("coreCharge")
-    public Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> getCoreCharge() {
+    public Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> getCoreCharge() {
         return coreCharge;
     }
 
@@ -97,12 +101,12 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
     }
 
     @JsonProperty("partSamsara")
-    public Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> getPartSamsara() {
+    public Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> getPartSamsara() {
         return partSamsara;
     }
 
     @JsonProperty("place")
-    public Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> getPlace() {
+    public Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> getPlace() {
         return place;
     }
 
@@ -123,7 +127,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
     }
 
     @JsonProperty("unitCost")
-    public Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody> getUnitCost() {
+    public Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+            getUnitCost() {
         return unitCost;
     }
 
@@ -138,8 +143,12 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody
-                && equalTo((CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody) other);
+        return other
+                        instanceof
+                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody
+                && equalTo(
+                        (UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody)
+                                other);
     }
 
     @JsonAnyGetter
@@ -147,7 +156,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
         return this.additionalProperties;
     }
 
-    private boolean equalTo(CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody other) {
+    private boolean equalTo(
+            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody other) {
         return batchNumber.equals(other.batchNumber)
                 && coreCharge.equals(other.coreCharge)
                 && description.equals(other.description)
@@ -188,22 +198,23 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
     public static final class Builder {
         private Optional<String> batchNumber = Optional.empty();
 
-        private Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge =
+        private Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge =
                 Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
         private Optional<String> lineItemId = Optional.empty();
 
-        private Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara = Optional.empty();
+        private Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara = Optional.empty();
 
-        private Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place = Optional.empty();
+        private Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place = Optional.empty();
 
         private Optional<Double> quantityOrdered = Optional.empty();
 
         private Optional<Double> quantityReceived = Optional.empty();
 
-        private Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody> unitCost = Optional.empty();
+        private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+                unitCost = Optional.empty();
 
         private Optional<String> unitOfMeasureType = Optional.empty();
 
@@ -212,7 +223,9 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
 
         private Builder() {}
 
-        public Builder from(CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody other) {
+        public Builder from(
+                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody
+                        other) {
             batchNumber(other.getBatchNumber());
             coreCharge(other.getCoreCharge());
             description(other.getDescription());
@@ -242,13 +255,13 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
 
         @JsonSetter(value = "coreCharge", nulls = Nulls.SKIP)
         public Builder coreCharge(
-                Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge) {
+                Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge) {
             this.coreCharge = coreCharge;
             return this;
         }
 
         public Builder coreCharge(
-                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody coreCharge) {
+                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody coreCharge) {
             this.coreCharge = Optional.ofNullable(coreCharge);
             return this;
         }
@@ -282,23 +295,23 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
         }
 
         @JsonSetter(value = "partSamsara", nulls = Nulls.SKIP)
-        public Builder partSamsara(Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara) {
+        public Builder partSamsara(Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara) {
             this.partSamsara = partSamsara;
             return this;
         }
 
-        public Builder partSamsara(EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody partSamsara) {
+        public Builder partSamsara(EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody partSamsara) {
             this.partSamsara = Optional.ofNullable(partSamsara);
             return this;
         }
 
         @JsonSetter(value = "place", nulls = Nulls.SKIP)
-        public Builder place(Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place) {
+        public Builder place(Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place) {
             this.place = place;
             return this;
         }
 
-        public Builder place(EntityCreatePurchaseOrderPlaceRefTypeResponseBody place) {
+        public Builder place(EntityUpdatePurchaseOrderPlaceRefTypeResponseBody place) {
             this.place = Optional.ofNullable(place);
             return this;
         }
@@ -332,12 +345,15 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
         }
 
         @JsonSetter(value = "unitCost", nulls = Nulls.SKIP)
-        public Builder unitCost(Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody> unitCost) {
+        public Builder unitCost(
+                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+                        unitCost) {
             this.unitCost = unitCost;
             return this;
         }
 
-        public Builder unitCost(CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody unitCost) {
+        public Builder unitCost(
+                UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody unitCost) {
             this.unitCost = Optional.ofNullable(unitCost);
             return this;
         }
@@ -356,8 +372,9 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRe
             return this;
         }
 
-        public CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody build() {
-            return new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody(
+        public UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody
+                build() {
+            return new UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody(
                     batchNumber,
                     coreCharge,
                     description,

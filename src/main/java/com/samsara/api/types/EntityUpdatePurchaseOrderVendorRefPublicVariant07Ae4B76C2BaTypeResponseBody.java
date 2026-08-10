@@ -9,48 +9,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = CoachableEventResponseBody.Builder.class)
-public final class CoachableEventResponseBody {
+@JsonDeserialize(builder = EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody.Builder.class)
+public final class EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody {
     private final String id;
-
-    private final Optional<CoachableEventLinkageResponseBody> linkage;
 
     private final Map<String, Object> additionalProperties;
 
-    private CoachableEventResponseBody(
-            String id, Optional<CoachableEventLinkageResponseBody> linkage, Map<String, Object> additionalProperties) {
+    private EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody(
+            String id, Map<String, Object> additionalProperties) {
         this.id = id;
-        this.linkage = linkage;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return Unique ID for an event within the item in a coaching session.
+     * @return The ID of the referenced Vendor.
      */
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    @JsonProperty("linkage")
-    public Optional<CoachableEventLinkageResponseBody> getLinkage() {
-        return linkage;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof CoachableEventResponseBody && equalTo((CoachableEventResponseBody) other);
+        return other instanceof EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody
+                && equalTo((EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -58,13 +49,13 @@ public final class CoachableEventResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(CoachableEventResponseBody other) {
-        return id.equals(other.id) && linkage.equals(other.linkage);
+    private boolean equalTo(EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody other) {
+        return id.equals(other.id);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.linkage);
+        return Objects.hash(this.id);
     }
 
     @java.lang.Override
@@ -78,26 +69,20 @@ public final class CoachableEventResponseBody {
 
     public interface IdStage {
         /**
-         * <p>Unique ID for an event within the item in a coaching session.</p>
+         * <p>The ID of the referenced Vendor.</p>
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(CoachableEventResponseBody other);
+        Builder from(EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody other);
     }
 
     public interface _FinalStage {
-        CoachableEventResponseBody build();
-
-        _FinalStage linkage(Optional<CoachableEventLinkageResponseBody> linkage);
-
-        _FinalStage linkage(CoachableEventLinkageResponseBody linkage);
+        EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private String id;
-
-        private Optional<CoachableEventLinkageResponseBody> linkage = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -105,15 +90,14 @@ public final class CoachableEventResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(CoachableEventResponseBody other) {
+        public Builder from(EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody other) {
             id(other.getId());
-            linkage(other.getLinkage());
             return this;
         }
 
         /**
-         * <p>Unique ID for an event within the item in a coaching session.</p>
-         * <p>Unique ID for an event within the item in a coaching session.</p>
+         * <p>The ID of the referenced Vendor.</p>
+         * <p>The ID of the referenced Vendor.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -124,21 +108,9 @@ public final class CoachableEventResponseBody {
         }
 
         @java.lang.Override
-        public _FinalStage linkage(CoachableEventLinkageResponseBody linkage) {
-            this.linkage = Optional.ofNullable(linkage);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "linkage", nulls = Nulls.SKIP)
-        public _FinalStage linkage(Optional<CoachableEventLinkageResponseBody> linkage) {
-            this.linkage = linkage;
-            return this;
-        }
-
-        @java.lang.Override
-        public CoachableEventResponseBody build() {
-            return new CoachableEventResponseBody(id, linkage, additionalProperties);
+        public EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody build() {
+            return new EntityUpdatePurchaseOrderVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody(
+                    id, additionalProperties);
         }
     }
 }
