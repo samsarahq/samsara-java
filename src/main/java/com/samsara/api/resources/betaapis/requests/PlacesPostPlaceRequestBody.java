@@ -32,6 +32,10 @@ import org.jetbrains.annotations.NotNull;
 public final class PlacesPostPlaceRequestBody {
     private final String address;
 
+    private final Optional<Double> addressLatitude;
+
+    private final Optional<Double> addressLongitude;
+
     private final Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts;
 
     private final Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType;
@@ -64,6 +68,8 @@ public final class PlacesPostPlaceRequestBody {
 
     private PlacesPostPlaceRequestBody(
             String address,
+            Optional<Double> addressLatitude,
+            Optional<Double> addressLongitude,
             Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts,
             Optional<PlacesPostPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
             Optional<PlacesPostPlaceRequestBodyExternalIds> externalIds,
@@ -80,6 +86,8 @@ public final class PlacesPostPlaceRequestBody {
             Optional<List<PostPlaceTagRefRequestBody>> tags,
             Map<String, Object> additionalProperties) {
         this.address = address;
+        this.addressLatitude = addressLatitude;
+        this.addressLongitude = addressLongitude;
         this.businessContacts = businessContacts;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.externalIds = externalIds;
@@ -103,6 +111,22 @@ public final class PlacesPostPlaceRequestBody {
     @JsonProperty("address")
     public String getAddress() {
         return address;
+    }
+
+    /**
+     * @return Latitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLongitude.
+     */
+    @JsonProperty("addressLatitude")
+    public Optional<Double> getAddressLatitude() {
+        return addressLatitude;
+    }
+
+    /**
+     * @return Longitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLatitude.
+     */
+    @JsonProperty("addressLongitude")
+    public Optional<Double> getAddressLongitude() {
+        return addressLongitude;
     }
 
     @JsonProperty("businessContacts")
@@ -218,6 +242,8 @@ public final class PlacesPostPlaceRequestBody {
 
     private boolean equalTo(PlacesPostPlaceRequestBody other) {
         return address.equals(other.address)
+                && addressLatitude.equals(other.addressLatitude)
+                && addressLongitude.equals(other.addressLongitude)
                 && businessContacts.equals(other.businessContacts)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && externalIds.equals(other.externalIds)
@@ -238,6 +264,8 @@ public final class PlacesPostPlaceRequestBody {
     public int hashCode() {
         return Objects.hash(
                 this.address,
+                this.addressLatitude,
+                this.addressLongitude,
                 this.businessContacts,
                 this.cameraRecordingModeType,
                 this.externalIds,
@@ -285,6 +313,20 @@ public final class PlacesPostPlaceRequestBody {
 
     public interface _FinalStage {
         PlacesPostPlaceRequestBody build();
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLongitude.</p>
+         */
+        _FinalStage addressLatitude(Optional<Double> addressLatitude);
+
+        _FinalStage addressLatitude(Double addressLatitude);
+
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLatitude.</p>
+         */
+        _FinalStage addressLongitude(Optional<Double> addressLongitude);
+
+        _FinalStage addressLongitude(Double addressLongitude);
 
         _FinalStage businessContacts(Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts);
 
@@ -395,6 +437,10 @@ public final class PlacesPostPlaceRequestBody {
 
         private Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts = Optional.empty();
 
+        private Optional<Double> addressLongitude = Optional.empty();
+
+        private Optional<Double> addressLatitude = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -403,6 +449,8 @@ public final class PlacesPostPlaceRequestBody {
         @java.lang.Override
         public Builder from(PlacesPostPlaceRequestBody other) {
             address(other.getAddress());
+            addressLatitude(other.getAddressLatitude());
+            addressLongitude(other.getAddressLongitude());
             businessContacts(other.getBusinessContacts());
             cameraRecordingModeType(other.getCameraRecordingModeType());
             externalIds(other.getExternalIds());
@@ -672,10 +720,52 @@ public final class PlacesPostPlaceRequestBody {
             return this;
         }
 
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLatitude.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addressLongitude(Double addressLongitude) {
+            this.addressLongitude = Optional.ofNullable(addressLongitude);
+            return this;
+        }
+
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLatitude.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "addressLongitude", nulls = Nulls.SKIP)
+        public _FinalStage addressLongitude(Optional<Double> addressLongitude) {
+            this.addressLongitude = addressLongitude;
+            return this;
+        }
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLongitude.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addressLatitude(Double addressLatitude) {
+            this.addressLatitude = Optional.ofNullable(addressLatitude);
+            return this;
+        }
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLongitude.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "addressLatitude", nulls = Nulls.SKIP)
+        public _FinalStage addressLatitude(Optional<Double> addressLatitude) {
+            this.addressLatitude = addressLatitude;
+            return this;
+        }
+
         @java.lang.Override
         public PlacesPostPlaceRequestBody build() {
             return new PlacesPostPlaceRequestBody(
                     address,
+                    addressLatitude,
+                    addressLongitude,
                     businessContacts,
                     cameraRecordingModeType,
                     externalIds,

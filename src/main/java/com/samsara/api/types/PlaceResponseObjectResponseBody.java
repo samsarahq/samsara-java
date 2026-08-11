@@ -25,6 +25,10 @@ import org.jetbrains.annotations.NotNull;
 public final class PlaceResponseObjectResponseBody {
     private final String address;
 
+    private final Optional<Double> addressLatitude;
+
+    private final Optional<Double> addressLongitude;
+
     private final Optional<PlaceBusinessContactsResponseResponseBody> businessContacts;
 
     private final Optional<String> cameraRecordingModeType;
@@ -65,6 +69,8 @@ public final class PlaceResponseObjectResponseBody {
 
     private PlaceResponseObjectResponseBody(
             String address,
+            Optional<Double> addressLatitude,
+            Optional<Double> addressLongitude,
             Optional<PlaceBusinessContactsResponseResponseBody> businessContacts,
             Optional<String> cameraRecordingModeType,
             OffsetDateTime createdAtTime,
@@ -85,6 +91,8 @@ public final class PlaceResponseObjectResponseBody {
             OffsetDateTime updatedAtTime,
             Map<String, Object> additionalProperties) {
         this.address = address;
+        this.addressLatitude = addressLatitude;
+        this.addressLongitude = addressLongitude;
         this.businessContacts = businessContacts;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.createdAtTime = createdAtTime;
@@ -112,6 +120,22 @@ public final class PlaceResponseObjectResponseBody {
     @JsonProperty("address")
     public String getAddress() {
         return address;
+    }
+
+    /**
+     * @return Latitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.
+     */
+    @JsonProperty("addressLatitude")
+    public Optional<Double> getAddressLatitude() {
+        return addressLatitude;
+    }
+
+    /**
+     * @return Longitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.
+     */
+    @JsonProperty("addressLongitude")
+    public Optional<Double> getAddressLongitude() {
+        return addressLongitude;
     }
 
     @JsonProperty("businessContacts")
@@ -259,6 +283,8 @@ public final class PlaceResponseObjectResponseBody {
 
     private boolean equalTo(PlaceResponseObjectResponseBody other) {
         return address.equals(other.address)
+                && addressLatitude.equals(other.addressLatitude)
+                && addressLongitude.equals(other.addressLongitude)
                 && businessContacts.equals(other.businessContacts)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && createdAtTime.equals(other.createdAtTime)
@@ -283,6 +309,8 @@ public final class PlaceResponseObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.address,
+                this.addressLatitude,
+                this.addressLongitude,
                 this.businessContacts,
                 this.cameraRecordingModeType,
                 this.createdAtTime,
@@ -355,6 +383,20 @@ public final class PlaceResponseObjectResponseBody {
 
     public interface _FinalStage {
         PlaceResponseObjectResponseBody build();
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.</p>
+         */
+        _FinalStage addressLatitude(Optional<Double> addressLatitude);
+
+        _FinalStage addressLatitude(Double addressLatitude);
+
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.</p>
+         */
+        _FinalStage addressLongitude(Optional<Double> addressLongitude);
+
+        _FinalStage addressLongitude(Double addressLongitude);
 
         _FinalStage businessContacts(Optional<PlaceBusinessContactsResponseResponseBody> businessContacts);
 
@@ -486,6 +528,10 @@ public final class PlaceResponseObjectResponseBody {
 
         private Optional<PlaceBusinessContactsResponseResponseBody> businessContacts = Optional.empty();
 
+        private Optional<Double> addressLongitude = Optional.empty();
+
+        private Optional<Double> addressLatitude = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -494,6 +540,8 @@ public final class PlaceResponseObjectResponseBody {
         @java.lang.Override
         public Builder from(PlaceResponseObjectResponseBody other) {
             address(other.getAddress());
+            addressLatitude(other.getAddressLatitude());
+            addressLongitude(other.getAddressLongitude());
             businessContacts(other.getBusinessContacts());
             cameraRecordingModeType(other.getCameraRecordingModeType());
             createdAtTime(other.getCreatedAtTime());
@@ -821,10 +869,52 @@ public final class PlaceResponseObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addressLongitude(Double addressLongitude) {
+            this.addressLongitude = Optional.ofNullable(addressLongitude);
+            return this;
+        }
+
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "addressLongitude", nulls = Nulls.SKIP)
+        public _FinalStage addressLongitude(Optional<Double> addressLongitude) {
+            this.addressLongitude = addressLongitude;
+            return this;
+        }
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage addressLatitude(Double addressLatitude) {
+            this.addressLatitude = Optional.ofNullable(addressLatitude);
+            return this;
+        }
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "addressLatitude", nulls = Nulls.SKIP)
+        public _FinalStage addressLatitude(Optional<Double> addressLatitude) {
+            this.addressLatitude = addressLatitude;
+            return this;
+        }
+
         @java.lang.Override
         public PlaceResponseObjectResponseBody build() {
             return new PlaceResponseObjectResponseBody(
                     address,
+                    addressLatitude,
+                    addressLongitude,
                     businessContacts,
                     cameraRecordingModeType,
                     createdAtTime,

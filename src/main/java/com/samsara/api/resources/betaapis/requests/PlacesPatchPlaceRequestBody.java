@@ -35,6 +35,10 @@ public final class PlacesPatchPlaceRequestBody {
 
     private final Optional<String> address;
 
+    private final Optional<Double> addressLatitude;
+
+    private final Optional<Double> addressLongitude;
+
     private final Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts;
 
     private final Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType;
@@ -69,6 +73,8 @@ public final class PlacesPatchPlaceRequestBody {
             Optional<Long> placeId,
             Optional<String> externalId,
             Optional<String> address,
+            Optional<Double> addressLatitude,
+            Optional<Double> addressLongitude,
             Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts,
             Optional<PlacesPatchPlaceRequestBodyCameraRecordingModeType> cameraRecordingModeType,
             Optional<PlacesPatchPlaceRequestBodyExternalIds> externalIds,
@@ -87,6 +93,8 @@ public final class PlacesPatchPlaceRequestBody {
         this.placeId = placeId;
         this.externalId = externalId;
         this.address = address;
+        this.addressLatitude = addressLatitude;
+        this.addressLongitude = addressLongitude;
         this.businessContacts = businessContacts;
         this.cameraRecordingModeType = cameraRecordingModeType;
         this.externalIds = externalIds;
@@ -126,6 +134,22 @@ public final class PlacesPatchPlaceRequestBody {
     @JsonProperty("address")
     public Optional<String> getAddress() {
         return address;
+    }
+
+    /**
+     * @return Latitude of the place pin (map marker), stored independently of the geofence. When supplied, updates the pin; omitting it leaves the existing pin unchanged. Provide together with addressLongitude.
+     */
+    @JsonProperty("addressLatitude")
+    public Optional<Double> getAddressLatitude() {
+        return addressLatitude;
+    }
+
+    /**
+     * @return Longitude of the place pin (map marker), stored independently of the geofence. When supplied, updates the pin; omitting it leaves the existing pin unchanged. Provide together with addressLatitude.
+     */
+    @JsonProperty("addressLongitude")
+    public Optional<Double> getAddressLongitude() {
+        return addressLongitude;
     }
 
     @JsonProperty("businessContacts")
@@ -240,6 +264,8 @@ public final class PlacesPatchPlaceRequestBody {
         return placeId.equals(other.placeId)
                 && externalId.equals(other.externalId)
                 && address.equals(other.address)
+                && addressLatitude.equals(other.addressLatitude)
+                && addressLongitude.equals(other.addressLongitude)
                 && businessContacts.equals(other.businessContacts)
                 && cameraRecordingModeType.equals(other.cameraRecordingModeType)
                 && externalIds.equals(other.externalIds)
@@ -262,6 +288,8 @@ public final class PlacesPatchPlaceRequestBody {
                 this.placeId,
                 this.externalId,
                 this.address,
+                this.addressLatitude,
+                this.addressLongitude,
                 this.businessContacts,
                 this.cameraRecordingModeType,
                 this.externalIds,
@@ -294,6 +322,10 @@ public final class PlacesPatchPlaceRequestBody {
         private Optional<String> externalId = Optional.empty();
 
         private Optional<String> address = Optional.empty();
+
+        private Optional<Double> addressLatitude = Optional.empty();
+
+        private Optional<Double> addressLongitude = Optional.empty();
 
         private Optional<PostPlaceBusinessContactsInputRequestBody> businessContacts = Optional.empty();
 
@@ -332,6 +364,8 @@ public final class PlacesPatchPlaceRequestBody {
             placeId(other.getPlaceId());
             externalId(other.getExternalId());
             address(other.getAddress());
+            addressLatitude(other.getAddressLatitude());
+            addressLongitude(other.getAddressLongitude());
             businessContacts(other.getBusinessContacts());
             cameraRecordingModeType(other.getCameraRecordingModeType());
             externalIds(other.getExternalIds());
@@ -388,6 +422,34 @@ public final class PlacesPatchPlaceRequestBody {
 
         public Builder address(String address) {
             this.address = Optional.ofNullable(address);
+            return this;
+        }
+
+        /**
+         * <p>Latitude of the place pin (map marker), stored independently of the geofence. When supplied, updates the pin; omitting it leaves the existing pin unchanged. Provide together with addressLongitude.</p>
+         */
+        @JsonSetter(value = "addressLatitude", nulls = Nulls.SKIP)
+        public Builder addressLatitude(Optional<Double> addressLatitude) {
+            this.addressLatitude = addressLatitude;
+            return this;
+        }
+
+        public Builder addressLatitude(Double addressLatitude) {
+            this.addressLatitude = Optional.ofNullable(addressLatitude);
+            return this;
+        }
+
+        /**
+         * <p>Longitude of the place pin (map marker), stored independently of the geofence. When supplied, updates the pin; omitting it leaves the existing pin unchanged. Provide together with addressLatitude.</p>
+         */
+        @JsonSetter(value = "addressLongitude", nulls = Nulls.SKIP)
+        public Builder addressLongitude(Optional<Double> addressLongitude) {
+            this.addressLongitude = addressLongitude;
+            return this;
+        }
+
+        public Builder addressLongitude(Double addressLongitude) {
+            this.addressLongitude = Optional.ofNullable(addressLongitude);
             return this;
         }
 
@@ -579,6 +641,8 @@ public final class PlacesPatchPlaceRequestBody {
                     placeId,
                     externalId,
                     address,
+                    addressLatitude,
+                    addressLongitude,
                     businessContacts,
                     cameraRecordingModeType,
                     externalIds,
