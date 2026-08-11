@@ -43,6 +43,10 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
     public static final TireFaultCodeDetailsObjectResponseBodyManufacturer MANUFACTURER_SENSATA =
             new TireFaultCodeDetailsObjectResponseBodyManufacturer(Value.MANUFACTURER_SENSATA, "MANUFACTURER_SENSATA");
 
+    public static final TireFaultCodeDetailsObjectResponseBodyManufacturer MANUFACTURER_PASSENGER_CAN =
+            new TireFaultCodeDetailsObjectResponseBodyManufacturer(
+                    Value.MANUFACTURER_PASSENGER_CAN, "MANUFACTURER_PASSENGER_CAN");
+
     private final Value value;
 
     private final String string;
@@ -96,6 +100,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
                 return visitor.visitManufacturerContinental();
             case MANUFACTURER_SENSATA:
                 return visitor.visitManufacturerSensata();
+            case MANUFACTURER_PASSENGER_CAN:
+                return visitor.visitManufacturerPassengerCan();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -125,6 +131,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
                 return MANUFACTURER_CONTINENTAL;
             case "MANUFACTURER_SENSATA":
                 return MANUFACTURER_SENSATA;
+            case "MANUFACTURER_PASSENGER_CAN":
+                return MANUFACTURER_PASSENGER_CAN;
             default:
                 return new TireFaultCodeDetailsObjectResponseBodyManufacturer(Value.UNKNOWN, value);
         }
@@ -140,6 +148,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
         MANUFACTURER_HENDRICKSON,
 
         MANUFACTURER_INVALID,
+
+        MANUFACTURER_PASSENGER_CAN,
 
         MANUFACTURER_PRESSURE_PRO,
 
@@ -164,6 +174,8 @@ public final class TireFaultCodeDetailsObjectResponseBodyManufacturer {
         T visitManufacturerHendrickson();
 
         T visitManufacturerInvalid();
+
+        T visitManufacturerPassengerCan();
 
         T visitManufacturerPressurePro();
 

@@ -8759,6 +8759,22 @@ client.betaApIs().postPlace(
 <dl>
 <dd>
 
+**addressLatitude:** `Optional<Double>` — Latitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLongitude.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressLongitude:** `Optional<Double>` — Longitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLatitude.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **businessContacts:** `Optional<PostPlaceBusinessContactsInputRequestBody>` 
     
 </dd>
@@ -9011,6 +9027,22 @@ client.betaApIs().patchPlace(
 <dd>
 
 **address:** `Optional<String>` — Single-line address string.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressLatitude:** `Optional<Double>` — Latitude of the place pin (map marker), stored independently of the geofence. When supplied, updates the pin; omitting it leaves the existing pin unchanged. Provide together with addressLongitude.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressLongitude:** `Optional<Double>` — Longitude of the place pin (map marker), stored independently of the geofence. When supplied, updates the pin; omitting it leaves the existing pin unchanged. Provide together with addressLatitude.
     
 </dd>
 </dl>

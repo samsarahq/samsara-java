@@ -43,6 +43,10 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
     public static final TireFaultCodeDetailsObjectRequestBodyManufacturer MANUFACTURER_SENSATA =
             new TireFaultCodeDetailsObjectRequestBodyManufacturer(Value.MANUFACTURER_SENSATA, "MANUFACTURER_SENSATA");
 
+    public static final TireFaultCodeDetailsObjectRequestBodyManufacturer MANUFACTURER_PASSENGER_CAN =
+            new TireFaultCodeDetailsObjectRequestBodyManufacturer(
+                    Value.MANUFACTURER_PASSENGER_CAN, "MANUFACTURER_PASSENGER_CAN");
+
     private final Value value;
 
     private final String string;
@@ -96,6 +100,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
                 return visitor.visitManufacturerContinental();
             case MANUFACTURER_SENSATA:
                 return visitor.visitManufacturerSensata();
+            case MANUFACTURER_PASSENGER_CAN:
+                return visitor.visitManufacturerPassengerCan();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -125,6 +131,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
                 return MANUFACTURER_CONTINENTAL;
             case "MANUFACTURER_SENSATA":
                 return MANUFACTURER_SENSATA;
+            case "MANUFACTURER_PASSENGER_CAN":
+                return MANUFACTURER_PASSENGER_CAN;
             default:
                 return new TireFaultCodeDetailsObjectRequestBodyManufacturer(Value.UNKNOWN, value);
         }
@@ -140,6 +148,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
         MANUFACTURER_HENDRICKSON,
 
         MANUFACTURER_INVALID,
+
+        MANUFACTURER_PASSENGER_CAN,
 
         MANUFACTURER_PRESSURE_PRO,
 
@@ -164,6 +174,8 @@ public final class TireFaultCodeDetailsObjectRequestBodyManufacturer {
         T visitManufacturerHendrickson();
 
         T visitManufacturerInvalid();
+
+        T visitManufacturerPassengerCan();
 
         T visitManufacturerPressurePro();
 

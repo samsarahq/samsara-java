@@ -31,6 +31,8 @@ public final class VendorObjectResponseBody {
 
     private final String id;
 
+    private final Optional<String> payeeId;
+
     private final Optional<String> servicesProvided;
 
     private final Optional<String> vendorId;
@@ -42,6 +44,7 @@ public final class VendorObjectResponseBody {
             List<String> categoryIds,
             Optional<Map<String, String>> externalIds,
             String id,
+            Optional<String> payeeId,
             Optional<String> servicesProvided,
             Optional<String> vendorId,
             Map<String, Object> additionalProperties) {
@@ -49,6 +52,7 @@ public final class VendorObjectResponseBody {
         this.categoryIds = categoryIds;
         this.externalIds = externalIds;
         this.id = id;
+        this.payeeId = payeeId;
         this.servicesProvided = servicesProvided;
         this.vendorId = vendorId;
         this.additionalProperties = additionalProperties;
@@ -87,6 +91,14 @@ public final class VendorObjectResponseBody {
     }
 
     /**
+     * @return The vendor's accounts-payable/ERP payee ID.
+     */
+    @JsonProperty("payeeId")
+    public Optional<String> getPayeeId() {
+        return payeeId;
+    }
+
+    /**
      * @return Description of services provided by the vendor.
      */
     @JsonProperty("servicesProvided")
@@ -118,6 +130,7 @@ public final class VendorObjectResponseBody {
                 && categoryIds.equals(other.categoryIds)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
+                && payeeId.equals(other.payeeId)
                 && servicesProvided.equals(other.servicesProvided)
                 && vendorId.equals(other.vendorId);
     }
@@ -125,7 +138,13 @@ public final class VendorObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.addressId, this.categoryIds, this.externalIds, this.id, this.servicesProvided, this.vendorId);
+                this.addressId,
+                this.categoryIds,
+                this.externalIds,
+                this.id,
+                this.payeeId,
+                this.servicesProvided,
+                this.vendorId);
     }
 
     @java.lang.Override
@@ -173,6 +192,13 @@ public final class VendorObjectResponseBody {
         _FinalStage externalIds(Map<String, String> externalIds);
 
         /**
+         * <p>The vendor's accounts-payable/ERP payee ID.</p>
+         */
+        _FinalStage payeeId(Optional<String> payeeId);
+
+        _FinalStage payeeId(String payeeId);
+
+        /**
          * <p>Description of services provided by the vendor.</p>
          */
         _FinalStage servicesProvided(Optional<String> servicesProvided);
@@ -195,6 +221,8 @@ public final class VendorObjectResponseBody {
 
         private Optional<String> servicesProvided = Optional.empty();
 
+        private Optional<String> payeeId = Optional.empty();
+
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
         private List<String> categoryIds = new ArrayList<>();
@@ -212,6 +240,7 @@ public final class VendorObjectResponseBody {
             categoryIds(other.getCategoryIds());
             externalIds(other.getExternalIds());
             id(other.getId());
+            payeeId(other.getPayeeId());
             servicesProvided(other.getServicesProvided());
             vendorId(other.getVendorId());
             return this;
@@ -266,6 +295,26 @@ public final class VendorObjectResponseBody {
         @JsonSetter(value = "servicesProvided", nulls = Nulls.SKIP)
         public _FinalStage servicesProvided(Optional<String> servicesProvided) {
             this.servicesProvided = servicesProvided;
+            return this;
+        }
+
+        /**
+         * <p>The vendor's accounts-payable/ERP payee ID.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage payeeId(String payeeId) {
+            this.payeeId = Optional.ofNullable(payeeId);
+            return this;
+        }
+
+        /**
+         * <p>The vendor's accounts-payable/ERP payee ID.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "payeeId", nulls = Nulls.SKIP)
+        public _FinalStage payeeId(Optional<String> payeeId) {
+            this.payeeId = payeeId;
             return this;
         }
 
@@ -347,7 +396,7 @@ public final class VendorObjectResponseBody {
         @java.lang.Override
         public VendorObjectResponseBody build() {
             return new VendorObjectResponseBody(
-                    addressId, categoryIds, externalIds, id, servicesProvided, vendorId, additionalProperties);
+                    addressId, categoryIds, externalIds, id, payeeId, servicesProvided, vendorId, additionalProperties);
         }
     }
 }
