@@ -82,7 +82,7 @@ public final class RouteStopOrderUpsertInputRequestBody {
     }
 
     /**
-     * @return The task to upsert and attach to the containing stop.
+     * @return Tasks to upsert and attach to the containing stop.
      */
     @JsonProperty("tasks")
     public List<FleetOrderTaskUpsertInputRequestBody> getTasks() {
@@ -208,7 +208,7 @@ public final class RouteStopOrderUpsertInputRequestBody {
         }
 
         /**
-         * <p>The task to upsert and attach to the containing stop.</p>
+         * <p>Tasks to upsert and attach to the containing stop.</p>
          */
         @JsonSetter(value = "tasks", nulls = Nulls.SKIP)
         public Builder tasks(List<FleetOrderTaskUpsertInputRequestBody> tasks) {
