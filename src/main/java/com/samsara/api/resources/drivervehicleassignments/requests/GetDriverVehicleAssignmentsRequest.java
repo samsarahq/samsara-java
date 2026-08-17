@@ -35,6 +35,8 @@ public final class GetDriverVehicleAssignmentsRequest {
 
     private final Optional<String> endTime;
 
+    private final Optional<String> sourceName;
+
     private final Optional<String> driverTagIds;
 
     private final Optional<String> vehicleTagIds;
@@ -51,6 +53,7 @@ public final class GetDriverVehicleAssignmentsRequest {
             GetDriverVehicleAssignmentsRequestFilterBy filterBy,
             Optional<String> startTime,
             Optional<String> endTime,
+            Optional<String> sourceName,
             Optional<String> driverTagIds,
             Optional<String> vehicleTagIds,
             Optional<String> after,
@@ -61,6 +64,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         this.filterBy = filterBy;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.sourceName = sourceName;
         this.driverTagIds = driverTagIds;
         this.vehicleTagIds = vehicleTagIds;
         this.after = after;
@@ -106,6 +110,14 @@ public final class GetDriverVehicleAssignmentsRequest {
     @JsonProperty("endTime")
     public Optional<String> getEndTime() {
         return endTime;
+    }
+
+    /**
+     * @return Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.
+     */
+    @JsonProperty("sourceName")
+    public Optional<String> getSourceName() {
+        return sourceName;
     }
 
     /**
@@ -158,6 +170,7 @@ public final class GetDriverVehicleAssignmentsRequest {
                 && filterBy.equals(other.filterBy)
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
+                && sourceName.equals(other.sourceName)
                 && driverTagIds.equals(other.driverTagIds)
                 && vehicleTagIds.equals(other.vehicleTagIds)
                 && after.equals(other.after)
@@ -172,6 +185,7 @@ public final class GetDriverVehicleAssignmentsRequest {
                 this.filterBy,
                 this.startTime,
                 this.endTime,
+                this.sourceName,
                 this.driverTagIds,
                 this.vehicleTagIds,
                 this.after,
@@ -232,6 +246,13 @@ public final class GetDriverVehicleAssignmentsRequest {
         _FinalStage endTime(String endTime);
 
         /**
+         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.</p>
+         */
+        _FinalStage sourceName(Optional<String> sourceName);
+
+        _FinalStage sourceName(String sourceName);
+
+        /**
          * <p>A filter on the data based on this comma-separated list of driver tag IDs. Example: <code>tagIds=1234,5678</code></p>
          */
         _FinalStage driverTagIds(Optional<String> driverTagIds);
@@ -272,6 +293,8 @@ public final class GetDriverVehicleAssignmentsRequest {
 
         private Optional<String> driverTagIds = Optional.empty();
 
+        private Optional<String> sourceName = Optional.empty();
+
         private Optional<String> endTime = Optional.empty();
 
         private Optional<String> startTime = Optional.empty();
@@ -292,6 +315,7 @@ public final class GetDriverVehicleAssignmentsRequest {
             filterBy(other.getFilterBy());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
+            sourceName(other.getSourceName());
             driverTagIds(other.getDriverTagIds());
             vehicleTagIds(other.getVehicleTagIds());
             after(other.getAfter());
@@ -388,6 +412,26 @@ public final class GetDriverVehicleAssignmentsRequest {
         @JsonSetter(value = "driverTagIds", nulls = Nulls.SKIP)
         public _FinalStage driverTagIds(Optional<String> driverTagIds) {
             this.driverTagIds = driverTagIds;
+            return this;
+        }
+
+        /**
+         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage sourceName(String sourceName) {
+            this.sourceName = Optional.ofNullable(sourceName);
+            return this;
+        }
+
+        /**
+         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "sourceName", nulls = Nulls.SKIP)
+        public _FinalStage sourceName(Optional<String> sourceName) {
+            this.sourceName = sourceName;
             return this;
         }
 
@@ -491,6 +535,7 @@ public final class GetDriverVehicleAssignmentsRequest {
                     filterBy,
                     startTime,
                     endTime,
+                    sourceName,
                     driverTagIds,
                     vehicleTagIds,
                     after,
