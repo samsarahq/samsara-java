@@ -76,6 +76,10 @@ public class RawDriverVehicleAssignmentsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "endTime", request.getEndTime().get(), false);
         }
+        if (request.getSourceName().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "sourceName", request.getSourceName().get(), false);
+        }
         if (request.getDriverTagIds().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "driverTagIds", request.getDriverTagIds().get(), false);

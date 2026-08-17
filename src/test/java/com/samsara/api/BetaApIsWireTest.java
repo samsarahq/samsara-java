@@ -28,6 +28,7 @@ import com.samsara.api.resources.betaapis.requests.DeviceRecoveryMarkAssetMissin
 import com.samsara.api.resources.betaapis.requests.DeviceRecoveryRecoverAssetRequestBody;
 import com.samsara.api.resources.betaapis.requests.DriverWorkflowAssignmentsPostDriverWorkflowAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.EngineImmobilizerUpdateEngineImmobilizerStateRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceCreatePartRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody;
@@ -174,6 +175,7 @@ import com.samsara.api.types.DriverWorkflowAssignmentsPostDriverWorkflowAssignme
 import com.samsara.api.types.DriverWorkflowsListDriverWorkflowsResponseBody;
 import com.samsara.api.types.EngineImmobilizerGetEngineImmobilizerStatesResponseBody;
 import com.samsara.api.types.EntityGroundIntelligenceIssuesServiceListIssuesResponseBody;
+import com.samsara.api.types.EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueResponseBody;
 import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceCreatePartResponseBody;
 import com.samsara.api.types.EntityPartDefinitionsServiceListPartsResponseBody;
@@ -4786,7 +4788,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"dashboardUrl\":\"https://cloud.samsara.com/o/123456/ground-intelligence/issues/123e4567-e89b-12d3-a456-426614174000\",\"firstSeenTime\":\"2019-06-13T19:08:25Z\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"lastSeenTime\":\"2019-06-13T19:08:25Z\",\"location\":{\"type\":\"point\"},\"observationCount\":3,\"roadSegment\":{\"roadName\":\"Market Street\"},\"severity\":\"high\",\"status\":\"needsReview\",\"type\":\"pothole\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"createdAtTime\":\"2026-08-06T08:00:00Z\",\"dashboardUrl\":\"https://cloud.samsara.com/o/123456/ground-intelligence/issues/5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\"firstSeenTime\":\"2026-08-06T08:00:00Z\",\"id\":\"5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\"lastSeenTime\":\"2026-08-06T09:00:00Z\",\"location\":{\"type\":\"point\"},\"observationCount\":3,\"roadSegment\":{\"roadName\":\"Market Street\"},\"severity\":\"high\",\"status\":\"dismissed\",\"type\":\"pothole\",\"updatedAtTime\":\"2026-08-06T10:00:00Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EntityGroundIntelligenceIssuesServiceListIssuesResponseBody response =
                 client.betaApIs().listIssues(ListIssuesRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -4800,11 +4802,11 @@ public class BetaApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"dashboardUrl\": \"https://cloud.samsara.com/o/123456/ground-intelligence/issues/123e4567-e89b-12d3-a456-426614174000\",\n"
-                + "      \"firstSeenTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n"
-                + "      \"lastSeenTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"createdAtTime\": \"2026-08-06T08:00:00Z\",\n"
+                + "      \"dashboardUrl\": \"https://cloud.samsara.com/o/123456/ground-intelligence/issues/5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\n"
+                + "      \"firstSeenTime\": \"2026-08-06T08:00:00Z\",\n"
+                + "      \"id\": \"5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\n"
+                + "      \"lastSeenTime\": \"2026-08-06T09:00:00Z\",\n"
                 + "      \"location\": {\n"
                 + "        \"type\": \"point\"\n"
                 + "      },\n"
@@ -4813,14 +4815,118 @@ public class BetaApIsWireTest {
                 + "        \"roadName\": \"Market Street\"\n"
                 + "      },\n"
                 + "      \"severity\": \"high\",\n"
-                + "      \"status\": \"needsReview\",\n"
+                + "      \"status\": \"dismissed\",\n"
                 + "      \"type\": \"pothole\",\n"
-                + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\"\n"
+                + "      \"updatedAtTime\": \"2026-08-06T10:00:00Z\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testUpdateGroundIntelligenceIssue() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"createdAtTime\":\"2026-08-06T08:00:00Z\",\"dashboardUrl\":\"https://cloud.samsara.com/o/123456/ground-intelligence/issues/5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\"firstSeenTime\":\"2026-08-06T08:00:00Z\",\"id\":\"5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\"lastSeenTime\":\"2026-08-06T09:00:00Z\",\"location\":{\"point\":{\"latitude\":37.7749,\"longitude\":-122.4194},\"type\":\"point\"},\"observationCount\":3,\"roadSegment\":{\"roadName\":\"Market Street\"},\"severity\":\"high\",\"status\":\"dismissed\",\"type\":\"pothole\",\"updatedAtTime\":\"2026-08-06T10:00:00Z\"}}"));
+        EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueResponseBody response = client.betaApIs()
+                .updateGroundIntelligenceIssue(
+                        EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBody.builder()
+                                .id("id")
+                                .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"createdAtTime\": \"2026-08-06T08:00:00Z\",\n"
+                + "    \"dashboardUrl\": \"https://cloud.samsara.com/o/123456/ground-intelligence/issues/5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\n"
+                + "    \"firstSeenTime\": \"2026-08-06T08:00:00Z\",\n"
+                + "    \"id\": \"5267696d-a9f9-4031-bdf4-6fbc9ec64e57\",\n"
+                + "    \"lastSeenTime\": \"2026-08-06T09:00:00Z\",\n"
+                + "    \"location\": {\n"
+                + "      \"point\": {\n"
+                + "        \"latitude\": 37.7749,\n"
+                + "        \"longitude\": -122.4194\n"
+                + "      },\n"
+                + "      \"type\": \"point\"\n"
+                + "    },\n"
+                + "    \"observationCount\": 3,\n"
+                + "    \"roadSegment\": {\n"
+                + "      \"roadName\": \"Market Street\"\n"
+                + "    },\n"
+                + "    \"severity\": \"high\",\n"
+                + "    \"status\": \"dismissed\",\n"
+                + "    \"type\": \"pothole\",\n"
+                + "    \"updatedAtTime\": \"2026-08-06T10:00:00Z\"\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
