@@ -5,12 +5,15 @@ package com.samsara.api.resources.routes.requests;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.samsara.api.core.Nullable;
+import com.samsara.api.core.NullableNonemptyFilter;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.types.RouteSettingsRequestBody;
 import com.samsara.api.types.UpdateRoutesStopRequestObjectRequestBody;
@@ -67,10 +70,13 @@ public final class RoutesPatchRouteRequestBody {
     }
 
     /**
-     * @return ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.
+     * @return ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver. Set to null to unassign the driver from the route.
      */
-    @JsonProperty("driverId")
+    @JsonIgnore
     public Optional<String> getDriverId() {
+        if (driverId == null) {
+            return Optional.empty();
+        }
         return driverId;
     }
 
@@ -128,10 +134,25 @@ public final class RoutesPatchRouteRequestBody {
     }
 
     /**
-     * @return ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.
+     * @return ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle. Set to null to unassign the vehicle from the route.
      */
-    @JsonProperty("vehicleId")
+    @JsonIgnore
     public Optional<String> getVehicleId() {
+        if (vehicleId == null) {
+            return Optional.empty();
+        }
+        return vehicleId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("driverId")
+    private Optional<String> _getDriverId() {
+        return driverId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("vehicleId")
+    private Optional<String> _getVehicleId() {
         return vehicleId;
     }
 
@@ -220,7 +241,7 @@ public final class RoutesPatchRouteRequestBody {
         }
 
         /**
-         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
+         * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver. Set to null to unassign the driver from the route.</p>
          */
         @JsonSetter(value = "driverId", nulls = Nulls.SKIP)
         public Builder driverId(Optional<String> driverId) {
@@ -230,6 +251,17 @@ public final class RoutesPatchRouteRequestBody {
 
         public Builder driverId(String driverId) {
             this.driverId = Optional.ofNullable(driverId);
+            return this;
+        }
+
+        public Builder driverId(Nullable<String> driverId) {
+            if (driverId.isNull()) {
+                this.driverId = null;
+            } else if (driverId.isEmpty()) {
+                this.driverId = Optional.empty();
+            } else {
+                this.driverId = Optional.of(driverId.get());
+            }
             return this;
         }
 
@@ -329,7 +361,7 @@ public final class RoutesPatchRouteRequestBody {
         }
 
         /**
-         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         * <p>ID of the vehicle. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle. Set to null to unassign the vehicle from the route.</p>
          */
         @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
         public Builder vehicleId(Optional<String> vehicleId) {
@@ -339,6 +371,17 @@ public final class RoutesPatchRouteRequestBody {
 
         public Builder vehicleId(String vehicleId) {
             this.vehicleId = Optional.ofNullable(vehicleId);
+            return this;
+        }
+
+        public Builder vehicleId(Nullable<String> vehicleId) {
+            if (vehicleId.isNull()) {
+                this.vehicleId = null;
+            } else if (vehicleId.isEmpty()) {
+                this.vehicleId = Optional.empty();
+            } else {
+                this.vehicleId = Optional.of(vehicleId.get());
+            }
             return this;
         }
 
