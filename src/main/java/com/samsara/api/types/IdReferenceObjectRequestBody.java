@@ -17,19 +17,19 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@JsonDeserialize(builder = GoaFormTinyResponseResponseBody.Builder.class)
-public final class GoaFormTinyResponseResponseBody {
+@JsonDeserialize(builder = IdReferenceObjectRequestBody.Builder.class)
+public final class IdReferenceObjectRequestBody {
     private final String id;
 
     private final Map<String, Object> additionalProperties;
 
-    private GoaFormTinyResponseResponseBody(String id, Map<String, Object> additionalProperties) {
+    private IdReferenceObjectRequestBody(String id, Map<String, Object> additionalProperties) {
         this.id = id;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return ID of the form
+     * @return The unique identifier of the resource.
      */
     @JsonProperty("id")
     public String getId() {
@@ -39,7 +39,7 @@ public final class GoaFormTinyResponseResponseBody {
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof GoaFormTinyResponseResponseBody && equalTo((GoaFormTinyResponseResponseBody) other);
+        return other instanceof IdReferenceObjectRequestBody && equalTo((IdReferenceObjectRequestBody) other);
     }
 
     @JsonAnyGetter
@@ -47,7 +47,7 @@ public final class GoaFormTinyResponseResponseBody {
         return this.additionalProperties;
     }
 
-    private boolean equalTo(GoaFormTinyResponseResponseBody other) {
+    private boolean equalTo(IdReferenceObjectRequestBody other) {
         return id.equals(other.id);
     }
 
@@ -67,15 +67,15 @@ public final class GoaFormTinyResponseResponseBody {
 
     public interface IdStage {
         /**
-         * <p>ID of the form</p>
+         * <p>The unique identifier of the resource.</p>
          */
         _FinalStage id(@NotNull String id);
 
-        Builder from(GoaFormTinyResponseResponseBody other);
+        Builder from(IdReferenceObjectRequestBody other);
     }
 
     public interface _FinalStage {
-        GoaFormTinyResponseResponseBody build();
+        IdReferenceObjectRequestBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -88,14 +88,14 @@ public final class GoaFormTinyResponseResponseBody {
         private Builder() {}
 
         @java.lang.Override
-        public Builder from(GoaFormTinyResponseResponseBody other) {
+        public Builder from(IdReferenceObjectRequestBody other) {
             id(other.getId());
             return this;
         }
 
         /**
-         * <p>ID of the form</p>
-         * <p>ID of the form</p>
+         * <p>The unique identifier of the resource.</p>
+         * <p>The unique identifier of the resource.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -106,8 +106,8 @@ public final class GoaFormTinyResponseResponseBody {
         }
 
         @java.lang.Override
-        public GoaFormTinyResponseResponseBody build() {
-            return new GoaFormTinyResponseResponseBody(id, additionalProperties);
+        public IdReferenceObjectRequestBody build() {
+            return new IdReferenceObjectRequestBody(id, additionalProperties);
         }
     }
 }

@@ -41,7 +41,7 @@ public final class RoutesStopResponseObjectResponseBody {
 
     private final Optional<Map<String, String>> externalIds;
 
-    private final Optional<List<GoaFormTinyResponseResponseBody>> forms;
+    private final Optional<List<IdReferenceObjectResponseBody>> forms;
 
     private final String id;
 
@@ -85,7 +85,7 @@ public final class RoutesStopResponseObjectResponseBody {
             Optional<OffsetDateTime> enRouteTime,
             Optional<OffsetDateTime> eta,
             Optional<Map<String, String>> externalIds,
-            Optional<List<GoaFormTinyResponseResponseBody>> forms,
+            Optional<List<IdReferenceObjectResponseBody>> forms,
             String id,
             Optional<List<GoaIssueTinyResponseResponseBody>> issues,
             Optional<String> liveSharingUrl,
@@ -203,7 +203,7 @@ public final class RoutesStopResponseObjectResponseBody {
      * @return List of forms associated with the stop.
      */
     @JsonProperty("forms")
-    public Optional<List<GoaFormTinyResponseResponseBody>> getForms() {
+    public Optional<List<IdReferenceObjectResponseBody>> getForms() {
         return forms;
     }
 
@@ -492,9 +492,9 @@ public final class RoutesStopResponseObjectResponseBody {
         /**
          * <p>List of forms associated with the stop.</p>
          */
-        _FinalStage forms(Optional<List<GoaFormTinyResponseResponseBody>> forms);
+        _FinalStage forms(Optional<List<IdReferenceObjectResponseBody>> forms);
 
-        _FinalStage forms(List<GoaFormTinyResponseResponseBody> forms);
+        _FinalStage forms(List<IdReferenceObjectResponseBody> forms);
 
         /**
          * <p>List of issues associated with the stop.</p>
@@ -611,7 +611,7 @@ public final class RoutesStopResponseObjectResponseBody {
 
         private Optional<List<GoaIssueTinyResponseResponseBody>> issues = Optional.empty();
 
-        private Optional<List<GoaFormTinyResponseResponseBody>> forms = Optional.empty();
+        private Optional<List<IdReferenceObjectResponseBody>> forms = Optional.empty();
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
@@ -942,7 +942,7 @@ public final class RoutesStopResponseObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage forms(List<GoaFormTinyResponseResponseBody> forms) {
+        public _FinalStage forms(List<IdReferenceObjectResponseBody> forms) {
             this.forms = Optional.ofNullable(forms);
             return this;
         }
@@ -952,7 +952,7 @@ public final class RoutesStopResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "forms", nulls = Nulls.SKIP)
-        public _FinalStage forms(Optional<List<GoaFormTinyResponseResponseBody>> forms) {
+        public _FinalStage forms(Optional<List<IdReferenceObjectResponseBody>> forms) {
             this.forms = forms;
             return this;
         }

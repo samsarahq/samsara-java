@@ -2606,6 +2606,79 @@ client.betaApIs().updateSharedAssetsBatch(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.cancelSharedAssetsBatch(request) -> AssetSharingAgreementsCancelSharedAssetsBatchResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancels one or more asset sharings, each identified by its shared-asset id. Active sharings end immediately, future sharings are converted to zero-length sharings, and already-ended sharings are returned unchanged, so the request is safe to retry. Up to 100 asset sharings may be canceled per request, and the rate limit applies to this endpoint rather than to the individual asset sharings within a request. The batch may partially succeed: each asset sharing is processed independently, and callers must inspect each item's status in the response. A failure for one asset sharing does not prevent other valid asset sharings in the batch from being canceled.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Asset Sharing** under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().cancelSharedAssetsBatch(
+    AssetSharingAgreementsCancelSharedAssetsBatchRequestBody
+        .builder()
+        .data(
+            Arrays.asList(
+                IdReferenceObjectRequestBody
+                    .builder()
+                    .id("12345")
+                    .build()
+            )
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**data:** `List<IdReferenceObjectRequestBody>` — List of asset sharings to cancel.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.cancelAssetSharingAgreement() -> AssetSharingAgreementsCancelAssetSharingAgreementResponseBody</code></summary>
 <dl>
 <dd>
@@ -8568,6 +8641,1181 @@ client.betaApIs().listTimeEntries(
 <dd>
 
 **limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listWarranties() -> EntityWarrantiesServiceListWarrantiesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of warranties for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listWarranties(
+    ListWarrantiesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — A filter on the data based on this comma-separated list of Name values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createWarranty(request) -> EntityWarrantiesServiceCreateWarrantyResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a warranty for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createWarranty(
+    EntityWarrantiesServiceCreateWarrantyRequestBody
+        .builder()
+        .name("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**baseCoverage:** `Optional<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**coverages:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyType:** `Optional<String>` — Type of warranty, for example manufacturer, extended, other, or unknown.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deleteWarranty()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a warranty for the organization. Asset associations are removed server-side.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deleteWarranty(
+    DeleteWarrantyRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the Warranty record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateWarranty(request) -> EntityWarrantiesServiceUpdateWarrantyResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing warranty for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateWarranty(
+    EntityWarrantiesServiceUpdateWarrantyRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the Warranty record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**baseCoverage:** `Optional<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**coverages:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyType:** `Optional<String>` — Type of warranty, for example manufacturer, extended, other, or unknown.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.replaceWarrantyAssetAssignments(request) -> ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the full set of assets assigned to a warranty.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().replaceWarrantyAssetAssignments(
+    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyId:** `Optional<String>` — ID of the warranty whose asset set to replace.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assets:** `Optional<List<EntityReplaceWarrantyAssetAssignmentsWarrantyAssetAssignmentInputTypeRequestBody>>` — The full desired asset set for the warranty.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listWarrantyClaims() -> EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of warranty claims for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listWarrantyClaims(
+    ListWarrantyClaimsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyClaimIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimStatus:** `Optional<String>` — A filter on the data based on this comma-separated list of Claim status values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Warranty values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createWarrantyClaim(request) -> EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a warranty claim for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createWarrantyClaim(
+    EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody
+        .builder()
+        .assetId("281474976710656")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` — ID of the asset the claim is filed for. Immutable once set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimStatus:** `Optional<String>` — Current status of the claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**labor:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<CreateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursements:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deleteWarrantyClaim()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a warranty claim for the organization. Component links are removed server-side.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deleteWarrantyClaim(
+    DeleteWarrantyClaimRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the WarrantyClaim record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateWarrantyClaim(request) -> EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing warranty claim for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateWarrantyClaim(
+    EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the WarrantyClaim record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — ID of the asset the claim is filed for. Immutable once set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimStatus:** `Optional<String>` — Current status of the claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**labor:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<UpdateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursements:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
     
 </dd>
 </dl>
@@ -30982,6 +32230,14 @@ client.workOrders().postWorkOrders(
 <dl>
 <dd>
 
+**archivedAtTime:** `Optional<OffsetDateTime>` — The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status is Closed or Cancelled and this field is not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **assetId:** `String` — The ID of the asset.
     
 </dd>
@@ -30999,6 +32255,14 @@ client.workOrders().postWorkOrders(
 <dd>
 
 **category:** `Optional<String>` — The category of the work order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**completedAtTime:** `Optional<OffsetDateTime>` — The historical time the work order was completed, in RFC 3339 format. Is automatically set when the status is Closed or Completed and this field is not provided.
     
 </dd>
 </dl>
@@ -31095,6 +32359,22 @@ client.workOrders().postWorkOrders(
 <dd>
 
 **serviceTaskInstances:** `Optional<List<ServiceTaskInstanceInputObjectRequestBody>>` — Service Tasks for the work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startedAtTime:** `Optional<OffsetDateTime>` — The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status is an in-progress status and this field is not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<WorkOrdersPostWorkOrdersRequestBodyStatus>` — The initial status of the work order. Defaults to Open when not provided.  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     
 </dd>
 </dl>
@@ -31242,6 +32522,14 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
+**archivedAtTime:** `Optional<OffsetDateTime>` — The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status changes to Closed or Cancelled and this field is not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **assignedUserId:** `Optional<String>` — The ID of the assigned mechanic.
     
 </dd>
@@ -31371,6 +32659,14 @@ client.workOrders().patchWorkOrders(
 <dd>
 
 **serviceTaskInstances:** `Optional<List<ServiceTaskInstanceInputObjectRequestBody>>` — Service Tasks for the work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startedAtTime:** `Optional<OffsetDateTime>` — The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.
     
 </dd>
 </dl>
@@ -32222,1235 +33518,6 @@ client.previewApIs().unlockVehicle(
 <dd>
 
 **id:** `String` — The ID of the vehicle to lock or unlock. This can be a Samsara internal ID or an external ID in the format `samsara.vin:{VIN}`.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.listWarranties() -> EntityWarrantiesServiceListWarrantiesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of warranties for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().listWarranties(
-    ListWarrantiesRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — A filter on the data based on this comma-separated list of Name values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.createWarranty(request) -> EntityWarrantiesServiceCreateWarrantyResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a warranty for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().createWarranty(
-    EntityWarrantiesServiceCreateWarrantyRequestBody
-        .builder()
-        .name("12345")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**baseCoverage:** `Optional<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**coverages:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `Optional<String>` — Description of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Name of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyType:** `Optional<String>` — Type of warranty, for example manufacturer, extended, other, or unknown.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.deleteWarranty()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a warranty for the organization. Asset associations are removed server-side.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().deleteWarranty(
-    DeleteWarrantyRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the Warranty record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.updateWarranty(request) -> EntityWarrantiesServiceUpdateWarrantyResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing warranty for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().updateWarranty(
-    EntityWarrantiesServiceUpdateWarrantyRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the Warranty record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**baseCoverage:** `Optional<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**coverages:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `Optional<String>` — Description of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — Name of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyType:** `Optional<String>` — Type of warranty, for example manufacturer, extended, other, or unknown.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.replaceWarrantyAssetAssignments(request) -> ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Replaces the full set of assets assigned to a warranty.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().replaceWarrantyAssetAssignments(
-    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyId:** `Optional<String>` — ID of the warranty whose asset set to replace.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assets:** `Optional<List<EntityReplaceWarrantyAssetAssignmentsWarrantyAssetAssignmentInputTypeRequestBody>>` — The full desired asset set for the warranty.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.listWarrantyClaims() -> EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of warranty claims for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().listWarrantyClaims(
-    ListWarrantyClaimsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyClaimIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimStatus:** `Optional<String>` — A filter on the data based on this comma-separated list of Claim status values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Warranty values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.createWarrantyClaim(request) -> EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a warranty claim for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().createWarrantyClaim(
-    EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody
-        .builder()
-        .assetId("281474976710656")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `String` — ID of the asset the claim is filed for. Immutable once set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimStatus:** `Optional<String>` — Current status of the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**labor:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<CreateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursements:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.deleteWarrantyClaim()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a warranty claim for the organization. Component links are removed server-side.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().deleteWarrantyClaim(
-    DeleteWarrantyClaimRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the WarrantyClaim record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.previewApIs.updateWarrantyClaim(request) -> EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing warranty claim for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.previewApIs().updateWarrantyClaim(
-    EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the WarrantyClaim record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetId:** `Optional<String>` — ID of the asset the claim is filed for. Immutable once set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimStatus:** `Optional<String>` — Current status of the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**labor:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<UpdateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursements:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
     
 </dd>
 </dl>
