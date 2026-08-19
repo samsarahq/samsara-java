@@ -42,6 +42,11 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                     Value.MOUNTED_PHONE, "Mounted Phone");
 
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem
+            TRAFFIC_CONTROL_PERSON_PRESENT =
+                    new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
+                            Value.TRAFFIC_CONTROL_PERSON_PRESENT, "Traffic Control Person Present");
+
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem
             CYCLIST_MOTORCYCLIST = new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
                     Value.CYCLIST_MOTORCYCLIST, "Cyclist/Motorcyclist");
 
@@ -70,6 +75,11 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem CONGESTED =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
                     Value.CONGESTED, "Congested");
+
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem
+            PERSON_ACTIVELY_DIRECTING_TRAFFIC =
+                    new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
+                            Value.PERSON_ACTIVELY_DIRECTING_TRAFFIC, "Person Actively Directing Traffic");
 
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem SLIGHTLY_DROWSY =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem(
@@ -165,6 +175,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return visitor.visitPassengers();
             case MOUNTED_PHONE:
                 return visitor.visitMountedPhone();
+            case TRAFFIC_CONTROL_PERSON_PRESENT:
+                return visitor.visitTrafficControlPersonPresent();
             case CYCLIST_MOTORCYCLIST:
                 return visitor.visitCyclistMotorcyclist();
             case MODERATE_TRAFFIC:
@@ -181,6 +193,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return visitor.visitPedestrians();
             case CONGESTED:
                 return visitor.visitCongested();
+            case PERSON_ACTIVELY_DIRECTING_TRAFFIC:
+                return visitor.visitPersonActivelyDirectingTraffic();
             case SLIGHTLY_DROWSY:
                 return visitor.visitSlightlyDrowsy();
             case SENSITIVE_MEDIA:
@@ -230,6 +244,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return PASSENGERS;
             case "Mounted Phone":
                 return MOUNTED_PHONE;
+            case "Traffic Control Person Present":
+                return TRAFFIC_CONTROL_PERSON_PRESENT;
             case "Cyclist/Motorcyclist":
                 return CYCLIST_MOTORCYCLIST;
             case "Moderate Traffic":
@@ -246,6 +262,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return PEDESTRIANS;
             case "Congested":
                 return CONGESTED;
+            case "Person Actively Directing Traffic":
+                return PERSON_ACTIVELY_DIRECTING_TRAFFIC;
             case "Slightly Drowsy":
                 return SLIGHTLY_DROWSY;
             case "Sensitive Media":
@@ -311,6 +329,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         PEDESTRIANS,
 
+        PERSON_ACTIVELY_DIRECTING_TRAFFIC,
+
         RAINING,
 
         SENSITIVE_MEDIA,
@@ -322,6 +342,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         SNOWY_ROAD,
 
         SPEED_SIGN_VERIFIED,
+
+        TRAFFIC_CONTROL_PERSON_PRESENT,
 
         TRAILER_CAR,
 
@@ -371,6 +393,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         T visitPedestrians();
 
+        T visitPersonActivelyDirectingTraffic();
+
         T visitRaining();
 
         T visitSensitiveMedia();
@@ -382,6 +406,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         T visitSnowyRoad();
 
         T visitSpeedSignVerified();
+
+        T visitTrafficControlPersonPresent();
 
         T visitTrailerCar();
 

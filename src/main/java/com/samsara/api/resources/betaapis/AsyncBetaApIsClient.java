@@ -8,6 +8,7 @@ import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.betaapis.requests.AcceptAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.AssetAssignmentsCreateAssetAssignmentRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetAssignmentsUnassignAssetAssignmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCancelSharedAssetsBatchRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCreateAssetSharingAgreementRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCreateSharedAssetsBatchRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsUpdateSharedAssetsBatchRequestBody;
@@ -25,6 +26,8 @@ import com.samsara.api.resources.betaapis.requests.DeletePreferredStationRequest
 import com.samsara.api.resources.betaapis.requests.DeletePurchaseOrderRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipPassengerRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteRidershipRouteSetupRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteWarrantyClaimRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteWarrantyRequest;
 import com.samsara.api.resources.betaapis.requests.DeployFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeviceRecoveryMarkAssetMissingRequestBody;
 import com.samsara.api.resources.betaapis.requests.DeviceRecoveryRecoverAssetRequestBody;
@@ -38,6 +41,10 @@ import com.samsara.api.resources.betaapis.requests.EntityPartInventoryLocationsS
 import com.samsara.api.resources.betaapis.requests.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityWarrantiesServiceCreateWarrantyRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityWarrantiesServiceUpdateWarrantyRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody;
+import com.samsara.api.resources.betaapis.requests.EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceCreateWatchpointRequestBody;
 import com.samsara.api.resources.betaapis.requests.EntityWatchpointsServiceUpdateWatchpointRequestBody;
 import com.samsara.api.resources.betaapis.requests.EquipmentOutputControlSetEquipmentDigitalOutputRequestBody;
@@ -107,6 +114,8 @@ import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest
 import com.samsara.api.resources.betaapis.requests.ListTimeEntriesRequest;
 import com.samsara.api.resources.betaapis.requests.ListUpcomingPreventiveMaintenanceRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
+import com.samsara.api.resources.betaapis.requests.ListWarrantiesRequest;
+import com.samsara.api.resources.betaapis.requests.ListWarrantyClaimsRequest;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPostPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
@@ -119,6 +128,7 @@ import com.samsara.api.resources.betaapis.requests.QualificationsPostQualificati
 import com.samsara.api.resources.betaapis.requests.QualificationsUnarchiveQualificationRecordRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReadingsPostReadingsRequestBody;
 import com.samsara.api.resources.betaapis.requests.RejectAssetSharingAgreementRequest;
+import com.samsara.api.resources.betaapis.requests.ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody;
 import com.samsara.api.resources.betaapis.requests.ReportsCreateReportRunRequestBody;
 import com.samsara.api.resources.betaapis.requests.ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody;
 import com.samsara.api.resources.betaapis.requests.ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody;
@@ -136,6 +146,7 @@ import com.samsara.api.types.AssetAssignmentsCreateAssetAssignmentResponseBody;
 import com.samsara.api.types.AssetAssignmentsListAssetAssignmentsResponseBody;
 import com.samsara.api.types.AssetSharingAgreementsAcceptAssetSharingAgreementResponseBody;
 import com.samsara.api.types.AssetSharingAgreementsCancelAssetSharingAgreementResponseBody;
+import com.samsara.api.types.AssetSharingAgreementsCancelSharedAssetsBatchResponseBody;
 import com.samsara.api.types.AssetSharingAgreementsCreateAssetSharingAgreementResponseBody;
 import com.samsara.api.types.AssetSharingAgreementsCreateSharedAssetsBatchResponseBody;
 import com.samsara.api.types.AssetSharingAgreementsListAssetSharingAgreementsResponseBody;
@@ -172,6 +183,12 @@ import com.samsara.api.types.EntityTachographLiveDataRecordsServiceListTachograp
 import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody;
 import com.samsara.api.types.EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody;
+import com.samsara.api.types.EntityWarrantiesServiceCreateWarrantyResponseBody;
+import com.samsara.api.types.EntityWarrantiesServiceListWarrantiesResponseBody;
+import com.samsara.api.types.EntityWarrantiesServiceUpdateWarrantyResponseBody;
+import com.samsara.api.types.EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody;
+import com.samsara.api.types.EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody;
+import com.samsara.api.types.EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceCreateWatchpointResponseBody;
 import com.samsara.api.types.EntityWatchpointsServiceUpdateWatchpointResponseBody;
 import com.samsara.api.types.EquipmentOutputControlSetEquipmentDigitalOutputResponseBody;
@@ -218,6 +235,7 @@ import com.samsara.api.types.QualificationsGetQualificationRecordsStreamResponse
 import com.samsara.api.types.QualificationsGetQualificationTypesResponseBody;
 import com.samsara.api.types.QualificationsPatchQualificationRecordResponseBody;
 import com.samsara.api.types.QualificationsPostQualificationRecordResponseBody;
+import com.samsara.api.types.ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody;
 import com.samsara.api.types.ReportsCreateReportRunResponseBody;
 import com.samsara.api.types.ReportsGetDatasetsResponseBody;
 import com.samsara.api.types.ReportsGetReportConfigsResponseBody;
@@ -914,6 +932,28 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<AssetSharingAgreementsUpdateSharedAssetsBatchResponseBody> updateSharedAssetsBatch(
             AssetSharingAgreementsUpdateSharedAssetsBatchRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.updateSharedAssetsBatch(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Cancels one or more asset sharings, each identified by its shared-asset id. Active sharings end immediately, future sharings are converted to zero-length sharings, and already-ended sharings are returned unchanged, so the request is safe to retry. Up to 100 asset sharings may be canceled per request, and the rate limit applies to this endpoint rather than to the individual asset sharings within a request. The batch may partially succeed: each asset sharing is processed independently, and callers must inspect each item's status in the response. A failure for one asset sharing does not prevent other valid asset sharings in the batch from being canceled.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetSharingAgreementsCancelSharedAssetsBatchResponseBody> cancelSharedAssetsBatch(
+            AssetSharingAgreementsCancelSharedAssetsBatchRequestBody request) {
+        return this.rawClient.cancelSharedAssetsBatch(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Cancels one or more asset sharings, each identified by its shared-asset id. Active sharings end immediately, future sharings are converted to zero-length sharings, and already-ended sharings are returned unchanged, so the request is safe to retry. Up to 100 asset sharings may be canceled per request, and the rate limit applies to this endpoint rather than to the individual asset sharings within a request. The batch may partially succeed: each asset sharing is processed independently, and callers must inspect each item's status in the response. A failure for one asset sharing does not prevent other valid asset sharings in the batch from being canceled.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<AssetSharingAgreementsCancelSharedAssetsBatchResponseBody> cancelSharedAssetsBatch(
+            AssetSharingAgreementsCancelSharedAssetsBatchRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.cancelSharedAssetsBatch(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
@@ -2889,6 +2929,270 @@ public class AsyncBetaApIsClient {
     public CompletableFuture<EntityTimeEntriesServiceListTimeEntriesResponseBody> listTimeEntries(
             ListTimeEntriesRequest request, RequestOptions requestOptions) {
         return this.rawClient.listTimeEntries(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties() {
+        return this.rawClient.listWarranties().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties(
+            RequestOptions requestOptions) {
+        return this.rawClient.listWarranties(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties(
+            ListWarrantiesRequest request) {
+        return this.rawClient.listWarranties(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties(
+            ListWarrantiesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listWarranties(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceCreateWarrantyResponseBody> createWarranty(
+            EntityWarrantiesServiceCreateWarrantyRequestBody request) {
+        return this.rawClient.createWarranty(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceCreateWarrantyResponseBody> createWarranty(
+            EntityWarrantiesServiceCreateWarrantyRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createWarranty(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty for the organization. Asset associations are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarranty(DeleteWarrantyRequest request) {
+        return this.rawClient.deleteWarranty(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty for the organization. Asset associations are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarranty(DeleteWarrantyRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteWarranty(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceUpdateWarrantyResponseBody> updateWarranty(
+            EntityWarrantiesServiceUpdateWarrantyRequestBody request) {
+        return this.rawClient.updateWarranty(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceUpdateWarrantyResponseBody> updateWarranty(
+            EntityWarrantiesServiceUpdateWarrantyRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateWarranty(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments() {
+        return this.rawClient.replaceWarrantyAssetAssignments().thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments(RequestOptions requestOptions) {
+        return this.rawClient.replaceWarrantyAssetAssignments(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments(
+                    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody request) {
+        return this.rawClient.replaceWarrantyAssetAssignments(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments(
+                    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody request,
+                    RequestOptions requestOptions) {
+        return this.rawClient
+                .replaceWarrantyAssetAssignments(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims() {
+        return this.rawClient.listWarrantyClaims().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims(
+            RequestOptions requestOptions) {
+        return this.rawClient.listWarrantyClaims(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims(
+            ListWarrantyClaimsRequest request) {
+        return this.rawClient.listWarrantyClaims(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims(
+            ListWarrantyClaimsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listWarrantyClaims(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody> createWarrantyClaim(
+            EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody request) {
+        return this.rawClient.createWarrantyClaim(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody> createWarrantyClaim(
+            EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createWarrantyClaim(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty claim for the organization. Component links are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarrantyClaim(DeleteWarrantyClaimRequest request) {
+        return this.rawClient.deleteWarrantyClaim(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty claim for the organization. Component links are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarrantyClaim(
+            DeleteWarrantyClaimRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteWarrantyClaim(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody> updateWarrantyClaim(
+            EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody request) {
+        return this.rawClient.updateWarrantyClaim(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody> updateWarrantyClaim(
+            EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateWarrantyClaim(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

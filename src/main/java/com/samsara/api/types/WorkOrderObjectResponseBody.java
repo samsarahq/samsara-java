@@ -65,6 +65,8 @@ public final class WorkOrderObjectResponseBody {
 
     private final Optional<List<ServiceTaskInstanceObjectResponseBody>> serviceTaskInstances;
 
+    private final Optional<OffsetDateTime> startedAtTime;
+
     private final WorkOrderObjectResponseBodyStatus status;
 
     private final Optional<WorkOrderTaxObjectResponseBody> tax;
@@ -101,6 +103,7 @@ public final class WorkOrderObjectResponseBody {
             Optional<String> poNumber,
             Optional<WorkOrderObjectResponseBodyPriority> priority,
             Optional<List<ServiceTaskInstanceObjectResponseBody>> serviceTaskInstances,
+            Optional<OffsetDateTime> startedAtTime,
             WorkOrderObjectResponseBodyStatus status,
             Optional<WorkOrderTaxObjectResponseBody> tax,
             Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor,
@@ -129,6 +132,7 @@ public final class WorkOrderObjectResponseBody {
         this.poNumber = poNumber;
         this.priority = priority;
         this.serviceTaskInstances = serviceTaskInstances;
+        this.startedAtTime = startedAtTime;
         this.status = status;
         this.tax = tax;
         this.unallocatedLabor = unallocatedLabor;
@@ -301,6 +305,14 @@ public final class WorkOrderObjectResponseBody {
     }
 
     /**
+     * @return The time work started on the work order, in RFC 3339 format.
+     */
+    @JsonProperty("startedAtTime")
+    public Optional<OffsetDateTime> getStartedAtTime() {
+        return startedAtTime;
+    }
+
+    /**
      * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
@@ -375,6 +387,7 @@ public final class WorkOrderObjectResponseBody {
                 && poNumber.equals(other.poNumber)
                 && priority.equals(other.priority)
                 && serviceTaskInstances.equals(other.serviceTaskInstances)
+                && startedAtTime.equals(other.startedAtTime)
                 && status.equals(other.status)
                 && tax.equals(other.tax)
                 && unallocatedLabor.equals(other.unallocatedLabor)
@@ -407,6 +420,7 @@ public final class WorkOrderObjectResponseBody {
                 this.poNumber,
                 this.priority,
                 this.serviceTaskInstances,
+                this.startedAtTime,
                 this.status,
                 this.tax,
                 this.unallocatedLabor,
@@ -584,6 +598,13 @@ public final class WorkOrderObjectResponseBody {
 
         _FinalStage serviceTaskInstances(List<ServiceTaskInstanceObjectResponseBody> serviceTaskInstances);
 
+        /**
+         * <p>The time work started on the work order, in RFC 3339 format.</p>
+         */
+        _FinalStage startedAtTime(Optional<OffsetDateTime> startedAtTime);
+
+        _FinalStage startedAtTime(OffsetDateTime startedAtTime);
+
         _FinalStage tax(Optional<WorkOrderTaxObjectResponseBody> tax);
 
         _FinalStage tax(WorkOrderTaxObjectResponseBody tax);
@@ -627,6 +648,8 @@ public final class WorkOrderObjectResponseBody {
         private Optional<WorkOrderUnallocatedLaborObjectResponseBody> unallocatedLabor = Optional.empty();
 
         private Optional<WorkOrderTaxObjectResponseBody> tax = Optional.empty();
+
+        private Optional<OffsetDateTime> startedAtTime = Optional.empty();
 
         private Optional<List<ServiceTaskInstanceObjectResponseBody>> serviceTaskInstances = Optional.empty();
 
@@ -692,6 +715,7 @@ public final class WorkOrderObjectResponseBody {
             poNumber(other.getPoNumber());
             priority(other.getPriority());
             serviceTaskInstances(other.getServiceTaskInstances());
+            startedAtTime(other.getStartedAtTime());
             status(other.getStatus());
             tax(other.getTax());
             unallocatedLabor(other.getUnallocatedLabor());
@@ -824,6 +848,26 @@ public final class WorkOrderObjectResponseBody {
         @JsonSetter(value = "tax", nulls = Nulls.SKIP)
         public _FinalStage tax(Optional<WorkOrderTaxObjectResponseBody> tax) {
             this.tax = tax;
+            return this;
+        }
+
+        /**
+         * <p>The time work started on the work order, in RFC 3339 format.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage startedAtTime(OffsetDateTime startedAtTime) {
+            this.startedAtTime = Optional.ofNullable(startedAtTime);
+            return this;
+        }
+
+        /**
+         * <p>The time work started on the work order, in RFC 3339 format.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "startedAtTime", nulls = Nulls.SKIP)
+        public _FinalStage startedAtTime(Optional<OffsetDateTime> startedAtTime) {
+            this.startedAtTime = startedAtTime;
             return this;
         }
 
@@ -1198,6 +1242,7 @@ public final class WorkOrderObjectResponseBody {
                     poNumber,
                     priority,
                     serviceTaskInstances,
+                    startedAtTime,
                     status,
                     tax,
                     unallocatedLabor,

@@ -71,6 +71,7 @@
         "status": "Unknown"
       }
     ],
+    "startedAtTime": "2019-06-13T19:08:25Z",
     "status": "Assigned",
     "tax": {
       "basisPoints": 700,

@@ -29,6 +29,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = WorkOrdersPatchWorkOrdersRequestBody.Builder.class)
 public final class WorkOrdersPatchWorkOrdersRequestBody {
+    private final Optional<OffsetDateTime> archivedAtTime;
+
     private final Optional<String> assignedUserId;
 
     private final Optional<String> category;
@@ -63,6 +65,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
     private final Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances;
 
+    private final Optional<OffsetDateTime> startedAtTime;
+
     private final Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status;
 
     private final Optional<WorkOrderTaxObjectRequestBody> tax;
@@ -72,6 +76,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     private final Map<String, Object> additionalProperties;
 
     private WorkOrdersPatchWorkOrdersRequestBody(
+            Optional<OffsetDateTime> archivedAtTime,
             Optional<String> assignedUserId,
             Optional<String> category,
             Optional<String> closingNotes,
@@ -89,10 +94,12 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             Optional<String> poNumber,
             Optional<WorkOrdersPatchWorkOrdersRequestBodyPriority> priority,
             Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances,
+            Optional<OffsetDateTime> startedAtTime,
             Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status,
             Optional<WorkOrderTaxObjectRequestBody> tax,
             Optional<String> vendorUuid,
             Map<String, Object> additionalProperties) {
+        this.archivedAtTime = archivedAtTime;
         this.assignedUserId = assignedUserId;
         this.category = category;
         this.closingNotes = closingNotes;
@@ -110,10 +117,19 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         this.poNumber = poNumber;
         this.priority = priority;
         this.serviceTaskInstances = serviceTaskInstances;
+        this.startedAtTime = startedAtTime;
         this.status = status;
         this.tax = tax;
         this.vendorUuid = vendorUuid;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status changes to Closed or Cancelled and this field is not provided.
+     */
+    @JsonProperty("archivedAtTime")
+    public Optional<OffsetDateTime> getArchivedAtTime() {
+        return archivedAtTime;
     }
 
     /**
@@ -250,6 +266,14 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     }
 
     /**
+     * @return The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.
+     */
+    @JsonProperty("startedAtTime")
+    public Optional<OffsetDateTime> getStartedAtTime() {
+        return startedAtTime;
+    }
+
+    /**
      * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
@@ -283,7 +307,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     }
 
     private boolean equalTo(WorkOrdersPatchWorkOrdersRequestBody other) {
-        return assignedUserId.equals(other.assignedUserId)
+        return archivedAtTime.equals(other.archivedAtTime)
+                && assignedUserId.equals(other.assignedUserId)
                 && category.equals(other.category)
                 && closingNotes.equals(other.closingNotes)
                 && completedAtTime.equals(other.completedAtTime)
@@ -300,6 +325,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
                 && poNumber.equals(other.poNumber)
                 && priority.equals(other.priority)
                 && serviceTaskInstances.equals(other.serviceTaskInstances)
+                && startedAtTime.equals(other.startedAtTime)
                 && status.equals(other.status)
                 && tax.equals(other.tax)
                 && vendorUuid.equals(other.vendorUuid);
@@ -308,6 +334,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.archivedAtTime,
                 this.assignedUserId,
                 this.category,
                 this.closingNotes,
@@ -325,6 +352,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
                 this.poNumber,
                 this.priority,
                 this.serviceTaskInstances,
+                this.startedAtTime,
                 this.status,
                 this.tax,
                 this.vendorUuid);
@@ -350,6 +378,13 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
     public interface _FinalStage {
         WorkOrdersPatchWorkOrdersRequestBody build();
+
+        /**
+         * <p>The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status changes to Closed or Cancelled and this field is not provided.</p>
+         */
+        _FinalStage archivedAtTime(Optional<OffsetDateTime> archivedAtTime);
+
+        _FinalStage archivedAtTime(OffsetDateTime archivedAtTime);
 
         /**
          * <p>The ID of the assigned mechanic.</p>
@@ -462,6 +497,13 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         _FinalStage serviceTaskInstances(List<ServiceTaskInstanceInputObjectRequestBody> serviceTaskInstances);
 
         /**
+         * <p>The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.</p>
+         */
+        _FinalStage startedAtTime(Optional<OffsetDateTime> startedAtTime);
+
+        _FinalStage startedAtTime(OffsetDateTime startedAtTime);
+
+        /**
          * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         _FinalStage status(Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status);
@@ -489,6 +531,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         private Optional<WorkOrderTaxObjectRequestBody> tax = Optional.empty();
 
         private Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status = Optional.empty();
+
+        private Optional<OffsetDateTime> startedAtTime = Optional.empty();
 
         private Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances = Optional.empty();
 
@@ -522,6 +566,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
         private Optional<String> assignedUserId = Optional.empty();
 
+        private Optional<OffsetDateTime> archivedAtTime = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -529,6 +575,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
         @java.lang.Override
         public Builder from(WorkOrdersPatchWorkOrdersRequestBody other) {
+            archivedAtTime(other.getArchivedAtTime());
             assignedUserId(other.getAssignedUserId());
             category(other.getCategory());
             closingNotes(other.getClosingNotes());
@@ -546,6 +593,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             poNumber(other.getPoNumber());
             priority(other.getPriority());
             serviceTaskInstances(other.getServiceTaskInstances());
+            startedAtTime(other.getStartedAtTime());
             status(other.getStatus());
             tax(other.getTax());
             vendorUuid(other.getVendorUuid());
@@ -614,6 +662,26 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public _FinalStage status(Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status) {
             this.status = status;
+            return this;
+        }
+
+        /**
+         * <p>The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage startedAtTime(OffsetDateTime startedAtTime) {
+            this.startedAtTime = Optional.ofNullable(startedAtTime);
+            return this;
+        }
+
+        /**
+         * <p>The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "startedAtTime", nulls = Nulls.SKIP)
+        public _FinalStage startedAtTime(Optional<OffsetDateTime> startedAtTime) {
+            this.startedAtTime = startedAtTime;
             return this;
         }
 
@@ -931,9 +999,30 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             return this;
         }
 
+        /**
+         * <p>The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status changes to Closed or Cancelled and this field is not provided.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage archivedAtTime(OffsetDateTime archivedAtTime) {
+            this.archivedAtTime = Optional.ofNullable(archivedAtTime);
+            return this;
+        }
+
+        /**
+         * <p>The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status changes to Closed or Cancelled and this field is not provided.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "archivedAtTime", nulls = Nulls.SKIP)
+        public _FinalStage archivedAtTime(Optional<OffsetDateTime> archivedAtTime) {
+            this.archivedAtTime = archivedAtTime;
+            return this;
+        }
+
         @java.lang.Override
         public WorkOrdersPatchWorkOrdersRequestBody build() {
             return new WorkOrdersPatchWorkOrdersRequestBody(
+                    archivedAtTime,
                     assignedUserId,
                     category,
                     closingNotes,
@@ -951,6 +1040,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
                     poNumber,
                     priority,
                     serviceTaskInstances,
+                    startedAtTime,
                     status,
                     tax,
                     vendorUuid,
