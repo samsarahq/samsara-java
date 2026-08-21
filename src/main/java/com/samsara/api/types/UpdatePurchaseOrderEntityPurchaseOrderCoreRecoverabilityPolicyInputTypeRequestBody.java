@@ -24,7 +24,8 @@ import org.jetbrains.annotations.NotNull;
 public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBody {
     private final Optional<String> fixedRecoverableUntilTime;
 
-    private final String policyType;
+    private final UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBodyPolicyType
+            policyType;
 
     private final Optional<Long> relativeWindowDuration;
 
@@ -32,7 +33,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
 
     private UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBody(
             Optional<String> fixedRecoverableUntilTime,
-            String policyType,
+            UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBodyPolicyType policyType,
             Optional<Long> relativeWindowDuration,
             Map<String, Object> additionalProperties) {
         this.fixedRecoverableUntilTime = fixedRecoverableUntilTime;
@@ -50,10 +51,11 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
     }
 
     /**
-     * @return Recoverability policy type.
+     * @return Recoverability policy type.  Valid values: <code>Unknown</code>, <code>RelativeToReceipt</code>, <code>FixedDate</code>, <code>NoDeadline</code>
      */
     @JsonProperty("policyType")
-    public String getPolicyType() {
+    public UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBodyPolicyType
+            getPolicyType() {
         return policyType;
     }
 
@@ -99,9 +101,12 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
 
     public interface PolicyTypeStage {
         /**
-         * <p>Recoverability policy type.</p>
+         * <p>Recoverability policy type.  Valid values: <code>Unknown</code>, <code>RelativeToReceipt</code>, <code>FixedDate</code>, <code>NoDeadline</code></p>
          */
-        _FinalStage policyType(@NotNull String policyType);
+        _FinalStage policyType(
+                @NotNull
+                        UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBodyPolicyType
+                                policyType);
 
         Builder from(UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBody other);
     }
@@ -126,7 +131,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PolicyTypeStage, _FinalStage {
-        private String policyType;
+        private UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBodyPolicyType policyType;
 
         private Optional<Long> relativeWindowDuration = Optional.empty();
 
@@ -146,13 +151,16 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
         }
 
         /**
-         * <p>Recoverability policy type.</p>
-         * <p>Recoverability policy type.</p>
+         * <p>Recoverability policy type.  Valid values: <code>Unknown</code>, <code>RelativeToReceipt</code>, <code>FixedDate</code>, <code>NoDeadline</code></p>
+         * <p>Recoverability policy type.  Valid values: <code>Unknown</code>, <code>RelativeToReceipt</code>, <code>FixedDate</code>, <code>NoDeadline</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("policyType")
-        public _FinalStage policyType(@NotNull String policyType) {
+        public _FinalStage policyType(
+                @NotNull
+                        UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBodyPolicyType
+                                policyType) {
             this.policyType = Objects.requireNonNull(policyType, "policyType must not be null");
             return this;
         }

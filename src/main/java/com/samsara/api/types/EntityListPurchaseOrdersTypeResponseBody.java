@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class EntityListPurchaseOrdersTypeResponseBody {
     private final Optional<String> createdAtTime;
 
-    private final Optional<String> creationSource;
+    private final Optional<EntityListPurchaseOrdersTypeResponseBodyCreationSource> creationSource;
 
     private final Optional<String> deliveryAtTime;
 
@@ -41,7 +41,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
 
     private final Optional<String> notes;
 
-    private final Optional<String> orderStatus;
+    private final Optional<EntityListPurchaseOrdersTypeResponseBodyOrderStatus> orderStatus;
 
     private final Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> otherCost;
 
@@ -55,6 +55,10 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
 
     private final Optional<String> sentAtTime;
 
+    private final Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax;
+
+    private final Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> taxTotal;
+
     private final Optional<String> trackingNumber;
 
     private final Optional<String> updatedAtTime;
@@ -65,7 +69,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
 
     private EntityListPurchaseOrdersTypeResponseBody(
             Optional<String> createdAtTime,
-            Optional<String> creationSource,
+            Optional<EntityListPurchaseOrdersTypeResponseBodyCreationSource> creationSource,
             Optional<String> deliveryAtTime,
             Optional<String> firstReceivedAtTime,
             Optional<String> fullyReceivedAtTime,
@@ -74,13 +78,15 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
             Optional<String> invoiceNumber,
             Optional<List<String>> mediaItemIds,
             Optional<String> notes,
-            Optional<String> orderStatus,
+            Optional<EntityListPurchaseOrdersTypeResponseBodyOrderStatus> orderStatus,
             Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> otherCost,
             Optional<List<ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBody>> parts,
             Optional<String> poNumber,
             Optional<String> poNumberPrefix,
             Optional<String> poNumberSuffix,
             Optional<String> sentAtTime,
+            Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax,
+            Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> taxTotal,
             Optional<String> trackingNumber,
             Optional<String> updatedAtTime,
             Optional<EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody> vendor,
@@ -102,6 +108,8 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
         this.poNumberPrefix = poNumberPrefix;
         this.poNumberSuffix = poNumberSuffix;
         this.sentAtTime = sentAtTime;
+        this.tax = tax;
+        this.taxTotal = taxTotal;
         this.trackingNumber = trackingNumber;
         this.updatedAtTime = updatedAtTime;
         this.vendor = vendor;
@@ -117,10 +125,10 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
     }
 
     /**
-     * @return Source that created the purchase order.
+     * @return Source that created the purchase order.  Valid values: <code>Unknown</code>, <code>User</code>, <code>ScanPackingList</code>
      */
     @JsonProperty("creationSource")
-    public Optional<String> getCreationSource() {
+    public Optional<EntityListPurchaseOrdersTypeResponseBodyCreationSource> getCreationSource() {
         return creationSource;
     }
 
@@ -189,10 +197,10 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
     }
 
     /**
-     * @return Current customer-visible status of the purchase order.
+     * @return Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code>
      */
     @JsonProperty("orderStatus")
-    public Optional<String> getOrderStatus() {
+    public Optional<EntityListPurchaseOrdersTypeResponseBodyOrderStatus> getOrderStatus() {
         return orderStatus;
     }
 
@@ -239,6 +247,16 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
     @JsonProperty("sentAtTime")
     public Optional<String> getSentAtTime() {
         return sentAtTime;
+    }
+
+    @JsonProperty("tax")
+    public Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> getTax() {
+        return tax;
+    }
+
+    @JsonProperty("taxTotal")
+    public Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> getTaxTotal() {
+        return taxTotal;
     }
 
     /**
@@ -292,6 +310,8 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
                 && poNumberPrefix.equals(other.poNumberPrefix)
                 && poNumberSuffix.equals(other.poNumberSuffix)
                 && sentAtTime.equals(other.sentAtTime)
+                && tax.equals(other.tax)
+                && taxTotal.equals(other.taxTotal)
                 && trackingNumber.equals(other.trackingNumber)
                 && updatedAtTime.equals(other.updatedAtTime)
                 && vendor.equals(other.vendor);
@@ -317,6 +337,8 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
                 this.poNumberPrefix,
                 this.poNumberSuffix,
                 this.sentAtTime,
+                this.tax,
+                this.taxTotal,
                 this.trackingNumber,
                 this.updatedAtTime,
                 this.vendor);
@@ -335,7 +357,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
     public static final class Builder {
         private Optional<String> createdAtTime = Optional.empty();
 
-        private Optional<String> creationSource = Optional.empty();
+        private Optional<EntityListPurchaseOrdersTypeResponseBodyCreationSource> creationSource = Optional.empty();
 
         private Optional<String> deliveryAtTime = Optional.empty();
 
@@ -353,7 +375,7 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
 
         private Optional<String> notes = Optional.empty();
 
-        private Optional<String> orderStatus = Optional.empty();
+        private Optional<EntityListPurchaseOrdersTypeResponseBodyOrderStatus> orderStatus = Optional.empty();
 
         private Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> otherCost = Optional.empty();
 
@@ -367,6 +389,10 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
         private Optional<String> poNumberSuffix = Optional.empty();
 
         private Optional<String> sentAtTime = Optional.empty();
+
+        private Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax = Optional.empty();
+
+        private Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> taxTotal = Optional.empty();
 
         private Optional<String> trackingNumber = Optional.empty();
 
@@ -398,6 +424,8 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
             poNumberPrefix(other.getPoNumberPrefix());
             poNumberSuffix(other.getPoNumberSuffix());
             sentAtTime(other.getSentAtTime());
+            tax(other.getTax());
+            taxTotal(other.getTaxTotal());
             trackingNumber(other.getTrackingNumber());
             updatedAtTime(other.getUpdatedAtTime());
             vendor(other.getVendor());
@@ -419,15 +447,15 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
         }
 
         /**
-         * <p>Source that created the purchase order.</p>
+         * <p>Source that created the purchase order.  Valid values: <code>Unknown</code>, <code>User</code>, <code>ScanPackingList</code></p>
          */
         @JsonSetter(value = "creationSource", nulls = Nulls.SKIP)
-        public Builder creationSource(Optional<String> creationSource) {
+        public Builder creationSource(Optional<EntityListPurchaseOrdersTypeResponseBodyCreationSource> creationSource) {
             this.creationSource = creationSource;
             return this;
         }
 
-        public Builder creationSource(String creationSource) {
+        public Builder creationSource(EntityListPurchaseOrdersTypeResponseBodyCreationSource creationSource) {
             this.creationSource = Optional.ofNullable(creationSource);
             return this;
         }
@@ -545,15 +573,15 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
         }
 
         /**
-         * <p>Current customer-visible status of the purchase order.</p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
          */
         @JsonSetter(value = "orderStatus", nulls = Nulls.SKIP)
-        public Builder orderStatus(Optional<String> orderStatus) {
+        public Builder orderStatus(Optional<EntityListPurchaseOrdersTypeResponseBodyOrderStatus> orderStatus) {
             this.orderStatus = orderStatus;
             return this;
         }
 
-        public Builder orderStatus(String orderStatus) {
+        public Builder orderStatus(EntityListPurchaseOrdersTypeResponseBodyOrderStatus orderStatus) {
             this.orderStatus = Optional.ofNullable(orderStatus);
             return this;
         }
@@ -640,6 +668,28 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "tax", nulls = Nulls.SKIP)
+        public Builder tax(Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax) {
+            this.tax = tax;
+            return this;
+        }
+
+        public Builder tax(ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody tax) {
+            this.tax = Optional.ofNullable(tax);
+            return this;
+        }
+
+        @JsonSetter(value = "taxTotal", nulls = Nulls.SKIP)
+        public Builder taxTotal(Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> taxTotal) {
+            this.taxTotal = taxTotal;
+            return this;
+        }
+
+        public Builder taxTotal(ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody taxTotal) {
+            this.taxTotal = Optional.ofNullable(taxTotal);
+            return this;
+        }
+
         /**
          * <p>Shipment tracking number for the purchase order.</p>
          */
@@ -699,6 +749,8 @@ public final class EntityListPurchaseOrdersTypeResponseBody {
                     poNumberPrefix,
                     poNumberSuffix,
                     sentAtTime,
+                    tax,
+                    taxTotal,
                     trackingNumber,
                     updatedAtTime,
                     vendor,

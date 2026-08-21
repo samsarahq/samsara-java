@@ -144,6 +144,7 @@ import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAsse
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyMissingReason;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus;
 import com.samsara.api.resources.betaapis.types.DeviceRecoveryRecoverAssetRequestBodyStatus;
+import com.samsara.api.resources.betaapis.types.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus;
 import com.samsara.api.resources.betaapis.types.EntityWatchpointsServiceCreateWatchpointRequestBodyMode;
 import com.samsara.api.resources.betaapis.types.EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType;
 import com.samsara.api.resources.betaapis.types.FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType;
@@ -6959,14 +6960,13 @@ public class BetaApIsWireTest {
 
     @Test
     public void testCreatePurchaseOrder() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"GL-4000\",\"id\":\"12345\",\"invoiceNumber\":\"INV-12345\",\"mediaItemIds\":[\"12345\",\"12345\",\"12345\",\"12345\"],\"notes\":\"Deliver to maintenance shop.\",\"orderStatus\":\"draft\",\"otherCost\":{\"amount\":\"24.50\",\"currency\":\"usd\"},\"parts\":[{\"batchNumber\":\"LOT-42\",\"description\":\"Oil filter\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":10,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"each\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"PO\",\"poNumberSuffix\":\"A\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"1Z999AA10123456784\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/BetaApIsWireTest_testCreatePurchaseOrder_response.json")));
         EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody response = client.betaApIs()
                 .createPurchaseOrder(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody.builder()
-                        .orderStatus("draft")
+                        .orderStatus(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.UNKNOWN)
                         .vendorId("281474976710656")
                         .build());
         RecordedRequest request = server.takeRequest();
@@ -6975,7 +6975,7 @@ public class BetaApIsWireTest {
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
         String expectedRequestBody =
-                "" + "{\n" + "  \"orderStatus\": \"draft\",\n" + "  \"vendorId\": \"281474976710656\"\n" + "}";
+                "" + "{\n" + "  \"orderStatus\": \"Unknown\",\n" + "  \"vendorId\": \"281474976710656\"\n" + "}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
@@ -7006,56 +7006,8 @@ public class BetaApIsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"creationSource\": \"12345\",\n"
-                + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"glCode\": \"GL-4000\",\n"
-                + "    \"id\": \"12345\",\n"
-                + "    \"invoiceNumber\": \"INV-12345\",\n"
-                + "    \"mediaItemIds\": [\n"
-                + "      \"12345\",\n"
-                + "      \"12345\",\n"
-                + "      \"12345\",\n"
-                + "      \"12345\"\n"
-                + "    ],\n"
-                + "    \"notes\": \"Deliver to maintenance shop.\",\n"
-                + "    \"orderStatus\": \"draft\",\n"
-                + "    \"otherCost\": {\n"
-                + "      \"amount\": \"24.50\",\n"
-                + "      \"currency\": \"usd\"\n"
-                + "    },\n"
-                + "    \"parts\": [\n"
-                + "      {\n"
-                + "        \"batchNumber\": \"LOT-42\",\n"
-                + "        \"description\": \"Oil filter\",\n"
-                + "        \"lineItemId\": \"12345\",\n"
-                + "        \"partSamsara\": {\n"
-                + "          \"id\": \"281474976710656\"\n"
-                + "        },\n"
-                + "        \"place\": {\n"
-                + "          \"id\": \"281474976710656\"\n"
-                + "        },\n"
-                + "        \"quantityOrdered\": 10,\n"
-                + "        \"quantityReceived\": 123.45,\n"
-                + "        \"unitOfMeasureType\": \"each\"\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"poNumber\": \"12345\",\n"
-                + "    \"poNumberPrefix\": \"PO\",\n"
-                + "    \"poNumberSuffix\": \"A\",\n"
-                + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"trackingNumber\": \"1Z999AA10123456784\",\n"
-                + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"vendor\": {\n"
-                + "      \"id\": \"281474976710656\"\n"
-                + "    }\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testCreatePurchaseOrder_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -7100,11 +7052,10 @@ public class BetaApIsWireTest {
 
     @Test
     public void testUpdatePurchaseOrder() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"creationSource\":\"12345\",\"deliveryAtTime\":\"2019-06-13T19:08:25Z\",\"firstReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"fullyReceivedAtTime\":\"2019-06-13T19:08:25Z\",\"glCode\":\"GL-4000\",\"id\":\"12345\",\"invoiceNumber\":\"INV-12345\",\"mediaItemIds\":[\"12345\",\"12345\"],\"notes\":\"Deliver to maintenance shop.\",\"orderStatus\":\"draft\",\"otherCost\":{\"amount\":\"24.50\",\"currency\":\"usd\"},\"parts\":[{\"batchNumber\":\"LOT-42\",\"description\":\"Oil filter\",\"lineItemId\":\"12345\",\"partSamsara\":{\"id\":\"281474976710656\"},\"place\":{\"id\":\"281474976710656\"},\"quantityOrdered\":10,\"quantityReceived\":123.45,\"unitOfMeasureType\":\"each\"}],\"poNumber\":\"12345\",\"poNumberPrefix\":\"PO\",\"poNumberSuffix\":\"A\",\"sentAtTime\":\"2019-06-13T19:08:25Z\",\"trackingNumber\":\"1Z999AA10123456784\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"vendor\":{\"id\":\"281474976710656\"}}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/BetaApIsWireTest_testUpdatePurchaseOrder_response.json")));
         EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody response = client.betaApIs()
                 .updatePurchaseOrder(EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody.builder()
                         .id("id")
@@ -7145,54 +7096,8 @@ public class BetaApIsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"creationSource\": \"12345\",\n"
-                + "    \"deliveryAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"firstReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"fullyReceivedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"glCode\": \"GL-4000\",\n"
-                + "    \"id\": \"12345\",\n"
-                + "    \"invoiceNumber\": \"INV-12345\",\n"
-                + "    \"mediaItemIds\": [\n"
-                + "      \"12345\",\n"
-                + "      \"12345\"\n"
-                + "    ],\n"
-                + "    \"notes\": \"Deliver to maintenance shop.\",\n"
-                + "    \"orderStatus\": \"draft\",\n"
-                + "    \"otherCost\": {\n"
-                + "      \"amount\": \"24.50\",\n"
-                + "      \"currency\": \"usd\"\n"
-                + "    },\n"
-                + "    \"parts\": [\n"
-                + "      {\n"
-                + "        \"batchNumber\": \"LOT-42\",\n"
-                + "        \"description\": \"Oil filter\",\n"
-                + "        \"lineItemId\": \"12345\",\n"
-                + "        \"partSamsara\": {\n"
-                + "          \"id\": \"281474976710656\"\n"
-                + "        },\n"
-                + "        \"place\": {\n"
-                + "          \"id\": \"281474976710656\"\n"
-                + "        },\n"
-                + "        \"quantityOrdered\": 10,\n"
-                + "        \"quantityReceived\": 123.45,\n"
-                + "        \"unitOfMeasureType\": \"each\"\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"poNumber\": \"12345\",\n"
-                + "    \"poNumberPrefix\": \"PO\",\n"
-                + "    \"poNumberSuffix\": \"A\",\n"
-                + "    \"sentAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"trackingNumber\": \"1Z999AA10123456784\",\n"
-                + "    \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "    \"vendor\": {\n"
-                + "      \"id\": \"281474976710656\"\n"
-                + "    }\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/BetaApIsWireTest_testUpdatePurchaseOrder_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(

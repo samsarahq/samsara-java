@@ -20,7 +20,9 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody.Builder.class)
 public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody {
-    private final Optional<String> coreChargeStatus;
+    private final Optional<
+                    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus>
+            coreChargeStatus;
 
     private final Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> corePartSamsara;
 
@@ -34,7 +36,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
     private final Map<String, Object> additionalProperties;
 
     private CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody(
-            Optional<String> coreChargeStatus,
+            Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus>
+                    coreChargeStatus,
             Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> corePartSamsara,
             Optional<CreatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBody>
                     recoverabilityPolicy,
@@ -50,10 +53,11 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
     }
 
     /**
-     * @return Whether the core charge is active or removed or disabled.
+     * @return Whether the core charge is active or removed or disabled.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>RemovedOrDisabled</code>
      */
     @JsonProperty("coreChargeStatus")
-    public Optional<String> getCoreChargeStatus() {
+    public Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus>
+            getCoreChargeStatus() {
         return coreChargeStatus;
     }
 
@@ -119,7 +123,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> coreChargeStatus = Optional.empty();
+        private Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus>
+                coreChargeStatus = Optional.empty();
 
         private Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> corePartSamsara = Optional.empty();
 
@@ -145,15 +150,19 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
         }
 
         /**
-         * <p>Whether the core charge is active or removed or disabled.</p>
+         * <p>Whether the core charge is active or removed or disabled.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>RemovedOrDisabled</code></p>
          */
         @JsonSetter(value = "coreChargeStatus", nulls = Nulls.SKIP)
-        public Builder coreChargeStatus(Optional<String> coreChargeStatus) {
+        public Builder coreChargeStatus(
+                Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus>
+                        coreChargeStatus) {
             this.coreChargeStatus = coreChargeStatus;
             return this;
         }
 
-        public Builder coreChargeStatus(String coreChargeStatus) {
+        public Builder coreChargeStatus(
+                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus
+                        coreChargeStatus) {
             this.coreChargeStatus = Optional.ofNullable(coreChargeStatus);
             return this;
         }
