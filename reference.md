@@ -8264,7 +8264,7 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 client.betaApIs().createPurchaseOrder(
     EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
         .builder()
-        .orderStatus("draft")
+        .orderStatus(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.UNKNOWN)
         .vendorId("281474976710656")
         .build()
 );
@@ -8306,7 +8306,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**orderStatus:** `String` — Current customer-visible status of the purchase order.
+**orderStatus:** `EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus` — Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
     
 </dd>
 </dl>
@@ -8322,7 +8322,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>` — Parts ordered on the purchase order.
+**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>` — Parts ordered on the purchase order.
     
 </dd>
 </dl>
@@ -8339,6 +8339,14 @@ client.betaApIs().createPurchaseOrder(
 <dd>
 
 **poNumberSuffix:** `Optional<String>` — Optional suffix included in the purchase order number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax:** `Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody>` 
     
 </dd>
 </dl>
@@ -8518,7 +8526,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**orderStatus:** `Optional<String>` — Current customer-visible status of the purchase order.
+**orderStatus:** `Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus>` — Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
     
 </dd>
 </dl>
@@ -8534,7 +8542,15 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>` — Parts ordered on the purchase order.
+**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>` — Parts ordered on the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody>` 
     
 </dd>
 </dl>

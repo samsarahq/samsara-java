@@ -22,7 +22,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonDeserialize(
         builder = CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody.Builder.class)
 public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody {
-    private final String coreChargeStatus;
+    private final CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus
+            coreChargeStatus;
 
     private final Optional<String> corePartSamsaraId;
 
@@ -36,7 +37,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
     private final Map<String, Object> additionalProperties;
 
     private CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody(
-            String coreChargeStatus,
+            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus
+                    coreChargeStatus,
             Optional<String> corePartSamsaraId,
             Optional<CreatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyInputTypeRequestBody>
                     recoverabilityPolicy,
@@ -52,10 +54,11 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
     }
 
     /**
-     * @return Whether the core charge is active or removed or disabled.
+     * @return Whether the core charge is active or removed or disabled.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>RemovedOrDisabled</code>
      */
     @JsonProperty("coreChargeStatus")
-    public String getCoreChargeStatus() {
+    public CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus
+            getCoreChargeStatus() {
         return coreChargeStatus;
     }
 
@@ -127,9 +130,12 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
 
     public interface CoreChargeStatusStage {
         /**
-         * <p>Whether the core charge is active or removed or disabled.</p>
+         * <p>Whether the core charge is active or removed or disabled.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>RemovedOrDisabled</code></p>
          */
-        _FinalStage coreChargeStatus(@NotNull String coreChargeStatus);
+        _FinalStage coreChargeStatus(
+                @NotNull
+                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus
+                                coreChargeStatus);
 
         Builder from(CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody other);
     }
@@ -167,7 +173,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements CoreChargeStatusStage, _FinalStage {
-        private String coreChargeStatus;
+        private CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus
+                coreChargeStatus;
 
         private Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody> unitCoreAmount =
                 Optional.empty();
@@ -195,13 +202,16 @@ public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreCharge
         }
 
         /**
-         * <p>Whether the core charge is active or removed or disabled.</p>
-         * <p>Whether the core charge is active or removed or disabled.</p>
+         * <p>Whether the core charge is active or removed or disabled.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>RemovedOrDisabled</code></p>
+         * <p>Whether the core charge is active or removed or disabled.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>RemovedOrDisabled</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("coreChargeStatus")
-        public _FinalStage coreChargeStatus(@NotNull String coreChargeStatus) {
+        public _FinalStage coreChargeStatus(
+                @NotNull
+                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus
+                                coreChargeStatus) {
             this.coreChargeStatus = Objects.requireNonNull(coreChargeStatus, "coreChargeStatus must not be null");
             return this;
         }

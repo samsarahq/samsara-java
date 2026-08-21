@@ -36,9 +36,12 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
 
     private final Optional<Double> quantityReceived;
 
+    private final Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax;
+
     private final Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> unitCost;
 
-    private final Optional<String> unitOfMeasureType;
+    private final Optional<ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType>
+            unitOfMeasureType;
 
     private final Map<String, Object> additionalProperties;
 
@@ -51,8 +54,10 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
             Optional<EntityListPurchaseOrdersPlaceRefTypeResponseBody> place,
             Optional<Double> quantityOrdered,
             Optional<Double> quantityReceived,
+            Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax,
             Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> unitCost,
-            Optional<String> unitOfMeasureType,
+            Optional<ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType>
+                    unitOfMeasureType,
             Map<String, Object> additionalProperties) {
         this.batchNumber = batchNumber;
         this.coreCharge = coreCharge;
@@ -62,6 +67,7 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
         this.place = place;
         this.quantityOrdered = quantityOrdered;
         this.quantityReceived = quantityReceived;
+        this.tax = tax;
         this.unitCost = unitCost;
         this.unitOfMeasureType = unitOfMeasureType;
         this.additionalProperties = additionalProperties;
@@ -122,16 +128,22 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
         return quantityReceived;
     }
 
+    @JsonProperty("tax")
+    public Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> getTax() {
+        return tax;
+    }
+
     @JsonProperty("unitCost")
     public Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> getUnitCost() {
         return unitCost;
     }
 
     /**
-     * @return Unit of measure for quantities on this line.
+     * @return Unit of measure for quantities on this line.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code>
      */
     @JsonProperty("unitOfMeasureType")
-    public Optional<String> getUnitOfMeasureType() {
+    public Optional<ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType>
+            getUnitOfMeasureType() {
         return unitOfMeasureType;
     }
 
@@ -156,6 +168,7 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
                 && place.equals(other.place)
                 && quantityOrdered.equals(other.quantityOrdered)
                 && quantityReceived.equals(other.quantityReceived)
+                && tax.equals(other.tax)
                 && unitCost.equals(other.unitCost)
                 && unitOfMeasureType.equals(other.unitOfMeasureType);
     }
@@ -171,6 +184,7 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
                 this.place,
                 this.quantityOrdered,
                 this.quantityReceived,
+                this.tax,
                 this.unitCost,
                 this.unitOfMeasureType);
     }
@@ -203,9 +217,12 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
 
         private Optional<Double> quantityReceived = Optional.empty();
 
+        private Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax = Optional.empty();
+
         private Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> unitCost = Optional.empty();
 
-        private Optional<String> unitOfMeasureType = Optional.empty();
+        private Optional<ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType>
+                unitOfMeasureType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -221,6 +238,7 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
             place(other.getPlace());
             quantityOrdered(other.getQuantityOrdered());
             quantityReceived(other.getQuantityReceived());
+            tax(other.getTax());
             unitCost(other.getUnitCost());
             unitOfMeasureType(other.getUnitOfMeasureType());
             return this;
@@ -331,6 +349,17 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
             return this;
         }
 
+        @JsonSetter(value = "tax", nulls = Nulls.SKIP)
+        public Builder tax(Optional<ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax) {
+            this.tax = tax;
+            return this;
+        }
+
+        public Builder tax(ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody tax) {
+            this.tax = Optional.ofNullable(tax);
+            return this;
+        }
+
         @JsonSetter(value = "unitCost", nulls = Nulls.SKIP)
         public Builder unitCost(Optional<ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody> unitCost) {
             this.unitCost = unitCost;
@@ -343,15 +372,19 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
         }
 
         /**
-         * <p>Unit of measure for quantities on this line.</p>
+         * <p>Unit of measure for quantities on this line.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
          */
         @JsonSetter(value = "unitOfMeasureType", nulls = Nulls.SKIP)
-        public Builder unitOfMeasureType(Optional<String> unitOfMeasureType) {
+        public Builder unitOfMeasureType(
+                Optional<ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType>
+                        unitOfMeasureType) {
             this.unitOfMeasureType = unitOfMeasureType;
             return this;
         }
 
-        public Builder unitOfMeasureType(String unitOfMeasureType) {
+        public Builder unitOfMeasureType(
+                ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType
+                        unitOfMeasureType) {
             this.unitOfMeasureType = Optional.ofNullable(unitOfMeasureType);
             return this;
         }
@@ -366,6 +399,7 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
                     place,
                     quantityOrdered,
                     quantityReceived,
+                    tax,
                     unitCost,
                     unitOfMeasureType,
                     additionalProperties);

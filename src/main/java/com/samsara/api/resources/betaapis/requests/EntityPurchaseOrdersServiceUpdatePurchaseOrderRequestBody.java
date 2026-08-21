@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.betaapis.types.EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus;
 import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody;
-import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody;
+import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody;
+import com.samsara.api.types.UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,15 +34,17 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
 
     private final Optional<String> notes;
 
-    private final Optional<String> orderStatus;
+    private final Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus> orderStatus;
 
     private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
             otherCost;
 
     private final Optional<
                     List<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>
             parts;
+
+    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax;
 
     private final Optional<String> trackingNumber;
 
@@ -53,13 +57,14 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
             Optional<String> glCode,
             Optional<String> invoiceNumber,
             Optional<String> notes,
-            Optional<String> orderStatus,
+            Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus> orderStatus,
             Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
                     otherCost,
             Optional<
                             List<
-                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>
                     parts,
+            Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax,
             Optional<String> trackingNumber,
             Optional<String> vendorId,
             Map<String, Object> additionalProperties) {
@@ -70,6 +75,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         this.orderStatus = orderStatus;
         this.otherCost = otherCost;
         this.parts = parts;
+        this.tax = tax;
         this.trackingNumber = trackingNumber;
         this.vendorId = vendorId;
         this.additionalProperties = additionalProperties;
@@ -108,10 +114,10 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
     }
 
     /**
-     * @return Current customer-visible status of the purchase order.
+     * @return Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code>
      */
     @JsonProperty("orderStatus")
-    public Optional<String> getOrderStatus() {
+    public Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus> getOrderStatus() {
         return orderStatus;
     }
 
@@ -127,9 +133,14 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
     @JsonProperty("parts")
     public Optional<
                     List<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>
             getParts() {
         return parts;
+    }
+
+    @JsonProperty("tax")
+    public Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> getTax() {
+        return tax;
     }
 
     /**
@@ -168,6 +179,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
                 && orderStatus.equals(other.orderStatus)
                 && otherCost.equals(other.otherCost)
                 && parts.equals(other.parts)
+                && tax.equals(other.tax)
                 && trackingNumber.equals(other.trackingNumber)
                 && vendorId.equals(other.vendorId);
     }
@@ -182,6 +194,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
                 this.orderStatus,
                 this.otherCost,
                 this.parts,
+                this.tax,
                 this.trackingNumber,
                 this.vendorId);
     }
@@ -229,11 +242,12 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         _FinalStage notes(String notes);
 
         /**
-         * <p>Current customer-visible status of the purchase order.</p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
          */
-        _FinalStage orderStatus(Optional<String> orderStatus);
+        _FinalStage orderStatus(
+                Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus> orderStatus);
 
-        _FinalStage orderStatus(String orderStatus);
+        _FinalStage orderStatus(EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus orderStatus);
 
         _FinalStage otherCost(
                 Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
@@ -248,13 +262,17 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         _FinalStage parts(
                 Optional<
                                 List<
-                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>
                         parts);
 
         _FinalStage parts(
                 List<
-                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>
                         parts);
+
+        _FinalStage tax(Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax);
+
+        _FinalStage tax(UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody tax);
 
         /**
          * <p>Shipment tracking number for the purchase order.</p>
@@ -279,15 +297,19 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
 
         private Optional<String> trackingNumber = Optional.empty();
 
+        private Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax =
+                Optional.empty();
+
         private Optional<
                         List<
-                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>
                 parts = Optional.empty();
 
         private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>
                 otherCost = Optional.empty();
 
-        private Optional<String> orderStatus = Optional.empty();
+        private Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus> orderStatus =
+                Optional.empty();
 
         private Optional<String> notes = Optional.empty();
 
@@ -309,6 +331,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
             orderStatus(other.getOrderStatus());
             otherCost(other.getOtherCost());
             parts(other.getParts());
+            tax(other.getTax());
             trackingNumber(other.getTrackingNumber());
             vendorId(other.getVendorId());
             return this;
@@ -366,6 +389,19 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage tax(UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody tax) {
+            this.tax = Optional.ofNullable(tax);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "tax", nulls = Nulls.SKIP)
+        public _FinalStage tax(Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax) {
+            this.tax = tax;
+            return this;
+        }
+
         /**
          * <p>Parts ordered on the purchase order.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -373,7 +409,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         @java.lang.Override
         public _FinalStage parts(
                 List<
-                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>
                         parts) {
             this.parts = Optional.ofNullable(parts);
             return this;
@@ -387,7 +423,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         public _FinalStage parts(
                 Optional<
                                 List<
-                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>>
+                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>
                         parts) {
             this.parts = parts;
             return this;
@@ -410,21 +446,23 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
         }
 
         /**
-         * <p>Current customer-visible status of the purchase order.</p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage orderStatus(String orderStatus) {
+        public _FinalStage orderStatus(
+                EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus orderStatus) {
             this.orderStatus = Optional.ofNullable(orderStatus);
             return this;
         }
 
         /**
-         * <p>Current customer-visible status of the purchase order.</p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "orderStatus", nulls = Nulls.SKIP)
-        public _FinalStage orderStatus(Optional<String> orderStatus) {
+        public _FinalStage orderStatus(
+                Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus> orderStatus) {
             this.orderStatus = orderStatus;
             return this;
         }
@@ -499,6 +537,7 @@ public final class EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody {
                     orderStatus,
                     otherCost,
                     parts,
+                    tax,
                     trackingNumber,
                     vendorId,
                     additionalProperties);

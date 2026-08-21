@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.betaapis.types.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus;
 import com.samsara.api.types.CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody;
-import com.samsara.api.types.CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody;
+import com.samsara.api.types.CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody;
+import com.samsara.api.types.CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,19 +32,21 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
 
     private final Optional<String> notes;
 
-    private final String orderStatus;
+    private final EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus orderStatus;
 
     private final Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody>
             otherCost;
 
     private final Optional<
                     List<
-                            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>
+                            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>
             parts;
 
     private final Optional<String> poNumberPrefix;
 
     private final Optional<String> poNumberSuffix;
+
+    private final Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax;
 
     private final Optional<String> trackingNumber;
 
@@ -54,15 +58,16 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
             Optional<String> glCode,
             Optional<String> invoiceNumber,
             Optional<String> notes,
-            String orderStatus,
+            EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus orderStatus,
             Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody>
                     otherCost,
             Optional<
                             List<
-                                    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>
+                                    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>
                     parts,
             Optional<String> poNumberPrefix,
             Optional<String> poNumberSuffix,
+            Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax,
             Optional<String> trackingNumber,
             String vendorId,
             Map<String, Object> additionalProperties) {
@@ -74,6 +79,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
         this.parts = parts;
         this.poNumberPrefix = poNumberPrefix;
         this.poNumberSuffix = poNumberSuffix;
+        this.tax = tax;
         this.trackingNumber = trackingNumber;
         this.vendorId = vendorId;
         this.additionalProperties = additionalProperties;
@@ -104,10 +110,10 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
     }
 
     /**
-     * @return Current customer-visible status of the purchase order.
+     * @return Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code>
      */
     @JsonProperty("orderStatus")
-    public String getOrderStatus() {
+    public EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus getOrderStatus() {
         return orderStatus;
     }
 
@@ -123,7 +129,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
     @JsonProperty("parts")
     public Optional<
                     List<
-                            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>
+                            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>
             getParts() {
         return parts;
     }
@@ -142,6 +148,11 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
     @JsonProperty("poNumberSuffix")
     public Optional<String> getPoNumberSuffix() {
         return poNumberSuffix;
+    }
+
+    @JsonProperty("tax")
+    public Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> getTax() {
+        return tax;
     }
 
     /**
@@ -181,6 +192,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
                 && parts.equals(other.parts)
                 && poNumberPrefix.equals(other.poNumberPrefix)
                 && poNumberSuffix.equals(other.poNumberSuffix)
+                && tax.equals(other.tax)
                 && trackingNumber.equals(other.trackingNumber)
                 && vendorId.equals(other.vendorId);
     }
@@ -196,6 +208,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
                 this.parts,
                 this.poNumberPrefix,
                 this.poNumberSuffix,
+                this.tax,
                 this.trackingNumber,
                 this.vendorId);
     }
@@ -211,9 +224,10 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
 
     public interface OrderStatusStage {
         /**
-         * <p>Current customer-visible status of the purchase order.</p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
          */
-        VendorIdStage orderStatus(@NotNull String orderStatus);
+        VendorIdStage orderStatus(
+                @NotNull EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus orderStatus);
 
         Builder from(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody other);
     }
@@ -262,12 +276,12 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
         _FinalStage parts(
                 Optional<
                                 List<
-                                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>
+                                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>
                         parts);
 
         _FinalStage parts(
                 List<
-                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>
+                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>
                         parts);
 
         /**
@@ -284,6 +298,10 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
 
         _FinalStage poNumberSuffix(String poNumberSuffix);
 
+        _FinalStage tax(Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax);
+
+        _FinalStage tax(CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody tax);
+
         /**
          * <p>Shipment tracking number for the purchase order.</p>
          */
@@ -294,11 +312,14 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements OrderStatusStage, VendorIdStage, _FinalStage {
-        private String orderStatus;
+        private EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus orderStatus;
 
         private String vendorId;
 
         private Optional<String> trackingNumber = Optional.empty();
+
+        private Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax =
+                Optional.empty();
 
         private Optional<String> poNumberSuffix = Optional.empty();
 
@@ -306,7 +327,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
 
         private Optional<
                         List<
-                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>
+                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>
                 parts = Optional.empty();
 
         private Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody>
@@ -333,19 +354,21 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
             parts(other.getParts());
             poNumberPrefix(other.getPoNumberPrefix());
             poNumberSuffix(other.getPoNumberSuffix());
+            tax(other.getTax());
             trackingNumber(other.getTrackingNumber());
             vendorId(other.getVendorId());
             return this;
         }
 
         /**
-         * <p>Current customer-visible status of the purchase order.</p>
-         * <p>Current customer-visible status of the purchase order.</p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
+         * <p>Current customer-visible status of the purchase order.  Valid values: <code>Unknown</code>, <code>Draft</code>, <code>Open</code>, <code>InReview</code>, <code>Approved</code>, <code>Rejected</code>, <code>SentToVendor</code>, <code>PartiallyReceived</code>, <code>FullyReceived</code>, <code>Returned</code>, <code>Cancelled</code>, <code>Closed</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("orderStatus")
-        public VendorIdStage orderStatus(@NotNull String orderStatus) {
+        public VendorIdStage orderStatus(
+                @NotNull EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus orderStatus) {
             this.orderStatus = Objects.requireNonNull(orderStatus, "orderStatus must not be null");
             return this;
         }
@@ -379,6 +402,19 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
         @JsonSetter(value = "trackingNumber", nulls = Nulls.SKIP)
         public _FinalStage trackingNumber(Optional<String> trackingNumber) {
             this.trackingNumber = trackingNumber;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage tax(CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody tax) {
+            this.tax = Optional.ofNullable(tax);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "tax", nulls = Nulls.SKIP)
+        public _FinalStage tax(Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody> tax) {
+            this.tax = tax;
             return this;
         }
 
@@ -429,7 +465,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
         @java.lang.Override
         public _FinalStage parts(
                 List<
-                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>
+                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>
                         parts) {
             this.parts = Optional.ofNullable(parts);
             return this;
@@ -443,7 +479,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
         public _FinalStage parts(
                 Optional<
                                 List<
-                                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>>
+                                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>
                         parts) {
             this.parts = parts;
             return this;
@@ -536,6 +572,7 @@ public final class EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody {
                     parts,
                     poNumberPrefix,
                     poNumberSuffix,
+                    tax,
                     trackingNumber,
                     vendorId,
                     additionalProperties);

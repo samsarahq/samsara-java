@@ -22,7 +22,8 @@ import java.util.Optional;
 public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBody {
     private final Optional<String> fixedRecoverableUntilTime;
 
-    private final Optional<String> policyType;
+    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType>
+            policyType;
 
     private final Optional<Long> relativeWindowDuration;
 
@@ -30,7 +31,8 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
 
     private UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBody(
             Optional<String> fixedRecoverableUntilTime,
-            Optional<String> policyType,
+            Optional<UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType>
+                    policyType,
             Optional<Long> relativeWindowDuration,
             Map<String, Object> additionalProperties) {
         this.fixedRecoverableUntilTime = fixedRecoverableUntilTime;
@@ -48,10 +50,11 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
     }
 
     /**
-     * @return Recoverability policy type.
+     * @return Recoverability policy type.  Valid values: <code>Unknown</code>, <code>RelativeToReceipt</code>, <code>FixedDate</code>, <code>NoDeadline</code>
      */
     @JsonProperty("policyType")
-    public Optional<String> getPolicyType() {
+    public Optional<UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType>
+            getPolicyType() {
         return policyType;
     }
 
@@ -99,7 +102,8 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
     public static final class Builder {
         private Optional<String> fixedRecoverableUntilTime = Optional.empty();
 
-        private Optional<String> policyType = Optional.empty();
+        private Optional<UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType>
+                policyType = Optional.empty();
 
         private Optional<Long> relativeWindowDuration = Optional.empty();
 
@@ -130,15 +134,18 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolic
         }
 
         /**
-         * <p>Recoverability policy type.</p>
+         * <p>Recoverability policy type.  Valid values: <code>Unknown</code>, <code>RelativeToReceipt</code>, <code>FixedDate</code>, <code>NoDeadline</code></p>
          */
         @JsonSetter(value = "policyType", nulls = Nulls.SKIP)
-        public Builder policyType(Optional<String> policyType) {
+        public Builder policyType(
+                Optional<UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType>
+                        policyType) {
             this.policyType = policyType;
             return this;
         }
 
-        public Builder policyType(String policyType) {
+        public Builder policyType(
+                UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType policyType) {
             this.policyType = Optional.ofNullable(policyType);
             return this;
         }
