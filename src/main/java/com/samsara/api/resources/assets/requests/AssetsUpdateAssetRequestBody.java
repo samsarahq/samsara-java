@@ -93,7 +93,7 @@ public final class AssetsUpdateAssetRequestBody {
     }
 
     /**
-     * @return A filter selecting a single asset by id.
+     * @return ID of the asset to update. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the asset.
      */
     @JsonProperty("id")
     public String getId() {
@@ -272,7 +272,7 @@ public final class AssetsUpdateAssetRequestBody {
 
     public interface IdStage {
         /**
-         * <p>A filter selecting a single asset by id.</p>
+         * <p>ID of the asset to update. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the asset.</p>
          */
         _FinalStage id(@NotNull String id);
 
@@ -439,8 +439,8 @@ public final class AssetsUpdateAssetRequestBody {
         }
 
         /**
-         * <p>A filter selecting a single asset by id.</p>
-         * <p>A filter selecting a single asset by id.</p>
+         * <p>ID of the asset to update. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the asset.</p>
+         * <p>ID of the asset to update. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the asset.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
