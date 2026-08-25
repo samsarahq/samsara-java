@@ -47,7 +47,7 @@ Add the dependency in your `pom.xml` file:
 <dependency>
   <groupId>com.samsara</groupId>
   <artifactId>samsara-java-sdk</artifactId>
-  <version>14.8.0</version>
+  <version>14.9.0</version>
 </dependency>
 ```
 

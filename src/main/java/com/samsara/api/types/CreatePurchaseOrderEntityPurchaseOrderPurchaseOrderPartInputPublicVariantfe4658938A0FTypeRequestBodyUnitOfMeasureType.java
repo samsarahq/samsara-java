@@ -7,144 +7,144 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final
-class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType {
+class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType {
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             BOX =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.BOX, "Box");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             GALLON =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.GALLON, "Gallon");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             KILOGRAM =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.KILOGRAM, "Kilogram");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             UNKNOWN =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.UNKNOWN, "Unknown");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             QUART =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.QUART, "Quart");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             METER =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.METER, "Meter");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             OUNCE =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.OUNCE, "Ounce");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             YARD =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.YARD, "Yard");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             SQUARE_METER =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.SQUARE_METER, "SquareMeter");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             ROLL =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.ROLL, "Roll");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             SET =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.SET, "Set");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             MILLILITER =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.MILLILITER, "Milliliter");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             SQUARE_FOOT =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.SQUARE_FOOT, "SquareFoot");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             INCH =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.INCH, "Inch");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             PINT =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.PINT, "Pint");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             HUNDRED =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.HUNDRED, "Hundred");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             FOOT =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.FOOT, "Foot");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             EACH =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.EACH, "Each");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             FLUID_OUNCE =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.FLUID_OUNCE, "FluidOunce");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             LITER =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.LITER, "Liter");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             PACK =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.PACK, "Pack");
 
     public static final
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             POUND =
-                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                    new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                             Value.POUND, "Pound");
 
     private final Value value;
 
     private final String string;
 
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
             Value value, String string) {
         this.value = value;
         this.string = string;
@@ -165,9 +165,9 @@ class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1
         return (this == other)
                 || (other
                                 instanceof
-                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
                         && this.string.equals(
-                                ((CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType)
+                                ((CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType)
                                                 other)
                                         .string));
     }
@@ -231,7 +231,7 @@ class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static
-    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType
+    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType
             valueOf(String value) {
         switch (value) {
             case "Box":
@@ -279,7 +279,7 @@ class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1
             case "Pound":
                 return POUND;
             default:
-                return new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBodyUnitOfMeasureType(
+                return new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBodyUnitOfMeasureType(
                         Value._UNKNOWN, value);
         }
     }

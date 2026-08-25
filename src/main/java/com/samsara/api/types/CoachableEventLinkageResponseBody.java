@@ -43,7 +43,7 @@ public final class CoachableEventLinkageResponseBody {
     }
 
     /**
-     * @return Upstream data source backing this coachable event.  Valid values: <code>triageEvent</code>, <code>hosViolation</code>, <code>idling</code>
+     * @return Upstream data source backing this coachable event.  Valid values: <code>safetyEvent</code>, <code>hosViolation</code>, <code>idling</code>
      */
     @JsonProperty("sourceType")
     public CoachableEventLinkageResponseBodySourceType getSourceType() {
@@ -90,7 +90,7 @@ public final class CoachableEventLinkageResponseBody {
 
     public interface SourceTypeStage {
         /**
-         * <p>Upstream data source backing this coachable event.  Valid values: <code>triageEvent</code>, <code>hosViolation</code>, <code>idling</code></p>
+         * <p>Upstream data source backing this coachable event.  Valid values: <code>safetyEvent</code>, <code>hosViolation</code>, <code>idling</code></p>
          */
         _FinalStage sourceType(@NotNull CoachableEventLinkageResponseBodySourceType sourceType);
     }
@@ -130,8 +130,8 @@ public final class CoachableEventLinkageResponseBody {
         }
 
         /**
-         * <p>Upstream data source backing this coachable event.  Valid values: <code>triageEvent</code>, <code>hosViolation</code>, <code>idling</code></p>
-         * <p>Upstream data source backing this coachable event.  Valid values: <code>triageEvent</code>, <code>hosViolation</code>, <code>idling</code></p>
+         * <p>Upstream data source backing this coachable event.  Valid values: <code>safetyEvent</code>, <code>hosViolation</code>, <code>idling</code></p>
+         * <p>Upstream data source backing this coachable event.  Valid values: <code>safetyEvent</code>, <code>hosViolation</code>, <code>idling</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

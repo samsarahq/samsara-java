@@ -13,8 +13,8 @@ public final class CoachableEventLinkageResponseBodySourceType {
     public static final CoachableEventLinkageResponseBodySourceType IDLING =
             new CoachableEventLinkageResponseBodySourceType(Value.IDLING, "idling");
 
-    public static final CoachableEventLinkageResponseBodySourceType TRIAGE_EVENT =
-            new CoachableEventLinkageResponseBodySourceType(Value.TRIAGE_EVENT, "triageEvent");
+    public static final CoachableEventLinkageResponseBodySourceType SAFETY_EVENT =
+            new CoachableEventLinkageResponseBodySourceType(Value.SAFETY_EVENT, "safetyEvent");
 
     private final Value value;
 
@@ -53,8 +53,8 @@ public final class CoachableEventLinkageResponseBodySourceType {
                 return visitor.visitHosViolation();
             case IDLING:
                 return visitor.visitIdling();
-            case TRIAGE_EVENT:
-                return visitor.visitTriageEvent();
+            case SAFETY_EVENT:
+                return visitor.visitSafetyEvent();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -68,15 +68,15 @@ public final class CoachableEventLinkageResponseBodySourceType {
                 return HOS_VIOLATION;
             case "idling":
                 return IDLING;
-            case "triageEvent":
-                return TRIAGE_EVENT;
+            case "safetyEvent":
+                return SAFETY_EVENT;
             default:
                 return new CoachableEventLinkageResponseBodySourceType(Value.UNKNOWN, value);
         }
     }
 
     public enum Value {
-        TRIAGE_EVENT,
+        SAFETY_EVENT,
 
         HOS_VIOLATION,
 
@@ -86,7 +86,7 @@ public final class CoachableEventLinkageResponseBodySourceType {
     }
 
     public interface Visitor<T> {
-        T visitTriageEvent();
+        T visitSafetyEvent();
 
         T visitHosViolation();
 
