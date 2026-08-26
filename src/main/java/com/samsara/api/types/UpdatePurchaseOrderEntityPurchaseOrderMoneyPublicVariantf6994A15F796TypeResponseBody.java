@@ -19,15 +19,15 @@ import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
-        builder = UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody.Builder.class)
-public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody {
+        builder = UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody.Builder.class)
+public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody {
     private final Optional<String> amount;
 
     private final Optional<String> currency;
 
     private final Map<String, Object> additionalProperties;
 
-    private UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody(
+    private UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody(
             Optional<String> amount, Optional<String> currency, Map<String, Object> additionalProperties) {
         this.amount = amount;
         this.currency = currency;
@@ -53,9 +53,9 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody
+        return other instanceof UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody
                 && equalTo(
-                        (UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody) other);
+                        (UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -64,7 +64,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb
     }
 
     private boolean equalTo(
-            UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody other) {
+            UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody other) {
         return amount.equals(other.amount) && currency.equals(other.currency);
     }
 
@@ -94,7 +94,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb
         private Builder() {}
 
         public Builder from(
-                UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody other) {
+                UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody other) {
             amount(other.getAmount());
             currency(other.getCurrency());
             return this;
@@ -128,8 +128,8 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb
             return this;
         }
 
-        public UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody build() {
-            return new UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody(
+        public UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody build() {
+            return new UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody(
                     amount, currency, additionalProperties);
         }
     }

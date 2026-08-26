@@ -43,12 +43,12 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
 
     private final Optional<EntityUpdatePurchaseOrderTypeResponseBodyOrderStatus> orderStatus;
 
-    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
             otherCost;
 
     private final Optional<
                     List<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>>
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
             parts;
 
     private final Optional<String> poNumber;
@@ -83,10 +83,10 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
             Optional<List<String>> mediaItemIds,
             Optional<String> notes,
             Optional<EntityUpdatePurchaseOrderTypeResponseBodyOrderStatus> orderStatus,
-            Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody> otherCost,
+            Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody> otherCost,
             Optional<
                             List<
-                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>>
+                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
                     parts,
             Optional<String> poNumber,
             Optional<String> poNumberPrefix,
@@ -212,7 +212,7 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
     }
 
     @JsonProperty("otherCost")
-    public Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+    public Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
             getOtherCost() {
         return otherCost;
     }
@@ -223,7 +223,7 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
     @JsonProperty("parts")
     public Optional<
                     List<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>>
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
             getParts() {
         return parts;
     }
@@ -388,12 +388,12 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
 
         private Optional<EntityUpdatePurchaseOrderTypeResponseBodyOrderStatus> orderStatus = Optional.empty();
 
-        private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+        private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
                 otherCost = Optional.empty();
 
         private Optional<
                         List<
-                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>>
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
                 parts = Optional.empty();
 
         private Optional<String> poNumber = Optional.empty();
@@ -603,14 +603,14 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
 
         @JsonSetter(value = "otherCost", nulls = Nulls.SKIP)
         public Builder otherCost(
-                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
                         otherCost) {
             this.otherCost = otherCost;
             return this;
         }
 
         public Builder otherCost(
-                UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody otherCost) {
+                UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody otherCost) {
             this.otherCost = Optional.ofNullable(otherCost);
             return this;
         }
@@ -622,14 +622,14 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
         public Builder parts(
                 Optional<
                                 List<
-                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>>
+                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
                         parts) {
             this.parts = parts;
             return this;
         }
 
         public Builder parts(
-                List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>
+                List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>
                         parts) {
             this.parts = Optional.ofNullable(parts);
             return this;

@@ -19,15 +19,15 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
         builder =
-                UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody.Builder.class)
-public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody {
+                CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody.Builder.class)
+public final class CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody {
     private final String amount;
 
     private final String currency;
 
     private final Map<String, Object> additionalProperties;
 
-    private UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody(
+    private CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody(
             String amount, String currency, Map<String, Object> additionalProperties) {
         this.amount = amount;
         this.currency = currency;
@@ -53,8 +53,8 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariant
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody
-                && equalTo((UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody)
+        return other instanceof CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody
+                && equalTo((CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody)
                         other);
     }
 
@@ -64,7 +64,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariant
     }
 
     private boolean equalTo(
-            UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody other) {
+            CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody other) {
         return amount.equals(other.amount) && currency.equals(other.currency);
     }
 
@@ -88,7 +88,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariant
          */
         CurrencyStage amount(@NotNull String amount);
 
-        Builder from(UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody other);
+        Builder from(CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody other);
     }
 
     public interface CurrencyStage {
@@ -99,7 +99,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariant
     }
 
     public interface _FinalStage {
-        UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody build();
+        CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody build();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -115,7 +115,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariant
 
         @java.lang.Override
         public Builder from(
-                UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody other) {
+                CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody other) {
             amount(other.getAmount());
             currency(other.getCurrency());
             return this;
@@ -146,8 +146,8 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariant
         }
 
         @java.lang.Override
-        public UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody build() {
-            return new UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody(
+        public CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody build() {
+            return new CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody(
                     amount, currency, additionalProperties);
         }
     }

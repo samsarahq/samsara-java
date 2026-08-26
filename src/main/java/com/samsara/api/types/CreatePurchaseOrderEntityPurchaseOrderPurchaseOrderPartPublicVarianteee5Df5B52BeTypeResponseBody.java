@@ -20,49 +20,49 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
         builder =
-                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody.Builder
+                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody.Builder
                         .class)
-public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody {
+public final class CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody {
     private final Optional<String> batchNumber;
 
-    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge;
+    private final Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge;
 
     private final Optional<String> description;
 
     private final Optional<String> lineItemId;
 
-    private final Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara;
+    private final Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara;
 
-    private final Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place;
+    private final Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place;
 
     private final Optional<Double> quantityOrdered;
 
     private final Optional<Double> quantityReceived;
 
-    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax;
+    private final Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax;
 
-    private final Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+    private final Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
             unitCost;
 
     private final Optional<
-                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType>
+                    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBodyUnitOfMeasureType>
             unitOfMeasureType;
 
     private final Map<String, Object> additionalProperties;
 
-    private UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody(
+    private CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody(
             Optional<String> batchNumber,
-            Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge,
+            Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge,
             Optional<String> description,
             Optional<String> lineItemId,
-            Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara,
-            Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place,
+            Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara,
+            Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place,
             Optional<Double> quantityOrdered,
             Optional<Double> quantityReceived,
-            Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax,
-            Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody> unitCost,
+            Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax,
+            Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody> unitCost,
             Optional<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType>
+                            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBodyUnitOfMeasureType>
                     unitOfMeasureType,
             Map<String, Object> additionalProperties) {
         this.batchNumber = batchNumber;
@@ -88,7 +88,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
     }
 
     @JsonProperty("coreCharge")
-    public Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> getCoreCharge() {
+    public Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> getCoreCharge() {
         return coreCharge;
     }
 
@@ -109,12 +109,12 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
     }
 
     @JsonProperty("partSamsara")
-    public Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> getPartSamsara() {
+    public Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> getPartSamsara() {
         return partSamsara;
     }
 
     @JsonProperty("place")
-    public Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> getPlace() {
+    public Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> getPlace() {
         return place;
     }
 
@@ -135,22 +135,22 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
     }
 
     @JsonProperty("tax")
-    public Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> getTax() {
+    public Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> getTax() {
         return tax;
     }
 
     @JsonProperty("unitCost")
-    public Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+    public Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
             getUnitCost() {
         return unitCost;
     }
 
     /**
-     * @return Unit of measure for quantities on this line.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code>
+     * @return Unit of measure for quantities on this line. Read-only: derived from the line's part definition, and ignored if supplied on create or update.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code>
      */
     @JsonProperty("unitOfMeasureType")
     public Optional<
-                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType>
+                    CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBodyUnitOfMeasureType>
             getUnitOfMeasureType() {
         return unitOfMeasureType;
     }
@@ -160,9 +160,9 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
         if (this == other) return true;
         return other
                         instanceof
-                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody
+                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody
                 && equalTo(
-                        (UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody)
+                        (CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody)
                                 other);
     }
 
@@ -172,7 +172,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
     }
 
     private boolean equalTo(
-            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody other) {
+            CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody other) {
         return batchNumber.equals(other.batchNumber)
                 && coreCharge.equals(other.coreCharge)
                 && description.equals(other.description)
@@ -215,28 +215,28 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
     public static final class Builder {
         private Optional<String> batchNumber = Optional.empty();
 
-        private Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge =
+        private Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge =
                 Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
         private Optional<String> lineItemId = Optional.empty();
 
-        private Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara = Optional.empty();
+        private Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara = Optional.empty();
 
-        private Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place = Optional.empty();
+        private Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place = Optional.empty();
 
         private Optional<Double> quantityOrdered = Optional.empty();
 
         private Optional<Double> quantityReceived = Optional.empty();
 
-        private Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax = Optional.empty();
+        private Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax = Optional.empty();
 
-        private Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+        private Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
                 unitCost = Optional.empty();
 
         private Optional<
-                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType>
+                        CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBodyUnitOfMeasureType>
                 unitOfMeasureType = Optional.empty();
 
         @JsonAnySetter
@@ -245,7 +245,7 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
         private Builder() {}
 
         public Builder from(
-                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody
+                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody
                         other) {
             batchNumber(other.getBatchNumber());
             coreCharge(other.getCoreCharge());
@@ -277,13 +277,13 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
 
         @JsonSetter(value = "coreCharge", nulls = Nulls.SKIP)
         public Builder coreCharge(
-                Optional<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge) {
+                Optional<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody> coreCharge) {
             this.coreCharge = coreCharge;
             return this;
         }
 
         public Builder coreCharge(
-                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody coreCharge) {
+                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody coreCharge) {
             this.coreCharge = Optional.ofNullable(coreCharge);
             return this;
         }
@@ -317,23 +317,23 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
         }
 
         @JsonSetter(value = "partSamsara", nulls = Nulls.SKIP)
-        public Builder partSamsara(Optional<EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara) {
+        public Builder partSamsara(Optional<EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody> partSamsara) {
             this.partSamsara = partSamsara;
             return this;
         }
 
-        public Builder partSamsara(EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody partSamsara) {
+        public Builder partSamsara(EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody partSamsara) {
             this.partSamsara = Optional.ofNullable(partSamsara);
             return this;
         }
 
         @JsonSetter(value = "place", nulls = Nulls.SKIP)
-        public Builder place(Optional<EntityUpdatePurchaseOrderPlaceRefTypeResponseBody> place) {
+        public Builder place(Optional<EntityCreatePurchaseOrderPlaceRefTypeResponseBody> place) {
             this.place = place;
             return this;
         }
 
-        public Builder place(EntityUpdatePurchaseOrderPlaceRefTypeResponseBody place) {
+        public Builder place(EntityCreatePurchaseOrderPlaceRefTypeResponseBody place) {
             this.place = Optional.ofNullable(place);
             return this;
         }
@@ -367,52 +367,52 @@ public final class UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublic
         }
 
         @JsonSetter(value = "tax", nulls = Nulls.SKIP)
-        public Builder tax(Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax) {
+        public Builder tax(Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody> tax) {
             this.tax = tax;
             return this;
         }
 
-        public Builder tax(UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody tax) {
+        public Builder tax(CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody tax) {
             this.tax = Optional.ofNullable(tax);
             return this;
         }
 
         @JsonSetter(value = "unitCost", nulls = Nulls.SKIP)
         public Builder unitCost(
-                Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody>
+                Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody>
                         unitCost) {
             this.unitCost = unitCost;
             return this;
         }
 
         public Builder unitCost(
-                UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody unitCost) {
+                CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody unitCost) {
             this.unitCost = Optional.ofNullable(unitCost);
             return this;
         }
 
         /**
-         * <p>Unit of measure for quantities on this line.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
+         * <p>Unit of measure for quantities on this line. Read-only: derived from the line's part definition, and ignored if supplied on create or update.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
          */
         @JsonSetter(value = "unitOfMeasureType", nulls = Nulls.SKIP)
         public Builder unitOfMeasureType(
                 Optional<
-                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType>
+                                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBodyUnitOfMeasureType>
                         unitOfMeasureType) {
             this.unitOfMeasureType = unitOfMeasureType;
             return this;
         }
 
         public Builder unitOfMeasureType(
-                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType
+                CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBodyUnitOfMeasureType
                         unitOfMeasureType) {
             this.unitOfMeasureType = Optional.ofNullable(unitOfMeasureType);
             return this;
         }
 
-        public UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody
+        public CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody
                 build() {
-            return new UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody(
+            return new CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteee5Df5B52BeTypeResponseBody(
                     batchNumber,
                     coreCharge,
                     description,

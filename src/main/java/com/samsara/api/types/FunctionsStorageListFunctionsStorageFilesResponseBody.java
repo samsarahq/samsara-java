@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -24,15 +25,19 @@ import org.jetbrains.annotations.NotNull;
 public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
     private final List<FunctionsStorageFileResponseBody> data;
 
+    private final Optional<List<FunctionsStorageFolderResponseBody>> folders;
+
     private final GoaPaginationResponseResponseBody pagination;
 
     private final Map<String, Object> additionalProperties;
 
     private FunctionsStorageListFunctionsStorageFilesResponseBody(
             List<FunctionsStorageFileResponseBody> data,
+            Optional<List<FunctionsStorageFolderResponseBody>> folders,
             GoaPaginationResponseResponseBody pagination,
             Map<String, Object> additionalProperties) {
         this.data = data;
+        this.folders = folders;
         this.pagination = pagination;
         this.additionalProperties = additionalProperties;
     }
@@ -43,6 +48,14 @@ public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
     @JsonProperty("data")
     public List<FunctionsStorageFileResponseBody> getData() {
         return data;
+    }
+
+    /**
+     * @return Immediate subfolders under the prefix. Populated only when <code>groupByFolder</code> is true.
+     */
+    @JsonProperty("folders")
+    public Optional<List<FunctionsStorageFolderResponseBody>> getFolders() {
+        return folders;
     }
 
     @JsonProperty("pagination")
@@ -63,12 +76,12 @@ public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
     }
 
     private boolean equalTo(FunctionsStorageListFunctionsStorageFilesResponseBody other) {
-        return data.equals(other.data) && pagination.equals(other.pagination);
+        return data.equals(other.data) && folders.equals(other.folders) && pagination.equals(other.pagination);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.data, this.pagination);
+        return Objects.hash(this.data, this.folders, this.pagination);
     }
 
     @java.lang.Override
@@ -97,11 +110,20 @@ public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
         _FinalStage addData(FunctionsStorageFileResponseBody data);
 
         _FinalStage addAllData(List<FunctionsStorageFileResponseBody> data);
+
+        /**
+         * <p>Immediate subfolders under the prefix. Populated only when <code>groupByFolder</code> is true.</p>
+         */
+        _FinalStage folders(Optional<List<FunctionsStorageFolderResponseBody>> folders);
+
+        _FinalStage folders(List<FunctionsStorageFolderResponseBody> folders);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PaginationStage, _FinalStage {
         private GoaPaginationResponseResponseBody pagination;
+
+        private Optional<List<FunctionsStorageFolderResponseBody>> folders = Optional.empty();
 
         private List<FunctionsStorageFileResponseBody> data = new ArrayList<>();
 
@@ -113,6 +135,7 @@ public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
         @java.lang.Override
         public Builder from(FunctionsStorageListFunctionsStorageFilesResponseBody other) {
             data(other.getData());
+            folders(other.getFolders());
             pagination(other.getPagination());
             return this;
         }
@@ -121,6 +144,26 @@ public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
         @JsonSetter("pagination")
         public _FinalStage pagination(@NotNull GoaPaginationResponseResponseBody pagination) {
             this.pagination = Objects.requireNonNull(pagination, "pagination must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Immediate subfolders under the prefix. Populated only when <code>groupByFolder</code> is true.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage folders(List<FunctionsStorageFolderResponseBody> folders) {
+            this.folders = Optional.ofNullable(folders);
+            return this;
+        }
+
+        /**
+         * <p>Immediate subfolders under the prefix. Populated only when <code>groupByFolder</code> is true.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "folders", nulls = Nulls.SKIP)
+        public _FinalStage folders(Optional<List<FunctionsStorageFolderResponseBody>> folders) {
+            this.folders = folders;
             return this;
         }
 
@@ -161,7 +204,8 @@ public final class FunctionsStorageListFunctionsStorageFilesResponseBody {
 
         @java.lang.Override
         public FunctionsStorageListFunctionsStorageFilesResponseBody build() {
-            return new FunctionsStorageListFunctionsStorageFilesResponseBody(data, pagination, additionalProperties);
+            return new FunctionsStorageListFunctionsStorageFilesResponseBody(
+                    data, folders, pagination, additionalProperties);
         }
     }
 }

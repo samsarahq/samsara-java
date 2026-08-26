@@ -4284,7 +4284,7 @@ public class BetaApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"modifiedAtTime\":\"2024-01-01T12:00:00Z\",\"name\":\"my-script.js\",\"sizeBytes\":1024,\"urls\":[{\"expiresAtTime\":\"2024-01-01T13:00:00Z\",\"url\":\"https://s3.amazonaws.com/bucket/key?signature=abc123\",\"urlType\":\"download\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"modifiedAtTime\":\"2024-01-01T12:00:00Z\",\"name\":\"my-script.js\",\"sizeBytes\":1024,\"urls\":[{\"expiresAtTime\":\"2024-01-01T13:00:00Z\",\"url\":\"https://s3.amazonaws.com/bucket/key?signature=abc123\",\"urlType\":\"download\"}]}],\"folders\":[{\"name\":\"logs/archive/\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         FunctionsStorageListFunctionsStorageFilesResponseBody response = client.betaApIs()
                 .listFunctionsStorageFiles(
                         ListFunctionsStorageFilesRequest.builder().build());
@@ -4309,6 +4309,11 @@ public class BetaApIsWireTest {
                 + "          \"urlType\": \"download\"\n"
                 + "        }\n"
                 + "      ]\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"folders\": [\n"
+                + "    {\n"
+                + "      \"name\": \"logs/archive/\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"

@@ -19,15 +19,15 @@ import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
-        builder = CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody.Builder.class)
-public final class CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody {
+        builder = CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody.Builder.class)
+public final class CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody {
     private final Optional<String> amount;
 
     private final Optional<String> currency;
 
     private final Map<String, Object> additionalProperties;
 
-    private CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody(
+    private CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody(
             Optional<String> amount, Optional<String> currency, Map<String, Object> additionalProperties) {
         this.amount = amount;
         this.currency = currency;
@@ -53,9 +53,9 @@ public final class CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody
+        return other instanceof CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody
                 && equalTo(
-                        (CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody) other);
+                        (CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody) other);
     }
 
     @JsonAnyGetter
@@ -64,7 +64,7 @@ public final class CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B
     }
 
     private boolean equalTo(
-            CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody other) {
+            CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody other) {
         return amount.equals(other.amount) && currency.equals(other.currency);
     }
 
@@ -94,7 +94,7 @@ public final class CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B
         private Builder() {}
 
         public Builder from(
-                CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody other) {
+                CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody other) {
             amount(other.getAmount());
             currency(other.getCurrency());
             return this;
@@ -128,8 +128,8 @@ public final class CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B
             return this;
         }
 
-        public CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody build() {
-            return new CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody(
+        public CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody build() {
+            return new CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody(
                     amount, currency, additionalProperties);
         }
     }

@@ -5676,6 +5676,14 @@ public class RawBetaApIsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "includeUploadUrls", request.getIncludeUploadUrls().get(), false);
         }
+        if (request.getPrefix().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "prefix", request.getPrefix().get(), false);
+        }
+        if (request.getGroupByFolder().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "groupByFolder", request.getGroupByFolder().get(), false);
+        }
         if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);

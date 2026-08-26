@@ -4884,6 +4884,22 @@ client.betaApIs().listFunctionsStorageFiles(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**prefix:** `Optional<String>` — Only list files and immediate subfolders under this path prefix, for example `logs/`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**groupByFolder:** `Optional<Boolean>` — When true, roll immediate subfolders up into the `folders` field and return only files directly under the prefix in `data`.
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -8314,7 +8330,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody>` 
+**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody>` 
     
 </dd>
 </dl>
@@ -8322,7 +8338,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>>` — Parts ordered on the purchase order.
+**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBody>>` — Parts ordered on the purchase order.
     
 </dd>
 </dl>
@@ -8534,7 +8550,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody>` 
+**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody>` 
     
 </dd>
 </dl>
@@ -8542,7 +8558,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant1A94E81632EaTypeRequestBody>>` — Parts ordered on the purchase order.
+**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant5E7C0Da15F4CTypeRequestBody>>` — Parts ordered on the purchase order.
     
 </dd>
 </dl>

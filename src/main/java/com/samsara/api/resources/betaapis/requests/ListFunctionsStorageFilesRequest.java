@@ -28,6 +28,10 @@ public final class ListFunctionsStorageFilesRequest {
 
     private final Optional<Boolean> includeUploadUrls;
 
+    private final Optional<String> prefix;
+
+    private final Optional<Boolean> groupByFolder;
+
     private final Map<String, Object> additionalProperties;
 
     private ListFunctionsStorageFilesRequest(
@@ -35,11 +39,15 @@ public final class ListFunctionsStorageFilesRequest {
             Optional<Long> limit,
             Optional<Boolean> includeDownloadUrls,
             Optional<Boolean> includeUploadUrls,
+            Optional<String> prefix,
+            Optional<Boolean> groupByFolder,
             Map<String, Object> additionalProperties) {
         this.after = after;
         this.limit = limit;
         this.includeDownloadUrls = includeDownloadUrls;
         this.includeUploadUrls = includeUploadUrls;
+        this.prefix = prefix;
+        this.groupByFolder = groupByFolder;
         this.additionalProperties = additionalProperties;
     }
 
@@ -75,6 +83,22 @@ public final class ListFunctionsStorageFilesRequest {
         return includeUploadUrls;
     }
 
+    /**
+     * @return Only list files and immediate subfolders under this path prefix, for example <code>logs/</code>.
+     */
+    @JsonProperty("prefix")
+    public Optional<String> getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * @return When true, roll immediate subfolders up into the <code>folders</code> field and return only files directly under the prefix in <code>data</code>.
+     */
+    @JsonProperty("groupByFolder")
+    public Optional<Boolean> getGroupByFolder() {
+        return groupByFolder;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -90,12 +114,20 @@ public final class ListFunctionsStorageFilesRequest {
         return after.equals(other.after)
                 && limit.equals(other.limit)
                 && includeDownloadUrls.equals(other.includeDownloadUrls)
-                && includeUploadUrls.equals(other.includeUploadUrls);
+                && includeUploadUrls.equals(other.includeUploadUrls)
+                && prefix.equals(other.prefix)
+                && groupByFolder.equals(other.groupByFolder);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.after, this.limit, this.includeDownloadUrls, this.includeUploadUrls);
+        return Objects.hash(
+                this.after,
+                this.limit,
+                this.includeDownloadUrls,
+                this.includeUploadUrls,
+                this.prefix,
+                this.groupByFolder);
     }
 
     @java.lang.Override
@@ -117,6 +149,10 @@ public final class ListFunctionsStorageFilesRequest {
 
         private Optional<Boolean> includeUploadUrls = Optional.empty();
 
+        private Optional<String> prefix = Optional.empty();
+
+        private Optional<Boolean> groupByFolder = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -127,6 +163,8 @@ public final class ListFunctionsStorageFilesRequest {
             limit(other.getLimit());
             includeDownloadUrls(other.getIncludeDownloadUrls());
             includeUploadUrls(other.getIncludeUploadUrls());
+            prefix(other.getPrefix());
+            groupByFolder(other.getGroupByFolder());
             return this;
         }
 
@@ -186,9 +224,37 @@ public final class ListFunctionsStorageFilesRequest {
             return this;
         }
 
+        /**
+         * <p>Only list files and immediate subfolders under this path prefix, for example <code>logs/</code>.</p>
+         */
+        @JsonSetter(value = "prefix", nulls = Nulls.SKIP)
+        public Builder prefix(Optional<String> prefix) {
+            this.prefix = prefix;
+            return this;
+        }
+
+        public Builder prefix(String prefix) {
+            this.prefix = Optional.ofNullable(prefix);
+            return this;
+        }
+
+        /**
+         * <p>When true, roll immediate subfolders up into the <code>folders</code> field and return only files directly under the prefix in <code>data</code>.</p>
+         */
+        @JsonSetter(value = "groupByFolder", nulls = Nulls.SKIP)
+        public Builder groupByFolder(Optional<Boolean> groupByFolder) {
+            this.groupByFolder = groupByFolder;
+            return this;
+        }
+
+        public Builder groupByFolder(Boolean groupByFolder) {
+            this.groupByFolder = Optional.ofNullable(groupByFolder);
+            return this;
+        }
+
         public ListFunctionsStorageFilesRequest build() {
             return new ListFunctionsStorageFilesRequest(
-                    after, limit, includeDownloadUrls, includeUploadUrls, additionalProperties);
+                    after, limit, includeDownloadUrls, includeUploadUrls, prefix, groupByFolder, additionalProperties);
         }
     }
 }
