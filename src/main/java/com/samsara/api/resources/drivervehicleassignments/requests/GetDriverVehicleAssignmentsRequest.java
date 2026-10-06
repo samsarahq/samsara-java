@@ -113,7 +113,7 @@ public final class GetDriverVehicleAssignmentsRequest {
     }
 
     /**
-     * @return Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.
+     * @return Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported. <code>startTime</code> and <code>endTime</code> are optional here: if omitted, matching assignments are returned regardless of when they occurred, rather than being limited to the recent window used by the other filters.
      */
     @JsonProperty("sourceName")
     public Optional<String> getSourceName() {
@@ -246,7 +246,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         _FinalStage endTime(String endTime);
 
         /**
-         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.</p>
+         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported. <code>startTime</code> and <code>endTime</code> are optional here: if omitted, matching assignments are returned regardless of when they occurred, rather than being limited to the recent window used by the other filters.</p>
          */
         _FinalStage sourceName(Optional<String> sourceName);
 
@@ -416,7 +416,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         }
 
         /**
-         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.</p>
+         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported. <code>startTime</code> and <code>endTime</code> are optional here: if omitted, matching assignments are returned regardless of when they occurred, rather than being limited to the recent window used by the other filters.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -426,7 +426,7 @@ public final class GetDriverVehicleAssignmentsRequest {
         }
 
         /**
-         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.</p>
+         * <p>Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported. <code>startTime</code> and <code>endTime</code> are optional here: if omitted, matching assignments are returned regardless of when they occurred, rather than being limited to the recent window used by the other filters.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "sourceName", nulls = Nulls.SKIP)

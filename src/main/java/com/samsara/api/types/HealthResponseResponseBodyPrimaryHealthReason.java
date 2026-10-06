@@ -10,6 +10,9 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
     public static final HealthResponseResponseBodyPrimaryHealthReason IRREGULAR_RECORDING =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.IRREGULAR_RECORDING, "irregularRecording");
 
+    public static final HealthResponseResponseBodyPrimaryHealthReason LOW_UPTIME =
+            new HealthResponseResponseBodyPrimaryHealthReason(Value.LOW_UPTIME, "lowUptime");
+
     public static final HealthResponseResponseBodyPrimaryHealthReason OUTWARD_CAMERA_OBSTRUCTION =
             new HealthResponseResponseBodyPrimaryHealthReason(
                     Value.OUTWARD_CAMERA_OBSTRUCTION, "outwardCameraObstruction");
@@ -20,11 +23,21 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
     public static final HealthResponseResponseBodyPrimaryHealthReason VG_UNPLUGGED =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.VG_UNPLUGGED, "vgUnplugged");
 
+    public static final HealthResponseResponseBodyPrimaryHealthReason NEEDS_ATTRIBUTE =
+            new HealthResponseResponseBodyPrimaryHealthReason(Value.NEEDS_ATTRIBUTE, "needsAttribute");
+
     public static final HealthResponseResponseBodyPrimaryHealthReason MISSING_VIN =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.MISSING_VIN, "missingVin");
 
     public static final HealthResponseResponseBodyPrimaryHealthReason ASSET_UNPLUGGED =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.ASSET_UNPLUGGED, "assetUnplugged");
+
+    public static final HealthResponseResponseBodyPrimaryHealthReason LOW_CONNECTIVITY =
+            new HealthResponseResponseBodyPrimaryHealthReason(Value.LOW_CONNECTIVITY, "lowConnectivity");
+
+    public static final HealthResponseResponseBodyPrimaryHealthReason MEDIA_INPUT_LOW_CONNECTIVITY =
+            new HealthResponseResponseBodyPrimaryHealthReason(
+                    Value.MEDIA_INPUT_LOW_CONNECTIVITY, "mediaInputLowConnectivity");
 
     public static final HealthResponseResponseBodyPrimaryHealthReason MISSING_ELD_DIAGNOSTICS =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.MISSING_ELD_DIAGNOSTICS, "missingEldDiagnostics");
@@ -53,6 +66,9 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
 
     public static final HealthResponseResponseBodyPrimaryHealthReason NEEDS_REPLACEMENT =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.NEEDS_REPLACEMENT, "needsReplacement");
+
+    public static final HealthResponseResponseBodyPrimaryHealthReason UNSTABLE_POWER =
+            new HealthResponseResponseBodyPrimaryHealthReason(Value.UNSTABLE_POWER, "unstablePower");
 
     public static final HealthResponseResponseBodyPrimaryHealthReason RECORDING_TIME_REQUIRED =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.RECORDING_TIME_REQUIRED, "recordingTimeRequired");
@@ -95,16 +111,24 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         switch (value) {
             case IRREGULAR_RECORDING:
                 return visitor.visitIrregularRecording();
+            case LOW_UPTIME:
+                return visitor.visitLowUptime();
             case OUTWARD_CAMERA_OBSTRUCTION:
                 return visitor.visitOutwardCameraObstruction();
             case UNKNOWN:
                 return visitor.visitUnknown();
             case VG_UNPLUGGED:
                 return visitor.visitVgUnplugged();
+            case NEEDS_ATTRIBUTE:
+                return visitor.visitNeedsAttribute();
             case MISSING_VIN:
                 return visitor.visitMissingVin();
             case ASSET_UNPLUGGED:
                 return visitor.visitAssetUnplugged();
+            case LOW_CONNECTIVITY:
+                return visitor.visitLowConnectivity();
+            case MEDIA_INPUT_LOW_CONNECTIVITY:
+                return visitor.visitMediaInputLowConnectivity();
             case MISSING_ELD_DIAGNOSTICS:
                 return visitor.visitMissingEldDiagnostics();
             case HEALTHY:
@@ -123,6 +147,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
                 return visitor.visitNotDetected();
             case NEEDS_REPLACEMENT:
                 return visitor.visitNeedsReplacement();
+            case UNSTABLE_POWER:
+                return visitor.visitUnstablePower();
             case RECORDING_TIME_REQUIRED:
                 return visitor.visitRecordingTimeRequired();
             case NEWLY_INSTALLED_DEVICE:
@@ -138,16 +164,24 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         switch (value) {
             case "irregularRecording":
                 return IRREGULAR_RECORDING;
+            case "lowUptime":
+                return LOW_UPTIME;
             case "outwardCameraObstruction":
                 return OUTWARD_CAMERA_OBSTRUCTION;
             case "unknown":
                 return UNKNOWN;
             case "vgUnplugged":
                 return VG_UNPLUGGED;
+            case "needsAttribute":
+                return NEEDS_ATTRIBUTE;
             case "missingVin":
                 return MISSING_VIN;
             case "assetUnplugged":
                 return ASSET_UNPLUGGED;
+            case "lowConnectivity":
+                return LOW_CONNECTIVITY;
+            case "mediaInputLowConnectivity":
+                return MEDIA_INPUT_LOW_CONNECTIVITY;
             case "missingEldDiagnostics":
                 return MISSING_ELD_DIAGNOSTICS;
             case "healthy":
@@ -166,6 +200,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
                 return NOT_DETECTED;
             case "needsReplacement":
                 return NEEDS_REPLACEMENT;
+            case "unstablePower":
+                return UNSTABLE_POWER;
             case "recordingTimeRequired":
                 return RECORDING_TIME_REQUIRED;
             case "newlyInstalledDevice":
@@ -188,11 +224,19 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
 
         IRREGULAR_RECORDING,
 
+        LOW_CONNECTIVITY,
+
         LOW_DEVICE_BATTERY,
+
+        LOW_UPTIME,
+
+        MEDIA_INPUT_LOW_CONNECTIVITY,
 
         MISSING_ELD_DIAGNOSTICS,
 
         MISSING_VIN,
+
+        NEEDS_ATTRIBUTE,
 
         NEEDS_REPLACEMENT,
 
@@ -207,6 +251,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         RECORDING_TIME_REQUIRED,
 
         UNKNOWN,
+
+        UNSTABLE_POWER,
 
         VG_UNPLUGGED,
 
@@ -226,11 +272,19 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
 
         T visitIrregularRecording();
 
+        T visitLowConnectivity();
+
         T visitLowDeviceBattery();
+
+        T visitLowUptime();
+
+        T visitMediaInputLowConnectivity();
 
         T visitMissingEldDiagnostics();
 
         T visitMissingVin();
+
+        T visitNeedsAttribute();
 
         T visitNeedsReplacement();
 
@@ -245,6 +299,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         T visitRecordingTimeRequired();
 
         T visitUnknown();
+
+        T visitUnstablePower();
 
         T visitVgUnplugged();
 

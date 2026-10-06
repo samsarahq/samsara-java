@@ -17,14 +17,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody.Builder.class)
 public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody {
     private final Optional<String> assignedAtTime;
 
-    private final String driverId;
+    private final Optional<String> driverId;
 
     private final Optional<String> endTime;
 
@@ -32,20 +31,20 @@ public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentReques
 
     private final Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata;
 
-    private final String startTime;
+    private final Optional<String> startTime;
 
-    private final String vehicleId;
+    private final Optional<String> vehicleId;
 
     private final Map<String, Object> additionalProperties;
 
     private DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody(
             Optional<String> assignedAtTime,
-            String driverId,
+            Optional<String> driverId,
             Optional<String> endTime,
             Optional<Boolean> isPassenger,
             Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata,
-            String startTime,
-            String vehicleId,
+            Optional<String> startTime,
+            Optional<String> vehicleId,
             Map<String, Object> additionalProperties) {
         this.assignedAtTime = assignedAtTime;
         this.driverId = driverId;
@@ -69,7 +68,7 @@ public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentReques
      * @return ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.
      */
     @JsonProperty("driverId")
-    public String getDriverId() {
+    public Optional<String> getDriverId() {
         return driverId;
     }
 
@@ -95,10 +94,10 @@ public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentReques
     }
 
     /**
-     * @return The start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+     * @return The start time in RFC 3339 format that identifies the assignment to update. Required together with vehicleId and driverId, unless metadata.sourceName is provided instead. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
      */
     @JsonProperty("startTime")
-    public String getStartTime() {
+    public Optional<String> getStartTime() {
         return startTime;
     }
 
@@ -106,7 +105,7 @@ public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentReques
      * @return ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.
      */
     @JsonProperty("vehicleId")
-    public String getVehicleId() {
+    public Optional<String> getVehicleId() {
         return vehicleId;
     }
 
@@ -149,84 +148,31 @@ public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentReques
         return ObjectMappers.stringify(this);
     }
 
-    public static DriverIdStage builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public interface DriverIdStage {
-        /**
-         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
-         */
-        StartTimeStage driverId(@NotNull String driverId);
-
-        Builder from(DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody other);
-    }
-
-    public interface StartTimeStage {
-        /**
-         * <p>The start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         */
-        VehicleIdStage startTime(@NotNull String startTime);
-    }
-
-    public interface VehicleIdStage {
-        /**
-         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
-         */
-        _FinalStage vehicleId(@NotNull String vehicleId);
-    }
-
-    public interface _FinalStage {
-        DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody build();
-
-        /**
-         * <p>The time at which the assignment was made in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         */
-        _FinalStage assignedAtTime(Optional<String> assignedAtTime);
-
-        _FinalStage assignedAtTime(String assignedAtTime);
-
-        /**
-         * <p>The end time in RFC 3339 format. To make this an ongoing assignment (ie. an assignment with no end time), provide an endTime value of 'null'. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         */
-        _FinalStage endTime(Optional<String> endTime);
-
-        _FinalStage endTime(String endTime);
-
-        /**
-         * <p>Is this driver a passenger?</p>
-         */
-        _FinalStage isPassenger(Optional<Boolean> isPassenger);
-
-        _FinalStage isPassenger(Boolean isPassenger);
-
-        _FinalStage metadata(Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata);
-
-        _FinalStage metadata(PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody metadata);
-    }
-
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements DriverIdStage, StartTimeStage, VehicleIdStage, _FinalStage {
-        private String driverId;
+    public static final class Builder {
+        private Optional<String> assignedAtTime = Optional.empty();
 
-        private String startTime;
-
-        private String vehicleId;
-
-        private Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata = Optional.empty();
-
-        private Optional<Boolean> isPassenger = Optional.empty();
+        private Optional<String> driverId = Optional.empty();
 
         private Optional<String> endTime = Optional.empty();
 
-        private Optional<String> assignedAtTime = Optional.empty();
+        private Optional<Boolean> isPassenger = Optional.empty();
+
+        private Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata = Optional.empty();
+
+        private Optional<String> startTime = Optional.empty();
+
+        private Optional<String> vehicleId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
-        @java.lang.Override
         public Builder from(DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody other) {
             assignedAtTime(other.getAssignedAtTime());
             driverId(other.getDriverId());
@@ -239,115 +185,100 @@ public final class DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentReques
         }
 
         /**
-         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
-         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("driverId")
-        public StartTimeStage driverId(@NotNull String driverId) {
-            this.driverId = Objects.requireNonNull(driverId, "driverId must not be null");
-            return this;
-        }
-
-        /**
-         * <p>The start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         * <p>The start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("startTime")
-        public VehicleIdStage startTime(@NotNull String startTime) {
-            this.startTime = Objects.requireNonNull(startTime, "startTime must not be null");
-            return this;
-        }
-
-        /**
-         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
-         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("vehicleId")
-        public _FinalStage vehicleId(@NotNull String vehicleId) {
-            this.vehicleId = Objects.requireNonNull(vehicleId, "vehicleId must not be null");
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage metadata(PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody metadata) {
-            this.metadata = Optional.ofNullable(metadata);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "metadata", nulls = Nulls.SKIP)
-        public _FinalStage metadata(Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata) {
-            this.metadata = metadata;
-            return this;
-        }
-
-        /**
-         * <p>Is this driver a passenger?</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage isPassenger(Boolean isPassenger) {
-            this.isPassenger = Optional.ofNullable(isPassenger);
-            return this;
-        }
-
-        /**
-         * <p>Is this driver a passenger?</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "isPassenger", nulls = Nulls.SKIP)
-        public _FinalStage isPassenger(Optional<Boolean> isPassenger) {
-            this.isPassenger = isPassenger;
-            return this;
-        }
-
-        /**
-         * <p>The end time in RFC 3339 format. To make this an ongoing assignment (ie. an assignment with no end time), provide an endTime value of 'null'. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage endTime(String endTime) {
-            this.endTime = Optional.ofNullable(endTime);
-            return this;
-        }
-
-        /**
-         * <p>The end time in RFC 3339 format. To make this an ongoing assignment (ie. an assignment with no end time), provide an endTime value of 'null'. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "endTime", nulls = Nulls.SKIP)
-        public _FinalStage endTime(Optional<String> endTime) {
-            this.endTime = endTime;
-            return this;
-        }
-
-        /**
          * <p>The time at which the assignment was made in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @java.lang.Override
-        public _FinalStage assignedAtTime(String assignedAtTime) {
+        @JsonSetter(value = "assignedAtTime", nulls = Nulls.SKIP)
+        public Builder assignedAtTime(Optional<String> assignedAtTime) {
+            this.assignedAtTime = assignedAtTime;
+            return this;
+        }
+
+        public Builder assignedAtTime(String assignedAtTime) {
             this.assignedAtTime = Optional.ofNullable(assignedAtTime);
             return this;
         }
 
         /**
-         * <p>The time at which the assignment was made in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
+         * <p>ID of the driver. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
          */
-        @java.lang.Override
-        @JsonSetter(value = "assignedAtTime", nulls = Nulls.SKIP)
-        public _FinalStage assignedAtTime(Optional<String> assignedAtTime) {
-            this.assignedAtTime = assignedAtTime;
+        @JsonSetter(value = "driverId", nulls = Nulls.SKIP)
+        public Builder driverId(Optional<String> driverId) {
+            this.driverId = driverId;
             return this;
         }
 
-        @java.lang.Override
+        public Builder driverId(String driverId) {
+            this.driverId = Optional.ofNullable(driverId);
+            return this;
+        }
+
+        /**
+         * <p>The end time in RFC 3339 format. To make this an ongoing assignment (ie. an assignment with no end time), provide an endTime value of 'null'. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
+         */
+        @JsonSetter(value = "endTime", nulls = Nulls.SKIP)
+        public Builder endTime(Optional<String> endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
+        public Builder endTime(String endTime) {
+            this.endTime = Optional.ofNullable(endTime);
+            return this;
+        }
+
+        /**
+         * <p>Is this driver a passenger?</p>
+         */
+        @JsonSetter(value = "isPassenger", nulls = Nulls.SKIP)
+        public Builder isPassenger(Optional<Boolean> isPassenger) {
+            this.isPassenger = isPassenger;
+            return this;
+        }
+
+        public Builder isPassenger(Boolean isPassenger) {
+            this.isPassenger = Optional.ofNullable(isPassenger);
+            return this;
+        }
+
+        @JsonSetter(value = "metadata", nulls = Nulls.SKIP)
+        public Builder metadata(Optional<PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody> metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+
+        public Builder metadata(PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody metadata) {
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        /**
+         * <p>The start time in RFC 3339 format that identifies the assignment to update. Required together with vehicleId and driverId, unless metadata.sourceName is provided instead. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
+         */
+        @JsonSetter(value = "startTime", nulls = Nulls.SKIP)
+        public Builder startTime(Optional<String> startTime) {
+            this.startTime = startTime;
+            return this;
+        }
+
+        public Builder startTime(String startTime) {
+            this.startTime = Optional.ofNullable(startTime);
+            return this;
+        }
+
+        /**
+         * <p>ID of the vehicle. This can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the vehicle.</p>
+         */
+        @JsonSetter(value = "vehicleId", nulls = Nulls.SKIP)
+        public Builder vehicleId(Optional<String> vehicleId) {
+            this.vehicleId = vehicleId;
+            return this;
+        }
+
+        public Builder vehicleId(String vehicleId) {
+            this.vehicleId = Optional.ofNullable(vehicleId);
+            return this;
+        }
+
         public DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody build() {
             return new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody(
                     assignedAtTime,

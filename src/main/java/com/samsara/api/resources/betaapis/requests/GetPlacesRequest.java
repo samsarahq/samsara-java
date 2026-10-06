@@ -40,6 +40,8 @@ public final class GetPlacesRequest {
 
     private final Optional<String> name;
 
+    private final Optional<String> hubIds;
+
     private final Map<String, Object> additionalProperties;
 
     private GetPlacesRequest(
@@ -53,6 +55,7 @@ public final class GetPlacesRequest {
             Optional<String> parentTagIds,
             Optional<String> placeTypes,
             Optional<String> name,
+            Optional<String> hubIds,
             Map<String, Object> additionalProperties) {
         this.after = after;
         this.limit = limit;
@@ -64,6 +67,7 @@ public final class GetPlacesRequest {
         this.parentTagIds = parentTagIds;
         this.placeTypes = placeTypes;
         this.name = name;
+        this.hubIds = hubIds;
         this.additionalProperties = additionalProperties;
     }
 
@@ -147,6 +151,14 @@ public final class GetPlacesRequest {
         return name;
     }
 
+    /**
+     * @return Comma-separated route-planning hub IDs (UUIDs). Returns places associated with any of the given hubs.
+     */
+    @JsonProperty("hubIds")
+    public Optional<String> getHubIds() {
+        return hubIds;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -168,7 +180,8 @@ public final class GetPlacesRequest {
                 && tagIds.equals(other.tagIds)
                 && parentTagIds.equals(other.parentTagIds)
                 && placeTypes.equals(other.placeTypes)
-                && name.equals(other.name);
+                && name.equals(other.name)
+                && hubIds.equals(other.hubIds);
     }
 
     @java.lang.Override
@@ -183,7 +196,8 @@ public final class GetPlacesRequest {
                 this.tagIds,
                 this.parentTagIds,
                 this.placeTypes,
-                this.name);
+                this.name,
+                this.hubIds);
     }
 
     @java.lang.Override
@@ -217,6 +231,8 @@ public final class GetPlacesRequest {
 
         private Optional<String> name = Optional.empty();
 
+        private Optional<String> hubIds = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -233,6 +249,7 @@ public final class GetPlacesRequest {
             parentTagIds(other.getParentTagIds());
             placeTypes(other.getPlaceTypes());
             name(other.getName());
+            hubIds(other.getHubIds());
             return this;
         }
 
@@ -376,6 +393,20 @@ public final class GetPlacesRequest {
             return this;
         }
 
+        /**
+         * <p>Comma-separated route-planning hub IDs (UUIDs). Returns places associated with any of the given hubs.</p>
+         */
+        @JsonSetter(value = "hubIds", nulls = Nulls.SKIP)
+        public Builder hubIds(Optional<String> hubIds) {
+            this.hubIds = hubIds;
+            return this;
+        }
+
+        public Builder hubIds(String hubIds) {
+            this.hubIds = Optional.ofNullable(hubIds);
+            return this;
+        }
+
         public GetPlacesRequest build() {
             return new GetPlacesRequest(
                     after,
@@ -388,6 +419,7 @@ public final class GetPlacesRequest {
                     parentTagIds,
                     placeTypes,
                     name,
+                    hubIds,
                     additionalProperties);
         }
     }

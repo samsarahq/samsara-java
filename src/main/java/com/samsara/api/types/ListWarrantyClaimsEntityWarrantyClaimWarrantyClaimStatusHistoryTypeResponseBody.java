@@ -23,7 +23,8 @@ import java.util.Optional;
 public final class ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBody {
     private final Optional<String> happenedAtTime;
 
-    private final Optional<String> status;
+    private final Optional<ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus>
+            status;
 
     private final Optional<String> userId;
 
@@ -31,7 +32,7 @@ public final class ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHisto
 
     private ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBody(
             Optional<String> happenedAtTime,
-            Optional<String> status,
+            Optional<ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus> status,
             Optional<String> userId,
             Map<String, Object> additionalProperties) {
         this.happenedAtTime = happenedAtTime;
@@ -49,10 +50,10 @@ public final class ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHisto
     }
 
     /**
-     * @return The status the claim moved into.
+     * @return The status the claim moved into.  Valid values: <code>unknown</code>, <code>created</code>, <code>submitted</code>, <code>inReview</code>, <code>approved</code>, <code>rejected</code>, <code>resubmitted</code>, <code>reimbursed</code>
      */
     @JsonProperty("status")
-    public Optional<String> getStatus() {
+    public Optional<ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus> getStatus() {
         return status;
     }
 
@@ -100,7 +101,8 @@ public final class ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHisto
     public static final class Builder {
         private Optional<String> happenedAtTime = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus> status =
+                Optional.empty();
 
         private Optional<String> userId = Optional.empty();
 
@@ -131,15 +133,18 @@ public final class ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHisto
         }
 
         /**
-         * <p>The status the claim moved into.</p>
+         * <p>The status the claim moved into.  Valid values: <code>unknown</code>, <code>created</code>, <code>submitted</code>, <code>inReview</code>, <code>approved</code>, <code>rejected</code>, <code>resubmitted</code>, <code>reimbursed</code></p>
          */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<String> status) {
+        public Builder status(
+                Optional<ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus>
+                        status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(String status) {
+        public Builder status(
+                ListWarrantyClaimsEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

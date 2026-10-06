@@ -43,7 +43,7 @@ public final class PostTrainingAssignmentsRequest {
     }
 
     /**
-     * @return Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,driver-46282156</code>
+     * @return String of comma separated learner IDs using the format <code>driver-&lt;id&gt;</code> or <code>user-&lt;id&gt;</code>. Training assignments for the specified course ID and learner(s) will be created. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,user-46282156</code>. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
      */
     @JsonProperty("learnerIds")
     public Optional<List<String>> getLearnerIds() {
@@ -117,7 +117,7 @@ public final class PostTrainingAssignmentsRequest {
         PostTrainingAssignmentsRequest build();
 
         /**
-         * <p>Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,driver-46282156</code></p>
+         * <p>String of comma separated learner IDs using the format <code>driver-&lt;id&gt;</code> or <code>user-&lt;id&gt;</code>. Training assignments for the specified course ID and learner(s) will be created. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,user-46282156</code>. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.</p>
          */
         _FinalStage learnerIds(Optional<List<String>> learnerIds);
 
@@ -178,7 +178,7 @@ public final class PostTrainingAssignmentsRequest {
         }
 
         /**
-         * <p>Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,driver-46282156</code></p>
+         * <p>String of comma separated learner IDs using the format <code>driver-&lt;id&gt;</code> or <code>user-&lt;id&gt;</code>. Training assignments for the specified course ID and learner(s) will be created. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,user-46282156</code>. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -188,7 +188,7 @@ public final class PostTrainingAssignmentsRequest {
         }
 
         /**
-         * <p>Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,driver-46282156</code></p>
+         * <p>String of comma separated learner IDs using the format <code>driver-&lt;id&gt;</code> or <code>user-&lt;id&gt;</code>. Training assignments for the specified course ID and learner(s) will be created. Max value for this value is 100 objects. Example: <code>learnerIds=driver-281474,user-46282156</code>. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "learnerIds", nulls = Nulls.SKIP)

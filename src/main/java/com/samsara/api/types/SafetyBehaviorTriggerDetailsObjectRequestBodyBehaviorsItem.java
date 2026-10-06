@@ -82,6 +82,9 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
             new SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem(
                     Value.CUSTOMER_CUSTOM_EVENT6, "CustomerCustomEvent6");
 
+    public static final SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem IMPROPER_EGRESS =
+            new SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem(Value.IMPROPER_EGRESS, "ImproperEgress");
+
     public static final SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem LANE_DEPARTURE =
             new SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem(Value.LANE_DEPARTURE, "LaneDeparture");
 
@@ -361,6 +364,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
                 return visitor.visitContextConstructionOrWorkZone();
             case CUSTOMER_CUSTOM_EVENT6:
                 return visitor.visitCustomerCustomEvent6();
+            case IMPROPER_EGRESS:
+                return visitor.visitImproperEgress();
             case LANE_DEPARTURE:
                 return visitor.visitLaneDeparture();
             case LEFT_TURN:
@@ -528,6 +533,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
                 return CONTEXT_CONSTRUCTION_OR_WORK_ZONE;
             case "CustomerCustomEvent6":
                 return CUSTOMER_CUSTOM_EVENT6;
+            case "ImproperEgress":
+                return IMPROPER_EGRESS;
             case "LaneDeparture":
                 return LANE_DEPARTURE;
             case "LeftTurn":
@@ -726,6 +733,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
 
         IDLING,
 
+        IMPROPER_EGRESS,
+
         INVALID,
 
         LANE_DEPARTURE,
@@ -887,6 +896,8 @@ public final class SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem {
         T visitHosViolation();
 
         T visitIdling();
+
+        T visitImproperEgress();
 
         T visitInvalid();
 

@@ -41,7 +41,7 @@ public final class TrainingLearnerObjectResponseBody {
     }
 
     /**
-     * @return The type of the polymorphic user.  Valid values: <code>driver</code>
+     * @return The learner type. Returns <code>unknown</code> when the learner type is not recognized. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.  Valid values: <code>unknown</code>, <code>driver</code>, <code>user</code>
      */
     @JsonProperty("type")
     public TrainingLearnerObjectResponseBodyType getType() {
@@ -88,7 +88,7 @@ public final class TrainingLearnerObjectResponseBody {
 
     public interface TypeStage {
         /**
-         * <p>The type of the polymorphic user.  Valid values: <code>driver</code></p>
+         * <p>The learner type. Returns <code>unknown</code> when the learner type is not recognized. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.  Valid values: <code>unknown</code>, <code>driver</code>, <code>user</code></p>
          */
         _FinalStage type(@NotNull TrainingLearnerObjectResponseBodyType type);
     }
@@ -128,8 +128,8 @@ public final class TrainingLearnerObjectResponseBody {
         }
 
         /**
-         * <p>The type of the polymorphic user.  Valid values: <code>driver</code></p>
-         * <p>The type of the polymorphic user.  Valid values: <code>driver</code></p>
+         * <p>The learner type. Returns <code>unknown</code> when the learner type is not recognized. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.  Valid values: <code>unknown</code>, <code>driver</code>, <code>user</code></p>
+         * <p>The learner type. Returns <code>unknown</code> when the learner type is not recognized. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.  Valid values: <code>unknown</code>, <code>driver</code>, <code>user</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

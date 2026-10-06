@@ -478,7 +478,36 @@ public class AsyncRawDriverVehicleAssignmentsClient {
     }
 
     /**
-     * Update driver assignments that were created using the <code>POST fleet/driver-vehicle-assignments</code>. Vehicle Id, Driver Id, and Start Time must match an existing assignment.
+     * Update driver assignments that were created using the <code>POST fleet/driver-vehicle-assignments</code>. Identify the assignment either with vehicleId, driverId, and startTime, or with metadata.sourceName alone.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<
+                    SamsaraApiHttpResponse<DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody>>
+            updateDriverVehicleAssignment() {
+        return updateDriverVehicleAssignment(
+                DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody.builder()
+                        .build());
+    }
+
+    /**
+     * Update driver assignments that were created using the <code>POST fleet/driver-vehicle-assignments</code>. Identify the assignment either with vehicleId, driverId, and startTime, or with metadata.sourceName alone.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<
+                    SamsaraApiHttpResponse<DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody>>
+            updateDriverVehicleAssignment(RequestOptions requestOptions) {
+        return updateDriverVehicleAssignment(
+                DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody.builder()
+                        .build(),
+                requestOptions);
+    }
+
+    /**
+     * Update driver assignments that were created using the <code>POST fleet/driver-vehicle-assignments</code>. Identify the assignment either with vehicleId, driverId, and startTime, or with metadata.sourceName alone.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -490,7 +519,7 @@ public class AsyncRawDriverVehicleAssignmentsClient {
     }
 
     /**
-     * Update driver assignments that were created using the <code>POST fleet/driver-vehicle-assignments</code>. Vehicle Id, Driver Id, and Start Time must match an existing assignment.
+     * Update driver assignments that were created using the <code>POST fleet/driver-vehicle-assignments</code>. Identify the assignment either with vehicleId, driverId, and startTime, or with metadata.sourceName alone.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Assignments</strong> under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>

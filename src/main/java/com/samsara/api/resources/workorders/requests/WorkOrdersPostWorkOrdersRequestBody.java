@@ -129,7 +129,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
-     * @return The ID of the asset.
+     * @return The ID of the asset. Either a Samsara ID or an external ID in <code>key:value</code> form, for example <code>vin:1HGCM82633A004352</code>.
      */
     @JsonProperty("assetId")
     public String getAssetId() {
@@ -355,7 +355,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
     public interface AssetIdStage {
         /**
-         * <p>The ID of the asset.</p>
+         * <p>The ID of the asset. Either a Samsara ID or an external ID in <code>key:value</code> form, for example <code>vin:1HGCM82633A004352</code>.</p>
          */
         _FinalStage assetId(@NotNull String assetId);
 
@@ -577,8 +577,8 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The ID of the asset.</p>
-         * <p>The ID of the asset.</p>
+         * <p>The ID of the asset. Either a Samsara ID or an external ID in <code>key:value</code> form, for example <code>vin:1HGCM82633A004352</code>.</p>
+         * <p>The ID of the asset. Either a Samsara ID or an external ID in <code>key:value</code> form, for example <code>vin:1HGCM82633A004352</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

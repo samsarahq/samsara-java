@@ -22,7 +22,7 @@ import java.util.Optional;
 public final class CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBody {
     private final Optional<String> id;
 
-    private final Optional<String> itemType;
+    private final Optional<CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType> itemType;
 
     private final Optional<String> vmrsCode;
 
@@ -30,7 +30,7 @@ public final class CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseB
 
     private CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBody(
             Optional<String> id,
-            Optional<String> itemType,
+            Optional<CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType> itemType,
             Optional<String> vmrsCode,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -48,10 +48,10 @@ public final class CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseB
     }
 
     /**
-     * @return Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).
+     * @return Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: <code>unknown</code>, <code>vmrsCode</code>, <code>serviceTask</code>
      */
     @JsonProperty("itemType")
-    public Optional<String> getItemType() {
+    public Optional<CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType> getItemType() {
         return itemType;
     }
 
@@ -97,7 +97,8 @@ public final class CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseB
     public static final class Builder {
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> itemType = Optional.empty();
+        private Optional<CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType> itemType =
+                Optional.empty();
 
         private Optional<String> vmrsCode = Optional.empty();
 
@@ -128,15 +129,16 @@ public final class CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseB
         }
 
         /**
-         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).</p>
+         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: <code>unknown</code>, <code>vmrsCode</code>, <code>serviceTask</code></p>
          */
         @JsonSetter(value = "itemType", nulls = Nulls.SKIP)
-        public Builder itemType(Optional<String> itemType) {
+        public Builder itemType(
+                Optional<CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType> itemType) {
             this.itemType = itemType;
             return this;
         }
 
-        public Builder itemType(String itemType) {
+        public Builder itemType(CreateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType itemType) {
             this.itemType = Optional.ofNullable(itemType);
             return this;
         }

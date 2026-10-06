@@ -74,7 +74,7 @@ public final class RidershipPassengerObjectResponseBody {
     }
 
     /**
-     * @return Classification or grade level of the passenger.
+     * @return Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12.
      */
     @JsonProperty("classification")
     public Optional<String> getClassification() {
@@ -90,7 +90,7 @@ public final class RidershipPassengerObjectResponseBody {
     }
 
     /**
-     * @return A map of external ids
+     * @return Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.
      */
     @JsonProperty("externalIds")
     public Optional<Map<String, String>> getExternalIds() {
@@ -143,7 +143,7 @@ public final class RidershipPassengerObjectResponseBody {
     }
 
     /**
-     * @return IDs of tags associated with this passenger.
+     * @return Samsara IDs of the tags assigned to this passenger.
      */
     @JsonProperty("tagIds")
     public Optional<List<String>> getTagIds() {
@@ -257,14 +257,14 @@ public final class RidershipPassengerObjectResponseBody {
         RidershipPassengerObjectResponseBody build();
 
         /**
-         * <p>Classification or grade level of the passenger.</p>
+         * <p>Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12.</p>
          */
         _FinalStage classification(Optional<String> classification);
 
         _FinalStage classification(String classification);
 
         /**
-         * <p>A map of external ids</p>
+         * <p>Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.</p>
          */
         _FinalStage externalIds(Optional<Map<String, String>> externalIds);
 
@@ -283,7 +283,7 @@ public final class RidershipPassengerObjectResponseBody {
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsObjectResponseBody specialInstructions);
 
         /**
-         * <p>IDs of tags associated with this passenger.</p>
+         * <p>Samsara IDs of the tags assigned to this passenger.</p>
          */
         _FinalStage tagIds(Optional<List<String>> tagIds);
 
@@ -416,7 +416,7 @@ public final class RidershipPassengerObjectResponseBody {
         }
 
         /**
-         * <p>IDs of tags associated with this passenger.</p>
+         * <p>Samsara IDs of the tags assigned to this passenger.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -426,7 +426,7 @@ public final class RidershipPassengerObjectResponseBody {
         }
 
         /**
-         * <p>IDs of tags associated with this passenger.</p>
+         * <p>Samsara IDs of the tags assigned to this passenger.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
@@ -471,7 +471,7 @@ public final class RidershipPassengerObjectResponseBody {
         }
 
         /**
-         * <p>A map of external ids</p>
+         * <p>Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -481,7 +481,7 @@ public final class RidershipPassengerObjectResponseBody {
         }
 
         /**
-         * <p>A map of external ids</p>
+         * <p>Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
@@ -491,7 +491,7 @@ public final class RidershipPassengerObjectResponseBody {
         }
 
         /**
-         * <p>Classification or grade level of the passenger.</p>
+         * <p>Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -501,7 +501,7 @@ public final class RidershipPassengerObjectResponseBody {
         }
 
         /**
-         * <p>Classification or grade level of the passenger.</p>
+         * <p>Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "classification", nulls = Nulls.SKIP)

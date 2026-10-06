@@ -13,6 +13,9 @@ public final class FormSubmissionsPatchFormSubmissionRequestBodyStatus {
     public static final FormSubmissionsPatchFormSubmissionRequestBodyStatus IN_PROGRESS =
             new FormSubmissionsPatchFormSubmissionRequestBodyStatus(Value.IN_PROGRESS, "inProgress");
 
+    public static final FormSubmissionsPatchFormSubmissionRequestBodyStatus DENIED =
+            new FormSubmissionsPatchFormSubmissionRequestBodyStatus(Value.DENIED, "denied");
+
     public static final FormSubmissionsPatchFormSubmissionRequestBodyStatus ARCHIVED =
             new FormSubmissionsPatchFormSubmissionRequestBodyStatus(Value.ARCHIVED, "archived");
 
@@ -59,6 +62,8 @@ public final class FormSubmissionsPatchFormSubmissionRequestBodyStatus {
                 return visitor.visitApproved();
             case IN_PROGRESS:
                 return visitor.visitInProgress();
+            case DENIED:
+                return visitor.visitDenied();
             case ARCHIVED:
                 return visitor.visitArchived();
             case CHANGES_REQUESTED:
@@ -78,6 +83,8 @@ public final class FormSubmissionsPatchFormSubmissionRequestBodyStatus {
                 return APPROVED;
             case "inProgress":
                 return IN_PROGRESS;
+            case "denied":
+                return DENIED;
             case "archived":
                 return ARCHIVED;
             case "changesRequested":
@@ -100,6 +107,8 @@ public final class FormSubmissionsPatchFormSubmissionRequestBodyStatus {
 
         APPROVED,
 
+        DENIED,
+
         UNKNOWN
     }
 
@@ -113,6 +122,8 @@ public final class FormSubmissionsPatchFormSubmissionRequestBodyStatus {
         T visitChangesRequested();
 
         T visitApproved();
+
+        T visitDenied();
 
         T visitUnknown(String unknownType);
     }

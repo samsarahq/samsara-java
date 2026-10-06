@@ -29,7 +29,7 @@ public final class EntityListWarrantyClaimsTypeResponseBody {
 
     private final Optional<Long> claimOdometerMeters;
 
-    private final Optional<String> claimStatus;
+    private final Optional<EntityListWarrantyClaimsTypeResponseBodyClaimStatus> claimStatus;
 
     private final Optional<List<String>> componentInstanceIds;
 
@@ -81,7 +81,7 @@ public final class EntityListWarrantyClaimsTypeResponseBody {
             Optional<String> cause,
             Optional<Long> claimEngineHours,
             Optional<Long> claimOdometerMeters,
-            Optional<String> claimStatus,
+            Optional<EntityListWarrantyClaimsTypeResponseBodyClaimStatus> claimStatus,
             Optional<List<String>> componentInstanceIds,
             Optional<String> concern,
             Optional<String> correction,
@@ -162,10 +162,10 @@ public final class EntityListWarrantyClaimsTypeResponseBody {
     }
 
     /**
-     * @return Current status of the claim.
+     * @return Current status of the claim.  Valid values: <code>unknown</code>, <code>created</code>, <code>submitted</code>, <code>inReview</code>, <code>approved</code>, <code>rejected</code>, <code>resubmitted</code>, <code>reimbursed</code>
      */
     @JsonProperty("claimStatus")
-    public Optional<String> getClaimStatus() {
+    public Optional<EntityListWarrantyClaimsTypeResponseBodyClaimStatus> getClaimStatus() {
         return claimStatus;
     }
 
@@ -411,7 +411,7 @@ public final class EntityListWarrantyClaimsTypeResponseBody {
 
         private Optional<Long> claimOdometerMeters = Optional.empty();
 
-        private Optional<String> claimStatus = Optional.empty();
+        private Optional<EntityListWarrantyClaimsTypeResponseBodyClaimStatus> claimStatus = Optional.empty();
 
         private Optional<List<String>> componentInstanceIds = Optional.empty();
 
@@ -546,15 +546,15 @@ public final class EntityListWarrantyClaimsTypeResponseBody {
         }
 
         /**
-         * <p>Current status of the claim.</p>
+         * <p>Current status of the claim.  Valid values: <code>unknown</code>, <code>created</code>, <code>submitted</code>, <code>inReview</code>, <code>approved</code>, <code>rejected</code>, <code>resubmitted</code>, <code>reimbursed</code></p>
          */
         @JsonSetter(value = "claimStatus", nulls = Nulls.SKIP)
-        public Builder claimStatus(Optional<String> claimStatus) {
+        public Builder claimStatus(Optional<EntityListWarrantyClaimsTypeResponseBodyClaimStatus> claimStatus) {
             this.claimStatus = claimStatus;
             return this;
         }
 
-        public Builder claimStatus(String claimStatus) {
+        public Builder claimStatus(EntityListWarrantyClaimsTypeResponseBodyClaimStatus claimStatus) {
             this.claimStatus = Optional.ofNullable(claimStatus);
             return this;
         }

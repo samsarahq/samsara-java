@@ -78,6 +78,9 @@ public final class DeviceResponseResponseBodyModel {
 
     public static final DeviceResponseResponseBodyModel OEMV = new DeviceResponseResponseBodyModel(Value.OEMV, "OEMV");
 
+    public static final DeviceResponseResponseBodyModel BAXTER =
+            new DeviceResponseResponseBodyModel(Value.BAXTER, "Baxter");
+
     public static final DeviceResponseResponseBodyModel AG45EU =
             new DeviceResponseResponseBodyModel(Value.AG45EU, "AG45EU");
 
@@ -198,6 +201,8 @@ public final class DeviceResponseResponseBodyModel {
                 return visitor.visitOem();
             case OEMV:
                 return visitor.visitOemv();
+            case BAXTER:
+                return visitor.visitBaxter();
             case AG45EU:
                 return visitor.visitAg45Eu();
             case VG54NA:
@@ -287,6 +292,8 @@ public final class DeviceResponseResponseBodyModel {
                 return OEM;
             case "OEMV":
                 return OEMV;
+            case "Baxter":
+                return BAXTER;
             case "AG45EU":
                 return AG45EU;
             case "VG54NA":
@@ -358,6 +365,8 @@ public final class DeviceResponseResponseBodyModel {
         AT12X,
 
         AT13,
+
+        BAXTER,
 
         CM31,
 
@@ -442,6 +451,8 @@ public final class DeviceResponseResponseBodyModel {
         T visitAt12X();
 
         T visitAt13();
+
+        T visitBaxter();
 
         T visitCm31();
 

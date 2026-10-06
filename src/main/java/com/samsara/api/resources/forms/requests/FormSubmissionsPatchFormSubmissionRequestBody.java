@@ -121,7 +121,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
     }
 
     /**
-     * @return Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code>
+     * @return Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code>
      */
     @JsonProperty("status")
     public Optional<FormSubmissionsPatchFormSubmissionRequestBodyStatus> getStatus() {
@@ -232,7 +232,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         _FinalStage routeStopId(String routeStopId);
 
         /**
-         * <p>Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code></p>
+         * <p>Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code></p>
          */
         _FinalStage status(Optional<FormSubmissionsPatchFormSubmissionRequestBodyStatus> status);
 
@@ -318,7 +318,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         }
 
         /**
-         * <p>Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code></p>
+         * <p>Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -328,7 +328,7 @@ public final class FormSubmissionsPatchFormSubmissionRequestBody {
         }
 
         /**
-         * <p>Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code></p>
+         * <p>Status of the form submission.  Valid values: <code>notStarted</code>, <code>archived</code>, <code>inProgress</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)

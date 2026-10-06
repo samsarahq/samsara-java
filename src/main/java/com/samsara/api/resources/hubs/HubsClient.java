@@ -81,7 +81,8 @@ public class HubsClient {
     }
 
     /**
-     * Update existing location by ID.
+     * <strong>Note: This endpoint is deprecated. Use <a href="https://developers.samsara.com/reference/patchplace">PATCH /places</a> instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the <a href="https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api">migration guide</a>.</strong>
+     * <p>Update existing location by ID.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -92,7 +93,8 @@ public class HubsClient {
     }
 
     /**
-     * Update existing location by ID.
+     * <strong>Note: This endpoint is deprecated. Use <a href="https://developers.samsara.com/reference/patchplace">PATCH /places</a> instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the <a href="https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api">migration guide</a>.</strong>
+     * <p>Update existing location by ID.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -103,7 +105,8 @@ public class HubsClient {
     }
 
     /**
-     * Retrieve locations for a specific hub.
+     * <strong>Note: This endpoint is deprecated. Use <a href="https://developers.samsara.com/reference/getplaces">GET /places</a> instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the <a href="https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api">migration guide</a>.</strong>
+     * <p>Retrieve locations for a specific hub.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -113,7 +116,8 @@ public class HubsClient {
     }
 
     /**
-     * Retrieve locations for a specific hub.
+     * <strong>Note: This endpoint is deprecated. Use <a href="https://developers.samsara.com/reference/getplaces">GET /places</a> instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the <a href="https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api">migration guide</a>.</strong>
+     * <p>Retrieve locations for a specific hub.</p>
      * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -124,7 +128,8 @@ public class HubsClient {
     }
 
     /**
-     * Create new locations.
+     * <strong>Note: This endpoint is deprecated. Use <a href="https://developers.samsara.com/reference/postplace">POST /places</a> instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the <a href="https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api">migration guide</a>.</strong>
+     * <p>Create new locations.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -135,7 +140,8 @@ public class HubsClient {
     }
 
     /**
-     * Create new locations.
+     * <strong>Note: This endpoint is deprecated. Use <a href="https://developers.samsara.com/reference/postplace">POST /places</a> instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the <a href="https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api">migration guide</a>.</strong>
+     * <p>Create new locations.</p>
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Routes</strong> under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>

@@ -29,7 +29,7 @@ public final class DeleteRidershipPassengerRequest {
     }
 
     /**
-     * @return ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.
+     * @return Samsara UUID of the passenger, or an external ID in <code>key:value</code> format, such as <code>student:STU-001</code>.
      */
     @JsonProperty("id")
     public String getId() {
@@ -67,7 +67,7 @@ public final class DeleteRidershipPassengerRequest {
 
     public interface IdStage {
         /**
-         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
+         * <p>Samsara UUID of the passenger, or an external ID in <code>key:value</code> format, such as <code>student:STU-001</code>.</p>
          */
         _FinalStage id(@NotNull String id);
 
@@ -94,8 +94,8 @@ public final class DeleteRidershipPassengerRequest {
         }
 
         /**
-         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
-         * <p>ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: <code>key:value</code>. For example, <code>student:STU-001</code>.</p>
+         * <p>Samsara UUID of the passenger, or an external ID in <code>key:value</code> format, such as <code>student:STU-001</code>.</p>
+         * <p>Samsara UUID of the passenger, or an external ID in <code>key:value</code> format, such as <code>student:STU-001</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

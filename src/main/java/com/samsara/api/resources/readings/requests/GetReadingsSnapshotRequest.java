@@ -280,6 +280,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
      * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
      * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+     * <li><code>cargoFillPercent</code> (Cargo fill percent): Estimated percentage of the trailer cargo space that is occupied, based on cargo camera images. (percent)</li>
      * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
      * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
      * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -639,6 +640,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
          * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+         * <li><code>cargoFillPercent</code> (Cargo fill percent): Estimated percentage of the trailer cargo space that is occupied, based on cargo camera images. (percent)</li>
          * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -994,6 +996,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
          * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+         * <li><code>cargoFillPercent</code> (Cargo fill percent): Estimated percentage of the trailer cargo space that is occupied, based on cargo camera images. (percent)</li>
          * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>
@@ -1253,6 +1256,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>addressEntry</code> (Address Entry): Address data from the address entry event</li>
          * <li><code>addressExit</code> (Address Exit): Address data from the address exit event</li>
          * <li><code>atisLamp</code> (Atis Lamp status): Atis lamp on/off status (values: off | on)</li>
+         * <li><code>cargoFillPercent</code> (Cargo fill percent): Estimated percentage of the trailer cargo space that is occupied, based on cargo camera images. (percent)</li>
          * <li><code>derivedCargoState</code> (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)</li>
          * <li><code>doorClosedStatus</code> (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)</li>
          * <li><code>doorClosedStatusAdvanced</code> (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)</li>

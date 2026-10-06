@@ -3,18 +3,25 @@ package com.samsara.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.fuelandenergy.requests.DeletePreferredStationRequest;
 import com.samsara.api.resources.fuelandenergy.requests.FuelPurchasePostFuelPurchaseRequestBody;
-import com.samsara.api.resources.fuelandenergy.requests.GetDriverEfficiencyByDriversRequest;
-import com.samsara.api.resources.fuelandenergy.requests.GetDriverEfficiencyByVehiclesRequest;
 import com.samsara.api.resources.fuelandenergy.requests.GetFuelEnergyDriverReportsRequest;
 import com.samsara.api.resources.fuelandenergy.requests.GetFuelEnergyVehicleReportsRequest;
-import com.samsara.api.types.DriverEfficiencyGetDriverEfficiencyByDriversResponseBody;
-import com.samsara.api.types.DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody;
+import com.samsara.api.resources.fuelandenergy.requests.GetPreferredStationRequest;
+import com.samsara.api.resources.fuelandenergy.requests.ListPreferredStationsRequest;
+import com.samsara.api.resources.fuelandenergy.requests.PreferredStationsPatchPreferredStationRequestBody;
+import com.samsara.api.resources.fuelandenergy.requests.PreferredStationsPostPreferredStationRequestBody;
 import com.samsara.api.types.FuelEnergyGetFuelEnergyDriverReportsResponseBody;
 import com.samsara.api.types.FuelEnergyGetFuelEnergyVehicleReportsResponseBody;
 import com.samsara.api.types.FuelPurchasePostFuelPurchaseResponseBody;
 import com.samsara.api.types.PostFuelPurchaseRequestBodyPriceRequestBody;
 import com.samsara.api.types.PostFuelPurchaseRequestBodyPriceRequestBodyCurrency;
+import com.samsara.api.types.PreferredStationAddressRequestBody;
+import com.samsara.api.types.PreferredStationsGetPreferredStationResponseBody;
+import com.samsara.api.types.PreferredStationsListPreferredStationsResponseBody;
+import com.samsara.api.types.PreferredStationsPatchPreferredStationResponseBody;
+import com.samsara.api.types.PreferredStationsPostPreferredStationResponseBody;
+import java.util.HashMap;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -41,108 +48,6 @@ public class FuelAndEnergyWireTest {
     @AfterEach
     public void teardown() throws Exception {
         server.shutdown();
-    }
-
-    @Test
-    public void testGetDriverEfficiencyByDrivers() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(TestResources.loadResource(
-                        "/wire-tests/FuelAndEnergyWireTest_testGetDriverEfficiencyByDrivers_response.json")));
-        DriverEfficiencyGetDriverEfficiencyByDriversResponseBody response = client.fuelAndEnergy()
-                .getDriverEfficiencyByDrivers(GetDriverEfficiencyByDriversRequest.builder()
-                        .startTime("startTime")
-                        .endTime("endTime")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = TestResources.loadResource(
-                "/wire-tests/FuelAndEnergyWireTest_testGetDriverEfficiencyByDrivers_response.json");
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
-    }
-
-    @Test
-    public void testGetDriverEfficiencyByVehicles() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(TestResources.loadResource(
-                        "/wire-tests/FuelAndEnergyWireTest_testGetDriverEfficiencyByVehicles_response.json")));
-        DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody response = client.fuelAndEnergy()
-                .getDriverEfficiencyByVehicles(GetDriverEfficiencyByVehiclesRequest.builder()
-                        .startTime("startTime")
-                        .endTime("endTime")
-                        .build());
-        RecordedRequest request = server.takeRequest();
-        Assertions.assertNotNull(request);
-        Assertions.assertEquals("GET", request.getMethod());
-
-        // Validate response body
-        Assertions.assertNotNull(response, "Response should not be null");
-        String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = TestResources.loadResource(
-                "/wire-tests/FuelAndEnergyWireTest_testGetDriverEfficiencyByVehicles_response.json");
-        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
-        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
-        Assertions.assertTrue(
-                jsonEquals(expectedResponseNode, actualResponseNode),
-                "Response body structure does not match expected");
-        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
-            String discriminator = null;
-            if (actualResponseNode.has("type"))
-                discriminator = actualResponseNode.get("type").asText();
-            else if (actualResponseNode.has("_type"))
-                discriminator = actualResponseNode.get("_type").asText();
-            else if (actualResponseNode.has("kind"))
-                discriminator = actualResponseNode.get("kind").asText();
-            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
-            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
-        }
-
-        if (!actualResponseNode.isNull()) {
-            Assertions.assertTrue(
-                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
-                    "response should be a valid JSON value");
-        }
-
-        if (actualResponseNode.isArray()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
-        }
-        if (actualResponseNode.isObject()) {
-            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
-        }
     }
 
     @Test
@@ -368,6 +273,472 @@ public class FuelAndEnergyWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"uuid\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\"\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testListPreferredStations() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        PreferredStationsListPreferredStationsResponseBody response = client.fuelAndEnergy()
+                .listPreferredStations(ListPreferredStationsRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"address\": {\n"
+                + "        \"city\": \"Green River\",\n"
+                + "        \"country\": \"US\",\n"
+                + "        \"line1\": \"8901 US Hwy 374\",\n"
+                + "        \"postalCode\": \"82935\",\n"
+                + "        \"state\": \"WY\"\n"
+                + "      },\n"
+                + "      \"discounts\": [\n"
+                + "        {\n"
+                + "          \"discount\": {\n"
+                + "            \"amount\": \"640.2\",\n"
+                + "            \"currency\": \"usd\"\n"
+                + "          },\n"
+                + "          \"discountPercent\": \"3.5\",\n"
+                + "          \"discountType\": \"centsPerUnit\",\n"
+                + "          \"fuelType\": \"gasoline\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"externalIds\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"id\": \"sta_abc123\",\n"
+                + "      \"latitude\": 41.5168,\n"
+                + "      \"longitude\": -109.471,\n"
+                + "      \"name\": \"Pilot Travel Center #432\",\n"
+                + "      \"prices\": [\n"
+                + "        {\n"
+                + "          \"fuelType\": \"gasoline\",\n"
+                + "          \"grossPrice\": {\n"
+                + "            \"amount\": \"640.2\",\n"
+                + "            \"currency\": \"usd\"\n"
+                + "          },\n"
+                + "          \"netPrice\": {\n"
+                + "            \"amount\": \"640.2\",\n"
+                + "            \"currency\": \"usd\"\n"
+                + "          },\n"
+                + "          \"volumeUnit\": \"liter\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"pagination\": {\n"
+                + "    \"endCursor\": \"MjkY\",\n"
+                + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testPostPreferredStation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}}"));
+        PreferredStationsPostPreferredStationResponseBody response = client.fuelAndEnergy()
+                .postPreferredStation(PreferredStationsPostPreferredStationRequestBody.builder()
+                        .address(PreferredStationAddressRequestBody.builder()
+                                .city("Green River")
+                                .country("US")
+                                .line1("8901 US Hwy 374")
+                                .postalCode("82935")
+                                .build())
+                        .name("Station #432")
+                        .externalIds(new HashMap<String, String>() {
+                            {
+                                put("key", "value");
+                            }
+                        })
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("POST", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = ""
+                + "{\n"
+                + "  \"address\": {\n"
+                + "    \"city\": \"Green River\",\n"
+                + "    \"country\": \"US\",\n"
+                + "    \"line1\": \"8901 US Hwy 374\",\n"
+                + "    \"postalCode\": \"82935\"\n"
+                + "  },\n"
+                + "  \"externalIds\": {\n"
+                + "    \"key\": \"value\"\n"
+                + "  },\n"
+                + "  \"name\": \"Station #432\"\n"
+                + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"address\": {\n"
+                + "      \"city\": \"Green River\",\n"
+                + "      \"country\": \"US\",\n"
+                + "      \"line1\": \"8901 US Hwy 374\",\n"
+                + "      \"postalCode\": \"82935\",\n"
+                + "      \"state\": \"WY\"\n"
+                + "    },\n"
+                + "    \"discounts\": [\n"
+                + "      {\n"
+                + "        \"discount\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"discountPercent\": \"3.5\",\n"
+                + "        \"discountType\": \"centsPerUnit\",\n"
+                + "        \"fuelType\": \"gasoline\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"externalIds\": {\n"
+                + "      \"key\": \"value\"\n"
+                + "    },\n"
+                + "    \"id\": \"sta_abc123\",\n"
+                + "    \"latitude\": 41.5168,\n"
+                + "    \"longitude\": -109.471,\n"
+                + "    \"name\": \"Pilot Travel Center #432\",\n"
+                + "    \"prices\": [\n"
+                + "      {\n"
+                + "        \"fuelType\": \"gasoline\",\n"
+                + "        \"grossPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"netPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"volumeUnit\": \"liter\"\n"
+                + "      }\n"
+                + "    ]\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testDeletePreferredStation() throws Exception {
+        server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
+        client.fuelAndEnergy()
+                .deletePreferredStation(
+                        DeletePreferredStationRequest.builder().id("id").build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("DELETE", request.getMethod());
+    }
+
+    @Test
+    public void testPatchPreferredStation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}}"));
+        PreferredStationsPatchPreferredStationResponseBody response = client.fuelAndEnergy()
+                .patchPreferredStation(PreferredStationsPatchPreferredStationRequestBody.builder()
+                        .id("id")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"address\": {\n"
+                + "      \"city\": \"Green River\",\n"
+                + "      \"country\": \"US\",\n"
+                + "      \"line1\": \"8901 US Hwy 374\",\n"
+                + "      \"postalCode\": \"82935\",\n"
+                + "      \"state\": \"WY\"\n"
+                + "    },\n"
+                + "    \"discounts\": [\n"
+                + "      {\n"
+                + "        \"discount\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"discountPercent\": \"3.5\",\n"
+                + "        \"discountType\": \"centsPerUnit\",\n"
+                + "        \"fuelType\": \"gasoline\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"externalIds\": {\n"
+                + "      \"key\": \"value\"\n"
+                + "    },\n"
+                + "    \"id\": \"sta_abc123\",\n"
+                + "    \"latitude\": 41.5168,\n"
+                + "    \"longitude\": -109.471,\n"
+                + "    \"name\": \"Pilot Travel Center #432\",\n"
+                + "    \"prices\": [\n"
+                + "      {\n"
+                + "        \"fuelType\": \"gasoline\",\n"
+                + "        \"grossPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"netPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"volumeUnit\": \"liter\"\n"
+                + "      }\n"
+                + "    ]\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testGetPreferredStation() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"address\":{\"city\":\"Green River\",\"country\":\"US\",\"line1\":\"8901 US Hwy 374\",\"postalCode\":\"82935\",\"state\":\"WY\"},\"discounts\":[{\"discount\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"discountPercent\":\"3.5\",\"discountType\":\"centsPerUnit\",\"fuelType\":\"gasoline\"}],\"externalIds\":{\"key\":\"value\"},\"id\":\"sta_abc123\",\"latitude\":41.5168,\"longitude\":-109.471,\"name\":\"Pilot Travel Center #432\",\"prices\":[{\"fuelType\":\"gasoline\",\"grossPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"netPrice\":{\"amount\":\"640.2\",\"currency\":\"usd\"},\"volumeUnit\":\"liter\"}]}}"));
+        PreferredStationsGetPreferredStationResponseBody response = client.fuelAndEnergy()
+                .getPreferredStation("id", GetPreferredStationRequest.builder().build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("GET", request.getMethod());
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"address\": {\n"
+                + "      \"city\": \"Green River\",\n"
+                + "      \"country\": \"US\",\n"
+                + "      \"line1\": \"8901 US Hwy 374\",\n"
+                + "      \"postalCode\": \"82935\",\n"
+                + "      \"state\": \"WY\"\n"
+                + "    },\n"
+                + "    \"discounts\": [\n"
+                + "      {\n"
+                + "        \"discount\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"discountPercent\": \"3.5\",\n"
+                + "        \"discountType\": \"centsPerUnit\",\n"
+                + "        \"fuelType\": \"gasoline\"\n"
+                + "      }\n"
+                + "    ],\n"
+                + "    \"externalIds\": {\n"
+                + "      \"key\": \"value\"\n"
+                + "    },\n"
+                + "    \"id\": \"sta_abc123\",\n"
+                + "    \"latitude\": 41.5168,\n"
+                + "    \"longitude\": -109.471,\n"
+                + "    \"name\": \"Pilot Travel Center #432\",\n"
+                + "    \"prices\": [\n"
+                + "      {\n"
+                + "        \"fuelType\": \"gasoline\",\n"
+                + "        \"grossPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"netPrice\": {\n"
+                + "          \"amount\": \"640.2\",\n"
+                + "          \"currency\": \"usd\"\n"
+                + "        },\n"
+                + "        \"volumeUnit\": \"liter\"\n"
+                + "      }\n"
+                + "    ]\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

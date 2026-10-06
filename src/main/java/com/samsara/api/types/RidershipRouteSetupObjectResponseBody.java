@@ -62,7 +62,7 @@ public final class RidershipRouteSetupObjectResponseBody {
     }
 
     /**
-     * @return The route ID.
+     * @return Samsara ID of the Routing API route associated with this passenger setup.
      */
     @JsonProperty("routeId")
     public String getRouteId() {
@@ -121,7 +121,7 @@ public final class RidershipRouteSetupObjectResponseBody {
 
     public interface RouteIdStage {
         /**
-         * <p>The route ID.</p>
+         * <p>Samsara ID of the Routing API route associated with this passenger setup.</p>
          */
         UpdatedAtTimeStage routeId(@NotNull String routeId);
     }
@@ -183,8 +183,8 @@ public final class RidershipRouteSetupObjectResponseBody {
         }
 
         /**
-         * <p>The route ID.</p>
-         * <p>The route ID.</p>
+         * <p>Samsara ID of the Routing API route associated with this passenger setup.</p>
+         * <p>Samsara ID of the Routing API route associated with this passenger setup.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

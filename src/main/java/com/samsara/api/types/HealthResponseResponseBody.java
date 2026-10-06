@@ -75,7 +75,7 @@ public final class HealthResponseResponseBody {
     }
 
     /**
-     * @return Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code>
+     * @return Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowConnectivity</code>, <code>lowDeviceBattery</code>, <code>lowUptime</code>, <code>mediaInputLowConnectivity</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsAttribute</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>unstablePower</code>, <code>vgUnplugged</code>
      */
     @JsonProperty("primaryHealthReason")
     public Optional<HealthResponseResponseBodyPrimaryHealthReason> getPrimaryHealthReason() {
@@ -112,10 +112,13 @@ public final class HealthResponseResponseBody {
      * <p><code>recommendedActionAgNoGpsSignal</code>: Gateway has no GPS signal. Verify that the gateway is securely attached to the exterior of the asset. Ensure that the device is outside and avoid obstructions such as underground structures, heavily insulated buildings, bridges, and trees.</p>
      * </li>
      * <li>
-     * <p><code>recommendedActionAgNotDetected</code>: The gateway has not been detected for at least 24 hours. See troubleshooting steps to reboot the gateway.</p>
+     * <p><code>recommendedActionAgNotDetected</code>: The gateway has not been detected for at least the configured check-in interval (typically 24, 48, or 72 hours). See troubleshooting steps to reboot the gateway.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionAgUnplugged</code>: The asset gateway is unplugged or cut. Check the gateway connection to ensure it is plugged in and has been installed correctly</p>
+     * </li>
+     * <li>
+     * <p><code>recommendedActionAgUnstablePower</code>: The asset gateway is receiving unstable power from the asset. Check that the power cable is securely connected to the gateway and the asset, and that the wiring and fuse are intact. If the issue continues, contact Support.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionBLEDataPending</code>: This device has recently been installed and more data is required to calculate health. No action required.</p>
@@ -133,10 +136,16 @@ public final class HealthResponseResponseBody {
      * <p><code>recommendedActionCcHealthy</code>: Device is healthy. No action required.</p>
      * </li>
      * <li>
+     * <p><code>recommendedActionCcLowConnectivity</code>: Check the device's connection and verify that it has been installed correctly.</p>
+     * </li>
+     * <li>
      * <p><code>recommendedActionCcLowUptime</code>: Please ensure all cameras are physically connected to the device.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionCcMediaInputUptime</code>: Please ensure the camera is properly connected to the device.</p>
+     * </li>
+     * <li>
+     * <p><code>recommendedActionCcNeedsAttribute</code>: Set the Analog Camera Setup attribute to Ignition On or Reverse Only so uptime can be calculated correctly.</p>
      * </li>
      * <li>
      * <p><code>recommendedActionCcNotDetected</code>: None</p>
@@ -190,6 +199,9 @@ public final class HealthResponseResponseBody {
      * <p><code>recommendedActionVehicleOff</code>: Asset has reported an expected power-off event, and is healthy. No action required.</p>
      * </li>
      * <li>
+     * <p><code>recommendedActionVgFrequentPowerLoss</code>: The vehicle gateway is losing power during trips. The vehicle gateway cannot function without a stable power source from the asset. Please ensure the vehicle gateway cable is securely connected to both the gateway and the vehicle port. If the issue continues, contact support for assistance.</p>
+     * </li>
+     * <li>
      * <p><code>recommendedActionVgHealthy</code>: Gateway is healthy. No action required.</p>
      * </li>
      * <li>
@@ -218,7 +230,7 @@ public final class HealthResponseResponseBody {
      * </li>
      * <li>
      * <p><code>unknown</code>: None</p>
-     * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionBLEDataPending</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCcNotDetected</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInactive</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmLowUptime</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
+     * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionAgUnstablePower</code>, <code>recommendedActionBLEDataPending</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowConnectivity</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCcNeedsAttribute</code>, <code>recommendedActionCcNotDetected</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInactive</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmLowUptime</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgFrequentPowerLoss</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
      * </li>
      * </ul>
      */
@@ -336,7 +348,7 @@ public final class HealthResponseResponseBody {
         }
 
         /**
-         * <p>Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowDeviceBattery</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>vgUnplugged</code></p>
+         * <p>Primary health reason affecting the device's current health status.  Valid values: <code>assetUnplugged</code>, <code>cameraMisaligned</code>, <code>dataPending</code>, <code>healthy</code>, <code>inwardCameraObstruction</code>, <code>irregularRecording</code>, <code>lowConnectivity</code>, <code>lowDeviceBattery</code>, <code>lowUptime</code>, <code>mediaInputLowConnectivity</code>, <code>missingEldDiagnostics</code>, <code>missingVin</code>, <code>needsAttribute</code>, <code>needsReplacement</code>, <code>newlyInstalledDevice</code>, <code>noGpsSignal</code>, <code>notDetected</code>, <code>outwardCameraObstruction</code>, <code>recordingTimeRequired</code>, <code>unknown</code>, <code>unstablePower</code>, <code>vgUnplugged</code></p>
          */
         @JsonSetter(value = "primaryHealthReason", nulls = Nulls.SKIP)
         public Builder primaryHealthReason(
@@ -386,10 +398,13 @@ public final class HealthResponseResponseBody {
          * <p><code>recommendedActionAgNoGpsSignal</code>: Gateway has no GPS signal. Verify that the gateway is securely attached to the exterior of the asset. Ensure that the device is outside and avoid obstructions such as underground structures, heavily insulated buildings, bridges, and trees.</p>
          * </li>
          * <li>
-         * <p><code>recommendedActionAgNotDetected</code>: The gateway has not been detected for at least 24 hours. See troubleshooting steps to reboot the gateway.</p>
+         * <p><code>recommendedActionAgNotDetected</code>: The gateway has not been detected for at least the configured check-in interval (typically 24, 48, or 72 hours). See troubleshooting steps to reboot the gateway.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionAgUnplugged</code>: The asset gateway is unplugged or cut. Check the gateway connection to ensure it is plugged in and has been installed correctly</p>
+         * </li>
+         * <li>
+         * <p><code>recommendedActionAgUnstablePower</code>: The asset gateway is receiving unstable power from the asset. Check that the power cable is securely connected to the gateway and the asset, and that the wiring and fuse are intact. If the issue continues, contact Support.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionBLEDataPending</code>: This device has recently been installed and more data is required to calculate health. No action required.</p>
@@ -407,10 +422,16 @@ public final class HealthResponseResponseBody {
          * <p><code>recommendedActionCcHealthy</code>: Device is healthy. No action required.</p>
          * </li>
          * <li>
+         * <p><code>recommendedActionCcLowConnectivity</code>: Check the device's connection and verify that it has been installed correctly.</p>
+         * </li>
+         * <li>
          * <p><code>recommendedActionCcLowUptime</code>: Please ensure all cameras are physically connected to the device.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionCcMediaInputUptime</code>: Please ensure the camera is properly connected to the device.</p>
+         * </li>
+         * <li>
+         * <p><code>recommendedActionCcNeedsAttribute</code>: Set the Analog Camera Setup attribute to Ignition On or Reverse Only so uptime can be calculated correctly.</p>
          * </li>
          * <li>
          * <p><code>recommendedActionCcNotDetected</code>: None</p>
@@ -464,6 +485,9 @@ public final class HealthResponseResponseBody {
          * <p><code>recommendedActionVehicleOff</code>: Asset has reported an expected power-off event, and is healthy. No action required.</p>
          * </li>
          * <li>
+         * <p><code>recommendedActionVgFrequentPowerLoss</code>: The vehicle gateway is losing power during trips. The vehicle gateway cannot function without a stable power source from the asset. Please ensure the vehicle gateway cable is securely connected to both the gateway and the vehicle port. If the issue continues, contact support for assistance.</p>
+         * </li>
+         * <li>
          * <p><code>recommendedActionVgHealthy</code>: Gateway is healthy. No action required.</p>
          * </li>
          * <li>
@@ -492,7 +516,7 @@ public final class HealthResponseResponseBody {
          * </li>
          * <li>
          * <p><code>unknown</code>: None</p>
-         * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionBLEDataPending</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCcNotDetected</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInactive</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmLowUptime</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
+         * <p>Valid values: <code>recommendedActionAgHealthy</code>, <code>recommendedActionAgLowDeviceBatteryAG45</code>, <code>recommendedActionAgLowDeviceBatteryAG46</code>, <code>recommendedActionAgLowDeviceBatteryAG51</code>, <code>recommendedActionAgLowDeviceBatteryPoweredAG</code>, <code>recommendedActionAgNoGpsSignal</code>, <code>recommendedActionAgNotDetected</code>, <code>recommendedActionAgUnplugged</code>, <code>recommendedActionAgUnstablePower</code>, <code>recommendedActionBLEDataPending</code>, <code>recommendedActionBLEHealthy</code>, <code>recommendedActionBLELowBattery</code>, <code>recommendedActionBLENotDetected</code>, <code>recommendedActionCcHealthy</code>, <code>recommendedActionCcLowConnectivity</code>, <code>recommendedActionCcLowUptime</code>, <code>recommendedActionCcMediaInputUptime</code>, <code>recommendedActionCcNeedsAttribute</code>, <code>recommendedActionCcNotDetected</code>, <code>recommendedActionCmCameraMisaligned</code>, <code>recommendedActionCmHealthy</code>, <code>recommendedActionCmInactive</code>, <code>recommendedActionCmInwardCameraObstruction</code>, <code>recommendedActionCmIrregularRecording</code>, <code>recommendedActionCmLowUptime</code>, <code>recommendedActionCmNewlyInstalledDevice</code>, <code>recommendedActionCmNotDetected</code>, <code>recommendedActionCmOutwardCameraObstruction</code>, <code>recommendedActionCmRecordingTimeRequired</code>, <code>recommendedActionCmVgUnplugged</code>, <code>recommendedActionGatewayNewlyInstalledDevice</code>, <code>recommendedActionHealthy</code>, <code>recommendedActionLowBatteryVoltage</code>, <code>recommendedActionOemNotReporting</code>, <code>recommendedActionVehicleOff</code>, <code>recommendedActionVgFrequentPowerLoss</code>, <code>recommendedActionVgHealthy</code>, <code>recommendedActionVgMissingEldDiagnostics</code>, <code>recommendedActionVgMissingEldDiagnosticsExchangeSubmitted</code>, <code>recommendedActionVgMissingEldDiagnosticsHardwareExchanged</code>, <code>recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted</code>, <code>recommendedActionVgMissingVin</code>, <code>recommendedActionVgNeedsReplacement</code>, <code>recommendedActionVgNotDetected</code>, <code>recommendedActionVgVgUnplugged</code>, <code>unknown</code></p>
          * </li>
          * </ul>
          */

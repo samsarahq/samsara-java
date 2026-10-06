@@ -88,6 +88,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
             REAR_COLLISION_WARNING = new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
                     Value.REAR_COLLISION_WARNING, "RearCollisionWarning");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem IMPROPER_EGRESS =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
+                    Value.IMPROPER_EGRESS, "ImproperEgress");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem LANE_DEPARTURE =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem(
                     Value.LANE_DEPARTURE, "LaneDeparture");
@@ -325,6 +329,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
                 return visitor.visitContextConstructionOrWorkZone();
             case REAR_COLLISION_WARNING:
                 return visitor.visitRearCollisionWarning();
+            case IMPROPER_EGRESS:
+                return visitor.visitImproperEgress();
             case LANE_DEPARTURE:
                 return visitor.visitLaneDeparture();
             case LEFT_TURN:
@@ -456,6 +462,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
                 return CONTEXT_CONSTRUCTION_OR_WORK_ZONE;
             case "RearCollisionWarning":
                 return REAR_COLLISION_WARNING;
+            case "ImproperEgress":
+                return IMPROPER_EGRESS;
             case "LaneDeparture":
                 return LANE_DEPARTURE;
             case "LeftTurn":
@@ -601,6 +609,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
 
         IDLING,
 
+        IMPROPER_EGRESS,
+
         INVALID,
 
         LANE_DEPARTURE,
@@ -726,6 +736,8 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabe
         T visitHosViolation();
 
         T visitIdling();
+
+        T visitImproperEgress();
 
         T visitInvalid();
 

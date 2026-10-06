@@ -41,7 +41,7 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
     }
 
     /**
-     * @return The stop ID for the passenger's drop-off.
+     * @return Routing API stop task ID for the passenger's drop-off. Omitted when no drop-off stop is assigned.
      */
     @JsonProperty("dropOffStopId")
     public Optional<String> getDropOffStopId() {
@@ -57,7 +57,7 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
     }
 
     /**
-     * @return The stop ID for the passenger's pick-up.
+     * @return Routing API stop task ID for the passenger's pickup. Omitted when no pickup stop is assigned.
      */
     @JsonProperty("pickUpStopId")
     public Optional<String> getPickUpStopId() {
@@ -109,14 +109,14 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
         RidershipRouteSetupPassengerObjectResponseBody build();
 
         /**
-         * <p>The stop ID for the passenger's drop-off.</p>
+         * <p>Routing API stop task ID for the passenger's drop-off. Omitted when no drop-off stop is assigned.</p>
          */
         _FinalStage dropOffStopId(Optional<String> dropOffStopId);
 
         _FinalStage dropOffStopId(String dropOffStopId);
 
         /**
-         * <p>The stop ID for the passenger's pick-up.</p>
+         * <p>Routing API stop task ID for the passenger's pickup. Omitted when no pickup stop is assigned.</p>
          */
         _FinalStage pickUpStopId(Optional<String> pickUpStopId);
 
@@ -157,7 +157,7 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's pick-up.</p>
+         * <p>Routing API stop task ID for the passenger's pickup. Omitted when no pickup stop is assigned.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -167,7 +167,7 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's pick-up.</p>
+         * <p>Routing API stop task ID for the passenger's pickup. Omitted when no pickup stop is assigned.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "pickUpStopId", nulls = Nulls.SKIP)
@@ -177,7 +177,7 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's drop-off.</p>
+         * <p>Routing API stop task ID for the passenger's drop-off. Omitted when no drop-off stop is assigned.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -187,7 +187,7 @@ public final class RidershipRouteSetupPassengerObjectResponseBody {
         }
 
         /**
-         * <p>The stop ID for the passenger's drop-off.</p>
+         * <p>Routing API stop task ID for the passenger's drop-off. Omitted when no drop-off stop is assigned.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "dropOffStopId", nulls = Nulls.SKIP)

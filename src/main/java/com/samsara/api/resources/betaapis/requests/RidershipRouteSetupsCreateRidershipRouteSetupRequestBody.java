@@ -39,7 +39,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
     }
 
     /**
-     * @return List of passenger assignments for the route.
+     * @return Passenger assignments for the route, with each passenger listed once.
      */
     @JsonProperty("passengers")
     public List<RidershipRouteSetupPassengerInputRequestBody> getPassengers() {
@@ -97,7 +97,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
         RidershipRouteSetupsCreateRidershipRouteSetupRequestBody build();
 
         /**
-         * <p>List of passenger assignments for the route.</p>
+         * <p>Passenger assignments for the route, with each passenger listed once.</p>
          */
         _FinalStage passengers(List<RidershipRouteSetupPassengerInputRequestBody> passengers);
 
@@ -137,7 +137,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
         }
 
         /**
-         * <p>List of passenger assignments for the route.</p>
+         * <p>Passenger assignments for the route, with each passenger listed once.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -149,7 +149,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
         }
 
         /**
-         * <p>List of passenger assignments for the route.</p>
+         * <p>Passenger assignments for the route, with each passenger listed once.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -159,7 +159,7 @@ public final class RidershipRouteSetupsCreateRidershipRouteSetupRequestBody {
         }
 
         /**
-         * <p>List of passenger assignments for the route.</p>
+         * <p>Passenger assignments for the route, with each passenger listed once.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "passengers", nulls = Nulls.SKIP)

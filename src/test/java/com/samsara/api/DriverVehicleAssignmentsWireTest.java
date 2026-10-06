@@ -250,21 +250,13 @@ public class DriverVehicleAssignmentsWireTest {
         DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody response = client.driverVehicleAssignments()
                 .updateDriverVehicleAssignment(
                         DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody.builder()
-                                .driverId("494123")
-                                .startTime("2019-06-13T19:08:25Z")
-                                .vehicleId("281474978683353")
                                 .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("PATCH", request.getMethod());
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = ""
-                + "{\n"
-                + "  \"driverId\": \"494123\",\n"
-                + "  \"startTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "  \"vehicleId\": \"281474978683353\"\n"
-                + "}";
+        String expectedRequestBody = "" + "{}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");

@@ -24,6 +24,10 @@ import java.util.Optional;
 public final class ListMaintenanceVendorsRequest {
     private final Optional<List<String>> ids;
 
+    private final Optional<List<String>> externalIds;
+
+    private final Optional<Boolean> includeResolvedSettings;
+
     private final Optional<Boolean> includeExternalIds;
 
     private final Optional<String> after;
@@ -32,10 +36,14 @@ public final class ListMaintenanceVendorsRequest {
 
     private ListMaintenanceVendorsRequest(
             Optional<List<String>> ids,
+            Optional<List<String>> externalIds,
+            Optional<Boolean> includeResolvedSettings,
             Optional<Boolean> includeExternalIds,
             Optional<String> after,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
+        this.externalIds = externalIds;
+        this.includeResolvedSettings = includeResolvedSettings;
         this.includeExternalIds = includeExternalIds;
         this.after = after;
         this.additionalProperties = additionalProperties;
@@ -47,6 +55,22 @@ public final class ListMaintenanceVendorsRequest {
     @JsonProperty("ids")
     public Optional<List<String>> getIds() {
         return ids;
+    }
+
+    /**
+     * @return A comma-separated list of up to 100 external IDs in key:value format to filter vendors on. See <a href="https://developers.samsara.com/docs/external-ids">external IDs</a>.
+     */
+    @JsonProperty("externalIds")
+    public Optional<List<String>> getExternalIds() {
+        return externalIds;
+    }
+
+    /**
+     * @return Include resolved vendor settings and their sources. Defaults to false.
+     */
+    @JsonProperty("includeResolvedSettings")
+    public Optional<Boolean> getIncludeResolvedSettings() {
+        return includeResolvedSettings;
     }
 
     /**
@@ -78,13 +102,16 @@ public final class ListMaintenanceVendorsRequest {
 
     private boolean equalTo(ListMaintenanceVendorsRequest other) {
         return ids.equals(other.ids)
+                && externalIds.equals(other.externalIds)
+                && includeResolvedSettings.equals(other.includeResolvedSettings)
                 && includeExternalIds.equals(other.includeExternalIds)
                 && after.equals(other.after);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.ids, this.includeExternalIds, this.after);
+        return Objects.hash(
+                this.ids, this.externalIds, this.includeResolvedSettings, this.includeExternalIds, this.after);
     }
 
     @java.lang.Override
@@ -100,6 +127,10 @@ public final class ListMaintenanceVendorsRequest {
     public static final class Builder {
         private Optional<List<String>> ids = Optional.empty();
 
+        private Optional<List<String>> externalIds = Optional.empty();
+
+        private Optional<Boolean> includeResolvedSettings = Optional.empty();
+
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
         private Optional<String> after = Optional.empty();
@@ -111,6 +142,8 @@ public final class ListMaintenanceVendorsRequest {
 
         public Builder from(ListMaintenanceVendorsRequest other) {
             ids(other.getIds());
+            externalIds(other.getExternalIds());
+            includeResolvedSettings(other.getIncludeResolvedSettings());
             includeExternalIds(other.getIncludeExternalIds());
             after(other.getAfter());
             return this;
@@ -132,6 +165,39 @@ public final class ListMaintenanceVendorsRequest {
 
         public Builder ids(String ids) {
             this.ids = Optional.of(Collections.singletonList(ids));
+            return this;
+        }
+
+        /**
+         * <p>A comma-separated list of up to 100 external IDs in key:value format to filter vendors on. See <a href="https://developers.samsara.com/docs/external-ids">external IDs</a>.</p>
+         */
+        @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
+        public Builder externalIds(Optional<List<String>> externalIds) {
+            this.externalIds = externalIds;
+            return this;
+        }
+
+        public Builder externalIds(List<String> externalIds) {
+            this.externalIds = Optional.ofNullable(externalIds);
+            return this;
+        }
+
+        public Builder externalIds(String externalIds) {
+            this.externalIds = Optional.of(Collections.singletonList(externalIds));
+            return this;
+        }
+
+        /**
+         * <p>Include resolved vendor settings and their sources. Defaults to false.</p>
+         */
+        @JsonSetter(value = "includeResolvedSettings", nulls = Nulls.SKIP)
+        public Builder includeResolvedSettings(Optional<Boolean> includeResolvedSettings) {
+            this.includeResolvedSettings = includeResolvedSettings;
+            return this;
+        }
+
+        public Builder includeResolvedSettings(Boolean includeResolvedSettings) {
+            this.includeResolvedSettings = Optional.ofNullable(includeResolvedSettings);
             return this;
         }
 
@@ -164,7 +230,8 @@ public final class ListMaintenanceVendorsRequest {
         }
 
         public ListMaintenanceVendorsRequest build() {
-            return new ListMaintenanceVendorsRequest(ids, includeExternalIds, after, additionalProperties);
+            return new ListMaintenanceVendorsRequest(
+                    ids, externalIds, includeResolvedSettings, includeExternalIds, after, additionalProperties);
         }
     }
 }

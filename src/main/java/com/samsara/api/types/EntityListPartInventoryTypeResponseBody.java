@@ -34,6 +34,8 @@ public final class EntityListPartInventoryTypeResponseBody {
 
     private final Optional<Boolean> isLowStock;
 
+    private final Optional<Boolean> isNonStock;
+
     private final Optional<Double> maxStockLevel;
 
     private final Optional<Double> minStockLevel;
@@ -52,7 +54,7 @@ public final class EntityListPartInventoryTypeResponseBody {
 
     private final Optional<ListPartInventoryEntityPartInventoryLocationMoneyTypeResponseBody> unitCost;
 
-    private final Optional<String> unitOfMeasureType;
+    private final Optional<EntityListPartInventoryTypeResponseBodyUnitOfMeasureType> unitOfMeasureType;
 
     private final Optional<String> updatedAtTime;
 
@@ -66,6 +68,7 @@ public final class EntityListPartInventoryTypeResponseBody {
             Optional<Double> currentQuantity,
             Optional<Boolean> isCostTracked,
             Optional<Boolean> isLowStock,
+            Optional<Boolean> isNonStock,
             Optional<Double> maxStockLevel,
             Optional<Double> minStockLevel,
             Optional<EntityListPartInventoryPartDefinitionRefTypeResponseBody> partSamsara,
@@ -75,7 +78,7 @@ public final class EntityListPartInventoryTypeResponseBody {
             Optional<Double> reservedQuantity,
             Optional<String> row,
             Optional<ListPartInventoryEntityPartInventoryLocationMoneyTypeResponseBody> unitCost,
-            Optional<String> unitOfMeasureType,
+            Optional<EntityListPartInventoryTypeResponseBodyUnitOfMeasureType> unitOfMeasureType,
             Optional<String> updatedAtTime,
             Map<String, Object> additionalProperties) {
         this.aisle = aisle;
@@ -85,6 +88,7 @@ public final class EntityListPartInventoryTypeResponseBody {
         this.currentQuantity = currentQuantity;
         this.isCostTracked = isCostTracked;
         this.isLowStock = isLowStock;
+        this.isNonStock = isNonStock;
         this.maxStockLevel = maxStockLevel;
         this.minStockLevel = minStockLevel;
         this.partSamsara = partSamsara;
@@ -132,7 +136,7 @@ public final class EntityListPartInventoryTypeResponseBody {
     }
 
     /**
-     * @return Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Read-only; changes only via stock movements.
+     * @return Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Settable only when creating the record, to seed initial stock; thereafter it changes only via stock movements.
      */
     @JsonProperty("currentQuantity")
     public Optional<Double> getCurrentQuantity() {
@@ -153,6 +157,14 @@ public final class EntityListPartInventoryTypeResponseBody {
     @JsonProperty("isLowStock")
     public Optional<Boolean> getIsLowStock() {
         return isLowStock;
+    }
+
+    /**
+     * @return Whether the part is tracked at this location without stock management.
+     */
+    @JsonProperty("isNonStock")
+    public Optional<Boolean> getIsNonStock() {
+        return isNonStock;
     }
 
     /**
@@ -219,10 +231,10 @@ public final class EntityListPartInventoryTypeResponseBody {
     }
 
     /**
-     * @return Unit of measure that the quantity fields on this record are expressed in. Surfaced here so the unit of all quantity fields is visible in-response.
+     * @return Unit of measure that the quantity fields on this record are expressed in. Surfaced here so the unit of all quantity fields is visible in-response.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code>
      */
     @JsonProperty("unitOfMeasureType")
-    public Optional<String> getUnitOfMeasureType() {
+    public Optional<EntityListPartInventoryTypeResponseBodyUnitOfMeasureType> getUnitOfMeasureType() {
         return unitOfMeasureType;
     }
 
@@ -254,6 +266,7 @@ public final class EntityListPartInventoryTypeResponseBody {
                 && currentQuantity.equals(other.currentQuantity)
                 && isCostTracked.equals(other.isCostTracked)
                 && isLowStock.equals(other.isLowStock)
+                && isNonStock.equals(other.isNonStock)
                 && maxStockLevel.equals(other.maxStockLevel)
                 && minStockLevel.equals(other.minStockLevel)
                 && partSamsara.equals(other.partSamsara)
@@ -277,6 +290,7 @@ public final class EntityListPartInventoryTypeResponseBody {
                 this.currentQuantity,
                 this.isCostTracked,
                 this.isLowStock,
+                this.isNonStock,
                 this.maxStockLevel,
                 this.minStockLevel,
                 this.partSamsara,
@@ -315,6 +329,8 @@ public final class EntityListPartInventoryTypeResponseBody {
 
         private Optional<Boolean> isLowStock = Optional.empty();
 
+        private Optional<Boolean> isNonStock = Optional.empty();
+
         private Optional<Double> maxStockLevel = Optional.empty();
 
         private Optional<Double> minStockLevel = Optional.empty();
@@ -333,7 +349,7 @@ public final class EntityListPartInventoryTypeResponseBody {
 
         private Optional<ListPartInventoryEntityPartInventoryLocationMoneyTypeResponseBody> unitCost = Optional.empty();
 
-        private Optional<String> unitOfMeasureType = Optional.empty();
+        private Optional<EntityListPartInventoryTypeResponseBodyUnitOfMeasureType> unitOfMeasureType = Optional.empty();
 
         private Optional<String> updatedAtTime = Optional.empty();
 
@@ -350,6 +366,7 @@ public final class EntityListPartInventoryTypeResponseBody {
             currentQuantity(other.getCurrentQuantity());
             isCostTracked(other.getIsCostTracked());
             isLowStock(other.getIsLowStock());
+            isNonStock(other.getIsNonStock());
             maxStockLevel(other.getMaxStockLevel());
             minStockLevel(other.getMinStockLevel());
             partSamsara(other.getPartSamsara());
@@ -421,7 +438,7 @@ public final class EntityListPartInventoryTypeResponseBody {
         }
 
         /**
-         * <p>Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Read-only; changes only via stock movements.</p>
+         * <p>Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Settable only when creating the record, to seed initial stock; thereafter it changes only via stock movements.</p>
          */
         @JsonSetter(value = "currentQuantity", nulls = Nulls.SKIP)
         public Builder currentQuantity(Optional<Double> currentQuantity) {
@@ -459,6 +476,20 @@ public final class EntityListPartInventoryTypeResponseBody {
 
         public Builder isLowStock(Boolean isLowStock) {
             this.isLowStock = Optional.ofNullable(isLowStock);
+            return this;
+        }
+
+        /**
+         * <p>Whether the part is tracked at this location without stock management.</p>
+         */
+        @JsonSetter(value = "isNonStock", nulls = Nulls.SKIP)
+        public Builder isNonStock(Optional<Boolean> isNonStock) {
+            this.isNonStock = isNonStock;
+            return this;
+        }
+
+        public Builder isNonStock(Boolean isNonStock) {
+            this.isNonStock = Optional.ofNullable(isNonStock);
             return this;
         }
 
@@ -580,15 +611,16 @@ public final class EntityListPartInventoryTypeResponseBody {
         }
 
         /**
-         * <p>Unit of measure that the quantity fields on this record are expressed in. Surfaced here so the unit of all quantity fields is visible in-response.</p>
+         * <p>Unit of measure that the quantity fields on this record are expressed in. Surfaced here so the unit of all quantity fields is visible in-response.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
          */
         @JsonSetter(value = "unitOfMeasureType", nulls = Nulls.SKIP)
-        public Builder unitOfMeasureType(Optional<String> unitOfMeasureType) {
+        public Builder unitOfMeasureType(
+                Optional<EntityListPartInventoryTypeResponseBodyUnitOfMeasureType> unitOfMeasureType) {
             this.unitOfMeasureType = unitOfMeasureType;
             return this;
         }
 
-        public Builder unitOfMeasureType(String unitOfMeasureType) {
+        public Builder unitOfMeasureType(EntityListPartInventoryTypeResponseBodyUnitOfMeasureType unitOfMeasureType) {
             this.unitOfMeasureType = Optional.ofNullable(unitOfMeasureType);
             return this;
         }
@@ -616,6 +648,7 @@ public final class EntityListPartInventoryTypeResponseBody {
                     currentQuantity,
                     isCostTracked,
                     isLowStock,
+                    isNonStock,
                     maxStockLevel,
                     minStockLevel,
                     partSamsara,
