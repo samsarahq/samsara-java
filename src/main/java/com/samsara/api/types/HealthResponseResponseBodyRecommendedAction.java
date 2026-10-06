@@ -27,6 +27,10 @@ public final class HealthResponseResponseBodyRecommendedAction {
                     Value.RECOMMENDED_ACTION_CM_INWARD_CAMERA_OBSTRUCTION,
                     "recommendedActionCmInwardCameraObstruction");
 
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_AG_UNSTABLE_POWER =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_AG_UNSTABLE_POWER, "recommendedActionAgUnstablePower");
+
     public static final HealthResponseResponseBodyRecommendedAction UNKNOWN =
             new HealthResponseResponseBodyRecommendedAction(Value.UNKNOWN, "unknown");
 
@@ -38,6 +42,14 @@ public final class HealthResponseResponseBodyRecommendedAction {
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CC_LOW_UPTIME =
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_CC_LOW_UPTIME, "recommendedActionCcLowUptime");
+
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_VG_FREQUENT_POWER_LOSS =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_VG_FREQUENT_POWER_LOSS, "recommendedActionVgFrequentPowerLoss");
+
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CC_LOW_CONNECTIVITY =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_CC_LOW_CONNECTIVITY, "recommendedActionCcLowConnectivity");
 
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_AG_HEALTHY =
             new HealthResponseResponseBodyRecommendedAction(
@@ -87,6 +99,10 @@ public final class HealthResponseResponseBodyRecommendedAction {
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CC_MEDIA_INPUT_UPTIME =
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_CC_MEDIA_INPUT_UPTIME, "recommendedActionCcMediaInputUptime");
+
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CC_NEEDS_ATTRIBUTE =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_CC_NEEDS_ATTRIBUTE, "recommendedActionCcNeedsAttribute");
 
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_VG_HEALTHY =
             new HealthResponseResponseBodyRecommendedAction(
@@ -225,12 +241,18 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return visitor.visitRecommendedActionAgLowDeviceBatteryPoweredAg();
             case RECOMMENDED_ACTION_CM_INWARD_CAMERA_OBSTRUCTION:
                 return visitor.visitRecommendedActionCmInwardCameraObstruction();
+            case RECOMMENDED_ACTION_AG_UNSTABLE_POWER:
+                return visitor.visitRecommendedActionAgUnstablePower();
             case UNKNOWN:
                 return visitor.visitUnknown();
             case RECOMMENDED_ACTION_CM_OUTWARD_CAMERA_OBSTRUCTION:
                 return visitor.visitRecommendedActionCmOutwardCameraObstruction();
             case RECOMMENDED_ACTION_CC_LOW_UPTIME:
                 return visitor.visitRecommendedActionCcLowUptime();
+            case RECOMMENDED_ACTION_VG_FREQUENT_POWER_LOSS:
+                return visitor.visitRecommendedActionVgFrequentPowerLoss();
+            case RECOMMENDED_ACTION_CC_LOW_CONNECTIVITY:
+                return visitor.visitRecommendedActionCcLowConnectivity();
             case RECOMMENDED_ACTION_AG_HEALTHY:
                 return visitor.visitRecommendedActionAgHealthy();
             case RECOMMENDED_ACTION_CM_HEALTHY:
@@ -253,6 +275,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return visitor.visitRecommendedActionBleNotDetected();
             case RECOMMENDED_ACTION_CC_MEDIA_INPUT_UPTIME:
                 return visitor.visitRecommendedActionCcMediaInputUptime();
+            case RECOMMENDED_ACTION_CC_NEEDS_ATTRIBUTE:
+                return visitor.visitRecommendedActionCcNeedsAttribute();
             case RECOMMENDED_ACTION_VG_HEALTHY:
                 return visitor.visitRecommendedActionVgHealthy();
             case RECOMMENDED_ACTION_AG_LOW_DEVICE_BATTERY_AG45:
@@ -318,12 +342,18 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return RECOMMENDED_ACTION_AG_LOW_DEVICE_BATTERY_POWERED_AG;
             case "recommendedActionCmInwardCameraObstruction":
                 return RECOMMENDED_ACTION_CM_INWARD_CAMERA_OBSTRUCTION;
+            case "recommendedActionAgUnstablePower":
+                return RECOMMENDED_ACTION_AG_UNSTABLE_POWER;
             case "unknown":
                 return UNKNOWN;
             case "recommendedActionCmOutwardCameraObstruction":
                 return RECOMMENDED_ACTION_CM_OUTWARD_CAMERA_OBSTRUCTION;
             case "recommendedActionCcLowUptime":
                 return RECOMMENDED_ACTION_CC_LOW_UPTIME;
+            case "recommendedActionVgFrequentPowerLoss":
+                return RECOMMENDED_ACTION_VG_FREQUENT_POWER_LOSS;
+            case "recommendedActionCcLowConnectivity":
+                return RECOMMENDED_ACTION_CC_LOW_CONNECTIVITY;
             case "recommendedActionAgHealthy":
                 return RECOMMENDED_ACTION_AG_HEALTHY;
             case "recommendedActionCmHealthy":
@@ -346,6 +376,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return RECOMMENDED_ACTION_BLE_NOT_DETECTED;
             case "recommendedActionCcMediaInputUptime":
                 return RECOMMENDED_ACTION_CC_MEDIA_INPUT_UPTIME;
+            case "recommendedActionCcNeedsAttribute":
+                return RECOMMENDED_ACTION_CC_NEEDS_ATTRIBUTE;
             case "recommendedActionVgHealthy":
                 return RECOMMENDED_ACTION_VG_HEALTHY;
             case "recommendedActionAgLowDeviceBatteryAG45":
@@ -416,6 +448,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         RECOMMENDED_ACTION_AG_UNPLUGGED,
 
+        RECOMMENDED_ACTION_AG_UNSTABLE_POWER,
+
         RECOMMENDED_ACTION_BLE_DATA_PENDING,
 
         RECOMMENDED_ACTION_BLE_HEALTHY,
@@ -426,9 +460,13 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         RECOMMENDED_ACTION_CC_HEALTHY,
 
+        RECOMMENDED_ACTION_CC_LOW_CONNECTIVITY,
+
         RECOMMENDED_ACTION_CC_LOW_UPTIME,
 
         RECOMMENDED_ACTION_CC_MEDIA_INPUT_UPTIME,
+
+        RECOMMENDED_ACTION_CC_NEEDS_ATTRIBUTE,
 
         RECOMMENDED_ACTION_CC_NOT_DETECTED,
 
@@ -463,6 +501,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
         RECOMMENDED_ACTION_OEM_NOT_REPORTING,
 
         RECOMMENDED_ACTION_VEHICLE_OFF,
+
+        RECOMMENDED_ACTION_VG_FREQUENT_POWER_LOSS,
 
         RECOMMENDED_ACTION_VG_HEALTHY,
 
@@ -504,6 +544,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         T visitRecommendedActionAgUnplugged();
 
+        T visitRecommendedActionAgUnstablePower();
+
         T visitRecommendedActionBleDataPending();
 
         T visitRecommendedActionBleHealthy();
@@ -514,9 +556,13 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         T visitRecommendedActionCcHealthy();
 
+        T visitRecommendedActionCcLowConnectivity();
+
         T visitRecommendedActionCcLowUptime();
 
         T visitRecommendedActionCcMediaInputUptime();
+
+        T visitRecommendedActionCcNeedsAttribute();
 
         T visitRecommendedActionCcNotDetected();
 
@@ -551,6 +597,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
         T visitRecommendedActionOemNotReporting();
 
         T visitRecommendedActionVehicleOff();
+
+        T visitRecommendedActionVgFrequentPowerLoss();
 
         T visitRecommendedActionVgHealthy();
 

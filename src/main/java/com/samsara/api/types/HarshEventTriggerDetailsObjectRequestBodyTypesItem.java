@@ -47,6 +47,9 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
     public static final HarshEventTriggerDetailsObjectRequestBodyTypesItem HA_ACCEL =
             new HarshEventTriggerDetailsObjectRequestBodyTypesItem(Value.HA_ACCEL, "haAccel");
 
+    public static final HarshEventTriggerDetailsObjectRequestBodyTypesItem HA_IMPROPER_EGRESS =
+            new HarshEventTriggerDetailsObjectRequestBodyTypesItem(Value.HA_IMPROPER_EGRESS, "haImproperEgress");
+
     public static final HarshEventTriggerDetailsObjectRequestBodyTypesItem HA_DRINK_POLICY =
             new HarshEventTriggerDetailsObjectRequestBodyTypesItem(Value.HA_DRINK_POLICY, "haDrinkPolicy");
 
@@ -214,6 +217,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
                 return visitor.visitHaDistractedDrivingCalibration();
             case HA_ACCEL:
                 return visitor.visitHaAccel();
+            case HA_IMPROPER_EGRESS:
+                return visitor.visitHaImproperEgress();
             case HA_DRINK_POLICY:
                 return visitor.visitHaDrinkPolicy();
             case HA_YAW_CONTROL_BRAKE_CONTROL_ACTIVATED:
@@ -313,6 +318,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
                 return HA_DISTRACTED_DRIVING_CALIBRATION;
             case "haAccel":
                 return HA_ACCEL;
+            case "haImproperEgress":
+                return HA_IMPROPER_EGRESS;
             case "haDrinkPolicy":
                 return HA_DRINK_POLICY;
             case "haYawControlBrakeControlActivated":
@@ -415,6 +422,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
 
         HA_IMPACT,
 
+        HA_IMPROPER_EGRESS,
+
         HA_INVALID,
 
         HA_LANE_DEPARTURE,
@@ -508,6 +517,8 @@ public final class HarshEventTriggerDetailsObjectRequestBodyTypesItem {
         T visitHaHighSpeedSuddenDisconnect();
 
         T visitHaImpact();
+
+        T visitHaImproperEgress();
 
         T visitHaInvalid();
 

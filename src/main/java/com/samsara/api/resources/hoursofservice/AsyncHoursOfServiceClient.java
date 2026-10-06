@@ -9,10 +9,12 @@ import com.samsara.api.resources.hoursofservice.requests.GetHosClocksRequest;
 import com.samsara.api.resources.hoursofservice.requests.GetHosDailyLogsRequest;
 import com.samsara.api.resources.hoursofservice.requests.GetHosLogsRequest;
 import com.samsara.api.resources.hoursofservice.requests.GetHosViolationsRequest;
+import com.samsara.api.resources.hoursofservice.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.hoursofservice.requests.InlineObject1;
 import com.samsara.api.resources.hoursofservice.requests.V1GetFleetHosAuthenticationLogsRequest;
 import com.samsara.api.types.HosClocksResponse;
 import com.samsara.api.types.HosDailyLogsGetHosDailyLogsResponseBody;
+import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosLogsResponse;
 import com.samsara.api.types.HosViolationsGetHosViolationsResponseBody;
 import com.samsara.api.types.V1HosAuthenticationLogsResponse;
@@ -226,6 +228,28 @@ public class AsyncHoursOfServiceClient {
     public CompletableFuture<HosViolationsGetHosViolationsResponseBody> getHosViolations(
             GetHosViolationsRequest request, RequestOptions requestOptions) {
         return this.rawClient.getHosViolations(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update the shippingDocs field of an existing assignment.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<HosDailyLogsUpdateShippingDocsResponseBody> updateShippingDocs(
+            HosDailyLogsUpdateShippingDocsRequestBody request) {
+        return this.rawClient.updateShippingDocs(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update the shippingDocs field of an existing assignment.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write ELD Hours of Service (US)</strong> under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<HosDailyLogsUpdateShippingDocsResponseBody> updateShippingDocs(
+            HosDailyLogsUpdateShippingDocsRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateShippingDocs(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

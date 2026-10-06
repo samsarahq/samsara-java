@@ -47,6 +47,9 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_ACCEL =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_ACCEL, "haAccel");
 
+    public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_IMPROPER_EGRESS =
+            new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_IMPROPER_EGRESS, "haImproperEgress");
+
     public static final HarshEventTriggerDetailsObjectResponseBodyTypesItem HA_DRINK_POLICY =
             new HarshEventTriggerDetailsObjectResponseBodyTypesItem(Value.HA_DRINK_POLICY, "haDrinkPolicy");
 
@@ -215,6 +218,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return visitor.visitHaDistractedDrivingCalibration();
             case HA_ACCEL:
                 return visitor.visitHaAccel();
+            case HA_IMPROPER_EGRESS:
+                return visitor.visitHaImproperEgress();
             case HA_DRINK_POLICY:
                 return visitor.visitHaDrinkPolicy();
             case HA_YAW_CONTROL_BRAKE_CONTROL_ACTIVATED:
@@ -314,6 +319,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
                 return HA_DISTRACTED_DRIVING_CALIBRATION;
             case "haAccel":
                 return HA_ACCEL;
+            case "haImproperEgress":
+                return HA_IMPROPER_EGRESS;
             case "haDrinkPolicy":
                 return HA_DRINK_POLICY;
             case "haYawControlBrakeControlActivated":
@@ -416,6 +423,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
 
         HA_IMPACT,
 
+        HA_IMPROPER_EGRESS,
+
         HA_INVALID,
 
         HA_LANE_DEPARTURE,
@@ -509,6 +518,8 @@ public final class HarshEventTriggerDetailsObjectResponseBodyTypesItem {
         T visitHaHighSpeedSuddenDisconnect();
 
         T visitHaImpact();
+
+        T visitHaImproperEgress();
 
         T visitHaInvalid();
 

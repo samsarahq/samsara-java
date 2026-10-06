@@ -39,7 +39,7 @@ public final class RidershipPassengerIdentifierInputRequestBody {
     }
 
     /**
-     * @return The status of the identifier.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code>
+     * @return Whether the identifier is active or inactive. Defaults to <code>active</code>.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code>
      */
     @JsonProperty("status")
     public RidershipPassengerIdentifierInputRequestBodyStatus getStatus() {
@@ -55,7 +55,7 @@ public final class RidershipPassengerIdentifierInputRequestBody {
     }
 
     /**
-     * @return The identifier value.
+     * @return Value of the identifier, such as the value read from an RFID card.
      */
     @JsonProperty("value")
     public String getValue() {
@@ -94,7 +94,7 @@ public final class RidershipPassengerIdentifierInputRequestBody {
 
     public interface StatusStage {
         /**
-         * <p>The status of the identifier.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code></p>
+         * <p>Whether the identifier is active or inactive. Defaults to <code>active</code>.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code></p>
          */
         TypeStage status(@NotNull RidershipPassengerIdentifierInputRequestBodyStatus status);
 
@@ -110,7 +110,7 @@ public final class RidershipPassengerIdentifierInputRequestBody {
 
     public interface ValueStage {
         /**
-         * <p>The identifier value.</p>
+         * <p>Value of the identifier, such as the value read from an RFID card.</p>
          */
         _FinalStage value(@NotNull String value);
     }
@@ -141,8 +141,8 @@ public final class RidershipPassengerIdentifierInputRequestBody {
         }
 
         /**
-         * <p>The status of the identifier.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code></p>
-         * <p>The status of the identifier.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code></p>
+         * <p>Whether the identifier is active or inactive. Defaults to <code>active</code>.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code></p>
+         * <p>Whether the identifier is active or inactive. Defaults to <code>active</code>.  Valid values: <code>active</code>, <code>inactive</code>, <code>unknown</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -165,8 +165,8 @@ public final class RidershipPassengerIdentifierInputRequestBody {
         }
 
         /**
-         * <p>The identifier value.</p>
-         * <p>The identifier value.</p>
+         * <p>Value of the identifier, such as the value read from an RFID card.</p>
+         * <p>Value of the identifier, such as the value read from an RFID card.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

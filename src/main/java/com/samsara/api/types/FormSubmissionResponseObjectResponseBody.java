@@ -235,7 +235,7 @@ public final class FormSubmissionResponseObjectResponseBody {
     }
 
     /**
-     * @return State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code>
+     * @return State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code>
      */
     @JsonProperty("status")
     public FormSubmissionResponseObjectResponseBodyStatus getStatus() {
@@ -373,7 +373,7 @@ public final class FormSubmissionResponseObjectResponseBody {
 
     public interface StatusStage {
         /**
-         * <p>State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code></p>
+         * <p>State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code></p>
          */
         SubmittedAtTimeStage status(@NotNull FormSubmissionResponseObjectResponseBodyStatus status);
     }
@@ -613,8 +613,8 @@ public final class FormSubmissionResponseObjectResponseBody {
         }
 
         /**
-         * <p>State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code></p>
-         * <p>State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code></p>
+         * <p>State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code></p>
+         * <p>State for the Form Submission. Always returned.  Valid values: <code>notStarted</code>, <code>completed</code>, <code>archived</code>, <code>inProgress</code>, <code>needsReview</code>, <code>changesRequested</code>, <code>approved</code>, <code>denied</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

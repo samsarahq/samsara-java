@@ -36,10 +36,12 @@ import com.samsara.api.resources.legacyapis.LegacyApIsClient;
 import com.samsara.api.resources.livesharinglinks.LiveSharingLinksClient;
 import com.samsara.api.resources.locationandspeed.LocationAndSpeedClient;
 import com.samsara.api.resources.maintenance.MaintenanceClient;
+import com.samsara.api.resources.maintenancesites.MaintenanceSitesClient;
 import com.samsara.api.resources.media.MediaClient;
 import com.samsara.api.resources.messages.MessagesClient;
 import com.samsara.api.resources.organizationinfo.OrganizationInfoClient;
 import com.samsara.api.resources.plans.PlansClient;
+import com.samsara.api.resources.preventivemaintenance.PreventiveMaintenanceClient;
 import com.samsara.api.resources.previewapis.PreviewApIsClient;
 import com.samsara.api.resources.readings.ReadingsClient;
 import com.samsara.api.resources.routeevents.RouteEventsClient;
@@ -87,7 +89,7 @@ public class SamsaraApiClient {
 
     protected final Supplier<MaintenanceClient> maintenanceClient;
 
-    protected final Supplier<FuelAndEnergyClient> fuelAndEnergyClient;
+    protected final Supplier<LegacyApIsClient> legacyApIsClient;
 
     protected final Supplier<DriverTrailerAssignmentsClient> driverTrailerAssignmentsClient;
 
@@ -96,8 +98,6 @@ public class SamsaraApiClient {
     protected final Supplier<CarbCtcClient> carbCtcClient;
 
     protected final Supplier<CarrierProposedAssignmentsClient> carrierProposedAssignmentsClient;
-
-    protected final Supplier<LegacyApIsClient> legacyApIsClient;
 
     protected final Supplier<DocumentsClient> documentsClient;
 
@@ -112,6 +112,8 @@ public class SamsaraApiClient {
     protected final Supplier<EquipmentClient> equipmentClient;
 
     protected final Supplier<HoursOfServiceClient> hoursOfServiceClient;
+
+    protected final Supplier<FuelAndEnergyClient> fuelAndEnergyClient;
 
     protected final Supplier<IftaClient> iftaClient;
 
@@ -144,6 +146,10 @@ public class SamsaraApiClient {
     protected final Supplier<LiveSharingLinksClient> liveSharingLinksClient;
 
     protected final Supplier<WorkOrdersClient> workOrdersClient;
+
+    protected final Supplier<PreventiveMaintenanceClient> preventiveMaintenanceClient;
+
+    protected final Supplier<MaintenanceSitesClient> maintenanceSitesClient;
 
     protected final Supplier<OrganizationInfoClient> organizationInfoClient;
 
@@ -193,14 +199,13 @@ public class SamsaraApiClient {
         this.coachingClient = Suppliers.memoize(() -> new CoachingClient(clientOptions));
         this.contactsClient = Suppliers.memoize(() -> new ContactsClient(clientOptions));
         this.maintenanceClient = Suppliers.memoize(() -> new MaintenanceClient(clientOptions));
-        this.fuelAndEnergyClient = Suppliers.memoize(() -> new FuelAndEnergyClient(clientOptions));
+        this.legacyApIsClient = Suppliers.memoize(() -> new LegacyApIsClient(clientOptions));
         this.driverTrailerAssignmentsClient =
                 Suppliers.memoize(() -> new DriverTrailerAssignmentsClient(clientOptions));
         this.driverQrCodesClient = Suppliers.memoize(() -> new DriverQrCodesClient(clientOptions));
         this.carbCtcClient = Suppliers.memoize(() -> new CarbCtcClient(clientOptions));
         this.carrierProposedAssignmentsClient =
                 Suppliers.memoize(() -> new CarrierProposedAssignmentsClient(clientOptions));
-        this.legacyApIsClient = Suppliers.memoize(() -> new LegacyApIsClient(clientOptions));
         this.documentsClient = Suppliers.memoize(() -> new DocumentsClient(clientOptions));
         this.driverVehicleAssignmentsClient =
                 Suppliers.memoize(() -> new DriverVehicleAssignmentsClient(clientOptions));
@@ -209,6 +214,7 @@ public class SamsaraApiClient {
         this.tachographEuOnlyClient = Suppliers.memoize(() -> new TachographEuOnlyClient(clientOptions));
         this.equipmentClient = Suppliers.memoize(() -> new EquipmentClient(clientOptions));
         this.hoursOfServiceClient = Suppliers.memoize(() -> new HoursOfServiceClient(clientOptions));
+        this.fuelAndEnergyClient = Suppliers.memoize(() -> new FuelAndEnergyClient(clientOptions));
         this.iftaClient = Suppliers.memoize(() -> new IftaClient(clientOptions));
         this.routesClient = Suppliers.memoize(() -> new RoutesClient(clientOptions));
         this.settingsClient = Suppliers.memoize(() -> new SettingsClient(clientOptions));
@@ -225,6 +231,8 @@ public class SamsaraApiClient {
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
         this.liveSharingLinksClient = Suppliers.memoize(() -> new LiveSharingLinksClient(clientOptions));
         this.workOrdersClient = Suppliers.memoize(() -> new WorkOrdersClient(clientOptions));
+        this.preventiveMaintenanceClient = Suppliers.memoize(() -> new PreventiveMaintenanceClient(clientOptions));
+        this.maintenanceSitesClient = Suppliers.memoize(() -> new MaintenanceSitesClient(clientOptions));
         this.organizationInfoClient = Suppliers.memoize(() -> new OrganizationInfoClient(clientOptions));
         this.previewApIsClient = Suppliers.memoize(() -> new PreviewApIsClient(clientOptions));
         this.readingsClient = Suppliers.memoize(() -> new ReadingsClient(clientOptions));
@@ -285,8 +293,8 @@ public class SamsaraApiClient {
         return this.maintenanceClient.get();
     }
 
-    public FuelAndEnergyClient fuelAndEnergy() {
-        return this.fuelAndEnergyClient.get();
+    public LegacyApIsClient legacyApIs() {
+        return this.legacyApIsClient.get();
     }
 
     public DriverTrailerAssignmentsClient driverTrailerAssignments() {
@@ -303,10 +311,6 @@ public class SamsaraApiClient {
 
     public CarrierProposedAssignmentsClient carrierProposedAssignments() {
         return this.carrierProposedAssignmentsClient.get();
-    }
-
-    public LegacyApIsClient legacyApIs() {
-        return this.legacyApIsClient.get();
     }
 
     public DocumentsClient documents() {
@@ -335,6 +339,10 @@ public class SamsaraApiClient {
 
     public HoursOfServiceClient hoursOfService() {
         return this.hoursOfServiceClient.get();
+    }
+
+    public FuelAndEnergyClient fuelAndEnergy() {
+        return this.fuelAndEnergyClient.get();
     }
 
     public IftaClient ifta() {
@@ -399,6 +407,14 @@ public class SamsaraApiClient {
 
     public WorkOrdersClient workOrders() {
         return this.workOrdersClient.get();
+    }
+
+    public PreventiveMaintenanceClient preventiveMaintenance() {
+        return this.preventiveMaintenanceClient.get();
+    }
+
+    public MaintenanceSitesClient maintenanceSites() {
+        return this.maintenanceSitesClient.get();
     }
 
     public OrganizationInfoClient organizationInfo() {

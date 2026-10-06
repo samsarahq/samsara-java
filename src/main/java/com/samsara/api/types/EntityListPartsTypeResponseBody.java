@@ -48,13 +48,17 @@ public final class EntityListPartsTypeResponseBody {
 
     private final Optional<String> partNumber;
 
-    private final Optional<String> partStatus;
+    private final Optional<EntityListPartsTypeResponseBodyPartStatus> partStatus;
+
+    private final Optional<EntityListPartsVendorRefTypeResponseBody> preferredVendor;
+
+    private final Optional<String> preferredVendorPartNumber;
 
     private final Optional<String> subcategory;
 
     private final Optional<ListPartsEntityPartDefinitionMoneyTypeResponseBody> unitCost;
 
-    private final Optional<String> unitOfMeasureType;
+    private final Optional<EntityListPartsTypeResponseBodyUnitOfMeasureType> unitOfMeasureType;
 
     private final Optional<String> updatedAtTime;
 
@@ -77,10 +81,12 @@ public final class EntityListPartsTypeResponseBody {
             Optional<String> manufacturerPartNumber,
             Optional<String> name,
             Optional<String> partNumber,
-            Optional<String> partStatus,
+            Optional<EntityListPartsTypeResponseBodyPartStatus> partStatus,
+            Optional<EntityListPartsVendorRefTypeResponseBody> preferredVendor,
+            Optional<String> preferredVendorPartNumber,
             Optional<String> subcategory,
             Optional<ListPartsEntityPartDefinitionMoneyTypeResponseBody> unitCost,
-            Optional<String> unitOfMeasureType,
+            Optional<EntityListPartsTypeResponseBodyUnitOfMeasureType> unitOfMeasureType,
             Optional<String> updatedAtTime,
             Optional<String> vmrsCode,
             Map<String, Object> additionalProperties) {
@@ -99,6 +105,8 @@ public final class EntityListPartsTypeResponseBody {
         this.name = name;
         this.partNumber = partNumber;
         this.partStatus = partStatus;
+        this.preferredVendor = preferredVendor;
+        this.preferredVendorPartNumber = preferredVendorPartNumber;
         this.subcategory = subcategory;
         this.unitCost = unitCost;
         this.unitOfMeasureType = unitOfMeasureType;
@@ -220,11 +228,24 @@ public final class EntityListPartsTypeResponseBody {
     }
 
     /**
-     * @return Status of the part.
+     * @return Status of the part.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>Archived</code>, <code>Deleted</code>
      */
     @JsonProperty("partStatus")
-    public Optional<String> getPartStatus() {
+    public Optional<EntityListPartsTypeResponseBodyPartStatus> getPartStatus() {
         return partStatus;
+    }
+
+    @JsonProperty("preferredVendor")
+    public Optional<EntityListPartsVendorRefTypeResponseBody> getPreferredVendor() {
+        return preferredVendor;
+    }
+
+    /**
+     * @return The preferred vendor's part number for this part definition.
+     */
+    @JsonProperty("preferredVendorPartNumber")
+    public Optional<String> getPreferredVendorPartNumber() {
+        return preferredVendorPartNumber;
     }
 
     /**
@@ -241,10 +262,10 @@ public final class EntityListPartsTypeResponseBody {
     }
 
     /**
-     * @return Unit of measure for the part.
+     * @return Unit of measure for the part.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code>
      */
     @JsonProperty("unitOfMeasureType")
-    public Optional<String> getUnitOfMeasureType() {
+    public Optional<EntityListPartsTypeResponseBodyUnitOfMeasureType> getUnitOfMeasureType() {
         return unitOfMeasureType;
     }
 
@@ -291,6 +312,8 @@ public final class EntityListPartsTypeResponseBody {
                 && name.equals(other.name)
                 && partNumber.equals(other.partNumber)
                 && partStatus.equals(other.partStatus)
+                && preferredVendor.equals(other.preferredVendor)
+                && preferredVendorPartNumber.equals(other.preferredVendorPartNumber)
                 && subcategory.equals(other.subcategory)
                 && unitCost.equals(other.unitCost)
                 && unitOfMeasureType.equals(other.unitOfMeasureType)
@@ -316,6 +339,8 @@ public final class EntityListPartsTypeResponseBody {
                 this.name,
                 this.partNumber,
                 this.partStatus,
+                this.preferredVendor,
+                this.preferredVendorPartNumber,
                 this.subcategory,
                 this.unitCost,
                 this.unitOfMeasureType,
@@ -362,13 +387,17 @@ public final class EntityListPartsTypeResponseBody {
 
         private Optional<String> partNumber = Optional.empty();
 
-        private Optional<String> partStatus = Optional.empty();
+        private Optional<EntityListPartsTypeResponseBodyPartStatus> partStatus = Optional.empty();
+
+        private Optional<EntityListPartsVendorRefTypeResponseBody> preferredVendor = Optional.empty();
+
+        private Optional<String> preferredVendorPartNumber = Optional.empty();
 
         private Optional<String> subcategory = Optional.empty();
 
         private Optional<ListPartsEntityPartDefinitionMoneyTypeResponseBody> unitCost = Optional.empty();
 
-        private Optional<String> unitOfMeasureType = Optional.empty();
+        private Optional<EntityListPartsTypeResponseBodyUnitOfMeasureType> unitOfMeasureType = Optional.empty();
 
         private Optional<String> updatedAtTime = Optional.empty();
 
@@ -395,6 +424,8 @@ public final class EntityListPartsTypeResponseBody {
             name(other.getName());
             partNumber(other.getPartNumber());
             partStatus(other.getPartStatus());
+            preferredVendor(other.getPreferredVendor());
+            preferredVendorPartNumber(other.getPreferredVendorPartNumber());
             subcategory(other.getSubcategory());
             unitCost(other.getUnitCost());
             unitOfMeasureType(other.getUnitOfMeasureType());
@@ -600,16 +631,41 @@ public final class EntityListPartsTypeResponseBody {
         }
 
         /**
-         * <p>Status of the part.</p>
+         * <p>Status of the part.  Valid values: <code>Unknown</code>, <code>Active</code>, <code>Archived</code>, <code>Deleted</code></p>
          */
         @JsonSetter(value = "partStatus", nulls = Nulls.SKIP)
-        public Builder partStatus(Optional<String> partStatus) {
+        public Builder partStatus(Optional<EntityListPartsTypeResponseBodyPartStatus> partStatus) {
             this.partStatus = partStatus;
             return this;
         }
 
-        public Builder partStatus(String partStatus) {
+        public Builder partStatus(EntityListPartsTypeResponseBodyPartStatus partStatus) {
             this.partStatus = Optional.ofNullable(partStatus);
+            return this;
+        }
+
+        @JsonSetter(value = "preferredVendor", nulls = Nulls.SKIP)
+        public Builder preferredVendor(Optional<EntityListPartsVendorRefTypeResponseBody> preferredVendor) {
+            this.preferredVendor = preferredVendor;
+            return this;
+        }
+
+        public Builder preferredVendor(EntityListPartsVendorRefTypeResponseBody preferredVendor) {
+            this.preferredVendor = Optional.ofNullable(preferredVendor);
+            return this;
+        }
+
+        /**
+         * <p>The preferred vendor's part number for this part definition.</p>
+         */
+        @JsonSetter(value = "preferredVendorPartNumber", nulls = Nulls.SKIP)
+        public Builder preferredVendorPartNumber(Optional<String> preferredVendorPartNumber) {
+            this.preferredVendorPartNumber = preferredVendorPartNumber;
+            return this;
+        }
+
+        public Builder preferredVendorPartNumber(String preferredVendorPartNumber) {
+            this.preferredVendorPartNumber = Optional.ofNullable(preferredVendorPartNumber);
             return this;
         }
 
@@ -639,15 +695,15 @@ public final class EntityListPartsTypeResponseBody {
         }
 
         /**
-         * <p>Unit of measure for the part.</p>
+         * <p>Unit of measure for the part.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
          */
         @JsonSetter(value = "unitOfMeasureType", nulls = Nulls.SKIP)
-        public Builder unitOfMeasureType(Optional<String> unitOfMeasureType) {
+        public Builder unitOfMeasureType(Optional<EntityListPartsTypeResponseBodyUnitOfMeasureType> unitOfMeasureType) {
             this.unitOfMeasureType = unitOfMeasureType;
             return this;
         }
 
-        public Builder unitOfMeasureType(String unitOfMeasureType) {
+        public Builder unitOfMeasureType(EntityListPartsTypeResponseBodyUnitOfMeasureType unitOfMeasureType) {
             this.unitOfMeasureType = Optional.ofNullable(unitOfMeasureType);
             return this;
         }
@@ -697,6 +753,8 @@ public final class EntityListPartsTypeResponseBody {
                     name,
                     partNumber,
                     partStatus,
+                    preferredVendor,
+                    preferredVendorPartNumber,
                     subcategory,
                     unitCost,
                     unitOfMeasureType,

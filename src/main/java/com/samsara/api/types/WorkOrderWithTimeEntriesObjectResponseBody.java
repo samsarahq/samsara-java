@@ -29,6 +29,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
     private final Optional<String> assignedUserId;
 
+    private final Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees;
+
     private final Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments;
 
     private final Optional<String> category;
@@ -85,6 +87,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             Optional<OffsetDateTime> archivedAtTime,
             String assetId,
             Optional<String> assignedUserId,
+            Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees,
             Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments,
             Optional<String> category,
             Optional<String> closingNotes,
@@ -114,6 +117,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         this.archivedAtTime = archivedAtTime;
         this.assetId = assetId;
         this.assignedUserId = assignedUserId;
+        this.assignees = assignees;
         this.attachments = attachments;
         this.category = category;
         this.closingNotes = closingNotes;
@@ -164,6 +168,14 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     @JsonProperty("assignedUserId")
     public Optional<String> getAssignedUserId() {
         return assignedUserId;
+    }
+
+    /**
+     * @return Dashboard users assigned to the work order. Only returned for organizations with multiple work order assignees enabled. Technicians backed only by a driver are not represented.
+     */
+    @JsonProperty("assignees")
+    public Optional<List<WorkOrderAssigneeObjectResponseBody>> getAssignees() {
+        return assignees;
     }
 
     /**
@@ -370,6 +382,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         return archivedAtTime.equals(other.archivedAtTime)
                 && assetId.equals(other.assetId)
                 && assignedUserId.equals(other.assignedUserId)
+                && assignees.equals(other.assignees)
                 && attachments.equals(other.attachments)
                 && category.equals(other.category)
                 && closingNotes.equals(other.closingNotes)
@@ -403,6 +416,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 this.archivedAtTime,
                 this.assetId,
                 this.assignedUserId,
+                this.assignees,
                 this.attachments,
                 this.category,
                 this.closingNotes,
@@ -492,6 +506,13 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         _FinalStage assignedUserId(Optional<String> assignedUserId);
 
         _FinalStage assignedUserId(String assignedUserId);
+
+        /**
+         * <p>Dashboard users assigned to the work order. Only returned for organizations with multiple work order assignees enabled. Technicians backed only by a driver are not represented.</p>
+         */
+        _FinalStage assignees(Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees);
+
+        _FinalStage assignees(List<WorkOrderAssigneeObjectResponseBody> assignees);
 
         /**
          * <p>Files attached to the work order.</p>
@@ -687,6 +708,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
         private Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments = Optional.empty();
 
+        private Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees = Optional.empty();
+
         private Optional<String> assignedUserId = Optional.empty();
 
         private Optional<OffsetDateTime> archivedAtTime = Optional.empty();
@@ -701,6 +724,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             archivedAtTime(other.getArchivedAtTime());
             assetId(other.getAssetId());
             assignedUserId(other.getAssignedUserId());
+            assignees(other.getAssignees());
             attachments(other.getAttachments());
             category(other.getCategory());
             closingNotes(other.getClosingNotes());
@@ -1184,6 +1208,26 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         }
 
         /**
+         * <p>Dashboard users assigned to the work order. Only returned for organizations with multiple work order assignees enabled. Technicians backed only by a driver are not represented.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assignees(List<WorkOrderAssigneeObjectResponseBody> assignees) {
+            this.assignees = Optional.ofNullable(assignees);
+            return this;
+        }
+
+        /**
+         * <p>Dashboard users assigned to the work order. Only returned for organizations with multiple work order assignees enabled. Technicians backed only by a driver are not represented.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assignees", nulls = Nulls.SKIP)
+        public _FinalStage assignees(Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees) {
+            this.assignees = assignees;
+            return this;
+        }
+
+        /**
          * <p>The ID of the assigned mechanic.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -1229,6 +1273,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                     archivedAtTime,
                     assetId,
                     assignedUserId,
+                    assignees,
                     attachments,
                     category,
                     closingNotes,

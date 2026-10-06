@@ -46,7 +46,7 @@ public final class EntityListPartTransactionsTypeResponseBody {
 
     private final Optional<String> toPlaceId;
 
-    private final Optional<String> transactionType;
+    private final Optional<EntityListPartTransactionsTypeResponseBodyTransactionType> transactionType;
 
     private final Optional<Double> unitCost;
 
@@ -70,7 +70,7 @@ public final class EntityListPartTransactionsTypeResponseBody {
             Optional<Double> quantity,
             Optional<Double> resultingQuantity,
             Optional<String> toPlaceId,
-            Optional<String> transactionType,
+            Optional<EntityListPartTransactionsTypeResponseBodyTransactionType> transactionType,
             Optional<Double> unitCost,
             Optional<String> vendorId,
             Optional<EntityListPartTransactionsWorkOrderRefTypeResponseBody> workOrder,
@@ -197,10 +197,10 @@ public final class EntityListPartTransactionsTypeResponseBody {
     }
 
     /**
-     * @return The kind of inventory movement this record represents.
+     * @return The kind of inventory movement this record represents.  Valid values: <code>Unknown</code>, <code>Receive</code>, <code>Transfer</code>, <code>Scrap</code>, <code>Adjust</code>, <code>Reserve</code>, <code>Issue</code>, <code>Release</code>, <code>Return</code>
      */
     @JsonProperty("transactionType")
-    public Optional<String> getTransactionType() {
+    public Optional<EntityListPartTransactionsTypeResponseBodyTransactionType> getTransactionType() {
         return transactionType;
     }
 
@@ -316,7 +316,7 @@ public final class EntityListPartTransactionsTypeResponseBody {
 
         private Optional<String> toPlaceId = Optional.empty();
 
-        private Optional<String> transactionType = Optional.empty();
+        private Optional<EntityListPartTransactionsTypeResponseBodyTransactionType> transactionType = Optional.empty();
 
         private Optional<Double> unitCost = Optional.empty();
 
@@ -530,15 +530,16 @@ public final class EntityListPartTransactionsTypeResponseBody {
         }
 
         /**
-         * <p>The kind of inventory movement this record represents.</p>
+         * <p>The kind of inventory movement this record represents.  Valid values: <code>Unknown</code>, <code>Receive</code>, <code>Transfer</code>, <code>Scrap</code>, <code>Adjust</code>, <code>Reserve</code>, <code>Issue</code>, <code>Release</code>, <code>Return</code></p>
          */
         @JsonSetter(value = "transactionType", nulls = Nulls.SKIP)
-        public Builder transactionType(Optional<String> transactionType) {
+        public Builder transactionType(
+                Optional<EntityListPartTransactionsTypeResponseBodyTransactionType> transactionType) {
             this.transactionType = transactionType;
             return this;
         }
 
-        public Builder transactionType(String transactionType) {
+        public Builder transactionType(EntityListPartTransactionsTypeResponseBodyTransactionType transactionType) {
             this.transactionType = Optional.ofNullable(transactionType);
             return this;
         }

@@ -31,7 +31,7 @@ public final class FormSubmissionRequestApprovalDetailsRequestBody {
     }
 
     /**
-     * @return Comment for the approval decision. Sometimes required when updating status to 'changesRequested'. Only valid when requesting changes or approving a form submission.
+     * @return Comment for the approval decision. Required when updating status to 'changesRequested' or 'denied'. Only valid when requesting changes, approving, or denying a form submission.
      */
     @JsonProperty("comment")
     public Optional<String> getComment() {
@@ -83,7 +83,7 @@ public final class FormSubmissionRequestApprovalDetailsRequestBody {
         }
 
         /**
-         * <p>Comment for the approval decision. Sometimes required when updating status to 'changesRequested'. Only valid when requesting changes or approving a form submission.</p>
+         * <p>Comment for the approval decision. Required when updating status to 'changesRequested' or 'denied'. Only valid when requesting changes, approving, or denying a form submission.</p>
          */
         @JsonSetter(value = "comment", nulls = Nulls.SKIP)
         public Builder comment(Optional<String> comment) {

@@ -42,7 +42,7 @@ public final class EntityListIssuesTypeResponseBody {
 
     private final Optional<String> status;
 
-    private final Optional<String> type;
+    private final Optional<EntityListIssuesTypeResponseBodyType> type;
 
     private final Optional<String> updatedAtTime;
 
@@ -60,7 +60,7 @@ public final class EntityListIssuesTypeResponseBody {
                     roadSegment,
             Optional<String> severity,
             Optional<String> status,
-            Optional<String> type,
+            Optional<EntityListIssuesTypeResponseBodyType> type,
             Optional<String> updatedAtTime,
             Map<String, Object> additionalProperties) {
         this.createdAtTime = createdAtTime;
@@ -155,10 +155,10 @@ public final class EntityListIssuesTypeResponseBody {
     }
 
     /**
-     * @return Customer-facing type for this issue.
+     * @return Customer-facing type for this issue.  Valid values: <code>unknown</code>, <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>, <code>transverseCrack</code>, <code>longitudinalCrack</code>, <code>alligatorCrack</code>, <code>utilityCut</code>, <code>steelPlate</code>, <code>repavingNeeded</code>
      */
     @JsonProperty("type")
-    public Optional<String> getType() {
+    public Optional<EntityListIssuesTypeResponseBodyType> getType() {
         return type;
     }
 
@@ -246,7 +246,7 @@ public final class EntityListIssuesTypeResponseBody {
 
         private Optional<String> status = Optional.empty();
 
-        private Optional<String> type = Optional.empty();
+        private Optional<EntityListIssuesTypeResponseBodyType> type = Optional.empty();
 
         private Optional<String> updatedAtTime = Optional.empty();
 
@@ -412,15 +412,15 @@ public final class EntityListIssuesTypeResponseBody {
         }
 
         /**
-         * <p>Customer-facing type for this issue.</p>
+         * <p>Customer-facing type for this issue.  Valid values: <code>unknown</code>, <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>, <code>transverseCrack</code>, <code>longitudinalCrack</code>, <code>alligatorCrack</code>, <code>utilityCut</code>, <code>steelPlate</code>, <code>repavingNeeded</code></p>
          */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<String> type) {
+        public Builder type(Optional<EntityListIssuesTypeResponseBodyType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(String type) {
+        public Builder type(EntityListIssuesTypeResponseBodyType type) {
             this.type = Optional.ofNullable(type);
             return this;
         }

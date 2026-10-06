@@ -5,6 +5,8 @@ package com.samsara.api.resources.legacyapis;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.legacyapis.requests.GetDriverEfficiencyByDriversRequest;
+import com.samsara.api.resources.legacyapis.requests.GetDriverEfficiencyByVehiclesRequest;
 import com.samsara.api.resources.legacyapis.requests.GetDriversVehicleAssignmentsRequest;
 import com.samsara.api.resources.legacyapis.requests.GetDvirDefectsRequest;
 import com.samsara.api.resources.legacyapis.requests.GetDvirHistoryRequest;
@@ -14,6 +16,8 @@ import com.samsara.api.resources.legacyapis.requests.GetVehicleIdlingReportsRequ
 import com.samsara.api.resources.legacyapis.requests.GetVehiclesDriverAssignmentsRequest;
 import com.samsara.api.resources.legacyapis.requests.V1GetVehicleHarshEventRequest;
 import com.samsara.api.types.DefectsResponse;
+import com.samsara.api.types.DriverEfficiencyGetDriverEfficiencyByDriversResponseBody;
+import com.samsara.api.types.DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody;
 import com.samsara.api.types.DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody;
 import com.samsara.api.types.DvirsListResponse;
 import com.samsara.api.types.IdlingReportsGetVehicleIdlingReportsResponseBody;
@@ -38,6 +42,62 @@ public class AsyncLegacyApIsClient {
      */
     public AsyncRawLegacyApIsClient withRawResponse() {
         return this.rawClient;
+    }
+
+    /**
+     * <strong>⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta <a href="https://developers.samsara.com/reference/createreportrun">Custom Reports API</a> for equivalent data.</strong>
+     * <p>This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody> getDriverEfficiencyByDrivers(
+            GetDriverEfficiencyByDriversRequest request) {
+        return this.rawClient.getDriverEfficiencyByDrivers(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * <strong>⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta <a href="https://developers.samsara.com/reference/createreportrun">Custom Reports API</a> for equivalent data.</strong>
+     * <p>This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody> getDriverEfficiencyByDrivers(
+            GetDriverEfficiencyByDriversRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .getDriverEfficiencyByDrivers(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * <strong>⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta <a href="https://developers.samsara.com/reference/createreportrun">Custom Reports API</a> for equivalent data.</strong>
+     * <p>This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody> getDriverEfficiencyByVehicles(
+            GetDriverEfficiencyByVehiclesRequest request) {
+        return this.rawClient.getDriverEfficiencyByVehicles(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * <strong>⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta <a href="https://developers.samsara.com/reference/createreportrun">Custom Reports API</a> for equivalent data.</strong>
+     * <p>This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.</p>
+     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody> getDriverEfficiencyByVehicles(
+            GetDriverEfficiencyByVehiclesRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .getDriverEfficiencyByVehicles(request, requestOptions)
+                .thenApply(response -> response.body());
     }
 
     /**

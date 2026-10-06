@@ -29,9 +29,13 @@ public final class TripResponseBody {
 
     private final Optional<LocationResponseResponseBody> endLocation;
 
+    private final Optional<Long> finalDistanceMeters;
+
     private final LocationResponseResponseBody startLocation;
 
     private final Optional<String> tripEndTime;
+
+    private final Optional<TripResponseBodyTripPurpose> tripPurpose;
 
     private final String tripStartTime;
 
@@ -44,8 +48,10 @@ public final class TripResponseBody {
             TripResponseBodyCompletionStatus completionStatus,
             String createdAtTime,
             Optional<LocationResponseResponseBody> endLocation,
+            Optional<Long> finalDistanceMeters,
             LocationResponseResponseBody startLocation,
             Optional<String> tripEndTime,
+            Optional<TripResponseBodyTripPurpose> tripPurpose,
             String tripStartTime,
             String updatedAtTime,
             Map<String, Object> additionalProperties) {
@@ -53,8 +59,10 @@ public final class TripResponseBody {
         this.completionStatus = completionStatus;
         this.createdAtTime = createdAtTime;
         this.endLocation = endLocation;
+        this.finalDistanceMeters = finalDistanceMeters;
         this.startLocation = startLocation;
         this.tripEndTime = tripEndTime;
+        this.tripPurpose = tripPurpose;
         this.tripStartTime = tripStartTime;
         this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
@@ -86,6 +94,14 @@ public final class TripResponseBody {
         return endLocation;
     }
 
+    /**
+     * @return Final distance driven in meters, calculated from GPS data. Only populated once the trip has completed (<code>completionStatus: completed</code>); null while the trip is in progress. Later corrections (e.g. late-arriving GPS data) are not signaled by updatedAtTime.
+     */
+    @JsonProperty("finalDistanceMeters")
+    public Optional<Long> getFinalDistanceMeters() {
+        return finalDistanceMeters;
+    }
+
     @JsonProperty("startLocation")
     public LocationResponseResponseBody getStartLocation() {
         return startLocation;
@@ -100,6 +116,14 @@ public final class TripResponseBody {
     }
 
     /**
+     * @return The driver-assigned purpose of the trip. Only populated for completed trips when your organization is licensed for mileage reporting; null while the trip is in progress or when not licensed. <code>unassigned</code> means the driver has not classified the trip. Reflects the explicit Driver App classification, not automatic classification. When a driver changes the purpose after the trip completes, the trip is re-served through the <code>updatedAtTime</code> feed with the new value.  Valid values: <code>unknown</code>, <code>unassigned</code>, <code>personal</code>, <code>business</code>, <code>commute</code>
+     */
+    @JsonProperty("tripPurpose")
+    public Optional<TripResponseBodyTripPurpose> getTripPurpose() {
+        return tripPurpose;
+    }
+
+    /**
      * @return [RFC 3339] Time the trip started in UTC.
      */
     @JsonProperty("tripStartTime")
@@ -108,7 +132,7 @@ public final class TripResponseBody {
     }
 
     /**
-     * @return [RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates or <code>completionStatus</code> changes values.
+     * @return [RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates, <code>completionStatus</code> changes values, or a driver changes the trip's <code>tripPurpose</code> after the trip has completed. To receive later purpose corrections, poll with <code>queryBy=updatedAtTime</code>; feed data trails real time by a few seconds.
      */
     @JsonProperty("updatedAtTime")
     public String getUpdatedAtTime() {
@@ -131,8 +155,10 @@ public final class TripResponseBody {
                 && completionStatus.equals(other.completionStatus)
                 && createdAtTime.equals(other.createdAtTime)
                 && endLocation.equals(other.endLocation)
+                && finalDistanceMeters.equals(other.finalDistanceMeters)
                 && startLocation.equals(other.startLocation)
                 && tripEndTime.equals(other.tripEndTime)
+                && tripPurpose.equals(other.tripPurpose)
                 && tripStartTime.equals(other.tripStartTime)
                 && updatedAtTime.equals(other.updatedAtTime);
     }
@@ -144,8 +170,10 @@ public final class TripResponseBody {
                 this.completionStatus,
                 this.createdAtTime,
                 this.endLocation,
+                this.finalDistanceMeters,
                 this.startLocation,
                 this.tripEndTime,
+                this.tripPurpose,
                 this.tripStartTime,
                 this.updatedAtTime);
     }
@@ -192,7 +220,7 @@ public final class TripResponseBody {
 
     public interface UpdatedAtTimeStage {
         /**
-         * <p>[RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates or <code>completionStatus</code> changes values.</p>
+         * <p>[RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates, <code>completionStatus</code> changes values, or a driver changes the trip's <code>tripPurpose</code> after the trip has completed. To receive later purpose corrections, poll with <code>queryBy=updatedAtTime</code>; feed data trails real time by a few seconds.</p>
          */
         _FinalStage updatedAtTime(@NotNull String updatedAtTime);
     }
@@ -205,11 +233,25 @@ public final class TripResponseBody {
         _FinalStage endLocation(LocationResponseResponseBody endLocation);
 
         /**
+         * <p>Final distance driven in meters, calculated from GPS data. Only populated once the trip has completed (<code>completionStatus: completed</code>); null while the trip is in progress. Later corrections (e.g. late-arriving GPS data) are not signaled by updatedAtTime.</p>
+         */
+        _FinalStage finalDistanceMeters(Optional<Long> finalDistanceMeters);
+
+        _FinalStage finalDistanceMeters(Long finalDistanceMeters);
+
+        /**
          * <p>[RFC 3339] Time the trip ended in UTC.</p>
          */
         _FinalStage tripEndTime(Optional<String> tripEndTime);
 
         _FinalStage tripEndTime(String tripEndTime);
+
+        /**
+         * <p>The driver-assigned purpose of the trip. Only populated for completed trips when your organization is licensed for mileage reporting; null while the trip is in progress or when not licensed. <code>unassigned</code> means the driver has not classified the trip. Reflects the explicit Driver App classification, not automatic classification. When a driver changes the purpose after the trip completes, the trip is re-served through the <code>updatedAtTime</code> feed with the new value.  Valid values: <code>unknown</code>, <code>unassigned</code>, <code>personal</code>, <code>business</code>, <code>commute</code></p>
+         */
+        _FinalStage tripPurpose(Optional<TripResponseBodyTripPurpose> tripPurpose);
+
+        _FinalStage tripPurpose(TripResponseBodyTripPurpose tripPurpose);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -233,7 +275,11 @@ public final class TripResponseBody {
 
         private String updatedAtTime;
 
+        private Optional<TripResponseBodyTripPurpose> tripPurpose = Optional.empty();
+
         private Optional<String> tripEndTime = Optional.empty();
+
+        private Optional<Long> finalDistanceMeters = Optional.empty();
 
         private Optional<LocationResponseResponseBody> endLocation = Optional.empty();
 
@@ -248,8 +294,10 @@ public final class TripResponseBody {
             completionStatus(other.getCompletionStatus());
             createdAtTime(other.getCreatedAtTime());
             endLocation(other.getEndLocation());
+            finalDistanceMeters(other.getFinalDistanceMeters());
             startLocation(other.getStartLocation());
             tripEndTime(other.getTripEndTime());
+            tripPurpose(other.getTripPurpose());
             tripStartTime(other.getTripStartTime());
             updatedAtTime(other.getUpdatedAtTime());
             return this;
@@ -306,14 +354,34 @@ public final class TripResponseBody {
         }
 
         /**
-         * <p>[RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates or <code>completionStatus</code> changes values.</p>
-         * <p>[RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates or <code>completionStatus</code> changes values.</p>
+         * <p>[RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates, <code>completionStatus</code> changes values, or a driver changes the trip's <code>tripPurpose</code> after the trip has completed. To receive later purpose corrections, poll with <code>queryBy=updatedAtTime</code>; feed data trails real time by a few seconds.</p>
+         * <p>[RFC 3339] Time the trip was updated in Samsara in UTC. Valid updates are when <code>endTime</code> populates, <code>completionStatus</code> changes values, or a driver changes the trip's <code>tripPurpose</code> after the trip has completed. To receive later purpose corrections, poll with <code>queryBy=updatedAtTime</code>; feed data trails real time by a few seconds.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("updatedAtTime")
         public _FinalStage updatedAtTime(@NotNull String updatedAtTime) {
             this.updatedAtTime = Objects.requireNonNull(updatedAtTime, "updatedAtTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>The driver-assigned purpose of the trip. Only populated for completed trips when your organization is licensed for mileage reporting; null while the trip is in progress or when not licensed. <code>unassigned</code> means the driver has not classified the trip. Reflects the explicit Driver App classification, not automatic classification. When a driver changes the purpose after the trip completes, the trip is re-served through the <code>updatedAtTime</code> feed with the new value.  Valid values: <code>unknown</code>, <code>unassigned</code>, <code>personal</code>, <code>business</code>, <code>commute</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage tripPurpose(TripResponseBodyTripPurpose tripPurpose) {
+            this.tripPurpose = Optional.ofNullable(tripPurpose);
+            return this;
+        }
+
+        /**
+         * <p>The driver-assigned purpose of the trip. Only populated for completed trips when your organization is licensed for mileage reporting; null while the trip is in progress or when not licensed. <code>unassigned</code> means the driver has not classified the trip. Reflects the explicit Driver App classification, not automatic classification. When a driver changes the purpose after the trip completes, the trip is re-served through the <code>updatedAtTime</code> feed with the new value.  Valid values: <code>unknown</code>, <code>unassigned</code>, <code>personal</code>, <code>business</code>, <code>commute</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "tripPurpose", nulls = Nulls.SKIP)
+        public _FinalStage tripPurpose(Optional<TripResponseBodyTripPurpose> tripPurpose) {
+            this.tripPurpose = tripPurpose;
             return this;
         }
 
@@ -337,6 +405,26 @@ public final class TripResponseBody {
             return this;
         }
 
+        /**
+         * <p>Final distance driven in meters, calculated from GPS data. Only populated once the trip has completed (<code>completionStatus: completed</code>); null while the trip is in progress. Later corrections (e.g. late-arriving GPS data) are not signaled by updatedAtTime.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage finalDistanceMeters(Long finalDistanceMeters) {
+            this.finalDistanceMeters = Optional.ofNullable(finalDistanceMeters);
+            return this;
+        }
+
+        /**
+         * <p>Final distance driven in meters, calculated from GPS data. Only populated once the trip has completed (<code>completionStatus: completed</code>); null while the trip is in progress. Later corrections (e.g. late-arriving GPS data) are not signaled by updatedAtTime.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "finalDistanceMeters", nulls = Nulls.SKIP)
+        public _FinalStage finalDistanceMeters(Optional<Long> finalDistanceMeters) {
+            this.finalDistanceMeters = finalDistanceMeters;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage endLocation(LocationResponseResponseBody endLocation) {
             this.endLocation = Optional.ofNullable(endLocation);
@@ -357,8 +445,10 @@ public final class TripResponseBody {
                     completionStatus,
                     createdAtTime,
                     endLocation,
+                    finalDistanceMeters,
                     startLocation,
                     tripEndTime,
+                    tripPurpose,
                     tripStartTime,
                     updatedAtTime,
                     additionalProperties);

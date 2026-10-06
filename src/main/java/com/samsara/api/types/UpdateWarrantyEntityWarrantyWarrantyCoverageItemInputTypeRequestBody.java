@@ -23,14 +23,17 @@ import org.jetbrains.annotations.NotNull;
 public final class UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBody {
     private final Optional<String> id;
 
-    private final String itemType;
+    private final UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBodyItemType itemType;
 
     private final Optional<String> vmrsCode;
 
     private final Map<String, Object> additionalProperties;
 
     private UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBody(
-            Optional<String> id, String itemType, Optional<String> vmrsCode, Map<String, Object> additionalProperties) {
+            Optional<String> id,
+            UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBodyItemType itemType,
+            Optional<String> vmrsCode,
+            Map<String, Object> additionalProperties) {
         this.id = id;
         this.itemType = itemType;
         this.vmrsCode = vmrsCode;
@@ -46,10 +49,10 @@ public final class UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequ
     }
 
     /**
-     * @return Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).
+     * @return Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: <code>unknown</code>, <code>vmrsCode</code>, <code>serviceTask</code>
      */
     @JsonProperty("itemType")
-    public String getItemType() {
+    public UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBodyItemType getItemType() {
         return itemType;
     }
 
@@ -93,9 +96,10 @@ public final class UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequ
 
     public interface ItemTypeStage {
         /**
-         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).</p>
+         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: <code>unknown</code>, <code>vmrsCode</code>, <code>serviceTask</code></p>
          */
-        _FinalStage itemType(@NotNull String itemType);
+        _FinalStage itemType(
+                @NotNull UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBodyItemType itemType);
 
         Builder from(UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBody other);
     }
@@ -120,7 +124,7 @@ public final class UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequ
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements ItemTypeStage, _FinalStage {
-        private String itemType;
+        private UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBodyItemType itemType;
 
         private Optional<String> vmrsCode = Optional.empty();
 
@@ -140,13 +144,14 @@ public final class UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequ
         }
 
         /**
-         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).</p>
-         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).</p>
+         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: <code>unknown</code>, <code>vmrsCode</code>, <code>serviceTask</code></p>
+         * <p>Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: <code>unknown</code>, <code>vmrsCode</code>, <code>serviceTask</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("itemType")
-        public _FinalStage itemType(@NotNull String itemType) {
+        public _FinalStage itemType(
+                @NotNull UpdateWarrantyEntityWarrantyWarrantyCoverageItemInputTypeRequestBodyItemType itemType) {
             this.itemType = Objects.requireNonNull(itemType, "itemType must not be null");
             return this;
         }

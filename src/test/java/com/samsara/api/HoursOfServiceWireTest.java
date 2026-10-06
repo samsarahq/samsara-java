@@ -7,10 +7,12 @@ import com.samsara.api.resources.hoursofservice.requests.GetHosClocksRequest;
 import com.samsara.api.resources.hoursofservice.requests.GetHosDailyLogsRequest;
 import com.samsara.api.resources.hoursofservice.requests.GetHosLogsRequest;
 import com.samsara.api.resources.hoursofservice.requests.GetHosViolationsRequest;
+import com.samsara.api.resources.hoursofservice.requests.HosDailyLogsUpdateShippingDocsRequestBody;
 import com.samsara.api.resources.hoursofservice.requests.InlineObject1;
 import com.samsara.api.resources.hoursofservice.requests.V1GetFleetHosAuthenticationLogsRequest;
 import com.samsara.api.types.HosClocksResponse;
 import com.samsara.api.types.HosDailyLogsGetHosDailyLogsResponseBody;
+import com.samsara.api.types.HosDailyLogsUpdateShippingDocsResponseBody;
 import com.samsara.api.types.HosLogsResponse;
 import com.samsara.api.types.HosViolationsGetHosViolationsResponseBody;
 import com.samsara.api.types.V1HosAuthenticationLogsResponse;
@@ -278,6 +280,104 @@ public class HoursOfServiceWireTest {
                 + "  \"pagination\": {\n"
                 + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
+                + "  }\n"
+                + "}";
+        JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
+        JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
+        Assertions.assertTrue(
+                jsonEquals(expectedResponseNode, actualResponseNode),
+                "Response body structure does not match expected");
+        if (actualResponseNode.has("type") || actualResponseNode.has("_type") || actualResponseNode.has("kind")) {
+            String discriminator = null;
+            if (actualResponseNode.has("type"))
+                discriminator = actualResponseNode.get("type").asText();
+            else if (actualResponseNode.has("_type"))
+                discriminator = actualResponseNode.get("_type").asText();
+            else if (actualResponseNode.has("kind"))
+                discriminator = actualResponseNode.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualResponseNode.isNull()) {
+            Assertions.assertTrue(
+                    actualResponseNode.isObject() || actualResponseNode.isArray() || actualResponseNode.isValueNode(),
+                    "response should be a valid JSON value");
+        }
+
+        if (actualResponseNode.isArray()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Array should have valid size");
+        }
+        if (actualResponseNode.isObject()) {
+            Assertions.assertTrue(actualResponseNode.size() >= 0, "Object should have valid field count");
+        }
+    }
+
+    @Test
+    public void testUpdateShippingDocs() throws Exception {
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":{\"adverseDrivingClaimed\":false,\"bigDayClaimed\":false,\"carrierFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"carrierName\":\"Carrier Name\",\"carrierUsDotNumber\":1234,\"homeTerminalFormattedAddress\":\"1990 Alameda Street, San Francisco, CA 94103\",\"homeTerminalName\":\"Home Terminal Name\",\"isCertified\":true,\"isUsShortHaulActive\":false,\"trailerNames\":[\"10293\",\"Trailer ID 1\"]}}"));
+        HosDailyLogsUpdateShippingDocsResponseBody response = client.hoursOfService()
+                .updateShippingDocs(HosDailyLogsUpdateShippingDocsRequestBody.builder()
+                        .hosDate("hosDate")
+                        .driverId("driverID")
+                        .shippingDocs("ShippingID1, ShippingID2")
+                        .build());
+        RecordedRequest request = server.takeRequest();
+        Assertions.assertNotNull(request);
+        Assertions.assertEquals("PATCH", request.getMethod());
+        // Validate request body
+        String actualRequestBody = request.getBody().readUtf8();
+        String expectedRequestBody = "" + "{\n" + "  \"shippingDocs\": \"ShippingID1, ShippingID2\"\n" + "}";
+        JsonNode actualJson = objectMapper.readTree(actualRequestBody);
+        JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
+        Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");
+        if (actualJson.has("type") || actualJson.has("_type") || actualJson.has("kind")) {
+            String discriminator = null;
+            if (actualJson.has("type")) discriminator = actualJson.get("type").asText();
+            else if (actualJson.has("_type"))
+                discriminator = actualJson.get("_type").asText();
+            else if (actualJson.has("kind"))
+                discriminator = actualJson.get("kind").asText();
+            Assertions.assertNotNull(discriminator, "Union type should have a discriminator field");
+            Assertions.assertFalse(discriminator.isEmpty(), "Union discriminator should not be empty");
+        }
+
+        if (!actualJson.isNull()) {
+            Assertions.assertTrue(
+                    actualJson.isObject() || actualJson.isArray() || actualJson.isValueNode(),
+                    "request should be a valid JSON value");
+        }
+
+        if (actualJson.isArray()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Array should have valid size");
+        }
+        if (actualJson.isObject()) {
+            Assertions.assertTrue(actualJson.size() >= 0, "Object should have valid field count");
+        }
+
+        // Validate response body
+        Assertions.assertNotNull(response, "Response should not be null");
+        String actualResponseJson = objectMapper.writeValueAsString(response);
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": {\n"
+                + "    \"adverseDrivingClaimed\": false,\n"
+                + "    \"bigDayClaimed\": false,\n"
+                + "    \"carrierFormattedAddress\": \"1990 Alameda Street, San Francisco, CA 94103\",\n"
+                + "    \"carrierName\": \"Carrier Name\",\n"
+                + "    \"carrierUsDotNumber\": 1234,\n"
+                + "    \"homeTerminalFormattedAddress\": \"1990 Alameda Street, San Francisco, CA 94103\",\n"
+                + "    \"homeTerminalName\": \"Home Terminal Name\",\n"
+                + "    \"isCertified\": true,\n"
+                + "    \"isUsShortHaulActive\": false,\n"
+                + "    \"trailerNames\": [\n"
+                + "      \"10293\",\n"
+                + "      \"Trailer ID 1\"\n"
+                + "    ]\n"
                 + "  }\n"
                 + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);

@@ -25,15 +25,31 @@ import org.jetbrains.annotations.NotNull;
 public final class VendorObjectResponseBody {
     private final Optional<String> addressId;
 
+    private final Optional<List<VendorPublicAttributeSelectionResponseBody>> assetAttributeSelections;
+
     private final List<String> categoryIds;
+
+    private final Optional<VendorPublicMoneyResponseBody> defaultLaborRatePerHour;
 
     private final Optional<Map<String, String>> externalIds;
 
     private final String id;
 
+    private final Optional<Boolean> isMobile;
+
+    private final Optional<Boolean> isPreferred;
+
+    private final Optional<String> name;
+
     private final Optional<String> payeeId;
 
+    private final Optional<VendorPublicResolvedSettingsResponseBody> resolvedSettings;
+
     private final Optional<String> servicesProvided;
+
+    private final Optional<String> status;
+
+    private final Optional<String> vendorGroupId;
 
     private final Optional<String> vendorId;
 
@@ -41,19 +57,35 @@ public final class VendorObjectResponseBody {
 
     private VendorObjectResponseBody(
             Optional<String> addressId,
+            Optional<List<VendorPublicAttributeSelectionResponseBody>> assetAttributeSelections,
             List<String> categoryIds,
+            Optional<VendorPublicMoneyResponseBody> defaultLaborRatePerHour,
             Optional<Map<String, String>> externalIds,
             String id,
+            Optional<Boolean> isMobile,
+            Optional<Boolean> isPreferred,
+            Optional<String> name,
             Optional<String> payeeId,
+            Optional<VendorPublicResolvedSettingsResponseBody> resolvedSettings,
             Optional<String> servicesProvided,
+            Optional<String> status,
+            Optional<String> vendorGroupId,
             Optional<String> vendorId,
             Map<String, Object> additionalProperties) {
         this.addressId = addressId;
+        this.assetAttributeSelections = assetAttributeSelections;
         this.categoryIds = categoryIds;
+        this.defaultLaborRatePerHour = defaultLaborRatePerHour;
         this.externalIds = externalIds;
         this.id = id;
+        this.isMobile = isMobile;
+        this.isPreferred = isPreferred;
+        this.name = name;
         this.payeeId = payeeId;
+        this.resolvedSettings = resolvedSettings;
         this.servicesProvided = servicesProvided;
+        this.status = status;
+        this.vendorGroupId = vendorGroupId;
         this.vendorId = vendorId;
         this.additionalProperties = additionalProperties;
     }
@@ -67,11 +99,24 @@ public final class VendorObjectResponseBody {
     }
 
     /**
+     * @return Configured asset attributes. An empty array is explicit; omission inherits.
+     */
+    @JsonProperty("assetAttributeSelections")
+    public Optional<List<VendorPublicAttributeSelectionResponseBody>> getAssetAttributeSelections() {
+        return assetAttributeSelections;
+    }
+
+    /**
      * @return Category UUIDs for this vendor. Use the Vendor Categories endpoint to resolve names.
      */
     @JsonProperty("categoryIds")
     public List<String> getCategoryIds() {
         return categoryIds;
+    }
+
+    @JsonProperty("defaultLaborRatePerHour")
+    public Optional<VendorPublicMoneyResponseBody> getDefaultLaborRatePerHour() {
+        return defaultLaborRatePerHour;
     }
 
     /**
@@ -91,11 +136,40 @@ public final class VendorObjectResponseBody {
     }
 
     /**
+     * @return Explicit mobile-service override; omitted when inherited.
+     */
+    @JsonProperty("isMobile")
+    public Optional<Boolean> getIsMobile() {
+        return isMobile;
+    }
+
+    /**
+     * @return Explicit preferred override; omitted when inherited.
+     */
+    @JsonProperty("isPreferred")
+    public Optional<Boolean> getIsPreferred() {
+        return isPreferred;
+    }
+
+    /**
+     * @return The name of the vendor.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
      * @return The vendor's accounts-payable/ERP payee ID.
      */
     @JsonProperty("payeeId")
     public Optional<String> getPayeeId() {
         return payeeId;
+    }
+
+    @JsonProperty("resolvedSettings")
+    public Optional<VendorPublicResolvedSettingsResponseBody> getResolvedSettings() {
+        return resolvedSettings;
     }
 
     /**
@@ -104,6 +178,22 @@ public final class VendorObjectResponseBody {
     @JsonProperty("servicesProvided")
     public Optional<String> getServicesProvided() {
         return servicesProvided;
+    }
+
+    /**
+     * @return Own lifecycle status: active, inactive, or unknown. Defaults to active.
+     */
+    @JsonProperty("status")
+    public Optional<String> getStatus() {
+        return status;
+    }
+
+    /**
+     * @return Parent vendor group ID, when configured.
+     */
+    @JsonProperty("vendorGroupId")
+    public Optional<String> getVendorGroupId() {
+        return vendorGroupId;
     }
 
     /**
@@ -127,11 +217,19 @@ public final class VendorObjectResponseBody {
 
     private boolean equalTo(VendorObjectResponseBody other) {
         return addressId.equals(other.addressId)
+                && assetAttributeSelections.equals(other.assetAttributeSelections)
                 && categoryIds.equals(other.categoryIds)
+                && defaultLaborRatePerHour.equals(other.defaultLaborRatePerHour)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
+                && isMobile.equals(other.isMobile)
+                && isPreferred.equals(other.isPreferred)
+                && name.equals(other.name)
                 && payeeId.equals(other.payeeId)
+                && resolvedSettings.equals(other.resolvedSettings)
                 && servicesProvided.equals(other.servicesProvided)
+                && status.equals(other.status)
+                && vendorGroupId.equals(other.vendorGroupId)
                 && vendorId.equals(other.vendorId);
     }
 
@@ -139,11 +237,19 @@ public final class VendorObjectResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.addressId,
+                this.assetAttributeSelections,
                 this.categoryIds,
+                this.defaultLaborRatePerHour,
                 this.externalIds,
                 this.id,
+                this.isMobile,
+                this.isPreferred,
+                this.name,
                 this.payeeId,
+                this.resolvedSettings,
                 this.servicesProvided,
+                this.status,
+                this.vendorGroupId,
                 this.vendorId);
     }
 
@@ -176,6 +282,14 @@ public final class VendorObjectResponseBody {
         _FinalStage addressId(String addressId);
 
         /**
+         * <p>Configured asset attributes. An empty array is explicit; omission inherits.</p>
+         */
+        _FinalStage assetAttributeSelections(
+                Optional<List<VendorPublicAttributeSelectionResponseBody>> assetAttributeSelections);
+
+        _FinalStage assetAttributeSelections(List<VendorPublicAttributeSelectionResponseBody> assetAttributeSelections);
+
+        /**
          * <p>Category UUIDs for this vendor. Use the Vendor Categories endpoint to resolve names.</p>
          */
         _FinalStage categoryIds(List<String> categoryIds);
@@ -183,6 +297,10 @@ public final class VendorObjectResponseBody {
         _FinalStage addCategoryIds(String categoryIds);
 
         _FinalStage addAllCategoryIds(List<String> categoryIds);
+
+        _FinalStage defaultLaborRatePerHour(Optional<VendorPublicMoneyResponseBody> defaultLaborRatePerHour);
+
+        _FinalStage defaultLaborRatePerHour(VendorPublicMoneyResponseBody defaultLaborRatePerHour);
 
         /**
          * <p>A map of external ids</p>
@@ -192,11 +310,36 @@ public final class VendorObjectResponseBody {
         _FinalStage externalIds(Map<String, String> externalIds);
 
         /**
+         * <p>Explicit mobile-service override; omitted when inherited.</p>
+         */
+        _FinalStage isMobile(Optional<Boolean> isMobile);
+
+        _FinalStage isMobile(Boolean isMobile);
+
+        /**
+         * <p>Explicit preferred override; omitted when inherited.</p>
+         */
+        _FinalStage isPreferred(Optional<Boolean> isPreferred);
+
+        _FinalStage isPreferred(Boolean isPreferred);
+
+        /**
+         * <p>The name of the vendor.</p>
+         */
+        _FinalStage name(Optional<String> name);
+
+        _FinalStage name(String name);
+
+        /**
          * <p>The vendor's accounts-payable/ERP payee ID.</p>
          */
         _FinalStage payeeId(Optional<String> payeeId);
 
         _FinalStage payeeId(String payeeId);
+
+        _FinalStage resolvedSettings(Optional<VendorPublicResolvedSettingsResponseBody> resolvedSettings);
+
+        _FinalStage resolvedSettings(VendorPublicResolvedSettingsResponseBody resolvedSettings);
 
         /**
          * <p>Description of services provided by the vendor.</p>
@@ -204,6 +347,20 @@ public final class VendorObjectResponseBody {
         _FinalStage servicesProvided(Optional<String> servicesProvided);
 
         _FinalStage servicesProvided(String servicesProvided);
+
+        /**
+         * <p>Own lifecycle status: active, inactive, or unknown. Defaults to active.</p>
+         */
+        _FinalStage status(Optional<String> status);
+
+        _FinalStage status(String status);
+
+        /**
+         * <p>Parent vendor group ID, when configured.</p>
+         */
+        _FinalStage vendorGroupId(Optional<String> vendorGroupId);
+
+        _FinalStage vendorGroupId(String vendorGroupId);
 
         /**
          * <p>The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.</p>
@@ -219,13 +376,29 @@ public final class VendorObjectResponseBody {
 
         private Optional<String> vendorId = Optional.empty();
 
+        private Optional<String> vendorGroupId = Optional.empty();
+
+        private Optional<String> status = Optional.empty();
+
         private Optional<String> servicesProvided = Optional.empty();
+
+        private Optional<VendorPublicResolvedSettingsResponseBody> resolvedSettings = Optional.empty();
 
         private Optional<String> payeeId = Optional.empty();
 
+        private Optional<String> name = Optional.empty();
+
+        private Optional<Boolean> isPreferred = Optional.empty();
+
+        private Optional<Boolean> isMobile = Optional.empty();
+
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<VendorPublicMoneyResponseBody> defaultLaborRatePerHour = Optional.empty();
+
         private List<String> categoryIds = new ArrayList<>();
+
+        private Optional<List<VendorPublicAttributeSelectionResponseBody>> assetAttributeSelections = Optional.empty();
 
         private Optional<String> addressId = Optional.empty();
 
@@ -237,11 +410,19 @@ public final class VendorObjectResponseBody {
         @java.lang.Override
         public Builder from(VendorObjectResponseBody other) {
             addressId(other.getAddressId());
+            assetAttributeSelections(other.getAssetAttributeSelections());
             categoryIds(other.getCategoryIds());
+            defaultLaborRatePerHour(other.getDefaultLaborRatePerHour());
             externalIds(other.getExternalIds());
             id(other.getId());
+            isMobile(other.getIsMobile());
+            isPreferred(other.getIsPreferred());
+            name(other.getName());
             payeeId(other.getPayeeId());
+            resolvedSettings(other.getResolvedSettings());
             servicesProvided(other.getServicesProvided());
+            status(other.getStatus());
+            vendorGroupId(other.getVendorGroupId());
             vendorId(other.getVendorId());
             return this;
         }
@@ -279,6 +460,46 @@ public final class VendorObjectResponseBody {
         }
 
         /**
+         * <p>Parent vendor group ID, when configured.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage vendorGroupId(String vendorGroupId) {
+            this.vendorGroupId = Optional.ofNullable(vendorGroupId);
+            return this;
+        }
+
+        /**
+         * <p>Parent vendor group ID, when configured.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "vendorGroupId", nulls = Nulls.SKIP)
+        public _FinalStage vendorGroupId(Optional<String> vendorGroupId) {
+            this.vendorGroupId = vendorGroupId;
+            return this;
+        }
+
+        /**
+         * <p>Own lifecycle status: active, inactive, or unknown. Defaults to active.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage status(String status) {
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * <p>Own lifecycle status: active, inactive, or unknown. Defaults to active.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public _FinalStage status(Optional<String> status) {
+            this.status = status;
+            return this;
+        }
+
+        /**
          * <p>Description of services provided by the vendor.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -295,6 +516,19 @@ public final class VendorObjectResponseBody {
         @JsonSetter(value = "servicesProvided", nulls = Nulls.SKIP)
         public _FinalStage servicesProvided(Optional<String> servicesProvided) {
             this.servicesProvided = servicesProvided;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage resolvedSettings(VendorPublicResolvedSettingsResponseBody resolvedSettings) {
+            this.resolvedSettings = Optional.ofNullable(resolvedSettings);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "resolvedSettings", nulls = Nulls.SKIP)
+        public _FinalStage resolvedSettings(Optional<VendorPublicResolvedSettingsResponseBody> resolvedSettings) {
+            this.resolvedSettings = resolvedSettings;
             return this;
         }
 
@@ -319,6 +553,66 @@ public final class VendorObjectResponseBody {
         }
 
         /**
+         * <p>The name of the vendor.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage name(String name) {
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * <p>The name of the vendor.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public _FinalStage name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * <p>Explicit preferred override; omitted when inherited.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isPreferred(Boolean isPreferred) {
+            this.isPreferred = Optional.ofNullable(isPreferred);
+            return this;
+        }
+
+        /**
+         * <p>Explicit preferred override; omitted when inherited.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "isPreferred", nulls = Nulls.SKIP)
+        public _FinalStage isPreferred(Optional<Boolean> isPreferred) {
+            this.isPreferred = isPreferred;
+            return this;
+        }
+
+        /**
+         * <p>Explicit mobile-service override; omitted when inherited.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isMobile(Boolean isMobile) {
+            this.isMobile = Optional.ofNullable(isMobile);
+            return this;
+        }
+
+        /**
+         * <p>Explicit mobile-service override; omitted when inherited.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "isMobile", nulls = Nulls.SKIP)
+        public _FinalStage isMobile(Optional<Boolean> isMobile) {
+            this.isMobile = isMobile;
+            return this;
+        }
+
+        /**
          * <p>A map of external ids</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -335,6 +629,19 @@ public final class VendorObjectResponseBody {
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
         public _FinalStage externalIds(Optional<Map<String, String>> externalIds) {
             this.externalIds = externalIds;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage defaultLaborRatePerHour(VendorPublicMoneyResponseBody defaultLaborRatePerHour) {
+            this.defaultLaborRatePerHour = Optional.ofNullable(defaultLaborRatePerHour);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "defaultLaborRatePerHour", nulls = Nulls.SKIP)
+        public _FinalStage defaultLaborRatePerHour(Optional<VendorPublicMoneyResponseBody> defaultLaborRatePerHour) {
+            this.defaultLaborRatePerHour = defaultLaborRatePerHour;
             return this;
         }
 
@@ -374,6 +681,28 @@ public final class VendorObjectResponseBody {
         }
 
         /**
+         * <p>Configured asset attributes. An empty array is explicit; omission inherits.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assetAttributeSelections(
+                List<VendorPublicAttributeSelectionResponseBody> assetAttributeSelections) {
+            this.assetAttributeSelections = Optional.ofNullable(assetAttributeSelections);
+            return this;
+        }
+
+        /**
+         * <p>Configured asset attributes. An empty array is explicit; omission inherits.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assetAttributeSelections", nulls = Nulls.SKIP)
+        public _FinalStage assetAttributeSelections(
+                Optional<List<VendorPublicAttributeSelectionResponseBody>> assetAttributeSelections) {
+            this.assetAttributeSelections = assetAttributeSelections;
+            return this;
+        }
+
+        /**
          * <p>Linked Samsara Address ID. Use the Addresses API to retrieve name, address, coordinates, and notes.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -396,7 +725,22 @@ public final class VendorObjectResponseBody {
         @java.lang.Override
         public VendorObjectResponseBody build() {
             return new VendorObjectResponseBody(
-                    addressId, categoryIds, externalIds, id, payeeId, servicesProvided, vendorId, additionalProperties);
+                    addressId,
+                    assetAttributeSelections,
+                    categoryIds,
+                    defaultLaborRatePerHour,
+                    externalIds,
+                    id,
+                    isMobile,
+                    isPreferred,
+                    name,
+                    payeeId,
+                    resolvedSettings,
+                    servicesProvided,
+                    status,
+                    vendorGroupId,
+                    vendorId,
+                    additionalProperties);
         }
     }
 }

@@ -60,7 +60,7 @@ public final class OrderTaskRequestBody {
     }
 
     /**
-     * @return The full address string for the order
+     * @return The full address string for the order. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.
      */
     @JsonProperty("address")
     public Optional<String> getAddress() {
@@ -73,7 +73,7 @@ public final class OrderTaskRequestBody {
     }
 
     /**
-     * @return The customer-provided identifier of the location associated with the order
+     * @return The customer-provided identifier of the location associated with the order. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.
      */
     @JsonProperty("customerLocationId")
     public Optional<String> getCustomerLocationId() {
@@ -81,7 +81,7 @@ public final class OrderTaskRequestBody {
     }
 
     /**
-     * @return Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.
+     * @return Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.
      */
     @JsonProperty("latitude")
     public Optional<Double> getLatitude() {
@@ -89,7 +89,7 @@ public final class OrderTaskRequestBody {
     }
 
     /**
-     * @return Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.
+     * @return Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.
      */
     @JsonProperty("longitude")
     public Optional<Double> getLongitude() {
@@ -200,7 +200,7 @@ public final class OrderTaskRequestBody {
         }
 
         /**
-         * <p>The full address string for the order</p>
+         * <p>The full address string for the order. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.</p>
          */
         @JsonSetter(value = "address", nulls = Nulls.SKIP)
         public Builder address(Optional<String> address) {
@@ -225,7 +225,7 @@ public final class OrderTaskRequestBody {
         }
 
         /**
-         * <p>The customer-provided identifier of the location associated with the order</p>
+         * <p>The customer-provided identifier of the location associated with the order. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.</p>
          */
         @JsonSetter(value = "customerLocationId", nulls = Nulls.SKIP)
         public Builder customerLocationId(Optional<String> customerLocationId) {
@@ -239,7 +239,7 @@ public final class OrderTaskRequestBody {
         }
 
         /**
-         * <p>Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.</p>
+         * <p>Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.</p>
          */
         @JsonSetter(value = "latitude", nulls = Nulls.SKIP)
         public Builder latitude(Optional<Double> latitude) {
@@ -253,7 +253,7 @@ public final class OrderTaskRequestBody {
         }
 
         /**
-         * <p>Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.</p>
+         * <p>Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates. One of <code>customerLocationId</code>, <code>address</code>, or both <code>latitude</code> and <code>longitude</code> is required.</p>
          */
         @JsonSetter(value = "longitude", nulls = Nulls.SKIP)
         public Builder longitude(Optional<Double> longitude) {

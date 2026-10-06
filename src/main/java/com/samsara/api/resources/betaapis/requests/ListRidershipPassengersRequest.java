@@ -45,7 +45,7 @@ public final class ListRidershipPassengersRequest {
     }
 
     /**
-     * @return ID of a tag to filter passengers by.
+     * @return Samsara ID of the tag to filter passengers by, such as <code>5678</code>. External IDs are not supported here.
      */
     @JsonProperty("tagId")
     public String getTagId() {
@@ -110,7 +110,7 @@ public final class ListRidershipPassengersRequest {
 
     public interface TagIdStage {
         /**
-         * <p>ID of a tag to filter passengers by.</p>
+         * <p>Samsara ID of the tag to filter passengers by, such as <code>5678</code>. External IDs are not supported here.</p>
          */
         _FinalStage tagId(@NotNull String tagId);
 
@@ -167,8 +167,8 @@ public final class ListRidershipPassengersRequest {
         }
 
         /**
-         * <p>ID of a tag to filter passengers by.</p>
-         * <p>ID of a tag to filter passengers by.</p>
+         * <p>Samsara ID of the tag to filter passengers by, such as <code>5678</code>. External IDs are not supported here.</p>
+         * <p>Samsara ID of the tag to filter passengers by, such as <code>5678</code>. External IDs are not supported here.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

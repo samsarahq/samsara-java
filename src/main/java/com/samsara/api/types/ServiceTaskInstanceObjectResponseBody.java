@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ServiceTaskInstanceObjectResponseBody.Builder.class)
 public final class ServiceTaskInstanceObjectResponseBody {
+    private final Optional<List<ServiceTaskAssigneeObjectResponseBody>> assignees;
+
     private final String id;
 
     private final Optional<WorkOrderMoneyObjectResponseBody> laborHourlyCost;
@@ -43,6 +45,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private ServiceTaskInstanceObjectResponseBody(
+            Optional<List<ServiceTaskAssigneeObjectResponseBody>> assignees,
             String id,
             Optional<WorkOrderMoneyObjectResponseBody> laborHourlyCost,
             Optional<Integer> laborTimeMinutes,
@@ -53,6 +56,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
             ServiceTaskInstanceObjectResponseBodyStatus status,
             Optional<List<ServiceTaskSubtaskObjectResponseBody>> subtasks,
             Map<String, Object> additionalProperties) {
+        this.assignees = assignees;
         this.id = id;
         this.laborHourlyCost = laborHourlyCost;
         this.laborTimeMinutes = laborTimeMinutes;
@@ -63,6 +67,14 @@ public final class ServiceTaskInstanceObjectResponseBody {
         this.status = status;
         this.subtasks = subtasks;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Dashboard users assigned to the service task. Only returned for organizations with service task assignees enabled. Technicians backed only by a driver are not represented.
+     */
+    @JsonProperty("assignees")
+    public Optional<List<ServiceTaskAssigneeObjectResponseBody>> getAssignees() {
+        return assignees;
     }
 
     /**
@@ -144,7 +156,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
     }
 
     private boolean equalTo(ServiceTaskInstanceObjectResponseBody other) {
-        return id.equals(other.id)
+        return assignees.equals(other.assignees)
+                && id.equals(other.id)
                 && laborHourlyCost.equals(other.laborHourlyCost)
                 && laborTimeMinutes.equals(other.laborTimeMinutes)
                 && notes.equals(other.notes)
@@ -158,6 +171,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.assignees,
                 this.id,
                 this.laborHourlyCost,
                 this.laborTimeMinutes,
@@ -203,6 +217,13 @@ public final class ServiceTaskInstanceObjectResponseBody {
 
     public interface _FinalStage {
         ServiceTaskInstanceObjectResponseBody build();
+
+        /**
+         * <p>Dashboard users assigned to the service task. Only returned for organizations with service task assignees enabled. Technicians backed only by a driver are not represented.</p>
+         */
+        _FinalStage assignees(Optional<List<ServiceTaskAssigneeObjectResponseBody>> assignees);
+
+        _FinalStage assignees(List<ServiceTaskAssigneeObjectResponseBody> assignees);
 
         _FinalStage laborHourlyCost(Optional<WorkOrderMoneyObjectResponseBody> laborHourlyCost);
 
@@ -261,6 +282,8 @@ public final class ServiceTaskInstanceObjectResponseBody {
 
         private Optional<WorkOrderMoneyObjectResponseBody> laborHourlyCost = Optional.empty();
 
+        private Optional<List<ServiceTaskAssigneeObjectResponseBody>> assignees = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -268,6 +291,7 @@ public final class ServiceTaskInstanceObjectResponseBody {
 
         @java.lang.Override
         public Builder from(ServiceTaskInstanceObjectResponseBody other) {
+            assignees(other.getAssignees());
             id(other.getId());
             laborHourlyCost(other.getLaborHourlyCost());
             laborTimeMinutes(other.getLaborTimeMinutes());
@@ -422,9 +446,30 @@ public final class ServiceTaskInstanceObjectResponseBody {
             return this;
         }
 
+        /**
+         * <p>Dashboard users assigned to the service task. Only returned for organizations with service task assignees enabled. Technicians backed only by a driver are not represented.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assignees(List<ServiceTaskAssigneeObjectResponseBody> assignees) {
+            this.assignees = Optional.ofNullable(assignees);
+            return this;
+        }
+
+        /**
+         * <p>Dashboard users assigned to the service task. Only returned for organizations with service task assignees enabled. Technicians backed only by a driver are not represented.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assignees", nulls = Nulls.SKIP)
+        public _FinalStage assignees(Optional<List<ServiceTaskAssigneeObjectResponseBody>> assignees) {
+            this.assignees = assignees;
+            return this;
+        }
+
         @java.lang.Override
         public ServiceTaskInstanceObjectResponseBody build() {
             return new ServiceTaskInstanceObjectResponseBody(
+                    assignees,
                     id,
                     laborHourlyCost,
                     laborTimeMinutes,

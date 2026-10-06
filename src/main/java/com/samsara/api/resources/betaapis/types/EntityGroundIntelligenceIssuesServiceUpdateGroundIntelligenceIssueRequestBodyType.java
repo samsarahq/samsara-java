@@ -11,13 +11,37 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
             PATCHED_POTHOLE = new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
                     Value.PATCHED_POTHOLE, "patchedPothole");
 
+    public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType
+            TRANSVERSE_CRACK = new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
+                    Value.TRANSVERSE_CRACK, "transverseCrack");
+
+    public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType
+            ALLIGATOR_CRACK = new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
+                    Value.ALLIGATOR_CRACK, "alligatorCrack");
+
+    public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType
+            REPAVING_NEEDED = new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
+                    Value.REPAVING_NEEDED, "repavingNeeded");
+
+    public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType
+            LONGITUDINAL_CRACK = new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
+                    Value.LONGITUDINAL_CRACK, "longitudinalCrack");
+
     public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType POTHOLE =
             new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
                     Value.POTHOLE, "pothole");
 
+    public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType STEEL_PLATE =
+            new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
+                    Value.STEEL_PLATE, "steelPlate");
+
     public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType
             ROAD_CRACKING = new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
                     Value.ROAD_CRACKING, "roadCracking");
+
+    public static final EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType UTILITY_CUT =
+            new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
+                    Value.UTILITY_CUT, "utilityCut");
 
     private final Value value;
 
@@ -57,10 +81,22 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
         switch (value) {
             case PATCHED_POTHOLE:
                 return visitor.visitPatchedPothole();
+            case TRANSVERSE_CRACK:
+                return visitor.visitTransverseCrack();
+            case ALLIGATOR_CRACK:
+                return visitor.visitAlligatorCrack();
+            case REPAVING_NEEDED:
+                return visitor.visitRepavingNeeded();
+            case LONGITUDINAL_CRACK:
+                return visitor.visitLongitudinalCrack();
             case POTHOLE:
                 return visitor.visitPothole();
+            case STEEL_PLATE:
+                return visitor.visitSteelPlate();
             case ROAD_CRACKING:
                 return visitor.visitRoadCracking();
+            case UTILITY_CUT:
+                return visitor.visitUtilityCut();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -73,10 +109,22 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
         switch (value) {
             case "patchedPothole":
                 return PATCHED_POTHOLE;
+            case "transverseCrack":
+                return TRANSVERSE_CRACK;
+            case "alligatorCrack":
+                return ALLIGATOR_CRACK;
+            case "repavingNeeded":
+                return REPAVING_NEEDED;
+            case "longitudinalCrack":
+                return LONGITUDINAL_CRACK;
             case "pothole":
                 return POTHOLE;
+            case "steelPlate":
+                return STEEL_PLATE;
             case "roadCracking":
                 return ROAD_CRACKING;
+            case "utilityCut":
+                return UTILITY_CUT;
             default:
                 return new EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
                         Value.UNKNOWN, value);
@@ -90,6 +138,18 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
 
         PATCHED_POTHOLE,
 
+        TRANSVERSE_CRACK,
+
+        LONGITUDINAL_CRACK,
+
+        ALLIGATOR_CRACK,
+
+        UTILITY_CUT,
+
+        STEEL_PLATE,
+
+        REPAVING_NEEDED,
+
         UNKNOWN
     }
 
@@ -99,6 +159,18 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
         T visitRoadCracking();
 
         T visitPatchedPothole();
+
+        T visitTransverseCrack();
+
+        T visitLongitudinalCrack();
+
+        T visitAlligatorCrack();
+
+        T visitUtilityCut();
+
+        T visitSteelPlate();
+
+        T visitRepavingNeeded();
 
         T visitUnknown(String unknownType);
     }

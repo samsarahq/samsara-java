@@ -43,14 +43,13 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
                     Value.NO_FACE_SHIELD, "No Face Shield");
 
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem ITEMS_IN_HAND =
+            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
+                    Value.ITEMS_IN_HAND, "Items in Hand");
+
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem MOUNTED_PHONE =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
                     Value.MOUNTED_PHONE, "Mounted Phone");
-
-    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem
-            TRAFFIC_CONTROL_PERSON_PRESENT =
-                    new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
-                            Value.TRAFFIC_CONTROL_PERSON_PRESENT, "Traffic Control Person Present");
 
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NO_GLOVES =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(Value.NO_GLOVES, "No Gloves");
@@ -77,9 +76,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem DEFENSIVE =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(Value.DEFENSIVE, "Defensive");
 
-    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NIGHT =
-            new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(Value.NIGHT, "Night");
-
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem PEDESTRIANS =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
                     Value.PEDESTRIANS, "Pedestrians");
@@ -91,11 +87,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
                     Value.NO_SAFETY_GLASSES, "No Safety Glasses");
 
-    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem
-            PERSON_ACTIVELY_DIRECTING_TRAFFIC =
-                    new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
-                            Value.PERSON_ACTIVELY_DIRECTING_TRAFFIC, "Person Actively Directing Traffic");
-
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem SLIGHTLY_DROWSY =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
                     Value.SLIGHTLY_DROWSY, "Slightly Drowsy");
@@ -103,6 +94,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NO_HI_VIS_VEST =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
                     Value.NO_HI_VIS_VEST, "No Hi-Vis Vest");
+
+    public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem
+            FACING_AWAY_FROM_VEHICLE = new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(
+                    Value.FACING_AWAY_FROM_VEHICLE, "Facing Away From Vehicle");
 
     public static final SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NO_BOOTS =
             new SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem(Value.NO_BOOTS, "No Boots");
@@ -199,10 +194,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return visitor.visitPassengers();
             case NO_FACE_SHIELD:
                 return visitor.visitNoFaceShield();
+            case ITEMS_IN_HAND:
+                return visitor.visitItemsInHand();
             case MOUNTED_PHONE:
                 return visitor.visitMountedPhone();
-            case TRAFFIC_CONTROL_PERSON_PRESENT:
-                return visitor.visitTrafficControlPersonPresent();
             case NO_GLOVES:
                 return visitor.visitNoGloves();
             case CYCLIST_MOTORCYCLIST:
@@ -217,20 +212,18 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return visitor.visitRaining();
             case DEFENSIVE:
                 return visitor.visitDefensive();
-            case NIGHT:
-                return visitor.visitNight();
             case PEDESTRIANS:
                 return visitor.visitPedestrians();
             case CONGESTED:
                 return visitor.visitCongested();
             case NO_SAFETY_GLASSES:
                 return visitor.visitNoSafetyGlasses();
-            case PERSON_ACTIVELY_DIRECTING_TRAFFIC:
-                return visitor.visitPersonActivelyDirectingTraffic();
             case SLIGHTLY_DROWSY:
                 return visitor.visitSlightlyDrowsy();
             case NO_HI_VIS_VEST:
                 return visitor.visitNoHiVisVest();
+            case FACING_AWAY_FROM_VEHICLE:
+                return visitor.visitFacingAwayFromVehicle();
             case NO_BOOTS:
                 return visitor.visitNoBoots();
             case SENSITIVE_MEDIA:
@@ -282,10 +275,10 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return PASSENGERS;
             case "No Face Shield":
                 return NO_FACE_SHIELD;
+            case "Items in Hand":
+                return ITEMS_IN_HAND;
             case "Mounted Phone":
                 return MOUNTED_PHONE;
-            case "Traffic Control Person Present":
-                return TRAFFIC_CONTROL_PERSON_PRESENT;
             case "No Gloves":
                 return NO_GLOVES;
             case "Cyclist/Motorcyclist":
@@ -300,20 +293,18 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
                 return RAINING;
             case "Defensive":
                 return DEFENSIVE;
-            case "Night":
-                return NIGHT;
             case "Pedestrians":
                 return PEDESTRIANS;
             case "Congested":
                 return CONGESTED;
             case "No Safety Glasses":
                 return NO_SAFETY_GLASSES;
-            case "Person Actively Directing Traffic":
-                return PERSON_ACTIVELY_DIRECTING_TRAFFIC;
             case "Slightly Drowsy":
                 return SLIGHTLY_DROWSY;
             case "No Hi-Vis Vest":
                 return NO_HI_VIS_VEST;
+            case "Facing Away From Vehicle":
+                return FACING_AWAY_FROM_VEHICLE;
             case "No Boots":
                 return NO_BOOTS;
             case "Sensitive Media":
@@ -353,9 +344,13 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         DEFENSIVE,
 
+        FACING_AWAY_FROM_VEHICLE,
+
         FOG,
 
         IMPROPER_SEAT_BELT,
+
+        ITEMS_IN_HAND,
 
         LEAD_CAR,
 
@@ -366,8 +361,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         MODERATELY_DROWSY,
 
         MOUNTED_PHONE,
-
-        NIGHT,
 
         NO_BOOTS,
 
@@ -393,8 +386,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         PEDESTRIANS,
 
-        PERSON_ACTIVELY_DIRECTING_TRAFFIC,
-
         RAINING,
 
         SENSITIVE_MEDIA,
@@ -406,8 +397,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         SNOWY_ROAD,
 
         SPEED_SIGN_VERIFIED,
-
-        TRAFFIC_CONTROL_PERSON_PRESENT,
 
         TRAILER_CAR,
 
@@ -431,9 +420,13 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         T visitDefensive();
 
+        T visitFacingAwayFromVehicle();
+
         T visitFog();
 
         T visitImproperSeatBelt();
+
+        T visitItemsInHand();
 
         T visitLeadCar();
 
@@ -444,8 +437,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         T visitModeratelyDrowsy();
 
         T visitMountedPhone();
-
-        T visitNight();
 
         T visitNoBoots();
 
@@ -471,8 +462,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
 
         T visitPedestrians();
 
-        T visitPersonActivelyDirectingTraffic();
-
         T visitRaining();
 
         T visitSensitiveMedia();
@@ -484,8 +473,6 @@ public final class SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabel
         T visitSnowyRoad();
 
         T visitSpeedSignVerified();
-
-        T visitTrafficControlPersonPresent();
 
         T visitTrailerCar();
 

@@ -9,30 +9,44 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DeletePlaceRequest.Builder.class)
 public final class DeletePlaceRequest {
-    private final long placeId;
+    private final Optional<Long> placeId;
+
+    private final Optional<String> externalId;
 
     private final Map<String, Object> additionalProperties;
 
-    private DeletePlaceRequest(long placeId, Map<String, Object> additionalProperties) {
+    private DeletePlaceRequest(
+            Optional<Long> placeId, Optional<String> externalId, Map<String, Object> additionalProperties) {
         this.placeId = placeId;
+        this.externalId = externalId;
         this.additionalProperties = additionalProperties;
     }
 
     /**
-     * @return Samsara place id to delete.
+     * @return Samsara place id to delete. Mutually exclusive with <code>externalId</code>; provide exactly one.
      */
     @JsonProperty("placeId")
-    public long getPlaceId() {
+    public Optional<Long> getPlaceId() {
         return placeId;
+    }
+
+    /**
+     * @return External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>; provide exactly one.
+     */
+    @JsonProperty("externalId")
+    public Optional<String> getExternalId() {
+        return externalId;
     }
 
     @java.lang.Override
@@ -47,12 +61,12 @@ public final class DeletePlaceRequest {
     }
 
     private boolean equalTo(DeletePlaceRequest other) {
-        return placeId == other.placeId;
+        return placeId.equals(other.placeId) && externalId.equals(other.externalId);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.placeId);
+        return Objects.hash(this.placeId, this.externalId);
     }
 
     @java.lang.Override
@@ -60,53 +74,57 @@ public final class DeletePlaceRequest {
         return ObjectMappers.stringify(this);
     }
 
-    public static PlaceIdStage builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public interface PlaceIdStage {
-        /**
-         * <p>Samsara place id to delete.</p>
-         */
-        _FinalStage placeId(long placeId);
-
-        Builder from(DeletePlaceRequest other);
-    }
-
-    public interface _FinalStage {
-        DeletePlaceRequest build();
-    }
-
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements PlaceIdStage, _FinalStage {
-        private long placeId;
+    public static final class Builder {
+        private Optional<Long> placeId = Optional.empty();
+
+        private Optional<String> externalId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
-        @java.lang.Override
         public Builder from(DeletePlaceRequest other) {
             placeId(other.getPlaceId());
+            externalId(other.getExternalId());
             return this;
         }
 
         /**
-         * <p>Samsara place id to delete.</p>
-         * <p>Samsara place id to delete.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
+         * <p>Samsara place id to delete. Mutually exclusive with <code>externalId</code>; provide exactly one.</p>
          */
-        @java.lang.Override
-        @JsonSetter("placeId")
-        public _FinalStage placeId(long placeId) {
+        @JsonSetter(value = "placeId", nulls = Nulls.SKIP)
+        public Builder placeId(Optional<Long> placeId) {
             this.placeId = placeId;
             return this;
         }
 
-        @java.lang.Override
+        public Builder placeId(Long placeId) {
+            this.placeId = Optional.ofNullable(placeId);
+            return this;
+        }
+
+        /**
+         * <p>External id token in <code>key:value</code> form (e.g. crmId:warehouse-east). Mutually exclusive with <code>placeId</code>; provide exactly one.</p>
+         */
+        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
+        public Builder externalId(Optional<String> externalId) {
+            this.externalId = externalId;
+            return this;
+        }
+
+        public Builder externalId(String externalId) {
+            this.externalId = Optional.ofNullable(externalId);
+            return this;
+        }
+
         public DeletePlaceRequest build() {
-            return new DeletePlaceRequest(placeId, additionalProperties);
+            return new DeletePlaceRequest(placeId, externalId, additionalProperties);
         }
     }
 }

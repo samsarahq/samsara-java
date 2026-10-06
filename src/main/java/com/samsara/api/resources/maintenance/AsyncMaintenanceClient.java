@@ -6,13 +6,34 @@ package com.samsara.api.resources.maintenance;
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
 import com.samsara.api.resources.maintenance.requests.CreateDvirRequest;
+import com.samsara.api.resources.maintenance.requests.CreateStockMovementActionServiceCreateStockMovementRequestBody;
 import com.samsara.api.resources.maintenance.requests.DefectPatch;
+import com.samsara.api.resources.maintenance.requests.DeletePartRequest;
+import com.samsara.api.resources.maintenance.requests.DeleteWarrantyClaimRequest;
+import com.samsara.api.resources.maintenance.requests.DeleteWarrantyRequest;
+import com.samsara.api.resources.maintenance.requests.EntityPartDefinitionsServiceCreatePartRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityWarrantiesServiceCreateWarrantyRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityWarrantiesServiceUpdateWarrantyRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody;
 import com.samsara.api.resources.maintenance.requests.GetDefectRequest;
 import com.samsara.api.resources.maintenance.requests.GetDefectTypesRequest;
 import com.samsara.api.resources.maintenance.requests.GetDvirRequest;
 import com.samsara.api.resources.maintenance.requests.GetDvirsRequest;
+import com.samsara.api.resources.maintenance.requests.ListPartInventoryRequest;
+import com.samsara.api.resources.maintenance.requests.ListPartTransactionsRequest;
+import com.samsara.api.resources.maintenance.requests.ListPartsRequest;
+import com.samsara.api.resources.maintenance.requests.ListTimeEntriesRequest;
+import com.samsara.api.resources.maintenance.requests.ListWarrantiesRequest;
+import com.samsara.api.resources.maintenance.requests.ListWarrantyAssetAssignmentsRequest;
+import com.samsara.api.resources.maintenance.requests.ListWarrantyClaimsRequest;
+import com.samsara.api.resources.maintenance.requests.ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody;
 import com.samsara.api.resources.maintenance.requests.StreamDefectsRequest;
 import com.samsara.api.resources.maintenance.requests.UpdateDvirRequest;
+import com.samsara.api.types.CreateStockMovementActionServiceCreateStockMovementResponseBody;
 import com.samsara.api.types.DefectResponse;
 import com.samsara.api.types.DvirDefectGetDefectResponseBody;
 import com.samsara.api.types.DvirDefectStreamDefectsResponseBody;
@@ -20,7 +41,23 @@ import com.samsara.api.types.DvirDefectTypeGetDefectTypesResponseBody;
 import com.samsara.api.types.DvirGetDvirResponseBody;
 import com.samsara.api.types.DvirGetDvirsResponseBody;
 import com.samsara.api.types.DvirResponse;
+import com.samsara.api.types.EntityInventoryTransactionsServiceListPartTransactionsResponseBody;
+import com.samsara.api.types.EntityPartDefinitionsServiceCreatePartResponseBody;
+import com.samsara.api.types.EntityPartDefinitionsServiceListPartsResponseBody;
+import com.samsara.api.types.EntityPartDefinitionsServiceUpdatePartResponseBody;
+import com.samsara.api.types.EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody;
+import com.samsara.api.types.EntityPartInventoryLocationsServiceListPartInventoryResponseBody;
+import com.samsara.api.types.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody;
+import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
+import com.samsara.api.types.EntityWarrantiesServiceCreateWarrantyResponseBody;
+import com.samsara.api.types.EntityWarrantiesServiceListWarrantiesResponseBody;
+import com.samsara.api.types.EntityWarrantiesServiceUpdateWarrantyResponseBody;
+import com.samsara.api.types.EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody;
+import com.samsara.api.types.EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody;
+import com.samsara.api.types.EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody;
+import com.samsara.api.types.EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody;
 import com.samsara.api.types.InlineResponse2004;
+import com.samsara.api.types.ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncMaintenanceClient {
@@ -277,6 +314,607 @@ public class AsyncMaintenanceClient {
     public CompletableFuture<DvirResponse> updateDvir(
             String id, UpdateDvirRequest request, RequestOptions requestOptions) {
         return this.rawClient.updateDvir(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of parts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceListPartsResponseBody> listParts() {
+        return this.rawClient.listParts().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of parts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceListPartsResponseBody> listParts(
+            RequestOptions requestOptions) {
+        return this.rawClient.listParts(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of parts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceListPartsResponseBody> listParts(ListPartsRequest request) {
+        return this.rawClient.listParts(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of parts for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceListPartsResponseBody> listParts(
+            ListPartsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listParts(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a part for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceCreatePartResponseBody> createPart(
+            EntityPartDefinitionsServiceCreatePartRequestBody request) {
+        return this.rawClient.createPart(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a part for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceCreatePartResponseBody> createPart(
+            EntityPartDefinitionsServiceCreatePartRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createPart(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a part for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deletePart(DeletePartRequest request) {
+        return this.rawClient.deletePart(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a part for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deletePart(DeletePartRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deletePart(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing part for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceUpdatePartResponseBody> updatePart(
+            EntityPartDefinitionsServiceUpdatePartRequestBody request) {
+        return this.rawClient.updatePart(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing part for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartDefinitionsServiceUpdatePartResponseBody> updatePart(
+            EntityPartDefinitionsServiceUpdatePartRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updatePart(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of per-part, per-location inventory levels for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceListPartInventoryResponseBody> listPartInventory() {
+        return this.rawClient.listPartInventory().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of per-part, per-location inventory levels for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceListPartInventoryResponseBody> listPartInventory(
+            RequestOptions requestOptions) {
+        return this.rawClient.listPartInventory(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of per-part, per-location inventory levels for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceListPartInventoryResponseBody> listPartInventory(
+            ListPartInventoryRequest request) {
+        return this.rawClient.listPartInventory(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of per-part, per-location inventory levels for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceListPartInventoryResponseBody> listPartInventory(
+            ListPartInventoryRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listPartInventory(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>
+            createPartInventoryLocation() {
+        return this.rawClient.createPartInventoryLocation().thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>
+            createPartInventoryLocation(RequestOptions requestOptions) {
+        return this.rawClient.createPartInventoryLocation(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>
+            createPartInventoryLocation(
+                    EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody request) {
+        return this.rawClient.createPartInventoryLocation(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>
+            createPartInventoryLocation(
+                    EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody request,
+                    RequestOptions requestOptions) {
+        return this.rawClient
+                .createPartInventoryLocation(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates existing per-part, per-location inventory metadata for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>
+            updatePartInventoryLocation() {
+        return this.rawClient.updatePartInventoryLocation().thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates existing per-part, per-location inventory metadata for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>
+            updatePartInventoryLocation(RequestOptions requestOptions) {
+        return this.rawClient.updatePartInventoryLocation(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates existing per-part, per-location inventory metadata for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>
+            updatePartInventoryLocation(
+                    EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody request) {
+        return this.rawClient.updatePartInventoryLocation(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates existing per-part, per-location inventory metadata for the organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>
+            updatePartInventoryLocation(
+                    EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody request,
+                    RequestOptions requestOptions) {
+        return this.rawClient
+                .updatePartInventoryLocation(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<CreateStockMovementActionServiceCreateStockMovementResponseBody> createStockMovement(
+            CreateStockMovementActionServiceCreateStockMovementRequestBody request) {
+        return this.rawClient.createStockMovement(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<CreateStockMovementActionServiceCreateStockMovementResponseBody> createStockMovement(
+            CreateStockMovementActionServiceCreateStockMovementRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createStockMovement(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityInventoryTransactionsServiceListPartTransactionsResponseBody> listPartTransactions(
+            ListPartTransactionsRequest request) {
+        return this.rawClient.listPartTransactions(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityInventoryTransactionsServiceListPartTransactionsResponseBody> listPartTransactions(
+            ListPartTransactionsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listPartTransactions(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Time Entries</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityTimeEntriesServiceListTimeEntriesResponseBody> listTimeEntries(
+            ListTimeEntriesRequest request) {
+        return this.rawClient.listTimeEntries(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Time Entries</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityTimeEntriesServiceListTimeEntriesResponseBody> listTimeEntries(
+            ListTimeEntriesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listTimeEntries(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties() {
+        return this.rawClient.listWarranties().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties(
+            RequestOptions requestOptions) {
+        return this.rawClient.listWarranties(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties(
+            ListWarrantiesRequest request) {
+        return this.rawClient.listWarranties(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranties for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceListWarrantiesResponseBody> listWarranties(
+            ListWarrantiesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listWarranties(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceCreateWarrantyResponseBody> createWarranty(
+            EntityWarrantiesServiceCreateWarrantyRequestBody request) {
+        return this.rawClient.createWarranty(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceCreateWarrantyResponseBody> createWarranty(
+            EntityWarrantiesServiceCreateWarrantyRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createWarranty(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty for the organization. Asset associations are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarranty(DeleteWarrantyRequest request) {
+        return this.rawClient.deleteWarranty(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty for the organization. Asset associations are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarranty(DeleteWarrantyRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteWarranty(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceUpdateWarrantyResponseBody> updateWarranty(
+            EntityWarrantiesServiceUpdateWarrantyRequestBody request) {
+        return this.rawClient.updateWarranty(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantiesServiceUpdateWarrantyResponseBody> updateWarranty(
+            EntityWarrantiesServiceUpdateWarrantyRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateWarranty(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody>
+            listWarrantyAssetAssignments(ListWarrantyAssetAssignmentsRequest request) {
+        return this.rawClient.listWarrantyAssetAssignments(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody>
+            listWarrantyAssetAssignments(ListWarrantyAssetAssignmentsRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .listWarrantyAssetAssignments(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments() {
+        return this.rawClient.replaceWarrantyAssetAssignments().thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments(RequestOptions requestOptions) {
+        return this.rawClient.replaceWarrantyAssetAssignments(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments(
+                    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody request) {
+        return this.rawClient.replaceWarrantyAssetAssignments(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Replaces the full set of assets assigned to a warranty.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
+            replaceWarrantyAssetAssignments(
+                    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody request,
+                    RequestOptions requestOptions) {
+        return this.rawClient
+                .replaceWarrantyAssetAssignments(request, requestOptions)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims() {
+        return this.rawClient.listWarrantyClaims().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims(
+            RequestOptions requestOptions) {
+        return this.rawClient.listWarrantyClaims(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims(
+            ListWarrantyClaimsRequest request) {
+        return this.rawClient.listWarrantyClaims(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a paginated list of warranty claims for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> listWarrantyClaims(
+            ListWarrantyClaimsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listWarrantyClaims(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody> createWarrantyClaim(
+            EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody request) {
+        return this.rawClient.createWarrantyClaim(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody> createWarrantyClaim(
+            EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createWarrantyClaim(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty claim for the organization. Component links are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarrantyClaim(DeleteWarrantyClaimRequest request) {
+        return this.rawClient.deleteWarrantyClaim(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Deletes a warranty claim for the organization. Component links are removed server-side.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deleteWarrantyClaim(
+            DeleteWarrantyClaimRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deleteWarrantyClaim(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody> updateWarrantyClaim(
+            EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody request) {
+        return this.rawClient.updateWarrantyClaim(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an existing warranty claim for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Warranties</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody> updateWarrantyClaim(
+            EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateWarrantyClaim(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

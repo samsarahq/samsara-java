@@ -4066,6 +4066,429 @@ client.betaApIs().listVendorCategories(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listVendorGroups() -> EntityVendorProfilesServiceListVendorGroupsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage vendor group identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listVendorGroups(
+    ListVendorGroupsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor profile ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createVendorGroup(request) -> EntityVendorProfilesServiceCreateVendorGroupResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage vendor group identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createVendorGroup(
+    EntityVendorProfilesServiceCreateVendorGroupRequestBody
+        .builder()
+        .name("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdInputTypeRequestBody>>` — External identifiers belonging to this vendor group.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether vendor locations inherit mobile service as their default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Default preferred status inherited by vendor locations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name of the vendor profile.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primaryCorporateContact:** `Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorProfilesServiceCreateVendorGroupRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deleteVendorGroup()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a vendor group after all vendor locations have been detached, moved, or deleted.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deleteVendorGroup(
+    DeleteVendorGroupRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the VendorProfile record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateVendorGroup(request) -> EntityVendorProfilesServiceUpdateVendorGroupResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage vendor group identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateVendorGroup(
+    EntityVendorProfilesServiceUpdateVendorGroupRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the VendorProfile record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<UpdateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<UpdateVendorGroupEntityVendorProfileVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateVendorGroupEntityVendorProfileVendorGroupExternalIdInputTypeRequestBody>>` — External identifiers belonging to this vendor group.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether vendor locations inherit mobile service as their default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Default preferred status inherited by vendor locations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the vendor profile.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primaryCorporateContact:** `Optional<UpdateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorProfilesServiceUpdateVendorGroupRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listMaintenanceVendors() -> MaintenanceVendorsListMaintenanceVendorsResponseBody</code></summary>
 <dl>
 <dd>
@@ -4127,6 +4550,22 @@ client.betaApIs().listMaintenanceVendors(
 <dl>
 <dd>
 
+**externalIds:** `Optional<String>` — A comma-separated list of up to 100 external IDs in key:value format to filter vendors on. See [external IDs](https://developers.samsara.com/docs/external-ids).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeResolvedSettings:** `Optional<Boolean>` — Include resolved vendor settings and their sources. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **includeExternalIds:** `Optional<Boolean>` — When true, include externalIds on each vendor in the response. Default false.
     
 </dd>
@@ -4136,6 +4575,484 @@ client.betaApIs().listMaintenanceVendors(
 <dd>
 
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.createVendor(request) -> EntityVendorsServiceCreateVendorResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a maintenance vendor for the organization. Exactly one of addressId or address must be set.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().createVendor(
+    EntityVendorsServiceCreateVendorRequestBody
+        .builder()
+        .name("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `Optional<String>` — Address of the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressId:** `Optional<String>` — Linked place identifier for the vendor address.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contacts:** `Optional<List<CreateVendorEntityVendorVendorContactInputTypeRequestBody>>` — People to contact at the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<CreateVendorEntityVendorVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**emailAddresses:** `Optional<List<String>>` — Email addresses for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateVendorEntityVendorVendorExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether this vendor provides mobile service. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Whether this vendor location is preferred. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name of the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Additional notes about the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payeeId:** `Optional<String>` — Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phoneNumbers:** `Optional<List<String>>` — Phone numbers for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**servicesProvided:** `Optional<String>` — Description of services provided by the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorsServiceCreateVendorRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorGroupId:** `Optional<String>` — Vendor group ID. Null removes membership while preserving explicit overrides.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — User-defined identifier for the vendor.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.deleteVendor()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a vendor location without deleting its linked Place or work orders.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().deleteVendor(
+    DeleteVendorRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the Vendor record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateVendor(request) -> EntityVendorsServiceUpdateVendorResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing maintenance vendor for the organization. Migrating a vendor between a linked Place (addressId) and a self-contained address (address) is not supported.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateVendor(
+    EntityVendorsServiceUpdateVendorRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the Vendor record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**address:** `Optional<String>` — Address of the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressId:** `Optional<String>` — Linked place identifier for the vendor address.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<UpdateVendorEntityVendorVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contacts:** `Optional<List<UpdateVendorEntityVendorVendorContactInputTypeRequestBody>>` — People to contact at the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<UpdateVendorEntityVendorVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**emailAddresses:** `Optional<List<String>>` — Email addresses for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateVendorEntityVendorVendorExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether this vendor provides mobile service. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Whether this vendor location is preferred. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Additional notes about the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payeeId:** `Optional<String>` — Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phoneNumbers:** `Optional<List<String>>` — Phone numbers for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**servicesProvided:** `Optional<String>` — Description of services provided by the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorsServiceUpdateVendorRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorGroupId:** `Optional<String>` — Vendor group ID. Null removes membership while preserving explicit overrides.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — User-defined identifier for the vendor.
     
 </dd>
 </dl>
@@ -5756,7 +6673,7 @@ client.betaApIs().updateGroundIntelligenceIssue(
 <dl>
 <dd>
 
-**type:** `Optional<EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType>` — Customer-facing road-condition type for the issue.  Valid values: `pothole`, `roadCracking`, `patchedPothole`
+**type:** `Optional<EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType>` — Customer-facing road-condition type for the issue.  Valid values: `pothole`, `roadCracking`, `patchedPothole`, `transverseCrack`, `longitudinalCrack`, `alligatorCrack`, `utilityCut`, `steelPlate`, `repavingNeeded`
     
 </dd>
 </dl>
@@ -5953,90 +6870,6 @@ client.betaApIs().updateWatchpoint(
 <dd>
 
 **observationType:** `Optional<EntityWatchpointsServiceUpdateWatchpointRequestBodyObservationType>` — Type of condition to observe at this watchpoint.  Valid values: `roadDefect`, `utilityCut`, `guardrail`, `streetlight`, `signage`, `stormDrain`, `graffiti`, `vegetation`, `blight`, `illegalDumping`, `littering`, `highVegetationWeeds`, `fire`, `other`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateShippingDocs(request) -> HosDailyLogsUpdateShippingDocsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update the shippingDocs field of an existing assignment.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateShippingDocs(
-    HosDailyLogsUpdateShippingDocsRequestBody
-        .builder()
-        .hosDate("hosDate")
-        .driverId("driverID")
-        .shippingDocs("ShippingID1, ShippingID2")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**hosDate:** `String` — A start date in yyyy-mm-dd format. Required.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**driverId:** `String` — ID of the driver for whom the duty status is being set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**shippingDocs:** `String` — ShippingDocs associated with the driver for the day.
     
 </dd>
 </dl>
@@ -6601,1530 +7434,6 @@ client.betaApIs().updateHubRouteTemplate(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.listParts() -> EntityPartDefinitionsServiceListPartsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of parts for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listParts(
-    ListPartsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**idIn:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partStatus:** `Optional<String>` — A filter on the data based on Part status. Status of the part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeDeleted:** `Optional<Boolean>` — Whether to include deleted parts in the response. Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createPart(request) -> EntityPartDefinitionsServiceCreatePartResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a part for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createPart(
-    EntityPartDefinitionsServiceCreatePartRequestBody
-        .builder()
-        .partNumber("12345")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**barcodeString:** `Optional<String>` — Barcode associated with the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**barcodeType:** `Optional<String>` — Type of barcode associated with the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `Optional<String>` — Description of the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalId:** `Optional<String>` — Customer-supplied external identifier for the part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isInventoryTracked:** `Optional<Boolean>` — Whether inventory tracking is enabled for this part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**manufacturerName:** `Optional<String>` — Name of the manufacturer for the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**manufacturerPartNumber:** `Optional<String>` — Manufacturer-supplied part number.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — Name of the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partNumber:** `String` — Customer-visible part number for the part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**unitCost:** `Optional<CreatePartEntityPartDefinitionMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vmrsCode:** `Optional<String>` — VMRS code associated with the part definition.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deletePart()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a part for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deletePart(
-    DeletePartRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the PartDefinition record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updatePart(request) -> EntityPartDefinitionsServiceUpdatePartResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing part for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updatePart(
-    EntityPartDefinitionsServiceUpdatePartRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the PartDefinition record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**barcodeString:** `Optional<String>` — Barcode associated with the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**barcodeType:** `Optional<String>` — Type of barcode associated with the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `Optional<String>` — Description of the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalId:** `Optional<String>` — Customer-supplied external identifier for the part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isInventoryTracked:** `Optional<Boolean>` — Whether inventory tracking is enabled for this part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**manufacturerName:** `Optional<String>` — Name of the manufacturer for the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**manufacturerPartNumber:** `Optional<String>` — Manufacturer-supplied part number.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — Name of the part definition.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partNumber:** `Optional<String>` — Customer-visible part number for the part.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**unitCost:** `Optional<UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vmrsCode:** `Optional<String>` — VMRS code associated with the part definition.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listPartInventory() -> EntityPartInventoryLocationsServiceListPartInventoryResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of per-part, per-location inventory levels for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listPartInventory(
-    ListPartInventoryRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isLowStock:** `Optional<Boolean>` — A filter on the data based on Low stock. Whether the available quantity is greater than zero and at or below the reorder threshold.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partSamsaraIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createPartInventoryLocation(request) -> EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createPartInventoryLocation(
-    EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**partSamsaraId:** `Optional<String>` — Unique identifier for the part definition these inventory levels are tracked for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**placeId:** `Optional<String>` — Unique identifier for the place linked to the maintenance site holding this inventory. The internal location identifier is never exposed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**aisle:** `Optional<String>` — Aisle within the location where the part is stored.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**bin:** `Optional<String>` — Bin within the location where the part is stored.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**currentQuantity:** `Optional<Double>` — Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Read-only; changes only via stock movements.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isCostTracked:** `Optional<Boolean>` — Whether costing is tracked at this location. Defaults to false; once enabled it cannot be turned back off.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**maxStockLevel:** `Optional<Double>` — Maximum quantity to keep in stock at this location.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**minStockLevel:** `Optional<Double>` — Minimum quantity to keep in stock at this location.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reorderQuantity:** `Optional<Double>` — Quantity to reorder when stock reaches the reorder threshold.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reorderThreshold:** `Optional<Double>` — Available quantity at or below which the part should be reordered at this location.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**row:** `Optional<String>` — Row within the location where the part is stored.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**unitCost:** `Optional<CreatePartInventoryLocationEntityPartInventoryLocationMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updatePartInventoryLocation(request) -> EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates existing per-part, per-location inventory metadata for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updatePartInventoryLocation(
-    EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**partSamsaraId:** `Optional<String>` — Unique identifier for the part definition these inventory levels are tracked for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**placeId:** `Optional<String>` — Unique identifier for the place linked to the maintenance site holding this inventory. The internal location identifier is never exposed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**aisle:** `Optional<String>` — Aisle within the location where the part is stored.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**bin:** `Optional<String>` — Bin within the location where the part is stored.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isCostTracked:** `Optional<Boolean>` — Whether costing is tracked at this location. Defaults to false; once enabled it cannot be turned back off.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**maxStockLevel:** `Optional<Double>` — Maximum quantity to keep in stock at this location.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**minStockLevel:** `Optional<Double>` — Minimum quantity to keep in stock at this location.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reorderQuantity:** `Optional<Double>` — Quantity to reorder when stock reaches the reorder threshold.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reorderThreshold:** `Optional<Double>` — Available quantity at or below which the part should be reordered at this location.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**row:** `Optional<String>` — Row within the location where the part is stored.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**unitCost:** `Optional<UpdatePartInventoryLocationEntityPartInventoryLocationMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createStockMovement(request) -> CreateStockMovementActionServiceCreateStockMovementResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createStockMovement(
-    CreateStockMovementActionServiceCreateStockMovementRequestBody
-        .builder()
-        .movementType("12345")
-        .partSamsaraId("12345")
-        .quantity(123.45)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**batch:** `Optional<String>` — Batch or lot identifier the movement applies to, if the part is batch-tracked.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**fromPlaceId:** `Optional<String>` — Unique identifier of the place linked to the maintenance site the inventory is transferred out of. Transfer only.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**happenedAtTime:** `Optional<String>` — Time when the movement occurred. Defaults to the current time if not provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**movementType:** `String` — Type of stock movement to record. Must be one of Receive, Transfer, Scrap, or Adjust; Unknown is rejected.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — Notes explaining the movement. Scrap and adjust only.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partSamsaraId:** `String` — Unique identifier of the part definition the movement applies to.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**placeId:** `Optional<String>` — Unique identifier of the place linked to the maintenance site the movement targets. Required for receive, scrap, and adjust; rejected for transfer (use fromPlaceId and toPlaceId).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**purchaseOrder:** `Optional<String>` — Purchase order reference for the received inventory. Receive only.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**quantity:** `Double` — Quantity moved, in the part's unit of measure. Positive magnitude for receive, transfer, and scrap; signed delta for adjust.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**toPlaceId:** `Optional<String>` — Unique identifier of the place linked to the maintenance site the inventory is transferred into. Transfer only.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**unitCost:** `Optional<EntityCreateStockMovementMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — Unique identifier of the vendor the inventory was received from. Receive only.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listPartTransactions() -> EntityInventoryTransactionsServiceListPartTransactionsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listPartTransactions(
-    ListPartTransactionsRequest
-        .builder()
-        .happenedAtTimeStart("happenedAtTimeStart")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**happenedAtTimeStart:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**happenedAtTimeEnd:** `Optional<String>` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**partSamsaraIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part Samsara ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transactionTypeIn:** `Optional<String>` — A filter on the data based on this comma-separated list of Transaction Type values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.resolvePreventiveMaintenance(request) -> ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().resolvePreventiveMaintenance(
-    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `Optional<String>` — Samsara ID of the asset the instance is being resolved for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule to resolve.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolvedAt:** `Optional<String>` — RFC3339 time when the maintenance was resolved. Defaults to the current time if not provided.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolvedAtEngineHours:** `Optional<Long>` — Engine hours reading at the time of resolution.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time of resolution. Measured in meters.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listPreventiveMaintenanceSchedules() -> EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of preventive maintenance schedules for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listPreventiveMaintenanceSchedules(
-    ListPreventiveMaintenanceSchedulesRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listUpcomingPreventiveMaintenance() -> EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listUpcomingPreventiveMaintenance(
-    ListUpcomingPreventiveMaintenanceRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**scheduleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Preventive maintenance schedule ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateUpcomingPreventiveMaintenance(request) -> EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateUpcomingPreventiveMaintenance(
-    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `Optional<String>` — Samsara ID for the asset.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule that the vehicle is scheduled to be serviced for.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lastResolvedAt:** `Optional<String>` — Date and time when the prior instance was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lastResolvedAtEngineHours:** `Optional<Long>` — Engine hours at the time the prior instance was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lastResolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time the prior instance was resolved. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**nextEngineHours:** `Optional<Long>` — The next engine hour value that the vehicle is scheduled to be serviced.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**nextOdometer:** `Optional<Long>` — The next odometer value that the vehicle is scheduled to be serviced. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**nextTime:** `Optional<String>` — The next time that the vehicle is scheduled to be serviced for a date based PM.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.betaApIs.listPurchaseOrders() -> EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody</code></summary>
 <dl>
 <dd>
@@ -8594,7 +7903,7 @@ client.betaApIs().updatePurchaseOrder(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.listMaintenanceSites() -> EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody</code></summary>
+<details><summary><code>client.betaApIs.listTechnicianShifts() -> TechnicianShiftsListTechnicianShiftsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8606,11 +7915,11 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-Returns a paginated list of maintenance sites for the organization.
+List shifts ordered by updated time and UUID. ID filters allow up to 100 values each, with OR within and AND across filters. Lists are eventually consistent; reconcile overlapping time windows and deduplicate by ID and version.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -8628,8 +7937,8 @@ To use this endpoint, select **Read Maintenance Sites** under the Work Orders ca
 <dd>
 
 ```java
-client.betaApIs().listMaintenanceSites(
-    ListMaintenanceSitesRequest
+client.betaApIs().listTechnicianShifts(
+    ListTechnicianShiftsRequest
         .builder()
         .build()
 );
@@ -8647,7 +7956,7 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+**ids:** `Optional<String>` — Up to 100 comma-separated shift identifiers.
     
 </dd>
 </dl>
@@ -8655,7 +7964,7 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-**isArchived:** `Optional<Boolean>` — A filter on the data based on Archived. Whether the site is archived. Archived sites are no longer active but are retained for historical record.
+**userIds:** `Optional<String>` — Up to 100 comma-separated user IDs.
     
 </dd>
 </dl>
@@ -8663,7 +7972,7 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place IDs values.
+**externalTechnicianIds:** `Optional<String>` — Up to 100 comma-separated employee aliases.
     
 </dd>
 </dl>
@@ -8671,7 +7980,7 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+**startTime:** `Optional<OffsetDateTime>` — Inclusive updated-time lower bound.
     
 </dd>
 </dl>
@@ -8679,7 +7988,7 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+**endTime:** `Optional<OffsetDateTime>` — Exclusive updated-time upper bound.
     
 </dd>
 </dl>
@@ -8687,7 +7996,23 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+**after:** `Optional<String>` — Cursor from the previous page.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — Page size from 1 to 200; defaults to 200.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include nonempty shift and technician external-ID maps. Defaults to false.
     
 </dd>
 </dl>
@@ -8699,7 +8024,7 @@ client.betaApIs().listMaintenanceSites(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.createMaintenanceSite(request) -> EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody</code></summary>
+<details><summary><code>client.betaApIs.createTechnicianShift(request) -> TechnicianShiftsCreateTechnicianShiftResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8711,11 +8036,11 @@ client.betaApIs().listMaintenanceSites(
 <dl>
 <dd>
 
-Creates a maintenance site for the organization. Exactly one of placeIds or customAddress must be set.
+Create an open or completed shift. Equivalent retries using registered external IDs return the existing shift; conflicting content or aliases return 409.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -8733,12 +8058,11 @@ To use this endpoint, select **Write Maintenance Sites** under the Work Orders c
 <dd>
 
 ```java
-client.betaApIs().createMaintenanceSite(
-    EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody
+client.betaApIs().createTechnicianShift(
+    TechnicianShiftsCreateTechnicianShiftRequestBody
         .builder()
-        .name("12345")
-        .siteCode("12345")
-        .siteType(EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType.UNKNOWN)
+        .clockInAtTime(OffsetDateTime.parse("2026-09-10T15:00:00Z"))
+        .userId("281474976710656")
         .build()
 );
 ```
@@ -8755,7 +8079,7 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-**customAddress:** `Optional<CreateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteCustomAddressInputTypeRequestBody>` 
+**includeExternalIds:** `Optional<Boolean>` — Include nonempty shift and technician external-ID maps. Defaults to false.
     
 </dd>
 </dl>
@@ -8763,7 +8087,7 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-**description:** `Optional<String>` — Description of the maintenance site.
+**clockInAtTime:** `OffsetDateTime` — Shift start.
     
 </dd>
 </dl>
@@ -8771,7 +8095,7 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-**externalIds:** `Optional<List<CreateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the site, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+**clockOutAtTime:** `Optional<OffsetDateTime>` — Shift end, strictly after start.
     
 </dd>
 </dl>
@@ -8779,7 +8103,7 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-**name:** `String` — Name of the maintenance site. Org-unique.
+**externalIds:** `Optional<Map<String, String>>` — External identifiers, with at most 30 pairs.
     
 </dd>
 </dl>
@@ -8787,7 +8111,7 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-**placeIds:** `Optional<List<String>>` — Places this site is linked to. Mutually exclusive with customAddress. At most one entry is accepted today, though the field is an array to allow for future expansion.
+**placeId:** `Optional<String>` — Maintenance-shop Place ID.
     
 </dd>
 </dl>
@@ -8795,15 +8119,7 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-**siteCode:** `String` — Org-unique 3-character code for the site, used to generate inventory batch numbers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**siteType:** `EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType` — Type of maintenance site, for example central warehouse, maintenance shop, or yard/onsite.  Valid values: `Unknown`, `CentralWarehouse`, `MaintenanceShop`, `MobileServiceVehicle`, `YardOnsite`, `Consignment`, `Other`
+**userId:** `String` — Owning technician's Samsara User ID.
     
 </dd>
 </dl>
@@ -8815,7 +8131,7 @@ client.betaApIs().createMaintenanceSite(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.updateMaintenanceSite(request) -> EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody</code></summary>
+<details><summary><code>client.betaApIs.patchTechnicianShift(request) -> TechnicianShiftsPatchTechnicianShiftResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8827,11 +8143,11 @@ client.betaApIs().createMaintenanceSite(
 <dl>
 <dd>
 
-Updates an existing maintenance site for the organization. Moving a site between placeIds and customAddress is not supported.
+Close or correct a shift using the last received version. An already-applied retry returns the current shift. External IDs fully replace the previous map; an empty object clears it.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -8849,10 +8165,11 @@ To use this endpoint, select **Write Maintenance Sites** under the Work Orders c
 <dd>
 
 ```java
-client.betaApIs().updateMaintenanceSite(
-    EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody
+client.betaApIs().patchTechnicianShift(
+    TechnicianShiftsPatchTechnicianShiftRequestBody
         .builder()
         .id("id")
+        .version(1L)
         .build()
 );
 ```
@@ -8869,7 +8186,7 @@ client.betaApIs().updateMaintenanceSite(
 <dl>
 <dd>
 
-**id:** `String` — Unique identifier for the MaintenanceSite record.
+**includeExternalIds:** `Optional<Boolean>` — Include nonempty shift and technician external-ID maps. Defaults to false.
     
 </dd>
 </dl>
@@ -8877,7 +8194,7 @@ client.betaApIs().updateMaintenanceSite(
 <dl>
 <dd>
 
-**description:** `Optional<String>` — Description of the maintenance site.
+**id:** `String` — Shift UUID or key:value alias.
     
 </dd>
 </dl>
@@ -8885,7 +8202,7 @@ client.betaApIs().updateMaintenanceSite(
 <dl>
 <dd>
 
-**externalIds:** `Optional<List<UpdateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the site, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+**clockInAtTime:** `Optional<OffsetDateTime>` — Corrected shift start.
     
 </dd>
 </dl>
@@ -8893,7 +8210,7 @@ client.betaApIs().updateMaintenanceSite(
 <dl>
 <dd>
 
-**name:** `Optional<String>` — Name of the maintenance site. Org-unique.
+**clockOutAtTime:** `Optional<OffsetDateTime>` — Shift end, strictly after start.
     
 </dd>
 </dl>
@@ -8901,7 +8218,7 @@ client.betaApIs().updateMaintenanceSite(
 <dl>
 <dd>
 
-**siteCode:** `Optional<String>` — Org-unique 3-character code for the site, used to generate inventory batch numbers.
+**externalIds:** `Optional<Map<String, String>>` — External identifiers, with at most 30 pairs.
     
 </dd>
 </dl>
@@ -8909,1354 +8226,15 @@ client.betaApIs().updateMaintenanceSite(
 <dl>
 <dd>
 
-**siteType:** `Optional<EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBodySiteType>` — Type of maintenance site, for example central warehouse, maintenance shop, or yard/onsite.  Valid values: `Unknown`, `CentralWarehouse`, `MaintenanceShop`, `MobileServiceVehicle`, `YardOnsite`, `Consignment`, `Other`
+**placeId:** `Optional<String>` — Maintenance-shop Place ID.
     
 </dd>
 </dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listTimeEntries() -> EntityTimeEntriesServiceListTimeEntriesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Time Entries** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listTimeEntries(
-    ListTimeEntriesRequest
-        .builder()
-        .startTime("startTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listWarranties() -> EntityWarrantiesServiceListWarrantiesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of warranties for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listWarranties(
-    ListWarrantiesRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — A filter on the data based on this comma-separated list of Name values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createWarranty(request) -> EntityWarrantiesServiceCreateWarrantyResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a warranty for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createWarranty(
-    EntityWarrantiesServiceCreateWarrantyRequestBody
-        .builder()
-        .name("12345")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**baseCoverage:** `Optional<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**coverages:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `Optional<String>` — Description of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Name of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyType:** `Optional<String>` — Type of warranty, for example manufacturer, extended, other, or unknown.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deleteWarranty()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a warranty for the organization. Asset associations are removed server-side.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deleteWarranty(
-    DeleteWarrantyRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the Warranty record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateWarranty(request) -> EntityWarrantiesServiceUpdateWarrantyResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing warranty for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateWarranty(
-    EntityWarrantiesServiceUpdateWarrantyRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the Warranty record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**baseCoverage:** `Optional<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**coverages:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**description:** `Optional<String>` — Description of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — Name of the warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyType:** `Optional<String>` — Type of warranty, for example manufacturer, extended, other, or unknown.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listWarrantyAssetAssignments() -> EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the assets assigned to a warranty.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listWarrantyAssetAssignments(
-    ListWarrantyAssetAssignmentsRequest
-        .builder()
-        .warrantyId("warrantyId")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyId:** `String` — A filter on the data based on this comma-separated list of Warranty values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.replaceWarrantyAssetAssignments(request) -> ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Replaces the full set of assets assigned to a warranty.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().replaceWarrantyAssetAssignments(
-    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyId:** `Optional<String>` — ID of the warranty whose asset set to replace.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assets:** `Optional<List<EntityReplaceWarrantyAssetAssignmentsWarrantyAssetAssignmentInputTypeRequestBody>>` — The full desired asset set for the warranty.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listWarrantyClaims() -> EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of warranty claims for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listWarrantyClaims(
-    ListWarrantyClaimsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**warrantyClaimIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimStatus:** `Optional<String>` — A filter on the data based on this comma-separated list of Claim status values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Warranty values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createWarrantyClaim(request) -> EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a warranty claim for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createWarrantyClaim(
-    EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody
-        .builder()
-        .assetId("281474976710656")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**assetId:** `String` — ID of the asset the claim is filed for. Immutable once set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimStatus:** `Optional<String>` — Current status of the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**labor:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<CreateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursements:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deleteWarrantyClaim()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a warranty claim for the organization. Component links are removed server-side.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deleteWarrantyClaim(
-    DeleteWarrantyClaimRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the WarrantyClaim record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateWarrantyClaim(request) -> EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing warranty claim for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateWarrantyClaim(
-    EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the WarrantyClaim record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetId:** `Optional<String>` — ID of the asset the claim is filed for. Immutable once set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**claimStatus:** `Optional<String>` — Current status of the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**labor:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<UpdateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**reimbursements:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
 
-**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
+**version:** `Long` — Expected revision from the last response; stale material changes return 409.
     
 </dd>
 </dl>
@@ -10467,6 +8445,14 @@ client.betaApIs().getPlaces(
 <dd>
 
 **name:** `Optional<String>` — Filter places by name text.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hubIds:** `Optional<String>` — Comma-separated route-planning hub IDs (UUIDs). Returns places associated with any of the given hubs.
     
 </dd>
 </dl>
@@ -10690,7 +8676,7 @@ client.betaApIs().postPlace(
 <dl>
 <dd>
 
-Deletes a place. Pass `placeId` (Samsara id) as a query parameter.
+Deletes a place. Provide exactly one of query parameter `placeId` (Samsara id) or `externalId` (key:value).
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -10715,7 +8701,6 @@ To use this endpoint, select **Write Places** under the Places category when cre
 client.betaApIs().deletePlace(
     DeletePlaceRequest
         .builder()
-        .placeId(1000000L)
         .build()
 );
 ```
@@ -10732,7 +8717,15 @@ client.betaApIs().deletePlace(
 <dl>
 <dd>
 
-**placeId:** `Long` — Samsara place id to delete.
+**placeId:** `Optional<Long>` — Samsara place id to delete. Mutually exclusive with `externalId`; provide exactly one.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` — External id token in `key:value` form (e.g. crmId:warehouse-east). Mutually exclusive with `placeId`; provide exactly one.
     
 </dd>
 </dl>
@@ -11260,437 +9253,6 @@ client.betaApIs().getPlaceGeofence(
 <dd>
 
 **after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listPreferredStations() -> PreferredStationsListPreferredStationsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List all preferred fuel stations for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listPreferredStations(
-    ListPreferredStationsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Whether to include external IDs in the response.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.postPreferredStation(request) -> PreferredStationsPostPreferredStationResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a preferred fuel station for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().postPreferredStation(
-    PreferredStationsPostPreferredStationRequestBody
-        .builder()
-        .address(
-            PreferredStationAddressRequestBody
-                .builder()
-                .city("Green River")
-                .country("US")
-                .line1("8901 US Hwy 374")
-                .postalCode("82935")
-                .build()
-        )
-        .name("Station #432")
-        .externalIds(
-            new HashMap<String, String>() {{
-                put("key", "value");
-            }}
-        )
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**address:** `PreferredStationAddressRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**discounts:** `Optional<List<PreferredStationDiscountInputRequestBody>>` — Array of discount overrides per fuel type. Max 14 items.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Map<String, String>` — Map of source-system key to customer-provided station ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**latitude:** `Optional<Double>` — Latitude in WGS84 degrees.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**longitude:** `Optional<Double>` — Longitude in WGS84 degrees.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Display name of the station.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**prices:** `Optional<List<PreferredStationPriceInputRequestBody>>` — Array of per-fuel-type prices. Max 14 items.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deletePreferredStation()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a preferred fuel station for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deletePreferredStation(
-    DeletePreferredStationRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Samsara ID of the preferred station to delete.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.patchPreferredStation(request) -> PreferredStationsPatchPreferredStationResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update a preferred fuel station for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().patchPreferredStation(
-    PreferredStationsPatchPreferredStationRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Samsara ID of the preferred station to update.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**discounts:** `Optional<List<PreferredStationDiscountInputRequestBody>>` — Replaces all discount overrides. Pass empty array to remove all. Max 14 items.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**prices:** `Optional<List<PreferredStationPriceInputRequestBody>>` — Replaces all per-fuel-type prices. Pass empty array to remove all. Max 14 items.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.getPreferredStation(id) -> PreferredStationsGetPreferredStationResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a single preferred fuel station by ID.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().getPreferredStation(
-    "id",
-    GetPreferredStationRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Samsara-assigned station ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Whether to include external IDs in the response.
     
 </dd>
 </dl>
@@ -12944,7 +10506,9 @@ client.betaApIs().getReportRunData(
 <dl>
 <dd>
 
-List ridership passengers by tag.
+List passengers assigned to a tag. External IDs are omitted from the response unless `includeExternalIds=true`.
+
+Results are paginated. A page may contain fewer results than requested. While `pagination.hasNextPage` is true, pass `pagination.endCursor` as `after` to retrieve the next page.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -12986,7 +10550,7 @@ client.betaApIs().listRidershipPassengers(
 <dl>
 <dd>
 
-**tagId:** `String` — ID of a tag to filter passengers by.
+**tagId:** `String` — Samsara ID of the tag to filter passengers by, such as `5678`. External IDs are not supported here.
     
 </dd>
 </dl>
@@ -13034,7 +10598,7 @@ client.betaApIs().listRidershipPassengers(
 <dl>
 <dd>
 
-Create a new ridership passenger.
+Create a new ridership passenger. The response includes the passenger's external IDs.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13077,7 +10641,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**classification:** `Optional<RidershipPassengersCreateRidershipPassengerRequestBodyClassification>` — Classification or grade level of the passenger.  Valid values: `unknown`, `pk1`, `pk2`, `pk3`, `pk4`, `k`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `grade9`, `grade10`, `grade11`, `grade12`
+**classification:** `Optional<RidershipPassengersCreateRidershipPassengerRequestBodyClassification>` — Passenger grade level: `pk1`–`pk4` are pre-kindergarten categories, `k` is kindergarten, and `grade1`–`grade12` are grades 1–12. Use `unknown` when the grade level is not known.  Valid values: `unknown`, `pk1`, `pk2`, `pk3`, `pk4`, `k`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `grade9`, `grade10`, `grade11`, `grade12`
     
 </dd>
 </dl>
@@ -13085,7 +10649,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+**externalIds:** `Optional<Map<String, String>>` — Customer-defined IDs that link this passenger to another system, such as {"student": "STU-001"}.
     
 </dd>
 </dl>
@@ -13093,7 +10657,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**firstName:** `String` — First name of the passenger.
+**firstName:** `String` — Passenger's first name. Maximum 100 characters.
     
 </dd>
 </dl>
@@ -13101,7 +10665,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**identifiers:** `Optional<List<RidershipPassengerIdentifierInputRequestBody>>` — List of identifiers associated with the passenger.
+**identifiers:** `Optional<List<RidershipPassengerIdentifierInputRequestBody>>` — Identifiers used to recognize the passenger, such as RFID card values. Maximum 10.
     
 </dd>
 </dl>
@@ -13109,7 +10673,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**lastName:** `String` — Last name of the passenger.
+**lastName:** `String` — Passenger's last name. Maximum 100 characters.
     
 </dd>
 </dl>
@@ -13125,7 +10689,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**tagIds:** `Optional<List<String>>` — IDs of tags to associate with the passenger.
+**tagIds:** `Optional<List<String>>` — Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send `[]` to create a passenger without tags.
     
 </dd>
 </dl>
@@ -13149,7 +10713,11 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-Update a ridership passenger by ID. All provided fields will overwrite existing values (PUT semantics). The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
+Update a passenger by Samsara UUID or external ID, such as `student:STU-001`. The response includes the passenger's external IDs.
+
+Both first and last name are required. Include the values you want to keep:
+- Omitted classification, special instructions, identifiers, and external IDs are cleared.
+- Omitted tags are kept. Send `tagIds: []` to remove them.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13193,7 +10761,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**id:** `String` — ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `student:STU-001`.
+**id:** `String` — Samsara UUID of the passenger, or an external ID in `key:value` format, such as `student:STU-001`.
     
 </dd>
 </dl>
@@ -13201,7 +10769,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**classification:** `Optional<RidershipPassengersUpdateRidershipPassengerRequestBodyClassification>` — Classification or grade level of the passenger.  Valid values: `unknown`, `pk1`, `pk2`, `pk3`, `pk4`, `k`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `grade9`, `grade10`, `grade11`, `grade12`
+**classification:** `Optional<RidershipPassengersUpdateRidershipPassengerRequestBodyClassification>` — Passenger grade level: `pk1`–`pk4` are pre-kindergarten categories, `k` is kindergarten, and `grade1`–`grade12` are grades 1–12. Use `unknown` when the grade level is not known.  Valid values: `unknown`, `pk1`, `pk2`, `pk3`, `pk4`, `k`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `grade9`, `grade10`, `grade11`, `grade12`
     
 </dd>
 </dl>
@@ -13209,7 +10777,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**externalIds:** `Optional<Map<String, String>>` — A map of external ids
+**externalIds:** `Optional<Map<String, String>>` — Customer-defined IDs that link this passenger to another system, such as {"student": "STU-001"}.
     
 </dd>
 </dl>
@@ -13217,7 +10785,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**firstName:** `String` — First name of the passenger.
+**firstName:** `String` — Passenger's first name. Maximum 100 characters.
     
 </dd>
 </dl>
@@ -13225,7 +10793,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**identifiers:** `Optional<List<RidershipPassengerIdentifierInputRequestBody>>` — List of identifiers associated with the passenger.
+**identifiers:** `Optional<List<RidershipPassengerIdentifierInputRequestBody>>` — Identifiers used to recognize the passenger, such as RFID card values. Maximum 10.
     
 </dd>
 </dl>
@@ -13233,7 +10801,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**lastName:** `String` — Last name of the passenger.
+**lastName:** `String` — Passenger's last name. Maximum 100 characters.
     
 </dd>
 </dl>
@@ -13249,7 +10817,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**tagIds:** `Optional<List<String>>` — IDs of tags to associate with the passenger.
+**tagIds:** `Optional<List<String>>` — Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send `[]` to remove all tags.
     
 </dd>
 </dl>
@@ -13273,7 +10841,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-Delete a ridership passenger by ID. The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
+Delete a passenger by Samsara UUID or external ID, such as `student:STU-001`. The passenger is no longer returned by get or list requests, and their external IDs are removed. Deleting a passenger that does not exist or has already been deleted returns not found.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13315,7 +10883,7 @@ client.betaApIs().deleteRidershipPassenger(
 <dl>
 <dd>
 
-**id:** `String` — ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `student:STU-001`.
+**id:** `String` — Samsara UUID of the passenger, or an external ID in `key:value` format, such as `student:STU-001`.
     
 </dd>
 </dl>
@@ -13339,7 +10907,7 @@ client.betaApIs().deleteRidershipPassenger(
 <dl>
 <dd>
 
-Get a single ridership passenger by ID. The ID can be a Samsara UUID or an external ID in `key:value` format.
+Get a passenger by Samsara UUID or external ID, such as `student:STU-001`. External IDs are omitted from the response unless `includeExternalIds=true`.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13381,7 +10949,7 @@ client.betaApIs().getRidershipPassenger(
 <dl>
 <dd>
 
-**id:** `String` — ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `student:STU-001`.
+**id:** `String` — Samsara UUID of the passenger, or an external ID in `key:value` format, such as `student:STU-001`.
     
 </dd>
 </dl>
@@ -13413,7 +10981,9 @@ client.betaApIs().getRidershipPassenger(
 <dl>
 <dd>
 
-List all route setups for a ridership account.
+List route setups associated with the specified ridership account.
+
+Results are paginated. A page may contain fewer results than requested. While `pagination.hasNextPage` is true, pass `pagination.endCursor` as `after` to retrieve the next page.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13495,7 +11065,7 @@ client.betaApIs().listRidershipRouteSetups(
 <dl>
 <dd>
 
-Create the passenger assignment setup for a route.
+Create passenger assignments for an existing Routing API route. If the route already has a setup, use the update endpoint instead.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13545,7 +11115,7 @@ client.betaApIs().createRidershipRouteSetup(
 <dl>
 <dd>
 
-**passengers:** `List<RidershipRouteSetupPassengerInputRequestBody>` — List of passenger assignments for the route.
+**passengers:** `List<RidershipRouteSetupPassengerInputRequestBody>` — Passenger assignments for the route, with each passenger listed once.
     
 </dd>
 </dl>
@@ -13577,7 +11147,7 @@ client.betaApIs().createRidershipRouteSetup(
 <dl>
 <dd>
 
-Update (replace) the passenger assignment setup for a route. All existing assignments will be replaced with the provided assignments.
+Add or update passenger assignments for an existing Routing API route. Creates a setup if none exists. Passengers omitted from the request keep their assignments; an empty passenger list leaves existing assignments unchanged.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13635,7 +11205,7 @@ client.betaApIs().updateRidershipRouteSetup(
 <dl>
 <dd>
 
-**passengers:** `List<RidershipRouteSetupPassengerInputRequestBody>` — List of passenger assignments for the route.
+**passengers:** `List<RidershipRouteSetupPassengerInputRequestBody>` — Passenger assignments for the route, with each passenger listed once.
     
 </dd>
 </dl>
@@ -13659,7 +11229,7 @@ client.betaApIs().updateRidershipRouteSetup(
 <dl>
 <dd>
 
-Delete the passenger assignment setup for a route.
+Remove the route's passenger setup and assignments. The route and passenger records are kept. Deleting a setup that does not exist returns not found.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13725,7 +11295,7 @@ client.betaApIs().deleteRidershipRouteSetup(
 <dl>
 <dd>
 
-Get the passenger assignment setup for a route by route ID.
+Get the passenger assignments for a route by Samsara route ID or external ID, such as `extRoute:WB-12`.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -13817,7 +11387,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -17944,6 +15514,2529 @@ client.maintenance().updateDvir(
 </dl>
 </details>
 
+<details><summary><code>client.maintenance.listParts() -> EntityPartDefinitionsServiceListPartsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of parts for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listParts(
+    ListPartsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**idIn:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partStatus:** `Optional<String>` — A filter on the data based on Part status. Status of the part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeDeleted:** `Optional<Boolean>` — Whether to include deleted parts in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createPart(request) -> EntityPartDefinitionsServiceCreatePartResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a part for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createPart(
+    EntityPartDefinitionsServiceCreatePartRequestBody
+        .builder()
+        .partNumber("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**barcodeString:** `Optional<String>` — Barcode associated with the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**barcodeType:** `Optional<String>` — Type of barcode associated with the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` — Customer-supplied external identifier for the part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isInventoryTracked:** `Optional<Boolean>` — Whether inventory tracking is enabled for this part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**manufacturerName:** `Optional<String>` — Name of the manufacturer for the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**manufacturerPartNumber:** `Optional<String>` — Manufacturer-supplied part number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partNumber:** `String` — Customer-visible part number for the part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preferredVendorId:** `Optional<String>` — Unique identifier for the preferred vendor for this part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preferredVendorPartNumber:** `Optional<String>` — The preferred vendor's part number for this part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<CreatePartEntityPartDefinitionMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vmrsCode:** `Optional<String>` — VMRS code associated with the part definition.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.deletePart()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a part for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().deletePart(
+    DeletePartRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the PartDefinition record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updatePart(request) -> EntityPartDefinitionsServiceUpdatePartResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing part for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updatePart(
+    EntityPartDefinitionsServiceUpdatePartRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the PartDefinition record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**barcodeString:** `Optional<String>` — Barcode associated with the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**barcodeType:** `Optional<String>` — Type of barcode associated with the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalId:** `Optional<String>` — Customer-supplied external identifier for the part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isInventoryTracked:** `Optional<Boolean>` — Whether inventory tracking is enabled for this part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**manufacturerName:** `Optional<String>` — Name of the manufacturer for the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**manufacturerPartNumber:** `Optional<String>` — Manufacturer-supplied part number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partNumber:** `Optional<String>` — Customer-visible part number for the part.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preferredVendorId:** `Optional<String>` — Unique identifier for the preferred vendor for this part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**preferredVendorPartNumber:** `Optional<String>` — The preferred vendor's part number for this part definition.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vmrsCode:** `Optional<String>` — VMRS code associated with the part definition.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listPartInventory() -> EntityPartInventoryLocationsServiceListPartInventoryResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of per-part, per-location inventory levels for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listPartInventory(
+    ListPartInventoryRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isLowStock:** `Optional<Boolean>` — A filter on the data based on Low stock. Whether the available quantity is greater than zero and at or below the reorder threshold.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partSamsaraIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createPartInventoryLocation(request) -> EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createPartInventoryLocation(
+    EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partSamsaraId:** `Optional<String>` — Unique identifier for the part definition these inventory levels are tracked for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — Unique identifier for the place linked to the maintenance site holding this inventory. The internal location identifier is never exposed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aisle:** `Optional<String>` — Aisle within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bin:** `Optional<String>` — Bin within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currentQuantity:** `Optional<Double>` — Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Settable only when creating the record, to seed initial stock; thereafter it changes only via stock movements.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isCostTracked:** `Optional<Boolean>` — Whether costing is tracked at this location. Defaults to false; once enabled it cannot be turned back off.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maxStockLevel:** `Optional<Double>` — Maximum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minStockLevel:** `Optional<Double>` — Minimum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderQuantity:** `Optional<Double>` — Quantity to reorder when stock reaches the reorder threshold.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderThreshold:** `Optional<Double>` — Available quantity at or below which the part should be reordered at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**row:** `Optional<String>` — Row within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<CreatePartInventoryLocationEntityPartInventoryLocationMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updatePartInventoryLocation(request) -> EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates existing per-part, per-location inventory metadata for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updatePartInventoryLocation(
+    EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**partSamsaraId:** `Optional<String>` — Unique identifier for the part definition these inventory levels are tracked for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — Unique identifier for the place linked to the maintenance site holding this inventory. The internal location identifier is never exposed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**aisle:** `Optional<String>` — Aisle within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bin:** `Optional<String>` — Bin within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currentQuantity:** `Optional<Double>` — Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Settable only when creating the record, to seed initial stock; thereafter it changes only via stock movements.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isCostTracked:** `Optional<Boolean>` — Whether costing is tracked at this location. Defaults to false; once enabled it cannot be turned back off.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maxStockLevel:** `Optional<Double>` — Maximum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minStockLevel:** `Optional<Double>` — Minimum quantity to keep in stock at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderQuantity:** `Optional<Double>` — Quantity to reorder when stock reaches the reorder threshold.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reorderThreshold:** `Optional<Double>` — Available quantity at or below which the part should be reordered at this location.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**row:** `Optional<String>` — Row within the location where the part is stored.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<UpdatePartInventoryLocationEntityPartInventoryLocationMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createStockMovement(request) -> CreateStockMovementActionServiceCreateStockMovementResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createStockMovement(
+    CreateStockMovementActionServiceCreateStockMovementRequestBody
+        .builder()
+        .movementType("12345")
+        .partSamsaraId("12345")
+        .quantity(123.45)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**batch:** `Optional<String>` — Batch or lot identifier the movement applies to, if the part is batch-tracked.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fromPlaceId:** `Optional<String>` — Unique identifier of the place linked to the maintenance site the inventory is transferred out of. Transfer only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**happenedAtTime:** `Optional<String>` — Time when the movement occurred. Defaults to the current time if not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**movementType:** `String` — Type of stock movement to record. Must be one of Receive, Transfer, Scrap, or Adjust; Unknown is rejected.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Notes explaining the movement. Scrap and adjust only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partSamsaraId:** `String` — Unique identifier of the part definition the movement applies to.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeId:** `Optional<String>` — Unique identifier of the place linked to the maintenance site the movement targets. Required for receive, scrap, and adjust; rejected for transfer (use fromPlaceId and toPlaceId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**purchaseOrder:** `Optional<String>` — Purchase order reference for the received inventory. Receive only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quantity:** `Double` — Quantity moved, in the part's unit of measure. Positive magnitude for receive, transfer, and scrap; signed delta for adjust.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toPlaceId:** `Optional<String>` — Unique identifier of the place linked to the maintenance site the inventory is transferred into. Transfer only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitCost:** `Optional<EntityCreateStockMovementMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — Unique identifier of the vendor the inventory was received from. Receive only.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listPartTransactions() -> EntityInventoryTransactionsServiceListPartTransactionsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listPartTransactions(
+    ListPartTransactionsRequest
+        .builder()
+        .happenedAtTimeStart("happenedAtTimeStart")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**happenedAtTimeStart:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**happenedAtTimeEnd:** `Optional<String>` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**partSamsaraIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Part Samsara ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionTypeIn:** `Optional<String>` — A filter on the data based on this comma-separated list of Transaction Type values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listTimeEntries() -> EntityTimeEntriesServiceListTimeEntriesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Time Entries** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listTimeEntries(
+    ListTimeEntriesRequest
+        .builder()
+        .startTime("startTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listWarranties() -> EntityWarrantiesServiceListWarrantiesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of warranties for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listWarranties(
+    ListWarrantiesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — A filter on the data based on this comma-separated list of Name values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createWarranty(request) -> EntityWarrantiesServiceCreateWarrantyResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a warranty for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createWarranty(
+    EntityWarrantiesServiceCreateWarrantyRequestBody
+        .builder()
+        .name("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**baseCoverage:** `Optional<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**coverages:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyType:** `Optional<EntityWarrantiesServiceCreateWarrantyRequestBodyWarrantyType>` — Type of warranty, for example manufacturer, extended, other, or unknown.  Valid values: `unknown`, `manufacturer`, `extended`, `other`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.deleteWarranty()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a warranty for the organization. Asset associations are removed server-side.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().deleteWarranty(
+    DeleteWarrantyRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the Warranty record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updateWarranty(request) -> EntityWarrantiesServiceUpdateWarrantyResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing warranty for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updateWarranty(
+    EntityWarrantiesServiceUpdateWarrantyRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the Warranty record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**baseCoverage:** `Optional<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**coverages:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyCoverageInputTypeRequestBody>>` — Additional coverage groups defined on this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationDays:** `Optional<Long>` — Warranty length in days. Mutually exclusive with duration in months.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**durationMonths:** `Optional<Long>` — Warranty length in months. Mutually exclusive with duration in days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**engineDurationHours:** `Optional<Long>` — Warranty length by engine hours since the warranty start.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateWarrantyEntityWarrantyWarrantyExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**odometerDistanceMeters:** `Optional<Long>` — Warranty length by distance travelled since the warranty start. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — ID of the vendor that provides this warranty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyType:** `Optional<EntityWarrantiesServiceUpdateWarrantyRequestBodyWarrantyType>` — Type of warranty, for example manufacturer, extended, other, or unknown.  Valid values: `unknown`, `manufacturer`, `extended`, `other`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listWarrantyAssetAssignments() -> EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the assets assigned to a warranty.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listWarrantyAssetAssignments(
+    ListWarrantyAssetAssignmentsRequest
+        .builder()
+        .warrantyId("warrantyId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyId:** `String` — A filter on the data based on this comma-separated list of Warranty values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.replaceWarrantyAssetAssignments(request) -> ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the full set of assets assigned to a warranty.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().replaceWarrantyAssetAssignments(
+    ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyId:** `Optional<String>` — ID of the warranty whose asset set to replace.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assets:** `Optional<List<EntityReplaceWarrantyAssetAssignmentsWarrantyAssetAssignmentInputTypeRequestBody>>` — The full desired asset set for the warranty.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listWarrantyClaims() -> EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of warranty claims for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listWarrantyClaims(
+    ListWarrantyClaimsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**warrantyClaimIds:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimStatus:** `Optional<String>` — A filter on the data based on this comma-separated list of Claim status values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Warranty values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createWarrantyClaim(request) -> EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a warranty claim for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createWarrantyClaim(
+    EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody
+        .builder()
+        .assetId("281474976710656")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` — ID of the asset the claim is filed for. Immutable once set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimStatus:** `Optional<EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBodyClaimStatus>` — Current status of the claim.  Valid values: `unknown`, `created`, `submitted`, `inReview`, `approved`, `rejected`, `resubmitted`, `reimbursed`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**labor:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<CreateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursements:** `Optional<List<CreateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.deleteWarrantyClaim()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a warranty claim for the organization. Component links are removed server-side.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().deleteWarrantyClaim(
+    DeleteWarrantyClaimRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the WarrantyClaim record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updateWarrantyClaim(request) -> EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing warranty claim for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updateWarrantyClaim(
+    EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the WarrantyClaim record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — ID of the asset the claim is filed for. Immutable once set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cause:** `Optional<String>` — The cause of the 3 Cs - the root cause found.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimEngineHours:** `Optional<Long>` — Engine hours at the time of repair.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimOdometerMeters:** `Optional<Long>` — Asset odometer reading at the time of repair. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**claimStatus:** `Optional<EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBodyClaimStatus>` — Current status of the claim.  Valid values: `unknown`, `created`, `submitted`, `inReview`, `approved`, `rejected`, `resubmitted`, `reimbursed`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**componentInstanceIds:** `Optional<List<String>>` — IDs of asset component instances covered by this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concern:** `Optional<String>` — The concern of the 3 Cs - what was reported.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**correction:** `Optional<String>` — The correction of the 3 Cs - the work performed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**labor:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>>` — Labor being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWarrantyId:** `Optional<String>` — ID of the warranty this claim is filed against.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**linkedWorkOrderIds:** `Optional<List<String>>` — IDs of the work orders associated with this claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**mediaItemIds:** `Optional<List<String>>` — IDs of media items attached to the claim.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<UpdateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>>` — Parts being claimed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursedAtTime:** `Optional<String>` — When reimbursement was received.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reimbursements:** `Optional<List<UpdateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>>` — Reimbursement amounts, optionally linked to a work order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**repairCompletedAtTime:** `Optional<String>` — When the repair was completed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolutionAtTime:** `Optional<String>` — When the claim was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**submittedAtTime:** `Optional<String>` — When the claim was submitted to the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**warrantyVendorId:** `Optional<String>` — ID of the vendor handling the claim.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.maintenance.v1GetFleetMaintenanceList() -> InlineResponse2004</code></summary>
 <dl>
 <dd>
@@ -17989,8 +18082,8 @@ client.maintenance().v1GetFleetMaintenanceList();
 </dl>
 </details>
 
-## FuelAndEnergy
-<details><summary><code>client.fuelAndEnergy.getDriverEfficiencyByDrivers() -> DriverEfficiencyGetDriverEfficiencyByDriversResponseBody</code></summary>
+## Legacy APIs
+<details><summary><code>client.legacyApIs.getDriverEfficiencyByDrivers() -> DriverEfficiencyGetDriverEfficiencyByDriversResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -18001,6 +18094,8 @@ client.maintenance().v1GetFleetMaintenanceList();
 
 <dl>
 <dd>
+
+**⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta [Custom Reports API](https://developers.samsara.com/reference/createreportrun) for equivalent data.**
 
 This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated. 
 
@@ -18026,7 +18121,7 @@ To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy 
 <dd>
 
 ```java
-client.fuelAndEnergy().getDriverEfficiencyByDrivers(
+client.legacyApIs().getDriverEfficiencyByDrivers(
     GetDriverEfficiencyByDriversRequest
         .builder()
         .startTime("startTime")
@@ -18107,7 +18202,7 @@ client.fuelAndEnergy().getDriverEfficiencyByDrivers(
 </dl>
 </details>
 
-<details><summary><code>client.fuelAndEnergy.getDriverEfficiencyByVehicles() -> DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody</code></summary>
+<details><summary><code>client.legacyApIs.getDriverEfficiencyByVehicles() -> DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -18118,6 +18213,8 @@ client.fuelAndEnergy().getDriverEfficiencyByDrivers(
 
 <dl>
 <dd>
+
+**⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta [Custom Reports API](https://developers.samsara.com/reference/createreportrun) for equivalent data.**
 
 This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated. 
 
@@ -18143,7 +18240,7 @@ To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy 
 <dd>
 
 ```java
-client.fuelAndEnergy().getDriverEfficiencyByVehicles(
+client.legacyApIs().getDriverEfficiencyByVehicles(
     GetDriverEfficiencyByVehiclesRequest
         .builder()
         .startTime("startTime")
@@ -18224,7 +18321,7 @@ client.fuelAndEnergy().getDriverEfficiencyByVehicles(
 </dl>
 </details>
 
-<details><summary><code>client.fuelAndEnergy.getFuelEnergyDriverReports() -> FuelEnergyGetFuelEnergyDriverReportsResponseBody</code></summary>
+<details><summary><code>client.legacyApIs.getDvirDefects() -> DefectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18236,11 +18333,109 @@ client.fuelAndEnergy().getDriverEfficiencyByVehicles(
 <dl>
 <dd>
 
-Get fuel and energy efficiency driver reports for the requested time range.
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/streamdefects) instead. The endpoint will continue to function as documented.** 
 
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days. 
 
-To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getDvirDefects(
+    GetDvirDefectsRequest
+        .builder()
+        .startTime("startTime")
+        .endTime("endTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). *The maximum time period you can query for is 30 days.*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). *The maximum time period you can query for is 30 days.*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isResolved:** `Optional<Boolean>` — A filter on the data based on resolution status. Example: `isResolved=true`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getDriversVehicleAssignments() -> DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
+
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -18258,11 +18453,9 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```java
-client.fuelAndEnergy().getFuelEnergyDriverReports(
-    GetFuelEnergyDriverReportsRequest
+client.legacyApIs().getDriversVehicleAssignments(
+    GetDriversVehicleAssignmentsRequest
         .builder()
-        .startDate("startDate")
-        .endDate("endDate")
         .build()
 );
 ```
@@ -18279,22 +18472,6 @@ client.fuelAndEnergy().getFuelEnergyDriverReports(
 <dl>
 <dd>
 
-**startDate:** `String` — A start date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endDate:** `String` — An end date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **driverIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`
     
 </dd>
@@ -18303,7 +18480,7 @@ client.fuelAndEnergy().getFuelEnergyDriverReports(
 <dl>
 <dd>
 
-**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
     
 </dd>
 </dl>
@@ -18311,7 +18488,31 @@ client.fuelAndEnergy().getFuelEnergyDriverReports(
 <dl>
 <dd>
 
-**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+**endTime:** `Optional<String>` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverActivationStatus:** `Optional<GetDriversVehicleAssignmentsRequestDriverActivationStatus>` — If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).  Valid values: `active`, `deactivated`
     
 </dd>
 </dl>
@@ -18331,7 +18532,7 @@ client.fuelAndEnergy().getFuelEnergyDriverReports(
 </dl>
 </details>
 
-<details><summary><code>client.fuelAndEnergy.getFuelEnergyVehicleReports() -> FuelEnergyGetFuelEnergyVehicleReportsResponseBody</code></summary>
+<details><summary><code>client.legacyApIs.getDvirHistory() -> DvirsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -18343,7 +18544,113 @@ client.fuelAndEnergy().getFuelEnergyDriverReports(
 <dl>
 <dd>
 
-Get fuel and energy efficiency vehicle reports for the requested time range.
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdvirs) instead. The endpoint will continue to function as documented.** 
+
+ Returns a list of all DVIRs in an organization. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getDvirHistory(
+    GetDvirHistoryRequest
+        .builder()
+        .startTime("startTime")
+        .endTime("endTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getVehicleIdlingReports() -> IdlingReportsGetVehicleIdlingReportsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getidlingevents) instead. The endpoint will continue to function as documented.** Get all vehicle idling reports for the requested time duration.
 
  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -18365,11 +18672,11 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```java
-client.fuelAndEnergy().getFuelEnergyVehicleReports(
-    GetFuelEnergyVehicleReportsRequest
+client.legacyApIs().getVehicleIdlingReports(
+    GetVehicleIdlingReportsRequest
         .builder()
-        .startDate("startDate")
-        .endDate("endDate")
+        .startTime("startTime")
+        .endTime("endTime")
         .build()
 );
 ```
@@ -18386,7 +18693,7 @@ client.fuelAndEnergy().getFuelEnergyVehicleReports(
 <dl>
 <dd>
 
-**startDate:** `String` — A start date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>
@@ -18394,7 +18701,23 @@ client.fuelAndEnergy().getFuelEnergyVehicleReports(
 <dl>
 <dd>
 
-**endDate:** `String` — An end date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `String` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     
 </dd>
 </dl>
@@ -18410,7 +18733,299 @@ client.fuelAndEnergy().getFuelEnergyVehicleReports(
 <dl>
 <dd>
 
-**energyType:** `Optional<GetFuelEnergyVehicleReportsRequestEnergyType>` — The type of energy used by the vehicle.  Valid values: `fuel`, `hybrid`, `electric`
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPtoActive:** `Optional<Boolean>` — A filter on the data based on power take-off being active or inactive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**minIdlingDurationMinutes:** `Optional<Long>` — A filter on the data based on a minimum idling duration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getSafetyEvents() -> SafetyEventsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** 
+
+ Fetch safety events for the organization in a given time period. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getSafetyEvents(
+    GetSafetyEventsRequest
+        .builder()
+        .startTime("startTime")
+        .endTime("endTime")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getSafetyActivityEventFeed() -> SafetyEventsGetSafetyActivityEventFeedResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.**
+
+Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
+
+| ActivityType      | Description |
+| ----------- | ----------- |
+| CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+| BehaviorLabelActivityType     | a label is added or removed from a safety event |
+| CoachingStateActivityType     | a safety event coaching state is updated        |
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getSafetyActivityEventFeed(
+    GetSafetyActivityEventFeedRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.legacyApIs.getVehiclesDriverAssignments() -> VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.legacyApIs().getVehiclesDriverAssignments(
+    GetVehiclesDriverAssignmentsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`
     
 </dd>
 </dl>
@@ -18446,7 +19061,7 @@ client.fuelAndEnergy().getFuelEnergyVehicleReports(
 </dl>
 </details>
 
-<details><summary><code>client.fuelAndEnergy.postFuelPurchase(request) -> FuelPurchasePostFuelPurchaseResponseBody</code></summary>
+<details><summary><code>client.legacyApIs.v1GetVehicleHarshEvent(vehicleId) -> V1VehicleHarshEventResponse</code></summary>
 <dl>
 <dd>
 
@@ -18458,14 +19073,13 @@ client.fuelAndEnergy().getFuelEnergyVehicleReports(
 <dl>
 <dd>
 
-Create a fuel purchase transaction.
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** > 🚧 This endpoint is still on our legacy API.
 
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
+Fetch harsh event details for a vehicle. 
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
 </dd>
 </dl>
 </dd>
@@ -18480,20 +19094,11 @@ To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy cat
 <dd>
 
 ```java
-client.fuelAndEnergy().postFuelPurchase(
-    FuelPurchasePostFuelPurchaseRequestBody
+client.legacyApIs().v1GetVehicleHarshEvent(
+    1000000L,
+    V1GetVehicleHarshEventRequest
         .builder()
-        .fuelQuantityLiters("676.8")
-        .transactionLocation("350 Rhode Island St, San Francisco, CA 94103")
-        .transactionPrice(
-            PostFuelPurchaseRequestBodyPriceRequestBody
-                .builder()
-                .amount("640.2")
-                .currency(PostFuelPurchaseRequestBodyPriceRequestBodyCurrency.USD)
-                .build()
-        )
-        .transactionReference("5454534")
-        .transactionTime("2022-07-13T14:20:50.52-07:00")
+        .timestamp(1000000L)
         .build()
 );
 ```
@@ -18510,7 +19115,7 @@ client.fuelAndEnergy().postFuelPurchase(
 <dl>
 <dd>
 
-**discount:** `Optional<PostFuelPurchaseRequestBodyDiscountRequestBody>` 
+**vehicleId:** `Long` — ID of the vehicle. Must contain only digits 0-9.
     
 </dd>
 </dl>
@@ -18518,87 +19123,7 @@ client.fuelAndEnergy().postFuelPurchase(
 <dl>
 <dd>
 
-**driverId:** `Optional<String>` — Samsara ID of the driver that purchased the fuel.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**fuelGrade:** `Optional<FuelPurchasePostFuelPurchaseRequestBodyFuelGrade>` — The grade of the fuel purchased.  Valid values: `Unknown`, `Regular`, `Premium`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**fuelQuantityLiters:** `String` — The amount of fuel purchased in liters.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**iftaFuelType:** `Optional<FuelPurchasePostFuelPurchaseRequestBodyIftaFuelType>` — The type of fuel purchased supported by IFTA.  Valid values: `Unspecified`, `A55`, `Biodiesel`, `CompressedNaturalGas`, `Diesel`, `E85`, `Electricity`, `Ethanol`, `Gasohol`, `Gasoline`, `Hydrogen`, `LiquifiedNaturalGas`, `M85`, `Methanol`, `Propane`, `Other`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**merchantName:** `Optional<String>` — Brand name of the fuel station the fuel was purchased at. For example: Shell, Bp, Exxon.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**source:** `Optional<String>` — The integration provider. For example: Customer, Shell Integration
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transactionLocation:** `String` — The full street address for the location of the fuel transaction, as it might be recognized by Google Maps. Ideal entries should be in accordance with the format used by the national postal service of the country concerned (example: 1 De Haro St, San Francisco, CA 94107, United States). Alternatively, exact latitude/longitude can be provided (example: 40.748441, -73.985664).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transactionPrice:** `PostFuelPurchaseRequestBodyPriceRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transactionReference:** `String` — The fuel transaction reference. This is the transaction identifier. For instance, this can be the Serial Number on the invoice.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transactionTime:** `String` — The time of the fuel transaction in RFC 3339 format. Timezone must be specified. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleId:** `Optional<String>` — Samsara ID of the vehicle that purchased the fuel.
+**timestamp:** `Long` — Timestamp in milliseconds representing the timestamp of a harsh event.
     
 </dd>
 </dl>
@@ -19419,821 +19944,6 @@ client.carrierProposedAssignments().createCarrierProposedAssignment(
 </dl>
 </details>
 
-## Legacy APIs
-<details><summary><code>client.legacyApIs.getDvirDefects() -> DefectsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/streamdefects) instead. The endpoint will continue to function as documented.** 
-
-Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getDvirDefects(
-    GetDvirDefectsRequest
-        .builder()
-        .startTime("startTime")
-        .endTime("endTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). *The maximum time period you can query for is 30 days.*
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). *The maximum time period you can query for is 30 days.*
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isResolved:** `Optional<Boolean>` — A filter on the data based on resolution status. Example: `isResolved=true`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.getDriversVehicleAssignments() -> DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-
- <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getDriversVehicleAssignments(
-    GetDriversVehicleAssignmentsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**driverActivationStatus:** `Optional<GetDriversVehicleAssignmentsRequestDriverActivationStatus>` — If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).  Valid values: `active`, `deactivated`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.getDvirHistory() -> DvirsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdvirs) instead. The endpoint will continue to function as documented.** 
-
- Returns a list of all DVIRs in an organization. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getDvirHistory(
-    GetDvirHistoryRequest
-        .builder()
-        .startTime("startTime")
-        .endTime("endTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.getVehicleIdlingReports() -> IdlingReportsGetVehicleIdlingReportsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getidlingevents) instead. The endpoint will continue to function as documented.** Get all vehicle idling reports for the requested time duration.
-
- <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getVehicleIdlingReports(
-    GetVehicleIdlingReportsRequest
-        .builder()
-        .startTime("startTime")
-        .endTime("endTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isPtoActive:** `Optional<Boolean>` — A filter on the data based on power take-off being active or inactive.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**minIdlingDurationMinutes:** `Optional<Long>` — A filter on the data based on a minimum idling duration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.getSafetyEvents() -> SafetyEventsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** 
-
- Fetch safety events for the organization in a given time period. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getSafetyEvents(
-    GetSafetyEventsRequest
-        .builder()
-        .startTime("startTime")
-        .endTime("endTime")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` — If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `String` — A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `String` — An end time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` — A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.getSafetyActivityEventFeed() -> SafetyEventsGetSafetyActivityEventFeedResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.**
-
-Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
-
-| ActivityType      | Description |
-| ----------- | ----------- |
-| CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-| BehaviorLabelActivityType     | a label is added or removed from a safety event |
-| CoachingStateActivityType     | a safety event coaching state is updated        |
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getSafetyActivityEventFeed(
-    GetSafetyActivityEventFeedRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.getVehiclesDriverAssignments() -> VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().getVehiclesDriverAssignments(
-    GetVehiclesDriverAssignmentsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**startTime:** `Optional<String>` —  A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**endTime:** `Optional<String>` —  An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00). The maximum allowed startTime-endTime range is 7 days.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vehicleIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.legacyApIs.v1GetVehicleHarshEvent(vehicleId) -> V1VehicleHarshEventResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** > 🚧 This endpoint is still on our legacy API.
-
-Fetch harsh event details for a vehicle. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.legacyApIs().v1GetVehicleHarshEvent(
-    1000000L,
-    V1GetVehicleHarshEventRequest
-        .builder()
-        .timestamp(1000000L)
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**vehicleId:** `Long` — ID of the vehicle. Must contain only digits 0-9.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**timestamp:** `Long` — Timestamp in milliseconds representing the timestamp of a harsh event.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Documents
 <details><summary><code>client.documents.getDocumentTypes() -> DocumentTypesGetDocumentTypesResponseBody</code></summary>
 <dl>
@@ -20875,7 +20585,7 @@ client.driverVehicleAssignments().getDriverVehicleAssignments(
 <dl>
 <dd>
 
-**sourceName:** `Optional<String>` — Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.
+**sourceName:** `Optional<String>` — Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported. `startTime` and `endTime` are optional here: if omitted, matching assignments are returned regardless of when they occurred, rather than being limited to the recent window used by the other filters.
     
 </dd>
 </dl>
@@ -21144,7 +20854,7 @@ client.driverVehicleAssignments().deleteDriverVehicleAssignments(
 <dl>
 <dd>
 
-Update driver assignments that were created using the `POST fleet/driver-vehicle-assignments`. Vehicle Id, Driver Id, and Start Time must match an existing assignment.
+Update driver assignments that were created using the `POST fleet/driver-vehicle-assignments`. Identify the assignment either with vehicleId, driverId, and startTime, or with metadata.sourceName alone.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -21169,9 +20879,6 @@ To use this endpoint, select **Write Assignments** under the Assignments categor
 client.driverVehicleAssignments().updateDriverVehicleAssignment(
     DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
         .builder()
-        .driverId("494123")
-        .startTime("2019-06-13T19:08:25Z")
-        .vehicleId("281474978683353")
         .build()
 );
 ```
@@ -21196,7 +20903,7 @@ client.driverVehicleAssignments().updateDriverVehicleAssignment(
 <dl>
 <dd>
 
-**driverId:** `String` — ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+**driverId:** `Optional<String>` — ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
     
 </dd>
 </dl>
@@ -21228,7 +20935,7 @@ client.driverVehicleAssignments().updateDriverVehicleAssignment(
 <dl>
 <dd>
 
-**startTime:** `String` — The start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+**startTime:** `Optional<String>` — The start time in RFC 3339 format that identifies the assignment to update. Required together with vehicleId and driverId, unless metadata.sourceName is provided instead. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     
 </dd>
 </dl>
@@ -21236,7 +20943,7 @@ client.driverVehicleAssignments().updateDriverVehicleAssignment(
 <dl>
 <dd>
 
-**vehicleId:** `String` — ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
+**vehicleId:** `Optional<String>` — ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
     
 </dd>
 </dl>
@@ -23895,6 +23602,90 @@ client.hoursOfService().getHosViolations(
 </dl>
 </details>
 
+<details><summary><code>client.hoursOfService.updateShippingDocs(request) -> HosDailyLogsUpdateShippingDocsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the shippingDocs field of an existing assignment.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.hoursOfService().updateShippingDocs(
+    HosDailyLogsUpdateShippingDocsRequestBody
+        .builder()
+        .hosDate("hosDate")
+        .driverId("driverID")
+        .shippingDocs("ShippingID1, ShippingID2")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**hosDate:** `String` — A start date in yyyy-mm-dd format. Required.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverId:** `String` — ID of the driver for whom the duty status is being set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shippingDocs:** `String` — ShippingDocs associated with the driver for the day.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.hoursOfService.setCurrentDutyStatus(driverId, request)</code></summary>
 <dl>
 <dd>
@@ -24077,6 +23868,824 @@ client.hoursOfService().v1GetFleetHosAuthenticationLogs(
 <dd>
 
 **endMs:** `Long` — End of the time range, specified in milliseconds UNIX time.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## FuelAndEnergy
+<details><summary><code>client.fuelAndEnergy.getFuelEnergyDriverReports() -> FuelEnergyGetFuelEnergyDriverReportsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get fuel and energy efficiency driver reports for the requested time range.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().getFuelEnergyDriverReports(
+    GetFuelEnergyDriverReportsRequest
+        .builder()
+        .startDate("startDate")
+        .endDate("endDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startDate:** `String` — A start date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endDate:** `String` — An end date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of driver IDs and externalIds. Example: `driverIds=1234,5678,payroll:4841`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.getFuelEnergyVehicleReports() -> FuelEnergyGetFuelEnergyVehicleReportsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get fuel and energy efficiency vehicle reports for the requested time range.
+
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().getFuelEnergyVehicleReports(
+    GetFuelEnergyVehicleReportsRequest
+        .builder()
+        .startDate("startDate")
+        .endDate("endDate")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**startDate:** `String` — A start date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endDate:** `String` — An end date in RFC 3339 format. This parameter ignores everything (i.e. hour, minutes, seconds, nanoseconds, etc.) besides the date and timezone. If no time zone is passed in, then the UTC time zone will be used. This parameter is inclusive, so data on the date specified will be considered. Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of vehicle IDs and externalIds. Example: `vehicleIds=1234,5678,samsara.vin:1HGBH41JXMN109186`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**energyType:** `Optional<GetFuelEnergyVehicleReportsRequestEnergyType>` — The type of energy used by the vehicle.  Valid values: `fuel`, `hybrid`, `electric`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentTagIds:** `Optional<String>` —  A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.postFuelPurchase(request) -> FuelPurchasePostFuelPurchaseResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a fuel purchase transaction.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().postFuelPurchase(
+    FuelPurchasePostFuelPurchaseRequestBody
+        .builder()
+        .fuelQuantityLiters("676.8")
+        .transactionLocation("350 Rhode Island St, San Francisco, CA 94103")
+        .transactionPrice(
+            PostFuelPurchaseRequestBodyPriceRequestBody
+                .builder()
+                .amount("640.2")
+                .currency(PostFuelPurchaseRequestBodyPriceRequestBodyCurrency.USD)
+                .build()
+        )
+        .transactionReference("5454534")
+        .transactionTime("2022-07-13T14:20:50.52-07:00")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**discount:** `Optional<PostFuelPurchaseRequestBodyDiscountRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverId:** `Optional<String>` — Samsara ID of the driver that purchased the fuel.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fuelGrade:** `Optional<FuelPurchasePostFuelPurchaseRequestBodyFuelGrade>` — The grade of the fuel purchased.  Valid values: `Unknown`, `Regular`, `Premium`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fuelQuantityLiters:** `String` — The amount of fuel purchased in liters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**iftaFuelType:** `Optional<FuelPurchasePostFuelPurchaseRequestBodyIftaFuelType>` — The type of fuel purchased supported by IFTA.  Valid values: `Unspecified`, `A55`, `Biodiesel`, `CompressedNaturalGas`, `Diesel`, `E85`, `Electricity`, `Ethanol`, `Gasohol`, `Gasoline`, `Hydrogen`, `LiquifiedNaturalGas`, `M85`, `Methanol`, `Propane`, `Other`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantName:** `Optional<String>` — Brand name of the fuel station the fuel was purchased at. For example: Shell, Bp, Exxon.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `Optional<String>` — The integration provider. For example: Customer, Shell Integration
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionLocation:** `String` — The full street address for the location of the fuel transaction, as it might be recognized by Google Maps. Ideal entries should be in accordance with the format used by the national postal service of the country concerned (example: 1 De Haro St, San Francisco, CA 94107, United States). Alternatively, exact latitude/longitude can be provided (example: 40.748441, -73.985664).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionPrice:** `PostFuelPurchaseRequestBodyPriceRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionReference:** `String` — The fuel transaction reference. This is the transaction identifier. For instance, this can be the Serial Number on the invoice.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionTime:** `String` — The time of the fuel transaction in RFC 3339 format. Timezone must be specified. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleId:** `Optional<String>` — Samsara ID of the vehicle that purchased the fuel.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.listPreferredStations() -> PreferredStationsListPreferredStationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all preferred fuel stations for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().listPreferredStations(
+    ListPreferredStationsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 512 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Whether to include external IDs in the response.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.postPreferredStation(request) -> PreferredStationsPostPreferredStationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().postPreferredStation(
+    PreferredStationsPostPreferredStationRequestBody
+        .builder()
+        .address(
+            PreferredStationAddressRequestBody
+                .builder()
+                .city("Green River")
+                .country("US")
+                .line1("8901 US Hwy 374")
+                .postalCode("82935")
+                .build()
+        )
+        .name("Station #432")
+        .externalIds(
+            new HashMap<String, String>() {{
+                put("key", "value");
+            }}
+        )
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**address:** `PreferredStationAddressRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discounts:** `Optional<List<PreferredStationDiscountInputRequestBody>>` — Array of discount overrides per fuel type. Max 14 items.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Map<String, String>` — Map of source-system key to customer-provided station ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**latitude:** `Optional<Double>` — Latitude in WGS84 degrees.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**longitude:** `Optional<Double>` — Longitude in WGS84 degrees.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Display name of the station.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**prices:** `Optional<List<PreferredStationPriceInputRequestBody>>` — Array of per-fuel-type prices. Max 14 items.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.deletePreferredStation()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().deletePreferredStation(
+    DeletePreferredStationRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Samsara ID of the preferred station to delete.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.patchPreferredStation(request) -> PreferredStationsPatchPreferredStationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().patchPreferredStation(
+    PreferredStationsPatchPreferredStationRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Samsara ID of the preferred station to update.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discounts:** `Optional<List<PreferredStationDiscountInputRequestBody>>` — Replaces all discount overrides. Pass empty array to remove all. Max 14 items.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**prices:** `Optional<List<PreferredStationPriceInputRequestBody>>` — Replaces all per-fuel-type prices. Pass empty array to remove all. Max 14 items.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.fuelAndEnergy.getPreferredStation(id) -> PreferredStationsGetPreferredStationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a single preferred fuel station by ID.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.fuelAndEnergy().getPreferredStation(
+    "id",
+    GetPreferredStationRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Samsara-assigned station ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Whether to include external IDs in the response.
     
 </dd>
 </dl>
@@ -28374,7 +28983,7 @@ client.forms().patchFormSubmission(
 <dl>
 <dd>
 
-**status:** `Optional<FormSubmissionsPatchFormSubmissionRequestBodyStatus>` — Status of the form submission.  Valid values: `notStarted`, `archived`, `inProgress`, `changesRequested`, `approved`
+**status:** `Optional<FormSubmissionsPatchFormSubmissionRequestBodyStatus>` — Status of the form submission.  Valid values: `notStarted`, `archived`, `inProgress`, `changesRequested`, `approved`, `denied`
     
 </dd>
 </dl>
@@ -29168,6 +29777,8 @@ client.hubs().listHubCustomProperties(
 <dl>
 <dd>
 
+**Note: This endpoint is deprecated. Use [PATCH /places](https://developers.samsara.com/reference/patchplace) instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the [migration guide](https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api).**
+
 Update existing location by ID.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
@@ -29274,6 +29885,8 @@ client.hubs().updateHubLocation(
 
 <dl>
 <dd>
+
+**Note: This endpoint is deprecated. Use [GET /places](https://developers.samsara.com/reference/getplaces) instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the [migration guide](https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api).**
 
 Retrieve locations for a specific hub.
 
@@ -29388,6 +30001,8 @@ client.hubs().listHubLocations(
 
 <dl>
 <dd>
+
+**Note: This endpoint is deprecated. Use [POST /places](https://developers.samsara.com/reference/postplace) instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the [migration guide](https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api).**
 
 Create new locations.
 
@@ -32679,7 +33294,7 @@ client.workOrders().postWorkOrders(
 <dl>
 <dd>
 
-**assetId:** `String` — The ID of the asset.
+**assetId:** `String` — The ID of the asset. Either a Samsara ID or an external ID in `key:value` form, for example `vin:1HGCM82633A004352`.
     
 </dd>
 </dl>
@@ -33246,6 +33861,724 @@ client.workOrders().streamWorkOrders(
 <dd>
 
 **includeExternalIds:** `Optional<Boolean>` — When true, populates `maintenanceSite.placeExternalIds` on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PreventiveMaintenance
+<details><summary><code>client.preventiveMaintenance.resolvePreventiveMaintenance(request) -> ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.preventiveMaintenance().resolvePreventiveMaintenance(
+    ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Samsara ID of the asset the instance is being resolved for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule to resolve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAt:** `Optional<String>` — RFC3339 time when the maintenance was resolved. Defaults to the current time if not provided.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAtEngineHours:** `Optional<Long>` — Engine hours reading at the time of resolution.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time of resolution. Measured in meters.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.preventiveMaintenance.listPreventiveMaintenanceSchedules() -> EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of preventive maintenance schedules for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.preventiveMaintenance().listPreventiveMaintenanceSchedules(
+    ListPreventiveMaintenanceSchedulesRequest
+        .builder()
+        .ids("281474976710656")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.preventiveMaintenance.listUpcomingPreventiveMaintenance() -> EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.preventiveMaintenance().listUpcomingPreventiveMaintenance(
+    ListUpcomingPreventiveMaintenanceRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**scheduleIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Preventive maintenance schedule ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.preventiveMaintenance.updateUpcomingPreventiveMaintenance(request) -> EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.preventiveMaintenance().updateUpcomingPreventiveMaintenance(
+    EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `Optional<String>` — Samsara ID for the asset.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**scheduleId:** `Optional<String>` — ID of the preventive maintenance schedule that the vehicle is scheduled to be serviced for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAt:** `Optional<String>` — Date and time when the prior instance was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAtEngineHours:** `Optional<Long>` — Engine hours at the time the prior instance was resolved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lastResolvedAtOdometer:** `Optional<Long>` — Odometer reading at the time the prior instance was resolved. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextEngineHours:** `Optional<Long>` — The next engine hour value that the vehicle is scheduled to be serviced.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextOdometer:** `Optional<Long>` — The next odometer value that the vehicle is scheduled to be serviced. Measured in meters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**nextTime:** `Optional<String>` — The next time that the vehicle is scheduled to be serviced for a date based PM.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## MaintenanceSites
+<details><summary><code>client.maintenanceSites.listMaintenanceSites() -> EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of maintenance sites for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenanceSites().listMaintenanceSites(
+    ListMaintenanceSitesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isArchived:** `Optional<Boolean>` — A filter on the data based on Archived. Whether the site is archived. Archived sites are no longer active but are retained for historical record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Place IDs values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenanceSites.createMaintenanceSite(request) -> EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a maintenance site for the organization. Exactly one of placeIds or customAddress must be set.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenanceSites().createMaintenanceSite(
+    EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody
+        .builder()
+        .name("12345")
+        .siteCode("12345")
+        .siteType(EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType.UNKNOWN)
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customAddress:** `Optional<CreateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteCustomAddressInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the maintenance site.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the site, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name of the maintenance site. Org-unique.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<List<String>>` — Places this site is linked to. Mutually exclusive with customAddress. At most one entry is accepted today, though the field is an array to allow for future expansion.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**siteCode:** `String` — Org-unique 3-character code for the site, used to generate inventory batch numbers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**siteType:** `EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType` — Type of maintenance site, for example central warehouse, maintenance shop, or yard/onsite.  Valid values: `Unknown`, `CentralWarehouse`, `MaintenanceShop`, `MobileServiceVehicle`, `YardOnsite`, `Consignment`, `Other`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenanceSites.updateMaintenanceSite(request) -> EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing maintenance site for the organization. Moving a site between placeIds and customAddress is not supported.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenanceSites().updateMaintenanceSite(
+    EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the MaintenanceSite record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `Optional<String>` — Description of the maintenance site.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the site, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the maintenance site. Org-unique.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**siteCode:** `Optional<String>` — Org-unique 3-character code for the site, used to generate inventory batch numbers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**siteType:** `Optional<EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBodySiteType>` — Type of maintenance site, for example central warehouse, maintenance shop, or yard/onsite.  Valid values: `Unknown`, `CentralWarehouse`, `MaintenanceShop`, `MobileServiceVehicle`, `YardOnsite`, `Consignment`, `Other`
     
 </dd>
 </dl>
@@ -34340,6 +35673,7 @@ Available reading IDs (by category):
 * `addressEntry` (Address Entry): Address data from the address entry event
 * `addressExit` (Address Exit): Address data from the address exit event
 * `atisLamp` (Atis Lamp status): Atis lamp on/off status (values: off | on)
+* `cargoFillPercent` (Cargo fill percent): Estimated percentage of the trailer cargo space that is occupied, based on cargo camera images. (percent)
 * `derivedCargoState` (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)
 * `doorClosedStatus` (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)
 * `doorClosedStatusAdvanced` (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)
@@ -34751,6 +36085,7 @@ Available reading IDs (by category):
 * `addressEntry` (Address Entry): Address data from the address entry event
 * `addressExit` (Address Exit): Address data from the address exit event
 * `atisLamp` (Atis Lamp status): Atis lamp on/off status (values: off | on)
+* `cargoFillPercent` (Cargo fill percent): Estimated percentage of the trailer cargo space that is occupied, based on cargo camera images. (percent)
 * `derivedCargoState` (Cargo Status): Indicates if the overall cargo status of the asset is Empty, Partially Empty, Full, or Unknown. (values: unknown | empty | partiallyEmpty | full)
 * `doorClosedStatus` (Door Closed Status): Status indicating whether a door is closed or open (values: open | closed)
 * `doorClosedStatusAdvanced` (Door Closed Status (Advanced)): Status indicating whether a door is closed or open (values: open | closed)
@@ -36481,7 +37816,7 @@ client.tags().patchTag(
 <dl>
 <dd>
 
-Create training assignments. Existing assignments will remain unchanged.
+Create training assignments. Existing assignments will remain unchanged. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -36540,7 +37875,7 @@ client.trainingAssignments().postTrainingAssignments(
 <dl>
 <dd>
 
-**learnerIds:** `Optional<String>` — Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: `learnerIds=driver-281474,driver-46282156`
+**learnerIds:** `Optional<String>` — String of comma separated learner IDs using the format `driver-<id>` or `user-<id>`. Training assignments for the specified course ID and learner(s) will be created. Max value for this value is 100 objects. Example: `learnerIds=driver-281474,user-46282156`. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
     
 </dd>
 </dl>
@@ -36564,7 +37899,7 @@ client.trainingAssignments().postTrainingAssignments(
 <dl>
 <dd>
 
-This endpoint supports batch deletion operations. The response does not indicate which specific deletions, if any, have failed. On a successful deletion or partial failure, a ‘204 No Content’ status is returned.
+This endpoint supports batch deletion operations. The response does not indicate which specific deletions, if any, have failed. On a successful deletion or partial failure, a ‘204 No Content’ status is returned. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -36629,7 +37964,7 @@ client.trainingAssignments().deleteTrainingAssignments(
 <dl>
 <dd>
 
-Update training assignments.
+Update training assignments. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -36703,7 +38038,7 @@ client.trainingAssignments().patchTrainingAssignments(
 <dl>
 <dd>
 
-Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
+Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -36769,7 +38104,7 @@ client.trainingAssignments().getTrainingAssignmentsStream(
 <dl>
 <dd>
 
-**learnerIds:** `Optional<String>` — Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: `learnerIds=driver-281474,driver-46282156`
+**learnerIds:** `Optional<String>` — Optional string of comma separated learner IDs. Learner IDs use the format `driver-<id>` or `user-<id>`. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: `learnerIds=driver-281474,user-46282156`. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
     
 </dd>
 </dl>

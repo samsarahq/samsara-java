@@ -61,7 +61,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return Classification or grade level of the passenger.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code>
+     * @return Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12. Use <code>unknown</code> when the grade level is not known.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code>
      */
     @JsonProperty("classification")
     public Optional<RidershipPassengersCreateRidershipPassengerRequestBodyClassification> getClassification() {
@@ -69,7 +69,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return A map of external ids
+     * @return Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.
      */
     @JsonProperty("externalIds")
     public Optional<Map<String, String>> getExternalIds() {
@@ -77,7 +77,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return First name of the passenger.
+     * @return Passenger's first name. Maximum 100 characters.
      */
     @JsonProperty("firstName")
     public String getFirstName() {
@@ -85,7 +85,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return List of identifiers associated with the passenger.
+     * @return Identifiers used to recognize the passenger, such as RFID card values. Maximum 10.
      */
     @JsonProperty("identifiers")
     public Optional<List<RidershipPassengerIdentifierInputRequestBody>> getIdentifiers() {
@@ -93,7 +93,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return Last name of the passenger.
+     * @return Passenger's last name. Maximum 100 characters.
      */
     @JsonProperty("lastName")
     public String getLastName() {
@@ -106,7 +106,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return IDs of tags to associate with the passenger.
+     * @return Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.
      */
     @JsonProperty("tagIds")
     public Optional<List<String>> getTagIds() {
@@ -158,7 +158,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
 
     public interface FirstNameStage {
         /**
-         * <p>First name of the passenger.</p>
+         * <p>Passenger's first name. Maximum 100 characters.</p>
          */
         LastNameStage firstName(@NotNull String firstName);
 
@@ -167,7 +167,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
 
     public interface LastNameStage {
         /**
-         * <p>Last name of the passenger.</p>
+         * <p>Passenger's last name. Maximum 100 characters.</p>
          */
         _FinalStage lastName(@NotNull String lastName);
     }
@@ -176,7 +176,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         RidershipPassengersCreateRidershipPassengerRequestBody build();
 
         /**
-         * <p>Classification or grade level of the passenger.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code></p>
+         * <p>Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12. Use <code>unknown</code> when the grade level is not known.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code></p>
          */
         _FinalStage classification(
                 Optional<RidershipPassengersCreateRidershipPassengerRequestBodyClassification> classification);
@@ -184,14 +184,14 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         _FinalStage classification(RidershipPassengersCreateRidershipPassengerRequestBodyClassification classification);
 
         /**
-         * <p>A map of external ids</p>
+         * <p>Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.</p>
          */
         _FinalStage externalIds(Optional<Map<String, String>> externalIds);
 
         _FinalStage externalIds(Map<String, String> externalIds);
 
         /**
-         * <p>List of identifiers associated with the passenger.</p>
+         * <p>Identifiers used to recognize the passenger, such as RFID card values. Maximum 10.</p>
          */
         _FinalStage identifiers(Optional<List<RidershipPassengerIdentifierInputRequestBody>> identifiers);
 
@@ -203,7 +203,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsInputRequestBody specialInstructions);
 
         /**
-         * <p>IDs of tags to associate with the passenger.</p>
+         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.</p>
          */
         _FinalStage tagIds(Optional<List<String>> tagIds);
 
@@ -245,8 +245,8 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>First name of the passenger.</p>
-         * <p>First name of the passenger.</p>
+         * <p>Passenger's first name. Maximum 100 characters.</p>
+         * <p>Passenger's first name. Maximum 100 characters.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -257,8 +257,8 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Last name of the passenger.</p>
-         * <p>Last name of the passenger.</p>
+         * <p>Passenger's last name. Maximum 100 characters.</p>
+         * <p>Passenger's last name. Maximum 100 characters.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -269,7 +269,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>IDs of tags to associate with the passenger.</p>
+         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -279,7 +279,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>IDs of tags to associate with the passenger.</p>
+         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)
@@ -304,7 +304,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>List of identifiers associated with the passenger.</p>
+         * <p>Identifiers used to recognize the passenger, such as RFID card values. Maximum 10.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -314,7 +314,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>List of identifiers associated with the passenger.</p>
+         * <p>Identifiers used to recognize the passenger, such as RFID card values. Maximum 10.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "identifiers", nulls = Nulls.SKIP)
@@ -324,7 +324,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>A map of external ids</p>
+         * <p>Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -334,7 +334,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>A map of external ids</p>
+         * <p>Customer-defined IDs that link this passenger to another system, such as {&quot;student&quot;: &quot;STU-001&quot;}.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
@@ -344,7 +344,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Classification or grade level of the passenger.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code></p>
+         * <p>Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12. Use <code>unknown</code> when the grade level is not known.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -355,7 +355,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Classification or grade level of the passenger.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code></p>
+         * <p>Passenger grade level: <code>pk1</code>–<code>pk4</code> are pre-kindergarten categories, <code>k</code> is kindergarten, and <code>grade1</code>–<code>grade12</code> are grades 1–12. Use <code>unknown</code> when the grade level is not known.  Valid values: <code>unknown</code>, <code>pk1</code>, <code>pk2</code>, <code>pk3</code>, <code>pk4</code>, <code>k</code>, <code>grade1</code>, <code>grade2</code>, <code>grade3</code>, <code>grade4</code>, <code>grade5</code>, <code>grade6</code>, <code>grade7</code>, <code>grade8</code>, <code>grade9</code>, <code>grade10</code>, <code>grade11</code>, <code>grade12</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "classification", nulls = Nulls.SKIP)

@@ -31,7 +31,7 @@ public final class PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody
     }
 
     /**
-     * @return Describes where the external assignment is coming from
+     * @return Exact metadata source name. When vehicleId, driverId, and startTime are omitted, identifies the existing assignment to update. When those identity fields are provided, sets or updates the assignment's source name.
      */
     @JsonProperty("sourceName")
     public Optional<String> getSourceName() {
@@ -83,7 +83,7 @@ public final class PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody
         }
 
         /**
-         * <p>Describes where the external assignment is coming from</p>
+         * <p>Exact metadata source name. When vehicleId, driverId, and startTime are omitted, identifies the existing assignment to update. When those identity fields are provided, sets or updates the assignment's source name.</p>
          */
         @JsonSetter(value = "sourceName", nulls = Nulls.SKIP)
         public Builder sourceName(Optional<String> sourceName) {

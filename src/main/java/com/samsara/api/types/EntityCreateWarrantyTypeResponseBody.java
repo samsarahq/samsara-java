@@ -47,7 +47,7 @@ public final class EntityCreateWarrantyTypeResponseBody {
 
     private final Optional<EntityCreateWarrantyVendorRefTypeResponseBody> vendor;
 
-    private final Optional<String> warrantyType;
+    private final Optional<EntityCreateWarrantyTypeResponseBodyWarrantyType> warrantyType;
 
     private final Map<String, Object> additionalProperties;
 
@@ -65,7 +65,7 @@ public final class EntityCreateWarrantyTypeResponseBody {
             Optional<Long> odometerDistanceMeters,
             Optional<String> updatedAtTime,
             Optional<EntityCreateWarrantyVendorRefTypeResponseBody> vendor,
-            Optional<String> warrantyType,
+            Optional<EntityCreateWarrantyTypeResponseBodyWarrantyType> warrantyType,
             Map<String, Object> additionalProperties) {
         this.baseCoverage = baseCoverage;
         this.coverages = coverages;
@@ -183,10 +183,10 @@ public final class EntityCreateWarrantyTypeResponseBody {
     }
 
     /**
-     * @return Type of warranty, for example manufacturer, extended, other, or unknown.
+     * @return Type of warranty, for example manufacturer, extended, other, or unknown.  Valid values: <code>unknown</code>, <code>manufacturer</code>, <code>extended</code>, <code>other</code>
      */
     @JsonProperty("warrantyType")
-    public Optional<String> getWarrantyType() {
+    public Optional<EntityCreateWarrantyTypeResponseBodyWarrantyType> getWarrantyType() {
         return warrantyType;
     }
 
@@ -277,7 +277,7 @@ public final class EntityCreateWarrantyTypeResponseBody {
 
         private Optional<EntityCreateWarrantyVendorRefTypeResponseBody> vendor = Optional.empty();
 
-        private Optional<String> warrantyType = Optional.empty();
+        private Optional<EntityCreateWarrantyTypeResponseBodyWarrantyType> warrantyType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -482,15 +482,15 @@ public final class EntityCreateWarrantyTypeResponseBody {
         }
 
         /**
-         * <p>Type of warranty, for example manufacturer, extended, other, or unknown.</p>
+         * <p>Type of warranty, for example manufacturer, extended, other, or unknown.  Valid values: <code>unknown</code>, <code>manufacturer</code>, <code>extended</code>, <code>other</code></p>
          */
         @JsonSetter(value = "warrantyType", nulls = Nulls.SKIP)
-        public Builder warrantyType(Optional<String> warrantyType) {
+        public Builder warrantyType(Optional<EntityCreateWarrantyTypeResponseBodyWarrantyType> warrantyType) {
             this.warrantyType = warrantyType;
             return this;
         }
 
-        public Builder warrantyType(String warrantyType) {
+        public Builder warrantyType(EntityCreateWarrantyTypeResponseBodyWarrantyType warrantyType) {
             this.warrantyType = Optional.ofNullable(warrantyType);
             return this;
         }

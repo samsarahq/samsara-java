@@ -5,16 +5,21 @@ package com.samsara.api.resources.fuelandenergy;
 
 import com.samsara.api.core.ClientOptions;
 import com.samsara.api.core.RequestOptions;
+import com.samsara.api.resources.fuelandenergy.requests.DeletePreferredStationRequest;
 import com.samsara.api.resources.fuelandenergy.requests.FuelPurchasePostFuelPurchaseRequestBody;
-import com.samsara.api.resources.fuelandenergy.requests.GetDriverEfficiencyByDriversRequest;
-import com.samsara.api.resources.fuelandenergy.requests.GetDriverEfficiencyByVehiclesRequest;
 import com.samsara.api.resources.fuelandenergy.requests.GetFuelEnergyDriverReportsRequest;
 import com.samsara.api.resources.fuelandenergy.requests.GetFuelEnergyVehicleReportsRequest;
-import com.samsara.api.types.DriverEfficiencyGetDriverEfficiencyByDriversResponseBody;
-import com.samsara.api.types.DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody;
+import com.samsara.api.resources.fuelandenergy.requests.GetPreferredStationRequest;
+import com.samsara.api.resources.fuelandenergy.requests.ListPreferredStationsRequest;
+import com.samsara.api.resources.fuelandenergy.requests.PreferredStationsPatchPreferredStationRequestBody;
+import com.samsara.api.resources.fuelandenergy.requests.PreferredStationsPostPreferredStationRequestBody;
 import com.samsara.api.types.FuelEnergyGetFuelEnergyDriverReportsResponseBody;
 import com.samsara.api.types.FuelEnergyGetFuelEnergyVehicleReportsResponseBody;
 import com.samsara.api.types.FuelPurchasePostFuelPurchaseResponseBody;
+import com.samsara.api.types.PreferredStationsGetPreferredStationResponseBody;
+import com.samsara.api.types.PreferredStationsListPreferredStationsResponseBody;
+import com.samsara.api.types.PreferredStationsPatchPreferredStationResponseBody;
+import com.samsara.api.types.PreferredStationsPostPreferredStationResponseBody;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncFuelAndEnergyClient {
@@ -32,58 +37,6 @@ public class AsyncFuelAndEnergyClient {
      */
     public AsyncRawFuelAndEnergyClient withRawResponse() {
         return this.rawClient;
-    }
-
-    /**
-     * This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody> getDriverEfficiencyByDrivers(
-            GetDriverEfficiencyByDriversRequest request) {
-        return this.rawClient.getDriverEfficiencyByDrivers(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody> getDriverEfficiencyByDrivers(
-            GetDriverEfficiencyByDriversRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .getDriverEfficiencyByDrivers(request, requestOptions)
-                .thenApply(response -> response.body());
-    }
-
-    /**
-     * This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody> getDriverEfficiencyByVehicles(
-            GetDriverEfficiencyByVehiclesRequest request) {
-        return this.rawClient.getDriverEfficiencyByVehicles(request).thenApply(response -> response.body());
-    }
-
-    /**
-     * This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.
-     * <p><strong>Note:</strong> The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing <a href="https://developers.samsara.com/reference/getdriverefficiency">/fleet/drivers/efficiency</a> endpoint has now been moved to Legacy.</p>
-     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
-     * <p>To use this endpoint, select <strong>Read Driver Efficiency</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
-     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
-     */
-    public CompletableFuture<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody> getDriverEfficiencyByVehicles(
-            GetDriverEfficiencyByVehiclesRequest request, RequestOptions requestOptions) {
-        return this.rawClient
-                .getDriverEfficiencyByVehicles(request, requestOptions)
-                .thenApply(response -> response.body());
     }
 
     /**
@@ -154,5 +107,156 @@ public class AsyncFuelAndEnergyClient {
     public CompletableFuture<FuelPurchasePostFuelPurchaseResponseBody> postFuelPurchase(
             FuelPurchasePostFuelPurchaseRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.postFuelPurchase(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all preferred fuel stations for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsListPreferredStationsResponseBody> listPreferredStations() {
+        return this.rawClient.listPreferredStations().thenApply(response -> response.body());
+    }
+
+    /**
+     * List all preferred fuel stations for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsListPreferredStationsResponseBody> listPreferredStations(
+            RequestOptions requestOptions) {
+        return this.rawClient.listPreferredStations(requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all preferred fuel stations for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsListPreferredStationsResponseBody> listPreferredStations(
+            ListPreferredStationsRequest request) {
+        return this.rawClient.listPreferredStations(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * List all preferred fuel stations for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsListPreferredStationsResponseBody> listPreferredStations(
+            ListPreferredStationsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listPreferredStations(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Create a preferred fuel station for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsPostPreferredStationResponseBody> postPreferredStation(
+            PreferredStationsPostPreferredStationRequestBody request) {
+        return this.rawClient.postPreferredStation(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Create a preferred fuel station for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsPostPreferredStationResponseBody> postPreferredStation(
+            PreferredStationsPostPreferredStationRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postPreferredStation(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a preferred fuel station for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deletePreferredStation(DeletePreferredStationRequest request) {
+        return this.rawClient.deletePreferredStation(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Delete a preferred fuel station for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<Void> deletePreferredStation(
+            DeletePreferredStationRequest request, RequestOptions requestOptions) {
+        return this.rawClient.deletePreferredStation(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update a preferred fuel station for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsPatchPreferredStationResponseBody> patchPreferredStation(
+            PreferredStationsPatchPreferredStationRequestBody request) {
+        return this.rawClient.patchPreferredStation(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Update a preferred fuel station for your organization.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsPatchPreferredStationResponseBody> patchPreferredStation(
+            PreferredStationsPatchPreferredStationRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.patchPreferredStation(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single preferred fuel station by ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsGetPreferredStationResponseBody> getPreferredStation(String id) {
+        return this.rawClient.getPreferredStation(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single preferred fuel station by ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsGetPreferredStationResponseBody> getPreferredStation(
+            String id, RequestOptions requestOptions) {
+        return this.rawClient.getPreferredStation(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single preferred fuel station by ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsGetPreferredStationResponseBody> getPreferredStation(
+            String id, GetPreferredStationRequest request) {
+        return this.rawClient.getPreferredStation(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a single preferred fuel station by ID.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Fuel Purchase</strong> under the Fuel &amp; Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CompletableFuture<PreferredStationsGetPreferredStationResponseBody> getPreferredStation(
+            String id, GetPreferredStationRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getPreferredStation(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

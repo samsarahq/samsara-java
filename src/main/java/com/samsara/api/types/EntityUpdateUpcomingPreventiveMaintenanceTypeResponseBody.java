@@ -55,7 +55,7 @@ public final class EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody {
     private final Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
             schedule;
 
-    private final Optional<String> status;
+    private final Optional<EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBodyStatus> status;
 
     private final Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder;
 
@@ -80,7 +80,7 @@ public final class EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody {
             Optional<Long> priority,
             Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
                     schedule,
-            Optional<String> status,
+            Optional<EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBodyStatus> status,
             Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder,
             Map<String, Object> additionalProperties) {
         this.asset = asset;
@@ -237,10 +237,10 @@ public final class EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody {
     }
 
     /**
-     * @return Status of the preventive maintenance schedule.
+     * @return Status of the preventive maintenance schedule.  Valid values: <code>unknown</code>, <code>overdue</code>, <code>upcoming</code>
      */
     @JsonProperty("status")
-    public Optional<String> getStatus() {
+    public Optional<EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBodyStatus> getStatus() {
         return status;
     }
 
@@ -353,7 +353,7 @@ public final class EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody {
         private Optional<EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody>
                 schedule = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBodyStatus> status = Optional.empty();
 
         private Optional<EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody> workOrder =
                 Optional.empty();
@@ -622,15 +622,15 @@ public final class EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody {
         }
 
         /**
-         * <p>Status of the preventive maintenance schedule.</p>
+         * <p>Status of the preventive maintenance schedule.  Valid values: <code>unknown</code>, <code>overdue</code>, <code>upcoming</code></p>
          */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBodyStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(String status) {
+        public Builder status(EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBodyStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

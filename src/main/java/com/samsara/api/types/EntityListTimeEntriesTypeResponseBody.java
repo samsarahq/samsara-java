@@ -20,21 +20,21 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EntityListTimeEntriesTypeResponseBody.Builder.class)
 public final class EntityListTimeEntriesTypeResponseBody {
-    private final Optional<String> activityType;
+    private final Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType;
 
     private final Optional<String> clockInAtTime;
 
     private final Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockInLocation;
 
-    private final Optional<String> clockInSource;
+    private final Optional<EntityListTimeEntriesTypeResponseBodyClockInSource> clockInSource;
 
     private final Optional<String> clockOutAtTime;
 
     private final Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockOutLocation;
 
-    private final Optional<String> clockOutMethodType;
+    private final Optional<EntityListTimeEntriesTypeResponseBodyClockOutMethodType> clockOutMethodType;
 
-    private final Optional<String> clockOutSource;
+    private final Optional<EntityListTimeEntriesTypeResponseBodyClockOutSource> clockOutSource;
 
     private final Optional<String> createdAtTime;
 
@@ -50,7 +50,7 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
     private final Optional<String> serviceTaskId;
 
-    private final Optional<String> timeEntryStatus;
+    private final Optional<EntityListTimeEntriesTypeResponseBodyTimeEntryStatus> timeEntryStatus;
 
     private final Optional<String> updatedAtTime;
 
@@ -61,14 +61,14 @@ public final class EntityListTimeEntriesTypeResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private EntityListTimeEntriesTypeResponseBody(
-            Optional<String> activityType,
+            Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType,
             Optional<String> clockInAtTime,
             Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockInLocation,
-            Optional<String> clockInSource,
+            Optional<EntityListTimeEntriesTypeResponseBodyClockInSource> clockInSource,
             Optional<String> clockOutAtTime,
             Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockOutLocation,
-            Optional<String> clockOutMethodType,
-            Optional<String> clockOutSource,
+            Optional<EntityListTimeEntriesTypeResponseBodyClockOutMethodType> clockOutMethodType,
+            Optional<EntityListTimeEntriesTypeResponseBodyClockOutSource> clockOutSource,
             Optional<String> createdAtTime,
             Optional<String> deletedAtTime,
             Optional<String> deletedByUserId,
@@ -76,7 +76,7 @@ public final class EntityListTimeEntriesTypeResponseBody {
             Optional<String> id,
             Optional<String> placeId,
             Optional<String> serviceTaskId,
-            Optional<String> timeEntryStatus,
+            Optional<EntityListTimeEntriesTypeResponseBodyTimeEntryStatus> timeEntryStatus,
             Optional<String> updatedAtTime,
             Optional<String> userId,
             Optional<String> workOrderId,
@@ -104,10 +104,10 @@ public final class EntityListTimeEntriesTypeResponseBody {
     }
 
     /**
-     * @return Non-repair activity associated with the time entry. Omitted for work-order time.
+     * @return Non-repair activity associated with the time entry. Omitted for work-order time.  Valid values: <code>unknown</code>, <code>break</code>, <code>shopCleaning</code>, <code>partsHandling</code>, <code>operationalTest</code>, <code>equipmentSetup</code>, <code>inspection</code>, <code>roadCall</code>, <code>training</code>, <code>administrative</code>, <code>shopMiscellaneous</code>
      */
     @JsonProperty("activityType")
-    public Optional<String> getActivityType() {
+    public Optional<EntityListTimeEntriesTypeResponseBodyActivityType> getActivityType() {
         return activityType;
     }
 
@@ -125,10 +125,10 @@ public final class EntityListTimeEntriesTypeResponseBody {
     }
 
     /**
-     * @return Surface that recorded the clock-in.
+     * @return Surface that recorded the clock-in.  Valid values: <code>unknown</code>, <code>cloud</code>, <code>mobile</code>
      */
     @JsonProperty("clockInSource")
-    public Optional<String> getClockInSource() {
+    public Optional<EntityListTimeEntriesTypeResponseBodyClockInSource> getClockInSource() {
         return clockInSource;
     }
 
@@ -146,18 +146,18 @@ public final class EntityListTimeEntriesTypeResponseBody {
     }
 
     /**
-     * @return Method that ended the time entry.
+     * @return Method that ended the time entry.  Valid values: <code>unknown</code>, <code>manual</code>, <code>overwrite</code>, <code>clockIn</code>, <code>autoClockOut</code>
      */
     @JsonProperty("clockOutMethodType")
-    public Optional<String> getClockOutMethodType() {
+    public Optional<EntityListTimeEntriesTypeResponseBodyClockOutMethodType> getClockOutMethodType() {
         return clockOutMethodType;
     }
 
     /**
-     * @return Surface that recorded the clock-out.
+     * @return Surface that recorded the clock-out.  Valid values: <code>unknown</code>, <code>cloud</code>, <code>mobile</code>
      */
     @JsonProperty("clockOutSource")
-    public Optional<String> getClockOutSource() {
+    public Optional<EntityListTimeEntriesTypeResponseBodyClockOutSource> getClockOutSource() {
         return clockOutSource;
     }
 
@@ -215,10 +215,10 @@ public final class EntityListTimeEntriesTypeResponseBody {
     }
 
     /**
-     * @return Whether the time entry is in progress or completed.
+     * @return Whether the time entry is in progress or completed.  Valid values: <code>unknown</code>, <code>inProgress</code>, <code>completed</code>
      */
     @JsonProperty("timeEntryStatus")
-    public Optional<String> getTimeEntryStatus() {
+    public Optional<EntityListTimeEntriesTypeResponseBodyTimeEntryStatus> getTimeEntryStatus() {
         return timeEntryStatus;
     }
 
@@ -315,23 +315,23 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> activityType = Optional.empty();
+        private Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType = Optional.empty();
 
         private Optional<String> clockInAtTime = Optional.empty();
 
         private Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockInLocation =
                 Optional.empty();
 
-        private Optional<String> clockInSource = Optional.empty();
+        private Optional<EntityListTimeEntriesTypeResponseBodyClockInSource> clockInSource = Optional.empty();
 
         private Optional<String> clockOutAtTime = Optional.empty();
 
         private Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockOutLocation =
                 Optional.empty();
 
-        private Optional<String> clockOutMethodType = Optional.empty();
+        private Optional<EntityListTimeEntriesTypeResponseBodyClockOutMethodType> clockOutMethodType = Optional.empty();
 
-        private Optional<String> clockOutSource = Optional.empty();
+        private Optional<EntityListTimeEntriesTypeResponseBodyClockOutSource> clockOutSource = Optional.empty();
 
         private Optional<String> createdAtTime = Optional.empty();
 
@@ -347,7 +347,7 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
         private Optional<String> serviceTaskId = Optional.empty();
 
-        private Optional<String> timeEntryStatus = Optional.empty();
+        private Optional<EntityListTimeEntriesTypeResponseBodyTimeEntryStatus> timeEntryStatus = Optional.empty();
 
         private Optional<String> updatedAtTime = Optional.empty();
 
@@ -384,15 +384,15 @@ public final class EntityListTimeEntriesTypeResponseBody {
         }
 
         /**
-         * <p>Non-repair activity associated with the time entry. Omitted for work-order time.</p>
+         * <p>Non-repair activity associated with the time entry. Omitted for work-order time.  Valid values: <code>unknown</code>, <code>break</code>, <code>shopCleaning</code>, <code>partsHandling</code>, <code>operationalTest</code>, <code>equipmentSetup</code>, <code>inspection</code>, <code>roadCall</code>, <code>training</code>, <code>administrative</code>, <code>shopMiscellaneous</code></p>
          */
         @JsonSetter(value = "activityType", nulls = Nulls.SKIP)
-        public Builder activityType(Optional<String> activityType) {
+        public Builder activityType(Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType) {
             this.activityType = activityType;
             return this;
         }
 
-        public Builder activityType(String activityType) {
+        public Builder activityType(EntityListTimeEntriesTypeResponseBodyActivityType activityType) {
             this.activityType = Optional.ofNullable(activityType);
             return this;
         }
@@ -425,15 +425,15 @@ public final class EntityListTimeEntriesTypeResponseBody {
         }
 
         /**
-         * <p>Surface that recorded the clock-in.</p>
+         * <p>Surface that recorded the clock-in.  Valid values: <code>unknown</code>, <code>cloud</code>, <code>mobile</code></p>
          */
         @JsonSetter(value = "clockInSource", nulls = Nulls.SKIP)
-        public Builder clockInSource(Optional<String> clockInSource) {
+        public Builder clockInSource(Optional<EntityListTimeEntriesTypeResponseBodyClockInSource> clockInSource) {
             this.clockInSource = clockInSource;
             return this;
         }
 
-        public Builder clockInSource(String clockInSource) {
+        public Builder clockInSource(EntityListTimeEntriesTypeResponseBodyClockInSource clockInSource) {
             this.clockInSource = Optional.ofNullable(clockInSource);
             return this;
         }
@@ -466,29 +466,30 @@ public final class EntityListTimeEntriesTypeResponseBody {
         }
 
         /**
-         * <p>Method that ended the time entry.</p>
+         * <p>Method that ended the time entry.  Valid values: <code>unknown</code>, <code>manual</code>, <code>overwrite</code>, <code>clockIn</code>, <code>autoClockOut</code></p>
          */
         @JsonSetter(value = "clockOutMethodType", nulls = Nulls.SKIP)
-        public Builder clockOutMethodType(Optional<String> clockOutMethodType) {
+        public Builder clockOutMethodType(
+                Optional<EntityListTimeEntriesTypeResponseBodyClockOutMethodType> clockOutMethodType) {
             this.clockOutMethodType = clockOutMethodType;
             return this;
         }
 
-        public Builder clockOutMethodType(String clockOutMethodType) {
+        public Builder clockOutMethodType(EntityListTimeEntriesTypeResponseBodyClockOutMethodType clockOutMethodType) {
             this.clockOutMethodType = Optional.ofNullable(clockOutMethodType);
             return this;
         }
 
         /**
-         * <p>Surface that recorded the clock-out.</p>
+         * <p>Surface that recorded the clock-out.  Valid values: <code>unknown</code>, <code>cloud</code>, <code>mobile</code></p>
          */
         @JsonSetter(value = "clockOutSource", nulls = Nulls.SKIP)
-        public Builder clockOutSource(Optional<String> clockOutSource) {
+        public Builder clockOutSource(Optional<EntityListTimeEntriesTypeResponseBodyClockOutSource> clockOutSource) {
             this.clockOutSource = clockOutSource;
             return this;
         }
 
-        public Builder clockOutSource(String clockOutSource) {
+        public Builder clockOutSource(EntityListTimeEntriesTypeResponseBodyClockOutSource clockOutSource) {
             this.clockOutSource = Optional.ofNullable(clockOutSource);
             return this;
         }
@@ -589,15 +590,15 @@ public final class EntityListTimeEntriesTypeResponseBody {
         }
 
         /**
-         * <p>Whether the time entry is in progress or completed.</p>
+         * <p>Whether the time entry is in progress or completed.  Valid values: <code>unknown</code>, <code>inProgress</code>, <code>completed</code></p>
          */
         @JsonSetter(value = "timeEntryStatus", nulls = Nulls.SKIP)
-        public Builder timeEntryStatus(Optional<String> timeEntryStatus) {
+        public Builder timeEntryStatus(Optional<EntityListTimeEntriesTypeResponseBodyTimeEntryStatus> timeEntryStatus) {
             this.timeEntryStatus = timeEntryStatus;
             return this;
         }
 
-        public Builder timeEntryStatus(String timeEntryStatus) {
+        public Builder timeEntryStatus(EntityListTimeEntriesTypeResponseBodyTimeEntryStatus timeEntryStatus) {
             this.timeEntryStatus = Optional.ofNullable(timeEntryStatus);
             return this;
         }

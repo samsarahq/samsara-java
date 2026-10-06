@@ -116,6 +116,9 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
             new SafetyEventBehaviorLabelsResponseBodyType(
                     Value.FOLLOWING_DISTANCE_MODERATE, "FollowingDistanceModerate");
 
+    public static final SafetyEventBehaviorLabelsResponseBodyType IMPROPER_EGRESS =
+            new SafetyEventBehaviorLabelsResponseBodyType(Value.IMPROPER_EGRESS, "ImproperEgress");
+
     public static final SafetyEventBehaviorLabelsResponseBodyType LANE_DEPARTURE =
             new SafetyEventBehaviorLabelsResponseBodyType(Value.LANE_DEPARTURE, "LaneDeparture");
 
@@ -238,6 +241,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return visitor.visitRearCollisionWarning();
             case FOLLOWING_DISTANCE_MODERATE:
                 return visitor.visitFollowingDistanceModerate();
+            case IMPROPER_EGRESS:
+                return visitor.visitImproperEgress();
             case LANE_DEPARTURE:
                 return visitor.visitLaneDeparture();
             case YAW_CONTROL:
@@ -329,6 +334,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
                 return REAR_COLLISION_WARNING;
             case "FollowingDistanceModerate":
                 return FOLLOWING_DISTANCE_MODERATE;
+            case "ImproperEgress":
+                return IMPROPER_EGRESS;
             case "LaneDeparture":
                 return LANE_DEPARTURE;
             case "YawControl":
@@ -386,6 +393,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         HARSH_TURN,
 
         HIGH_SPEED_SUDDEN_DISCONNECT,
+
+        IMPROPER_EGRESS,
 
         INVALID,
 
@@ -472,6 +481,8 @@ public final class SafetyEventBehaviorLabelsResponseBodyType {
         T visitHarshTurn();
 
         T visitHighSpeedSuddenDisconnect();
+
+        T visitImproperEgress();
 
         T visitInvalid();
 

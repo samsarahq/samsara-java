@@ -93,7 +93,7 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
     }
 
     /**
-     * @return Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>
+     * @return Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>, <code>transverseCrack</code>, <code>longitudinalCrack</code>, <code>alligatorCrack</code>, <code>utilityCut</code>, <code>steelPlate</code>, <code>repavingNeeded</code>
      */
     @JsonProperty("type")
     public Optional<EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType> getType() {
@@ -181,7 +181,7 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
         _FinalStage status(EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyStatus status);
 
         /**
-         * <p>Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code></p>
+         * <p>Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>, <code>transverseCrack</code>, <code>longitudinalCrack</code>, <code>alligatorCrack</code>, <code>utilityCut</code>, <code>steelPlate</code>, <code>repavingNeeded</code></p>
          */
         _FinalStage type(
                 Optional<EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType> type);
@@ -232,7 +232,7 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
         }
 
         /**
-         * <p>Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code></p>
+         * <p>Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>, <code>transverseCrack</code>, <code>longitudinalCrack</code>, <code>alligatorCrack</code>, <code>utilityCut</code>, <code>steelPlate</code>, <code>repavingNeeded</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -243,7 +243,7 @@ public final class EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligence
         }
 
         /**
-         * <p>Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code></p>
+         * <p>Customer-facing road-condition type for the issue.  Valid values: <code>pothole</code>, <code>roadCracking</code>, <code>patchedPothole</code>, <code>transverseCrack</code>, <code>longitudinalCrack</code>, <code>alligatorCrack</code>, <code>utilityCut</code>, <code>steelPlate</code>, <code>repavingNeeded</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "type", nulls = Nulls.SKIP)

@@ -16,6 +16,9 @@ public final class FormSubmissionResponseObjectResponseBodyStatus {
     public static final FormSubmissionResponseObjectResponseBodyStatus IN_PROGRESS =
             new FormSubmissionResponseObjectResponseBodyStatus(Value.IN_PROGRESS, "inProgress");
 
+    public static final FormSubmissionResponseObjectResponseBodyStatus DENIED =
+            new FormSubmissionResponseObjectResponseBodyStatus(Value.DENIED, "denied");
+
     public static final FormSubmissionResponseObjectResponseBodyStatus NEEDS_REVIEW =
             new FormSubmissionResponseObjectResponseBodyStatus(Value.NEEDS_REVIEW, "needsReview");
 
@@ -67,6 +70,8 @@ public final class FormSubmissionResponseObjectResponseBodyStatus {
                 return visitor.visitCompleted();
             case IN_PROGRESS:
                 return visitor.visitInProgress();
+            case DENIED:
+                return visitor.visitDenied();
             case NEEDS_REVIEW:
                 return visitor.visitNeedsReview();
             case ARCHIVED:
@@ -90,6 +95,8 @@ public final class FormSubmissionResponseObjectResponseBodyStatus {
                 return COMPLETED;
             case "inProgress":
                 return IN_PROGRESS;
+            case "denied":
+                return DENIED;
             case "needsReview":
                 return NEEDS_REVIEW;
             case "archived":
@@ -118,6 +125,8 @@ public final class FormSubmissionResponseObjectResponseBodyStatus {
 
         APPROVED,
 
+        DENIED,
+
         UNKNOWN
     }
 
@@ -135,6 +144,8 @@ public final class FormSubmissionResponseObjectResponseBodyStatus {
         T visitChangesRequested();
 
         T visitApproved();
+
+        T visitDenied();
 
         T visitUnknown(String unknownType);
     }

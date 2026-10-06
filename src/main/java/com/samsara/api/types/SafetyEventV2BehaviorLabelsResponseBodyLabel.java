@@ -72,6 +72,9 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel REAR_COLLISION_WARNING =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.REAR_COLLISION_WARNING, "RearCollisionWarning");
 
+    public static final SafetyEventV2BehaviorLabelsResponseBodyLabel IMPROPER_EGRESS =
+            new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.IMPROPER_EGRESS, "ImproperEgress");
+
     public static final SafetyEventV2BehaviorLabelsResponseBodyLabel LANE_DEPARTURE =
             new SafetyEventV2BehaviorLabelsResponseBodyLabel(Value.LANE_DEPARTURE, "LaneDeparture");
 
@@ -275,6 +278,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return visitor.visitContextConstructionOrWorkZone();
             case REAR_COLLISION_WARNING:
                 return visitor.visitRearCollisionWarning();
+            case IMPROPER_EGRESS:
+                return visitor.visitImproperEgress();
             case LANE_DEPARTURE:
                 return visitor.visitLaneDeparture();
             case LEFT_TURN:
@@ -406,6 +411,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
                 return CONTEXT_CONSTRUCTION_OR_WORK_ZONE;
             case "RearCollisionWarning":
                 return REAR_COLLISION_WARNING;
+            case "ImproperEgress":
+                return IMPROPER_EGRESS;
             case "LaneDeparture":
                 return LANE_DEPARTURE;
             case "LeftTurn":
@@ -550,6 +557,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
 
         IDLING,
 
+        IMPROPER_EGRESS,
+
         INVALID,
 
         LANE_DEPARTURE,
@@ -675,6 +684,8 @@ public final class SafetyEventV2BehaviorLabelsResponseBodyLabel {
         T visitHosViolation();
 
         T visitIdling();
+
+        T visitImproperEgress();
 
         T visitInvalid();
 

@@ -7,8 +7,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class TrainingLearnerObjectResponseBodyType {
+    public static final TrainingLearnerObjectResponseBodyType UNKNOWN =
+            new TrainingLearnerObjectResponseBodyType(Value.UNKNOWN, "unknown");
+
     public static final TrainingLearnerObjectResponseBodyType DRIVER =
             new TrainingLearnerObjectResponseBodyType(Value.DRIVER, "driver");
+
+    public static final TrainingLearnerObjectResponseBodyType USER =
+            new TrainingLearnerObjectResponseBodyType(Value.USER, "user");
 
     private final Value value;
 
@@ -43,9 +49,13 @@ public final class TrainingLearnerObjectResponseBodyType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case UNKNOWN:
+                return visitor.visitUnknown();
             case DRIVER:
                 return visitor.visitDriver();
-            case UNKNOWN:
+            case USER:
+                return visitor.visitUser();
+            case _UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
         }
@@ -54,21 +64,33 @@ public final class TrainingLearnerObjectResponseBodyType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static TrainingLearnerObjectResponseBodyType valueOf(String value) {
         switch (value) {
+            case "unknown":
+                return UNKNOWN;
             case "driver":
                 return DRIVER;
+            case "user":
+                return USER;
             default:
-                return new TrainingLearnerObjectResponseBodyType(Value.UNKNOWN, value);
+                return new TrainingLearnerObjectResponseBodyType(Value._UNKNOWN, value);
         }
     }
 
     public enum Value {
+        UNKNOWN,
+
         DRIVER,
 
-        UNKNOWN
+        USER,
+
+        _UNKNOWN
     }
 
     public interface Visitor<T> {
+        T visitUnknown();
+
         T visitDriver();
+
+        T visitUser();
 
         T visitUnknown(String unknownType);
     }
