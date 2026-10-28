@@ -35,6 +35,8 @@ public final class ServiceTaskDefinitionObjectResponseBody {
 
     private final Optional<String> subcategory;
 
+    private final Optional<String> vmrsCode;
+
     private final Map<String, Object> additionalProperties;
 
     private ServiceTaskDefinitionObjectResponseBody(
@@ -45,6 +47,7 @@ public final class ServiceTaskDefinitionObjectResponseBody {
             String id,
             String name,
             Optional<String> subcategory,
+            Optional<String> vmrsCode,
             Map<String, Object> additionalProperties) {
         this.category = category;
         this.description = description;
@@ -53,6 +56,7 @@ public final class ServiceTaskDefinitionObjectResponseBody {
         this.id = id;
         this.name = name;
         this.subcategory = subcategory;
+        this.vmrsCode = vmrsCode;
         this.additionalProperties = additionalProperties;
     }
 
@@ -109,6 +113,14 @@ public final class ServiceTaskDefinitionObjectResponseBody {
         return subcategory;
     }
 
+    /**
+     * @return Full VMRS code path (e.g. 034-005-001) assigned to the service task. Omitted when the task has no VMRS code or the organization has VMRS codes turned off.
+     */
+    @JsonProperty("vmrsCode")
+    public Optional<String> getVmrsCode() {
+        return vmrsCode;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -128,7 +140,8 @@ public final class ServiceTaskDefinitionObjectResponseBody {
                 && estimatedPartsCost.equals(other.estimatedPartsCost)
                 && id.equals(other.id)
                 && name.equals(other.name)
-                && subcategory.equals(other.subcategory);
+                && subcategory.equals(other.subcategory)
+                && vmrsCode.equals(other.vmrsCode);
     }
 
     @java.lang.Override
@@ -140,7 +153,8 @@ public final class ServiceTaskDefinitionObjectResponseBody {
                 this.estimatedPartsCost,
                 this.id,
                 this.name,
-                this.subcategory);
+                this.subcategory,
+                this.vmrsCode);
     }
 
     @java.lang.Override
@@ -202,6 +216,13 @@ public final class ServiceTaskDefinitionObjectResponseBody {
         _FinalStage subcategory(Optional<String> subcategory);
 
         _FinalStage subcategory(String subcategory);
+
+        /**
+         * <p>Full VMRS code path (e.g. 034-005-001) assigned to the service task. Omitted when the task has no VMRS code or the organization has VMRS codes turned off.</p>
+         */
+        _FinalStage vmrsCode(Optional<String> vmrsCode);
+
+        _FinalStage vmrsCode(String vmrsCode);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -209,6 +230,8 @@ public final class ServiceTaskDefinitionObjectResponseBody {
         private String id;
 
         private String name;
+
+        private Optional<String> vmrsCode = Optional.empty();
 
         private Optional<String> subcategory = Optional.empty();
 
@@ -234,6 +257,7 @@ public final class ServiceTaskDefinitionObjectResponseBody {
             id(other.getId());
             name(other.getName());
             subcategory(other.getSubcategory());
+            vmrsCode(other.getVmrsCode());
             return this;
         }
 
@@ -258,6 +282,26 @@ public final class ServiceTaskDefinitionObjectResponseBody {
         @JsonSetter("name")
         public _FinalStage name(@NotNull String name) {
             this.name = Objects.requireNonNull(name, "name must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Full VMRS code path (e.g. 034-005-001) assigned to the service task. Omitted when the task has no VMRS code or the organization has VMRS codes turned off.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage vmrsCode(String vmrsCode) {
+            this.vmrsCode = Optional.ofNullable(vmrsCode);
+            return this;
+        }
+
+        /**
+         * <p>Full VMRS code path (e.g. 034-005-001) assigned to the service task. Omitted when the task has no VMRS code or the organization has VMRS codes turned off.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "vmrsCode", nulls = Nulls.SKIP)
+        public _FinalStage vmrsCode(Optional<String> vmrsCode) {
+            this.vmrsCode = vmrsCode;
             return this;
         }
 
@@ -364,6 +408,7 @@ public final class ServiceTaskDefinitionObjectResponseBody {
                     id,
                     name,
                     subcategory,
+                    vmrsCode,
                     additionalProperties);
         }
     }

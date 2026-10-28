@@ -33,6 +33,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
     private final Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments;
 
+    private final Optional<List<GoaAttributeTinyResponseBody>> attributes;
+
     private final Optional<String> category;
 
     private final Optional<String> closingNotes;
@@ -50,6 +52,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     private final Optional<OffsetDateTime> dueAtTime;
 
     private final Optional<Long> engineHours;
+
+    private final Optional<String> externalId;
 
     private final String id;
 
@@ -89,6 +93,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             Optional<String> assignedUserId,
             Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees,
             Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments,
+            Optional<List<GoaAttributeTinyResponseBody>> attributes,
             Optional<String> category,
             Optional<String> closingNotes,
             Optional<OffsetDateTime> completedAtTime,
@@ -98,6 +103,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             Optional<WorkOrderDiscountObjectResponseBody> discount,
             Optional<OffsetDateTime> dueAtTime,
             Optional<Long> engineHours,
+            Optional<String> externalId,
             String id,
             Optional<String> invoiceNumber,
             Optional<List<WorkOrderItemObjectResponseBody>> items,
@@ -119,6 +125,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         this.assignedUserId = assignedUserId;
         this.assignees = assignees;
         this.attachments = attachments;
+        this.attributes = attributes;
         this.category = category;
         this.closingNotes = closingNotes;
         this.completedAtTime = completedAtTime;
@@ -128,6 +135,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         this.discount = discount;
         this.dueAtTime = dueAtTime;
         this.engineHours = engineHours;
+        this.externalId = externalId;
         this.id = id;
         this.invoiceNumber = invoiceNumber;
         this.items = items;
@@ -187,6 +195,14 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     }
 
     /**
+     * @return Custom fields (attributes) set on the work order. Returned by the work order endpoints when includeAttributes is true, and in work order webhook and stream payloads when work order attributes are enabled for the organization.
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyResponseBody>> getAttributes() {
+        return attributes;
+    }
+
+    /**
      * @return The category of the work order
      */
     @JsonProperty("category")
@@ -219,7 +235,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     }
 
     /**
-     * @return The ID of the creator of the work order.
+     * @return The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.
      */
     @JsonProperty("createdByUserId")
     public Optional<String> getCreatedByUserId() {
@@ -253,6 +269,14 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     @JsonProperty("engineHours")
     public Optional<Long> getEngineHours() {
         return engineHours;
+    }
+
+    /**
+     * @return Identifier for this work order in a third-party system, as set when the work order was imported (for example a Fleetio or Eptura work order ID). Returned by the work order endpoints when the request sets <code>includeExternalIds=true</code>, and in work order webhook payloads, when the work order has an external ID. Use it to match imported work orders to their source records, for example before attaching files with POST /maintenance/work-orders/attachments. Only returned for organizations with this field enabled.
+     */
+    @JsonProperty("externalId")
+    public Optional<String> getExternalId() {
+        return externalId;
     }
 
     /**
@@ -325,7 +349,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
     }
 
     /**
-     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
+     * @return The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
     public WorkOrderWithTimeEntriesObjectResponseBodyStatus getStatus() {
@@ -384,6 +408,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 && assignedUserId.equals(other.assignedUserId)
                 && assignees.equals(other.assignees)
                 && attachments.equals(other.attachments)
+                && attributes.equals(other.attributes)
                 && category.equals(other.category)
                 && closingNotes.equals(other.closingNotes)
                 && completedAtTime.equals(other.completedAtTime)
@@ -393,6 +418,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 && discount.equals(other.discount)
                 && dueAtTime.equals(other.dueAtTime)
                 && engineHours.equals(other.engineHours)
+                && externalId.equals(other.externalId)
                 && id.equals(other.id)
                 && invoiceNumber.equals(other.invoiceNumber)
                 && items.equals(other.items)
@@ -418,6 +444,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 this.assignedUserId,
                 this.assignees,
                 this.attachments,
+                this.attributes,
                 this.category,
                 this.closingNotes,
                 this.completedAtTime,
@@ -427,6 +454,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                 this.discount,
                 this.dueAtTime,
                 this.engineHours,
+                this.externalId,
                 this.id,
                 this.invoiceNumber,
                 this.items,
@@ -478,7 +506,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
     public interface StatusStage {
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         UpdatedAtTimeStage status(@NotNull WorkOrderWithTimeEntriesObjectResponseBodyStatus status);
     }
@@ -522,6 +550,13 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         _FinalStage attachments(List<WorkOrderAttachmentObjectResponseBody> attachments);
 
         /**
+         * <p>Custom fields (attributes) set on the work order. Returned by the work order endpoints when includeAttributes is true, and in work order webhook and stream payloads when work order attributes are enabled for the organization.</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes);
+
+        /**
          * <p>The category of the work order</p>
          */
         _FinalStage category(Optional<String> category);
@@ -543,7 +578,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         _FinalStage completedAtTime(OffsetDateTime completedAtTime);
 
         /**
-         * <p>The ID of the creator of the work order.</p>
+         * <p>The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.</p>
          */
         _FinalStage createdByUserId(Optional<String> createdByUserId);
 
@@ -573,6 +608,13 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         _FinalStage engineHours(Optional<Long> engineHours);
 
         _FinalStage engineHours(Long engineHours);
+
+        /**
+         * <p>Identifier for this work order in a third-party system, as set when the work order was imported (for example a Fleetio or Eptura work order ID). Returned by the work order endpoints when the request sets <code>includeExternalIds=true</code>, and in work order webhook payloads, when the work order has an external ID. Use it to match imported work orders to their source records, for example before attaching files with POST /maintenance/work-orders/attachments. Only returned for organizations with this field enabled.</p>
+         */
+        _FinalStage externalId(Optional<String> externalId);
+
+        _FinalStage externalId(String externalId);
 
         /**
          * <p>The invoice number for the work order.</p>
@@ -690,6 +732,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
 
         private Optional<String> invoiceNumber = Optional.empty();
 
+        private Optional<String> externalId = Optional.empty();
+
         private Optional<Long> engineHours = Optional.empty();
 
         private Optional<OffsetDateTime> dueAtTime = Optional.empty();
@@ -705,6 +749,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         private Optional<String> closingNotes = Optional.empty();
 
         private Optional<String> category = Optional.empty();
+
+        private Optional<List<GoaAttributeTinyResponseBody>> attributes = Optional.empty();
 
         private Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments = Optional.empty();
 
@@ -726,6 +772,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             assignedUserId(other.getAssignedUserId());
             assignees(other.getAssignees());
             attachments(other.getAttachments());
+            attributes(other.getAttributes());
             category(other.getCategory());
             closingNotes(other.getClosingNotes());
             completedAtTime(other.getCompletedAtTime());
@@ -735,6 +782,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
             discount(other.getDiscount());
             dueAtTime(other.getDueAtTime());
             engineHours(other.getEngineHours());
+            externalId(other.getExternalId());
             id(other.getId());
             invoiceNumber(other.getInvoiceNumber());
             items(other.getItems());
@@ -790,8 +838,8 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1035,6 +1083,26 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         }
 
         /**
+         * <p>Identifier for this work order in a third-party system, as set when the work order was imported (for example a Fleetio or Eptura work order ID). Returned by the work order endpoints when the request sets <code>includeExternalIds=true</code>, and in work order webhook payloads, when the work order has an external ID. Use it to match imported work orders to their source records, for example before attaching files with POST /maintenance/work-orders/attachments. Only returned for organizations with this field enabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage externalId(String externalId) {
+            this.externalId = Optional.ofNullable(externalId);
+            return this;
+        }
+
+        /**
+         * <p>Identifier for this work order in a third-party system, as set when the work order was imported (for example a Fleetio or Eptura work order ID). Returned by the work order endpoints when the request sets <code>includeExternalIds=true</code>, and in work order webhook payloads, when the work order has an external ID. Use it to match imported work orders to their source records, for example before attaching files with POST /maintenance/work-orders/attachments. Only returned for organizations with this field enabled.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
+        public _FinalStage externalId(Optional<String> externalId) {
+            this.externalId = externalId;
+            return this;
+        }
+
+        /**
          * <p>The engine hours at the time of the work order.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -1108,7 +1176,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         }
 
         /**
-         * <p>The ID of the creator of the work order.</p>
+         * <p>The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1118,7 +1186,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         }
 
         /**
-         * <p>The ID of the creator of the work order.</p>
+         * <p>The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "createdByUserId", nulls = Nulls.SKIP)
@@ -1184,6 +1252,26 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
         public _FinalStage category(Optional<String> category) {
             this.category = category;
+            return this;
+        }
+
+        /**
+         * <p>Custom fields (attributes) set on the work order. Returned by the work order endpoints when includeAttributes is true, and in work order webhook and stream payloads when work order attributes are enabled for the organization.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>Custom fields (attributes) set on the work order. Returned by the work order endpoints when includeAttributes is true, and in work order webhook and stream payloads when work order attributes are enabled for the organization.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes) {
+            this.attributes = attributes;
             return this;
         }
 
@@ -1275,6 +1363,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                     assignedUserId,
                     assignees,
                     attachments,
+                    attributes,
                     category,
                     closingNotes,
                     completedAtTime,
@@ -1284,6 +1373,7 @@ public final class WorkOrderWithTimeEntriesObjectResponseBody {
                     discount,
                     dueAtTime,
                     engineHours,
+                    externalId,
                     id,
                     invoiceNumber,
                     items,

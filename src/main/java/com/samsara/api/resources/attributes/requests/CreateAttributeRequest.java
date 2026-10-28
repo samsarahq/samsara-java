@@ -78,7 +78,7 @@ public final class CreateAttributeRequest {
     }
 
     /**
-     * @return Denotes the type of entity, driver or asset.
+     * @return Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization. Work order attributes are created without <code>entities</code>; set attribute values on work orders through the work orders API.
      */
     @JsonProperty("entityType")
     public CreateAttributeRequestEntityType getEntityType() {
@@ -170,7 +170,7 @@ public final class CreateAttributeRequest {
 
     public interface EntityTypeStage {
         /**
-         * <p>Denotes the type of entity, driver or asset.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization. Work order attributes are created without <code>entities</code>; set attribute values on work orders through the work orders API.</p>
          */
         NameStage entityType(@NotNull CreateAttributeRequestEntityType entityType);
     }
@@ -260,8 +260,8 @@ public final class CreateAttributeRequest {
         }
 
         /**
-         * <p>Denotes the type of entity, driver or asset.</p>
-         * <p>Denotes the type of entity, driver or asset.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization. Work order attributes are created without <code>entities</code>; set attribute values on work orders through the work orders API.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization. Work order attributes are created without <code>entities</code>; set attribute values on work orders through the work orders API.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

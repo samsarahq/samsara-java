@@ -27,7 +27,7 @@ public final class ReadingHistoryResponseBody {
 
     private final Optional<String> happenedAtTime;
 
-    private final Optional<Map<String, Object>> value;
+    private final Optional<Object> value;
 
     private final Map<String, Object> additionalProperties;
 
@@ -35,7 +35,7 @@ public final class ReadingHistoryResponseBody {
             String entityId,
             Optional<Map<String, String>> externalIds,
             Optional<String> happenedAtTime,
-            Optional<Map<String, Object>> value,
+            Optional<Object> value,
             Map<String, Object> additionalProperties) {
         this.entityId = entityId;
         this.externalIds = externalIds;
@@ -72,7 +72,7 @@ public final class ReadingHistoryResponseBody {
      * @return The value of the reading.
      */
     @JsonProperty("value")
-    public Optional<Map<String, Object>> getValue() {
+    public Optional<Object> getValue() {
         return value;
     }
 
@@ -137,16 +137,16 @@ public final class ReadingHistoryResponseBody {
         /**
          * <p>The value of the reading.</p>
          */
-        _FinalStage value(Optional<Map<String, Object>> value);
+        _FinalStage value(Optional<Object> value);
 
-        _FinalStage value(Map<String, Object> value);
+        _FinalStage value(Object value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements EntityIdStage, _FinalStage {
         private String entityId;
 
-        private Optional<Map<String, Object>> value = Optional.empty();
+        private Optional<Object> value = Optional.empty();
 
         private Optional<String> happenedAtTime = Optional.empty();
 
@@ -183,7 +183,7 @@ public final class ReadingHistoryResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage value(Map<String, Object> value) {
+        public _FinalStage value(Object value) {
             this.value = Optional.ofNullable(value);
             return this;
         }
@@ -193,7 +193,7 @@ public final class ReadingHistoryResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public _FinalStage value(Optional<Map<String, Object>> value) {
+        public _FinalStage value(Optional<Object> value) {
             this.value = value;
             return this;
         }

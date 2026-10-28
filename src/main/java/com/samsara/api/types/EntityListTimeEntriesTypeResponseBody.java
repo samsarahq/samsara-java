@@ -22,6 +22,10 @@ import java.util.Optional;
 public final class EntityListTimeEntriesTypeResponseBody {
     private final Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType;
 
+    private final Optional<String> activityTypeId;
+
+    private final Optional<String> activityTypeName;
+
     private final Optional<String> clockInAtTime;
 
     private final Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockInLocation;
@@ -62,6 +66,8 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
     private EntityListTimeEntriesTypeResponseBody(
             Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType,
+            Optional<String> activityTypeId,
+            Optional<String> activityTypeName,
             Optional<String> clockInAtTime,
             Optional<ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody> clockInLocation,
             Optional<EntityListTimeEntriesTypeResponseBodyClockInSource> clockInSource,
@@ -82,6 +88,8 @@ public final class EntityListTimeEntriesTypeResponseBody {
             Optional<String> workOrderId,
             Map<String, Object> additionalProperties) {
         this.activityType = activityType;
+        this.activityTypeId = activityTypeId;
+        this.activityTypeName = activityTypeName;
         this.clockInAtTime = clockInAtTime;
         this.clockInLocation = clockInLocation;
         this.clockInSource = clockInSource;
@@ -109,6 +117,22 @@ public final class EntityListTimeEntriesTypeResponseBody {
     @JsonProperty("activityType")
     public Optional<EntityListTimeEntriesTypeResponseBodyActivityType> getActivityType() {
         return activityType;
+    }
+
+    /**
+     * @return ID of the non-repair activity, including activity types defined by the organization, which activityType reports as unknown. Omitted for work-order time.
+     */
+    @JsonProperty("activityTypeId")
+    public Optional<String> getActivityTypeId() {
+        return activityTypeId;
+    }
+
+    /**
+     * @return The organization's display name for the non-repair activity. Omitted for work-order time.
+     */
+    @JsonProperty("activityTypeName")
+    public Optional<String> getActivityTypeName() {
+        return activityTypeName;
     }
 
     /**
@@ -260,6 +284,8 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
     private boolean equalTo(EntityListTimeEntriesTypeResponseBody other) {
         return activityType.equals(other.activityType)
+                && activityTypeId.equals(other.activityTypeId)
+                && activityTypeName.equals(other.activityTypeName)
                 && clockInAtTime.equals(other.clockInAtTime)
                 && clockInLocation.equals(other.clockInLocation)
                 && clockInSource.equals(other.clockInSource)
@@ -284,6 +310,8 @@ public final class EntityListTimeEntriesTypeResponseBody {
     public int hashCode() {
         return Objects.hash(
                 this.activityType,
+                this.activityTypeId,
+                this.activityTypeName,
                 this.clockInAtTime,
                 this.clockInLocation,
                 this.clockInSource,
@@ -316,6 +344,10 @@ public final class EntityListTimeEntriesTypeResponseBody {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
         private Optional<EntityListTimeEntriesTypeResponseBodyActivityType> activityType = Optional.empty();
+
+        private Optional<String> activityTypeId = Optional.empty();
+
+        private Optional<String> activityTypeName = Optional.empty();
 
         private Optional<String> clockInAtTime = Optional.empty();
 
@@ -362,6 +394,8 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
         public Builder from(EntityListTimeEntriesTypeResponseBody other) {
             activityType(other.getActivityType());
+            activityTypeId(other.getActivityTypeId());
+            activityTypeName(other.getActivityTypeName());
             clockInAtTime(other.getClockInAtTime());
             clockInLocation(other.getClockInLocation());
             clockInSource(other.getClockInSource());
@@ -394,6 +428,34 @@ public final class EntityListTimeEntriesTypeResponseBody {
 
         public Builder activityType(EntityListTimeEntriesTypeResponseBodyActivityType activityType) {
             this.activityType = Optional.ofNullable(activityType);
+            return this;
+        }
+
+        /**
+         * <p>ID of the non-repair activity, including activity types defined by the organization, which activityType reports as unknown. Omitted for work-order time.</p>
+         */
+        @JsonSetter(value = "activityTypeId", nulls = Nulls.SKIP)
+        public Builder activityTypeId(Optional<String> activityTypeId) {
+            this.activityTypeId = activityTypeId;
+            return this;
+        }
+
+        public Builder activityTypeId(String activityTypeId) {
+            this.activityTypeId = Optional.ofNullable(activityTypeId);
+            return this;
+        }
+
+        /**
+         * <p>The organization's display name for the non-repair activity. Omitted for work-order time.</p>
+         */
+        @JsonSetter(value = "activityTypeName", nulls = Nulls.SKIP)
+        public Builder activityTypeName(Optional<String> activityTypeName) {
+            this.activityTypeName = activityTypeName;
+            return this;
+        }
+
+        public Builder activityTypeName(String activityTypeName) {
+            this.activityTypeName = Optional.ofNullable(activityTypeName);
             return this;
         }
 
@@ -648,6 +710,8 @@ public final class EntityListTimeEntriesTypeResponseBody {
         public EntityListTimeEntriesTypeResponseBody build() {
             return new EntityListTimeEntriesTypeResponseBody(
                     activityType,
+                    activityTypeId,
+                    activityTypeName,
                     clockInAtTime,
                     clockInLocation,
                     clockInSource,

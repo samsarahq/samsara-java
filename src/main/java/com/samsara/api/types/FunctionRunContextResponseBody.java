@@ -23,16 +23,16 @@ import org.jetbrains.annotations.NotNull;
 public final class FunctionRunContextResponseBody {
     private final String requestId;
 
-    private final Optional<Map<String, Object>> requestPayload;
+    private final Optional<Object> requestPayload;
 
-    private final Optional<Map<String, Object>> responsePayload;
+    private final Optional<Object> responsePayload;
 
     private final Map<String, Object> additionalProperties;
 
     private FunctionRunContextResponseBody(
             String requestId,
-            Optional<Map<String, Object>> requestPayload,
-            Optional<Map<String, Object>> responsePayload,
+            Optional<Object> requestPayload,
+            Optional<Object> responsePayload,
             Map<String, Object> additionalProperties) {
         this.requestId = requestId;
         this.requestPayload = requestPayload;
@@ -52,7 +52,7 @@ public final class FunctionRunContextResponseBody {
      * @return The request payload sent to the Function.
      */
     @JsonProperty("requestPayload")
-    public Optional<Map<String, Object>> getRequestPayload() {
+    public Optional<Object> getRequestPayload() {
         return requestPayload;
     }
 
@@ -60,7 +60,7 @@ public final class FunctionRunContextResponseBody {
      * @return The response payload returned by the Function.
      */
     @JsonProperty("responsePayload")
-    public Optional<Map<String, Object>> getResponsePayload() {
+    public Optional<Object> getResponsePayload() {
         return responsePayload;
     }
 
@@ -110,25 +110,25 @@ public final class FunctionRunContextResponseBody {
         /**
          * <p>The request payload sent to the Function.</p>
          */
-        _FinalStage requestPayload(Optional<Map<String, Object>> requestPayload);
+        _FinalStage requestPayload(Optional<Object> requestPayload);
 
-        _FinalStage requestPayload(Map<String, Object> requestPayload);
+        _FinalStage requestPayload(Object requestPayload);
 
         /**
          * <p>The response payload returned by the Function.</p>
          */
-        _FinalStage responsePayload(Optional<Map<String, Object>> responsePayload);
+        _FinalStage responsePayload(Optional<Object> responsePayload);
 
-        _FinalStage responsePayload(Map<String, Object> responsePayload);
+        _FinalStage responsePayload(Object responsePayload);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RequestIdStage, _FinalStage {
         private String requestId;
 
-        private Optional<Map<String, Object>> responsePayload = Optional.empty();
+        private Optional<Object> responsePayload = Optional.empty();
 
-        private Optional<Map<String, Object>> requestPayload = Optional.empty();
+        private Optional<Object> requestPayload = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -160,7 +160,7 @@ public final class FunctionRunContextResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage responsePayload(Map<String, Object> responsePayload) {
+        public _FinalStage responsePayload(Object responsePayload) {
             this.responsePayload = Optional.ofNullable(responsePayload);
             return this;
         }
@@ -170,7 +170,7 @@ public final class FunctionRunContextResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "responsePayload", nulls = Nulls.SKIP)
-        public _FinalStage responsePayload(Optional<Map<String, Object>> responsePayload) {
+        public _FinalStage responsePayload(Optional<Object> responsePayload) {
             this.responsePayload = responsePayload;
             return this;
         }
@@ -180,7 +180,7 @@ public final class FunctionRunContextResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage requestPayload(Map<String, Object> requestPayload) {
+        public _FinalStage requestPayload(Object requestPayload) {
             this.requestPayload = Optional.ofNullable(requestPayload);
             return this;
         }
@@ -190,7 +190,7 @@ public final class FunctionRunContextResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "requestPayload", nulls = Nulls.SKIP)
-        public _FinalStage requestPayload(Optional<Map<String, Object>> requestPayload) {
+        public _FinalStage requestPayload(Optional<Object> requestPayload) {
             this.requestPayload = requestPayload;
             return this;
         }

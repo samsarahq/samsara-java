@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.betaapis.types.GetDepreciationTransactionsRequestQueryByTimeField;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,6 +30,8 @@ public final class GetDepreciationTransactionsRequest {
 
     private final Optional<OffsetDateTime> endTime;
 
+    private final Optional<GetDepreciationTransactionsRequestQueryByTimeField> queryByTimeField;
+
     private final Optional<String> after;
 
     private final Map<String, Object> additionalProperties;
@@ -37,11 +40,13 @@ public final class GetDepreciationTransactionsRequest {
             Optional<List<String>> assetIds,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
+            Optional<GetDepreciationTransactionsRequestQueryByTimeField> queryByTimeField,
             Optional<String> after,
             Map<String, Object> additionalProperties) {
         this.assetIds = assetIds;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.queryByTimeField = queryByTimeField;
         this.after = after;
         this.additionalProperties = additionalProperties;
     }
@@ -55,7 +60,7 @@ public final class GetDepreciationTransactionsRequest {
     }
 
     /**
-     * @return RFC 3339 timestamp. Returns transactions updated after this time. Compared against updatedAt. If not provided, returns all transactions. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+     * @return RFC 3339 timestamp. Inclusive start of the range, compared against queryByTimeField. Required when querying by eventTime; optional when querying by updatedAtTime. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
      */
     @JsonProperty("startTime")
     public Optional<OffsetDateTime> getStartTime() {
@@ -63,11 +68,19 @@ public final class GetDepreciationTransactionsRequest {
     }
 
     /**
-     * @return RFC 3339 timestamp. Returns transactions updated before this time. Compared against updatedAt. If not provided, behaves as an unending feed of changes. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+     * @return RFC 3339 timestamp. Exclusive end of the range, compared against queryByTimeField. If omitted, the range is open-ended. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
      */
     @JsonProperty("endTime")
     public Optional<OffsetDateTime> getEndTime() {
         return endTime;
+    }
+
+    /**
+     * @return Time field compared with startTime and endTime. Defaults to eventTime for organizations enabled for event-time queries; otherwise updatedAtTime.  Valid values: <code>eventTime</code>, <code>updatedAtTime</code>
+     */
+    @JsonProperty("queryByTimeField")
+    public Optional<GetDepreciationTransactionsRequestQueryByTimeField> getQueryByTimeField() {
+        return queryByTimeField;
     }
 
     /**
@@ -94,12 +107,13 @@ public final class GetDepreciationTransactionsRequest {
         return assetIds.equals(other.assetIds)
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
+                && queryByTimeField.equals(other.queryByTimeField)
                 && after.equals(other.after);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.assetIds, this.startTime, this.endTime, this.after);
+        return Objects.hash(this.assetIds, this.startTime, this.endTime, this.queryByTimeField, this.after);
     }
 
     @java.lang.Override
@@ -119,6 +133,8 @@ public final class GetDepreciationTransactionsRequest {
 
         private Optional<OffsetDateTime> endTime = Optional.empty();
 
+        private Optional<GetDepreciationTransactionsRequestQueryByTimeField> queryByTimeField = Optional.empty();
+
         private Optional<String> after = Optional.empty();
 
         @JsonAnySetter
@@ -130,6 +146,7 @@ public final class GetDepreciationTransactionsRequest {
             assetIds(other.getAssetIds());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
+            queryByTimeField(other.getQueryByTimeField());
             after(other.getAfter());
             return this;
         }
@@ -154,7 +171,7 @@ public final class GetDepreciationTransactionsRequest {
         }
 
         /**
-         * <p>RFC 3339 timestamp. Returns transactions updated after this time. Compared against updatedAt. If not provided, returns all transactions. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
+         * <p>RFC 3339 timestamp. Inclusive start of the range, compared against queryByTimeField. Required when querying by eventTime; optional when querying by updatedAtTime. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
          */
         @JsonSetter(value = "startTime", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
@@ -168,7 +185,7 @@ public final class GetDepreciationTransactionsRequest {
         }
 
         /**
-         * <p>RFC 3339 timestamp. Returns transactions updated before this time. Compared against updatedAt. If not provided, behaves as an unending feed of changes. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
+         * <p>RFC 3339 timestamp. Exclusive end of the range, compared against queryByTimeField. If omitted, the range is open-ended. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).</p>
          */
         @JsonSetter(value = "endTime", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
@@ -178,6 +195,20 @@ public final class GetDepreciationTransactionsRequest {
 
         public Builder endTime(OffsetDateTime endTime) {
             this.endTime = Optional.ofNullable(endTime);
+            return this;
+        }
+
+        /**
+         * <p>Time field compared with startTime and endTime. Defaults to eventTime for organizations enabled for event-time queries; otherwise updatedAtTime.  Valid values: <code>eventTime</code>, <code>updatedAtTime</code></p>
+         */
+        @JsonSetter(value = "queryByTimeField", nulls = Nulls.SKIP)
+        public Builder queryByTimeField(Optional<GetDepreciationTransactionsRequestQueryByTimeField> queryByTimeField) {
+            this.queryByTimeField = queryByTimeField;
+            return this;
+        }
+
+        public Builder queryByTimeField(GetDepreciationTransactionsRequestQueryByTimeField queryByTimeField) {
+            this.queryByTimeField = Optional.ofNullable(queryByTimeField);
             return this;
         }
 
@@ -196,7 +227,8 @@ public final class GetDepreciationTransactionsRequest {
         }
 
         public GetDepreciationTransactionsRequest build() {
-            return new GetDepreciationTransactionsRequest(assetIds, startTime, endTime, after, additionalProperties);
+            return new GetDepreciationTransactionsRequest(
+                    assetIds, startTime, endTime, queryByTimeField, after, additionalProperties);
         }
     }
 }

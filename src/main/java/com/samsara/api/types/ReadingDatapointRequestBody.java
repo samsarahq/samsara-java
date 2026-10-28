@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,7 +31,7 @@ public final class ReadingDatapointRequestBody {
 
     private final String readingId;
 
-    private final Map<String, Object> value;
+    private final Object value;
 
     private final Map<String, Object> additionalProperties;
 
@@ -42,7 +41,7 @@ public final class ReadingDatapointRequestBody {
             Optional<String> externalId,
             String happenedAtTime,
             String readingId,
-            Map<String, Object> value,
+            Object value,
             Map<String, Object> additionalProperties) {
         this.entityId = entityId;
         this.entityType = entityType;
@@ -93,11 +92,8 @@ public final class ReadingDatapointRequestBody {
         return readingId;
     }
 
-    /**
-     * @return The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.
-     */
     @JsonProperty("value")
-    public Map<String, Object> getValue() {
+    public Object getValue() {
         return value;
     }
 
@@ -156,7 +152,11 @@ public final class ReadingDatapointRequestBody {
         /**
          * <p>The ID of the reading, you can get it from the /readings/definitions endpoint.</p>
          */
-        _FinalStage readingId(@NotNull String readingId);
+        ValueStage readingId(@NotNull String readingId);
+    }
+
+    public interface ValueStage {
+        _FinalStage value(Object value);
     }
 
     public interface _FinalStage {
@@ -175,26 +175,18 @@ public final class ReadingDatapointRequestBody {
         _FinalStage externalId(Optional<String> externalId);
 
         _FinalStage externalId(String externalId);
-
-        /**
-         * <p>The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.</p>
-         */
-        _FinalStage value(Map<String, Object> value);
-
-        _FinalStage putAllValue(Map<String, Object> value);
-
-        _FinalStage value(String key, Object value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements EntityTypeStage, HappenedAtTimeStage, ReadingIdStage, _FinalStage {
+    public static final class Builder
+            implements EntityTypeStage, HappenedAtTimeStage, ReadingIdStage, ValueStage, _FinalStage {
         private ReadingDatapointRequestBodyEntityType entityType;
 
         private String happenedAtTime;
 
         private String readingId;
 
-        private Map<String, Object> value = new LinkedHashMap<>();
+        private Object value;
 
         private Optional<String> externalId = Optional.empty();
 
@@ -247,43 +239,15 @@ public final class ReadingDatapointRequestBody {
          */
         @java.lang.Override
         @JsonSetter("readingId")
-        public _FinalStage readingId(@NotNull String readingId) {
+        public ValueStage readingId(@NotNull String readingId) {
             this.readingId = Objects.requireNonNull(readingId, "readingId must not be null");
             return this;
         }
 
-        /**
-         * <p>The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @java.lang.Override
-        public _FinalStage value(String key, Object value) {
-            this.value.put(key, value);
-            return this;
-        }
-
-        /**
-         * <p>The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage putAllValue(Map<String, Object> value) {
-            if (value != null) {
-                this.value.putAll(value);
-            }
-            return this;
-        }
-
-        /**
-         * <p>The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public _FinalStage value(Map<String, Object> value) {
-            this.value.clear();
-            if (value != null) {
-                this.value.putAll(value);
-            }
+        @JsonSetter("value")
+        public _FinalStage value(Object value) {
+            this.value = value;
             return this;
         }
 

@@ -136,7 +136,7 @@ public class WorkOrdersWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"category\":\"Engine\",\"description\":\"Standard oil change service including filter replacement.\",\"estimatedLaborTimeMinutes\":30,\"estimatedPartsCost\":{\"amount\":\"94.01\",\"currency\":\"usd\"},\"id\":\"abf63a9a-4d75-423d-b49f-38a071e6ce36\",\"name\":\"Oil Change\",\"subcategory\":\"Oil and Lubrication\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"category\":\"Engine\",\"description\":\"Standard oil change service including filter replacement.\",\"estimatedLaborTimeMinutes\":30,\"estimatedPartsCost\":{\"amount\":\"94.01\",\"currency\":\"usd\"},\"id\":\"abf63a9a-4d75-423d-b49f-38a071e6ce36\",\"name\":\"Oil Change\",\"subcategory\":\"Oil and Lubrication\",\"vmrsCode\":\"034-005-001\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         WorkOrdersGetServiceTasksResponseBody response = client.workOrders()
                 .getServiceTasks(GetServiceTasksRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -159,7 +159,8 @@ public class WorkOrdersWireTest {
                 + "      },\n"
                 + "      \"id\": \"abf63a9a-4d75-423d-b49f-38a071e6ce36\",\n"
                 + "      \"name\": \"Oil Change\",\n"
-                + "      \"subcategory\": \"Oil and Lubrication\"\n"
+                + "      \"subcategory\": \"Oil and Lubrication\",\n"
+                + "      \"vmrsCode\": \"034-005-001\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"

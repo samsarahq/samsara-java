@@ -16,6 +16,7 @@ import com.samsara.api.core.Nullable;
 import com.samsara.api.core.NullableNonemptyFilter;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,7 +25,11 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EntityUpdateWatchpointTypeResponseBody.Builder.class)
 public final class EntityUpdateWatchpointTypeResponseBody {
+    private final Optional<WatchpointBearingRangeTypeResponseBody> bearingRange;
+
     private final String createdAtTime;
+
+    private final Optional<List<WatchpointCustomDetectionResponseTypeResponseBody>> customDetections;
 
     private final String id;
 
@@ -55,7 +60,9 @@ public final class EntityUpdateWatchpointTypeResponseBody {
     private final Map<String, Object> additionalProperties;
 
     private EntityUpdateWatchpointTypeResponseBody(
+            Optional<WatchpointBearingRangeTypeResponseBody> bearingRange,
             String createdAtTime,
+            Optional<List<WatchpointCustomDetectionResponseTypeResponseBody>> customDetections,
             String id,
             Optional<String> lastObservationTime,
             WatchpointLatLngTypeResponseBody location,
@@ -70,7 +77,9 @@ public final class EntityUpdateWatchpointTypeResponseBody {
             EntityUpdateWatchpointTypeResponseBodyStatus status,
             String updatedAtTime,
             Map<String, Object> additionalProperties) {
+        this.bearingRange = bearingRange;
         this.createdAtTime = createdAtTime;
+        this.customDetections = customDetections;
         this.id = id;
         this.lastObservationTime = lastObservationTime;
         this.location = location;
@@ -87,12 +96,25 @@ public final class EntityUpdateWatchpointTypeResponseBody {
         this.additionalProperties = additionalProperties;
     }
 
+    @JsonProperty("bearingRange")
+    public Optional<WatchpointBearingRangeTypeResponseBody> getBearingRange() {
+        return bearingRange;
+    }
+
     /**
      * @return Time when the watchpoint resource was created.
      */
     @JsonProperty("createdAtTime")
     public String getCreatedAtTime() {
         return createdAtTime;
+    }
+
+    /**
+     * @return Configured detections. Omitted when none are configured.
+     */
+    @JsonProperty("customDetections")
+    public Optional<List<WatchpointCustomDetectionResponseTypeResponseBody>> getCustomDetections() {
+        return customDetections;
     }
 
     /**
@@ -120,7 +142,7 @@ public final class EntityUpdateWatchpointTypeResponseBody {
     }
 
     /**
-     * @return Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>
+     * @return Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code>
      */
     @JsonProperty("mode")
     public EntityUpdateWatchpointTypeResponseBodyMode getMode() {
@@ -236,7 +258,9 @@ public final class EntityUpdateWatchpointTypeResponseBody {
     }
 
     private boolean equalTo(EntityUpdateWatchpointTypeResponseBody other) {
-        return createdAtTime.equals(other.createdAtTime)
+        return bearingRange.equals(other.bearingRange)
+                && createdAtTime.equals(other.createdAtTime)
+                && customDetections.equals(other.customDetections)
                 && id.equals(other.id)
                 && lastObservationTime.equals(other.lastObservationTime)
                 && location.equals(other.location)
@@ -255,7 +279,9 @@ public final class EntityUpdateWatchpointTypeResponseBody {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.bearingRange,
                 this.createdAtTime,
+                this.customDetections,
                 this.id,
                 this.lastObservationTime,
                 this.location,
@@ -302,7 +328,7 @@ public final class EntityUpdateWatchpointTypeResponseBody {
 
     public interface ModeStage {
         /**
-         * <p>Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></p>
+         * <p>Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code></p>
          */
         MonitoringEndTimeStage mode(@NotNull EntityUpdateWatchpointTypeResponseBodyMode mode);
     }
@@ -359,6 +385,18 @@ public final class EntityUpdateWatchpointTypeResponseBody {
 
     public interface _FinalStage {
         EntityUpdateWatchpointTypeResponseBody build();
+
+        _FinalStage bearingRange(Optional<WatchpointBearingRangeTypeResponseBody> bearingRange);
+
+        _FinalStage bearingRange(WatchpointBearingRangeTypeResponseBody bearingRange);
+
+        /**
+         * <p>Configured detections. Omitted when none are configured.</p>
+         */
+        _FinalStage customDetections(
+                Optional<List<WatchpointCustomDetectionResponseTypeResponseBody>> customDetections);
+
+        _FinalStage customDetections(List<WatchpointCustomDetectionResponseTypeResponseBody> customDetections);
 
         /**
          * <p>Time when the most recent observation was collected, or null when unavailable.</p>
@@ -430,6 +468,10 @@ public final class EntityUpdateWatchpointTypeResponseBody {
 
         private Optional<String> lastObservationTime = Optional.empty();
 
+        private Optional<List<WatchpointCustomDetectionResponseTypeResponseBody>> customDetections = Optional.empty();
+
+        private Optional<WatchpointBearingRangeTypeResponseBody> bearingRange = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -437,7 +479,9 @@ public final class EntityUpdateWatchpointTypeResponseBody {
 
         @java.lang.Override
         public Builder from(EntityUpdateWatchpointTypeResponseBody other) {
+            bearingRange(other.getBearingRange());
             createdAtTime(other.getCreatedAtTime());
+            customDetections(other.getCustomDetections());
             id(other.getId());
             lastObservationTime(other.getLastObservationTime());
             location(other.getLocation());
@@ -486,8 +530,8 @@ public final class EntityUpdateWatchpointTypeResponseBody {
         }
 
         /**
-         * <p>Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></p>
-         * <p>Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></p>
+         * <p>Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code></p>
+         * <p>Recurrence frequency for observations.  Valid values: <code>unknown</code>, <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -692,10 +736,46 @@ public final class EntityUpdateWatchpointTypeResponseBody {
             return this;
         }
 
+        /**
+         * <p>Configured detections. Omitted when none are configured.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage customDetections(List<WatchpointCustomDetectionResponseTypeResponseBody> customDetections) {
+            this.customDetections = Optional.ofNullable(customDetections);
+            return this;
+        }
+
+        /**
+         * <p>Configured detections. Omitted when none are configured.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "customDetections", nulls = Nulls.SKIP)
+        public _FinalStage customDetections(
+                Optional<List<WatchpointCustomDetectionResponseTypeResponseBody>> customDetections) {
+            this.customDetections = customDetections;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage bearingRange(WatchpointBearingRangeTypeResponseBody bearingRange) {
+            this.bearingRange = Optional.ofNullable(bearingRange);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "bearingRange", nulls = Nulls.SKIP)
+        public _FinalStage bearingRange(Optional<WatchpointBearingRangeTypeResponseBody> bearingRange) {
+            this.bearingRange = bearingRange;
+            return this;
+        }
+
         @java.lang.Override
         public EntityUpdateWatchpointTypeResponseBody build() {
             return new EntityUpdateWatchpointTypeResponseBody(
+                    bearingRange,
                     createdAtTime,
+                    customDetections,
                     id,
                     lastObservationTime,
                     location,

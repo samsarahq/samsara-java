@@ -13,6 +13,9 @@ public final class EntityUpdateWatchpointTypeResponseBodyMode {
     public static final EntityUpdateWatchpointTypeResponseBodyMode UNKNOWN =
             new EntityUpdateWatchpointTypeResponseBodyMode(Value.UNKNOWN, "unknown");
 
+    public static final EntityUpdateWatchpointTypeResponseBodyMode HOURLY =
+            new EntityUpdateWatchpointTypeResponseBodyMode(Value.HOURLY, "hourly");
+
     public static final EntityUpdateWatchpointTypeResponseBodyMode MONTHLY =
             new EntityUpdateWatchpointTypeResponseBodyMode(Value.MONTHLY, "monthly");
 
@@ -21,6 +24,9 @@ public final class EntityUpdateWatchpointTypeResponseBodyMode {
 
     public static final EntityUpdateWatchpointTypeResponseBodyMode WEEKLY =
             new EntityUpdateWatchpointTypeResponseBodyMode(Value.WEEKLY, "weekly");
+
+    public static final EntityUpdateWatchpointTypeResponseBodyMode EVERY15MINUTES =
+            new EntityUpdateWatchpointTypeResponseBodyMode(Value.EVERY15MINUTES, "every15Minutes");
 
     private final Value value;
 
@@ -59,12 +65,16 @@ public final class EntityUpdateWatchpointTypeResponseBodyMode {
                 return visitor.visitJustOnce();
             case UNKNOWN:
                 return visitor.visitUnknown();
+            case HOURLY:
+                return visitor.visitHourly();
             case MONTHLY:
                 return visitor.visitMonthly();
             case DAILY:
                 return visitor.visitDaily();
             case WEEKLY:
                 return visitor.visitWeekly();
+            case EVERY15MINUTES:
+                return visitor.visitEvery15Minutes();
             case _UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -78,12 +88,16 @@ public final class EntityUpdateWatchpointTypeResponseBodyMode {
                 return JUST_ONCE;
             case "unknown":
                 return UNKNOWN;
+            case "hourly":
+                return HOURLY;
             case "monthly":
                 return MONTHLY;
             case "daily":
                 return DAILY;
             case "weekly":
                 return WEEKLY;
+            case "every15Minutes":
+                return EVERY15MINUTES;
             default:
                 return new EntityUpdateWatchpointTypeResponseBodyMode(Value._UNKNOWN, value);
         }
@@ -100,6 +114,10 @@ public final class EntityUpdateWatchpointTypeResponseBodyMode {
 
         MONTHLY,
 
+        EVERY15MINUTES,
+
+        HOURLY,
+
         _UNKNOWN
     }
 
@@ -113,6 +131,10 @@ public final class EntityUpdateWatchpointTypeResponseBodyMode {
         T visitWeekly();
 
         T visitMonthly();
+
+        T visitEvery15Minutes();
+
+        T visitHourly();
 
         T visitUnknown(String unknownType);
     }

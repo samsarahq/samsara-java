@@ -42,7 +42,7 @@ public final class GetAttributesByEntityTypeRequest {
     }
 
     /**
-     * @return Denotes the type of entity, driver or asset.
+     * @return Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.
      */
     @JsonProperty("entityType")
     public GetAttributesByEntityTypeRequestEntityType getEntityType() {
@@ -96,7 +96,7 @@ public final class GetAttributesByEntityTypeRequest {
 
     public interface EntityTypeStage {
         /**
-         * <p>Denotes the type of entity, driver or asset.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.</p>
          */
         _FinalStage entityType(@NotNull GetAttributesByEntityTypeRequestEntityType entityType);
 
@@ -143,8 +143,8 @@ public final class GetAttributesByEntityTypeRequest {
         }
 
         /**
-         * <p>Denotes the type of entity, driver or asset.</p>
-         * <p>Denotes the type of entity, driver or asset.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
