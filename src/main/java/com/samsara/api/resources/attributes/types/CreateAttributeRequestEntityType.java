@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class CreateAttributeRequestEntityType {
+    public static final CreateAttributeRequestEntityType WORK_ORDER =
+            new CreateAttributeRequestEntityType(Value.WORK_ORDER, "workOrder");
+
     public static final CreateAttributeRequestEntityType DRIVER =
             new CreateAttributeRequestEntityType(Value.DRIVER, "driver");
 
@@ -46,6 +49,8 @@ public final class CreateAttributeRequestEntityType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case WORK_ORDER:
+                return visitor.visitWorkOrder();
             case DRIVER:
                 return visitor.visitDriver();
             case ASSET:
@@ -59,6 +64,8 @@ public final class CreateAttributeRequestEntityType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static CreateAttributeRequestEntityType valueOf(String value) {
         switch (value) {
+            case "workOrder":
+                return WORK_ORDER;
             case "driver":
                 return DRIVER;
             case "asset":
@@ -73,6 +80,8 @@ public final class CreateAttributeRequestEntityType {
 
         ASSET,
 
+        WORK_ORDER,
+
         UNKNOWN
     }
 
@@ -80,6 +89,8 @@ public final class CreateAttributeRequestEntityType {
         T visitDriver();
 
         T visitAsset();
+
+        T visitWorkOrder();
 
         T visitUnknown(String unknownType);
     }

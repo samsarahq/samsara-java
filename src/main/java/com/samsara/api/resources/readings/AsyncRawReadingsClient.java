@@ -423,6 +423,10 @@ public class AsyncRawReadingsClient {
                     request.getIncludeExternalIds().get(),
                     false);
         }
+        if (request.getHasGateway().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "hasGateway", request.getHasGateway().get(), false);
+        }
         if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);

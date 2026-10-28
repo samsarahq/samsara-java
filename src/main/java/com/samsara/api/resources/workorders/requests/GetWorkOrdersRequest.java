@@ -28,16 +28,20 @@ public final class GetWorkOrdersRequest {
 
     private final Optional<Boolean> includeExternalIds;
 
+    private final Optional<Boolean> includeAttributes;
+
     private final Map<String, Object> additionalProperties;
 
     private GetWorkOrdersRequest(
             Optional<List<String>> ids,
             Optional<String> after,
             Optional<Boolean> includeExternalIds,
+            Optional<Boolean> includeAttributes,
             Map<String, Object> additionalProperties) {
         this.ids = ids;
         this.after = after;
         this.includeExternalIds = includeExternalIds;
+        this.includeAttributes = includeAttributes;
         this.additionalProperties = additionalProperties;
     }
 
@@ -58,11 +62,19 @@ public final class GetWorkOrdersRequest {
     }
 
     /**
-     * @return When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+     * @return When true, populates <code>externalId</code> on each work order and <code>maintenanceSite.placeExternalIds</code> by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
      */
     @JsonProperty("includeExternalIds")
     public Optional<Boolean> getIncludeExternalIds() {
         return includeExternalIds;
+    }
+
+    /**
+     * @return Whether to include the work order's custom fields (attributes) in the response. Defaults to false.
+     */
+    @JsonProperty("includeAttributes")
+    public Optional<Boolean> getIncludeAttributes() {
+        return includeAttributes;
     }
 
     @java.lang.Override
@@ -79,12 +91,13 @@ public final class GetWorkOrdersRequest {
     private boolean equalTo(GetWorkOrdersRequest other) {
         return ids.equals(other.ids)
                 && after.equals(other.after)
-                && includeExternalIds.equals(other.includeExternalIds);
+                && includeExternalIds.equals(other.includeExternalIds)
+                && includeAttributes.equals(other.includeAttributes);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.ids, this.after, this.includeExternalIds);
+        return Objects.hash(this.ids, this.after, this.includeExternalIds, this.includeAttributes);
     }
 
     @java.lang.Override
@@ -104,6 +117,8 @@ public final class GetWorkOrdersRequest {
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
+        private Optional<Boolean> includeAttributes = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -113,6 +128,7 @@ public final class GetWorkOrdersRequest {
             ids(other.getIds());
             after(other.getAfter());
             includeExternalIds(other.getIncludeExternalIds());
+            includeAttributes(other.getIncludeAttributes());
             return this;
         }
 
@@ -150,7 +166,7 @@ public final class GetWorkOrdersRequest {
         }
 
         /**
-         * <p>When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
+         * <p>When true, populates <code>externalId</code> on each work order and <code>maintenanceSite.placeExternalIds</code> by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
          */
         @JsonSetter(value = "includeExternalIds", nulls = Nulls.SKIP)
         public Builder includeExternalIds(Optional<Boolean> includeExternalIds) {
@@ -163,8 +179,22 @@ public final class GetWorkOrdersRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the work order's custom fields (attributes) in the response. Defaults to false.</p>
+         */
+        @JsonSetter(value = "includeAttributes", nulls = Nulls.SKIP)
+        public Builder includeAttributes(Optional<Boolean> includeAttributes) {
+            this.includeAttributes = includeAttributes;
+            return this;
+        }
+
+        public Builder includeAttributes(Boolean includeAttributes) {
+            this.includeAttributes = Optional.ofNullable(includeAttributes);
+            return this;
+        }
+
         public GetWorkOrdersRequest build() {
-            return new GetWorkOrdersRequest(ids, after, includeExternalIds, additionalProperties);
+            return new GetWorkOrdersRequest(ids, after, includeExternalIds, includeAttributes, additionalProperties);
         }
     }
 }

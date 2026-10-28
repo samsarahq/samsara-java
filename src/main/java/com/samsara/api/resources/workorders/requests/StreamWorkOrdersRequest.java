@@ -38,6 +38,8 @@ public final class StreamWorkOrdersRequest {
 
     private final Optional<Boolean> includeExternalIds;
 
+    private final Optional<Boolean> includeAttributes;
+
     private final Map<String, Object> additionalProperties;
 
     private StreamWorkOrdersRequest(
@@ -48,6 +50,7 @@ public final class StreamWorkOrdersRequest {
             String startTime,
             Optional<String> endTime,
             Optional<Boolean> includeExternalIds,
+            Optional<Boolean> includeAttributes,
             Map<String, Object> additionalProperties) {
         this.workOrderStatuses = workOrderStatuses;
         this.assetIds = assetIds;
@@ -56,6 +59,7 @@ public final class StreamWorkOrdersRequest {
         this.startTime = startTime;
         this.endTime = endTime;
         this.includeExternalIds = includeExternalIds;
+        this.includeAttributes = includeAttributes;
         this.additionalProperties = additionalProperties;
     }
 
@@ -108,11 +112,19 @@ public final class StreamWorkOrdersRequest {
     }
 
     /**
-     * @return When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+     * @return When true, populates <code>externalId</code> on each work order and <code>maintenanceSite.placeExternalIds</code> by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
      */
     @JsonProperty("includeExternalIds")
     public Optional<Boolean> getIncludeExternalIds() {
         return includeExternalIds;
+    }
+
+    /**
+     * @return Whether to include the work order's custom fields (attributes) in the response. Defaults to false.
+     */
+    @JsonProperty("includeAttributes")
+    public Optional<Boolean> getIncludeAttributes() {
+        return includeAttributes;
     }
 
     @java.lang.Override
@@ -133,7 +145,8 @@ public final class StreamWorkOrdersRequest {
                 && after.equals(other.after)
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
-                && includeExternalIds.equals(other.includeExternalIds);
+                && includeExternalIds.equals(other.includeExternalIds)
+                && includeAttributes.equals(other.includeAttributes);
     }
 
     @java.lang.Override
@@ -145,7 +158,8 @@ public final class StreamWorkOrdersRequest {
                 this.after,
                 this.startTime,
                 this.endTime,
-                this.includeExternalIds);
+                this.includeExternalIds,
+                this.includeAttributes);
     }
 
     @java.lang.Override
@@ -211,16 +225,25 @@ public final class StreamWorkOrdersRequest {
         _FinalStage endTime(String endTime);
 
         /**
-         * <p>When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
+         * <p>When true, populates <code>externalId</code> on each work order and <code>maintenanceSite.placeExternalIds</code> by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
          */
         _FinalStage includeExternalIds(Optional<Boolean> includeExternalIds);
 
         _FinalStage includeExternalIds(Boolean includeExternalIds);
+
+        /**
+         * <p>Whether to include the work order's custom fields (attributes) in the response. Defaults to false.</p>
+         */
+        _FinalStage includeAttributes(Optional<Boolean> includeAttributes);
+
+        _FinalStage includeAttributes(Boolean includeAttributes);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements StartTimeStage, _FinalStage {
         private String startTime;
+
+        private Optional<Boolean> includeAttributes = Optional.empty();
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
@@ -248,6 +271,7 @@ public final class StreamWorkOrdersRequest {
             startTime(other.getStartTime());
             endTime(other.getEndTime());
             includeExternalIds(other.getIncludeExternalIds());
+            includeAttributes(other.getIncludeAttributes());
             return this;
         }
 
@@ -264,7 +288,27 @@ public final class StreamWorkOrdersRequest {
         }
 
         /**
-         * <p>When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
+         * <p>Whether to include the work order's custom fields (attributes) in the response. Defaults to false.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage includeAttributes(Boolean includeAttributes) {
+            this.includeAttributes = Optional.ofNullable(includeAttributes);
+            return this;
+        }
+
+        /**
+         * <p>Whether to include the work order's custom fields (attributes) in the response. Defaults to false.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "includeAttributes", nulls = Nulls.SKIP)
+        public _FinalStage includeAttributes(Optional<Boolean> includeAttributes) {
+            this.includeAttributes = includeAttributes;
+            return this;
+        }
+
+        /**
+         * <p>When true, populates <code>externalId</code> on each work order and <code>maintenanceSite.placeExternalIds</code> by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -274,7 +318,7 @@ public final class StreamWorkOrdersRequest {
         }
 
         /**
-         * <p>When true, populates <code>maintenanceSite.placeExternalIds</code> on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
+         * <p>When true, populates <code>externalId</code> on each work order and <code>maintenanceSite.placeExternalIds</code> by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "includeExternalIds", nulls = Nulls.SKIP)
@@ -412,6 +456,7 @@ public final class StreamWorkOrdersRequest {
                     startTime,
                     endTime,
                     includeExternalIds,
+                    includeAttributes,
                     additionalProperties);
         }
     }

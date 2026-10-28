@@ -12,12 +12,17 @@ import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCancelS
 import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCreateAssetSharingAgreementRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsCreateSharedAssetsBatchRequestBody;
 import com.samsara.api.resources.betaapis.requests.AssetSharingAgreementsUpdateSharedAssetsBatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.CampaignsPostCampaignItemsBatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.CampaignsPostCampaignsRequestBody;
 import com.samsara.api.resources.betaapis.requests.CancelAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteAssetSharingAgreementRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteFunctionStorageFileRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteHubRouteTemplateRequest;
 import com.samsara.api.resources.betaapis.requests.DeleteJobRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteMaintenanceEstimateAttachmentRequest;
+import com.samsara.api.resources.betaapis.requests.DeleteMaintenanceWorkOrderAttachmentRequest;
+import com.samsara.api.resources.betaapis.requests.DeletePartPhotoRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlaceRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.DeletePurchaseOrderRequest;
@@ -49,6 +54,9 @@ import com.samsara.api.resources.betaapis.requests.FunctionsStorageCreateFunctio
 import com.samsara.api.resources.betaapis.requests.GatewaysPairGatewaysRequestBody;
 import com.samsara.api.resources.betaapis.requests.GetAempEquipmentListRequest;
 import com.samsara.api.resources.betaapis.requests.GetAssetsInputsRequest;
+import com.samsara.api.resources.betaapis.requests.GetCampaignItemsRequest;
+import com.samsara.api.resources.betaapis.requests.GetCampaignRollupsRequest;
+import com.samsara.api.resources.betaapis.requests.GetCampaignsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDatasetsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDepreciationTransactionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetDetectionsRequest;
@@ -62,6 +70,7 @@ import com.samsara.api.resources.betaapis.requests.GetFunctionRunRequest;
 import com.samsara.api.resources.betaapis.requests.GetFunctionStorageFileRequest;
 import com.samsara.api.resources.betaapis.requests.GetHosEldEventsRequest;
 import com.samsara.api.resources.betaapis.requests.GetJobsRequest;
+import com.samsara.api.resources.betaapis.requests.GetPartPhotosRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlaceDeletionsRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlaceGeocodeRequest;
 import com.samsara.api.resources.betaapis.requests.GetPlaceGeofenceRequest;
@@ -89,6 +98,7 @@ import com.samsara.api.resources.betaapis.requests.ListDriverWorkflowsRequest;
 import com.samsara.api.resources.betaapis.requests.ListFunctionsStorageFilesRequest;
 import com.samsara.api.resources.betaapis.requests.ListHubRouteTemplatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListIssuesRequest;
+import com.samsara.api.resources.betaapis.requests.ListMaintenanceEstimatesRequest;
 import com.samsara.api.resources.betaapis.requests.ListMaintenanceVendorsRequest;
 import com.samsara.api.resources.betaapis.requests.ListPlanOrdersRequest;
 import com.samsara.api.resources.betaapis.requests.ListPurchaseOrdersRequest;
@@ -99,6 +109,11 @@ import com.samsara.api.resources.betaapis.requests.ListTachographLiveDataRequest
 import com.samsara.api.resources.betaapis.requests.ListTechnicianShiftsRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorCategoriesRequest;
 import com.samsara.api.resources.betaapis.requests.ListVendorGroupsRequest;
+import com.samsara.api.resources.betaapis.requests.MaintenanceEstimateAttachmentsCreateMaintenanceEstimateAttachmentRequestBody;
+import com.samsara.api.resources.betaapis.requests.MaintenanceEstimatesCreateMaintenanceEstimateRequestBody;
+import com.samsara.api.resources.betaapis.requests.MaintenanceEstimatesCreateMaintenanceEstimatesBatchRequestBody;
+import com.samsara.api.resources.betaapis.requests.MaintenanceEstimatesPatchMaintenanceEstimateRequestBody;
+import com.samsara.api.resources.betaapis.requests.PartPhotosPostPartPhotoRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPatchPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PlacesPostPlaceRequestBody;
 import com.samsara.api.resources.betaapis.requests.PostFleetInstallerPhotoUploadCompleteRequest;
@@ -120,6 +135,7 @@ import com.samsara.api.resources.betaapis.requests.TachographFileUploadsPostTach
 import com.samsara.api.resources.betaapis.requests.TechnicianShiftsCreateTechnicianShiftRequestBody;
 import com.samsara.api.resources.betaapis.requests.TechnicianShiftsPatchTechnicianShiftRequestBody;
 import com.samsara.api.resources.betaapis.requests.UpdateFunctionStorageFileRequest;
+import com.samsara.api.resources.betaapis.requests.WorkOrdersPostWorkOrderAttachmentRequestBody;
 import com.samsara.api.types.AempEquipmentGetAempEquipmentListResponseBody;
 import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsResponseBody;
 import com.samsara.api.types.AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody;
@@ -136,6 +152,11 @@ import com.samsara.api.types.AssetSharingAgreementsRejectAssetSharingAgreementRe
 import com.samsara.api.types.AssetSharingAgreementsUpdateSharedAssetsBatchResponseBody;
 import com.samsara.api.types.AssetsInputsGetAssetsInputsResponseBody;
 import com.samsara.api.types.AssociationsListAssociationsResponseBody;
+import com.samsara.api.types.CampaignsGetCampaignItemsResponseBody;
+import com.samsara.api.types.CampaignsGetCampaignRollupsResponseBody;
+import com.samsara.api.types.CampaignsGetCampaignsResponseBody;
+import com.samsara.api.types.CampaignsPostCampaignItemsBatchResponseBody;
+import com.samsara.api.types.CampaignsPostCampaignsResponseBody;
 import com.samsara.api.types.DepreciationGetDepreciationTransactionsResponseBody;
 import com.samsara.api.types.DetectionLogGetDetectionsResponseBody;
 import com.samsara.api.types.DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody;
@@ -184,8 +205,15 @@ import com.samsara.api.types.JobsCreateJobResponseBody;
 import com.samsara.api.types.JobsDeleteJobResponseBody;
 import com.samsara.api.types.JobsGetJobsResponseBody;
 import com.samsara.api.types.JobsPatchJobResponseBody;
+import com.samsara.api.types.MaintenanceEstimateAttachmentsCreateMaintenanceEstimateAttachmentResponseBody;
+import com.samsara.api.types.MaintenanceEstimatesCreateMaintenanceEstimateResponseBody;
+import com.samsara.api.types.MaintenanceEstimatesCreateMaintenanceEstimatesBatchResponseBody;
+import com.samsara.api.types.MaintenanceEstimatesListMaintenanceEstimatesResponseBody;
+import com.samsara.api.types.MaintenanceEstimatesPatchMaintenanceEstimateResponseBody;
 import com.samsara.api.types.MaintenanceVendorsListMaintenanceVendorsResponseBody;
 import com.samsara.api.types.MaintenanceVendorsListVendorCategoriesResponseBody;
+import com.samsara.api.types.PartPhotosGetPartPhotosResponseBody;
+import com.samsara.api.types.PartPhotosPostPartPhotoResponseBody;
 import com.samsara.api.types.PlacesGetPlaceDeletionsResponseBody;
 import com.samsara.api.types.PlacesGetPlaceGeocodeResponseBody;
 import com.samsara.api.types.PlacesGetPlaceGeofenceResponseBody;
@@ -218,6 +246,7 @@ import com.samsara.api.types.TechnicianShiftsCreateTechnicianShiftResponseBody;
 import com.samsara.api.types.TechnicianShiftsListTechnicianShiftsResponseBody;
 import com.samsara.api.types.TechnicianShiftsPatchTechnicianShiftResponseBody;
 import com.samsara.api.types.WorkOrdersGetWorkOrderTemplatesResponseBody;
+import com.samsara.api.types.WorkOrdersPostWorkOrderAttachmentResponseBody;
 
 public class BetaApIsClient {
     protected final ClientOptions clientOptions;
@@ -300,7 +329,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned in ascending order by the selected time field. Use queryByTimeField=updatedAtTime for incremental sync.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -310,7 +339,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned in ascending order by the selected time field. Use queryByTimeField=updatedAtTime for incremental sync.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -321,7 +350,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned in ascending order by the selected time field. Use queryByTimeField=updatedAtTime for incremental sync.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -332,7 +361,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Returns depreciation and adjustment transactions for assets. Transactions are returned ordered by updatedAt in ascending order (oldest to newest). Use startTime parameter for incremental sync.
+     * Returns depreciation and adjustment transactions for assets. Transactions are returned in ascending order by the selected time field. Use queryByTimeField=updatedAtTime for incremental sync.
      * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Read Assets</strong> under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -750,7 +779,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Creates a new Data Sharing Agreement (DSA) in pending status. Only the provider organization can create an agreement, and the recipient must be a different organization. Use providerDataPackages and recipientDataPackages to declare which categories of data flow to each side, and operator to indicate which organization operates the assets (where the gateways live).
+     * Creates a new Data Sharing Agreement (DSA) in pending status. When the flexible operating model is enabled, either the provider or recipient can create an agreement, and the authenticated caller determines createdByParty. The provider owns the assets, and the two organizations must differ. providerOrganizationId defaults to the caller; recipient callers supply the provider ID and providerOrganizationName. Provider callers supply recipientOrganizationName. payer selects the party whose Asset Sharing license supports the agreement and defaults to the creator. Without the flexible operating model, only the provider can create and pay. Use providerDataPackages and recipientDataPackages to declare which categories of data flow to each side, and operator to indicate which organization operates the assets (where the gateways live).
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -761,7 +790,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Creates a new Data Sharing Agreement (DSA) in pending status. Only the provider organization can create an agreement, and the recipient must be a different organization. Use providerDataPackages and recipientDataPackages to declare which categories of data flow to each side, and operator to indicate which organization operates the assets (where the gateways live).
+     * Creates a new Data Sharing Agreement (DSA) in pending status. When the flexible operating model is enabled, either the provider or recipient can create an agreement, and the authenticated caller determines createdByParty. The provider owns the assets, and the two organizations must differ. providerOrganizationId defaults to the caller; recipient callers supply the provider ID and providerOrganizationName. Provider callers supply recipientOrganizationName. payer selects the party whose Asset Sharing license supports the agreement and defaults to the creator. Without the flexible operating model, only the provider can create and pay. Use providerDataPackages and recipientDataPackages to declare which categories of data flow to each side, and operator to indicate which organization operates the assets (where the gateways live).
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -774,7 +803,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Soft-deletes a Data Sharing Agreement so it no longer appears in list results. Only the provider organization can delete, and only while the agreement is in pending, rejected, or canceled status; an accepted agreement must be canceled first. Identify the agreement with the id query parameter. Returns 204 No Content.
+     * Soft-deletes a Data Sharing Agreement so it no longer appears in list results. Only the organization that created the agreement can delete (the provider for older agreements), and only while the agreement is in pending, rejected, or canceled status; an accepted agreement must be canceled first. Identify the agreement with the id query parameter. Returns 204 No Content.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -784,7 +813,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Soft-deletes a Data Sharing Agreement so it no longer appears in list results. Only the provider organization can delete, and only while the agreement is in pending, rejected, or canceled status; an accepted agreement must be canceled first. Identify the agreement with the id query parameter. Returns 204 No Content.
+     * Soft-deletes a Data Sharing Agreement so it no longer appears in list results. Only the organization that created the agreement can delete (the provider for older agreements), and only while the agreement is in pending, rejected, or canceled status; an accepted agreement must be canceled first. Identify the agreement with the id query parameter. Returns 204 No Content.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -794,7 +823,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Accepts a pending Data Sharing Agreement, transitioning it to accepted. Only the recipient organization can accept. Identify the agreement with the id query parameter.
+     * Accepts a pending Data Sharing Agreement, transitioning it to accepted. Only the organization that did not create the agreement can accept its terms as proposed. To change the terms, reject the agreement and create a new one. For older agreements, the creator is the provider and only the recipient can accept. Identify the agreement with the id query parameter.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -805,7 +834,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Accepts a pending Data Sharing Agreement, transitioning it to accepted. Only the recipient organization can accept. Identify the agreement with the id query parameter.
+     * Accepts a pending Data Sharing Agreement, transitioning it to accepted. Only the organization that did not create the agreement can accept its terms as proposed. To change the terms, reject the agreement and create a new one. For older agreements, the creator is the provider and only the recipient can accept. Identify the agreement with the id query parameter.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -929,7 +958,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Rejects a pending Data Sharing Agreement, transitioning it to the terminal rejected state. Only the recipient organization can reject. Identify the agreement with the id query parameter.
+     * Rejects a pending Data Sharing Agreement, transitioning it to the terminal rejected state. Only the organization that did not create the agreement can reject. For older agreements, the creator is the provider and only the recipient can reject. Identify the agreement with the id query parameter.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -940,7 +969,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Rejects a pending Data Sharing Agreement, transitioning it to the terminal rejected state. Only the recipient organization can reject. Identify the agreement with the id query parameter.
+     * Rejects a pending Data Sharing Agreement, transitioning it to the terminal rejected state. Only the organization that did not create the agreement can reject. For older agreements, the creator is the provider and only the recipient can reject. Identify the agreement with the id query parameter.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Asset Sharing</strong> under the Asset Sharing category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -2220,7 +2249,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Creates a Ground Intelligence watchpoint for the organization.
+     * Creates a Ground Intelligence watchpoint for the organization. The submitted location may be snapped to a road within 75 meters. Use the location returned in the response as the saved watchpoint location.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Watchpoints</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -2231,7 +2260,7 @@ public class BetaApIsClient {
     }
 
     /**
-     * Creates a Ground Intelligence watchpoint for the organization.
+     * Creates a Ground Intelligence watchpoint for the organization. The submitted location may be snapped to a road within 75 meters. Use the location returned in the response as the saved watchpoint location.
      * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
      * <p>To use this endpoint, select <strong>Write Watchpoints</strong> under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
      * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
@@ -2392,6 +2421,354 @@ public class BetaApIsClient {
     public HubRouteTemplatesUpdateHubRouteTemplateResponseBody updateHubRouteTemplate(
             HubRouteTemplatesUpdateHubRouteTemplateRequestBody request, RequestOptions requestOptions) {
         return this.rawClient.updateHubRouteTemplate(request, requestOptions).body();
+    }
+
+    /**
+     * Gets campaigns. Optionally filter to specific campaign ids; returns 404 Not Found when none of the requested ids resolve to a campaign.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignsResponseBody getCampaigns() {
+        return this.rawClient.getCampaigns().body();
+    }
+
+    /**
+     * Gets campaigns. Optionally filter to specific campaign ids; returns 404 Not Found when none of the requested ids resolve to a campaign.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignsResponseBody getCampaigns(RequestOptions requestOptions) {
+        return this.rawClient.getCampaigns(requestOptions).body();
+    }
+
+    /**
+     * Gets campaigns. Optionally filter to specific campaign ids; returns 404 Not Found when none of the requested ids resolve to a campaign.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignsResponseBody getCampaigns(GetCampaignsRequest request) {
+        return this.rawClient.getCampaigns(request).body();
+    }
+
+    /**
+     * Gets campaigns. Optionally filter to specific campaign ids; returns 404 Not Found when none of the requested ids resolve to a campaign.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignsResponseBody getCampaigns(GetCampaignsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getCampaigns(request, requestOptions).body();
+    }
+
+    /**
+     * Creates a campaign. The campaign is created in your organization's Draft status with <code>createdSource</code> set to <code>api</code>. Creating a campaign never creates work orders or places items on hold.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsPostCampaignsResponseBody postCampaigns(CampaignsPostCampaignsRequestBody request) {
+        return this.rawClient.postCampaigns(request).body();
+    }
+
+    /**
+     * Creates a campaign. The campaign is created in your organization's Draft status with <code>createdSource</code> set to <code>api</code>. Creating a campaign never creates work orders or places items on hold.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsPostCampaignsResponseBody postCampaigns(
+            CampaignsPostCampaignsRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postCampaigns(request, requestOptions).body();
+    }
+
+    /**
+     * Gets the items of a campaign, with each item's stored state, effective state, linked work order, VIN and source.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignItemsResponseBody getCampaignItems(GetCampaignItemsRequest request) {
+        return this.rawClient.getCampaignItems(request).body();
+    }
+
+    /**
+     * Gets the items of a campaign, with each item's stored state, effective state, linked work order, VIN and source.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignItemsResponseBody getCampaignItems(
+            GetCampaignItemsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getCampaignItems(request, requestOptions).body();
+    }
+
+    /**
+     * Adds assets to a campaign by VIN or asset ID, for campaigns whose membership is managed outside Samsara. Up to 5000 entries per request; the rate limit applies to this endpoint, not to the individual entries. Each entry is processed independently and the response reports a result per entry, in request order: <code>created</code>, <code>alreadyPresent</code>, <code>unresolvedVin</code>, <code>unresolvedAssetId</code>, <code>invalid</code> or <code>overCap</code>. A campaign holds at most 100000 items. Items are created in <code>pending</code> with <code>sourceBasis</code> <code>api</code>. An asset joins a campaign at most once, so requests are idempotent: an asset that already has an item, including a dismissed one, is reported as <code>alreadyPresent</code> and never re-added. Ingesting items never creates work orders or places holds. Not accepted for <code>complete</code> or <code>cancelled</code> campaigns.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsPostCampaignItemsBatchResponseBody postCampaignItemsBatch(
+            CampaignsPostCampaignItemsBatchRequestBody request) {
+        return this.rawClient.postCampaignItemsBatch(request).body();
+    }
+
+    /**
+     * Adds assets to a campaign by VIN or asset ID, for campaigns whose membership is managed outside Samsara. Up to 5000 entries per request; the rate limit applies to this endpoint, not to the individual entries. Each entry is processed independently and the response reports a result per entry, in request order: <code>created</code>, <code>alreadyPresent</code>, <code>unresolvedVin</code>, <code>unresolvedAssetId</code>, <code>invalid</code> or <code>overCap</code>. A campaign holds at most 100000 items. Items are created in <code>pending</code> with <code>sourceBasis</code> <code>api</code>. An asset joins a campaign at most once, so requests are idempotent: an asset that already has an item, including a dismissed one, is reported as <code>alreadyPresent</code> and never re-added. Ingesting items never creates work orders or places holds. Not accepted for <code>complete</code> or <code>cancelled</code> campaigns.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsPostCampaignItemsBatchResponseBody postCampaignItemsBatch(
+            CampaignsPostCampaignItemsBatchRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postCampaignItemsBatch(request, requestOptions).body();
+    }
+
+    /**
+     * Gets item counts for a campaign grouped by item state, plus the number of items aging in a non-terminal state.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignRollupsResponseBody getCampaignRollups(GetCampaignRollupsRequest request) {
+        return this.rawClient.getCampaignRollups(request).body();
+    }
+
+    /**
+     * Gets item counts for a campaign grouped by item state, plus the number of items aging in a non-terminal state.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Campaigns</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public CampaignsGetCampaignRollupsResponseBody getCampaignRollups(
+            GetCampaignRollupsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getCampaignRollups(request, requestOptions).body();
+    }
+
+    /**
+     * Read estimates by IDs or work orders, including historical decisions. One primary selector is required. Up to 100 estimate IDs, 10 WO IDs and 10 vendor IDs bound query and authorization work. Filters use OR within each set and AND across sets.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesListMaintenanceEstimatesResponseBody listMaintenanceEstimates() {
+        return this.rawClient.listMaintenanceEstimates().body();
+    }
+
+    /**
+     * Read estimates by IDs or work orders, including historical decisions. One primary selector is required. Up to 100 estimate IDs, 10 WO IDs and 10 vendor IDs bound query and authorization work. Filters use OR within each set and AND across sets.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesListMaintenanceEstimatesResponseBody listMaintenanceEstimates(
+            RequestOptions requestOptions) {
+        return this.rawClient.listMaintenanceEstimates(requestOptions).body();
+    }
+
+    /**
+     * Read estimates by IDs or work orders, including historical decisions. One primary selector is required. Up to 100 estimate IDs, 10 WO IDs and 10 vendor IDs bound query and authorization work. Filters use OR within each set and AND across sets.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesListMaintenanceEstimatesResponseBody listMaintenanceEstimates(
+            ListMaintenanceEstimatesRequest request) {
+        return this.rawClient.listMaintenanceEstimates(request).body();
+    }
+
+    /**
+     * Read estimates by IDs or work orders, including historical decisions. One primary selector is required. Up to 100 estimate IDs, 10 WO IDs and 10 vendor IDs bound query and authorization work. Filters use OR within each set and AND across sets.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesListMaintenanceEstimatesResponseBody listMaintenanceEstimates(
+            ListMaintenanceEstimatesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listMaintenanceEstimates(request, requestOptions).body();
+    }
+
+    /**
+     * Create a priced vendor quote or expected-cost recommendation for a work order.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesCreateMaintenanceEstimateResponseBody createMaintenanceEstimate(
+            MaintenanceEstimatesCreateMaintenanceEstimateRequestBody request) {
+        return this.rawClient.createMaintenanceEstimate(request).body();
+    }
+
+    /**
+     * Create a priced vendor quote or expected-cost recommendation for a work order.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesCreateMaintenanceEstimateResponseBody createMaintenanceEstimate(
+            MaintenanceEstimatesCreateMaintenanceEstimateRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createMaintenanceEstimate(request, requestOptions).body();
+    }
+
+    /**
+     * Update eligible quote content or convert the active selected expectedCost recommendation to vendorQuote with the same estimate ID. Type conversion can include pricing changes but must be separate from approval, cancellation and award; reverse conversion is not allowed. Otherwise approve or deny through Samsara approval and UTS, or separately award an approved quote through the native work-order flow. Award assigns the vendor and preserves the exact financial baseline; applying quote lines to work-order service tasks is a separate dashboard action. Selecting a different quote while an active award exists is rejected; withdraw an eligible awarded quote before awarding its replacement. Approval and award require their respective authority and must be separate updates. Approval, cancellation or award cannot be combined with content or external ID changes. Cancel an unapproved or pending estimate and close any open approval ticket. Cancellation retains history. For an active externally selected recommendation or unapproved quote, this existing cancellation path also releases that selection, clears its vendor assignment and returns an open work order to vendor selection. Cancelling an unselected recommendation leaves other selections unchanged, and native quote cancellation preserves vendor assignment. A current finished vendorQuote that is approved, denied or awarded can instead be withdrawn while retaining its approval decision and award history and retiring only its exact completed active award. This decided-quote withdrawal does not change the work order, vendor assignment, selection attempt, service tasks, actual costs or invoices. It is not restricted by whether repair work has started. Cancellation requires approval authority and, for a known or current award, separate award authority. Processing or superseded quotes and incomplete awards cannot be withdrawn; retry an award in progress after reconciliation. Repeating a cancellation is safe. Omitted fields remain unchanged.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesPatchMaintenanceEstimateResponseBody patchMaintenanceEstimate(
+            MaintenanceEstimatesPatchMaintenanceEstimateRequestBody request) {
+        return this.rawClient.patchMaintenanceEstimate(request).body();
+    }
+
+    /**
+     * Update eligible quote content or convert the active selected expectedCost recommendation to vendorQuote with the same estimate ID. Type conversion can include pricing changes but must be separate from approval, cancellation and award; reverse conversion is not allowed. Otherwise approve or deny through Samsara approval and UTS, or separately award an approved quote through the native work-order flow. Award assigns the vendor and preserves the exact financial baseline; applying quote lines to work-order service tasks is a separate dashboard action. Selecting a different quote while an active award exists is rejected; withdraw an eligible awarded quote before awarding its replacement. Approval and award require their respective authority and must be separate updates. Approval, cancellation or award cannot be combined with content or external ID changes. Cancel an unapproved or pending estimate and close any open approval ticket. Cancellation retains history. For an active externally selected recommendation or unapproved quote, this existing cancellation path also releases that selection, clears its vendor assignment and returns an open work order to vendor selection. Cancelling an unselected recommendation leaves other selections unchanged, and native quote cancellation preserves vendor assignment. A current finished vendorQuote that is approved, denied or awarded can instead be withdrawn while retaining its approval decision and award history and retiring only its exact completed active award. This decided-quote withdrawal does not change the work order, vendor assignment, selection attempt, service tasks, actual costs or invoices. It is not restricted by whether repair work has started. Cancellation requires approval authority and, for a known or current award, separate award authority. Processing or superseded quotes and incomplete awards cannot be withdrawn; retry an award in progress after reconciliation. Repeating a cancellation is safe. Omitted fields remain unchanged.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesPatchMaintenanceEstimateResponseBody patchMaintenanceEstimate(
+            MaintenanceEstimatesPatchMaintenanceEstimateRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.patchMaintenanceEstimate(request, requestOptions).body();
+    }
+
+    /**
+     * Attach a PDF, JPEG or PNG to an editable estimate and its work order. Supply exactly one of file (up to 7.5 MB decoded) or upload (up to 40 MB). For upload, PUT the declared file with matching Content-Type, Content-MD5 and Content-Length before uploadPut expires, then read the estimate for availability. Up to 50 work-order attachments are supported.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimateAttachmentsCreateMaintenanceEstimateAttachmentResponseBody
+            createMaintenanceEstimateAttachment(
+                    MaintenanceEstimateAttachmentsCreateMaintenanceEstimateAttachmentRequestBody request) {
+        return this.rawClient.createMaintenanceEstimateAttachment(request).body();
+    }
+
+    /**
+     * Attach a PDF, JPEG or PNG to an editable estimate and its work order. Supply exactly one of file (up to 7.5 MB decoded) or upload (up to 40 MB). For upload, PUT the declared file with matching Content-Type, Content-MD5 and Content-Length before uploadPut expires, then read the estimate for availability. Up to 50 work-order attachments are supported.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimateAttachmentsCreateMaintenanceEstimateAttachmentResponseBody
+            createMaintenanceEstimateAttachment(
+                    MaintenanceEstimateAttachmentsCreateMaintenanceEstimateAttachmentRequestBody request,
+                    RequestOptions requestOptions) {
+        return this.rawClient
+                .createMaintenanceEstimateAttachment(request, requestOptions)
+                .body();
+    }
+
+    /**
+     * Remove evidence from an editable estimate. Returns no content. Read the estimate for its updated version.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteMaintenanceEstimateAttachment(DeleteMaintenanceEstimateAttachmentRequest request) {
+        this.rawClient.deleteMaintenanceEstimateAttachment(request).body();
+    }
+
+    /**
+     * Remove evidence from an editable estimate. Returns no content. Read the estimate for its updated version.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteMaintenanceEstimateAttachment(
+            DeleteMaintenanceEstimateAttachmentRequest request, RequestOptions requestOptions) {
+        this.rawClient
+                .deleteMaintenanceEstimateAttachment(request, requestOptions)
+                .body();
+    }
+
+    /**
+     * Create 1–10 unapproved priced recommendations or vendor quotes in one request, limited to 3000000 raw JSON bytes. The batch is non-atomic: each create is independently authorized and validated, and successful writes remain committed when another item fails. Structural request errors return 400 before execution; exceeding the count or byte bound returns 413. Item business errors are returned in input order alongside successes, under HTTP 200. The rate limit applies to batch requests, not individual estimates. Approval, denial, award and attachments use their existing separate operations. Retry failed items only; reconcile ambiguous outcomes by stable external IDs through GET before retrying, because ordinary quote creation is not automatically replayed.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesCreateMaintenanceEstimatesBatchResponseBody createMaintenanceEstimatesBatch(
+            MaintenanceEstimatesCreateMaintenanceEstimatesBatchRequestBody request) {
+        return this.rawClient.createMaintenanceEstimatesBatch(request).body();
+    }
+
+    /**
+     * Create 1–10 unapproved priced recommendations or vendor quotes in one request, limited to 3000000 raw JSON bytes. The batch is non-atomic: each create is independently authorized and validated, and successful writes remain committed when another item fails. Structural request errors return 400 before execution; exceeding the count or byte bound returns 413. Item business errors are returned in input order alongside successes, under HTTP 200. The rate limit applies to batch requests, not individual estimates. Approval, denial, award and attachments use their existing separate operations. Retry failed items only; reconcile ambiguous outcomes by stable external IDs through GET before retrying, because ordinary quote creation is not automatically replayed.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceEstimatesCreateMaintenanceEstimatesBatchResponseBody createMaintenanceEstimatesBatch(
+            MaintenanceEstimatesCreateMaintenanceEstimatesBatchRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient
+                .createMaintenanceEstimatesBatch(request, requestOptions)
+                .body();
+    }
+
+    /**
+     * Returns the profile photo and other photos of a part.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PartPhotosGetPartPhotosResponseBody getPartPhotos(GetPartPhotosRequest request) {
+        return this.rawClient.getPartPhotos(request).body();
+    }
+
+    /**
+     * Returns the profile photo and other photos of a part.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PartPhotosGetPartPhotosResponseBody getPartPhotos(
+            GetPartPhotosRequest request, RequestOptions requestOptions) {
+        return this.rawClient.getPartPhotos(request, requestOptions).body();
+    }
+
+    /**
+     * Adds a photo to an existing part. Accepts base64 encoded JPEG or PNG images up to 7.5MB decoded. The photo is returned with processingStatus 'processing' until it is ready; GET /maintenance/parts/photos returns its url once processingStatus is 'finished'.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PartPhotosPostPartPhotoResponseBody postPartPhoto(PartPhotosPostPartPhotoRequestBody request) {
+        return this.rawClient.postPartPhoto(request).body();
+    }
+
+    /**
+     * Adds a photo to an existing part. Accepts base64 encoded JPEG or PNG images up to 7.5MB decoded. The photo is returned with processingStatus 'processing' until it is ready; GET /maintenance/parts/photos returns its url once processingStatus is 'finished'.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public PartPhotosPostPartPhotoResponseBody postPartPhoto(
+            PartPhotosPostPartPhotoRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postPartPhoto(request, requestOptions).body();
+    }
+
+    /**
+     * Deletes a photo of a part.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deletePartPhoto(DeletePartPhotoRequest request) {
+        this.rawClient.deletePartPhoto(request).body();
+    }
+
+    /**
+     * Deletes a photo of a part.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Parts</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deletePartPhoto(DeletePartPhotoRequest request, RequestOptions requestOptions) {
+        this.rawClient.deletePartPhoto(request, requestOptions).body();
     }
 
     /**
@@ -2604,6 +2981,51 @@ public class BetaApIsClient {
     public WorkOrdersGetWorkOrderTemplatesResponseBody getWorkOrderTemplates(
             GetWorkOrderTemplatesRequest request, RequestOptions requestOptions) {
         return this.rawClient.getWorkOrderTemplates(request, requestOptions).body();
+    }
+
+    /**
+     * Attaches a PDF, JPEG or PNG file to an existing work order. Supply exactly one of file (base64, at most 7,864,320 decoded bytes) or upload (up to 40,000,000 bytes). For upload, PUT the declared file with matching Content-Type, Content-MD5 and Content-Length before uploadPut expires. Read GET /maintenance/work-orders for availability and the download URL after successful upload. Presigned uploads require the estimate REST rollout to be enabled.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public WorkOrdersPostWorkOrderAttachmentResponseBody postWorkOrderAttachment(
+            WorkOrdersPostWorkOrderAttachmentRequestBody request) {
+        return this.rawClient.postWorkOrderAttachment(request).body();
+    }
+
+    /**
+     * Attaches a PDF, JPEG or PNG file to an existing work order. Supply exactly one of file (base64, at most 7,864,320 decoded bytes) or upload (up to 40,000,000 bytes). For upload, PUT the declared file with matching Content-Type, Content-MD5 and Content-Length before uploadPut expires. Read GET /maintenance/work-orders for availability and the download URL after successful upload. Presigned uploads require the estimate REST rollout to be enabled.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public WorkOrdersPostWorkOrderAttachmentResponseBody postWorkOrderAttachment(
+            WorkOrdersPostWorkOrderAttachmentRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.postWorkOrderAttachment(request, requestOptions).body();
+    }
+
+    /**
+     * Remove a work-order attachment by its attachment ID. Returns no content. Evidence referenced by a pending, approved, denied, awarded or superseded estimate, or retained as a reviewed estimate source, cannot be removed. Requires estimate REST access to be enabled.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteMaintenanceWorkOrderAttachment(DeleteMaintenanceWorkOrderAttachmentRequest request) {
+        this.rawClient.deleteMaintenanceWorkOrderAttachment(request).body();
+    }
+
+    /**
+     * Remove a work-order attachment by its attachment ID. Returns no content. Evidence referenced by a pending, approved, denied, awarded or superseded estimate, or retained as a reviewed estimate source, cannot be removed. Requires estimate REST access to be enabled.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteMaintenanceWorkOrderAttachment(
+            DeleteMaintenanceWorkOrderAttachmentRequest request, RequestOptions requestOptions) {
+        this.rawClient
+                .deleteMaintenanceWorkOrderAttachment(request, requestOptions)
+                .body();
     }
 
     /**

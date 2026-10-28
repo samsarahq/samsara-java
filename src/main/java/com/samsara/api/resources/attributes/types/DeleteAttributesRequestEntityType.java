@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class DeleteAttributesRequestEntityType {
+    public static final DeleteAttributesRequestEntityType WORK_ORDER =
+            new DeleteAttributesRequestEntityType(Value.WORK_ORDER, "workOrder");
+
     public static final DeleteAttributesRequestEntityType DRIVER =
             new DeleteAttributesRequestEntityType(Value.DRIVER, "driver");
 
@@ -46,6 +49,8 @@ public final class DeleteAttributesRequestEntityType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case WORK_ORDER:
+                return visitor.visitWorkOrder();
             case DRIVER:
                 return visitor.visitDriver();
             case ASSET:
@@ -59,6 +64,8 @@ public final class DeleteAttributesRequestEntityType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static DeleteAttributesRequestEntityType valueOf(String value) {
         switch (value) {
+            case "workOrder":
+                return WORK_ORDER;
             case "driver":
                 return DRIVER;
             case "asset":
@@ -73,6 +80,8 @@ public final class DeleteAttributesRequestEntityType {
 
         ASSET,
 
+        WORK_ORDER,
+
         UNKNOWN
     }
 
@@ -80,6 +89,8 @@ public final class DeleteAttributesRequestEntityType {
         T visitDriver();
 
         T visitAsset();
+
+        T visitWorkOrder();
 
         T visitUnknown(String unknownType);
     }

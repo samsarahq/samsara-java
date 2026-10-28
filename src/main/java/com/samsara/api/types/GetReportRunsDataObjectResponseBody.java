@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 public final class GetReportRunsDataObjectResponseBody {
     private final List<ReportColumnsObjectResponseBody> columns;
 
-    private final List<List<Map<String, Object>>> rows;
+    private final List<List<Object>> rows;
 
     private final GetReportRunsDataObjectResponseBodyStatus status;
 
@@ -32,7 +32,7 @@ public final class GetReportRunsDataObjectResponseBody {
 
     private GetReportRunsDataObjectResponseBody(
             List<ReportColumnsObjectResponseBody> columns,
-            List<List<Map<String, Object>>> rows,
+            List<List<Object>> rows,
             GetReportRunsDataObjectResponseBodyStatus status,
             Map<String, Object> additionalProperties) {
         this.columns = columns;
@@ -53,7 +53,7 @@ public final class GetReportRunsDataObjectResponseBody {
      * @return Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.
      */
     @JsonProperty("rows")
-    public List<List<Map<String, Object>>> getRows() {
+    public List<List<Object>> getRows() {
         return rows;
     }
 
@@ -119,18 +119,18 @@ public final class GetReportRunsDataObjectResponseBody {
         /**
          * <p>Array where each inner array represents a row of data, and each element in the inner array is a value for the column. Inner array items are nullable, data types: double, string, timestamp as string in RFC3339 format. The number of columns defined in the report run is to the number of inner array items.</p>
          */
-        _FinalStage rows(List<List<Map<String, Object>>> rows);
+        _FinalStage rows(List<List<Object>> rows);
 
-        _FinalStage addRows(List<Map<String, Object>> rows);
+        _FinalStage addRows(List<Object> rows);
 
-        _FinalStage addAllRows(List<List<Map<String, Object>>> rows);
+        _FinalStage addAllRows(List<List<Object>> rows);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements StatusStage, _FinalStage {
         private GetReportRunsDataObjectResponseBodyStatus status;
 
-        private List<List<Map<String, Object>>> rows = new ArrayList<>();
+        private List<List<Object>> rows = new ArrayList<>();
 
         private List<ReportColumnsObjectResponseBody> columns = new ArrayList<>();
 
@@ -164,7 +164,7 @@ public final class GetReportRunsDataObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllRows(List<List<Map<String, Object>>> rows) {
+        public _FinalStage addAllRows(List<List<Object>> rows) {
             if (rows != null) {
                 this.rows.addAll(rows);
             }
@@ -176,7 +176,7 @@ public final class GetReportRunsDataObjectResponseBody {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addRows(List<Map<String, Object>> rows) {
+        public _FinalStage addRows(List<Object> rows) {
             this.rows.add(rows);
             return this;
         }
@@ -186,7 +186,7 @@ public final class GetReportRunsDataObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter(value = "rows", nulls = Nulls.SKIP)
-        public _FinalStage rows(List<List<Map<String, Object>>> rows) {
+        public _FinalStage rows(List<List<Object>> rows) {
             this.rows.clear();
             if (rows != null) {
                 this.rows.addAll(rows);

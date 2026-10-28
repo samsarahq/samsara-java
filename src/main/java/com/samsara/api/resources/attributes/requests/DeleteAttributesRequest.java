@@ -31,7 +31,7 @@ public final class DeleteAttributesRequest {
     }
 
     /**
-     * @return Denotes the type of entity, driver or asset.
+     * @return Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.
      */
     @JsonProperty("entityType")
     public DeleteAttributesRequestEntityType getEntityType() {
@@ -69,7 +69,7 @@ public final class DeleteAttributesRequest {
 
     public interface EntityTypeStage {
         /**
-         * <p>Denotes the type of entity, driver or asset.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.</p>
          */
         _FinalStage entityType(@NotNull DeleteAttributesRequestEntityType entityType);
 
@@ -96,8 +96,8 @@ public final class DeleteAttributesRequest {
         }
 
         /**
-         * <p>Denotes the type of entity, driver or asset.</p>
-         * <p>Denotes the type of entity, driver or asset.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. <code>workOrder</code> requires work order attributes to be enabled for the organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

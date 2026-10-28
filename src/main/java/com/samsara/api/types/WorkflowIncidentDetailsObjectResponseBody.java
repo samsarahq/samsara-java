@@ -138,6 +138,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
     private final Optional<TamperingDetectedResponseBody> tamperingDetected;
 
+    private final Optional<ThermographTemperatureResponseBody> thermographTemperature;
+
     private final Optional<TireFaultsResponseBody> tireFaults;
 
     private final Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower;
@@ -218,6 +220,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             Optional<SuddenFuelLevelDropResponseBody> suddenFuelLevelDrop,
             Optional<SuddenFuelLevelRiseResponseBody> suddenFuelLevelRise,
             Optional<TamperingDetectedResponseBody> tamperingDetected,
+            Optional<ThermographTemperatureResponseBody> thermographTemperature,
             Optional<TireFaultsResponseBody> tireFaults,
             Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower,
             Optional<UnassignedDrivingDataResponseBody> unassignedDriving,
@@ -287,6 +290,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         this.suddenFuelLevelDrop = suddenFuelLevelDrop;
         this.suddenFuelLevelRise = suddenFuelLevelRise;
         this.tamperingDetected = tamperingDetected;
+        this.thermographTemperature = thermographTemperature;
         this.tireFaults = tireFaults;
         this.trailerMovingWithoutPower = trailerMovingWithoutPower;
         this.unassignedDriving = unassignedDriving;
@@ -594,6 +598,11 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
         return tamperingDetected;
     }
 
+    @JsonProperty("thermographTemperature")
+    public Optional<ThermographTemperatureResponseBody> getThermographTemperature() {
+        return thermographTemperature;
+    }
+
     @JsonProperty("tireFaults")
     public Optional<TireFaultsResponseBody> getTireFaults() {
         return tireFaults;
@@ -711,6 +720,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 && suddenFuelLevelDrop.equals(other.suddenFuelLevelDrop)
                 && suddenFuelLevelRise.equals(other.suddenFuelLevelRise)
                 && tamperingDetected.equals(other.tamperingDetected)
+                && thermographTemperature.equals(other.thermographTemperature)
                 && tireFaults.equals(other.tireFaults)
                 && trailerMovingWithoutPower.equals(other.trailerMovingWithoutPower)
                 && unassignedDriving.equals(other.unassignedDriving)
@@ -784,6 +794,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                 this.suddenFuelLevelDrop,
                 this.suddenFuelLevelRise,
                 this.tamperingDetected,
+                this.thermographTemperature,
                 this.tireFaults,
                 this.trailerMovingWithoutPower,
                 this.unassignedDriving,
@@ -926,6 +937,8 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
 
         private Optional<TamperingDetectedResponseBody> tamperingDetected = Optional.empty();
 
+        private Optional<ThermographTemperatureResponseBody> thermographTemperature = Optional.empty();
+
         private Optional<TireFaultsResponseBody> tireFaults = Optional.empty();
 
         private Optional<TrailerMovingWithoutPowerDataResponseBody> trailerMovingWithoutPower = Optional.empty();
@@ -1009,6 +1022,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             suddenFuelLevelDrop(other.getSuddenFuelLevelDrop());
             suddenFuelLevelRise(other.getSuddenFuelLevelRise());
             tamperingDetected(other.getTamperingDetected());
+            thermographTemperature(other.getThermographTemperature());
             tireFaults(other.getTireFaults());
             trailerMovingWithoutPower(other.getTrailerMovingWithoutPower());
             unassignedDriving(other.getUnassignedDriving());
@@ -1680,6 +1694,17 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
             return this;
         }
 
+        @JsonSetter(value = "thermographTemperature", nulls = Nulls.SKIP)
+        public Builder thermographTemperature(Optional<ThermographTemperatureResponseBody> thermographTemperature) {
+            this.thermographTemperature = thermographTemperature;
+            return this;
+        }
+
+        public Builder thermographTemperature(ThermographTemperatureResponseBody thermographTemperature) {
+            this.thermographTemperature = Optional.ofNullable(thermographTemperature);
+            return this;
+        }
+
         @JsonSetter(value = "tireFaults", nulls = Nulls.SKIP)
         public Builder tireFaults(Optional<TireFaultsResponseBody> tireFaults) {
             this.tireFaults = tireFaults;
@@ -1842,6 +1867,7 @@ public final class WorkflowIncidentDetailsObjectResponseBody {
                     suddenFuelLevelDrop,
                     suddenFuelLevelRise,
                     tamperingDetected,
+                    thermographTemperature,
                     tireFaults,
                     trailerMovingWithoutPower,
                     unassignedDriving,

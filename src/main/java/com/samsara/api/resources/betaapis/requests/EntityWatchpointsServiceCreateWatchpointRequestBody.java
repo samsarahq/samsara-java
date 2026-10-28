@@ -14,8 +14,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.betaapis.types.EntityWatchpointsServiceCreateWatchpointRequestBodyMode;
 import com.samsara.api.resources.betaapis.types.EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType;
+import com.samsara.api.types.WatchpointBearingRangeTypeRequestBody;
+import com.samsara.api.types.WatchpointCustomDetectionRequestTypeRequestBody;
 import com.samsara.api.types.WatchpointLatLngTypeRequestBody;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,6 +27,10 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EntityWatchpointsServiceCreateWatchpointRequestBody.Builder.class)
 public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
+    private final Optional<WatchpointBearingRangeTypeRequestBody> bearingRange;
+
+    private final Optional<List<WatchpointCustomDetectionRequestTypeRequestBody>> customDetections;
+
     private final WatchpointLatLngTypeRequestBody location;
 
     private final EntityWatchpointsServiceCreateWatchpointRequestBodyMode mode;
@@ -34,21 +41,42 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
 
     private final EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType observationType;
 
+    private final Optional<Boolean> sendDashboardNotification;
+
     private final Map<String, Object> additionalProperties;
 
     private EntityWatchpointsServiceCreateWatchpointRequestBody(
+            Optional<WatchpointBearingRangeTypeRequestBody> bearingRange,
+            Optional<List<WatchpointCustomDetectionRequestTypeRequestBody>> customDetections,
             WatchpointLatLngTypeRequestBody location,
             EntityWatchpointsServiceCreateWatchpointRequestBodyMode mode,
             Optional<String> name,
             Optional<String> note,
             EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType observationType,
+            Optional<Boolean> sendDashboardNotification,
             Map<String, Object> additionalProperties) {
+        this.bearingRange = bearingRange;
+        this.customDetections = customDetections;
         this.location = location;
         this.mode = mode;
         this.name = name;
         this.note = note;
         this.observationType = observationType;
+        this.sendDashboardNotification = sendDashboardNotification;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("bearingRange")
+    public Optional<WatchpointBearingRangeTypeRequestBody> getBearingRange() {
+        return bearingRange;
+    }
+
+    /**
+     * @return Conditions to detect in new observations. Defaults to none. Requires custom detections to be enabled for your organization. Types must be distinct.
+     */
+    @JsonProperty("customDetections")
+    public Optional<List<WatchpointCustomDetectionRequestTypeRequestBody>> getCustomDetections() {
+        return customDetections;
     }
 
     @JsonProperty("location")
@@ -57,7 +85,7 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
     }
 
     /**
-     * @return Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>
+     * @return Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code>
      */
     @JsonProperty("mode")
     public EntityWatchpointsServiceCreateWatchpointRequestBodyMode getMode() {
@@ -88,6 +116,14 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
         return observationType;
     }
 
+    /**
+     * @return Sends the authenticated user a dashboard notification for each new observation. Defaults to false. Ignored when the API token is not associated with a user.
+     */
+    @JsonProperty("sendDashboardNotification")
+    public Optional<Boolean> getSendDashboardNotification() {
+        return sendDashboardNotification;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -101,16 +137,27 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
     }
 
     private boolean equalTo(EntityWatchpointsServiceCreateWatchpointRequestBody other) {
-        return location.equals(other.location)
+        return bearingRange.equals(other.bearingRange)
+                && customDetections.equals(other.customDetections)
+                && location.equals(other.location)
                 && mode.equals(other.mode)
                 && name.equals(other.name)
                 && note.equals(other.note)
-                && observationType.equals(other.observationType);
+                && observationType.equals(other.observationType)
+                && sendDashboardNotification.equals(other.sendDashboardNotification);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.location, this.mode, this.name, this.note, this.observationType);
+        return Objects.hash(
+                this.bearingRange,
+                this.customDetections,
+                this.location,
+                this.mode,
+                this.name,
+                this.note,
+                this.observationType,
+                this.sendDashboardNotification);
     }
 
     @java.lang.Override
@@ -130,7 +177,7 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
 
     public interface ModeStage {
         /**
-         * <p>Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></p>
+         * <p>Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code></p>
          */
         ObservationTypeStage mode(@NotNull EntityWatchpointsServiceCreateWatchpointRequestBodyMode mode);
     }
@@ -146,6 +193,17 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
     public interface _FinalStage {
         EntityWatchpointsServiceCreateWatchpointRequestBody build();
 
+        _FinalStage bearingRange(Optional<WatchpointBearingRangeTypeRequestBody> bearingRange);
+
+        _FinalStage bearingRange(WatchpointBearingRangeTypeRequestBody bearingRange);
+
+        /**
+         * <p>Conditions to detect in new observations. Defaults to none. Requires custom detections to be enabled for your organization. Types must be distinct.</p>
+         */
+        _FinalStage customDetections(Optional<List<WatchpointCustomDetectionRequestTypeRequestBody>> customDetections);
+
+        _FinalStage customDetections(List<WatchpointCustomDetectionRequestTypeRequestBody> customDetections);
+
         /**
          * <p>Customer-provided name for the watchpoint.</p>
          */
@@ -159,6 +217,13 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
         _FinalStage note(Optional<String> note);
 
         _FinalStage note(String note);
+
+        /**
+         * <p>Sends the authenticated user a dashboard notification for each new observation. Defaults to false. Ignored when the API token is not associated with a user.</p>
+         */
+        _FinalStage sendDashboardNotification(Optional<Boolean> sendDashboardNotification);
+
+        _FinalStage sendDashboardNotification(Boolean sendDashboardNotification);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -169,9 +234,15 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
 
         private EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType observationType;
 
+        private Optional<Boolean> sendDashboardNotification = Optional.empty();
+
         private Optional<String> note = Optional.empty();
 
         private Optional<String> name = Optional.empty();
+
+        private Optional<List<WatchpointCustomDetectionRequestTypeRequestBody>> customDetections = Optional.empty();
+
+        private Optional<WatchpointBearingRangeTypeRequestBody> bearingRange = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -180,11 +251,14 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
 
         @java.lang.Override
         public Builder from(EntityWatchpointsServiceCreateWatchpointRequestBody other) {
+            bearingRange(other.getBearingRange());
+            customDetections(other.getCustomDetections());
             location(other.getLocation());
             mode(other.getMode());
             name(other.getName());
             note(other.getNote());
             observationType(other.getObservationType());
+            sendDashboardNotification(other.getSendDashboardNotification());
             return this;
         }
 
@@ -196,8 +270,8 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
         }
 
         /**
-         * <p>Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></p>
-         * <p>Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></p>
+         * <p>Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code></p>
+         * <p>Recurrence frequency for observations.  Valid values: <code>justOnce</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>every15Minutes</code>, <code>hourly</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -217,6 +291,26 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
         public _FinalStage observationType(
                 @NotNull EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType observationType) {
             this.observationType = Objects.requireNonNull(observationType, "observationType must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Sends the authenticated user a dashboard notification for each new observation. Defaults to false. Ignored when the API token is not associated with a user.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage sendDashboardNotification(Boolean sendDashboardNotification) {
+            this.sendDashboardNotification = Optional.ofNullable(sendDashboardNotification);
+            return this;
+        }
+
+        /**
+         * <p>Sends the authenticated user a dashboard notification for each new observation. Defaults to false. Ignored when the API token is not associated with a user.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "sendDashboardNotification", nulls = Nulls.SKIP)
+        public _FinalStage sendDashboardNotification(Optional<Boolean> sendDashboardNotification) {
+            this.sendDashboardNotification = sendDashboardNotification;
             return this;
         }
 
@@ -260,10 +354,52 @@ public final class EntityWatchpointsServiceCreateWatchpointRequestBody {
             return this;
         }
 
+        /**
+         * <p>Conditions to detect in new observations. Defaults to none. Requires custom detections to be enabled for your organization. Types must be distinct.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage customDetections(List<WatchpointCustomDetectionRequestTypeRequestBody> customDetections) {
+            this.customDetections = Optional.ofNullable(customDetections);
+            return this;
+        }
+
+        /**
+         * <p>Conditions to detect in new observations. Defaults to none. Requires custom detections to be enabled for your organization. Types must be distinct.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "customDetections", nulls = Nulls.SKIP)
+        public _FinalStage customDetections(
+                Optional<List<WatchpointCustomDetectionRequestTypeRequestBody>> customDetections) {
+            this.customDetections = customDetections;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage bearingRange(WatchpointBearingRangeTypeRequestBody bearingRange) {
+            this.bearingRange = Optional.ofNullable(bearingRange);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "bearingRange", nulls = Nulls.SKIP)
+        public _FinalStage bearingRange(Optional<WatchpointBearingRangeTypeRequestBody> bearingRange) {
+            this.bearingRange = bearingRange;
+            return this;
+        }
+
         @java.lang.Override
         public EntityWatchpointsServiceCreateWatchpointRequestBody build() {
             return new EntityWatchpointsServiceCreateWatchpointRequestBody(
-                    location, mode, name, note, observationType, additionalProperties);
+                    bearingRange,
+                    customDetections,
+                    location,
+                    mode,
+                    name,
+                    note,
+                    observationType,
+                    sendDashboardNotification,
+                    additionalProperties);
         }
     }
 }

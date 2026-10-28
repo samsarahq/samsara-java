@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.workorders.types.WorkOrdersPatchWorkOrdersRequestBodyPriority;
 import com.samsara.api.resources.workorders.types.WorkOrdersPatchWorkOrdersRequestBodyStatus;
+import com.samsara.api.types.GoaAttributeTinyRequestBody;
 import com.samsara.api.types.ServiceTaskInstanceInputObjectRequestBody;
 import com.samsara.api.types.WorkOrderDiscountObjectRequestBody;
 import com.samsara.api.types.WorkOrderItemObjectRequestBody;
@@ -32,6 +33,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     private final Optional<OffsetDateTime> archivedAtTime;
 
     private final Optional<String> assignedUserId;
+
+    private final Optional<List<GoaAttributeTinyRequestBody>> attributes;
 
     private final Optional<String> category;
 
@@ -78,6 +81,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     private WorkOrdersPatchWorkOrdersRequestBody(
             Optional<OffsetDateTime> archivedAtTime,
             Optional<String> assignedUserId,
+            Optional<List<GoaAttributeTinyRequestBody>> attributes,
             Optional<String> category,
             Optional<String> closingNotes,
             Optional<OffsetDateTime> completedAtTime,
@@ -101,6 +105,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             Map<String, Object> additionalProperties) {
         this.archivedAtTime = archivedAtTime;
         this.assignedUserId = assignedUserId;
+        this.attributes = attributes;
         this.category = category;
         this.closingNotes = closingNotes;
         this.completedAtTime = completedAtTime;
@@ -138,6 +143,14 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     @JsonProperty("assignedUserId")
     public Optional<String> getAssignedUserId() {
         return assignedUserId;
+    }
+
+    /**
+     * @return A list of custom fields (attributes) to assign to the work order. If provided, this replaces the work order's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyRequestBody>> getAttributes() {
+        return attributes;
     }
 
     /**
@@ -274,7 +287,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     }
 
     /**
-     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
+     * @return The user-selectable status of the work order. Estimate workflow statuses are system-managed; use the estimate API for approval and award actions.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
     public Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> getStatus() {
@@ -309,6 +322,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
     private boolean equalTo(WorkOrdersPatchWorkOrdersRequestBody other) {
         return archivedAtTime.equals(other.archivedAtTime)
                 && assignedUserId.equals(other.assignedUserId)
+                && attributes.equals(other.attributes)
                 && category.equals(other.category)
                 && closingNotes.equals(other.closingNotes)
                 && completedAtTime.equals(other.completedAtTime)
@@ -336,6 +350,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         return Objects.hash(
                 this.archivedAtTime,
                 this.assignedUserId,
+                this.attributes,
                 this.category,
                 this.closingNotes,
                 this.completedAtTime,
@@ -392,6 +407,13 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         _FinalStage assignedUserId(Optional<String> assignedUserId);
 
         _FinalStage assignedUserId(String assignedUserId);
+
+        /**
+         * <p>A list of custom fields (attributes) to assign to the work order. If provided, this replaces the work order's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyRequestBody> attributes);
 
         /**
          * <p>The category of the work order</p>
@@ -504,7 +526,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         _FinalStage startedAtTime(OffsetDateTime startedAtTime);
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The user-selectable status of the work order. Estimate workflow statuses are system-managed; use the estimate API for approval and award actions.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         _FinalStage status(Optional<WorkOrdersPatchWorkOrdersRequestBodyStatus> status);
 
@@ -564,6 +586,8 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
 
         private Optional<String> category = Optional.empty();
 
+        private Optional<List<GoaAttributeTinyRequestBody>> attributes = Optional.empty();
+
         private Optional<String> assignedUserId = Optional.empty();
 
         private Optional<OffsetDateTime> archivedAtTime = Optional.empty();
@@ -577,6 +601,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         public Builder from(WorkOrdersPatchWorkOrdersRequestBody other) {
             archivedAtTime(other.getArchivedAtTime());
             assignedUserId(other.getAssignedUserId());
+            attributes(other.getAttributes());
             category(other.getCategory());
             closingNotes(other.getClosingNotes());
             completedAtTime(other.getCompletedAtTime());
@@ -646,7 +671,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The user-selectable status of the work order. Estimate workflow statuses are system-managed; use the estimate API for approval and award actions.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -656,7 +681,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The user-selectable status of the work order. Estimate workflow statuses are system-managed; use the estimate API for approval and award actions.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
@@ -980,6 +1005,26 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
         }
 
         /**
+         * <p>A list of custom fields (attributes) to assign to the work order. If provided, this replaces the work order's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyRequestBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>A list of custom fields (attributes) to assign to the work order. If provided, this replaces the work order's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
+        /**
          * <p>The ID of the assigned mechanic.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -1024,6 +1069,7 @@ public final class WorkOrdersPatchWorkOrdersRequestBody {
             return new WorkOrdersPatchWorkOrdersRequestBody(
                     archivedAtTime,
                     assignedUserId,
+                    attributes,
                     category,
                     closingNotes,
                     completedAtTime,

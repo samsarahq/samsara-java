@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyOperator;
+import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer;
 import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem;
 import com.samsara.api.resources.betaapis.types.AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -27,29 +29,41 @@ import org.jetbrains.annotations.NotNull;
 public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody {
     private final AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyOperator operator;
 
+    private final Optional<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer> payer;
+
     private final List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem>
             providerDataPackages;
+
+    private final Optional<String> providerOrganizationId;
+
+    private final Optional<String> providerOrganizationName;
 
     private final List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem>
             recipientDataPackages;
 
     private final String recipientOrganizationId;
 
-    private final String recipientOrganizationName;
+    private final Optional<String> recipientOrganizationName;
 
     private final Map<String, Object> additionalProperties;
 
     private AssetSharingAgreementsCreateAssetSharingAgreementRequestBody(
             AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyOperator operator,
+            Optional<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer> payer,
             List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem>
                     providerDataPackages,
+            Optional<String> providerOrganizationId,
+            Optional<String> providerOrganizationName,
             List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem>
                     recipientDataPackages,
             String recipientOrganizationId,
-            String recipientOrganizationName,
+            Optional<String> recipientOrganizationName,
             Map<String, Object> additionalProperties) {
         this.operator = operator;
+        this.payer = payer;
         this.providerDataPackages = providerDataPackages;
+        this.providerOrganizationId = providerOrganizationId;
+        this.providerOrganizationName = providerOrganizationName;
         this.recipientDataPackages = recipientDataPackages;
         this.recipientOrganizationId = recipientOrganizationId;
         this.recipientOrganizationName = recipientOrganizationName;
@@ -65,12 +79,36 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
     }
 
     /**
+     * @return Party whose Asset Sharing license supports the agreement. Defaults to the creator when the flexible operating model is enabled. Otherwise, the provider pays; omit this field or specify provider. Specifying recipient requires the flexible operating model to be enabled.  Valid values: <code>provider</code>, <code>recipient</code>
+     */
+    @JsonProperty("payer")
+    public Optional<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer> getPayer() {
+        return payer;
+    }
+
+    /**
      * @return List of data packages the provider will see.
      */
     @JsonProperty("providerDataPackages")
     public List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem>
             getProviderDataPackages() {
         return providerDataPackages;
+    }
+
+    /**
+     * @return ID of the organization that owns the assets. Defaults to the caller's organization. Recipient-initiated agreements require the flexible operating model to be enabled.
+     */
+    @JsonProperty("providerOrganizationId")
+    public Optional<String> getProviderOrganizationId() {
+        return providerOrganizationId;
+    }
+
+    /**
+     * @return Display name for the provider. Required when the caller is the recipient; the caller's own organization name is resolved automatically.
+     */
+    @JsonProperty("providerOrganizationName")
+    public Optional<String> getProviderOrganizationName() {
+        return providerOrganizationName;
     }
 
     /**
@@ -91,10 +129,10 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
     }
 
     /**
-     * @return The display name to use for the recipient organization.
+     * @return Display name for the recipient. Required when the caller is the provider; the caller's own organization name is resolved automatically.
      */
     @JsonProperty("recipientOrganizationName")
-    public String getRecipientOrganizationName() {
+    public Optional<String> getRecipientOrganizationName() {
         return recipientOrganizationName;
     }
 
@@ -112,7 +150,10 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
 
     private boolean equalTo(AssetSharingAgreementsCreateAssetSharingAgreementRequestBody other) {
         return operator.equals(other.operator)
+                && payer.equals(other.payer)
                 && providerDataPackages.equals(other.providerDataPackages)
+                && providerOrganizationId.equals(other.providerOrganizationId)
+                && providerOrganizationName.equals(other.providerOrganizationName)
                 && recipientDataPackages.equals(other.recipientDataPackages)
                 && recipientOrganizationId.equals(other.recipientOrganizationId)
                 && recipientOrganizationName.equals(other.recipientOrganizationName);
@@ -122,7 +163,10 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
     public int hashCode() {
         return Objects.hash(
                 this.operator,
+                this.payer,
                 this.providerDataPackages,
+                this.providerOrganizationId,
+                this.providerOrganizationName,
                 this.recipientDataPackages,
                 this.recipientOrganizationId,
                 this.recipientOrganizationName);
@@ -151,18 +195,18 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
         /**
          * <p>The ID of the recipient organization.</p>
          */
-        RecipientOrganizationNameStage recipientOrganizationId(@NotNull String recipientOrganizationId);
-    }
-
-    public interface RecipientOrganizationNameStage {
-        /**
-         * <p>The display name to use for the recipient organization.</p>
-         */
-        _FinalStage recipientOrganizationName(@NotNull String recipientOrganizationName);
+        _FinalStage recipientOrganizationId(@NotNull String recipientOrganizationId);
     }
 
     public interface _FinalStage {
         AssetSharingAgreementsCreateAssetSharingAgreementRequestBody build();
+
+        /**
+         * <p>Party whose Asset Sharing license supports the agreement. Defaults to the creator when the flexible operating model is enabled. Otherwise, the provider pays; omit this field or specify provider. Specifying recipient requires the flexible operating model to be enabled.  Valid values: <code>provider</code>, <code>recipient</code></p>
+         */
+        _FinalStage payer(Optional<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer> payer);
+
+        _FinalStage payer(AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer payer);
 
         /**
          * <p>List of data packages the provider will see.</p>
@@ -180,6 +224,20 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
                         providerDataPackages);
 
         /**
+         * <p>ID of the organization that owns the assets. Defaults to the caller's organization. Recipient-initiated agreements require the flexible operating model to be enabled.</p>
+         */
+        _FinalStage providerOrganizationId(Optional<String> providerOrganizationId);
+
+        _FinalStage providerOrganizationId(String providerOrganizationId);
+
+        /**
+         * <p>Display name for the provider. Required when the caller is the recipient; the caller's own organization name is resolved automatically.</p>
+         */
+        _FinalStage providerOrganizationName(Optional<String> providerOrganizationName);
+
+        _FinalStage providerOrganizationName(String providerOrganizationName);
+
+        /**
          * <p>List of data packages the recipient will see.</p>
          */
         _FinalStage recipientDataPackages(
@@ -193,22 +251,34 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
         _FinalStage addAllRecipientDataPackages(
                 List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem>
                         recipientDataPackages);
+
+        /**
+         * <p>Display name for the recipient. Required when the caller is the provider; the caller's own organization name is resolved automatically.</p>
+         */
+        _FinalStage recipientOrganizationName(Optional<String> recipientOrganizationName);
+
+        _FinalStage recipientOrganizationName(String recipientOrganizationName);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder
-            implements OperatorStage, RecipientOrganizationIdStage, RecipientOrganizationNameStage, _FinalStage {
+    public static final class Builder implements OperatorStage, RecipientOrganizationIdStage, _FinalStage {
         private AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyOperator operator;
 
         private String recipientOrganizationId;
 
-        private String recipientOrganizationName;
+        private Optional<String> recipientOrganizationName = Optional.empty();
 
         private List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem>
                 recipientDataPackages = new ArrayList<>();
 
+        private Optional<String> providerOrganizationName = Optional.empty();
+
+        private Optional<String> providerOrganizationId = Optional.empty();
+
         private List<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyProviderDataPackagesItem>
                 providerDataPackages = new ArrayList<>();
+
+        private Optional<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer> payer = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -218,7 +288,10 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
         @java.lang.Override
         public Builder from(AssetSharingAgreementsCreateAssetSharingAgreementRequestBody other) {
             operator(other.getOperator());
+            payer(other.getPayer());
             providerDataPackages(other.getProviderDataPackages());
+            providerOrganizationId(other.getProviderOrganizationId());
+            providerOrganizationName(other.getProviderOrganizationName());
             recipientDataPackages(other.getRecipientDataPackages());
             recipientOrganizationId(other.getRecipientOrganizationId());
             recipientOrganizationName(other.getRecipientOrganizationName());
@@ -245,22 +318,29 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
          */
         @java.lang.Override
         @JsonSetter("recipientOrganizationId")
-        public RecipientOrganizationNameStage recipientOrganizationId(@NotNull String recipientOrganizationId) {
+        public _FinalStage recipientOrganizationId(@NotNull String recipientOrganizationId) {
             this.recipientOrganizationId =
                     Objects.requireNonNull(recipientOrganizationId, "recipientOrganizationId must not be null");
             return this;
         }
 
         /**
-         * <p>The display name to use for the recipient organization.</p>
-         * <p>The display name to use for the recipient organization.</p>
+         * <p>Display name for the recipient. Required when the caller is the provider; the caller's own organization name is resolved automatically.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter("recipientOrganizationName")
-        public _FinalStage recipientOrganizationName(@NotNull String recipientOrganizationName) {
-            this.recipientOrganizationName =
-                    Objects.requireNonNull(recipientOrganizationName, "recipientOrganizationName must not be null");
+        public _FinalStage recipientOrganizationName(String recipientOrganizationName) {
+            this.recipientOrganizationName = Optional.ofNullable(recipientOrganizationName);
+            return this;
+        }
+
+        /**
+         * <p>Display name for the recipient. Required when the caller is the provider; the caller's own organization name is resolved automatically.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "recipientOrganizationName", nulls = Nulls.SKIP)
+        public _FinalStage recipientOrganizationName(Optional<String> recipientOrganizationName) {
+            this.recipientOrganizationName = recipientOrganizationName;
             return this;
         }
 
@@ -306,6 +386,46 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
         }
 
         /**
+         * <p>Display name for the provider. Required when the caller is the recipient; the caller's own organization name is resolved automatically.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage providerOrganizationName(String providerOrganizationName) {
+            this.providerOrganizationName = Optional.ofNullable(providerOrganizationName);
+            return this;
+        }
+
+        /**
+         * <p>Display name for the provider. Required when the caller is the recipient; the caller's own organization name is resolved automatically.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "providerOrganizationName", nulls = Nulls.SKIP)
+        public _FinalStage providerOrganizationName(Optional<String> providerOrganizationName) {
+            this.providerOrganizationName = providerOrganizationName;
+            return this;
+        }
+
+        /**
+         * <p>ID of the organization that owns the assets. Defaults to the caller's organization. Recipient-initiated agreements require the flexible operating model to be enabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage providerOrganizationId(String providerOrganizationId) {
+            this.providerOrganizationId = Optional.ofNullable(providerOrganizationId);
+            return this;
+        }
+
+        /**
+         * <p>ID of the organization that owns the assets. Defaults to the caller's organization. Recipient-initiated agreements require the flexible operating model to be enabled.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "providerOrganizationId", nulls = Nulls.SKIP)
+        public _FinalStage providerOrganizationId(Optional<String> providerOrganizationId) {
+            this.providerOrganizationId = providerOrganizationId;
+            return this;
+        }
+
+        /**
          * <p>List of data packages the provider will see.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -346,11 +466,34 @@ public final class AssetSharingAgreementsCreateAssetSharingAgreementRequestBody 
             return this;
         }
 
+        /**
+         * <p>Party whose Asset Sharing license supports the agreement. Defaults to the creator when the flexible operating model is enabled. Otherwise, the provider pays; omit this field or specify provider. Specifying recipient requires the flexible operating model to be enabled.  Valid values: <code>provider</code>, <code>recipient</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage payer(AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer payer) {
+            this.payer = Optional.ofNullable(payer);
+            return this;
+        }
+
+        /**
+         * <p>Party whose Asset Sharing license supports the agreement. Defaults to the creator when the flexible operating model is enabled. Otherwise, the provider pays; omit this field or specify provider. Specifying recipient requires the flexible operating model to be enabled.  Valid values: <code>provider</code>, <code>recipient</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "payer", nulls = Nulls.SKIP)
+        public _FinalStage payer(Optional<AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyPayer> payer) {
+            this.payer = payer;
+            return this;
+        }
+
         @java.lang.Override
         public AssetSharingAgreementsCreateAssetSharingAgreementRequestBody build() {
             return new AssetSharingAgreementsCreateAssetSharingAgreementRequestBody(
                     operator,
+                    payer,
                     providerDataPackages,
+                    providerOrganizationId,
+                    providerOrganizationName,
                     recipientDataPackages,
                     recipientOrganizationId,
                     recipientOrganizationName,

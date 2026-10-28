@@ -33,6 +33,8 @@ public final class WorkOrderObjectResponseBody {
 
     private final Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments;
 
+    private final Optional<List<GoaAttributeTinyResponseBody>> attributes;
+
     private final Optional<String> category;
 
     private final Optional<String> closingNotes;
@@ -89,6 +91,7 @@ public final class WorkOrderObjectResponseBody {
             Optional<String> assignedUserId,
             Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees,
             Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments,
+            Optional<List<GoaAttributeTinyResponseBody>> attributes,
             Optional<String> category,
             Optional<String> closingNotes,
             Optional<OffsetDateTime> completedAtTime,
@@ -119,6 +122,7 @@ public final class WorkOrderObjectResponseBody {
         this.assignedUserId = assignedUserId;
         this.assignees = assignees;
         this.attachments = attachments;
+        this.attributes = attributes;
         this.category = category;
         this.closingNotes = closingNotes;
         this.completedAtTime = completedAtTime;
@@ -187,6 +191,14 @@ public final class WorkOrderObjectResponseBody {
     }
 
     /**
+     * @return Custom fields (attributes) set on the work order. Only returned when the request includes attributes.
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyResponseBody>> getAttributes() {
+        return attributes;
+    }
+
+    /**
      * @return The category of the work order
      */
     @JsonProperty("category")
@@ -219,7 +231,7 @@ public final class WorkOrderObjectResponseBody {
     }
 
     /**
-     * @return The ID of the creator of the work order.
+     * @return The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.
      */
     @JsonProperty("createdByUserId")
     public Optional<String> getCreatedByUserId() {
@@ -325,7 +337,7 @@ public final class WorkOrderObjectResponseBody {
     }
 
     /**
-     * @return The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
+     * @return The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
     public WorkOrderObjectResponseBodyStatus getStatus() {
@@ -383,6 +395,7 @@ public final class WorkOrderObjectResponseBody {
                 && assignedUserId.equals(other.assignedUserId)
                 && assignees.equals(other.assignees)
                 && attachments.equals(other.attachments)
+                && attributes.equals(other.attributes)
                 && category.equals(other.category)
                 && closingNotes.equals(other.closingNotes)
                 && completedAtTime.equals(other.completedAtTime)
@@ -417,6 +430,7 @@ public final class WorkOrderObjectResponseBody {
                 this.assignedUserId,
                 this.assignees,
                 this.attachments,
+                this.attributes,
                 this.category,
                 this.closingNotes,
                 this.completedAtTime,
@@ -477,7 +491,7 @@ public final class WorkOrderObjectResponseBody {
 
     public interface StatusStage {
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         UpdatedAtTimeStage status(@NotNull WorkOrderObjectResponseBodyStatus status);
     }
@@ -521,6 +535,13 @@ public final class WorkOrderObjectResponseBody {
         _FinalStage attachments(List<WorkOrderAttachmentObjectResponseBody> attachments);
 
         /**
+         * <p>Custom fields (attributes) set on the work order. Only returned when the request includes attributes.</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes);
+
+        /**
          * <p>The category of the work order</p>
          */
         _FinalStage category(Optional<String> category);
@@ -542,7 +563,7 @@ public final class WorkOrderObjectResponseBody {
         _FinalStage completedAtTime(OffsetDateTime completedAtTime);
 
         /**
-         * <p>The ID of the creator of the work order.</p>
+         * <p>The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.</p>
          */
         _FinalStage createdByUserId(Optional<String> createdByUserId);
 
@@ -702,6 +723,8 @@ public final class WorkOrderObjectResponseBody {
 
         private Optional<String> category = Optional.empty();
 
+        private Optional<List<GoaAttributeTinyResponseBody>> attributes = Optional.empty();
+
         private Optional<List<WorkOrderAttachmentObjectResponseBody>> attachments = Optional.empty();
 
         private Optional<List<WorkOrderAssigneeObjectResponseBody>> assignees = Optional.empty();
@@ -722,6 +745,7 @@ public final class WorkOrderObjectResponseBody {
             assignedUserId(other.getAssignedUserId());
             assignees(other.getAssignees());
             attachments(other.getAttachments());
+            attributes(other.getAttributes());
             category(other.getCategory());
             closingNotes(other.getClosingNotes());
             completedAtTime(other.getCompletedAtTime());
@@ -786,8 +810,8 @@ public final class WorkOrderObjectResponseBody {
         }
 
         /**
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
-         * <p>The status of the work order  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The status of the work order, including system-managed estimate workflow statuses.  Valid values: <code>Assigned</code>, <code>Awaiting estimate approval</code>, <code>Awaiting estimates</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>Estimate approval denied</code>, <code>Estimate approved</code>, <code>Estimates ready</code>, <code>In Progress</code>, <code>Needs Vendor Selection</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1103,7 +1127,7 @@ public final class WorkOrderObjectResponseBody {
         }
 
         /**
-         * <p>The ID of the creator of the work order.</p>
+         * <p>The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1113,7 +1137,7 @@ public final class WorkOrderObjectResponseBody {
         }
 
         /**
-         * <p>The ID of the creator of the work order.</p>
+         * <p>The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "createdByUserId", nulls = Nulls.SKIP)
@@ -1179,6 +1203,26 @@ public final class WorkOrderObjectResponseBody {
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
         public _FinalStage category(Optional<String> category) {
             this.category = category;
+            return this;
+        }
+
+        /**
+         * <p>Custom fields (attributes) set on the work order. Only returned when the request includes attributes.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyResponseBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>Custom fields (attributes) set on the work order. Only returned when the request includes attributes.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyResponseBody>> attributes) {
+            this.attributes = attributes;
             return this;
         }
 
@@ -1270,6 +1314,7 @@ public final class WorkOrderObjectResponseBody {
                     assignedUserId,
                     assignees,
                     attachments,
+                    attributes,
                     category,
                     closingNotes,
                     completedAtTime,

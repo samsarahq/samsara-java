@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class AttributeEntityType {
+    public static final AttributeEntityType WORK_ORDER = new AttributeEntityType(Value.WORK_ORDER, "workOrder");
+
     public static final AttributeEntityType DRIVER = new AttributeEntityType(Value.DRIVER, "driver");
 
     public static final AttributeEntityType ASSET = new AttributeEntityType(Value.ASSET, "asset");
@@ -43,6 +45,8 @@ public final class AttributeEntityType {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case WORK_ORDER:
+                return visitor.visitWorkOrder();
             case DRIVER:
                 return visitor.visitDriver();
             case ASSET:
@@ -56,6 +60,8 @@ public final class AttributeEntityType {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static AttributeEntityType valueOf(String value) {
         switch (value) {
+            case "workOrder":
+                return WORK_ORDER;
             case "driver":
                 return DRIVER;
             case "asset":
@@ -70,6 +76,8 @@ public final class AttributeEntityType {
 
         ASSET,
 
+        WORK_ORDER,
+
         UNKNOWN
     }
 
@@ -77,6 +85,8 @@ public final class AttributeEntityType {
         T visitDriver();
 
         T visitAsset();
+
+        T visitWorkOrder();
 
         T visitUnknown(String unknownType);
     }

@@ -7,26 +7,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class WorkOrderObjectResponseBodyStatus {
-    public static final WorkOrderObjectResponseBodyStatus ESTIMATE =
-            new WorkOrderObjectResponseBodyStatus(Value.ESTIMATE, "Estimate");
+    public static final WorkOrderObjectResponseBodyStatus AWAITING_ESTIMATE_APPROVAL =
+            new WorkOrderObjectResponseBodyStatus(Value.AWAITING_ESTIMATE_APPROVAL, "Awaiting estimate approval");
 
     public static final WorkOrderObjectResponseBodyStatus PLANNING =
             new WorkOrderObjectResponseBodyStatus(Value.PLANNING, "Planning");
 
-    public static final WorkOrderObjectResponseBodyStatus COMPLETED =
-            new WorkOrderObjectResponseBodyStatus(Value.COMPLETED, "Completed");
+    public static final WorkOrderObjectResponseBodyStatus AWAITING_ESTIMATES =
+            new WorkOrderObjectResponseBodyStatus(Value.AWAITING_ESTIMATES, "Awaiting estimates");
 
     public static final WorkOrderObjectResponseBodyStatus ASSIGNED =
             new WorkOrderObjectResponseBodyStatus(Value.ASSIGNED, "Assigned");
-
-    public static final WorkOrderObjectResponseBodyStatus OPEN =
-            new WorkOrderObjectResponseBodyStatus(Value.OPEN, "Open");
-
-    public static final WorkOrderObjectResponseBodyStatus CANCELLED =
-            new WorkOrderObjectResponseBodyStatus(Value.CANCELLED, "Cancelled");
-
-    public static final WorkOrderObjectResponseBodyStatus IN_PROGRESS =
-            new WorkOrderObjectResponseBodyStatus(Value.IN_PROGRESS, "In Progress");
 
     public static final WorkOrderObjectResponseBodyStatus ON_HOLD =
             new WorkOrderObjectResponseBodyStatus(Value.ON_HOLD, "On Hold");
@@ -34,11 +25,38 @@ public final class WorkOrderObjectResponseBodyStatus {
     public static final WorkOrderObjectResponseBodyStatus PENDING_PARTS =
             new WorkOrderObjectResponseBodyStatus(Value.PENDING_PARTS, "Pending Parts");
 
+    public static final WorkOrderObjectResponseBodyStatus PENDING_APPROVAL =
+            new WorkOrderObjectResponseBodyStatus(Value.PENDING_APPROVAL, "Pending Approval");
+
+    public static final WorkOrderObjectResponseBodyStatus ESTIMATE =
+            new WorkOrderObjectResponseBodyStatus(Value.ESTIMATE, "Estimate");
+
+    public static final WorkOrderObjectResponseBodyStatus COMPLETED =
+            new WorkOrderObjectResponseBodyStatus(Value.COMPLETED, "Completed");
+
+    public static final WorkOrderObjectResponseBodyStatus ESTIMATE_APPROVED =
+            new WorkOrderObjectResponseBodyStatus(Value.ESTIMATE_APPROVED, "Estimate approved");
+
+    public static final WorkOrderObjectResponseBodyStatus OPEN =
+            new WorkOrderObjectResponseBodyStatus(Value.OPEN, "Open");
+
+    public static final WorkOrderObjectResponseBodyStatus CANCELLED =
+            new WorkOrderObjectResponseBodyStatus(Value.CANCELLED, "Cancelled");
+
+    public static final WorkOrderObjectResponseBodyStatus ESTIMATE_APPROVAL_DENIED =
+            new WorkOrderObjectResponseBodyStatus(Value.ESTIMATE_APPROVAL_DENIED, "Estimate approval denied");
+
+    public static final WorkOrderObjectResponseBodyStatus IN_PROGRESS =
+            new WorkOrderObjectResponseBodyStatus(Value.IN_PROGRESS, "In Progress");
+
     public static final WorkOrderObjectResponseBodyStatus CLOSED =
             new WorkOrderObjectResponseBodyStatus(Value.CLOSED, "Closed");
 
-    public static final WorkOrderObjectResponseBodyStatus PENDING_APPROVAL =
-            new WorkOrderObjectResponseBodyStatus(Value.PENDING_APPROVAL, "Pending Approval");
+    public static final WorkOrderObjectResponseBodyStatus NEEDS_VENDOR_SELECTION =
+            new WorkOrderObjectResponseBodyStatus(Value.NEEDS_VENDOR_SELECTION, "Needs Vendor Selection");
+
+    public static final WorkOrderObjectResponseBodyStatus ESTIMATES_READY =
+            new WorkOrderObjectResponseBodyStatus(Value.ESTIMATES_READY, "Estimates ready");
 
     private final Value value;
 
@@ -73,28 +91,40 @@ public final class WorkOrderObjectResponseBodyStatus {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
-            case ESTIMATE:
-                return visitor.visitEstimate();
+            case AWAITING_ESTIMATE_APPROVAL:
+                return visitor.visitAwaitingEstimateApproval();
             case PLANNING:
                 return visitor.visitPlanning();
-            case COMPLETED:
-                return visitor.visitCompleted();
+            case AWAITING_ESTIMATES:
+                return visitor.visitAwaitingEstimates();
             case ASSIGNED:
                 return visitor.visitAssigned();
-            case OPEN:
-                return visitor.visitOpen();
-            case CANCELLED:
-                return visitor.visitCancelled();
-            case IN_PROGRESS:
-                return visitor.visitInProgress();
             case ON_HOLD:
                 return visitor.visitOnHold();
             case PENDING_PARTS:
                 return visitor.visitPendingParts();
-            case CLOSED:
-                return visitor.visitClosed();
             case PENDING_APPROVAL:
                 return visitor.visitPendingApproval();
+            case ESTIMATE:
+                return visitor.visitEstimate();
+            case COMPLETED:
+                return visitor.visitCompleted();
+            case ESTIMATE_APPROVED:
+                return visitor.visitEstimateApproved();
+            case OPEN:
+                return visitor.visitOpen();
+            case CANCELLED:
+                return visitor.visitCancelled();
+            case ESTIMATE_APPROVAL_DENIED:
+                return visitor.visitEstimateApprovalDenied();
+            case IN_PROGRESS:
+                return visitor.visitInProgress();
+            case CLOSED:
+                return visitor.visitClosed();
+            case NEEDS_VENDOR_SELECTION:
+                return visitor.visitNeedsVendorSelection();
+            case ESTIMATES_READY:
+                return visitor.visitEstimatesReady();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -104,28 +134,40 @@ public final class WorkOrderObjectResponseBodyStatus {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static WorkOrderObjectResponseBodyStatus valueOf(String value) {
         switch (value) {
-            case "Estimate":
-                return ESTIMATE;
+            case "Awaiting estimate approval":
+                return AWAITING_ESTIMATE_APPROVAL;
             case "Planning":
                 return PLANNING;
-            case "Completed":
-                return COMPLETED;
+            case "Awaiting estimates":
+                return AWAITING_ESTIMATES;
             case "Assigned":
                 return ASSIGNED;
-            case "Open":
-                return OPEN;
-            case "Cancelled":
-                return CANCELLED;
-            case "In Progress":
-                return IN_PROGRESS;
             case "On Hold":
                 return ON_HOLD;
             case "Pending Parts":
                 return PENDING_PARTS;
-            case "Closed":
-                return CLOSED;
             case "Pending Approval":
                 return PENDING_APPROVAL;
+            case "Estimate":
+                return ESTIMATE;
+            case "Completed":
+                return COMPLETED;
+            case "Estimate approved":
+                return ESTIMATE_APPROVED;
+            case "Open":
+                return OPEN;
+            case "Cancelled":
+                return CANCELLED;
+            case "Estimate approval denied":
+                return ESTIMATE_APPROVAL_DENIED;
+            case "In Progress":
+                return IN_PROGRESS;
+            case "Closed":
+                return CLOSED;
+            case "Needs Vendor Selection":
+                return NEEDS_VENDOR_SELECTION;
+            case "Estimates ready":
+                return ESTIMATES_READY;
             default:
                 return new WorkOrderObjectResponseBodyStatus(Value.UNKNOWN, value);
         }
@@ -133,6 +175,10 @@ public final class WorkOrderObjectResponseBodyStatus {
 
     public enum Value {
         ASSIGNED,
+
+        AWAITING_ESTIMATE_APPROVAL,
+
+        AWAITING_ESTIMATES,
 
         CANCELLED,
 
@@ -142,7 +188,15 @@ public final class WorkOrderObjectResponseBodyStatus {
 
         ESTIMATE,
 
+        ESTIMATE_APPROVAL_DENIED,
+
+        ESTIMATE_APPROVED,
+
+        ESTIMATES_READY,
+
         IN_PROGRESS,
+
+        NEEDS_VENDOR_SELECTION,
 
         ON_HOLD,
 
@@ -160,6 +214,10 @@ public final class WorkOrderObjectResponseBodyStatus {
     public interface Visitor<T> {
         T visitAssigned();
 
+        T visitAwaitingEstimateApproval();
+
+        T visitAwaitingEstimates();
+
         T visitCancelled();
 
         T visitClosed();
@@ -168,7 +226,15 @@ public final class WorkOrderObjectResponseBodyStatus {
 
         T visitEstimate();
 
+        T visitEstimateApprovalDenied();
+
+        T visitEstimateApproved();
+
+        T visitEstimatesReady();
+
         T visitInProgress();
+
+        T visitNeedsVendorSelection();
 
         T visitOnHold();
 

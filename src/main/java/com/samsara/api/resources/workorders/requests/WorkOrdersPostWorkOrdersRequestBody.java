@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.workorders.types.WorkOrdersPostWorkOrdersRequestBodyPriority;
 import com.samsara.api.resources.workorders.types.WorkOrdersPostWorkOrdersRequestBodyStatus;
+import com.samsara.api.types.GoaAttributeTinyRequestBody;
 import com.samsara.api.types.ServiceTaskInstanceInputObjectRequestBody;
 import com.samsara.api.types.WorkOrderDiscountObjectRequestBody;
 import com.samsara.api.types.WorkOrderItemObjectRequestBody;
@@ -35,9 +36,13 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
     private final Optional<String> assignedUserId;
 
+    private final Optional<List<GoaAttributeTinyRequestBody>> attributes;
+
     private final Optional<String> category;
 
     private final Optional<OffsetDateTime> completedAtTime;
+
+    private final Optional<String> createdByUserId;
 
     private final Optional<String> description;
 
@@ -77,8 +82,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
             Optional<OffsetDateTime> archivedAtTime,
             String assetId,
             Optional<String> assignedUserId,
+            Optional<List<GoaAttributeTinyRequestBody>> attributes,
             Optional<String> category,
             Optional<OffsetDateTime> completedAtTime,
+            Optional<String> createdByUserId,
             Optional<String> description,
             Optional<WorkOrderDiscountObjectRequestBody> discount,
             Optional<OffsetDateTime> dueAtTime,
@@ -99,8 +106,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         this.archivedAtTime = archivedAtTime;
         this.assetId = assetId;
         this.assignedUserId = assignedUserId;
+        this.attributes = attributes;
         this.category = category;
         this.completedAtTime = completedAtTime;
+        this.createdByUserId = createdByUserId;
         this.description = description;
         this.discount = discount;
         this.dueAtTime = dueAtTime;
@@ -145,6 +154,14 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
+     * @return A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.
+     */
+    @JsonProperty("attributes")
+    public Optional<List<GoaAttributeTinyRequestBody>> getAttributes() {
+        return attributes;
+    }
+
+    /**
      * @return The category of the work order
      */
     @JsonProperty("category")
@@ -158,6 +175,14 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     @JsonProperty("completedAtTime")
     public Optional<OffsetDateTime> getCompletedAtTime() {
         return completedAtTime;
+    }
+
+    /**
+     * @return ID of the dashboard user to attribute as the work order creator for display and creator notifications. Does not change who is recorded as the API actor in the activity log. Must be a user in the organization. When omitted, defaults to the API token owner. Accepted only when the organization has the create-created-by feature enabled.
+     */
+    @JsonProperty("createdByUserId")
+    public Optional<String> getCreatedByUserId() {
+        return createdByUserId;
     }
 
     /**
@@ -262,7 +287,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
-     * @return The initial status of the work order. Defaults to Open when not provided.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
+     * @return The initial user-selectable status of the work order. Defaults to Open when not provided. Estimate workflow statuses are system-managed and cannot be set directly.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code>
      */
     @JsonProperty("status")
     public Optional<WorkOrdersPostWorkOrdersRequestBodyStatus> getStatus() {
@@ -298,8 +323,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         return archivedAtTime.equals(other.archivedAtTime)
                 && assetId.equals(other.assetId)
                 && assignedUserId.equals(other.assignedUserId)
+                && attributes.equals(other.attributes)
                 && category.equals(other.category)
                 && completedAtTime.equals(other.completedAtTime)
+                && createdByUserId.equals(other.createdByUserId)
                 && description.equals(other.description)
                 && discount.equals(other.discount)
                 && dueAtTime.equals(other.dueAtTime)
@@ -324,8 +351,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                 this.archivedAtTime,
                 this.assetId,
                 this.assignedUserId,
+                this.attributes,
                 this.category,
                 this.completedAtTime,
+                this.createdByUserId,
                 this.description,
                 this.discount,
                 this.dueAtTime,
@@ -380,6 +409,13 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage assignedUserId(String assignedUserId);
 
         /**
+         * <p>A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
+         */
+        _FinalStage attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes);
+
+        _FinalStage attributes(List<GoaAttributeTinyRequestBody> attributes);
+
+        /**
          * <p>The category of the work order</p>
          */
         _FinalStage category(Optional<String> category);
@@ -392,6 +428,13 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage completedAtTime(Optional<OffsetDateTime> completedAtTime);
 
         _FinalStage completedAtTime(OffsetDateTime completedAtTime);
+
+        /**
+         * <p>ID of the dashboard user to attribute as the work order creator for display and creator notifications. Does not change who is recorded as the API actor in the activity log. Must be a user in the organization. When omitted, defaults to the API token owner. Accepted only when the organization has the create-created-by feature enabled.</p>
+         */
+        _FinalStage createdByUserId(Optional<String> createdByUserId);
+
+        _FinalStage createdByUserId(String createdByUserId);
 
         /**
          * <p>A description of what needs to be fixed.</p>
@@ -483,7 +526,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage startedAtTime(OffsetDateTime startedAtTime);
 
         /**
-         * <p>The initial status of the work order. Defaults to Open when not provided.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The initial user-selectable status of the work order. Defaults to Open when not provided. Estimate workflow statuses are system-managed and cannot be set directly.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         _FinalStage status(Optional<WorkOrdersPostWorkOrdersRequestBodyStatus> status);
 
@@ -537,9 +580,13 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
         private Optional<String> description = Optional.empty();
 
+        private Optional<String> createdByUserId = Optional.empty();
+
         private Optional<OffsetDateTime> completedAtTime = Optional.empty();
 
         private Optional<String> category = Optional.empty();
+
+        private Optional<List<GoaAttributeTinyRequestBody>> attributes = Optional.empty();
 
         private Optional<String> assignedUserId = Optional.empty();
 
@@ -555,8 +602,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
             archivedAtTime(other.getArchivedAtTime());
             assetId(other.getAssetId());
             assignedUserId(other.getAssignedUserId());
+            attributes(other.getAttributes());
             category(other.getCategory());
             completedAtTime(other.getCompletedAtTime());
+            createdByUserId(other.getCreatedByUserId());
             description(other.getDescription());
             discount(other.getDiscount());
             dueAtTime(other.getDueAtTime());
@@ -622,7 +671,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The initial status of the work order. Defaults to Open when not provided.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The initial user-selectable status of the work order. Defaults to Open when not provided. Estimate workflow statuses are system-managed and cannot be set directly.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -632,7 +681,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The initial status of the work order. Defaults to Open when not provided.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
+         * <p>The initial user-selectable status of the work order. Defaults to Open when not provided. Estimate workflow statuses are system-managed and cannot be set directly.  Valid values: <code>Assigned</code>, <code>Cancelled</code>, <code>Closed</code>, <code>Completed</code>, <code>Estimate</code>, <code>In Progress</code>, <code>On Hold</code>, <code>Open</code>, <code>Pending Approval</code>, <code>Pending Parts</code>, <code>Planning</code></p>
          */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
@@ -896,6 +945,26 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
+         * <p>ID of the dashboard user to attribute as the work order creator for display and creator notifications. Does not change who is recorded as the API actor in the activity log. Must be a user in the organization. When omitted, defaults to the API token owner. Accepted only when the organization has the create-created-by feature enabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage createdByUserId(String createdByUserId) {
+            this.createdByUserId = Optional.ofNullable(createdByUserId);
+            return this;
+        }
+
+        /**
+         * <p>ID of the dashboard user to attribute as the work order creator for display and creator notifications. Does not change who is recorded as the API actor in the activity log. Must be a user in the organization. When omitted, defaults to the API token owner. Accepted only when the organization has the create-created-by feature enabled.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "createdByUserId", nulls = Nulls.SKIP)
+        public _FinalStage createdByUserId(Optional<String> createdByUserId) {
+            this.createdByUserId = createdByUserId;
+            return this;
+        }
+
+        /**
          * <p>The historical time the work order was completed, in RFC 3339 format. Is automatically set when the status is Closed or Completed and this field is not provided.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -932,6 +1001,26 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
         public _FinalStage category(Optional<String> category) {
             this.category = category;
+            return this;
+        }
+
+        /**
+         * <p>A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage attributes(List<GoaAttributeTinyRequestBody> attributes) {
+            this.attributes = Optional.ofNullable(attributes);
+            return this;
+        }
+
+        /**
+         * <p>A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "attributes", nulls = Nulls.SKIP)
+        public _FinalStage attributes(Optional<List<GoaAttributeTinyRequestBody>> attributes) {
+            this.attributes = attributes;
             return this;
         }
 
@@ -981,8 +1070,10 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                     archivedAtTime,
                     assetId,
                     assignedUserId,
+                    attributes,
                     category,
                     completedAtTime,
+                    createdByUserId,
                     description,
                     discount,
                     dueAtTime,

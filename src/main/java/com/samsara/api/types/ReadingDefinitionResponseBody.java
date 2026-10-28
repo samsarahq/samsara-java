@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +38,7 @@ public final class ReadingDefinitionResponseBody {
 
     private final String readingId;
 
-    private final Map<String, Object> type;
+    private final Object type;
 
     private final Map<String, Object> additionalProperties;
 
@@ -52,7 +51,7 @@ public final class ReadingDefinitionResponseBody {
             boolean ingestionEnabled,
             String label,
             String readingId,
-            Map<String, Object> type,
+            Object type,
             Map<String, Object> additionalProperties) {
         this.category = category;
         this.description = description;
@@ -127,11 +126,8 @@ public final class ReadingDefinitionResponseBody {
         return readingId;
     }
 
-    /**
-     * @return The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.
-     */
     @JsonProperty("type")
-    public Map<String, Object> getType() {
+    public Object getType() {
         return type;
     }
 
@@ -222,7 +218,11 @@ public final class ReadingDefinitionResponseBody {
         /**
          * <p>The ID of the reading used to fetch time series data in other endpoints.</p>
          */
-        _FinalStage readingId(@NotNull String readingId);
+        TypeStage readingId(@NotNull String readingId);
+    }
+
+    public interface TypeStage {
+        _FinalStage type(Object type);
     }
 
     public interface _FinalStage {
@@ -238,15 +238,6 @@ public final class ReadingDefinitionResponseBody {
         _FinalStage grouping(Optional<ReadingGroupingResponseBody> grouping);
 
         _FinalStage grouping(ReadingGroupingResponseBody grouping);
-
-        /**
-         * <p>The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.</p>
-         */
-        _FinalStage type(Map<String, Object> type);
-
-        _FinalStage putAllType(Map<String, Object> type);
-
-        _FinalStage type(String key, Object value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -257,6 +248,7 @@ public final class ReadingDefinitionResponseBody {
                     IngestionEnabledStage,
                     LabelStage,
                     ReadingIdStage,
+                    TypeStage,
                     _FinalStage {
         private String category;
 
@@ -270,7 +262,7 @@ public final class ReadingDefinitionResponseBody {
 
         private String readingId;
 
-        private Map<String, Object> type = new LinkedHashMap<>();
+        private Object type;
 
         private Optional<ReadingGroupingResponseBody> grouping = Optional.empty();
 
@@ -362,43 +354,15 @@ public final class ReadingDefinitionResponseBody {
          */
         @java.lang.Override
         @JsonSetter("readingId")
-        public _FinalStage readingId(@NotNull String readingId) {
+        public TypeStage readingId(@NotNull String readingId) {
             this.readingId = Objects.requireNonNull(readingId, "readingId must not be null");
             return this;
         }
 
-        /**
-         * <p>The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @java.lang.Override
-        public _FinalStage type(String key, Object value) {
-            this.type.put(key, value);
-            return this;
-        }
-
-        /**
-         * <p>The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        public _FinalStage putAllType(Map<String, Object> type) {
-            if (type != null) {
-                this.type.putAll(type);
-            }
-            return this;
-        }
-
-        /**
-         * <p>The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.</p>
-         */
-        @java.lang.Override
-        @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public _FinalStage type(Map<String, Object> type) {
-            this.type.clear();
-            if (type != null) {
-                this.type.putAll(type);
-            }
+        @JsonSetter("type")
+        public _FinalStage type(Object type) {
+            this.type = type;
             return this;
         }
 

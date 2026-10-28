@@ -35,6 +35,8 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
 
     private final String createdAtTime;
 
+    private final AssetSharingAgreementResponseObjectResponseBodyCreatedByParty createdByParty;
+
     private final Optional<String> createdByUserId;
 
     private final Optional<String> deletedByUserId;
@@ -42,6 +44,8 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     private final String id;
 
     private final AssetSharingAgreementResponseObjectResponseBodyOperator operator;
+
+    private final AssetSharingAgreementResponseObjectResponseBodyPayer payer;
 
     private final List<AssetSharingAgreementResponseObjectResponseBodyProviderDataPackagesItem> providerDataPackages;
 
@@ -68,10 +72,12 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
             Optional<AssetSharingAgreementResponseObjectResponseBodyCanceledByParty> canceledByParty,
             Optional<String> canceledByUserId,
             String createdAtTime,
+            AssetSharingAgreementResponseObjectResponseBodyCreatedByParty createdByParty,
             Optional<String> createdByUserId,
             Optional<String> deletedByUserId,
             String id,
             AssetSharingAgreementResponseObjectResponseBodyOperator operator,
+            AssetSharingAgreementResponseObjectResponseBodyPayer payer,
             List<AssetSharingAgreementResponseObjectResponseBodyProviderDataPackagesItem> providerDataPackages,
             String providerOrganizationId,
             List<AssetSharingAgreementResponseObjectResponseBodyRecipientDataPackagesItem> recipientDataPackages,
@@ -87,10 +93,12 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         this.canceledByParty = canceledByParty;
         this.canceledByUserId = canceledByUserId;
         this.createdAtTime = createdAtTime;
+        this.createdByParty = createdByParty;
         this.createdByUserId = createdByUserId;
         this.deletedByUserId = deletedByUserId;
         this.id = id;
         this.operator = operator;
+        this.payer = payer;
         this.providerDataPackages = providerDataPackages;
         this.providerOrganizationId = providerOrganizationId;
         this.recipientDataPackages = recipientDataPackages;
@@ -111,7 +119,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     }
 
     /**
-     * @return User ID who accepted the agreement (visible only to recipient).
+     * @return User ID who accepted the agreement (visible only to the accepting organization).
      */
     @JsonProperty("acceptedByUserId")
     public Optional<String> getAcceptedByUserId() {
@@ -151,7 +159,15 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     }
 
     /**
-     * @return User ID in provider org who created the agreement.
+     * @return Party that created the agreement, determined from the authenticated caller. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code>
+     */
+    @JsonProperty("createdByParty")
+    public AssetSharingAgreementResponseObjectResponseBodyCreatedByParty getCreatedByParty() {
+        return createdByParty;
+    }
+
+    /**
+     * @return User ID who created the agreement (visible only to the creating organization).
      */
     @JsonProperty("createdByUserId")
     public Optional<String> getCreatedByUserId() {
@@ -159,7 +175,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     }
 
     /**
-     * @return User ID in provider org who soft-deleted the agreement.
+     * @return User ID who soft-deleted the agreement (visible only to the deleting organization).
      */
     @JsonProperty("deletedByUserId")
     public Optional<String> getDeletedByUserId() {
@@ -180,6 +196,14 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     @JsonProperty("operator")
     public AssetSharingAgreementResponseObjectResponseBodyOperator getOperator() {
         return operator;
+    }
+
+    /**
+     * @return Party whose Asset Sharing license supports the agreement. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code>
+     */
+    @JsonProperty("payer")
+    public AssetSharingAgreementResponseObjectResponseBodyPayer getPayer() {
+        return payer;
     }
 
     /**
@@ -223,7 +247,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     }
 
     /**
-     * @return User ID who rejected the agreement (visible only to recipient).
+     * @return User ID who rejected the agreement (visible only to the rejecting organization).
      */
     @JsonProperty("rejectedByUserId")
     public Optional<String> getRejectedByUserId() {
@@ -265,10 +289,12 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
                 && canceledByParty.equals(other.canceledByParty)
                 && canceledByUserId.equals(other.canceledByUserId)
                 && createdAtTime.equals(other.createdAtTime)
+                && createdByParty.equals(other.createdByParty)
                 && createdByUserId.equals(other.createdByUserId)
                 && deletedByUserId.equals(other.deletedByUserId)
                 && id.equals(other.id)
                 && operator.equals(other.operator)
+                && payer.equals(other.payer)
                 && providerDataPackages.equals(other.providerDataPackages)
                 && providerOrganizationId.equals(other.providerOrganizationId)
                 && recipientDataPackages.equals(other.recipientDataPackages)
@@ -288,10 +314,12 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
                 this.canceledByParty,
                 this.canceledByUserId,
                 this.createdAtTime,
+                this.createdByParty,
                 this.createdByUserId,
                 this.deletedByUserId,
                 this.id,
                 this.operator,
+                this.payer,
                 this.providerDataPackages,
                 this.providerOrganizationId,
                 this.recipientDataPackages,
@@ -315,9 +343,16 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         /**
          * <p>Time the agreement was created, in RFC 3339 format.</p>
          */
-        IdStage createdAtTime(@NotNull String createdAtTime);
+        CreatedByPartyStage createdAtTime(@NotNull String createdAtTime);
 
         Builder from(AssetSharingAgreementResponseObjectResponseBody other);
+    }
+
+    public interface CreatedByPartyStage {
+        /**
+         * <p>Party that created the agreement, determined from the authenticated caller. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code></p>
+         */
+        IdStage createdByParty(@NotNull AssetSharingAgreementResponseObjectResponseBodyCreatedByParty createdByParty);
     }
 
     public interface IdStage {
@@ -331,7 +366,14 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         /**
          * <p>Defines where the gateways will be located.  Valid values: <code>provider</code>, <code>recipient</code></p>
          */
-        ProviderOrganizationIdStage operator(@NotNull AssetSharingAgreementResponseObjectResponseBodyOperator operator);
+        PayerStage operator(@NotNull AssetSharingAgreementResponseObjectResponseBodyOperator operator);
+    }
+
+    public interface PayerStage {
+        /**
+         * <p>Party whose Asset Sharing license supports the agreement. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code></p>
+         */
+        ProviderOrganizationIdStage payer(@NotNull AssetSharingAgreementResponseObjectResponseBodyPayer payer);
     }
 
     public interface ProviderOrganizationIdStage {
@@ -373,7 +415,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         _FinalStage acceptedAtTime(String acceptedAtTime);
 
         /**
-         * <p>User ID who accepted the agreement (visible only to recipient).</p>
+         * <p>User ID who accepted the agreement (visible only to the accepting organization).</p>
          */
         _FinalStage acceptedByUserId(Optional<String> acceptedByUserId);
 
@@ -402,14 +444,14 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         _FinalStage canceledByUserId(String canceledByUserId);
 
         /**
-         * <p>User ID in provider org who created the agreement.</p>
+         * <p>User ID who created the agreement (visible only to the creating organization).</p>
          */
         _FinalStage createdByUserId(Optional<String> createdByUserId);
 
         _FinalStage createdByUserId(String createdByUserId);
 
         /**
-         * <p>User ID in provider org who soft-deleted the agreement.</p>
+         * <p>User ID who soft-deleted the agreement (visible only to the deleting organization).</p>
          */
         _FinalStage deletedByUserId(Optional<String> deletedByUserId);
 
@@ -447,7 +489,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         _FinalStage rejectedAtTime(String rejectedAtTime);
 
         /**
-         * <p>User ID who rejected the agreement (visible only to recipient).</p>
+         * <p>User ID who rejected the agreement (visible only to the rejecting organization).</p>
          */
         _FinalStage rejectedByUserId(Optional<String> rejectedByUserId);
 
@@ -457,8 +499,10 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
             implements CreatedAtTimeStage,
+                    CreatedByPartyStage,
                     IdStage,
                     OperatorStage,
+                    PayerStage,
                     ProviderOrganizationIdStage,
                     RecipientOrganizationIdStage,
                     StatusStage,
@@ -466,9 +510,13 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
                     _FinalStage {
         private String createdAtTime;
 
+        private AssetSharingAgreementResponseObjectResponseBodyCreatedByParty createdByParty;
+
         private String id;
 
         private AssetSharingAgreementResponseObjectResponseBodyOperator operator;
+
+        private AssetSharingAgreementResponseObjectResponseBodyPayer payer;
 
         private String providerOrganizationId;
 
@@ -516,10 +564,12 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
             canceledByParty(other.getCanceledByParty());
             canceledByUserId(other.getCanceledByUserId());
             createdAtTime(other.getCreatedAtTime());
+            createdByParty(other.getCreatedByParty());
             createdByUserId(other.getCreatedByUserId());
             deletedByUserId(other.getDeletedByUserId());
             id(other.getId());
             operator(other.getOperator());
+            payer(other.getPayer());
             providerDataPackages(other.getProviderDataPackages());
             providerOrganizationId(other.getProviderOrganizationId());
             recipientDataPackages(other.getRecipientDataPackages());
@@ -538,8 +588,21 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("createdAtTime")
-        public IdStage createdAtTime(@NotNull String createdAtTime) {
+        public CreatedByPartyStage createdAtTime(@NotNull String createdAtTime) {
             this.createdAtTime = Objects.requireNonNull(createdAtTime, "createdAtTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Party that created the agreement, determined from the authenticated caller. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code></p>
+         * <p>Party that created the agreement, determined from the authenticated caller. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("createdByParty")
+        public IdStage createdByParty(
+                @NotNull AssetSharingAgreementResponseObjectResponseBodyCreatedByParty createdByParty) {
+            this.createdByParty = Objects.requireNonNull(createdByParty, "createdByParty must not be null");
             return this;
         }
 
@@ -562,9 +625,20 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
          */
         @java.lang.Override
         @JsonSetter("operator")
-        public ProviderOrganizationIdStage operator(
-                @NotNull AssetSharingAgreementResponseObjectResponseBodyOperator operator) {
+        public PayerStage operator(@NotNull AssetSharingAgreementResponseObjectResponseBodyOperator operator) {
             this.operator = Objects.requireNonNull(operator, "operator must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Party whose Asset Sharing license supports the agreement. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code></p>
+         * <p>Party whose Asset Sharing license supports the agreement. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: <code>provider</code>, <code>recipient</code>, <code>unknown</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        @JsonSetter("payer")
+        public ProviderOrganizationIdStage payer(@NotNull AssetSharingAgreementResponseObjectResponseBodyPayer payer) {
+            this.payer = Objects.requireNonNull(payer, "payer must not be null");
             return this;
         }
 
@@ -619,7 +693,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID who rejected the agreement (visible only to recipient).</p>
+         * <p>User ID who rejected the agreement (visible only to the rejecting organization).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -629,7 +703,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID who rejected the agreement (visible only to recipient).</p>
+         * <p>User ID who rejected the agreement (visible only to the rejecting organization).</p>
          */
         @java.lang.Override
         @JsonSetter(value = "rejectedByUserId", nulls = Nulls.SKIP)
@@ -735,7 +809,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID in provider org who soft-deleted the agreement.</p>
+         * <p>User ID who soft-deleted the agreement (visible only to the deleting organization).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -745,7 +819,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID in provider org who soft-deleted the agreement.</p>
+         * <p>User ID who soft-deleted the agreement (visible only to the deleting organization).</p>
          */
         @java.lang.Override
         @JsonSetter(value = "deletedByUserId", nulls = Nulls.SKIP)
@@ -755,7 +829,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID in provider org who created the agreement.</p>
+         * <p>User ID who created the agreement (visible only to the creating organization).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -765,7 +839,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID in provider org who created the agreement.</p>
+         * <p>User ID who created the agreement (visible only to the creating organization).</p>
          */
         @java.lang.Override
         @JsonSetter(value = "createdByUserId", nulls = Nulls.SKIP)
@@ -837,7 +911,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID who accepted the agreement (visible only to recipient).</p>
+         * <p>User ID who accepted the agreement (visible only to the accepting organization).</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -847,7 +921,7 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
         }
 
         /**
-         * <p>User ID who accepted the agreement (visible only to recipient).</p>
+         * <p>User ID who accepted the agreement (visible only to the accepting organization).</p>
          */
         @java.lang.Override
         @JsonSetter(value = "acceptedByUserId", nulls = Nulls.SKIP)
@@ -885,10 +959,12 @@ public final class AssetSharingAgreementResponseObjectResponseBody {
                     canceledByParty,
                     canceledByUserId,
                     createdAtTime,
+                    createdByParty,
                     createdByUserId,
                     deletedByUserId,
                     id,
                     operator,
+                    payer,
                     providerDataPackages,
                     providerOrganizationId,
                     recipientDataPackages,

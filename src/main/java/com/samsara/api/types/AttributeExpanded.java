@@ -74,7 +74,7 @@ public final class AttributeExpanded implements IAttribute, IAttributeExpandedAl
     }
 
     /**
-     * @return Denotes the type of entity, driver or asset. Valid values: <code>driver</code>, <code>asset</code>.
+     * @return Denotes the type of entity, driver, asset, or workOrder. Valid values: <code>driver</code>, <code>asset</code>, <code>workOrder</code>.
      */
     @JsonProperty("entityType")
     public Optional<AttributeEntityType> getEntityType() {
@@ -242,7 +242,7 @@ public final class AttributeExpanded implements IAttribute, IAttributeExpandedAl
         }
 
         /**
-         * <p>Denotes the type of entity, driver or asset. Valid values: <code>driver</code>, <code>asset</code>.</p>
+         * <p>Denotes the type of entity, driver, asset, or workOrder. Valid values: <code>driver</code>, <code>asset</code>, <code>workOrder</code>.</p>
          */
         @JsonSetter(value = "entityType", nulls = Nulls.SKIP)
         public Builder entityType(Optional<AttributeEntityType> entityType) {

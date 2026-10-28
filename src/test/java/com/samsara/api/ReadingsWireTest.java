@@ -43,7 +43,7 @@ public class ReadingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"category\":\"smartTrailer\",\"description\":\"Engine Speed\",\"entityType\":\"sensor\",\"enumValues\":[{\"label\":\"Critically High\",\"symbol\":\"criticallyHigh\"}],\"grouping\":{\"id\":\"brakeLiningRemaining\",\"label\":\"Brake Lining Remaining\"},\"ingestionEnabled\":true,\"label\":\"engineRpm\",\"readingId\":\"12345\",\"type\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"category\":\"smartTrailer\",\"description\":\"Engine Speed\",\"entityType\":\"sensor\",\"enumValues\":[{\"label\":\"Critically High\",\"symbol\":\"criticallyHigh\"}],\"grouping\":{\"id\":\"brakeLiningRemaining\",\"label\":\"Brake Lining Remaining\"},\"ingestionEnabled\":true,\"label\":\"engineRpm\",\"readingId\":\"12345\",\"type\":\"Ipsa id recusandae libero sit qui officiis.\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReadingsListReadingsDefinitionsResponseBody response = client.readings()
                 .listReadingsDefinitions(
                         ListReadingsDefinitionsRequest.builder().build());
@@ -74,9 +74,7 @@ public class ReadingsWireTest {
                 + "      \"ingestionEnabled\": true,\n"
                 + "      \"label\": \"engineRpm\",\n"
                 + "      \"readingId\": \"12345\",\n"
-                + "      \"type\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      }\n"
+                + "      \"type\": \"Ipsa id recusandae libero sit qui officiis.\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
@@ -121,7 +119,7 @@ public class ReadingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"value\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"value\":\"off\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReadingsGetReadingsHistoryResponseBody response = client.readings()
                 .getReadingsHistory(GetReadingsHistoryRequest.builder()
                         .readingId("readingId")
@@ -143,9 +141,7 @@ public class ReadingsWireTest {
                 + "        \"key\": \"value\"\n"
                 + "      },\n"
                 + "      \"happenedAtTime\": \"2020-01-27T07:06:25Z\",\n"
-                + "      \"value\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      }\n"
+                + "      \"value\": \"off\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
@@ -190,7 +186,7 @@ public class ReadingsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"readingId\":\"engineSpeed\",\"value\":{\"key\":\"value\"}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"entityId\":\"123456\",\"externalIds\":{\"key\":\"value\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"readingId\":\"engineSpeed\",\"value\":\"off\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ReadingsGetReadingsSnapshotResponseBody response = client.readings()
                 .getReadingsSnapshot(GetReadingsSnapshotRequest.builder()
                         .readingIds("readingIds")
@@ -213,9 +209,7 @@ public class ReadingsWireTest {
                 + "      },\n"
                 + "      \"happenedAtTime\": \"2020-01-27T07:06:25Z\",\n"
                 + "      \"readingId\": \"engineSpeed\",\n"
-                + "      \"value\": {\n"
-                + "        \"key\": \"value\"\n"
-                + "      }\n"
+                + "      \"value\": \"off\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"

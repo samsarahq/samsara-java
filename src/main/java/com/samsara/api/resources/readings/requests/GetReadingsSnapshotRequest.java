@@ -37,6 +37,8 @@ public final class GetReadingsSnapshotRequest {
 
     private final Optional<Boolean> includeExternalIds;
 
+    private final Optional<Boolean> hasGateway;
+
     private final Map<String, Object> additionalProperties;
 
     private GetReadingsSnapshotRequest(
@@ -48,6 +50,7 @@ public final class GetReadingsSnapshotRequest {
             String entityType,
             Optional<String> assetTypes,
             Optional<Boolean> includeExternalIds,
+            Optional<Boolean> hasGateway,
             Map<String, Object> additionalProperties) {
         this.after = after;
         this.readingIds = readingIds;
@@ -57,6 +60,7 @@ public final class GetReadingsSnapshotRequest {
         this.entityType = entityType;
         this.assetTypes = assetTypes;
         this.includeExternalIds = includeExternalIds;
+        this.hasGateway = hasGateway;
         this.additionalProperties = additionalProperties;
     }
 
@@ -116,6 +120,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
      * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
      * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+     * <li><code>evBatteryHealth</code> (EV Battery Health): Represents the health of the EV battery in percentage. (percent)</li>
      * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
      * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
      * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
@@ -125,6 +130,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
      * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
      * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
+     * <li><code>evStateOfCharge</code> (State of Charge): Represents the state of charge of the EV battery in percentage. (percent)</li>
      * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
      * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
      * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
@@ -251,6 +257,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
      * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
      * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+     * <li><code>reeferOdometer</code> (Reefer Odometer): Cumulative travel distance reported by the Refrigeration Unit OEM telematics. (meter)</li>
      * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
      * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
      * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
@@ -326,6 +333,30 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
      * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
      * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+     * <li><code>axle4tirefromleft1pressure</code> (Axle 4 Left Outer Tire Pressure): Pressure of the left outer tire on axle 4. (kilopascal)</li>
+     * <li><code>axle4tirefromleft1temperature</code> (Axle 4 Left Outer Tire Temperature): Temperature of the left outer tire on axle 4. (celsius)</li>
+     * <li><code>axle4tirefromleft2pressure</code> (Axle 4 Left Inner Tire Pressure): Pressure of the left inner tire on axle 4. (kilopascal)</li>
+     * <li><code>axle4tirefromleft2temperature</code> (Axle 4 Left Inner Tire Temperature): Temperature of the left inner tire on axle 4. (celsius)</li>
+     * <li><code>axle4tirefromleft3pressure</code> (Axle 4 Right Inner Tire Pressure): Pressure of the right inner tire on axle 4. (kilopascal)</li>
+     * <li><code>axle4tirefromleft3temperature</code> (Axle 4 Right Inner Tire Temperature): Temperature of the right inner tire on axle 4. (celsius)</li>
+     * <li><code>axle4tirefromleft4pressure</code> (Axle 4 Right Outer Tire Pressure): Pressure of the right outer tire on axle 4. (kilopascal)</li>
+     * <li><code>axle4tirefromleft4temperature</code> (Axle 4 Right Outer Tire Temperature): Temperature of the right outer tire on axle 4. (celsius)</li>
+     * <li><code>axle5tirefromleft1pressure</code> (Axle 5 Left Outer Tire Pressure): Pressure of the left outer tire on axle 5. (kilopascal)</li>
+     * <li><code>axle5tirefromleft1temperature</code> (Axle 5 Left Outer Tire Temperature): Temperature of the left outer tire on axle 5. (celsius)</li>
+     * <li><code>axle5tirefromleft2pressure</code> (Axle 5 Left Inner Tire Pressure): Pressure of the left inner tire on axle 5. (kilopascal)</li>
+     * <li><code>axle5tirefromleft2temperature</code> (Axle 5 Left Inner Tire Temperature): Temperature of the left inner tire on axle 5. (celsius)</li>
+     * <li><code>axle5tirefromleft3pressure</code> (Axle 5 Right Inner Tire Pressure): Pressure of the right inner tire on axle 5. (kilopascal)</li>
+     * <li><code>axle5tirefromleft3temperature</code> (Axle 5 Right Inner Tire Temperature): Temperature of the right inner tire on axle 5. (celsius)</li>
+     * <li><code>axle5tirefromleft4pressure</code> (Axle 5 Right Outer Tire Pressure): Pressure of the right outer tire on axle 5. (kilopascal)</li>
+     * <li><code>axle5tirefromleft4temperature</code> (Axle 5 Right Outer Tire Temperature): Temperature of the right outer tire on axle 5. (celsius)</li>
+     * <li><code>axle6tirefromleft1pressure</code> (Axle 6 Left Outer Tire Pressure): Pressure of the left outer tire on axle 6. (kilopascal)</li>
+     * <li><code>axle6tirefromleft1temperature</code> (Axle 6 Left Outer Tire Temperature): Temperature of the left outer tire on axle 6. (celsius)</li>
+     * <li><code>axle6tirefromleft2pressure</code> (Axle 6 Left Inner Tire Pressure): Pressure of the left inner tire on axle 6. (kilopascal)</li>
+     * <li><code>axle6tirefromleft2temperature</code> (Axle 6 Left Inner Tire Temperature): Temperature of the left inner tire on axle 6. (celsius)</li>
+     * <li><code>axle6tirefromleft3pressure</code> (Axle 6 Right Inner Tire Pressure): Pressure of the right inner tire on axle 6. (kilopascal)</li>
+     * <li><code>axle6tirefromleft3temperature</code> (Axle 6 Right Inner Tire Temperature): Temperature of the right inner tire on axle 6. (celsius)</li>
+     * <li><code>axle6tirefromleft4pressure</code> (Axle 6 Right Outer Tire Pressure): Pressure of the right outer tire on axle 6. (kilopascal)</li>
+     * <li><code>axle6tirefromleft4temperature</code> (Axle 6 Right Outer Tire Temperature): Temperature of the right outer tire on axle 6. (celsius)</li>
      * </ul>
      * <p>&lt;/details&gt;</p>
      * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
@@ -383,6 +414,14 @@ public final class GetReadingsSnapshotRequest {
         return includeExternalIds;
     }
 
+    /**
+     * @return A filter on the data based on whether the asset is currently associated with a gateway. If set to true, only returns readings for assets that are currently associated with a gateway. If set to false, only returns readings for assets that are not currently associated with a gateway. If not set, no gateway filtering is applied. Only supported when entityType is asset.
+     */
+    @JsonProperty("hasGateway")
+    public Optional<Boolean> getHasGateway() {
+        return hasGateway;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -402,7 +441,8 @@ public final class GetReadingsSnapshotRequest {
                 && asOfTime.equals(other.asOfTime)
                 && entityType.equals(other.entityType)
                 && assetTypes.equals(other.assetTypes)
-                && includeExternalIds.equals(other.includeExternalIds);
+                && includeExternalIds.equals(other.includeExternalIds)
+                && hasGateway.equals(other.hasGateway);
     }
 
     @java.lang.Override
@@ -415,7 +455,8 @@ public final class GetReadingsSnapshotRequest {
                 this.asOfTime,
                 this.entityType,
                 this.assetTypes,
-                this.includeExternalIds);
+                this.includeExternalIds,
+                this.hasGateway);
     }
 
     @java.lang.Override
@@ -476,6 +517,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evBatteryHealth</code> (EV Battery Health): Represents the health of the EV battery in percentage. (percent)</li>
          * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
          * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
@@ -485,6 +527,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
+         * <li><code>evStateOfCharge</code> (State of Charge): Represents the state of charge of the EV battery in percentage. (percent)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
@@ -611,6 +654,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
          * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
          * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+         * <li><code>reeferOdometer</code> (Reefer Odometer): Cumulative travel distance reported by the Refrigeration Unit OEM telematics. (meter)</li>
          * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
          * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
          * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
@@ -686,6 +730,30 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
          * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
          * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+         * <li><code>axle4tirefromleft1pressure</code> (Axle 4 Left Outer Tire Pressure): Pressure of the left outer tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft1temperature</code> (Axle 4 Left Outer Tire Temperature): Temperature of the left outer tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft2pressure</code> (Axle 4 Left Inner Tire Pressure): Pressure of the left inner tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft2temperature</code> (Axle 4 Left Inner Tire Temperature): Temperature of the left inner tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft3pressure</code> (Axle 4 Right Inner Tire Pressure): Pressure of the right inner tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft3temperature</code> (Axle 4 Right Inner Tire Temperature): Temperature of the right inner tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft4pressure</code> (Axle 4 Right Outer Tire Pressure): Pressure of the right outer tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft4temperature</code> (Axle 4 Right Outer Tire Temperature): Temperature of the right outer tire on axle 4. (celsius)</li>
+         * <li><code>axle5tirefromleft1pressure</code> (Axle 5 Left Outer Tire Pressure): Pressure of the left outer tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft1temperature</code> (Axle 5 Left Outer Tire Temperature): Temperature of the left outer tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft2pressure</code> (Axle 5 Left Inner Tire Pressure): Pressure of the left inner tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft2temperature</code> (Axle 5 Left Inner Tire Temperature): Temperature of the left inner tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft3pressure</code> (Axle 5 Right Inner Tire Pressure): Pressure of the right inner tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft3temperature</code> (Axle 5 Right Inner Tire Temperature): Temperature of the right inner tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft4pressure</code> (Axle 5 Right Outer Tire Pressure): Pressure of the right outer tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft4temperature</code> (Axle 5 Right Outer Tire Temperature): Temperature of the right outer tire on axle 5. (celsius)</li>
+         * <li><code>axle6tirefromleft1pressure</code> (Axle 6 Left Outer Tire Pressure): Pressure of the left outer tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft1temperature</code> (Axle 6 Left Outer Tire Temperature): Temperature of the left outer tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft2pressure</code> (Axle 6 Left Inner Tire Pressure): Pressure of the left inner tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft2temperature</code> (Axle 6 Left Inner Tire Temperature): Temperature of the left inner tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft3pressure</code> (Axle 6 Right Inner Tire Pressure): Pressure of the right inner tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft3temperature</code> (Axle 6 Right Inner Tire Temperature): Temperature of the right inner tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft4pressure</code> (Axle 6 Right Outer Tire Pressure): Pressure of the right outer tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft4temperature</code> (Axle 6 Right Outer Tire Temperature): Temperature of the right outer tire on axle 6. (celsius)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
@@ -746,6 +814,13 @@ public final class GetReadingsSnapshotRequest {
         _FinalStage includeExternalIds(Optional<Boolean> includeExternalIds);
 
         _FinalStage includeExternalIds(Boolean includeExternalIds);
+
+        /**
+         * <p>A filter on the data based on whether the asset is currently associated with a gateway. If set to true, only returns readings for assets that are currently associated with a gateway. If set to false, only returns readings for assets that are not currently associated with a gateway. If not set, no gateway filtering is applied. Only supported when entityType is asset.</p>
+         */
+        _FinalStage hasGateway(Optional<Boolean> hasGateway);
+
+        _FinalStage hasGateway(Boolean hasGateway);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -753,6 +828,8 @@ public final class GetReadingsSnapshotRequest {
         private String readingIds;
 
         private String entityType;
+
+        private Optional<Boolean> hasGateway = Optional.empty();
 
         private Optional<Boolean> includeExternalIds = Optional.empty();
 
@@ -781,6 +858,7 @@ public final class GetReadingsSnapshotRequest {
             entityType(other.getEntityType());
             assetTypes(other.getAssetTypes());
             includeExternalIds(other.getIncludeExternalIds());
+            hasGateway(other.getHasGateway());
             return this;
         }
 
@@ -832,6 +910,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evBatteryHealth</code> (EV Battery Health): Represents the health of the EV battery in percentage. (percent)</li>
          * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
          * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
@@ -841,6 +920,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
+         * <li><code>evStateOfCharge</code> (State of Charge): Represents the state of charge of the EV battery in percentage. (percent)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
@@ -967,6 +1047,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
          * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
          * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+         * <li><code>reeferOdometer</code> (Reefer Odometer): Cumulative travel distance reported by the Refrigeration Unit OEM telematics. (meter)</li>
          * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
          * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
          * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
@@ -1042,6 +1123,30 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
          * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
          * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+         * <li><code>axle4tirefromleft1pressure</code> (Axle 4 Left Outer Tire Pressure): Pressure of the left outer tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft1temperature</code> (Axle 4 Left Outer Tire Temperature): Temperature of the left outer tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft2pressure</code> (Axle 4 Left Inner Tire Pressure): Pressure of the left inner tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft2temperature</code> (Axle 4 Left Inner Tire Temperature): Temperature of the left inner tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft3pressure</code> (Axle 4 Right Inner Tire Pressure): Pressure of the right inner tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft3temperature</code> (Axle 4 Right Inner Tire Temperature): Temperature of the right inner tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft4pressure</code> (Axle 4 Right Outer Tire Pressure): Pressure of the right outer tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft4temperature</code> (Axle 4 Right Outer Tire Temperature): Temperature of the right outer tire on axle 4. (celsius)</li>
+         * <li><code>axle5tirefromleft1pressure</code> (Axle 5 Left Outer Tire Pressure): Pressure of the left outer tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft1temperature</code> (Axle 5 Left Outer Tire Temperature): Temperature of the left outer tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft2pressure</code> (Axle 5 Left Inner Tire Pressure): Pressure of the left inner tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft2temperature</code> (Axle 5 Left Inner Tire Temperature): Temperature of the left inner tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft3pressure</code> (Axle 5 Right Inner Tire Pressure): Pressure of the right inner tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft3temperature</code> (Axle 5 Right Inner Tire Temperature): Temperature of the right inner tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft4pressure</code> (Axle 5 Right Outer Tire Pressure): Pressure of the right outer tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft4temperature</code> (Axle 5 Right Outer Tire Temperature): Temperature of the right outer tire on axle 5. (celsius)</li>
+         * <li><code>axle6tirefromleft1pressure</code> (Axle 6 Left Outer Tire Pressure): Pressure of the left outer tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft1temperature</code> (Axle 6 Left Outer Tire Temperature): Temperature of the left outer tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft2pressure</code> (Axle 6 Left Inner Tire Pressure): Pressure of the left inner tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft2temperature</code> (Axle 6 Left Inner Tire Temperature): Temperature of the left inner tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft3pressure</code> (Axle 6 Right Inner Tire Pressure): Pressure of the right inner tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft3temperature</code> (Axle 6 Right Inner Tire Temperature): Temperature of the right inner tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft4pressure</code> (Axle 6 Right Outer Tire Pressure): Pressure of the right outer tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft4temperature</code> (Axle 6 Right Outer Tire Temperature): Temperature of the right outer tire on axle 6. (celsius)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
@@ -1092,6 +1197,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>engineState</code> (Engine State): Indicates the current state of the engine, such as running, stopped. (values: off | running | idling)</li>
          * <li><code>engineTotalIdleTime</code> (Engine Total Idle Time): Total idle time for the vehicle. (minute)</li>
          * <li><code>evAverageCellTemperature</code> (EV Average Cell Temperature): Average temperature of EV battery cells in degrees Celsius. (celsius)</li>
+         * <li><code>evBatteryHealth</code> (EV Battery Health): Represents the health of the EV battery in percentage. (percent)</li>
          * <li><code>evChargingCurrent</code> (EV Charging Current): Charging current for electric and hybrid vehicles. (ampere)</li>
          * <li><code>evChargingEnergy</code> (EV Charging Energy): Charging energy for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evChargingStatus</code> (EV Charging Status): Charging status for electric and hybrid vehicles. (values: unknown | notCharging | charging)</li>
@@ -1101,6 +1207,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
+         * <li><code>evStateOfCharge</code> (State of Charge): Represents the state of charge of the EV battery in percentage. (percent)</li>
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
@@ -1227,6 +1334,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>reeferDoorOpenZone3</code> (Reefer Door Open (Zone 3)): Status indicating whether the reefer's door (zone 3) is closed or open (values: closed | open)</li>
          * <li><code>reeferEngineHours</code> (Reefer Engine Hours): The total accumulated hours that the Refrigeration Unit has been running on its engine. (hour)</li>
          * <li><code>reeferFuelLevel</code> (Reefer Fuel Level): Refrigeration Unit Fuel Level (%) (percent)</li>
+         * <li><code>reeferOdometer</code> (Reefer Odometer): Cumulative travel distance reported by the Refrigeration Unit OEM telematics. (meter)</li>
          * <li><code>reeferPowerSource</code> (Reefer Power Source): The power source of the refrigeration unit (Diesel, Electric or Cryo) (values: engine | electric | cryo)</li>
          * <li><code>reeferReturnAirZone1</code> (Reefer Return Air Temperature (Zone 1)): Return air temperature for the reefer's zone 1 (celsius)</li>
          * <li><code>reeferReturnAirZone2</code> (Reefer Return Air Temperature (Zone 2)): Return air temperature for the reefer's zone 2 (celsius)</li>
@@ -1302,6 +1410,30 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>axle3tirefromleft3temperature</code> (Axle 3 Right Inner Tire Temperature): Temperature of the right inner tire on axle 3. (celsius)</li>
          * <li><code>axle3tirefromleft4pressure</code> (Axle 3 Right Outer Tire Pressure): Pressure of the right outer tire on axle 3. (kilopascal)</li>
          * <li><code>axle3tirefromleft4temperature</code> (Axle 3 Right Outer Tire Temperature): Temperature of the right outer tire on axle 3. (celsius)</li>
+         * <li><code>axle4tirefromleft1pressure</code> (Axle 4 Left Outer Tire Pressure): Pressure of the left outer tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft1temperature</code> (Axle 4 Left Outer Tire Temperature): Temperature of the left outer tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft2pressure</code> (Axle 4 Left Inner Tire Pressure): Pressure of the left inner tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft2temperature</code> (Axle 4 Left Inner Tire Temperature): Temperature of the left inner tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft3pressure</code> (Axle 4 Right Inner Tire Pressure): Pressure of the right inner tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft3temperature</code> (Axle 4 Right Inner Tire Temperature): Temperature of the right inner tire on axle 4. (celsius)</li>
+         * <li><code>axle4tirefromleft4pressure</code> (Axle 4 Right Outer Tire Pressure): Pressure of the right outer tire on axle 4. (kilopascal)</li>
+         * <li><code>axle4tirefromleft4temperature</code> (Axle 4 Right Outer Tire Temperature): Temperature of the right outer tire on axle 4. (celsius)</li>
+         * <li><code>axle5tirefromleft1pressure</code> (Axle 5 Left Outer Tire Pressure): Pressure of the left outer tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft1temperature</code> (Axle 5 Left Outer Tire Temperature): Temperature of the left outer tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft2pressure</code> (Axle 5 Left Inner Tire Pressure): Pressure of the left inner tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft2temperature</code> (Axle 5 Left Inner Tire Temperature): Temperature of the left inner tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft3pressure</code> (Axle 5 Right Inner Tire Pressure): Pressure of the right inner tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft3temperature</code> (Axle 5 Right Inner Tire Temperature): Temperature of the right inner tire on axle 5. (celsius)</li>
+         * <li><code>axle5tirefromleft4pressure</code> (Axle 5 Right Outer Tire Pressure): Pressure of the right outer tire on axle 5. (kilopascal)</li>
+         * <li><code>axle5tirefromleft4temperature</code> (Axle 5 Right Outer Tire Temperature): Temperature of the right outer tire on axle 5. (celsius)</li>
+         * <li><code>axle6tirefromleft1pressure</code> (Axle 6 Left Outer Tire Pressure): Pressure of the left outer tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft1temperature</code> (Axle 6 Left Outer Tire Temperature): Temperature of the left outer tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft2pressure</code> (Axle 6 Left Inner Tire Pressure): Pressure of the left inner tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft2temperature</code> (Axle 6 Left Inner Tire Temperature): Temperature of the left inner tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft3pressure</code> (Axle 6 Right Inner Tire Pressure): Pressure of the right inner tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft3temperature</code> (Axle 6 Right Inner Tire Temperature): Temperature of the right inner tire on axle 6. (celsius)</li>
+         * <li><code>axle6tirefromleft4pressure</code> (Axle 6 Right Outer Tire Pressure): Pressure of the right outer tire on axle 6. (kilopascal)</li>
+         * <li><code>axle6tirefromleft4temperature</code> (Axle 6 Right Outer Tire Temperature): Temperature of the right outer tire on axle 6. (celsius)</li>
          * </ul>
          * <p>&lt;/details&gt;</p>
          * <p><strong>Note:</strong> This is not an exhaustive list. Your organization may have access to additional readings based on enabled features or custom configurations. Use the <code>/readings/definitions</code> endpoint to retrieve all available reading IDs for your organization.</p>
@@ -1323,6 +1455,26 @@ public final class GetReadingsSnapshotRequest {
         @JsonSetter("entityType")
         public _FinalStage entityType(@NotNull String entityType) {
             this.entityType = Objects.requireNonNull(entityType, "entityType must not be null");
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on whether the asset is currently associated with a gateway. If set to true, only returns readings for assets that are currently associated with a gateway. If set to false, only returns readings for assets that are not currently associated with a gateway. If not set, no gateway filtering is applied. Only supported when entityType is asset.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage hasGateway(Boolean hasGateway) {
+            this.hasGateway = Optional.ofNullable(hasGateway);
+            return this;
+        }
+
+        /**
+         * <p>A filter on the data based on whether the asset is currently associated with a gateway. If set to true, only returns readings for assets that are currently associated with a gateway. If set to false, only returns readings for assets that are not currently associated with a gateway. If not set, no gateway filtering is applied. Only supported when entityType is asset.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "hasGateway", nulls = Nulls.SKIP)
+        public _FinalStage hasGateway(Optional<Boolean> hasGateway) {
+            this.hasGateway = hasGateway;
             return this;
         }
 
@@ -1457,6 +1609,7 @@ public final class GetReadingsSnapshotRequest {
                     entityType,
                     assetTypes,
                     includeExternalIds,
+                    hasGateway,
                     additionalProperties);
         }
     }
