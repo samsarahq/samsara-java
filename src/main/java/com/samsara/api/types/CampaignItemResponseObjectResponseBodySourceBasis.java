@@ -25,6 +25,9 @@ public final class CampaignItemResponseObjectResponseBodySourceBasis {
     public static final CampaignItemResponseObjectResponseBodySourceBasis API =
             new CampaignItemResponseObjectResponseBodySourceBasis(Value.API, "api");
 
+    public static final CampaignItemResponseObjectResponseBodySourceBasis NHTSA =
+            new CampaignItemResponseObjectResponseBodySourceBasis(Value.NHTSA, "nhtsa");
+
     private final Value value;
 
     private final String string;
@@ -70,6 +73,8 @@ public final class CampaignItemResponseObjectResponseBodySourceBasis {
                 return visitor.visitManual();
             case API:
                 return visitor.visitApi();
+            case NHTSA:
+                return visitor.visitNhtsa();
             case _UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -91,6 +96,8 @@ public final class CampaignItemResponseObjectResponseBodySourceBasis {
                 return MANUAL;
             case "api":
                 return API;
+            case "nhtsa":
+                return NHTSA;
             default:
                 return new CampaignItemResponseObjectResponseBodySourceBasis(Value._UNKNOWN, value);
         }
@@ -107,6 +114,8 @@ public final class CampaignItemResponseObjectResponseBodySourceBasis {
 
         ASSISTANT,
 
+        NHTSA,
+
         UNKNOWN,
 
         _UNKNOWN
@@ -122,6 +131,8 @@ public final class CampaignItemResponseObjectResponseBodySourceBasis {
         T visitCsv();
 
         T visitAssistant();
+
+        T visitNhtsa();
 
         T visitUnknown();
 

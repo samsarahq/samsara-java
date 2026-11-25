@@ -109,7 +109,7 @@ public class UsersWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\",\"role\":{\"id\":\"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\"name\":\"Full Admin\"},\"tag\":{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         ListUsersResponse response =
                 client.users().listUsers(ListUsersRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -129,7 +129,16 @@ public class UsersWireTest {
                 + "      \"name\": \"Bob Smith\",\n"
                 + "      \"roles\": [\n"
                 + "        {\n"
-                + "          \"expireAt\": \"2025-08-13T19:08:25Z\"\n"
+                + "          \"expireAt\": \"2025-08-13T19:08:25Z\",\n"
+                + "          \"role\": {\n"
+                + "            \"id\": \"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\n"
+                + "            \"name\": \"Full Admin\"\n"
+                + "          },\n"
+                + "          \"tag\": {\n"
+                + "            \"id\": \"3914\",\n"
+                + "            \"name\": \"East Coast\",\n"
+                + "            \"parentTagId\": \"4815\"\n"
+                + "          }\n"
                 + "        }\n"
                 + "      ]\n"
                 + "    }\n"
@@ -176,7 +185,7 @@ public class UsersWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\"}]}}"));
+                                "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\",\"role\":{\"id\":\"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\"name\":\"Full Admin\"},\"tag\":{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}}]}}"));
         UserResponse response = client.users()
                 .createUser(CreateUserRequest.builder()
                         .authType(CreateUserRequestAuthType.DEFAULT)
@@ -241,7 +250,16 @@ public class UsersWireTest {
                 + "    \"name\": \"Bob Smith\",\n"
                 + "    \"roles\": [\n"
                 + "      {\n"
-                + "        \"expireAt\": \"2025-08-13T19:08:25Z\"\n"
+                + "        \"expireAt\": \"2025-08-13T19:08:25Z\",\n"
+                + "        \"role\": {\n"
+                + "          \"id\": \"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\n"
+                + "          \"name\": \"Full Admin\"\n"
+                + "        },\n"
+                + "        \"tag\": {\n"
+                + "          \"id\": \"3914\",\n"
+                + "          \"name\": \"East Coast\",\n"
+                + "          \"parentTagId\": \"4815\"\n"
+                + "        }\n"
                 + "      }\n"
                 + "    ]\n"
                 + "  }\n"
@@ -283,7 +301,7 @@ public class UsersWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\"}]}}"));
+                                "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\",\"role\":{\"id\":\"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\"name\":\"Full Admin\"},\"tag\":{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}}]}}"));
         UserResponse response =
                 client.users().getUser("id", GetUserRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -302,7 +320,16 @@ public class UsersWireTest {
                 + "    \"name\": \"Bob Smith\",\n"
                 + "    \"roles\": [\n"
                 + "      {\n"
-                + "        \"expireAt\": \"2025-08-13T19:08:25Z\"\n"
+                + "        \"expireAt\": \"2025-08-13T19:08:25Z\",\n"
+                + "        \"role\": {\n"
+                + "          \"id\": \"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\n"
+                + "          \"name\": \"Full Admin\"\n"
+                + "        },\n"
+                + "        \"tag\": {\n"
+                + "          \"id\": \"3914\",\n"
+                + "          \"name\": \"East Coast\",\n"
+                + "          \"parentTagId\": \"4815\"\n"
+                + "        }\n"
                 + "      }\n"
                 + "    ]\n"
                 + "  }\n"
@@ -353,7 +380,7 @@ public class UsersWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\"}]}}"));
+                                "{\"data\":{\"authType\":\"default\",\"email\":\"user@company.com\",\"id\":\"123\",\"name\":\"Bob Smith\",\"roles\":[{\"expireAt\":\"2025-08-13T19:08:25Z\",\"role\":{\"id\":\"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\"name\":\"Full Admin\"},\"tag\":{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}}]}}"));
         UserResponse response =
                 client.users().updateUser("id", UpdateUserRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -401,7 +428,16 @@ public class UsersWireTest {
                 + "    \"name\": \"Bob Smith\",\n"
                 + "    \"roles\": [\n"
                 + "      {\n"
-                + "        \"expireAt\": \"2025-08-13T19:08:25Z\"\n"
+                + "        \"expireAt\": \"2025-08-13T19:08:25Z\",\n"
+                + "        \"role\": {\n"
+                + "          \"id\": \"8a9371af-82d1-4158-bf91-4ecc8d3a114c\",\n"
+                + "          \"name\": \"Full Admin\"\n"
+                + "        },\n"
+                + "        \"tag\": {\n"
+                + "          \"id\": \"3914\",\n"
+                + "          \"name\": \"East Coast\",\n"
+                + "          \"parentTagId\": \"4815\"\n"
+                + "        }\n"
                 + "      }\n"
                 + "    ]\n"
                 + "  }\n"

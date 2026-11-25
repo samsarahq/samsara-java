@@ -1,294 +1,66 @@
 {
   "data": [
     {
-      "createdAtTime": "2024-01-15T09:30:00Z",
+      "createdAtTime": "1991-03-10T05:05:44Z",
       "customerProperties": [
         {
-          "key": "key",
-          "value": "value"
-        },
-        {
-          "key": "key",
-          "value": "value"
+          "key": "purchaseOrderNumber",
+          "value": "PO-12345"
         }
       ],
-      "externalIds": {},
-      "id": "id",
-      "samsaraCustomerOrderName": "samsaraCustomerOrderName",
+      "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
+      "samsaraCustomerOrderName": "Order 12345",
       "tasks": [
         {
-          "createdAtTime": "2024-01-15T09:30:00Z",
+          "createdAtTime": "1978-04-10T10:12:48Z",
           "customerProperties": [
             {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "key",
-              "value": "value"
+              "key": "purchaseOrderNumber",
+              "value": "PO-12345"
             }
           ],
-          "dispatcherNotes": "dispatcherNotes",
-          "driverNotes": "driverNotes",
-          "hubId": "hubId",
-          "id": "id",
+          "dispatcherNotes": "Customer requires lift gate",
+          "driverNotes": "Use loading dock 4",
+          "hubId": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
+          "id": "12345678",
           "positionConstraintType": "unknown",
           "quantities": [
             {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            },
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
+              "capacityId": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
+              "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
+              "label": "pallets",
+              "value": 0.9093771758102452
             }
           ],
-          "routeId": "routeId",
-          "serviceDurationSeconds": 1000000,
+          "routeId": "12345678",
+          "serviceDurationSeconds": 5383547431771835000,
           "serviceLocation": {
-            "addressId": "addressId",
+            "addressId": "12345678",
             "customAddress": {
-              "addressLine1": "addressLine1",
-              "addressLine2": "addressLine2",
-              "city": "city",
-              "country": "country",
-              "formattedAddress": "formattedAddress",
-              "latitude": 1.1,
-              "longitude": 1.1,
-              "postalCode": "postalCode",
-              "state": "state"
+              "addressLine1": "123 Main St",
+              "addressLine2": "Dock 4",
+              "city": "Oakland",
+              "country": "US",
+              "formattedAddress": "123 Main St, Oakland, CA 94607",
+              "latitude": 0.17951671081016027,
+              "longitude": 0.7662845147315845,
+              "postalCode": "94607",
+              "state": "CA"
             },
             "serviceLocationType": "unknown"
           },
           "serviceWindows": [
             {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            },
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
+              "endTime": "1985-04-25T22:02:51Z",
+              "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
+              "startTime": "1977-05-21T10:40:21Z"
             }
           ],
           "taskType": "unknown",
-          "updatedAtTime": "2024-01-15T09:30:00Z"
-        },
-        {
-          "createdAtTime": "2024-01-15T09:30:00Z",
-          "customerProperties": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ],
-          "dispatcherNotes": "dispatcherNotes",
-          "driverNotes": "driverNotes",
-          "hubId": "hubId",
-          "id": "id",
-          "positionConstraintType": "unknown",
-          "quantities": [
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            },
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            }
-          ],
-          "routeId": "routeId",
-          "serviceDurationSeconds": 1000000,
-          "serviceLocation": {
-            "addressId": "addressId",
-            "customAddress": {
-              "addressLine1": "addressLine1",
-              "addressLine2": "addressLine2",
-              "city": "city",
-              "country": "country",
-              "formattedAddress": "formattedAddress",
-              "latitude": 1.1,
-              "longitude": 1.1,
-              "postalCode": "postalCode",
-              "state": "state"
-            },
-            "serviceLocationType": "unknown"
-          },
-          "serviceWindows": [
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            },
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            }
-          ],
-          "taskType": "unknown",
-          "updatedAtTime": "2024-01-15T09:30:00Z"
+          "updatedAtTime": "1989-01-02T14:22:45Z"
         }
       ],
-      "updatedAtTime": "2024-01-15T09:30:00Z"
-    },
-    {
-      "createdAtTime": "2024-01-15T09:30:00Z",
-      "customerProperties": [
-        {
-          "key": "key",
-          "value": "value"
-        },
-        {
-          "key": "key",
-          "value": "value"
-        }
-      ],
-      "externalIds": {},
-      "id": "id",
-      "samsaraCustomerOrderName": "samsaraCustomerOrderName",
-      "tasks": [
-        {
-          "createdAtTime": "2024-01-15T09:30:00Z",
-          "customerProperties": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ],
-          "dispatcherNotes": "dispatcherNotes",
-          "driverNotes": "driverNotes",
-          "hubId": "hubId",
-          "id": "id",
-          "positionConstraintType": "unknown",
-          "quantities": [
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            },
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            }
-          ],
-          "routeId": "routeId",
-          "serviceDurationSeconds": 1000000,
-          "serviceLocation": {
-            "addressId": "addressId",
-            "customAddress": {
-              "addressLine1": "addressLine1",
-              "addressLine2": "addressLine2",
-              "city": "city",
-              "country": "country",
-              "formattedAddress": "formattedAddress",
-              "latitude": 1.1,
-              "longitude": 1.1,
-              "postalCode": "postalCode",
-              "state": "state"
-            },
-            "serviceLocationType": "unknown"
-          },
-          "serviceWindows": [
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            },
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            }
-          ],
-          "taskType": "unknown",
-          "updatedAtTime": "2024-01-15T09:30:00Z"
-        },
-        {
-          "createdAtTime": "2024-01-15T09:30:00Z",
-          "customerProperties": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ],
-          "dispatcherNotes": "dispatcherNotes",
-          "driverNotes": "driverNotes",
-          "hubId": "hubId",
-          "id": "id",
-          "positionConstraintType": "unknown",
-          "quantities": [
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            },
-            {
-              "capacityId": "capacityId",
-              "id": "id",
-              "label": "label",
-              "value": 1.1
-            }
-          ],
-          "routeId": "routeId",
-          "serviceDurationSeconds": 1000000,
-          "serviceLocation": {
-            "addressId": "addressId",
-            "customAddress": {
-              "addressLine1": "addressLine1",
-              "addressLine2": "addressLine2",
-              "city": "city",
-              "country": "country",
-              "formattedAddress": "formattedAddress",
-              "latitude": 1.1,
-              "longitude": 1.1,
-              "postalCode": "postalCode",
-              "state": "state"
-            },
-            "serviceLocationType": "unknown"
-          },
-          "serviceWindows": [
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            },
-            {
-              "endTime": "2024-01-15T09:30:00Z",
-              "id": "id",
-              "startTime": "2024-01-15T09:30:00Z"
-            }
-          ],
-          "taskType": "unknown",
-          "updatedAtTime": "2024-01-15T09:30:00Z"
-        }
-      ],
-      "updatedAtTime": "2024-01-15T09:30:00Z"
+      "updatedAtTime": "1994-05-17T11:50:16Z"
     }
   ]
 }

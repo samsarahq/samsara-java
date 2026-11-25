@@ -25,22 +25,30 @@ public final class PartInstanceObjectResponseBody {
 
     private final String id;
 
+    private final Optional<String> maintenanceSiteId;
+
     private final String partId;
 
     private final double quantity;
+
+    private final Optional<Double> requestedQuantity;
 
     private final Map<String, Object> additionalProperties;
 
     private PartInstanceObjectResponseBody(
             Optional<Long> costCentsOverride,
             String id,
+            Optional<String> maintenanceSiteId,
             String partId,
             double quantity,
+            Optional<Double> requestedQuantity,
             Map<String, Object> additionalProperties) {
         this.costCentsOverride = costCentsOverride;
         this.id = id;
+        this.maintenanceSiteId = maintenanceSiteId;
         this.partId = partId;
         this.quantity = quantity;
+        this.requestedQuantity = requestedQuantity;
         this.additionalProperties = additionalProperties;
     }
 
@@ -61,6 +69,14 @@ public final class PartInstanceObjectResponseBody {
     }
 
     /**
+     * @return ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Omitted when the part has no maintenance site, and unless total part quantity is enabled for the organization.
+     */
+    @JsonProperty("maintenanceSiteId")
+    public Optional<String> getMaintenanceSiteId() {
+        return maintenanceSiteId;
+    }
+
+    /**
      * @return ID of the part definition.
      */
     @JsonProperty("partId")
@@ -69,11 +85,19 @@ public final class PartInstanceObjectResponseBody {
     }
 
     /**
-     * @return The quantity of the part in the parts pre defined unit of measure.
+     * @return The stock-backed quantity of the part in the part's predefined unit of measure.
      */
     @JsonProperty("quantity")
     public double getQuantity() {
         return quantity;
+    }
+
+    /**
+     * @return Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. Omitted unless total part quantity is enabled for the organization. A shortage request is reconciled asynchronously after the work order is saved.
+     */
+    @JsonProperty("requestedQuantity")
+    public Optional<Double> getRequestedQuantity() {
+        return requestedQuantity;
     }
 
     @java.lang.Override
@@ -90,13 +114,21 @@ public final class PartInstanceObjectResponseBody {
     private boolean equalTo(PartInstanceObjectResponseBody other) {
         return costCentsOverride.equals(other.costCentsOverride)
                 && id.equals(other.id)
+                && maintenanceSiteId.equals(other.maintenanceSiteId)
                 && partId.equals(other.partId)
-                && quantity == other.quantity;
+                && quantity == other.quantity
+                && requestedQuantity.equals(other.requestedQuantity);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.costCentsOverride, this.id, this.partId, this.quantity);
+        return Objects.hash(
+                this.costCentsOverride,
+                this.id,
+                this.maintenanceSiteId,
+                this.partId,
+                this.quantity,
+                this.requestedQuantity);
     }
 
     @java.lang.Override
@@ -126,7 +158,7 @@ public final class PartInstanceObjectResponseBody {
 
     public interface QuantityStage {
         /**
-         * <p>The quantity of the part in the parts pre defined unit of measure.</p>
+         * <p>The stock-backed quantity of the part in the part's predefined unit of measure.</p>
          */
         _FinalStage quantity(double quantity);
     }
@@ -140,6 +172,20 @@ public final class PartInstanceObjectResponseBody {
         _FinalStage costCentsOverride(Optional<Long> costCentsOverride);
 
         _FinalStage costCentsOverride(Long costCentsOverride);
+
+        /**
+         * <p>ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Omitted when the part has no maintenance site, and unless total part quantity is enabled for the organization.</p>
+         */
+        _FinalStage maintenanceSiteId(Optional<String> maintenanceSiteId);
+
+        _FinalStage maintenanceSiteId(String maintenanceSiteId);
+
+        /**
+         * <p>Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. Omitted unless total part quantity is enabled for the organization. A shortage request is reconciled asynchronously after the work order is saved.</p>
+         */
+        _FinalStage requestedQuantity(Optional<Double> requestedQuantity);
+
+        _FinalStage requestedQuantity(Double requestedQuantity);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -149,6 +195,10 @@ public final class PartInstanceObjectResponseBody {
         private String partId;
 
         private double quantity;
+
+        private Optional<Double> requestedQuantity = Optional.empty();
+
+        private Optional<String> maintenanceSiteId = Optional.empty();
 
         private Optional<Long> costCentsOverride = Optional.empty();
 
@@ -161,8 +211,10 @@ public final class PartInstanceObjectResponseBody {
         public Builder from(PartInstanceObjectResponseBody other) {
             costCentsOverride(other.getCostCentsOverride());
             id(other.getId());
+            maintenanceSiteId(other.getMaintenanceSiteId());
             partId(other.getPartId());
             quantity(other.getQuantity());
+            requestedQuantity(other.getRequestedQuantity());
             return this;
         }
 
@@ -191,14 +243,54 @@ public final class PartInstanceObjectResponseBody {
         }
 
         /**
-         * <p>The quantity of the part in the parts pre defined unit of measure.</p>
-         * <p>The quantity of the part in the parts pre defined unit of measure.</p>
+         * <p>The stock-backed quantity of the part in the part's predefined unit of measure.</p>
+         * <p>The stock-backed quantity of the part in the part's predefined unit of measure.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
         @JsonSetter("quantity")
         public _FinalStage quantity(double quantity) {
             this.quantity = quantity;
+            return this;
+        }
+
+        /**
+         * <p>Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. Omitted unless total part quantity is enabled for the organization. A shortage request is reconciled asynchronously after the work order is saved.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage requestedQuantity(Double requestedQuantity) {
+            this.requestedQuantity = Optional.ofNullable(requestedQuantity);
+            return this;
+        }
+
+        /**
+         * <p>Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. Omitted unless total part quantity is enabled for the organization. A shortage request is reconciled asynchronously after the work order is saved.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "requestedQuantity", nulls = Nulls.SKIP)
+        public _FinalStage requestedQuantity(Optional<Double> requestedQuantity) {
+            this.requestedQuantity = requestedQuantity;
+            return this;
+        }
+
+        /**
+         * <p>ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Omitted when the part has no maintenance site, and unless total part quantity is enabled for the organization.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage maintenanceSiteId(String maintenanceSiteId) {
+            this.maintenanceSiteId = Optional.ofNullable(maintenanceSiteId);
+            return this;
+        }
+
+        /**
+         * <p>ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Omitted when the part has no maintenance site, and unless total part quantity is enabled for the organization.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "maintenanceSiteId", nulls = Nulls.SKIP)
+        public _FinalStage maintenanceSiteId(Optional<String> maintenanceSiteId) {
+            this.maintenanceSiteId = maintenanceSiteId;
             return this;
         }
 
@@ -224,7 +316,14 @@ public final class PartInstanceObjectResponseBody {
 
         @java.lang.Override
         public PartInstanceObjectResponseBody build() {
-            return new PartInstanceObjectResponseBody(costCentsOverride, id, partId, quantity, additionalProperties);
+            return new PartInstanceObjectResponseBody(
+                    costCentsOverride,
+                    id,
+                    maintenanceSiteId,
+                    partId,
+                    quantity,
+                    requestedQuantity,
+                    additionalProperties);
         }
     }
 }

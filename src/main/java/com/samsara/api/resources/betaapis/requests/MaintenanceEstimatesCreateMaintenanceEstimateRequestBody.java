@@ -159,7 +159,7 @@ public final class MaintenanceEstimatesCreateMaintenanceEstimateRequestBody {
     }
 
     /**
-     * @return Same-org vendor location UUID or external ID.
+     * @return Same-org vendor location UUID or external ID. Resolve the location via GET /fleet/maintenance/vendor-locations.
      */
     @JsonProperty("vendorId")
     public String getVendorId() {
@@ -235,7 +235,7 @@ public final class MaintenanceEstimatesCreateMaintenanceEstimateRequestBody {
 
     public interface VendorIdStage {
         /**
-         * <p>Same-org vendor location UUID or external ID.</p>
+         * <p>Same-org vendor location UUID or external ID. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          */
         WorkOrderIdStage vendorId(@NotNull String vendorId);
     }
@@ -374,8 +374,8 @@ public final class MaintenanceEstimatesCreateMaintenanceEstimateRequestBody {
         }
 
         /**
-         * <p>Same-org vendor location UUID or external ID.</p>
-         * <p>Same-org vendor location UUID or external ID.</p>
+         * <p>Same-org vendor location UUID or external ID. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
+         * <p>Same-org vendor location UUID or external ID. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

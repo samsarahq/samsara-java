@@ -9,12 +9,21 @@ import com.samsara.api.resources.maintenance.requests.CreateDvirRequest;
 import com.samsara.api.resources.maintenance.requests.CreateStockMovementActionServiceCreateStockMovementRequestBody;
 import com.samsara.api.resources.maintenance.requests.DefectPatch;
 import com.samsara.api.resources.maintenance.requests.DeletePartRequest;
+import com.samsara.api.resources.maintenance.requests.DeletePurchaseOrderRequest;
+import com.samsara.api.resources.maintenance.requests.DeleteVendorLocationRequest;
+import com.samsara.api.resources.maintenance.requests.DeleteVendorRequest;
 import com.samsara.api.resources.maintenance.requests.DeleteWarrantyClaimRequest;
 import com.samsara.api.resources.maintenance.requests.DeleteWarrantyRequest;
 import com.samsara.api.resources.maintenance.requests.EntityPartDefinitionsServiceCreatePartRequestBody;
 import com.samsara.api.resources.maintenance.requests.EntityPartDefinitionsServiceUpdatePartRequestBody;
 import com.samsara.api.resources.maintenance.requests.EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody;
 import com.samsara.api.resources.maintenance.requests.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityVendorProfilesServiceCreateVendorRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityVendorProfilesServiceUpdateVendorRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityVendorsServiceCreateVendorLocationRequestBody;
+import com.samsara.api.resources.maintenance.requests.EntityVendorsServiceUpdateVendorLocationRequestBody;
 import com.samsara.api.resources.maintenance.requests.EntityWarrantiesServiceCreateWarrantyRequestBody;
 import com.samsara.api.resources.maintenance.requests.EntityWarrantiesServiceUpdateWarrantyRequestBody;
 import com.samsara.api.resources.maintenance.requests.EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody;
@@ -26,7 +35,11 @@ import com.samsara.api.resources.maintenance.requests.GetDvirsRequest;
 import com.samsara.api.resources.maintenance.requests.ListPartInventoryRequest;
 import com.samsara.api.resources.maintenance.requests.ListPartTransactionsRequest;
 import com.samsara.api.resources.maintenance.requests.ListPartsRequest;
+import com.samsara.api.resources.maintenance.requests.ListPurchaseOrdersRequest;
 import com.samsara.api.resources.maintenance.requests.ListTimeEntriesRequest;
+import com.samsara.api.resources.maintenance.requests.ListVendorCategoriesRequest;
+import com.samsara.api.resources.maintenance.requests.ListVendorLocationsRequest;
+import com.samsara.api.resources.maintenance.requests.ListVendorsRequest;
 import com.samsara.api.resources.maintenance.requests.ListWarrantiesRequest;
 import com.samsara.api.resources.maintenance.requests.ListWarrantyAssetAssignmentsRequest;
 import com.samsara.api.resources.maintenance.requests.ListWarrantyClaimsRequest;
@@ -48,7 +61,15 @@ import com.samsara.api.types.EntityPartDefinitionsServiceUpdatePartResponseBody;
 import com.samsara.api.types.EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody;
 import com.samsara.api.types.EntityPartInventoryLocationsServiceListPartInventoryResponseBody;
 import com.samsara.api.types.EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody;
+import com.samsara.api.types.EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody;
 import com.samsara.api.types.EntityTimeEntriesServiceListTimeEntriesResponseBody;
+import com.samsara.api.types.EntityVendorProfilesServiceCreateVendorResponseBody;
+import com.samsara.api.types.EntityVendorProfilesServiceListVendorsResponseBody;
+import com.samsara.api.types.EntityVendorProfilesServiceUpdateVendorResponseBody;
+import com.samsara.api.types.EntityVendorsServiceCreateVendorLocationResponseBody;
+import com.samsara.api.types.EntityVendorsServiceUpdateVendorLocationResponseBody;
 import com.samsara.api.types.EntityWarrantiesServiceCreateWarrantyResponseBody;
 import com.samsara.api.types.EntityWarrantiesServiceListWarrantiesResponseBody;
 import com.samsara.api.types.EntityWarrantiesServiceUpdateWarrantyResponseBody;
@@ -57,6 +78,8 @@ import com.samsara.api.types.EntityWarrantyClaimsServiceCreateWarrantyClaimRespo
 import com.samsara.api.types.EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody;
 import com.samsara.api.types.EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody;
 import com.samsara.api.types.InlineResponse2004;
+import com.samsara.api.types.MaintenanceVendorsListVendorCategoriesResponseBody;
+import com.samsara.api.types.MaintenanceVendorsListVendorLocationsResponseBody;
 import com.samsara.api.types.ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody;
 
 public class MaintenanceClient {
@@ -309,6 +332,258 @@ public class MaintenanceClient {
      */
     public DvirResponse updateDvir(String id, UpdateDvirRequest request, RequestOptions requestOptions) {
         return this.rawClient.updateDvir(id, request, requestOptions).body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories() {
+        return this.rawClient.listVendorCategories().body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories(RequestOptions requestOptions) {
+        return this.rawClient.listVendorCategories(requestOptions).body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories(
+            ListVendorCategoriesRequest request) {
+        return this.rawClient.listVendorCategories(request).body();
+    }
+
+    /**
+     * Returns the list of vendor categories available for maintenance vendors.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorCategoriesResponseBody listVendorCategories(
+            ListVendorCategoriesRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listVendorCategories(request, requestOptions).body();
+    }
+
+    /**
+     * Returns a paginated list of vendor locations in the organization. Each linked Place owns the location's name, address, and notes. Use the location's addressId as {id} in the public Addresses API: GET /addresses/{id} retrieves data.name, data.formattedAddress, and data.notes; PATCH /addresses/{id} updates name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorLocationsResponseBody listVendorLocations() {
+        return this.rawClient.listVendorLocations().body();
+    }
+
+    /**
+     * Returns a paginated list of vendor locations in the organization. Each linked Place owns the location's name, address, and notes. Use the location's addressId as {id} in the public Addresses API: GET /addresses/{id} retrieves data.name, data.formattedAddress, and data.notes; PATCH /addresses/{id} updates name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorLocationsResponseBody listVendorLocations(RequestOptions requestOptions) {
+        return this.rawClient.listVendorLocations(requestOptions).body();
+    }
+
+    /**
+     * Returns a paginated list of vendor locations in the organization. Each linked Place owns the location's name, address, and notes. Use the location's addressId as {id} in the public Addresses API: GET /addresses/{id} retrieves data.name, data.formattedAddress, and data.notes; PATCH /addresses/{id} updates name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorLocationsResponseBody listVendorLocations(ListVendorLocationsRequest request) {
+        return this.rawClient.listVendorLocations(request).body();
+    }
+
+    /**
+     * Returns a paginated list of vendor locations in the organization. Each linked Place owns the location's name, address, and notes. Use the location's addressId as {id} in the public Addresses API: GET /addresses/{id} retrieves data.name, data.formattedAddress, and data.notes; PATCH /addresses/{id} updates name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public MaintenanceVendorsListVendorLocationsResponseBody listVendorLocations(
+            ListVendorLocationsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listVendorLocations(request, requestOptions).body();
+    }
+
+    /**
+     * Creates a maintenance vendor location linked to a live Place in this organization. First create or reuse an Address through the public Addresses API and set addressId to its returned data.id (the Place ID). The Place owns the location's name, address, and notes. Use addressId as {id} in GET /addresses/{id} to retrieve data.name, data.formattedAddress, and data.notes, and PATCH /addresses/{id} to update name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively. Mutation responses expose the same Address/Place ID as placeId.id; location lists return it as addressId. This endpoint does not create Places. Legacy vendor-stored notes are separate and are not exposed or copied to the Place. parentVendorId is optional.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorsServiceCreateVendorLocationResponseBody createVendorLocation(
+            EntityVendorsServiceCreateVendorLocationRequestBody request) {
+        return this.rawClient.createVendorLocation(request).body();
+    }
+
+    /**
+     * Creates a maintenance vendor location linked to a live Place in this organization. First create or reuse an Address through the public Addresses API and set addressId to its returned data.id (the Place ID). The Place owns the location's name, address, and notes. Use addressId as {id} in GET /addresses/{id} to retrieve data.name, data.formattedAddress, and data.notes, and PATCH /addresses/{id} to update name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively. Mutation responses expose the same Address/Place ID as placeId.id; location lists return it as addressId. This endpoint does not create Places. Legacy vendor-stored notes are separate and are not exposed or copied to the Place. parentVendorId is optional.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorsServiceCreateVendorLocationResponseBody createVendorLocation(
+            EntityVendorsServiceCreateVendorLocationRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createVendorLocation(request, requestOptions).body();
+    }
+
+    /**
+     * Soft-deletes a vendor location without deleting its linked Place or work orders.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteVendorLocation(DeleteVendorLocationRequest request) {
+        this.rawClient.deleteVendorLocation(request).body();
+    }
+
+    /**
+     * Soft-deletes a vendor location without deleting its linked Place or work orders.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteVendorLocation(DeleteVendorLocationRequest request, RequestOptions requestOptions) {
+        this.rawClient.deleteVendorLocation(request, requestOptions).body();
+    }
+
+    /**
+     * Updates an existing maintenance vendor location. The linked Place owns the location's name, address, and notes; update them through the public Addresses API, not this resource. Use the location's addressId (or placeId.id from a mutation response) as {id} in GET /addresses/{id} to retrieve data.name, data.formattedAddress, and data.notes, and PATCH /addresses/{id} to update name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively. addressId is optional when the existing link identifies a live Place in this organization; otherwise supply a valid addressId before updating the location. Any supplied value must be the Address/Place ID returned as data.id by the Addresses API and identify a live Place in this organization. Legacy vendor-stored notes are separate and are not exposed or copied to the Place.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorsServiceUpdateVendorLocationResponseBody updateVendorLocation(
+            EntityVendorsServiceUpdateVendorLocationRequestBody request) {
+        return this.rawClient.updateVendorLocation(request).body();
+    }
+
+    /**
+     * Updates an existing maintenance vendor location. The linked Place owns the location's name, address, and notes; update them through the public Addresses API, not this resource. Use the location's addressId (or placeId.id from a mutation response) as {id} in GET /addresses/{id} to retrieve data.name, data.formattedAddress, and data.notes, and PATCH /addresses/{id} to update name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively. addressId is optional when the existing link identifies a live Place in this organization; otherwise supply a valid addressId before updating the location. Any supplied value must be the Address/Place ID returned as data.id by the Addresses API and identify a live Place in this organization. Legacy vendor-stored notes are separate and are not exposed or copied to the Place.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorsServiceUpdateVendorLocationResponseBody updateVendorLocation(
+            EntityVendorsServiceUpdateVendorLocationRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateVendorLocation(request, requestOptions).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceListVendorsResponseBody listVendors() {
+        return this.rawClient.listVendors().body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceListVendorsResponseBody listVendors(RequestOptions requestOptions) {
+        return this.rawClient.listVendors(requestOptions).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceListVendorsResponseBody listVendors(ListVendorsRequest request) {
+        return this.rawClient.listVendors(request).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceListVendorsResponseBody listVendors(
+            ListVendorsRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listVendors(request, requestOptions).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceCreateVendorResponseBody createVendor(
+            EntityVendorProfilesServiceCreateVendorRequestBody request) {
+        return this.rawClient.createVendor(request).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceCreateVendorResponseBody createVendor(
+            EntityVendorProfilesServiceCreateVendorRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createVendor(request, requestOptions).body();
+    }
+
+    /**
+     * Soft-deletes a parent vendor after all vendor locations have been detached, moved, or deleted.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteVendor(DeleteVendorRequest request) {
+        this.rawClient.deleteVendor(request).body();
+    }
+
+    /**
+     * Soft-deletes a parent vendor after all vendor locations have been detached, moved, or deleted.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deleteVendor(DeleteVendorRequest request, RequestOptions requestOptions) {
+        this.rawClient.deleteVendor(request, requestOptions).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceUpdateVendorResponseBody updateVendor(
+            EntityVendorProfilesServiceUpdateVendorRequestBody request) {
+        return this.rawClient.updateVendor(request).body();
+    }
+
+    /**
+     * Manage parent vendor identity and defaults inherited by vendor locations.
+     * <p><b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Work Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityVendorProfilesServiceUpdateVendorResponseBody updateVendor(
+            EntityVendorProfilesServiceUpdateVendorRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updateVendor(request, requestOptions).body();
     }
 
     /**
@@ -593,6 +868,92 @@ public class MaintenanceClient {
     public EntityInventoryTransactionsServiceListPartTransactionsResponseBody listPartTransactions(
             ListPartTransactionsRequest request, RequestOptions requestOptions) {
         return this.rawClient.listPartTransactions(request, requestOptions).body();
+    }
+
+    /**
+     * Returns a paginated list of purchase orders ordered by last update time.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody listPurchaseOrders(
+            ListPurchaseOrdersRequest request) {
+        return this.rawClient.listPurchaseOrders(request).body();
+    }
+
+    /**
+     * Returns a paginated list of purchase orders ordered by last update time.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Read Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody listPurchaseOrders(
+            ListPurchaseOrdersRequest request, RequestOptions requestOptions) {
+        return this.rawClient.listPurchaseOrders(request, requestOptions).body();
+    }
+
+    /**
+     * Creates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody createPurchaseOrder(
+            EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody request) {
+        return this.rawClient.createPurchaseOrder(request).body();
+    }
+
+    /**
+     * Creates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody createPurchaseOrder(
+            EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.createPurchaseOrder(request, requestOptions).body();
+    }
+
+    /**
+     * Deletes a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deletePurchaseOrder(DeletePurchaseOrderRequest request) {
+        this.rawClient.deletePurchaseOrder(request).body();
+    }
+
+    /**
+     * Deletes a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public void deletePurchaseOrder(DeletePurchaseOrderRequest request, RequestOptions requestOptions) {
+        this.rawClient.deletePurchaseOrder(request, requestOptions).body();
+    }
+
+    /**
+     * Updates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody updatePurchaseOrder(
+            EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody request) {
+        return this.rawClient.updatePurchaseOrder(request).body();
+    }
+
+    /**
+     * Updates a purchase order for the organization.
+     * <p><b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).</p>
+     * <p>To use this endpoint, select <strong>Write Purchase Orders</strong> under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a></p>
+     * <p><strong>Submit Feedback</strong>: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.</p>
+     */
+    public EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody updatePurchaseOrder(
+            EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody request, RequestOptions requestOptions) {
+        return this.rawClient.updatePurchaseOrder(request, requestOptions).body();
     }
 
     /**

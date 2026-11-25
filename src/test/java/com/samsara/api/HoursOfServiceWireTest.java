@@ -50,7 +50,7 @@ public class HoursOfServiceWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"currentVehicle\":{\"ExternalIds\":{\"maintenanceId\":\"250020\",\"payrollId\":\"ABFS18600\"},\"id\":\"123456789\",\"name\":\"Midwest Truck #4\"},\"driver\":{\"id\":\"88668\",\"name\":\"Susan Bob\"},\"violations\":{\"cycleViolationDurationMs\":39600000,\"shiftDrivingViolationDurationMs\":39600000}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"clocks\":{\"break\":{\"timeUntilBreakDurationMs\":28800000},\"cycle\":{\"cycleRemainingDurationMs\":252000000,\"cycleStartedAtTime\":\"2020-01-27T07:06:25Z\",\"cycleTomorrowDurationMs\":252000000},\"drive\":{\"driveRemainingDurationMs\":39600000},\"shift\":{\"shiftRemainingDurationMs\":50400000}},\"currentVehicle\":{\"ExternalIds\":{\"maintenanceId\":\"250020\",\"payrollId\":\"ABFS18600\"},\"id\":\"123456789\",\"name\":\"Midwest Truck #4\"},\"driver\":{\"id\":\"88668\",\"name\":\"Susan Bob\"},\"violations\":{\"cycleViolationDurationMs\":39600000,\"shiftDrivingViolationDurationMs\":39600000}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         HosClocksResponse response = client.hoursOfService()
                 .getHosClocks(GetHosClocksRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -64,6 +64,22 @@ public class HoursOfServiceWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
+                + "      \"clocks\": {\n"
+                + "        \"break\": {\n"
+                + "          \"timeUntilBreakDurationMs\": 28800000\n"
+                + "        },\n"
+                + "        \"cycle\": {\n"
+                + "          \"cycleRemainingDurationMs\": 252000000,\n"
+                + "          \"cycleStartedAtTime\": \"2020-01-27T07:06:25Z\",\n"
+                + "          \"cycleTomorrowDurationMs\": 252000000\n"
+                + "        },\n"
+                + "        \"drive\": {\n"
+                + "          \"driveRemainingDurationMs\": 39600000\n"
+                + "        },\n"
+                + "        \"shift\": {\n"
+                + "          \"shiftRemainingDurationMs\": 50400000\n"
+                + "        }\n"
+                + "      },\n"
                 + "      \"currentVehicle\": {\n"
                 + "        \"ExternalIds\": {\n"
                 + "          \"maintenanceId\": \"250020\",\n"
@@ -172,7 +188,7 @@ public class HoursOfServiceWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"driver\":{\"id\":\"88668\",\"name\":\"Susan Bob\"},\"hosLogs\":[{\"logEndTime\":\"2020-01-27T07:06:25Z\",\"logRecordedLocation\":{\"latitude\":122.142,\"longitude\":-93.343},\"logStartTime\":\"2020-01-27T07:06:25Z\",\"remark\":\"Lunch Break\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"driver\":{\"id\":\"88668\",\"name\":\"Susan Bob\"},\"hosLogs\":[{\"codrivers\":[{\"id\":\"88668\",\"name\":\"Susan Bob\"}],\"logEndTime\":\"2020-01-27T07:06:25Z\",\"logRecordedLocation\":{\"latitude\":122.142,\"longitude\":-93.343},\"logStartTime\":\"2020-01-27T07:06:25Z\",\"remark\":\"Lunch Break\",\"vehicle\":{\"ExternalIds\":{\"maintenanceId\":\"250020\",\"payrollId\":\"ABFS18600\"},\"id\":\"123456789\",\"name\":\"Midwest Truck #4\"}}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         HosLogsResponse response =
                 client.hoursOfService().getHosLogs(GetHosLogsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -192,13 +208,27 @@ public class HoursOfServiceWireTest {
                 + "      },\n"
                 + "      \"hosLogs\": [\n"
                 + "        {\n"
+                + "          \"codrivers\": [\n"
+                + "            {\n"
+                + "              \"id\": \"88668\",\n"
+                + "              \"name\": \"Susan Bob\"\n"
+                + "            }\n"
+                + "          ],\n"
                 + "          \"logEndTime\": \"2020-01-27T07:06:25Z\",\n"
                 + "          \"logRecordedLocation\": {\n"
                 + "            \"latitude\": 122.142,\n"
                 + "            \"longitude\": -93.343\n"
                 + "          },\n"
                 + "          \"logStartTime\": \"2020-01-27T07:06:25Z\",\n"
-                + "          \"remark\": \"Lunch Break\"\n"
+                + "          \"remark\": \"Lunch Break\",\n"
+                + "          \"vehicle\": {\n"
+                + "            \"ExternalIds\": {\n"
+                + "              \"maintenanceId\": \"250020\",\n"
+                + "              \"payrollId\": \"ABFS18600\"\n"
+                + "            },\n"
+                + "            \"id\": \"123456789\",\n"
+                + "            \"name\": \"Midwest Truck #4\"\n"
+                + "          }\n"
                 + "        }\n"
                 + "      ]\n"
                 + "    }\n"

@@ -34,6 +34,8 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
 
     private final Optional<WorkOrderMoneyObjectRequestBody> partsCost;
 
+    private final Optional<List<ServiceTaskProcedureInputObjectRequestBody>> procedures;
+
     private final String serviceTaskId;
 
     private final ServiceTaskInstanceInputObjectRequestBodyStatus status;
@@ -47,6 +49,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
             Optional<String> notes,
             Optional<List<PartInstanceInputObjectRequestBody>> parts,
             Optional<WorkOrderMoneyObjectRequestBody> partsCost,
+            Optional<List<ServiceTaskProcedureInputObjectRequestBody>> procedures,
             String serviceTaskId,
             ServiceTaskInstanceInputObjectRequestBodyStatus status,
             Map<String, Object> additionalProperties) {
@@ -56,6 +59,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         this.notes = notes;
         this.parts = parts;
         this.partsCost = partsCost;
+        this.procedures = procedures;
         this.serviceTaskId = serviceTaskId;
         this.status = status;
         this.additionalProperties = additionalProperties;
@@ -104,6 +108,14 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
     }
 
     /**
+     * @return Complete stored procedure list for an existing service task, in the order GET returns procedures inside subtasks. That order sorts by rank. Omit to leave procedures unchanged. Each name must match the stored procedure at the same rank position. Names may repeat, so the match is positional. Only isCompleted is applied. Forms and procedure metadata are preserved, including the stored procedure order. Rejected when the service task has no stored procedures, including on create.
+     */
+    @JsonProperty("procedures")
+    public Optional<List<ServiceTaskProcedureInputObjectRequestBody>> getProcedures() {
+        return procedures;
+    }
+
+    /**
      * @return ID of the service task.
      */
     @JsonProperty("serviceTaskId")
@@ -138,6 +150,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
                 && notes.equals(other.notes)
                 && parts.equals(other.parts)
                 && partsCost.equals(other.partsCost)
+                && procedures.equals(other.procedures)
                 && serviceTaskId.equals(other.serviceTaskId)
                 && status.equals(other.status);
     }
@@ -151,6 +164,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
                 this.notes,
                 this.parts,
                 this.partsCost,
+                this.procedures,
                 this.serviceTaskId,
                 this.status);
     }
@@ -218,6 +232,13 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         _FinalStage partsCost(Optional<WorkOrderMoneyObjectRequestBody> partsCost);
 
         _FinalStage partsCost(WorkOrderMoneyObjectRequestBody partsCost);
+
+        /**
+         * <p>Complete stored procedure list for an existing service task, in the order GET returns procedures inside subtasks. That order sorts by rank. Omit to leave procedures unchanged. Each name must match the stored procedure at the same rank position. Names may repeat, so the match is positional. Only isCompleted is applied. Forms and procedure metadata are preserved, including the stored procedure order. Rejected when the service task has no stored procedures, including on create.</p>
+         */
+        _FinalStage procedures(Optional<List<ServiceTaskProcedureInputObjectRequestBody>> procedures);
+
+        _FinalStage procedures(List<ServiceTaskProcedureInputObjectRequestBody> procedures);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -225,6 +246,8 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         private String serviceTaskId;
 
         private ServiceTaskInstanceInputObjectRequestBodyStatus status;
+
+        private Optional<List<ServiceTaskProcedureInputObjectRequestBody>> procedures = Optional.empty();
 
         private Optional<WorkOrderMoneyObjectRequestBody> partsCost = Optional.empty();
 
@@ -251,6 +274,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
             notes(other.getNotes());
             parts(other.getParts());
             partsCost(other.getPartsCost());
+            procedures(other.getProcedures());
             serviceTaskId(other.getServiceTaskId());
             status(other.getStatus());
             return this;
@@ -277,6 +301,26 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
         @JsonSetter("status")
         public _FinalStage status(@NotNull ServiceTaskInstanceInputObjectRequestBodyStatus status) {
             this.status = Objects.requireNonNull(status, "status must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Complete stored procedure list for an existing service task, in the order GET returns procedures inside subtasks. That order sorts by rank. Omit to leave procedures unchanged. Each name must match the stored procedure at the same rank position. Names may repeat, so the match is positional. Only isCompleted is applied. Forms and procedure metadata are preserved, including the stored procedure order. Rejected when the service task has no stored procedures, including on create.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage procedures(List<ServiceTaskProcedureInputObjectRequestBody> procedures) {
+            this.procedures = Optional.ofNullable(procedures);
+            return this;
+        }
+
+        /**
+         * <p>Complete stored procedure list for an existing service task, in the order GET returns procedures inside subtasks. That order sorts by rank. Omit to leave procedures unchanged. Each name must match the stored procedure at the same rank position. Names may repeat, so the match is positional. Only isCompleted is applied. Forms and procedure metadata are preserved, including the stored procedure order. Rejected when the service task has no stored procedures, including on create.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "procedures", nulls = Nulls.SKIP)
+        public _FinalStage procedures(Optional<List<ServiceTaskProcedureInputObjectRequestBody>> procedures) {
+            this.procedures = procedures;
             return this;
         }
 
@@ -395,6 +439,7 @@ public final class ServiceTaskInstanceInputObjectRequestBody {
                     notes,
                     parts,
                     partsCost,
+                    procedures,
                     serviceTaskId,
                     status,
                     additionalProperties);

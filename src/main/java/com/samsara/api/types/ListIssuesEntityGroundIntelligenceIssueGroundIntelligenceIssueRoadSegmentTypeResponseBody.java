@@ -22,14 +22,31 @@ import java.util.Optional;
         builder =
                 ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody.Builder.class)
 public final class ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody {
+    private final Optional<String> roadClass;
+
     private final Optional<String> roadName;
+
+    private final Optional<String> roadSurface;
 
     private final Map<String, Object> additionalProperties;
 
     private ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody(
-            Optional<String> roadName, Map<String, Object> additionalProperties) {
+            Optional<String> roadClass,
+            Optional<String> roadName,
+            Optional<String> roadSurface,
+            Map<String, Object> additionalProperties) {
+        this.roadClass = roadClass;
         this.roadName = roadName;
+        this.roadSurface = roadSurface;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Read-only Base Maps Overture road-class slug for the matched road segment (for example, motorway or residential), when available. Sourced from basemapsservice; not writable via update.
+     */
+    @JsonProperty("roadClass")
+    public Optional<String> getRoadClass() {
+        return roadClass;
     }
 
     /**
@@ -38,6 +55,14 @@ public final class ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssu
     @JsonProperty("roadName")
     public Optional<String> getRoadName() {
         return roadName;
+    }
+
+    /**
+     * @return Read-only Base Maps Overture surface slug covering the issue's snapped position (for example, paved or gravel), when available. Sourced from basemapsservice; not writable via update.
+     */
+    @JsonProperty("roadSurface")
+    public Optional<String> getRoadSurface() {
+        return roadSurface;
     }
 
     @java.lang.Override
@@ -57,12 +82,14 @@ public final class ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssu
 
     private boolean equalTo(
             ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody other) {
-        return roadName.equals(other.roadName);
+        return roadClass.equals(other.roadClass)
+                && roadName.equals(other.roadName)
+                && roadSurface.equals(other.roadSurface);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.roadName);
+        return Objects.hash(this.roadClass, this.roadName, this.roadSurface);
     }
 
     @java.lang.Override
@@ -76,7 +103,11 @@ public final class ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssu
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> roadClass = Optional.empty();
+
         private Optional<String> roadName = Optional.empty();
+
+        private Optional<String> roadSurface = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -85,7 +116,23 @@ public final class ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssu
 
         public Builder from(
                 ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody other) {
+            roadClass(other.getRoadClass());
             roadName(other.getRoadName());
+            roadSurface(other.getRoadSurface());
+            return this;
+        }
+
+        /**
+         * <p>Read-only Base Maps Overture road-class slug for the matched road segment (for example, motorway or residential), when available. Sourced from basemapsservice; not writable via update.</p>
+         */
+        @JsonSetter(value = "roadClass", nulls = Nulls.SKIP)
+        public Builder roadClass(Optional<String> roadClass) {
+            this.roadClass = roadClass;
+            return this;
+        }
+
+        public Builder roadClass(String roadClass) {
+            this.roadClass = Optional.ofNullable(roadClass);
             return this;
         }
 
@@ -103,9 +150,23 @@ public final class ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssu
             return this;
         }
 
+        /**
+         * <p>Read-only Base Maps Overture surface slug covering the issue's snapped position (for example, paved or gravel), when available. Sourced from basemapsservice; not writable via update.</p>
+         */
+        @JsonSetter(value = "roadSurface", nulls = Nulls.SKIP)
+        public Builder roadSurface(Optional<String> roadSurface) {
+            this.roadSurface = roadSurface;
+            return this;
+        }
+
+        public Builder roadSurface(String roadSurface) {
+            this.roadSurface = Optional.ofNullable(roadSurface);
+            return this;
+        }
+
         public ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody build() {
             return new ListIssuesEntityGroundIntelligenceIssueGroundIntelligenceIssueRoadSegmentTypeResponseBody(
-                    roadName, additionalProperties);
+                    roadClass, roadName, roadSurface, additionalProperties);
         }
     }
 }

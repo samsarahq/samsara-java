@@ -64,6 +64,10 @@ public final class HealthResponseResponseBodyRecommendedAction {
                     Value.RECOMMENDED_ACTION_GATEWAY_NEWLY_INSTALLED_DEVICE,
                     "recommendedActionGatewayNewlyInstalledDevice");
 
+    public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_NEEDS_REPLACEMENT =
+            new HealthResponseResponseBodyRecommendedAction(
+                    Value.RECOMMENDED_ACTION_NEEDS_REPLACEMENT, "recommendedActionNeedsReplacement");
+
     public static final HealthResponseResponseBodyRecommendedAction RECOMMENDED_ACTION_CM_RECORDING_TIME_REQUIRED =
             new HealthResponseResponseBodyRecommendedAction(
                     Value.RECOMMENDED_ACTION_CM_RECORDING_TIME_REQUIRED, "recommendedActionCmRecordingTimeRequired");
@@ -259,6 +263,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return visitor.visitRecommendedActionCmHealthy();
             case RECOMMENDED_ACTION_GATEWAY_NEWLY_INSTALLED_DEVICE:
                 return visitor.visitRecommendedActionGatewayNewlyInstalledDevice();
+            case RECOMMENDED_ACTION_NEEDS_REPLACEMENT:
+                return visitor.visitRecommendedActionNeedsReplacement();
             case RECOMMENDED_ACTION_CM_RECORDING_TIME_REQUIRED:
                 return visitor.visitRecommendedActionCmRecordingTimeRequired();
             case RECOMMENDED_ACTION_CM_IRREGULAR_RECORDING:
@@ -360,6 +366,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
                 return RECOMMENDED_ACTION_CM_HEALTHY;
             case "recommendedActionGatewayNewlyInstalledDevice":
                 return RECOMMENDED_ACTION_GATEWAY_NEWLY_INSTALLED_DEVICE;
+            case "recommendedActionNeedsReplacement":
+                return RECOMMENDED_ACTION_NEEDS_REPLACEMENT;
             case "recommendedActionCmRecordingTimeRequired":
                 return RECOMMENDED_ACTION_CM_RECORDING_TIME_REQUIRED;
             case "recommendedActionCmIrregularRecording":
@@ -498,6 +506,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
 
         RECOMMENDED_ACTION_LOW_BATTERY_VOLTAGE,
 
+        RECOMMENDED_ACTION_NEEDS_REPLACEMENT,
+
         RECOMMENDED_ACTION_OEM_NOT_REPORTING,
 
         RECOMMENDED_ACTION_VEHICLE_OFF,
@@ -593,6 +603,8 @@ public final class HealthResponseResponseBodyRecommendedAction {
         T visitRecommendedActionHealthy();
 
         T visitRecommendedActionLowBatteryVoltage();
+
+        T visitRecommendedActionNeedsReplacement();
 
         T visitRecommendedActionOemNotReporting();
 

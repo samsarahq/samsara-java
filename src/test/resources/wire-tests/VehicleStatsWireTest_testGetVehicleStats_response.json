@@ -2,195 +2,194 @@
   "data": [
     {
       "ambientAirTemperatureMilliC": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 31110
       },
       "auxInput1": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput10": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput11": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput12": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput13": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput2": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput3": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput4": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput5": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput6": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput7": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput8": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "auxInput9": {
-        "name": "name",
-        "time": "time",
+        "name": "Boom",
+        "time": "2020-01-27T07:06:25Z",
         "value": true
       },
       "barometricPressurePa": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 99000
       },
       "batteryMilliVolts": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 7991
       },
       "defLevelMilliPercent": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 54200
       },
       "ecuDoorStatus": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "Closed"
       },
       "ecuSpeedMph": {
-        "time": "time",
-        "value": 1.1
+        "time": "2020-01-27T07:06:25Z",
+        "value": 32.1
       },
       "engineCoolantTemperatureMilliC": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 31110
       },
       "engineImmobilizer": {
-        "connected": true,
+        "connected": false,
         "state": "ignition_disabled",
-        "time": "time"
+        "time": "2020-01-27T07:06:25Z"
       },
       "engineLoadPercent": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 54
       },
       "engineOilPressureKPa": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 100
       },
       "engineRpm": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "engineState": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "Off"
       },
       "evAverageBatteryTemperatureMilliCelsius": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evBatteryCurrentMilliAmp": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evBatteryStateOfHealthMilliPercent": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evBatteryVoltageMilliVolt": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evChargingCurrentMilliAmp": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evChargingEnergyMicroWh": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evChargingStatus": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": 1000000
       },
       "evChargingVoltageMilliVolt": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evConsumedEnergyMicroWh": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evDistanceDrivenMeters": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evRegeneratedEnergyMicroWh": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "evStateOfChargeMilliPercent": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "externalIds": {
-        "externalIds": {
-          "key": "value"
-        }
+        "maintenanceId": "250020",
+        "payrollId": "ABFS18600"
       },
       "faultCodes": {
-        "canBusType": "canBusType",
+        "canBusType": "CANBUS_J1939_500",
         "j1939": {
           "checkEngineLights": {
             "emissionsIsOn": true,
-            "protectIsOn": true,
-            "stopIsOn": true,
-            "warningIsOn": true
+            "protectIsOn": false,
+            "stopIsOn": false,
+            "warningIsOn": false
           },
           "diagnosticTroubleCodes": [
             {
-              "fmiId": 1,
+              "fmiDescription": "Voltage Below Normal",
+              "fmiId": 9,
               "milStatus": 1,
               "occurrenceCount": 1,
-              "spnId": 1,
-              "txId": 1
-            },
-            {
-              "fmiId": 1,
-              "milStatus": 1,
-              "occurrenceCount": 1,
-              "spnId": 1,
-              "txId": 1
+              "sourceAddressName": "Engine #1",
+              "spnDescription": "System Diagnostic Code #1",
+              "spnId": 3031,
+              "txId": 0,
+              "vendorSpecificFields": {
+                "dtcDescription": "false",
+                "repairInstructionsUrl": "false"
+              }
             }
           ]
         },
@@ -198,937 +197,460 @@
           "checkEngineLightIsOn": true,
           "diagnosticTroubleCodes": [
             {
-              "txId": 1
-            },
-            {
-              "txId": 1
+              "confirmedDtcs": [
+                {
+                  "dtcDescription": "Fuel Rail/System Pressure - Too Low Bank 1",
+                  "dtcId": 135,
+                  "dtcShortCode": "P0087"
+                }
+              ],
+              "milStatus": true,
+              "pendingDtcs": [
+                {
+                  "dtcDescription": "Fuel Rail/System Pressure - Too Low Bank 1",
+                  "dtcId": 135,
+                  "dtcShortCode": "P0087"
+                }
+              ],
+              "permanentDtcs": [
+                {
+                  "dtcDescription": "Fuel Rail/System Pressure - Too Low Bank 1",
+                  "dtcId": 135,
+                  "dtcShortCode": "P0087"
+                }
+              ],
+              "txId": 0
             }
           ]
         },
         "oem": {
           "diagnosticTroubleCodes": [
-            {},
-            {}
+            {
+              "codeDescription": "KVGT Servo Error",
+              "codeIdentifier": "CA2387",
+              "codeSeverity": "L03",
+              "codeSource": "ENG/M"
+            }
           ]
         },
-        "time": "time"
+        "time": "2020-01-27T07:06:25Z"
       },
       "fuelConsumedMilliliters": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1500
       },
       "fuelPercent": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 54
       },
       "gps": {
         "address": {
-          "id": "id",
-          "name": "name"
+          "id": "1234",
+          "name": "Address 1"
         },
-        "headingDegrees": 1.1,
+        "headingDegrees": 120,
         "isEcuSpeed": true,
-        "latitude": 1.1,
-        "longitude": 1.1,
+        "latitude": 122.142,
+        "longitude": -93.343,
         "reverseGeo": {
-          "formattedLocation": "formattedLocation"
+          "formattedLocation": "16 N Fair Oaks Ave, Pasadena, CA 91103"
         },
-        "speedMilesPerHour": 1.1,
-        "time": "time"
+        "speedMilesPerHour": 48.3,
+        "time": "2020-01-27T07:06:25Z"
       },
       "gpsDistanceMeters": {
-        "time": "time",
-        "value": 1.1
+        "time": "2020-01-27T07:06:25Z",
+        "value": 81029.591434899
       },
       "gpsOdometerMeters": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 14010293
       },
-      "id": "id",
+      "id": "112",
       "idlingDurationMilliseconds": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 3600000
       },
       "intakeManifoldTemperatureMilliC": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 88000
       },
-      "name": "name",
+      "name": "Truck A7",
       "nfcCardScan": {
         "card": {
-          "id": "id"
+          "id": "835063"
         },
-        "time": "time"
+        "time": "2020-01-27T07:06:25Z"
       },
       "obdEngineSeconds": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 9723103
       },
       "obdOdometerMeters": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 14010293
       },
       "seatbeltDriver": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "Buckled"
       },
       "spreaderActive": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "Off"
       },
       "spreaderAirTemp": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "spreaderBlastState": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "On"
       },
       "spreaderGranularName": {
-        "time": "time",
-        "value": "value"
+        "time": "2020-01-27T07:06:25Z",
+        "value": "SALT"
       },
       "spreaderGranularRate": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "spreaderLiquidName": {
-        "time": "time",
-        "value": "value"
+        "time": "2020-01-27T07:06:25Z",
+        "value": "DIR1"
       },
       "spreaderLiquidRate": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "spreaderOnState": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "On"
       },
       "spreaderPlowStatus": {
-        "time": "time",
+        "time": "2020-01-27T07:06:25Z",
         "value": "Up"
       },
       "spreaderPrewetName": {
-        "time": "time",
-        "value": "value"
+        "time": "2020-01-27T07:06:25Z",
+        "value": "PWT1"
       },
       "spreaderPrewetRate": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "spreaderRoadTemp": {
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 1000
       },
       "syntheticEngineSeconds": {
         "decorations": {
           "ambientAirTemperatureMilliC": {
-            "value": 1000000
+            "value": 31110
           },
           "auxInput1": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput10": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput11": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput12": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput13": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput2": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput3": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput4": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput5": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput6": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput7": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput8": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "auxInput9": {
-            "name": "name",
+            "name": "Boom",
             "value": true
           },
           "barometricPressurePa": {
-            "value": 1000000
+            "value": 99000
           },
           "batteryMilliVolts": {
-            "value": 1000000
+            "value": 7991
           },
           "defLevelMilliPercent": {
-            "value": 1000000
+            "value": 54200
           },
           "ecuDoorStatus": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": "Closed"
           },
           "ecuSpeedMph": {
-            "value": 1.1
+            "value": 58.3
           },
           "engineCoolantTemperatureMilliC": {
-            "value": 1000000
+            "value": 31110
           },
           "engineImmobilizer": {
-            "connected": true,
+            "connected": false,
             "state": "ignition_disabled",
-            "time": "time"
+            "time": "2020-01-27T07:06:25Z"
           },
           "engineLoadPercent": {
-            "value": 1000000
+            "value": 54
           },
           "engineOilPressureKPa": {
-            "value": 1000000
+            "value": 100
           },
           "engineRpm": {
-            "value": 1000000
-          },
-          "engineStates": {
-            "value": "Off"
+            "value": 1000
           },
           "evAverageBatteryTemperatureMilliCelsius": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evBatteryCurrentMilliAmp": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evBatteryStateOfHealthMilliPercent": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evBatteryVoltageMilliVolt": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evChargingCurrentMilliAmp": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evChargingEnergyMicroWh": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evChargingStatus": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": 1000000
           },
           "evChargingVoltageMilliVolt": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evConsumedEnergyMicroWh": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evDistanceDrivenMeters": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evRegeneratedEnergyMicroWh": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "evStateOfChargeMilliPercent": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "faultCodes": {
-            "canBusType": "canBusType",
-            "j1939": {},
-            "obdii": {},
-            "oem": {}
+            "canBusType": "CANBUS_J1939_500",
+            "j1939": {
+              "checkEngineLights": {
+                "emissionsIsOn": true,
+                "protectIsOn": false,
+                "stopIsOn": false,
+                "warningIsOn": false
+              },
+              "diagnosticTroubleCodes": [
+                {
+                  "fmiDescription": "Voltage Below Normal",
+                  "fmiId": 9,
+                  "milStatus": 1,
+                  "occurrenceCount": 1,
+                  "sourceAddressName": "Engine #1",
+                  "spnDescription": "System Diagnostic Code #1",
+                  "spnId": 3031,
+                  "txId": 0,
+                  "vendorSpecificFields": {
+                    "dtcDescription": "false",
+                    "repairInstructionsUrl": "false"
+                  }
+                }
+              ]
+            },
+            "obdii": {
+              "checkEngineLightIsOn": true,
+              "diagnosticTroubleCodes": [
+                {
+                  "confirmedDtcs": [
+                    {
+                      "dtcDescription": "Fuel Rail/System Pressure - Too Low Bank 1",
+                      "dtcId": 135,
+                      "dtcShortCode": "P0087"
+                    }
+                  ],
+                  "milStatus": true,
+                  "pendingDtcs": [
+                    {
+                      "dtcDescription": "Fuel Rail/System Pressure - Too Low Bank 1",
+                      "dtcId": 135,
+                      "dtcShortCode": "P0087"
+                    }
+                  ],
+                  "permanentDtcs": [
+                    {
+                      "dtcDescription": "Fuel Rail/System Pressure - Too Low Bank 1",
+                      "dtcId": 135,
+                      "dtcShortCode": "P0087"
+                    }
+                  ],
+                  "txId": 0
+                }
+              ]
+            },
+            "oem": {
+              "diagnosticTroubleCodes": [
+                {
+                  "codeDescription": "KVGT Servo Error",
+                  "codeIdentifier": "CA2387",
+                  "codeSeverity": "L03",
+                  "codeSource": "ENG/M"
+                }
+              ]
+            }
           },
           "fuelConsumedMilliliters": {
-            "value": 1000000
+            "value": 1500
           },
           "fuelPercents": {
-            "value": 1000000
+            "value": 54
           },
           "gps": {
-            "address": {},
-            "headingDegrees": 1.1,
+            "address": {
+              "id": "1234",
+              "name": "Address 1"
+            },
+            "headingDegrees": 120,
             "isEcuSpeed": true,
-            "latitude": 1.1,
-            "longitude": 1.1,
-            "reverseGeo": {},
-            "speedMilesPerHour": 1.1
+            "latitude": 122.142,
+            "longitude": -93.343,
+            "reverseGeo": {
+              "formattedLocation": "16 N Fair Oaks Ave, Pasadena, CA 91103"
+            },
+            "speedMilesPerHour": 48.3
           },
           "gpsDistanceMeters": {
-            "value": 1.1
+            "value": 81029.591434899
           },
           "gpsOdometerMeters": {
-            "value": 1000000
+            "value": 14010293
           },
           "idlingDurationMilliseconds": {
-            "value": 1000000
+            "value": 3600000
           },
           "intakeManifoldTemperatureMilliC": {
-            "value": 1000000
+            "value": 88000
           },
           "obdEngineSeconds": {
-            "value": 1000000
+            "value": 9723103
           },
           "obdOdometerMeters": {
-            "value": 1000000
+            "value": 14010293
           },
           "seatbeltDriver": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": "Buckled"
           },
           "spreaderActive": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": "Off"
           },
           "spreaderAirTemp": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "spreaderBlastState": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": "On"
           },
           "spreaderGranularName": {
-            "time": "time",
-            "value": "value"
+            "time": "2020-01-27T07:06:25Z",
+            "value": "SALT"
           },
           "spreaderGranularRate": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "spreaderLiquidName": {
-            "time": "time",
-            "value": "value"
+            "time": "2020-01-27T07:06:25Z",
+            "value": "DIR1"
           },
           "spreaderLiquidRate": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "spreaderOnState": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": "On"
           },
           "spreaderPlowStatus": {
-            "time": "time",
+            "time": "2020-01-27T07:06:25Z",
             "value": "Up"
           },
           "spreaderPrewetName": {
-            "time": "time",
-            "value": "value"
+            "time": "2020-01-27T07:06:25Z",
+            "value": "PWT1"
           },
           "spreaderPrewetRate": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "spreaderRoadTemp": {
-            "time": "time",
-            "value": 1000000
+            "time": "2020-01-27T07:06:25Z",
+            "value": 1000
           },
           "tirePressure": {
-            "backLeftTirePressureKPa": 1000000,
-            "backRightTirePressureKPa": 1000000,
-            "frontLeftTirePressureKPa": 1000000,
-            "frontRightTirePressureKPa": 1000000
+            "backLeftTirePressureKPa": 200,
+            "backRightTirePressureKPa": 200,
+            "frontLeftTirePressureKPa": 200,
+            "frontRightTirePressureKPa": 200
           }
         },
-        "time": "time",
-        "value": 1000000
-      }
-    },
-    {
-      "ambientAirTemperatureMilliC": {
-        "time": "time",
-        "value": 1000000
-      },
-      "auxInput1": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput10": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput11": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput12": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput13": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput2": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput3": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput4": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput5": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput6": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput7": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput8": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "auxInput9": {
-        "name": "name",
-        "time": "time",
-        "value": true
-      },
-      "barometricPressurePa": {
-        "time": "time",
-        "value": 1000000
-      },
-      "batteryMilliVolts": {
-        "time": "time",
-        "value": 1000000
-      },
-      "defLevelMilliPercent": {
-        "time": "time",
-        "value": 1000000
-      },
-      "ecuDoorStatus": {
-        "time": "time",
-        "value": "Closed"
-      },
-      "ecuSpeedMph": {
-        "time": "time",
-        "value": 1.1
-      },
-      "engineCoolantTemperatureMilliC": {
-        "time": "time",
-        "value": 1000000
-      },
-      "engineImmobilizer": {
-        "connected": true,
-        "state": "ignition_disabled",
-        "time": "time"
-      },
-      "engineLoadPercent": {
-        "time": "time",
-        "value": 1000000
-      },
-      "engineOilPressureKPa": {
-        "time": "time",
-        "value": 1000000
-      },
-      "engineRpm": {
-        "time": "time",
-        "value": 1000000
-      },
-      "engineState": {
-        "time": "time",
-        "value": "Off"
-      },
-      "evAverageBatteryTemperatureMilliCelsius": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evBatteryCurrentMilliAmp": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evBatteryStateOfHealthMilliPercent": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evBatteryVoltageMilliVolt": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evChargingCurrentMilliAmp": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evChargingEnergyMicroWh": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evChargingStatus": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evChargingVoltageMilliVolt": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evConsumedEnergyMicroWh": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evDistanceDrivenMeters": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evRegeneratedEnergyMicroWh": {
-        "time": "time",
-        "value": 1000000
-      },
-      "evStateOfChargeMilliPercent": {
-        "time": "time",
-        "value": 1000000
-      },
-      "externalIds": {
-        "externalIds": {
-          "key": "value"
-        }
-      },
-      "faultCodes": {
-        "canBusType": "canBusType",
-        "j1939": {
-          "checkEngineLights": {
-            "emissionsIsOn": true,
-            "protectIsOn": true,
-            "stopIsOn": true,
-            "warningIsOn": true
-          },
-          "diagnosticTroubleCodes": [
-            {
-              "fmiId": 1,
-              "milStatus": 1,
-              "occurrenceCount": 1,
-              "spnId": 1,
-              "txId": 1
-            },
-            {
-              "fmiId": 1,
-              "milStatus": 1,
-              "occurrenceCount": 1,
-              "spnId": 1,
-              "txId": 1
-            }
-          ]
-        },
-        "obdii": {
-          "checkEngineLightIsOn": true,
-          "diagnosticTroubleCodes": [
-            {
-              "txId": 1
-            },
-            {
-              "txId": 1
-            }
-          ]
-        },
-        "oem": {
-          "diagnosticTroubleCodes": [
-            {},
-            {}
-          ]
-        },
-        "time": "time"
-      },
-      "fuelConsumedMilliliters": {
-        "time": "time",
-        "value": 1000000
-      },
-      "fuelPercent": {
-        "time": "time",
-        "value": 1000000
-      },
-      "gps": {
-        "address": {
-          "id": "id",
-          "name": "name"
-        },
-        "headingDegrees": 1.1,
-        "isEcuSpeed": true,
-        "latitude": 1.1,
-        "longitude": 1.1,
-        "reverseGeo": {
-          "formattedLocation": "formattedLocation"
-        },
-        "speedMilesPerHour": 1.1,
-        "time": "time"
-      },
-      "gpsDistanceMeters": {
-        "time": "time",
-        "value": 1.1
-      },
-      "gpsOdometerMeters": {
-        "time": "time",
-        "value": 1000000
-      },
-      "id": "id",
-      "idlingDurationMilliseconds": {
-        "time": "time",
-        "value": 1000000
-      },
-      "intakeManifoldTemperatureMilliC": {
-        "time": "time",
-        "value": 1000000
-      },
-      "name": "name",
-      "nfcCardScan": {
-        "card": {
-          "id": "id"
-        },
-        "time": "time"
-      },
-      "obdEngineSeconds": {
-        "time": "time",
-        "value": 1000000
-      },
-      "obdOdometerMeters": {
-        "time": "time",
-        "value": 1000000
-      },
-      "seatbeltDriver": {
-        "time": "time",
-        "value": "Buckled"
-      },
-      "spreaderActive": {
-        "time": "time",
-        "value": "Off"
-      },
-      "spreaderAirTemp": {
-        "time": "time",
-        "value": 1000000
-      },
-      "spreaderBlastState": {
-        "time": "time",
-        "value": "On"
-      },
-      "spreaderGranularName": {
-        "time": "time",
-        "value": "value"
-      },
-      "spreaderGranularRate": {
-        "time": "time",
-        "value": 1000000
-      },
-      "spreaderLiquidName": {
-        "time": "time",
-        "value": "value"
-      },
-      "spreaderLiquidRate": {
-        "time": "time",
-        "value": 1000000
-      },
-      "spreaderOnState": {
-        "time": "time",
-        "value": "On"
-      },
-      "spreaderPlowStatus": {
-        "time": "time",
-        "value": "Up"
-      },
-      "spreaderPrewetName": {
-        "time": "time",
-        "value": "value"
-      },
-      "spreaderPrewetRate": {
-        "time": "time",
-        "value": 1000000
-      },
-      "spreaderRoadTemp": {
-        "time": "time",
-        "value": 1000000
-      },
-      "syntheticEngineSeconds": {
-        "decorations": {
-          "ambientAirTemperatureMilliC": {
-            "value": 1000000
-          },
-          "auxInput1": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput10": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput11": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput12": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput13": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput2": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput3": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput4": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput5": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput6": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput7": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput8": {
-            "name": "name",
-            "value": true
-          },
-          "auxInput9": {
-            "name": "name",
-            "value": true
-          },
-          "barometricPressurePa": {
-            "value": 1000000
-          },
-          "batteryMilliVolts": {
-            "value": 1000000
-          },
-          "defLevelMilliPercent": {
-            "value": 1000000
-          },
-          "ecuDoorStatus": {
-            "time": "time",
-            "value": "Closed"
-          },
-          "ecuSpeedMph": {
-            "value": 1.1
-          },
-          "engineCoolantTemperatureMilliC": {
-            "value": 1000000
-          },
-          "engineImmobilizer": {
-            "connected": true,
-            "state": "ignition_disabled",
-            "time": "time"
-          },
-          "engineLoadPercent": {
-            "value": 1000000
-          },
-          "engineOilPressureKPa": {
-            "value": 1000000
-          },
-          "engineRpm": {
-            "value": 1000000
-          },
-          "engineStates": {
-            "value": "Off"
-          },
-          "evAverageBatteryTemperatureMilliCelsius": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evBatteryCurrentMilliAmp": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evBatteryStateOfHealthMilliPercent": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evBatteryVoltageMilliVolt": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evChargingCurrentMilliAmp": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evChargingEnergyMicroWh": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evChargingStatus": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evChargingVoltageMilliVolt": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evConsumedEnergyMicroWh": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evDistanceDrivenMeters": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evRegeneratedEnergyMicroWh": {
-            "time": "time",
-            "value": 1000000
-          },
-          "evStateOfChargeMilliPercent": {
-            "time": "time",
-            "value": 1000000
-          },
-          "faultCodes": {
-            "canBusType": "canBusType",
-            "j1939": {},
-            "obdii": {},
-            "oem": {}
-          },
-          "fuelConsumedMilliliters": {
-            "value": 1000000
-          },
-          "fuelPercents": {
-            "value": 1000000
-          },
-          "gps": {
-            "address": {},
-            "headingDegrees": 1.1,
-            "isEcuSpeed": true,
-            "latitude": 1.1,
-            "longitude": 1.1,
-            "reverseGeo": {},
-            "speedMilesPerHour": 1.1
-          },
-          "gpsDistanceMeters": {
-            "value": 1.1
-          },
-          "gpsOdometerMeters": {
-            "value": 1000000
-          },
-          "idlingDurationMilliseconds": {
-            "value": 1000000
-          },
-          "intakeManifoldTemperatureMilliC": {
-            "value": 1000000
-          },
-          "obdEngineSeconds": {
-            "value": 1000000
-          },
-          "obdOdometerMeters": {
-            "value": 1000000
-          },
-          "seatbeltDriver": {
-            "time": "time",
-            "value": "Buckled"
-          },
-          "spreaderActive": {
-            "time": "time",
-            "value": "Off"
-          },
-          "spreaderAirTemp": {
-            "time": "time",
-            "value": 1000000
-          },
-          "spreaderBlastState": {
-            "time": "time",
-            "value": "On"
-          },
-          "spreaderGranularName": {
-            "time": "time",
-            "value": "value"
-          },
-          "spreaderGranularRate": {
-            "time": "time",
-            "value": 1000000
-          },
-          "spreaderLiquidName": {
-            "time": "time",
-            "value": "value"
-          },
-          "spreaderLiquidRate": {
-            "time": "time",
-            "value": 1000000
-          },
-          "spreaderOnState": {
-            "time": "time",
-            "value": "On"
-          },
-          "spreaderPlowStatus": {
-            "time": "time",
-            "value": "Up"
-          },
-          "spreaderPrewetName": {
-            "time": "time",
-            "value": "value"
-          },
-          "spreaderPrewetRate": {
-            "time": "time",
-            "value": 1000000
-          },
-          "spreaderRoadTemp": {
-            "time": "time",
-            "value": 1000000
-          },
-          "tirePressure": {
-            "backLeftTirePressureKPa": 1000000,
-            "backRightTirePressureKPa": 1000000,
-            "frontLeftTirePressureKPa": 1000000,
-            "frontRightTirePressureKPa": 1000000
-          }
-        },
-        "time": "time",
-        "value": 1000000
+        "time": "2020-01-27T07:06:25Z",
+        "value": 14010293
       }
     }
   ],
   "pagination": {
-    "endCursor": "endCursor",
+    "endCursor": "MjkY",
     "hasNextPage": true
   }
 }

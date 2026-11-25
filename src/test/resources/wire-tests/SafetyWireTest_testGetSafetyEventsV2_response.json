@@ -5,410 +5,128 @@
         "attributes": [
           {
             "dateValues": [
-              "dateValues",
-              "dateValues"
+              "2024-01-15",
+              "2024-12-31"
             ],
-            "id": "id",
-            "name": "name",
+            "id": "494123",
+            "name": "Compliance/ELD",
             "numberValues": [
-              1.1,
-              1.1
+              867,
+              5309
             ],
             "stringValues": [
-              "stringValues",
-              "stringValues"
-            ]
-          },
-          {
-            "dateValues": [
-              "dateValues",
-              "dateValues"
-            ],
-            "id": "id",
-            "name": "name",
-            "numberValues": [
-              1.1,
-              1.1
-            ],
-            "stringValues": [
-              "stringValues",
-              "stringValues"
+              "HQ",
+              "Leased"
             ]
           }
         ],
-        "externalIds": {
-          "externalIds": "externalIds"
-        },
-        "id": "id",
-        "name": "name",
+        "id": "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590,6caeb9c0-7e3d-49ae-a015-45c2f68fed4c",
+        "name": "MyAsset-1234",
         "tags": [
           {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
-          },
-          {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
           }
         ],
-        "type": "uncategorized",
-        "vin": "vin"
+        "vin": "1GBJ6P1B2HV112765"
       },
-      "assignedCoach": "assignedCoach",
+      "assignedCoach": "0987",
       "behaviorLabels": [
-        {
-          "label": "Acceleration",
-          "source": "automated"
-        },
-        {
-          "label": "Acceleration",
-          "source": "automated"
-        }
+        {}
       ],
       "contextLabels": [
         {
-          "authorId": "authorId",
-          "createdAtTime": "createdAtTime",
-          "name": "name"
-        },
-        {
-          "authorId": "authorId",
-          "createdAtTime": "createdAtTime",
-          "name": "name"
+          "authorId": "1234",
+          "createdAtTime": "2023-01-27T07:06:25Z",
+          "name": "Moderate Traffic"
         }
       ],
-      "createdAtTime": "createdAtTime",
+      "createdAtTime": "2023-01-27T07:06:25Z",
       "detectedStreams": [
         {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
+          "auxcamSerial": "ABC123",
           "input": "dashcamRoadFacing",
-          "url": "url"
-        },
-        {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
-          "input": "dashcamRoadFacing",
-          "url": "url"
+          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
         }
       ],
       "dismissalReason": {
-        "code": "incorrect",
-        "comment": "comment"
+        "comment": "minorEvent"
       },
       "driver": {
         "attributes": [
           {
             "dateValues": [
-              "dateValues",
-              "dateValues"
+              "2024-01-15",
+              "2024-12-31"
             ],
-            "id": "id",
-            "name": "name",
+            "id": "494123",
+            "name": "Compliance/ELD",
             "numberValues": [
-              1.1,
-              1.1
+              867,
+              5309
             ],
             "stringValues": [
-              "stringValues",
-              "stringValues"
-            ]
-          },
-          {
-            "dateValues": [
-              "dateValues",
-              "dateValues"
-            ],
-            "id": "id",
-            "name": "name",
-            "numberValues": [
-              1.1,
-              1.1
-            ],
-            "stringValues": [
-              "stringValues",
-              "stringValues"
+              "HQ",
+              "Leased"
             ]
           }
         ],
-        "externalIds": {
-          "externalIds": "externalIds"
-        },
-        "id": "id",
-        "name": "name",
+        "id": "0987",
+        "name": "Driver Name",
         "tags": [
           {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
-          },
-          {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
+            "id": "3914",
+            "name": "East Coast",
+            "parentTagId": "4815"
           }
         ]
       },
-      "endMs": "endMs",
+      "endMs": "2023-01-27T07:06:25Z",
       "eventState": "unknown",
-      "id": "id",
-      "inboxEventUrl": "inboxEventUrl",
-      "incidentReportUrl": "incidentReportUrl",
+      "id": "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590,6caeb9c0-7e3d-49ae-a015-45c2f68fed4c",
+      "inboxEventUrl": "https://cloud.samsara.com/",
+      "incidentReportUrl": "https://cloud.samsara.com/",
       "location": {
-        "accuracyMeters": 1.1,
+        "accuracyMeters": 5.801,
         "address": {
-          "city": "city",
-          "country": "country",
-          "neighborhood": "neighborhood",
-          "pointOfInterest": "pointOfInterest",
-          "postalCode": "postalCode",
-          "state": "state",
-          "street": "street",
-          "streetNumber": "streetNumber"
+          "city": "New York",
+          "country": "USA",
+          "neighborhood": "Mission District",
+          "pointOfInterest": "The Eiffel Tower",
+          "postalCode": "10010",
+          "state": "New York",
+          "street": "Main Street",
+          "streetNumber": "16"
         },
         "geofence": {
-          "externalIds": {
-            "externalIds": "externalIds"
-          },
-          "id": "id"
+          "id": "12345"
         },
-        "headingDegrees": 1000000,
-        "latitude": 1.1,
-        "longitude": 1.1
+        "headingDegrees": 120,
+        "latitude": 37.7749,
+        "longitude": 137.2719
       },
-      "maxAccelerationGForce": 1.1,
+      "maxAccelerationGForce": 1,
       "media": [
         {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
+          "auxcamSerial": "ABC123",
           "input": "dashcamRoadFacing",
-          "url": "url"
-        },
-        {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
-          "input": "dashcamRoadFacing",
-          "url": "url"
+          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
         }
       ],
       "speedingMetadata": {
-        "maxSpeedKilometersPerHour": 1000000,
-        "postedSpeedLimitKilometersPerHour": 1000000
+        "maxSpeedKilometersPerHour": 5007476316850668000,
+        "postedSpeedLimitKilometersPerHour": 3317241163671180300
       },
-      "startMs": "startMs",
-      "tripEndTime": "tripEndTime",
-      "tripStartTime": "tripStartTime",
-      "updatedAtTime": "updatedAtTime",
-      "updatedByUserId": "updatedByUserId"
-    },
-    {
-      "asset": {
-        "attributes": [
-          {
-            "dateValues": [
-              "dateValues",
-              "dateValues"
-            ],
-            "id": "id",
-            "name": "name",
-            "numberValues": [
-              1.1,
-              1.1
-            ],
-            "stringValues": [
-              "stringValues",
-              "stringValues"
-            ]
-          },
-          {
-            "dateValues": [
-              "dateValues",
-              "dateValues"
-            ],
-            "id": "id",
-            "name": "name",
-            "numberValues": [
-              1.1,
-              1.1
-            ],
-            "stringValues": [
-              "stringValues",
-              "stringValues"
-            ]
-          }
-        ],
-        "externalIds": {
-          "externalIds": "externalIds"
-        },
-        "id": "id",
-        "name": "name",
-        "tags": [
-          {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
-          },
-          {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
-          }
-        ],
-        "type": "uncategorized",
-        "vin": "vin"
-      },
-      "assignedCoach": "assignedCoach",
-      "behaviorLabels": [
-        {
-          "label": "Acceleration",
-          "source": "automated"
-        },
-        {
-          "label": "Acceleration",
-          "source": "automated"
-        }
-      ],
-      "contextLabels": [
-        {
-          "authorId": "authorId",
-          "createdAtTime": "createdAtTime",
-          "name": "name"
-        },
-        {
-          "authorId": "authorId",
-          "createdAtTime": "createdAtTime",
-          "name": "name"
-        }
-      ],
-      "createdAtTime": "createdAtTime",
-      "detectedStreams": [
-        {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
-          "input": "dashcamRoadFacing",
-          "url": "url"
-        },
-        {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
-          "input": "dashcamRoadFacing",
-          "url": "url"
-        }
-      ],
-      "dismissalReason": {
-        "code": "incorrect",
-        "comment": "comment"
-      },
-      "driver": {
-        "attributes": [
-          {
-            "dateValues": [
-              "dateValues",
-              "dateValues"
-            ],
-            "id": "id",
-            "name": "name",
-            "numberValues": [
-              1.1,
-              1.1
-            ],
-            "stringValues": [
-              "stringValues",
-              "stringValues"
-            ]
-          },
-          {
-            "dateValues": [
-              "dateValues",
-              "dateValues"
-            ],
-            "id": "id",
-            "name": "name",
-            "numberValues": [
-              1.1,
-              1.1
-            ],
-            "stringValues": [
-              "stringValues",
-              "stringValues"
-            ]
-          }
-        ],
-        "externalIds": {
-          "externalIds": "externalIds"
-        },
-        "id": "id",
-        "name": "name",
-        "tags": [
-          {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
-          },
-          {
-            "id": "id",
-            "name": "name",
-            "parentTagId": "parentTagId"
-          }
-        ]
-      },
-      "endMs": "endMs",
-      "eventState": "unknown",
-      "id": "id",
-      "inboxEventUrl": "inboxEventUrl",
-      "incidentReportUrl": "incidentReportUrl",
-      "location": {
-        "accuracyMeters": 1.1,
-        "address": {
-          "city": "city",
-          "country": "country",
-          "neighborhood": "neighborhood",
-          "pointOfInterest": "pointOfInterest",
-          "postalCode": "postalCode",
-          "state": "state",
-          "street": "street",
-          "streetNumber": "streetNumber"
-        },
-        "geofence": {
-          "externalIds": {
-            "externalIds": "externalIds"
-          },
-          "id": "id"
-        },
-        "headingDegrees": 1000000,
-        "latitude": 1.1,
-        "longitude": 1.1
-      },
-      "maxAccelerationGForce": 1.1,
-      "media": [
-        {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
-          "input": "dashcamRoadFacing",
-          "url": "url"
-        },
-        {
-          "auxcamSerial": "auxcamSerial",
-          "cameraRole": "leftMirrorMount",
-          "input": "dashcamRoadFacing",
-          "url": "url"
-        }
-      ],
-      "speedingMetadata": {
-        "maxSpeedKilometersPerHour": 1000000,
-        "postedSpeedLimitKilometersPerHour": 1000000
-      },
-      "startMs": "startMs",
-      "tripEndTime": "tripEndTime",
-      "tripStartTime": "tripStartTime",
-      "updatedAtTime": "updatedAtTime",
-      "updatedByUserId": "updatedByUserId"
+      "startMs": "2023-01-27T07:01:25Z",
+      "tripEndTime": "2023-01-27T07:06:25Z",
+      "tripStartTime": "2023-01-27T07:06:25Z",
+      "updatedAtTime": "2023-01-27T10:04:20Z",
+      "updatedByUserId": "0987"
     }
   ],
   "pagination": {
-    "endCursor": "endCursor",
+    "endCursor": "MjkY",
     "hasNextPage": true
   }
 }

@@ -291,8 +291,10 @@ public class AlertsWireTest {
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/AlertsWireTest_testGetIncidents_response.json")));
         AlertsGetIncidentsResponseBody response = client.alerts()
-                .getIncidents(
-                        GetIncidentsRequest.builder().startTime("startTime").build());
+                .getIncidents(GetIncidentsRequest.builder()
+                        .startTime("startTime")
+                        .configurationIds(Arrays.asList("configurationIds"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());

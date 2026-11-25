@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.resources.maintenance.types.EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType;
 import com.samsara.api.types.UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +49,8 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
 
     private final Optional<UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody> unitCost;
 
+    private final Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType> unitOfMeasureType;
+
     private final Optional<String> vmrsCode;
 
     private final Map<String, Object> additionalProperties;
@@ -66,6 +69,7 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
             Optional<String> preferredVendorId,
             Optional<String> preferredVendorPartNumber,
             Optional<UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody> unitCost,
+            Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType> unitOfMeasureType,
             Optional<String> vmrsCode,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -81,6 +85,7 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         this.preferredVendorId = preferredVendorId;
         this.preferredVendorPartNumber = preferredVendorPartNumber;
         this.unitCost = unitCost;
+        this.unitOfMeasureType = unitOfMeasureType;
         this.vmrsCode = vmrsCode;
         this.additionalProperties = additionalProperties;
     }
@@ -187,6 +192,14 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
     }
 
     /**
+     * @return Unit of measure for the part.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code>
+     */
+    @JsonProperty("unitOfMeasureType")
+    public Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType> getUnitOfMeasureType() {
+        return unitOfMeasureType;
+    }
+
+    /**
      * @return VMRS code associated with the part definition.
      */
     @JsonProperty("vmrsCode")
@@ -220,6 +233,7 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
                 && preferredVendorId.equals(other.preferredVendorId)
                 && preferredVendorPartNumber.equals(other.preferredVendorPartNumber)
                 && unitCost.equals(other.unitCost)
+                && unitOfMeasureType.equals(other.unitOfMeasureType)
                 && vmrsCode.equals(other.vmrsCode);
     }
 
@@ -239,6 +253,7 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
                 this.preferredVendorId,
                 this.preferredVendorPartNumber,
                 this.unitCost,
+                this.unitOfMeasureType,
                 this.vmrsCode);
     }
 
@@ -345,6 +360,15 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         _FinalStage unitCost(UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody unitCost);
 
         /**
+         * <p>Unit of measure for the part.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
+         */
+        _FinalStage unitOfMeasureType(
+                Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType> unitOfMeasureType);
+
+        _FinalStage unitOfMeasureType(
+                EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType unitOfMeasureType);
+
+        /**
          * <p>VMRS code associated with the part definition.</p>
          */
         _FinalStage vmrsCode(Optional<String> vmrsCode);
@@ -357,6 +381,9 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         private String id;
 
         private Optional<String> vmrsCode = Optional.empty();
+
+        private Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType> unitOfMeasureType =
+                Optional.empty();
 
         private Optional<UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody> unitCost = Optional.empty();
 
@@ -402,6 +429,7 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
             preferredVendorId(other.getPreferredVendorId());
             preferredVendorPartNumber(other.getPreferredVendorPartNumber());
             unitCost(other.getUnitCost());
+            unitOfMeasureType(other.getUnitOfMeasureType());
             vmrsCode(other.getVmrsCode());
             return this;
         }
@@ -435,6 +463,28 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
         @JsonSetter(value = "vmrsCode", nulls = Nulls.SKIP)
         public _FinalStage vmrsCode(Optional<String> vmrsCode) {
             this.vmrsCode = vmrsCode;
+            return this;
+        }
+
+        /**
+         * <p>Unit of measure for the part.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage unitOfMeasureType(
+                EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType unitOfMeasureType) {
+            this.unitOfMeasureType = Optional.ofNullable(unitOfMeasureType);
+            return this;
+        }
+
+        /**
+         * <p>Unit of measure for the part.  Valid values: <code>Unknown</code>, <code>Each</code>, <code>Set</code>, <code>Pack</code>, <code>Box</code>, <code>Pound</code>, <code>Kilogram</code>, <code>Ounce</code>, <code>Liter</code>, <code>Milliliter</code>, <code>Gallon</code>, <code>Quart</code>, <code>FluidOunce</code>, <code>Inch</code>, <code>Foot</code>, <code>Meter</code>, <code>Yard</code>, <code>SquareFoot</code>, <code>SquareMeter</code>, <code>Pint</code>, <code>Hundred</code>, <code>Roll</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "unitOfMeasureType", nulls = Nulls.SKIP)
+        public _FinalStage unitOfMeasureType(
+                Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType> unitOfMeasureType) {
+            this.unitOfMeasureType = unitOfMeasureType;
             return this;
         }
 
@@ -687,6 +737,7 @@ public final class EntityPartDefinitionsServiceUpdatePartRequestBody {
                     preferredVendorId,
                     preferredVendorPartNumber,
                     unitCost,
+                    unitOfMeasureType,
                     vmrsCode,
                     additionalProperties);
         }

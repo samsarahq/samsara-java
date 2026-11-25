@@ -48,7 +48,7 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
 
     private final Optional<
                     List<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant70F45D818DacTypeResponseBody>>
             parts;
 
     private final Optional<String> poNumber;
@@ -86,7 +86,7 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
             Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody> otherCost,
             Optional<
                             List<
-                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
+                                    UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant70F45D818DacTypeResponseBody>>
                     parts,
             Optional<String> poNumber,
             Optional<String> poNumberPrefix,
@@ -223,7 +223,7 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
     @JsonProperty("parts")
     public Optional<
                     List<
-                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
+                            UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant70F45D818DacTypeResponseBody>>
             getParts() {
         return parts;
     }
@@ -393,7 +393,7 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
 
         private Optional<
                         List<
-                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
+                                UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant70F45D818DacTypeResponseBody>>
                 parts = Optional.empty();
 
         private Optional<String> poNumber = Optional.empty();
@@ -622,14 +622,14 @@ public final class EntityUpdatePurchaseOrderTypeResponseBody {
         public Builder parts(
                 Optional<
                                 List<
-                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>>
+                                        UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant70F45D818DacTypeResponseBody>>
                         parts) {
             this.parts = parts;
             return this;
         }
 
         public Builder parts(
-                List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>
+                List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant70F45D818DacTypeResponseBody>
                         parts) {
             this.parts = Optional.ofNullable(parts);
             return this;

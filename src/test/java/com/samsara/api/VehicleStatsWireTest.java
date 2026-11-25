@@ -6,8 +6,12 @@ import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.resources.vehiclestats.requests.GetVehicleStatsFeedRequest;
 import com.samsara.api.resources.vehiclestats.requests.GetVehicleStatsHistoryRequest;
 import com.samsara.api.resources.vehiclestats.requests.GetVehicleStatsRequest;
+import com.samsara.api.resources.vehiclestats.types.GetVehicleStatsFeedRequestTypesItem;
+import com.samsara.api.resources.vehiclestats.types.GetVehicleStatsHistoryRequestTypesItem;
+import com.samsara.api.resources.vehiclestats.types.GetVehicleStatsRequestTypesItem;
 import com.samsara.api.types.VehicleStatsListResponse;
 import com.samsara.api.types.VehicleStatsResponse;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -43,7 +47,9 @@ public class VehicleStatsWireTest {
                 .setBody(TestResources.loadResource(
                         "/wire-tests/VehicleStatsWireTest_testGetVehicleStats_response.json")));
         VehicleStatsResponse response = client.vehicleStats()
-                .getVehicleStats(GetVehicleStatsRequest.builder().build());
+                .getVehicleStats(GetVehicleStatsRequest.builder()
+                        .types(Arrays.asList(GetVehicleStatsRequestTypesItem.AMBIENT_AIR_TEMPERATURE_MILLI_C))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -91,7 +97,9 @@ public class VehicleStatsWireTest {
                 .setBody(TestResources.loadResource(
                         "/wire-tests/VehicleStatsWireTest_testGetVehicleStatsFeed_response.json")));
         VehicleStatsListResponse response = client.vehicleStats()
-                .getVehicleStatsFeed(GetVehicleStatsFeedRequest.builder().build());
+                .getVehicleStatsFeed(GetVehicleStatsFeedRequest.builder()
+                        .types(Arrays.asList(GetVehicleStatsFeedRequestTypesItem.AMBIENT_AIR_TEMPERATURE_MILLI_C))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -142,6 +150,7 @@ public class VehicleStatsWireTest {
                 .getVehicleStatsHistory(GetVehicleStatsHistoryRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
+                        .types(Arrays.asList(GetVehicleStatsHistoryRequestTypesItem.AMBIENT_AIR_TEMPERATURE_MILLI_C))
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);

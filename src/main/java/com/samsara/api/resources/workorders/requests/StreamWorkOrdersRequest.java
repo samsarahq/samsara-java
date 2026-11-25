@@ -30,6 +30,8 @@ public final class StreamWorkOrdersRequest {
 
     private final Optional<List<String>> assignedUserIds;
 
+    private final Optional<List<String>> shopIds;
+
     private final Optional<String> after;
 
     private final String startTime;
@@ -46,6 +48,7 @@ public final class StreamWorkOrdersRequest {
             Optional<List<StreamWorkOrdersRequestWorkOrderStatusesItem>> workOrderStatuses,
             Optional<List<String>> assetIds,
             Optional<List<String>> assignedUserIds,
+            Optional<List<String>> shopIds,
             Optional<String> after,
             String startTime,
             Optional<String> endTime,
@@ -55,6 +58,7 @@ public final class StreamWorkOrdersRequest {
         this.workOrderStatuses = workOrderStatuses;
         this.assetIds = assetIds;
         this.assignedUserIds = assignedUserIds;
+        this.shopIds = shopIds;
         this.after = after;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -85,6 +89,14 @@ public final class StreamWorkOrdersRequest {
     @JsonProperty("assignedUserIds")
     public Optional<List<String>> getAssignedUserIds() {
         return assignedUserIds;
+    }
+
+    /**
+     * @return Work Order shop id filter. Up to 50 ids.
+     */
+    @JsonProperty("shopIds")
+    public Optional<List<String>> getShopIds() {
+        return shopIds;
     }
 
     /**
@@ -142,6 +154,7 @@ public final class StreamWorkOrdersRequest {
         return workOrderStatuses.equals(other.workOrderStatuses)
                 && assetIds.equals(other.assetIds)
                 && assignedUserIds.equals(other.assignedUserIds)
+                && shopIds.equals(other.shopIds)
                 && after.equals(other.after)
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
@@ -155,6 +168,7 @@ public final class StreamWorkOrdersRequest {
                 this.workOrderStatuses,
                 this.assetIds,
                 this.assignedUserIds,
+                this.shopIds,
                 this.after,
                 this.startTime,
                 this.endTime,
@@ -211,6 +225,15 @@ public final class StreamWorkOrdersRequest {
         _FinalStage assignedUserIds(String assignedUserIds);
 
         /**
+         * <p>Work Order shop id filter. Up to 50 ids.</p>
+         */
+        _FinalStage shopIds(Optional<List<String>> shopIds);
+
+        _FinalStage shopIds(List<String> shopIds);
+
+        _FinalStage shopIds(String shopIds);
+
+        /**
          * <p>If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.</p>
          */
         _FinalStage after(Optional<String> after);
@@ -251,6 +274,8 @@ public final class StreamWorkOrdersRequest {
 
         private Optional<String> after = Optional.empty();
 
+        private Optional<List<String>> shopIds = Optional.empty();
+
         private Optional<List<String>> assignedUserIds = Optional.empty();
 
         private Optional<List<String>> assetIds = Optional.empty();
@@ -267,6 +292,7 @@ public final class StreamWorkOrdersRequest {
             workOrderStatuses(other.getWorkOrderStatuses());
             assetIds(other.getAssetIds());
             assignedUserIds(other.getAssignedUserIds());
+            shopIds(other.getShopIds());
             after(other.getAfter());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
@@ -368,6 +394,32 @@ public final class StreamWorkOrdersRequest {
         }
 
         @java.lang.Override
+        public _FinalStage shopIds(String shopIds) {
+            this.shopIds = Optional.of(Collections.singletonList(shopIds));
+            return this;
+        }
+
+        /**
+         * <p>Work Order shop id filter. Up to 50 ids.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage shopIds(List<String> shopIds) {
+            this.shopIds = Optional.ofNullable(shopIds);
+            return this;
+        }
+
+        /**
+         * <p>Work Order shop id filter. Up to 50 ids.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "shopIds", nulls = Nulls.SKIP)
+        public _FinalStage shopIds(Optional<List<String>> shopIds) {
+            this.shopIds = shopIds;
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage assignedUserIds(String assignedUserIds) {
             this.assignedUserIds = Optional.of(Collections.singletonList(assignedUserIds));
             return this;
@@ -452,6 +504,7 @@ public final class StreamWorkOrdersRequest {
                     workOrderStatuses,
                     assetIds,
                     assignedUserIds,
+                    shopIds,
                     after,
                     startTime,
                     endTime,

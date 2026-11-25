@@ -39,7 +39,7 @@ public class LocationAndSpeedWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"asset\":{\"id\":\"12345\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"location\":{\"accuracyMeters\":5.801,\"headingDegrees\":120,\"latitude\":37.7749,\"longitude\":137.2719},\"speed\":{\"ecuSpeedMetersPerSecond\":30.2,\"gpsSpeedMetersPerSecond\":30.2}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"asset\":{\"id\":\"12345\"},\"happenedAtTime\":\"2020-01-27T07:06:25Z\",\"location\":{\"accuracyMeters\":5.801,\"address\":{\"city\":\"New York\",\"country\":\"USA\",\"neighborhood\":\"Mission District\",\"pointOfInterest\":\"The Eiffel Tower\",\"postalCode\":\"10010\",\"state\":\"New York\",\"street\":\"Main Street\",\"streetNumber\":\"16\"},\"geofence\":{\"id\":\"12345\"},\"headingDegrees\":120,\"latitude\":37.7749,\"longitude\":137.2719},\"speed\":{\"ecuSpeedMetersPerSecond\":30.2,\"gpsSpeedMetersPerSecond\":30.2}}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         LocationAndSpeedGetLocationAndSpeedResponseBody response = client.locationAndSpeed()
                 .getLocationAndSpeed(GetLocationAndSpeedRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -59,6 +59,19 @@ public class LocationAndSpeedWireTest {
                 + "      \"happenedAtTime\": \"2020-01-27T07:06:25Z\",\n"
                 + "      \"location\": {\n"
                 + "        \"accuracyMeters\": 5.801,\n"
+                + "        \"address\": {\n"
+                + "          \"city\": \"New York\",\n"
+                + "          \"country\": \"USA\",\n"
+                + "          \"neighborhood\": \"Mission District\",\n"
+                + "          \"pointOfInterest\": \"The Eiffel Tower\",\n"
+                + "          \"postalCode\": \"10010\",\n"
+                + "          \"state\": \"New York\",\n"
+                + "          \"street\": \"Main Street\",\n"
+                + "          \"streetNumber\": \"16\"\n"
+                + "        },\n"
+                + "        \"geofence\": {\n"
+                + "          \"id\": \"12345\"\n"
+                + "        },\n"
                 + "        \"headingDegrees\": 120,\n"
                 + "        \"latitude\": 37.7749,\n"
                 + "        \"longitude\": 137.2719\n"

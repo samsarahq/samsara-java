@@ -11,12 +11,16 @@ import com.samsara.api.resources.equipment.requests.GetEquipmentStatsFeedRequest
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsHistoryRequest;
 import com.samsara.api.resources.equipment.requests.GetEquipmentStatsRequest;
 import com.samsara.api.resources.equipment.requests.ListEquipmentRequest;
+import com.samsara.api.resources.equipment.types.GetEquipmentStatsFeedRequestTypesItem;
+import com.samsara.api.resources.equipment.types.GetEquipmentStatsHistoryRequestTypesItem;
+import com.samsara.api.resources.equipment.types.GetEquipmentStatsRequestTypesItem;
 import com.samsara.api.types.EquipmentListResponse;
 import com.samsara.api.types.EquipmentLocationsListResponse;
 import com.samsara.api.types.EquipmentLocationsResponse;
 import com.samsara.api.types.EquipmentResponse;
 import com.samsara.api.types.EquipmentStatsListResponse;
 import com.samsara.api.types.EquipmentStatsResponse;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -337,7 +341,9 @@ public class EquipmentWireTest {
                 .setBody(TestResources.loadResource(
                         "/wire-tests/EquipmentWireTest_testGetEquipmentStats_response.json")));
         EquipmentStatsResponse response = client.equipment()
-                .getEquipmentStats(GetEquipmentStatsRequest.builder().build());
+                .getEquipmentStats(GetEquipmentStatsRequest.builder()
+                        .types(Arrays.asList(GetEquipmentStatsRequestTypesItem.GATEWAY_ENGINE_STATES))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -385,7 +391,9 @@ public class EquipmentWireTest {
                 .setBody(TestResources.loadResource(
                         "/wire-tests/EquipmentWireTest_testGetEquipmentStatsFeed_response.json")));
         EquipmentStatsListResponse response = client.equipment()
-                .getEquipmentStatsFeed(GetEquipmentStatsFeedRequest.builder().build());
+                .getEquipmentStatsFeed(GetEquipmentStatsFeedRequest.builder()
+                        .types(Arrays.asList(GetEquipmentStatsFeedRequestTypesItem.GATEWAY_ENGINE_STATES))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -436,6 +444,7 @@ public class EquipmentWireTest {
                 .getEquipmentStatsHistory(GetEquipmentStatsHistoryRequest.builder()
                         .startTime("startTime")
                         .endTime("endTime")
+                        .types(Arrays.asList(GetEquipmentStatsHistoryRequestTypesItem.GATEWAY_ENGINE_STATES))
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);

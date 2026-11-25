@@ -44,6 +44,8 @@ public final class CoachingSessionsResponseResponseBody {
 
     private final CoachingSessionsResponseResponseBodySessionStatus sessionStatus;
 
+    private final Optional<CoachingSessionsResponseResponseBodySessionType> sessionType;
+
     private final OffsetDateTime updatedAtTime;
 
     private final Map<String, Object> additionalProperties;
@@ -59,6 +61,7 @@ public final class CoachingSessionsResponseResponseBody {
             String id,
             Optional<String> sessionNote,
             CoachingSessionsResponseResponseBodySessionStatus sessionStatus,
+            Optional<CoachingSessionsResponseResponseBodySessionType> sessionType,
             OffsetDateTime updatedAtTime,
             Map<String, Object> additionalProperties) {
         this.assignedCoachId = assignedCoachId;
@@ -71,6 +74,7 @@ public final class CoachingSessionsResponseResponseBody {
         this.id = id;
         this.sessionNote = sessionNote;
         this.sessionStatus = sessionStatus;
+        this.sessionType = sessionType;
         this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
     }
@@ -153,6 +157,14 @@ public final class CoachingSessionsResponseResponseBody {
     }
 
     /**
+     * @return Type of the coaching session. This is distinct from coachingType, which is the share type. Returned as unknown when the session has no valid type.  Valid values: <code>driverSelfOneOff</code>, <code>driverSelfSession</code>, <code>oneOff</code>, <code>session</code>, <code>unknown</code>
+     */
+    @JsonProperty("sessionType")
+    public Optional<CoachingSessionsResponseResponseBodySessionType> getSessionType() {
+        return sessionType;
+    }
+
+    /**
      * @return Time coaching session was updated in UTC.
      */
     @JsonProperty("updatedAtTime")
@@ -183,6 +195,7 @@ public final class CoachingSessionsResponseResponseBody {
                 && id.equals(other.id)
                 && sessionNote.equals(other.sessionNote)
                 && sessionStatus.equals(other.sessionStatus)
+                && sessionType.equals(other.sessionType)
                 && updatedAtTime.equals(other.updatedAtTime);
     }
 
@@ -199,6 +212,7 @@ public final class CoachingSessionsResponseResponseBody {
                 this.id,
                 this.sessionNote,
                 this.sessionStatus,
+                this.sessionType,
                 this.updatedAtTime);
     }
 
@@ -291,6 +305,13 @@ public final class CoachingSessionsResponseResponseBody {
         _FinalStage sessionNote(Optional<String> sessionNote);
 
         _FinalStage sessionNote(String sessionNote);
+
+        /**
+         * <p>Type of the coaching session. This is distinct from coachingType, which is the share type. Returned as unknown when the session has no valid type.  Valid values: <code>driverSelfOneOff</code>, <code>driverSelfSession</code>, <code>oneOff</code>, <code>session</code>, <code>unknown</code></p>
+         */
+        _FinalStage sessionType(Optional<CoachingSessionsResponseResponseBodySessionType> sessionType);
+
+        _FinalStage sessionType(CoachingSessionsResponseResponseBodySessionType sessionType);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -313,6 +334,8 @@ public final class CoachingSessionsResponseResponseBody {
         private CoachingSessionsResponseResponseBodySessionStatus sessionStatus;
 
         private OffsetDateTime updatedAtTime;
+
+        private Optional<CoachingSessionsResponseResponseBodySessionType> sessionType = Optional.empty();
 
         private Optional<String> sessionNote = Optional.empty();
 
@@ -341,6 +364,7 @@ public final class CoachingSessionsResponseResponseBody {
             id(other.getId());
             sessionNote(other.getSessionNote());
             sessionStatus(other.getSessionStatus());
+            sessionType(other.getSessionType());
             updatedAtTime(other.getUpdatedAtTime());
             return this;
         }
@@ -410,6 +434,26 @@ public final class CoachingSessionsResponseResponseBody {
         @JsonSetter("updatedAtTime")
         public _FinalStage updatedAtTime(@NotNull OffsetDateTime updatedAtTime) {
             this.updatedAtTime = Objects.requireNonNull(updatedAtTime, "updatedAtTime must not be null");
+            return this;
+        }
+
+        /**
+         * <p>Type of the coaching session. This is distinct from coachingType, which is the share type. Returned as unknown when the session has no valid type.  Valid values: <code>driverSelfOneOff</code>, <code>driverSelfSession</code>, <code>oneOff</code>, <code>session</code>, <code>unknown</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage sessionType(CoachingSessionsResponseResponseBodySessionType sessionType) {
+            this.sessionType = Optional.ofNullable(sessionType);
+            return this;
+        }
+
+        /**
+         * <p>Type of the coaching session. This is distinct from coachingType, which is the share type. Returned as unknown when the session has no valid type.  Valid values: <code>driverSelfOneOff</code>, <code>driverSelfSession</code>, <code>oneOff</code>, <code>session</code>, <code>unknown</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "sessionType", nulls = Nulls.SKIP)
+        public _FinalStage sessionType(Optional<CoachingSessionsResponseResponseBodySessionType> sessionType) {
+            this.sessionType = sessionType;
             return this;
         }
 
@@ -541,6 +585,7 @@ public final class CoachingSessionsResponseResponseBody {
                     id,
                     sessionNote,
                     sessionStatus,
+                    sessionType,
                     updatedAtTime,
                     additionalProperties);
         }

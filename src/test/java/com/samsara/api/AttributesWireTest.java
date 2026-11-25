@@ -127,7 +127,7 @@ public class AttributesWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"entities\":[{}],\"attributeType\":\"single-select\",\"entityType\":\"driver\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"License Certifications\",\"numberValues\":[1.1],\"stringValues\":[\"stringValues\"],\"unit\":\"NO_UNIT\",\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}}"));
+                                "{\"data\":{\"entities\":[{\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}],\"attributeType\":\"single-select\",\"entityType\":\"driver\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"License Certifications\",\"numberValues\":[1.1],\"stringValues\":[\"stringValues\"],\"unit\":\"NO_UNIT\",\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}}"));
         AttributeExpandedResponse response = client.attributes()
                 .createAttribute(CreateAttributeRequest.builder()
                         .attributeType(CreateAttributeRequestAttributeType.SINGLE_SELECT)
@@ -179,7 +179,14 @@ public class AttributesWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"entities\": [\n"
-                + "      {}\n"
+                + "      {\n"
+                + "        \"values\": [\n"
+                + "          {\n"
+                + "            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n"
+                + "            \"stringValue\": \"CDL\"\n"
+                + "          }\n"
+                + "        ]\n"
+                + "      }\n"
                 + "    ],\n"
                 + "    \"attributeType\": \"single-select\",\n"
                 + "    \"entityType\": \"driver\",\n"
@@ -237,7 +244,7 @@ public class AttributesWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"entities\":[{}],\"attributeType\":\"single-select\",\"entityType\":\"driver\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"License Certifications\",\"numberValues\":[1.1],\"stringValues\":[\"stringValues\"],\"unit\":\"NO_UNIT\",\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}}"));
+                                "{\"data\":{\"entities\":[{\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}],\"attributeType\":\"single-select\",\"entityType\":\"driver\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"License Certifications\",\"numberValues\":[1.1],\"stringValues\":[\"stringValues\"],\"unit\":\"NO_UNIT\",\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}}"));
         AttributeExpandedResponse response = client.attributes()
                 .getAttribute(
                         "id",
@@ -255,7 +262,14 @@ public class AttributesWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"entities\": [\n"
-                + "      {}\n"
+                + "      {\n"
+                + "        \"values\": [\n"
+                + "          {\n"
+                + "            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n"
+                + "            \"stringValue\": \"CDL\"\n"
+                + "          }\n"
+                + "        ]\n"
+                + "      }\n"
                 + "    ],\n"
                 + "    \"attributeType\": \"single-select\",\n"
                 + "    \"entityType\": \"driver\",\n"
@@ -327,7 +341,7 @@ public class AttributesWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":{\"entities\":[{}],\"attributeType\":\"single-select\",\"entityType\":\"driver\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"License Certifications\",\"numberValues\":[1.1],\"stringValues\":[\"stringValues\"],\"unit\":\"NO_UNIT\",\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}}"));
+                                "{\"data\":{\"entities\":[{\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}],\"attributeType\":\"single-select\",\"entityType\":\"driver\",\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"License Certifications\",\"numberValues\":[1.1],\"stringValues\":[\"stringValues\"],\"unit\":\"NO_UNIT\",\"values\":[{\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"stringValue\":\"CDL\"}]}}"));
         AttributeExpandedResponse response = client.attributes()
                 .updateAttribute(
                         "id",
@@ -374,7 +388,14 @@ public class AttributesWireTest {
                 + "{\n"
                 + "  \"data\": {\n"
                 + "    \"entities\": [\n"
-                + "      {}\n"
+                + "      {\n"
+                + "        \"values\": [\n"
+                + "          {\n"
+                + "            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n"
+                + "            \"stringValue\": \"CDL\"\n"
+                + "          }\n"
+                + "        ]\n"
+                + "      }\n"
                 + "    ],\n"
                 + "    \"attributeType\": \"single-select\",\n"
                 + "    \"entityType\": \"driver\",\n"

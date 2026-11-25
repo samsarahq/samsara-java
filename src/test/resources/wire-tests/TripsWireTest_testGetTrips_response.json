@@ -2,125 +2,59 @@
   "data": [
     {
       "asset": {
-        "id": "id",
-        "name": "name",
-        "type": "uncategorized",
-        "vin": "vin"
+        "id": "12345",
+        "name": "MyAsset-1234",
+        "vin": "1GBJ6P1B2HV112765"
       },
       "completionStatus": "inProgress",
-      "createdAtTime": "createdAtTime",
+      "createdAtTime": "2024-04-16T19:08:25Z",
       "endLocation": {
-        "accuracyMeters": 1.1,
+        "accuracyMeters": 5.801,
         "address": {
-          "city": "city",
-          "country": "country",
-          "neighborhood": "neighborhood",
-          "pointOfInterest": "pointOfInterest",
-          "postalCode": "postalCode",
-          "state": "state",
-          "street": "street",
-          "streetNumber": "streetNumber"
+          "city": "New York",
+          "country": "USA",
+          "neighborhood": "Mission District",
+          "pointOfInterest": "The Eiffel Tower",
+          "postalCode": "10010",
+          "state": "New York",
+          "street": "Main Street",
+          "streetNumber": "16"
         },
         "geofence": {
-          "externalIds": {
-            "externalIds": "externalIds"
-          },
-          "id": "id"
+          "id": "12345"
         },
-        "headingDegrees": 1000000,
-        "latitude": 1.1,
-        "longitude": 1.1
+        "headingDegrees": 120,
+        "latitude": 37.7749,
+        "longitude": 137.2719
       },
-      "finalDistanceMeters": 1000000,
+      "finalDistanceMeters": 2500,
       "startLocation": {
-        "accuracyMeters": 1.1,
+        "accuracyMeters": 5.801,
         "address": {
-          "city": "city",
-          "country": "country",
-          "neighborhood": "neighborhood",
-          "pointOfInterest": "pointOfInterest",
-          "postalCode": "postalCode",
-          "state": "state",
-          "street": "street",
-          "streetNumber": "streetNumber"
+          "city": "New York",
+          "country": "USA",
+          "neighborhood": "Mission District",
+          "pointOfInterest": "The Eiffel Tower",
+          "postalCode": "10010",
+          "state": "New York",
+          "street": "Main Street",
+          "streetNumber": "16"
         },
         "geofence": {
-          "externalIds": {
-            "externalIds": "externalIds"
-          },
-          "id": "id"
+          "id": "12345"
         },
-        "headingDegrees": 1000000,
-        "latitude": 1.1,
-        "longitude": 1.1
+        "headingDegrees": 120,
+        "latitude": 37.7749,
+        "longitude": 137.2719
       },
-      "tripEndTime": "tripEndTime",
+      "tripEndTime": "2024-04-16T20:00:00Z",
       "tripPurpose": "unknown",
-      "tripStartTime": "tripStartTime",
-      "updatedAtTime": "updatedAtTime"
-    },
-    {
-      "asset": {
-        "id": "id",
-        "name": "name",
-        "type": "uncategorized",
-        "vin": "vin"
-      },
-      "completionStatus": "inProgress",
-      "createdAtTime": "createdAtTime",
-      "endLocation": {
-        "accuracyMeters": 1.1,
-        "address": {
-          "city": "city",
-          "country": "country",
-          "neighborhood": "neighborhood",
-          "pointOfInterest": "pointOfInterest",
-          "postalCode": "postalCode",
-          "state": "state",
-          "street": "street",
-          "streetNumber": "streetNumber"
-        },
-        "geofence": {
-          "externalIds": {
-            "externalIds": "externalIds"
-          },
-          "id": "id"
-        },
-        "headingDegrees": 1000000,
-        "latitude": 1.1,
-        "longitude": 1.1
-      },
-      "finalDistanceMeters": 1000000,
-      "startLocation": {
-        "accuracyMeters": 1.1,
-        "address": {
-          "city": "city",
-          "country": "country",
-          "neighborhood": "neighborhood",
-          "pointOfInterest": "pointOfInterest",
-          "postalCode": "postalCode",
-          "state": "state",
-          "street": "street",
-          "streetNumber": "streetNumber"
-        },
-        "geofence": {
-          "externalIds": {
-            "externalIds": "externalIds"
-          },
-          "id": "id"
-        },
-        "headingDegrees": 1000000,
-        "latitude": 1.1,
-        "longitude": 1.1
-      },
-      "tripEndTime": "tripEndTime",
-      "tripPurpose": "unknown",
-      "tripStartTime": "tripStartTime",
-      "updatedAtTime": "updatedAtTime"
+      "tripStartTime": "2024-04-16T19:08:25Z",
+      "updatedAtTime": "2024-04-16T19:08:25Z"
     }
   ],
   "pagination": {
-    "endCursor": "endCursor",
+    "endCursor": "MjkY",
     "hasNextPage": true
   }
 }

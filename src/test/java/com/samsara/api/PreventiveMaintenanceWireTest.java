@@ -122,7 +122,7 @@ public class PreventiveMaintenanceWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"dateIntervalMs\":7776000000,\"description\":\"Replace engine oil and oil filter, then inspect belts and hoses.\",\"distanceInterval\":8046720,\"engineHourInterval\":250,\"id\":\"281474976710656\",\"linkedSchedules\":[{\"id\":\"281474976710656\"}],\"title\":\"Engine oil and filter change\",\"workOrderTemplateId\":\"281474976710656\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"dateIntervalMs\":7776000000,\"description\":\"Replace engine oil and oil filter, then inspect belts and hoses.\",\"distanceInterval\":8046720,\"engineHourInterval\":250,\"id\":\"281474976710656\",\"linkedSchedules\":[{\"id\":\"281474976710656\"}],\"scheduleType\":\"B\",\"title\":\"Engine oil and filter change\",\"workOrderTemplateId\":\"281474976710656\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody response =
                 client.preventiveMaintenance()
                         .listPreventiveMaintenanceSchedules(ListPreventiveMaintenanceSchedulesRequest.builder()
@@ -149,6 +149,7 @@ public class PreventiveMaintenanceWireTest {
                 + "          \"id\": \"281474976710656\"\n"
                 + "        }\n"
                 + "      ],\n"
+                + "      \"scheduleType\": \"B\",\n"
                 + "      \"title\": \"Engine oil and filter change\",\n"
                 + "      \"workOrderTemplateId\": \"281474976710656\"\n"
                 + "    }\n"

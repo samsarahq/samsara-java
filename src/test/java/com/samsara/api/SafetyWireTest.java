@@ -11,6 +11,7 @@ import com.samsara.api.types.SafetyEventsV2GetSafetyEventsV2ResponseBody;
 import com.samsara.api.types.SafetyEventsV2GetSafetyEventsV2StreamResponseBody;
 import com.samsara.api.types.V1DriverSafetyScoreResponse;
 import com.samsara.api.types.V1VehicleSafetyScoreResponse;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -45,7 +46,9 @@ public class SafetyWireTest {
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/SafetyWireTest_testGetSafetyEventsV2_response.json")));
         SafetyEventsV2GetSafetyEventsV2ResponseBody response = client.safety()
-                .getSafetyEventsV2(GetSafetyEventsV2Request.builder().build());
+                .getSafetyEventsV2(GetSafetyEventsV2Request.builder()
+                        .safetyEventIds(Arrays.asList("safetyEventIds"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());

@@ -540,7 +540,7 @@ public class LegacyApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"id\":\"1622151765-212014918174029-1550954461759\",\"safetyEvent\":{\"id\":\"212014918174029-1550954461759\",\"time\":\"2019-06-13T19:08:25.455Z\",\"uuid\":\"abc123de-4567-89fg-hijk-lmnop1234567\"},\"time\":\"2019-10-12T07:20:50.52Z\",\"type\":\"BehaviorLabelActivityType\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"id\":\"1622151765-212014918174029-1550954461759\",\"safetyEvent\":{\"behaviorLabels\":[{\"name\":\"Acceleration\"}],\"driver\":{\"id\":\"0987\"},\"id\":\"212014918174029-1550954461759\",\"time\":\"2019-06-13T19:08:25.455Z\",\"uuid\":\"abc123de-4567-89fg-hijk-lmnop1234567\",\"vehicle\":{\"id\":\"1234\"}},\"time\":\"2019-10-12T07:20:50.52Z\",\"type\":\"BehaviorLabelActivityType\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         SafetyEventsGetSafetyActivityEventFeedResponseBody response = client.legacyApIs()
                 .getSafetyActivityEventFeed(
                         GetSafetyActivityEventFeedRequest.builder().build());
@@ -557,9 +557,20 @@ public class LegacyApIsWireTest {
                 + "    {\n"
                 + "      \"id\": \"1622151765-212014918174029-1550954461759\",\n"
                 + "      \"safetyEvent\": {\n"
+                + "        \"behaviorLabels\": [\n"
+                + "          {\n"
+                + "            \"name\": \"Acceleration\"\n"
+                + "          }\n"
+                + "        ],\n"
+                + "        \"driver\": {\n"
+                + "          \"id\": \"0987\"\n"
+                + "        },\n"
                 + "        \"id\": \"212014918174029-1550954461759\",\n"
                 + "        \"time\": \"2019-06-13T19:08:25.455Z\",\n"
-                + "        \"uuid\": \"abc123de-4567-89fg-hijk-lmnop1234567\"\n"
+                + "        \"uuid\": \"abc123de-4567-89fg-hijk-lmnop1234567\",\n"
+                + "        \"vehicle\": {\n"
+                + "          \"id\": \"1234\"\n"
+                + "        }\n"
                 + "      },\n"
                 + "      \"time\": \"2019-10-12T07:20:50.52Z\",\n"
                 + "      \"type\": \"BehaviorLabelActivityType\"\n"

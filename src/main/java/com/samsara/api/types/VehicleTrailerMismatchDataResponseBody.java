@@ -45,7 +45,7 @@ public final class VehicleTrailerMismatchDataResponseBody {
     }
 
     /**
-     * @return Trailers the vehicle is currently associated with pulling.
+     * @return Trailers the vehicle was associated with pulling in the incident metadata. An empty array means no trailer associations were recorded. Omitted when metadata or all referenced trailer details are unavailable.
      */
     @JsonProperty("currentlyPullingTrailers")
     public Optional<List<AlertObjectTrailerResponseBody>> getCurrentlyPullingTrailers() {
@@ -58,7 +58,7 @@ public final class VehicleTrailerMismatchDataResponseBody {
     }
 
     /**
-     * @return Trailers the driver selected in the dispatch workflow.
+     * @return Trailers the driver selected in the incident metadata. An empty array means no trailers were selected. Omitted when metadata or all referenced trailer details are unavailable.
      */
     @JsonProperty("driverSelectedTrailers")
     public Optional<List<AlertObjectTrailerResponseBody>> getDriverSelectedTrailers() {
@@ -127,7 +127,7 @@ public final class VehicleTrailerMismatchDataResponseBody {
         }
 
         /**
-         * <p>Trailers the vehicle is currently associated with pulling.</p>
+         * <p>Trailers the vehicle was associated with pulling in the incident metadata. An empty array means no trailer associations were recorded. Omitted when metadata or all referenced trailer details are unavailable.</p>
          */
         @JsonSetter(value = "currentlyPullingTrailers", nulls = Nulls.SKIP)
         public Builder currentlyPullingTrailers(
@@ -153,7 +153,7 @@ public final class VehicleTrailerMismatchDataResponseBody {
         }
 
         /**
-         * <p>Trailers the driver selected in the dispatch workflow.</p>
+         * <p>Trailers the driver selected in the incident metadata. An empty array means no trailers were selected. Omitted when metadata or all referenced trailer details are unavailable.</p>
          */
         @JsonSetter(value = "driverSelectedTrailers", nulls = Nulls.SKIP)
         public Builder driverSelectedTrailers(Optional<List<AlertObjectTrailerResponseBody>> driverSelectedTrailers) {

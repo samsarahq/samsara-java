@@ -1,372 +1,158 @@
 {
   "data": [
     {
-      "createdAtTime": "2024-01-15T09:30:00Z",
+      "createdAtTime": "2019-06-13T19:08:25Z",
       "createdBy": {
-        "id": "id",
+        "id": "938172",
         "type": "driver"
       },
-      "expirationDate": "2024-01-15T09:30:00Z",
+      "expirationDate": "2026-08-27T10:20:30Z",
       "externalIds": {
-        "externalIds": "externalIds"
+        "key": "value"
       },
       "fields": [
         {
           "checkBoxesValue": {
             "value": [
-              "value",
-              "value"
+              "Option A",
+              "Option B"
             ],
             "valueIds": [
-              "valueIds",
-              "valueIds"
+              "0cbbddb3-2541-4889-b4eb-92171cbfc142",
+              "d33198cb-369f-4278-8120-d92d3ebf74bf"
             ]
           },
           "dateTimeValue": {
-            "dateValue": "2023-01-15",
+            "dateValue": "2024-08-08",
             "type": "datetime",
-            "value": "2024-01-15T09:30:00Z"
+            "value": "2024-08-08T18:53:23Z"
           },
-          "id": "id",
-          "label": "label",
+          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+          "label": "License Number",
           "mediaList": [
             {
-              "id": "id",
+              "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
               "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            },
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
+              "url": "https://samsara-forms-submission-media-uploads.s3.us-west-2.amazonaws.com/123456",
+              "urlExpiresAt": "2019-06-13T19:08:25Z"
             }
           ],
           "multipleChoiceValue": {
-            "value": "value",
-            "valueId": "valueId"
+            "value": "Yes",
+            "valueId": "94096370-7228-4d83-ae5d-b20f3e45c0fc"
           },
           "numberValue": {
-            "value": 1.1
+            "value": 123.456
           },
           "signatureValue": {
             "media": {
-              "id": "id",
+              "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
               "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
+              "url": "https://samsara-forms-submission-media-uploads.s3.us-west-2.amazonaws.com/123456",
+              "urlExpiresAt": "2019-06-13T19:08:25Z"
             }
           },
           "tableValue": {
             "columns": [
               {
                 "id": "id",
-                "label": "label",
-                "type": "text"
-              },
-              {
-                "id": "id",
-                "label": "label",
+                "label": "Store Number",
                 "type": "text"
               }
             ],
             "rows": [
               {
-                "cells": [],
-                "id": "id"
-              },
-              {
-                "cells": [],
-                "id": "id"
-              }
-            ]
-          },
-          "textValue": {
-            "value": "value"
-          },
-          "type": "number"
-        },
-        {
-          "checkBoxesValue": {
-            "value": [
-              "value",
-              "value"
-            ],
-            "valueIds": [
-              "valueIds",
-              "valueIds"
-            ]
-          },
-          "dateTimeValue": {
-            "dateValue": "2023-01-15",
-            "type": "datetime",
-            "value": "2024-01-15T09:30:00Z"
-          },
-          "id": "id",
-          "label": "label",
-          "mediaList": [
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            },
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            }
-          ],
-          "multipleChoiceValue": {
-            "value": "value",
-            "valueId": "valueId"
-          },
-          "numberValue": {
-            "value": 1.1
-          },
-          "signatureValue": {
-            "media": {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            }
-          },
-          "tableValue": {
-            "columns": [
-              {
-                "id": "id",
-                "label": "label",
-                "type": "text"
-              },
-              {
-                "id": "id",
-                "label": "label",
-                "type": "text"
-              }
-            ],
-            "rows": [
-              {
-                "cells": [],
-                "id": "id"
-              },
-              {
-                "cells": [],
+                "cells": [
+                  {
+                    "barcodeValue": {
+                      "barcodes": [
+                        {
+                          "value": "1A2B3C4D5E"
+                        }
+                      ]
+                    },
+                    "checkBoxesValue": {
+                      "value": [
+                        "Option A",
+                        "Option B"
+                      ],
+                      "valueIds": [
+                        "0cbbddb3-2541-4889-b4eb-92171cbfc142",
+                        "d33198cb-369f-4278-8120-d92d3ebf74bf"
+                      ]
+                    },
+                    "dateTimeValue": {
+                      "dateValue": "2024-08-08",
+                      "type": "datetime",
+                      "value": "2024-08-08T18:53:23Z"
+                    },
+                    "id": "id",
+                    "mediaValue": {
+                      "mediaList": [
+                        {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "processingStatus": "unknown",
+                          "url": "https://samsara-forms-submission-media-uploads.s3.us-west-2.amazonaws.com/123456",
+                          "urlExpiresAt": "2019-06-13T19:08:25Z"
+                        }
+                      ]
+                    },
+                    "multipleChoiceValue": {
+                      "value": "Yes",
+                      "valueId": "94096370-7228-4d83-ae5d-b20f3e45c0fc"
+                    },
+                    "numberValue": {
+                      "value": 123.456
+                    },
+                    "personValue": {
+                      "person": {
+                        "entryType": "tracked",
+                        "name": "Jake",
+                        "polymorphicUserId": {
+                          "id": "938172",
+                          "type": "driver"
+                        }
+                      }
+                    },
+                    "signatureValue": {
+                      "media": {
+                        "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                        "processingStatus": "unknown",
+                        "url": "https://samsara-forms-submission-media-uploads.s3.us-west-2.amazonaws.com/123456",
+                        "urlExpiresAt": "2019-06-13T19:08:25Z"
+                      }
+                    },
+                    "textValue": {
+                      "value": "Exposed wires"
+                    },
+                    "type": "number"
+                  }
+                ],
                 "id": "id"
               }
             ]
           },
           "textValue": {
-            "value": "value"
+            "value": "Exposed wires"
           },
           "type": "number"
         }
       ],
-      "id": "id",
-      "issueDate": "2024-01-15T09:30:00Z",
+      "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+      "issueDate": "2025-08-27T10:20:30Z",
       "owner": {
         "entityType": "worker",
-        "externalIds": {
-          "externalIds": "externalIds"
-        },
-        "id": "id"
+        "id": "281474"
       },
       "qualificationType": {
-        "id": "id",
-        "name": "name",
-        "revisionId": "revisionId"
+        "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+        "name": "Driver License",
+        "revisionId": "1214a1fa-f0c6-408b-bf85-51dc3bc71ac7"
       },
       "recordStatus": "active",
-      "updatedAtTime": "2024-01-15T09:30:00Z",
+      "updatedAtTime": "2019-06-13T19:08:25Z",
       "updatedBy": {
-        "id": "id",
-        "type": "driver"
-      }
-    },
-    {
-      "createdAtTime": "2024-01-15T09:30:00Z",
-      "createdBy": {
-        "id": "id",
-        "type": "driver"
-      },
-      "expirationDate": "2024-01-15T09:30:00Z",
-      "externalIds": {
-        "externalIds": "externalIds"
-      },
-      "fields": [
-        {
-          "checkBoxesValue": {
-            "value": [
-              "value",
-              "value"
-            ],
-            "valueIds": [
-              "valueIds",
-              "valueIds"
-            ]
-          },
-          "dateTimeValue": {
-            "dateValue": "2023-01-15",
-            "type": "datetime",
-            "value": "2024-01-15T09:30:00Z"
-          },
-          "id": "id",
-          "label": "label",
-          "mediaList": [
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            },
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            }
-          ],
-          "multipleChoiceValue": {
-            "value": "value",
-            "valueId": "valueId"
-          },
-          "numberValue": {
-            "value": 1.1
-          },
-          "signatureValue": {
-            "media": {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            }
-          },
-          "tableValue": {
-            "columns": [
-              {
-                "id": "id",
-                "label": "label",
-                "type": "text"
-              },
-              {
-                "id": "id",
-                "label": "label",
-                "type": "text"
-              }
-            ],
-            "rows": [
-              {
-                "cells": [],
-                "id": "id"
-              },
-              {
-                "cells": [],
-                "id": "id"
-              }
-            ]
-          },
-          "textValue": {
-            "value": "value"
-          },
-          "type": "number"
-        },
-        {
-          "checkBoxesValue": {
-            "value": [
-              "value",
-              "value"
-            ],
-            "valueIds": [
-              "valueIds",
-              "valueIds"
-            ]
-          },
-          "dateTimeValue": {
-            "dateValue": "2023-01-15",
-            "type": "datetime",
-            "value": "2024-01-15T09:30:00Z"
-          },
-          "id": "id",
-          "label": "label",
-          "mediaList": [
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            },
-            {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            }
-          ],
-          "multipleChoiceValue": {
-            "value": "value",
-            "valueId": "valueId"
-          },
-          "numberValue": {
-            "value": 1.1
-          },
-          "signatureValue": {
-            "media": {
-              "id": "id",
-              "processingStatus": "unknown",
-              "url": "url",
-              "urlExpiresAt": "2024-01-15T09:30:00Z"
-            }
-          },
-          "tableValue": {
-            "columns": [
-              {
-                "id": "id",
-                "label": "label",
-                "type": "text"
-              },
-              {
-                "id": "id",
-                "label": "label",
-                "type": "text"
-              }
-            ],
-            "rows": [
-              {
-                "cells": [],
-                "id": "id"
-              },
-              {
-                "cells": [],
-                "id": "id"
-              }
-            ]
-          },
-          "textValue": {
-            "value": "value"
-          },
-          "type": "number"
-        }
-      ],
-      "id": "id",
-      "issueDate": "2024-01-15T09:30:00Z",
-      "owner": {
-        "entityType": "worker",
-        "externalIds": {
-          "externalIds": "externalIds"
-        },
-        "id": "id"
-      },
-      "qualificationType": {
-        "id": "id",
-        "name": "name",
-        "revisionId": "revisionId"
-      },
-      "recordStatus": "active",
-      "updatedAtTime": "2024-01-15T09:30:00Z",
-      "updatedBy": {
-        "id": "id",
+        "id": "938172",
         "type": "driver"
       }
     }

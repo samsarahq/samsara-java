@@ -1,0 +1,61 @@
+{
+  "data": [
+    {
+      "asset": {
+        "id": "281474982859091",
+        "name": "MyAsset-1234"
+      },
+      "health": {
+        "healthDetails": {
+          "bleAssetTagDetails": {
+            "lastCheckInTime": "2019-06-13T19:08:25Z"
+          },
+          "cameraConnectorDetails": {
+            "gatewayLastConnectedTime": "2019-06-13T19:08:25Z",
+            "lastFiftyHoursUptimePercentage": 95.5,
+            "vehicleGatewaySerial": "VG-1234-5678"
+          },
+          "cameraDetails": {
+            "gatewayLastConnectedTime": "2019-06-13T19:08:25Z",
+            "lastFiftyHoursUptimePercentage": 95.5,
+            "vehicleGatewaySerial": "VG-1234-5678"
+          },
+          "gatewayDetails": {
+            "cellConnectivity": {
+              "operator": "AT&T"
+            },
+            "gatewayBatteryTemp": 25.5,
+            "gatewayBatteryVolts": 12.5,
+            "lastCheckInTime": "2019-06-13T19:08:25Z",
+            "vehicleBatteryVolts": 12.5
+          }
+        },
+        "healthReasons": [
+          {
+            "startTime": "2019-06-13T19:08:25Z"
+          }
+        ],
+        "primaryHealthReasonStartTime": "2019-06-13T19:08:25Z"
+      },
+      "lastConnectedTime": "2019-06-13T19:08:25Z",
+      "lastKnownLocation": {
+        "id": 12345,
+        "latitude": 12333122.3,
+        "longitude": 1233331.4
+      },
+      "model": "AG24",
+      "serial": "ABCD-123-EFG",
+      "tags": [
+        {
+          "id": "3914",
+          "name": "East Coast",
+          "parentTagId": "4815"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "endCursor": "MjkY",
+    "hasNextPage": true
+  }
+}

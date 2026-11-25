@@ -118,7 +118,7 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags.
+     * @return Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags. If your API token is restricted to certain tags, tags outside its scope are kept and can't be added.
      */
     @JsonProperty("tagIds")
     public Optional<List<String>> getTagIds() {
@@ -224,7 +224,7 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsInputRequestBody specialInstructions);
 
         /**
-         * <p>Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags.</p>
+         * <p>Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags. If your API token is restricted to certain tags, tags outside its scope are kept and can't be added.</p>
          */
         _FinalStage tagIds(Optional<List<String>> tagIds);
 
@@ -305,7 +305,7 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags.</p>
+         * <p>Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags. If your API token is restricted to certain tags, tags outside its scope are kept and can't be added.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -315,7 +315,7 @@ public final class RidershipPassengersUpdateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags.</p>
+         * <p>Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send <code>[]</code> to remove all tags. If your API token is restricted to certain tags, tags outside its scope are kept and can't be added.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)

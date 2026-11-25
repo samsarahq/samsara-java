@@ -46,7 +46,7 @@ public final class CampaignRollupsResponseObjectResponseBody {
     }
 
     /**
-     * @return Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>) for more than 30 days.
+     * @return Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>) for more than 30 days.
      */
     @JsonProperty("agingItemCount")
     public long getAgingItemCount() {
@@ -112,7 +112,7 @@ public final class CampaignRollupsResponseObjectResponseBody {
 
     public interface AgingItemCountStage {
         /**
-         * <p>Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>) for more than 30 days.</p>
+         * <p>Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>) for more than 30 days.</p>
          */
         CampaignIdStage agingItemCount(long agingItemCount);
 
@@ -172,8 +172,8 @@ public final class CampaignRollupsResponseObjectResponseBody {
         }
 
         /**
-         * <p>Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>) for more than 30 days.</p>
-         * <p>Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>) for more than 30 days.</p>
+         * <p>Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>) for more than 30 days.</p>
+         * <p>Number of items that have been in a non-terminal state (<code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>) for more than 30 days.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

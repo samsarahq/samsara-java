@@ -7,6 +7,7 @@ import com.samsara.api.resources.trips.requests.GetTripsRequest;
 import com.samsara.api.resources.trips.requests.V1GetFleetTripsRequest;
 import com.samsara.api.types.TripsGetTripsResponseBody;
 import com.samsara.api.types.V1TripResponse;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -41,7 +42,10 @@ public class TripsWireTest {
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/TripsWireTest_testGetTrips_response.json")));
         TripsGetTripsResponseBody response = client.trips()
-                .getTrips(GetTripsRequest.builder().startTime("startTime").build());
+                .getTrips(GetTripsRequest.builder()
+                        .startTime("startTime")
+                        .ids(Arrays.asList("ids"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
