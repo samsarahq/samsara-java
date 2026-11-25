@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class HealthResponseResponseBodyPrimaryHealthReason {
+    public static final HealthResponseResponseBodyPrimaryHealthReason CRITICAL_HARDWARE_ISSUE =
+            new HealthResponseResponseBodyPrimaryHealthReason(Value.CRITICAL_HARDWARE_ISSUE, "criticalHardwareIssue");
+
     public static final HealthResponseResponseBodyPrimaryHealthReason IRREGULAR_RECORDING =
             new HealthResponseResponseBodyPrimaryHealthReason(Value.IRREGULAR_RECORDING, "irregularRecording");
 
@@ -109,6 +112,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
+            case CRITICAL_HARDWARE_ISSUE:
+                return visitor.visitCriticalHardwareIssue();
             case IRREGULAR_RECORDING:
                 return visitor.visitIrregularRecording();
             case LOW_UPTIME:
@@ -162,6 +167,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static HealthResponseResponseBodyPrimaryHealthReason valueOf(String value) {
         switch (value) {
+            case "criticalHardwareIssue":
+                return CRITICAL_HARDWARE_ISSUE;
             case "irregularRecording":
                 return IRREGULAR_RECORDING;
             case "lowUptime":
@@ -216,6 +223,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
 
         CAMERA_MISALIGNED,
 
+        CRITICAL_HARDWARE_ISSUE,
+
         DATA_PENDING,
 
         HEALTHY,
@@ -263,6 +272,8 @@ public final class HealthResponseResponseBodyPrimaryHealthReason {
         T visitAssetUnplugged();
 
         T visitCameraMisaligned();
+
+        T visitCriticalHardwareIssue();
 
         T visitDataPending();
 

@@ -27,6 +27,12 @@ public final class BehaviorResponseBody {
 
     private final Optional<List<CoachableEventResponseBody>> coachableEvents;
 
+    private final Optional<BehaviorResponseBodyCoachingStatus> coachingStatus;
+
+    private final Optional<OffsetDateTime> createdAtTime;
+
+    private final Optional<OffsetDateTime> dueAtTime;
+
     private final String id;
 
     private final OffsetDateTime lastCoachedTime;
@@ -40,6 +46,9 @@ public final class BehaviorResponseBody {
     private BehaviorResponseBody(
             BehaviorResponseBodyCoachableBehaviorType coachableBehaviorType,
             Optional<List<CoachableEventResponseBody>> coachableEvents,
+            Optional<BehaviorResponseBodyCoachingStatus> coachingStatus,
+            Optional<OffsetDateTime> createdAtTime,
+            Optional<OffsetDateTime> dueAtTime,
             String id,
             OffsetDateTime lastCoachedTime,
             Optional<String> note,
@@ -47,6 +56,9 @@ public final class BehaviorResponseBody {
             Map<String, Object> additionalProperties) {
         this.coachableBehaviorType = coachableBehaviorType;
         this.coachableEvents = coachableEvents;
+        this.coachingStatus = coachingStatus;
+        this.createdAtTime = createdAtTime;
+        this.dueAtTime = dueAtTime;
         this.id = id;
         this.lastCoachedTime = lastCoachedTime;
         this.note = note;
@@ -68,6 +80,30 @@ public final class BehaviorResponseBody {
     @JsonProperty("coachableEvents")
     public Optional<List<CoachableEventResponseBody>> getCoachableEvents() {
         return coachableEvents;
+    }
+
+    /**
+     * @return Coaching status for the behavior. Returned as unknown when the behavior has no valid status.  Valid values: <code>completed</code>, <code>dismissed</code>, <code>disputed</code>, <code>incomplete</code>, <code>opened</code>, <code>unknown</code>
+     */
+    @JsonProperty("coachingStatus")
+    public Optional<BehaviorResponseBodyCoachingStatus> getCoachingStatus() {
+        return coachingStatus;
+    }
+
+    /**
+     * @return Time the coaching behavior was created in UTC. Omitted when the behavior has no created time.
+     */
+    @JsonProperty("createdAtTime")
+    public Optional<OffsetDateTime> getCreatedAtTime() {
+        return createdAtTime;
+    }
+
+    /**
+     * @return Time the coaching behavior is due in UTC. This is the behavior due date. It is distinct from the coaching session dueAtTime. Omitted when the behavior has no due date.
+     */
+    @JsonProperty("dueAtTime")
+    public Optional<OffsetDateTime> getDueAtTime() {
+        return dueAtTime;
     }
 
     /**
@@ -116,6 +152,9 @@ public final class BehaviorResponseBody {
     private boolean equalTo(BehaviorResponseBody other) {
         return coachableBehaviorType.equals(other.coachableBehaviorType)
                 && coachableEvents.equals(other.coachableEvents)
+                && coachingStatus.equals(other.coachingStatus)
+                && createdAtTime.equals(other.createdAtTime)
+                && dueAtTime.equals(other.dueAtTime)
                 && id.equals(other.id)
                 && lastCoachedTime.equals(other.lastCoachedTime)
                 && note.equals(other.note)
@@ -127,6 +166,9 @@ public final class BehaviorResponseBody {
         return Objects.hash(
                 this.coachableBehaviorType,
                 this.coachableEvents,
+                this.coachingStatus,
+                this.createdAtTime,
+                this.dueAtTime,
                 this.id,
                 this.lastCoachedTime,
                 this.note,
@@ -183,6 +225,27 @@ public final class BehaviorResponseBody {
         _FinalStage coachableEvents(List<CoachableEventResponseBody> coachableEvents);
 
         /**
+         * <p>Coaching status for the behavior. Returned as unknown when the behavior has no valid status.  Valid values: <code>completed</code>, <code>dismissed</code>, <code>disputed</code>, <code>incomplete</code>, <code>opened</code>, <code>unknown</code></p>
+         */
+        _FinalStage coachingStatus(Optional<BehaviorResponseBodyCoachingStatus> coachingStatus);
+
+        _FinalStage coachingStatus(BehaviorResponseBodyCoachingStatus coachingStatus);
+
+        /**
+         * <p>Time the coaching behavior was created in UTC. Omitted when the behavior has no created time.</p>
+         */
+        _FinalStage createdAtTime(Optional<OffsetDateTime> createdAtTime);
+
+        _FinalStage createdAtTime(OffsetDateTime createdAtTime);
+
+        /**
+         * <p>Time the coaching behavior is due in UTC. This is the behavior due date. It is distinct from the coaching session dueAtTime. Omitted when the behavior has no due date.</p>
+         */
+        _FinalStage dueAtTime(Optional<OffsetDateTime> dueAtTime);
+
+        _FinalStage dueAtTime(OffsetDateTime dueAtTime);
+
+        /**
          * <p>Associated note for the coaching behavior. Returned when present.</p>
          */
         _FinalStage note(Optional<String> note);
@@ -203,6 +266,12 @@ public final class BehaviorResponseBody {
 
         private Optional<String> note = Optional.empty();
 
+        private Optional<OffsetDateTime> dueAtTime = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAtTime = Optional.empty();
+
+        private Optional<BehaviorResponseBodyCoachingStatus> coachingStatus = Optional.empty();
+
         private Optional<List<CoachableEventResponseBody>> coachableEvents = Optional.empty();
 
         @JsonAnySetter
@@ -214,6 +283,9 @@ public final class BehaviorResponseBody {
         public Builder from(BehaviorResponseBody other) {
             coachableBehaviorType(other.getCoachableBehaviorType());
             coachableEvents(other.getCoachableEvents());
+            coachingStatus(other.getCoachingStatus());
+            createdAtTime(other.getCreatedAtTime());
+            dueAtTime(other.getDueAtTime());
             id(other.getId());
             lastCoachedTime(other.getLastCoachedTime());
             note(other.getNote());
@@ -291,6 +363,66 @@ public final class BehaviorResponseBody {
         }
 
         /**
+         * <p>Time the coaching behavior is due in UTC. This is the behavior due date. It is distinct from the coaching session dueAtTime. Omitted when the behavior has no due date.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage dueAtTime(OffsetDateTime dueAtTime) {
+            this.dueAtTime = Optional.ofNullable(dueAtTime);
+            return this;
+        }
+
+        /**
+         * <p>Time the coaching behavior is due in UTC. This is the behavior due date. It is distinct from the coaching session dueAtTime. Omitted when the behavior has no due date.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "dueAtTime", nulls = Nulls.SKIP)
+        public _FinalStage dueAtTime(Optional<OffsetDateTime> dueAtTime) {
+            this.dueAtTime = dueAtTime;
+            return this;
+        }
+
+        /**
+         * <p>Time the coaching behavior was created in UTC. Omitted when the behavior has no created time.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage createdAtTime(OffsetDateTime createdAtTime) {
+            this.createdAtTime = Optional.ofNullable(createdAtTime);
+            return this;
+        }
+
+        /**
+         * <p>Time the coaching behavior was created in UTC. Omitted when the behavior has no created time.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "createdAtTime", nulls = Nulls.SKIP)
+        public _FinalStage createdAtTime(Optional<OffsetDateTime> createdAtTime) {
+            this.createdAtTime = createdAtTime;
+            return this;
+        }
+
+        /**
+         * <p>Coaching status for the behavior. Returned as unknown when the behavior has no valid status.  Valid values: <code>completed</code>, <code>dismissed</code>, <code>disputed</code>, <code>incomplete</code>, <code>opened</code>, <code>unknown</code></p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage coachingStatus(BehaviorResponseBodyCoachingStatus coachingStatus) {
+            this.coachingStatus = Optional.ofNullable(coachingStatus);
+            return this;
+        }
+
+        /**
+         * <p>Coaching status for the behavior. Returned as unknown when the behavior has no valid status.  Valid values: <code>completed</code>, <code>dismissed</code>, <code>disputed</code>, <code>incomplete</code>, <code>opened</code>, <code>unknown</code></p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "coachingStatus", nulls = Nulls.SKIP)
+        public _FinalStage coachingStatus(Optional<BehaviorResponseBodyCoachingStatus> coachingStatus) {
+            this.coachingStatus = coachingStatus;
+            return this;
+        }
+
+        /**
          * <p>Object references for the coachableEvents within the behavior. Returned when includeCoachableEvents is 'true'. Capped at 100 coachable events per Coaching session. For sessions where coachable events exceed 100, please visit the Samsara dashboard to address this coaching session. Corresponds to the following unique identifiers: Non-Speeding Safety events - unique Samsara ID of the safety event as 'vehicleId - eventMS'. Speeding events - unique UUID of the event. Day of HOS Violations - unique Samsara ID of the day of violations as '{driverId},{date}'. Idling events - unique UUID of the event.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -315,6 +447,9 @@ public final class BehaviorResponseBody {
             return new BehaviorResponseBody(
                     coachableBehaviorType,
                     coachableEvents,
+                    coachingStatus,
+                    createdAtTime,
+                    dueAtTime,
                     id,
                     lastCoachedTime,
                     note,

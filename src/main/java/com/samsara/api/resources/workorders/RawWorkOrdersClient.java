@@ -735,6 +735,10 @@ public class RawWorkOrdersClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "assignedUserIds", request.getAssignedUserIds().get(), true);
         }
+        if (request.getShopIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "shopIds", request.getShopIds().get(), true);
+        }
         if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);

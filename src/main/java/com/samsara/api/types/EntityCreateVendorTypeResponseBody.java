@@ -21,20 +21,15 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EntityCreateVendorTypeResponseBody.Builder.class)
 public final class EntityCreateVendorTypeResponseBody {
-    private final Optional<String> address;
-
-    private final Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody>>
+    private final Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>>
             assetAttributeSelections;
 
-    private final Optional<List<CreateVendorEntityVendorVendorContactTypeResponseBody>> contacts;
+    private final Optional<String> createdAtTime;
 
-    private final Optional<CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody> defaultLaborRatePerHour;
+    private final Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody>
+            defaultLaborRatePerHour;
 
-    private final Optional<List<String>> emailAddresses;
-
-    private final Optional<String> externalId;
-
-    private final Optional<List<CreateVendorEntityVendorVendorExternalIdTypeResponseBody>> externalIds;
+    private final Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody>> externalIds;
 
     private final Optional<String> id;
 
@@ -44,124 +39,77 @@ public final class EntityCreateVendorTypeResponseBody {
 
     private final Optional<String> name;
 
-    private final Optional<String> notes;
-
-    private final Optional<String> payeeId;
-
-    private final Optional<List<String>> phoneNumbers;
-
-    private final Optional<EntityCreateVendorPlaceRefTypeResponseBody> placeId;
-
-    private final Optional<String> servicesProvided;
+    private final Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody>
+            primaryCorporateContact;
 
     private final Optional<EntityCreateVendorTypeResponseBodyStatus> status;
 
-    private final Optional<String> vendorGroupId;
-
-    private final Optional<String> vendorId;
+    private final Optional<String> updatedAtTime;
 
     private final Map<String, Object> additionalProperties;
 
     private EntityCreateVendorTypeResponseBody(
-            Optional<String> address,
-            Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody>>
+            Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>>
                     assetAttributeSelections,
-            Optional<List<CreateVendorEntityVendorVendorContactTypeResponseBody>> contacts,
-            Optional<CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody> defaultLaborRatePerHour,
-            Optional<List<String>> emailAddresses,
-            Optional<String> externalId,
-            Optional<List<CreateVendorEntityVendorVendorExternalIdTypeResponseBody>> externalIds,
+            Optional<String> createdAtTime,
+            Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody> defaultLaborRatePerHour,
+            Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody>> externalIds,
             Optional<String> id,
             Optional<Boolean> isMobile,
             Optional<Boolean> isPreferred,
             Optional<String> name,
-            Optional<String> notes,
-            Optional<String> payeeId,
-            Optional<List<String>> phoneNumbers,
-            Optional<EntityCreateVendorPlaceRefTypeResponseBody> placeId,
-            Optional<String> servicesProvided,
+            Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody>
+                    primaryCorporateContact,
             Optional<EntityCreateVendorTypeResponseBodyStatus> status,
-            Optional<String> vendorGroupId,
-            Optional<String> vendorId,
+            Optional<String> updatedAtTime,
             Map<String, Object> additionalProperties) {
-        this.address = address;
         this.assetAttributeSelections = assetAttributeSelections;
-        this.contacts = contacts;
+        this.createdAtTime = createdAtTime;
         this.defaultLaborRatePerHour = defaultLaborRatePerHour;
-        this.emailAddresses = emailAddresses;
-        this.externalId = externalId;
         this.externalIds = externalIds;
         this.id = id;
         this.isMobile = isMobile;
         this.isPreferred = isPreferred;
         this.name = name;
-        this.notes = notes;
-        this.payeeId = payeeId;
-        this.phoneNumbers = phoneNumbers;
-        this.placeId = placeId;
-        this.servicesProvided = servicesProvided;
+        this.primaryCorporateContact = primaryCorporateContact;
         this.status = status;
-        this.vendorGroupId = vendorGroupId;
-        this.vendorId = vendorId;
+        this.updatedAtTime = updatedAtTime;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return Address of the vendor.
-     */
-    @JsonProperty("address")
-    public Optional<String> getAddress() {
-        return address;
     }
 
     /**
      * @return Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
      */
     @JsonProperty("assetAttributeSelections")
-    public Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody>>
+    public Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>>
             getAssetAttributeSelections() {
         return assetAttributeSelections;
     }
 
     /**
-     * @return People to contact at the vendor.
+     * @return Time when the vendor profile was created.
      */
-    @JsonProperty("contacts")
-    public Optional<List<CreateVendorEntityVendorVendorContactTypeResponseBody>> getContacts() {
-        return contacts;
+    @JsonProperty("createdAtTime")
+    public Optional<String> getCreatedAtTime() {
+        return createdAtTime;
     }
 
     @JsonProperty("defaultLaborRatePerHour")
-    public Optional<CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody> getDefaultLaborRatePerHour() {
+    public Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody>
+            getDefaultLaborRatePerHour() {
         return defaultLaborRatePerHour;
     }
 
     /**
-     * @return Email addresses for the vendor.
-     */
-    @JsonProperty("emailAddresses")
-    public Optional<List<String>> getEmailAddresses() {
-        return emailAddresses;
-    }
-
-    /**
-     * @return External identifier for the vendor from an external system.
-     */
-    @JsonProperty("externalId")
-    public Optional<String> getExternalId() {
-        return externalId;
-    }
-
-    /**
-     * @return Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+     * @return External identifiers belonging to this parent vendor.
      */
     @JsonProperty("externalIds")
-    public Optional<List<CreateVendorEntityVendorVendorExternalIdTypeResponseBody>> getExternalIds() {
+    public Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody>> getExternalIds() {
         return externalIds;
     }
 
     /**
-     * @return Internal unique identifier for the vendor.
+     * @return Unique identifier for the vendor profile. Leave blank to create a profile.
      */
     @JsonProperty("id")
     public Optional<String> getId() {
@@ -169,7 +117,7 @@ public final class EntityCreateVendorTypeResponseBody {
     }
 
     /**
-     * @return Whether this vendor provides mobile service. When unset, the profile or system default applies.
+     * @return Whether vendor locations inherit mobile service as their default.
      */
     @JsonProperty("isMobile")
     public Optional<Boolean> getIsMobile() {
@@ -177,7 +125,7 @@ public final class EntityCreateVendorTypeResponseBody {
     }
 
     /**
-     * @return Whether this vendor location is preferred. When unset, the profile or system default applies.
+     * @return Default preferred status inherited by vendor locations.
      */
     @JsonProperty("isPreferred")
     public Optional<Boolean> getIsPreferred() {
@@ -185,48 +133,17 @@ public final class EntityCreateVendorTypeResponseBody {
     }
 
     /**
-     * @return Name of the vendor.
+     * @return Name of the vendor profile.
      */
     @JsonProperty("name")
     public Optional<String> getName() {
         return name;
     }
 
-    /**
-     * @return Additional notes about the vendor.
-     */
-    @JsonProperty("notes")
-    public Optional<String> getNotes() {
-        return notes;
-    }
-
-    /**
-     * @return Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
-     */
-    @JsonProperty("payeeId")
-    public Optional<String> getPayeeId() {
-        return payeeId;
-    }
-
-    /**
-     * @return Phone numbers for the vendor.
-     */
-    @JsonProperty("phoneNumbers")
-    public Optional<List<String>> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
-    @JsonProperty("placeId")
-    public Optional<EntityCreateVendorPlaceRefTypeResponseBody> getPlaceId() {
-        return placeId;
-    }
-
-    /**
-     * @return Description of services provided by the vendor.
-     */
-    @JsonProperty("servicesProvided")
-    public Optional<String> getServicesProvided() {
-        return servicesProvided;
+    @JsonProperty("primaryCorporateContact")
+    public Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody>
+            getPrimaryCorporateContact() {
+        return primaryCorporateContact;
     }
 
     /**
@@ -238,19 +155,11 @@ public final class EntityCreateVendorTypeResponseBody {
     }
 
     /**
-     * @return Vendor group ID. Null removes membership while preserving explicit overrides.
+     * @return Time when the vendor profile was last updated.
      */
-    @JsonProperty("vendorGroupId")
-    public Optional<String> getVendorGroupId() {
-        return vendorGroupId;
-    }
-
-    /**
-     * @return User-defined identifier for the vendor.
-     */
-    @JsonProperty("vendorId")
-    public Optional<String> getVendorId() {
-        return vendorId;
+    @JsonProperty("updatedAtTime")
+    public Optional<String> getUpdatedAtTime() {
+        return updatedAtTime;
     }
 
     @java.lang.Override
@@ -266,49 +175,33 @@ public final class EntityCreateVendorTypeResponseBody {
     }
 
     private boolean equalTo(EntityCreateVendorTypeResponseBody other) {
-        return address.equals(other.address)
-                && assetAttributeSelections.equals(other.assetAttributeSelections)
-                && contacts.equals(other.contacts)
+        return assetAttributeSelections.equals(other.assetAttributeSelections)
+                && createdAtTime.equals(other.createdAtTime)
                 && defaultLaborRatePerHour.equals(other.defaultLaborRatePerHour)
-                && emailAddresses.equals(other.emailAddresses)
-                && externalId.equals(other.externalId)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
                 && isMobile.equals(other.isMobile)
                 && isPreferred.equals(other.isPreferred)
                 && name.equals(other.name)
-                && notes.equals(other.notes)
-                && payeeId.equals(other.payeeId)
-                && phoneNumbers.equals(other.phoneNumbers)
-                && placeId.equals(other.placeId)
-                && servicesProvided.equals(other.servicesProvided)
+                && primaryCorporateContact.equals(other.primaryCorporateContact)
                 && status.equals(other.status)
-                && vendorGroupId.equals(other.vendorGroupId)
-                && vendorId.equals(other.vendorId);
+                && updatedAtTime.equals(other.updatedAtTime);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.address,
                 this.assetAttributeSelections,
-                this.contacts,
+                this.createdAtTime,
                 this.defaultLaborRatePerHour,
-                this.emailAddresses,
-                this.externalId,
                 this.externalIds,
                 this.id,
                 this.isMobile,
                 this.isPreferred,
                 this.name,
-                this.notes,
-                this.payeeId,
-                this.phoneNumbers,
-                this.placeId,
-                this.servicesProvided,
+                this.primaryCorporateContact,
                 this.status,
-                this.vendorGroupId,
-                this.vendorId);
+                this.updatedAtTime);
     }
 
     @java.lang.Override
@@ -322,21 +215,16 @@ public final class EntityCreateVendorTypeResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> address = Optional.empty();
-
-        private Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody>>
+        private Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>>
                 assetAttributeSelections = Optional.empty();
 
-        private Optional<List<CreateVendorEntityVendorVendorContactTypeResponseBody>> contacts = Optional.empty();
+        private Optional<String> createdAtTime = Optional.empty();
 
-        private Optional<CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody> defaultLaborRatePerHour =
+        private Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody>
+                defaultLaborRatePerHour = Optional.empty();
+
+        private Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody>> externalIds =
                 Optional.empty();
-
-        private Optional<List<String>> emailAddresses = Optional.empty();
-
-        private Optional<String> externalId = Optional.empty();
-
-        private Optional<List<CreateVendorEntityVendorVendorExternalIdTypeResponseBody>> externalIds = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -346,21 +234,12 @@ public final class EntityCreateVendorTypeResponseBody {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<String> notes = Optional.empty();
-
-        private Optional<String> payeeId = Optional.empty();
-
-        private Optional<List<String>> phoneNumbers = Optional.empty();
-
-        private Optional<EntityCreateVendorPlaceRefTypeResponseBody> placeId = Optional.empty();
-
-        private Optional<String> servicesProvided = Optional.empty();
+        private Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody>
+                primaryCorporateContact = Optional.empty();
 
         private Optional<EntityCreateVendorTypeResponseBodyStatus> status = Optional.empty();
 
-        private Optional<String> vendorGroupId = Optional.empty();
-
-        private Optional<String> vendorId = Optional.empty();
+        private Optional<String> updatedAtTime = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -368,39 +247,17 @@ public final class EntityCreateVendorTypeResponseBody {
         private Builder() {}
 
         public Builder from(EntityCreateVendorTypeResponseBody other) {
-            address(other.getAddress());
             assetAttributeSelections(other.getAssetAttributeSelections());
-            contacts(other.getContacts());
+            createdAtTime(other.getCreatedAtTime());
             defaultLaborRatePerHour(other.getDefaultLaborRatePerHour());
-            emailAddresses(other.getEmailAddresses());
-            externalId(other.getExternalId());
             externalIds(other.getExternalIds());
             id(other.getId());
             isMobile(other.getIsMobile());
             isPreferred(other.getIsPreferred());
             name(other.getName());
-            notes(other.getNotes());
-            payeeId(other.getPayeeId());
-            phoneNumbers(other.getPhoneNumbers());
-            placeId(other.getPlaceId());
-            servicesProvided(other.getServicesProvided());
+            primaryCorporateContact(other.getPrimaryCorporateContact());
             status(other.getStatus());
-            vendorGroupId(other.getVendorGroupId());
-            vendorId(other.getVendorId());
-            return this;
-        }
-
-        /**
-         * <p>Address of the vendor.</p>
-         */
-        @JsonSetter(value = "address", nulls = Nulls.SKIP)
-        public Builder address(Optional<String> address) {
-            this.address = address;
-            return this;
-        }
-
-        public Builder address(String address) {
-            this.address = Optional.ofNullable(address);
+            updatedAtTime(other.getUpdatedAtTime());
             return this;
         }
 
@@ -409,90 +266,65 @@ public final class EntityCreateVendorTypeResponseBody {
          */
         @JsonSetter(value = "assetAttributeSelections", nulls = Nulls.SKIP)
         public Builder assetAttributeSelections(
-                Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody>>
+                Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>>
                         assetAttributeSelections) {
             this.assetAttributeSelections = assetAttributeSelections;
             return this;
         }
 
         public Builder assetAttributeSelections(
-                List<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody> assetAttributeSelections) {
+                List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>
+                        assetAttributeSelections) {
             this.assetAttributeSelections = Optional.ofNullable(assetAttributeSelections);
             return this;
         }
 
         /**
-         * <p>People to contact at the vendor.</p>
+         * <p>Time when the vendor profile was created.</p>
          */
-        @JsonSetter(value = "contacts", nulls = Nulls.SKIP)
-        public Builder contacts(Optional<List<CreateVendorEntityVendorVendorContactTypeResponseBody>> contacts) {
-            this.contacts = contacts;
+        @JsonSetter(value = "createdAtTime", nulls = Nulls.SKIP)
+        public Builder createdAtTime(Optional<String> createdAtTime) {
+            this.createdAtTime = createdAtTime;
             return this;
         }
 
-        public Builder contacts(List<CreateVendorEntityVendorVendorContactTypeResponseBody> contacts) {
-            this.contacts = Optional.ofNullable(contacts);
+        public Builder createdAtTime(String createdAtTime) {
+            this.createdAtTime = Optional.ofNullable(createdAtTime);
             return this;
         }
 
         @JsonSetter(value = "defaultLaborRatePerHour", nulls = Nulls.SKIP)
         public Builder defaultLaborRatePerHour(
-                Optional<CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody> defaultLaborRatePerHour) {
+                Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody>
+                        defaultLaborRatePerHour) {
             this.defaultLaborRatePerHour = defaultLaborRatePerHour;
             return this;
         }
 
         public Builder defaultLaborRatePerHour(
-                CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody defaultLaborRatePerHour) {
+                CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody defaultLaborRatePerHour) {
             this.defaultLaborRatePerHour = Optional.ofNullable(defaultLaborRatePerHour);
             return this;
         }
 
         /**
-         * <p>Email addresses for the vendor.</p>
-         */
-        @JsonSetter(value = "emailAddresses", nulls = Nulls.SKIP)
-        public Builder emailAddresses(Optional<List<String>> emailAddresses) {
-            this.emailAddresses = emailAddresses;
-            return this;
-        }
-
-        public Builder emailAddresses(List<String> emailAddresses) {
-            this.emailAddresses = Optional.ofNullable(emailAddresses);
-            return this;
-        }
-
-        /**
-         * <p>External identifier for the vendor from an external system.</p>
-         */
-        @JsonSetter(value = "externalId", nulls = Nulls.SKIP)
-        public Builder externalId(Optional<String> externalId) {
-            this.externalId = externalId;
-            return this;
-        }
-
-        public Builder externalId(String externalId) {
-            this.externalId = Optional.ofNullable(externalId);
-            return this;
-        }
-
-        /**
-         * <p>Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.</p>
+         * <p>External identifiers belonging to this parent vendor.</p>
          */
         @JsonSetter(value = "externalIds", nulls = Nulls.SKIP)
         public Builder externalIds(
-                Optional<List<CreateVendorEntityVendorVendorExternalIdTypeResponseBody>> externalIds) {
+                Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody>> externalIds) {
             this.externalIds = externalIds;
             return this;
         }
 
-        public Builder externalIds(List<CreateVendorEntityVendorVendorExternalIdTypeResponseBody> externalIds) {
+        public Builder externalIds(
+                List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody> externalIds) {
             this.externalIds = Optional.ofNullable(externalIds);
             return this;
         }
 
         /**
-         * <p>Internal unique identifier for the vendor.</p>
+         * <p>Unique identifier for the vendor profile. Leave blank to create a profile.</p>
          */
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public Builder id(Optional<String> id) {
@@ -506,7 +338,7 @@ public final class EntityCreateVendorTypeResponseBody {
         }
 
         /**
-         * <p>Whether this vendor provides mobile service. When unset, the profile or system default applies.</p>
+         * <p>Whether vendor locations inherit mobile service as their default.</p>
          */
         @JsonSetter(value = "isMobile", nulls = Nulls.SKIP)
         public Builder isMobile(Optional<Boolean> isMobile) {
@@ -520,7 +352,7 @@ public final class EntityCreateVendorTypeResponseBody {
         }
 
         /**
-         * <p>Whether this vendor location is preferred. When unset, the profile or system default applies.</p>
+         * <p>Default preferred status inherited by vendor locations.</p>
          */
         @JsonSetter(value = "isPreferred", nulls = Nulls.SKIP)
         public Builder isPreferred(Optional<Boolean> isPreferred) {
@@ -534,7 +366,7 @@ public final class EntityCreateVendorTypeResponseBody {
         }
 
         /**
-         * <p>Name of the vendor.</p>
+         * <p>Name of the vendor profile.</p>
          */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
@@ -547,70 +379,18 @@ public final class EntityCreateVendorTypeResponseBody {
             return this;
         }
 
-        /**
-         * <p>Additional notes about the vendor.</p>
-         */
-        @JsonSetter(value = "notes", nulls = Nulls.SKIP)
-        public Builder notes(Optional<String> notes) {
-            this.notes = notes;
+        @JsonSetter(value = "primaryCorporateContact", nulls = Nulls.SKIP)
+        public Builder primaryCorporateContact(
+                Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody>
+                        primaryCorporateContact) {
+            this.primaryCorporateContact = primaryCorporateContact;
             return this;
         }
 
-        public Builder notes(String notes) {
-            this.notes = Optional.ofNullable(notes);
-            return this;
-        }
-
-        /**
-         * <p>Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.</p>
-         */
-        @JsonSetter(value = "payeeId", nulls = Nulls.SKIP)
-        public Builder payeeId(Optional<String> payeeId) {
-            this.payeeId = payeeId;
-            return this;
-        }
-
-        public Builder payeeId(String payeeId) {
-            this.payeeId = Optional.ofNullable(payeeId);
-            return this;
-        }
-
-        /**
-         * <p>Phone numbers for the vendor.</p>
-         */
-        @JsonSetter(value = "phoneNumbers", nulls = Nulls.SKIP)
-        public Builder phoneNumbers(Optional<List<String>> phoneNumbers) {
-            this.phoneNumbers = phoneNumbers;
-            return this;
-        }
-
-        public Builder phoneNumbers(List<String> phoneNumbers) {
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        @JsonSetter(value = "placeId", nulls = Nulls.SKIP)
-        public Builder placeId(Optional<EntityCreateVendorPlaceRefTypeResponseBody> placeId) {
-            this.placeId = placeId;
-            return this;
-        }
-
-        public Builder placeId(EntityCreateVendorPlaceRefTypeResponseBody placeId) {
-            this.placeId = Optional.ofNullable(placeId);
-            return this;
-        }
-
-        /**
-         * <p>Description of services provided by the vendor.</p>
-         */
-        @JsonSetter(value = "servicesProvided", nulls = Nulls.SKIP)
-        public Builder servicesProvided(Optional<String> servicesProvided) {
-            this.servicesProvided = servicesProvided;
-            return this;
-        }
-
-        public Builder servicesProvided(String servicesProvided) {
-            this.servicesProvided = Optional.ofNullable(servicesProvided);
+        public Builder primaryCorporateContact(
+                CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody
+                        primaryCorporateContact) {
+            this.primaryCorporateContact = Optional.ofNullable(primaryCorporateContact);
             return this;
         }
 
@@ -629,54 +409,32 @@ public final class EntityCreateVendorTypeResponseBody {
         }
 
         /**
-         * <p>Vendor group ID. Null removes membership while preserving explicit overrides.</p>
+         * <p>Time when the vendor profile was last updated.</p>
          */
-        @JsonSetter(value = "vendorGroupId", nulls = Nulls.SKIP)
-        public Builder vendorGroupId(Optional<String> vendorGroupId) {
-            this.vendorGroupId = vendorGroupId;
+        @JsonSetter(value = "updatedAtTime", nulls = Nulls.SKIP)
+        public Builder updatedAtTime(Optional<String> updatedAtTime) {
+            this.updatedAtTime = updatedAtTime;
             return this;
         }
 
-        public Builder vendorGroupId(String vendorGroupId) {
-            this.vendorGroupId = Optional.ofNullable(vendorGroupId);
-            return this;
-        }
-
-        /**
-         * <p>User-defined identifier for the vendor.</p>
-         */
-        @JsonSetter(value = "vendorId", nulls = Nulls.SKIP)
-        public Builder vendorId(Optional<String> vendorId) {
-            this.vendorId = vendorId;
-            return this;
-        }
-
-        public Builder vendorId(String vendorId) {
-            this.vendorId = Optional.ofNullable(vendorId);
+        public Builder updatedAtTime(String updatedAtTime) {
+            this.updatedAtTime = Optional.ofNullable(updatedAtTime);
             return this;
         }
 
         public EntityCreateVendorTypeResponseBody build() {
             return new EntityCreateVendorTypeResponseBody(
-                    address,
                     assetAttributeSelections,
-                    contacts,
+                    createdAtTime,
                     defaultLaborRatePerHour,
-                    emailAddresses,
-                    externalId,
                     externalIds,
                     id,
                     isMobile,
                     isPreferred,
                     name,
-                    notes,
-                    payeeId,
-                    phoneNumbers,
-                    placeId,
-                    servicesProvided,
+                    primaryCorporateContact,
                     status,
-                    vendorGroupId,
-                    vendorId,
+                    updatedAtTime,
                     additionalProperties);
         }
     }

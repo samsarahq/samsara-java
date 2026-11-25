@@ -12,6 +12,7 @@ import com.samsara.api.types.IssuesGetIssuesStreamResponseBody;
 import com.samsara.api.types.IssuesPatchIssueResponseBody;
 import com.samsara.api.types.IssuesPostIssueResponseBody;
 import com.samsara.api.types.PostIssueRequestBodyAssetRequestBody;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -42,11 +43,13 @@ public class IssuesWireTest {
 
     @Test
     public void testGetIssues() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(TestResources.loadResource("/wire-tests/IssuesWireTest_testGetIssues_response.json")));
-        IssuesGetIssuesResponseBody response =
-                client.issues().getIssues(GetIssuesRequest.builder().build());
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"asset\":{\"entryType\":\"tracked\",\"id\":\"281474982859091\",\"name\":\"trailer 123\"},\"assignedTo\":{\"id\":\"938172\",\"type\":\"driver\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"description\":\"Oil spill in left corner of SF1\",\"dueDate\":\"2019-06-13T19:08:25Z\",\"externalIds\":{\"key\":\"value\"},\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"issueSource\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"type\":\"form\"},\"mediaList\":[{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"processingStatus\":\"unknown\",\"url\":\"https://samsara-forms-submission-media-uploads.s3.us-west-2.amazonaws.com/123456\",\"urlExpiresAt\":\"2019-06-13T19:08:25Z\"}],\"priority\":\"low\",\"status\":\"open\",\"submittedAtTime\":\"2019-06-13T19:08:25Z\",\"submittedBy\":{\"id\":\"938172\",\"type\":\"driver\"},\"title\":\"Oil spill\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}]}"));
+        IssuesGetIssuesResponseBody response = client.issues()
+                .getIssues(GetIssuesRequest.builder().ids(Arrays.asList("ids")).build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -54,8 +57,50 @@ public class IssuesWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody =
-                TestResources.loadResource("/wire-tests/IssuesWireTest_testGetIssues_response.json");
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"asset\": {\n"
+                + "        \"entryType\": \"tracked\",\n"
+                + "        \"id\": \"281474982859091\",\n"
+                + "        \"name\": \"trailer 123\"\n"
+                + "      },\n"
+                + "      \"assignedTo\": {\n"
+                + "        \"id\": \"938172\",\n"
+                + "        \"type\": \"driver\"\n"
+                + "      },\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"description\": \"Oil spill in left corner of SF1\",\n"
+                + "      \"dueDate\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"externalIds\": {\n"
+                + "        \"key\": \"value\"\n"
+                + "      },\n"
+                + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "      \"issueSource\": {\n"
+                + "        \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "        \"type\": \"form\"\n"
+                + "      },\n"
+                + "      \"mediaList\": [\n"
+                + "        {\n"
+                + "          \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "          \"processingStatus\": \"unknown\",\n"
+                + "          \"url\": \"https://samsara-forms-submission-media-uploads.s3.us-west-2.amazonaws.com/123456\",\n"
+                + "          \"urlExpiresAt\": \"2019-06-13T19:08:25Z\"\n"
+                + "        }\n"
+                + "      ],\n"
+                + "      \"priority\": \"low\",\n"
+                + "      \"status\": \"open\",\n"
+                + "      \"submittedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"submittedBy\": {\n"
+                + "        \"id\": \"938172\",\n"
+                + "        \"type\": \"driver\"\n"
+                + "      },\n"
+                + "      \"title\": \"Oil spill\",\n"
+                + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(

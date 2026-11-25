@@ -206,14 +206,13 @@ public class DriverVehicleAssignmentsWireTest {
         client.driverVehicleAssignments()
                 .deleteDriverVehicleAssignments(
                         DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody.builder()
-                                .vehicleId("281474978683353")
                                 .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
         // Validate request body
         String actualRequestBody = request.getBody().readUtf8();
-        String expectedRequestBody = "" + "{\n" + "  \"vehicleId\": \"281474978683353\"\n" + "}";
+        String expectedRequestBody = "" + "{}";
         JsonNode actualJson = objectMapper.readTree(actualRequestBody);
         JsonNode expectedJson = objectMapper.readTree(expectedRequestBody);
         Assertions.assertTrue(jsonEquals(expectedJson, actualJson), "Request body structure does not match expected");

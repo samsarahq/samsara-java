@@ -137,8 +137,10 @@ public class PreviewApIsWireTest {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/PreviewApIsWireTest_testGetOrders_response.json")));
-        OrdersGetOrdersResponseBody response =
-                client.previewApIs().getOrders(GetOrdersRequest.builder().build());
+        OrdersGetOrdersResponseBody response = client.previewApIs()
+                .getOrders(GetOrdersRequest.builder()
+                        .orderIds(Arrays.asList("orderIds"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -275,7 +277,7 @@ public class PreviewApIsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"deletedAtTime\":\"1976-05-07T19:03:50Z\",\"id\":\"018f7b62-7d55-7b9e-a92f-2a6b7ff10392\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"deletedAtTime\":\"2002-10-15T00:19:39Z\",\"id\":\"018f7b62-7d55-7b9e-a92f-2a6b7ff10392\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         OrdersGetOrderDeletionsResponseBody response = client.previewApIs()
                 .getOrderDeletions(GetOrderDeletionsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -289,7 +291,7 @@ public class PreviewApIsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"deletedAtTime\": \"1976-05-07T19:03:50Z\",\n"
+                + "      \"deletedAtTime\": \"2002-10-15T00:19:39Z\",\n"
                 + "      \"id\": \"018f7b62-7d55-7b9e-a92f-2a6b7ff10392\"\n"
                 + "    }\n"
                 + "  ],\n"

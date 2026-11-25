@@ -20,6 +20,7 @@ import com.samsara.api.types.FormSubmissionsPostFormSubmissionResponseBody;
 import com.samsara.api.types.FormSubmissionsPostFormSubmissionsPdfExportsResponseBody;
 import com.samsara.api.types.FormTemplateRequestObjectRequestBody;
 import com.samsara.api.types.FormTemplatesGetFormTemplatesResponseBody;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -54,7 +55,9 @@ public class FormsWireTest {
                 .setResponseCode(200)
                 .setBody(TestResources.loadResource("/wire-tests/FormsWireTest_testGetFormSubmissions_response.json")));
         FormSubmissionsGetFormSubmissionsResponseBody response = client.forms()
-                .getFormSubmissions(GetFormSubmissionsRequest.builder().build());
+                .getFormSubmissions(GetFormSubmissionsRequest.builder()
+                        .ids(Arrays.asList("ids"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());

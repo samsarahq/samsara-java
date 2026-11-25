@@ -248,7 +248,7 @@ public final class MaintenanceEstimateObjectResponseBody {
     }
 
     /**
-     * @return Vendor location ID.
+     * @return Vendor location ID. Resolve the location via GET /fleet/maintenance/vendor-locations.
      */
     @JsonProperty("vendorId")
     public Optional<String> getVendorId() {
@@ -480,7 +480,7 @@ public final class MaintenanceEstimateObjectResponseBody {
         _FinalStage total(MaintenanceEstimateMoneyResponseBody total);
 
         /**
-         * <p>Vendor location ID.</p>
+         * <p>Vendor location ID. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          */
         _FinalStage vendorId(Optional<String> vendorId);
 
@@ -683,7 +683,7 @@ public final class MaintenanceEstimateObjectResponseBody {
         }
 
         /**
-         * <p>Vendor location ID.</p>
+         * <p>Vendor location ID. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -693,7 +693,7 @@ public final class MaintenanceEstimateObjectResponseBody {
         }
 
         /**
-         * <p>Vendor location ID.</p>
+         * <p>Vendor location ID. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "vendorId", nulls = Nulls.SKIP)

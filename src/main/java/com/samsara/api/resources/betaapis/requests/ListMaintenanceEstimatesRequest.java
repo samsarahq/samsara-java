@@ -66,7 +66,7 @@ public final class ListMaintenanceEstimatesRequest {
     }
 
     /**
-     * @return Up to 10 comma-separated vendor-location identifiers; narrows the primary selection.
+     * @return Up to 10 comma-separated vendor-location identifiers; narrows the primary selection. Resolve locations via GET /fleet/maintenance/vendor-locations.
      */
     @JsonProperty("vendorIds")
     public Optional<List<String>> getVendorIds() {
@@ -187,7 +187,7 @@ public final class ListMaintenanceEstimatesRequest {
         }
 
         /**
-         * <p>Up to 10 comma-separated vendor-location identifiers; narrows the primary selection.</p>
+         * <p>Up to 10 comma-separated vendor-location identifiers; narrows the primary selection. Resolve locations via GET /fleet/maintenance/vendor-locations.</p>
          */
         @JsonSetter(value = "vendorIds", nulls = Nulls.SKIP)
         public Builder vendorIds(Optional<List<String>> vendorIds) {

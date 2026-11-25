@@ -19,18 +19,18 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = WorkOrdersPostWorkOrdersResponseBody.Builder.class)
 public final class WorkOrdersPostWorkOrdersResponseBody {
-    private final WorkOrderObjectResponseBody data;
+    private final WorkOrderObjectV20261112ResponseBody data;
 
     private final Map<String, Object> additionalProperties;
 
     private WorkOrdersPostWorkOrdersResponseBody(
-            WorkOrderObjectResponseBody data, Map<String, Object> additionalProperties) {
+            WorkOrderObjectV20261112ResponseBody data, Map<String, Object> additionalProperties) {
         this.data = data;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("data")
-    public WorkOrderObjectResponseBody getData() {
+    public WorkOrderObjectV20261112ResponseBody getData() {
         return data;
     }
 
@@ -65,7 +65,7 @@ public final class WorkOrdersPostWorkOrdersResponseBody {
     }
 
     public interface DataStage {
-        _FinalStage data(@NotNull WorkOrderObjectResponseBody data);
+        _FinalStage data(@NotNull WorkOrderObjectV20261112ResponseBody data);
 
         Builder from(WorkOrdersPostWorkOrdersResponseBody other);
     }
@@ -76,7 +76,7 @@ public final class WorkOrdersPostWorkOrdersResponseBody {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements DataStage, _FinalStage {
-        private WorkOrderObjectResponseBody data;
+        private WorkOrderObjectV20261112ResponseBody data;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -91,7 +91,7 @@ public final class WorkOrdersPostWorkOrdersResponseBody {
 
         @java.lang.Override
         @JsonSetter("data")
-        public _FinalStage data(@NotNull WorkOrderObjectResponseBody data) {
+        public _FinalStage data(@NotNull WorkOrderObjectV20261112ResponseBody data) {
             this.data = Objects.requireNonNull(data, "data must not be null");
             return this;
         }

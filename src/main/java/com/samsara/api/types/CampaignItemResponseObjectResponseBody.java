@@ -122,7 +122,7 @@ public final class CampaignItemResponseObjectResponseBody {
     }
 
     /**
-     * @return The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code>
+     * @return The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code>
      */
     @JsonProperty("effectiveState")
     public CampaignItemResponseObjectResponseBodyEffectiveState getEffectiveState() {
@@ -146,7 +146,7 @@ public final class CampaignItemResponseObjectResponseBody {
     }
 
     /**
-     * @return How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>unknown</code>
+     * @return How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>nhtsa</code>, <code>unknown</code>
      */
     @JsonProperty("sourceBasis")
     public CampaignItemResponseObjectResponseBodySourceBasis getSourceBasis() {
@@ -162,7 +162,7 @@ public final class CampaignItemResponseObjectResponseBody {
     }
 
     /**
-     * @return Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code>
+     * @return Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code>
      */
     @JsonProperty("state")
     public CampaignItemResponseObjectResponseBodyState getState() {
@@ -265,7 +265,7 @@ public final class CampaignItemResponseObjectResponseBody {
 
     public interface EffectiveStateStage {
         /**
-         * <p>The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code></p>
+         * <p>The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code></p>
          */
         IdStage effectiveState(@NotNull CampaignItemResponseObjectResponseBodyEffectiveState effectiveState);
     }
@@ -279,14 +279,14 @@ public final class CampaignItemResponseObjectResponseBody {
 
     public interface SourceBasisStage {
         /**
-         * <p>How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>unknown</code></p>
+         * <p>How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>nhtsa</code>, <code>unknown</code></p>
          */
         StateStage sourceBasis(@NotNull CampaignItemResponseObjectResponseBodySourceBasis sourceBasis);
     }
 
     public interface StateStage {
         /**
-         * <p>Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
+         * <p>Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
          */
         StateSinceTimeStage state(@NotNull CampaignItemResponseObjectResponseBodyState state);
     }
@@ -434,8 +434,8 @@ public final class CampaignItemResponseObjectResponseBody {
         }
 
         /**
-         * <p>The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code></p>
-         * <p>The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code></p>
+         * <p>The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code></p>
+         * <p>The state the item behaves as. Equal to <code>state</code>, except <code>suspended</code> for an open item (<code>pending</code>, <code>hold</code>, <code>ready</code>) on a campaign that is in <code>draft</code> or <code>onHold</code>, where the item is kept off work orders until the campaign is active.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>suspended</code>, <code>unknown</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -458,8 +458,8 @@ public final class CampaignItemResponseObjectResponseBody {
         }
 
         /**
-         * <p>How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>unknown</code></p>
-         * <p>How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>unknown</code></p>
+         * <p>How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>nhtsa</code>, <code>unknown</code></p>
+         * <p>How the asset joined the campaign. Items added through this API are <code>api</code>.  Valid values: <code>api</code>, <code>targeting</code>, <code>manual</code>, <code>csv</code>, <code>assistant</code>, <code>nhtsa</code>, <code>unknown</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -470,8 +470,8 @@ public final class CampaignItemResponseObjectResponseBody {
         }
 
         /**
-         * <p>Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
-         * <p>Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
+         * <p>Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
+         * <p>Stored lifecycle state of the item. Defaults to <code>unknown</code> when the state is not recognized.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

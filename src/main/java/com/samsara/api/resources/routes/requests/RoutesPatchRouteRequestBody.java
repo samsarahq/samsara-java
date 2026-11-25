@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.Nullable;
 import com.samsara.api.core.NullableNonemptyFilter;
 import com.samsara.api.core.ObjectMappers;
+import com.samsara.api.types.RouteEquipmentProfileObjectRequestBody;
 import com.samsara.api.types.RouteSettingsRequestBody;
 import com.samsara.api.types.UpdateRoutesStopRequestObjectRequestBody;
 import java.util.HashMap;
@@ -27,6 +28,8 @@ import java.util.Optional;
 @JsonDeserialize(builder = RoutesPatchRouteRequestBody.Builder.class)
 public final class RoutesPatchRouteRequestBody {
     private final Optional<String> driverId;
+
+    private final Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile;
 
     private final Optional<Map<String, String>> externalIds;
 
@@ -48,6 +51,7 @@ public final class RoutesPatchRouteRequestBody {
 
     private RoutesPatchRouteRequestBody(
             Optional<String> driverId,
+            Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile,
             Optional<Map<String, String>> externalIds,
             Optional<String> name,
             Optional<String> notes,
@@ -58,6 +62,7 @@ public final class RoutesPatchRouteRequestBody {
             Optional<String> vehicleId,
             Map<String, Object> additionalProperties) {
         this.driverId = driverId;
+        this.equipmentProfile = equipmentProfile;
         this.externalIds = externalIds;
         this.name = name;
         this.notes = notes;
@@ -78,6 +83,11 @@ public final class RoutesPatchRouteRequestBody {
             return Optional.empty();
         }
         return driverId;
+    }
+
+    @JsonProperty("equipmentProfile")
+    public Optional<RouteEquipmentProfileObjectRequestBody> getEquipmentProfile() {
+        return equipmentProfile;
     }
 
     /**
@@ -169,6 +179,7 @@ public final class RoutesPatchRouteRequestBody {
 
     private boolean equalTo(RoutesPatchRouteRequestBody other) {
         return driverId.equals(other.driverId)
+                && equipmentProfile.equals(other.equipmentProfile)
                 && externalIds.equals(other.externalIds)
                 && name.equals(other.name)
                 && notes.equals(other.notes)
@@ -183,6 +194,7 @@ public final class RoutesPatchRouteRequestBody {
     public int hashCode() {
         return Objects.hash(
                 this.driverId,
+                this.equipmentProfile,
                 this.externalIds,
                 this.name,
                 this.notes,
@@ -205,6 +217,8 @@ public final class RoutesPatchRouteRequestBody {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
         private Optional<String> driverId = Optional.empty();
+
+        private Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile = Optional.empty();
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
@@ -229,6 +243,7 @@ public final class RoutesPatchRouteRequestBody {
 
         public Builder from(RoutesPatchRouteRequestBody other) {
             driverId(other.getDriverId());
+            equipmentProfile(other.getEquipmentProfile());
             externalIds(other.getExternalIds());
             name(other.getName());
             notes(other.getNotes());
@@ -262,6 +277,17 @@ public final class RoutesPatchRouteRequestBody {
             } else {
                 this.driverId = Optional.of(driverId.get());
             }
+            return this;
+        }
+
+        @JsonSetter(value = "equipmentProfile", nulls = Nulls.SKIP)
+        public Builder equipmentProfile(Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile) {
+            this.equipmentProfile = equipmentProfile;
+            return this;
+        }
+
+        public Builder equipmentProfile(RouteEquipmentProfileObjectRequestBody equipmentProfile) {
+            this.equipmentProfile = Optional.ofNullable(equipmentProfile);
             return this;
         }
 
@@ -388,6 +414,7 @@ public final class RoutesPatchRouteRequestBody {
         public RoutesPatchRouteRequestBody build() {
             return new RoutesPatchRouteRequestBody(
                     driverId,
+                    equipmentProfile,
                     externalIds,
                     name,
                     notes,

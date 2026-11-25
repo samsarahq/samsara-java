@@ -25,22 +25,30 @@ public final class PartInstanceInputObjectRequestBody {
 
     private final Optional<String> id;
 
+    private final Optional<String> maintenanceSiteId;
+
     private final String partId;
 
-    private final double quantity;
+    private final Optional<Double> quantity;
+
+    private final Optional<Double> requestedQuantity;
 
     private final Map<String, Object> additionalProperties;
 
     private PartInstanceInputObjectRequestBody(
             Optional<Long> costCentsOverride,
             Optional<String> id,
+            Optional<String> maintenanceSiteId,
             String partId,
-            double quantity,
+            Optional<Double> quantity,
+            Optional<Double> requestedQuantity,
             Map<String, Object> additionalProperties) {
         this.costCentsOverride = costCentsOverride;
         this.id = id;
+        this.maintenanceSiteId = maintenanceSiteId;
         this.partId = partId;
         this.quantity = quantity;
+        this.requestedQuantity = requestedQuantity;
         this.additionalProperties = additionalProperties;
     }
 
@@ -61,6 +69,14 @@ public final class PartInstanceInputObjectRequestBody {
     }
 
     /**
+     * @return ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Accepted only when total part quantity is enabled for the organization.
+     */
+    @JsonProperty("maintenanceSiteId")
+    public Optional<String> getMaintenanceSiteId() {
+        return maintenanceSiteId;
+    }
+
+    /**
      * @return ID of the part definition.
      */
     @JsonProperty("partId")
@@ -69,11 +85,19 @@ public final class PartInstanceInputObjectRequestBody {
     }
 
     /**
-     * @return The quantity of the part in the parts pre defined unit of measure.
+     * @return The stock quantity of the part in the part's predefined unit of measure. When requestedQuantity is also sent, quantity is the stock amount and requestedQuantity is the total demand. Required when requestedQuantity is omitted.
      */
     @JsonProperty("quantity")
-    public double getQuantity() {
+    public Optional<Double> getQuantity() {
         return quantity;
+    }
+
+    /**
+     * @return Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. When both fields are sent, this field is the total demand and quantity is the stock amount. Send 0 for zero demand. A shortage request is reconciled asynchronously after the work order is saved. Accepted only when total part quantity is enabled for the organization.
+     */
+    @JsonProperty("requestedQuantity")
+    public Optional<Double> getRequestedQuantity() {
+        return requestedQuantity;
     }
 
     @java.lang.Override
@@ -91,13 +115,21 @@ public final class PartInstanceInputObjectRequestBody {
     private boolean equalTo(PartInstanceInputObjectRequestBody other) {
         return costCentsOverride.equals(other.costCentsOverride)
                 && id.equals(other.id)
+                && maintenanceSiteId.equals(other.maintenanceSiteId)
                 && partId.equals(other.partId)
-                && quantity == other.quantity;
+                && quantity.equals(other.quantity)
+                && requestedQuantity.equals(other.requestedQuantity);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.costCentsOverride, this.id, this.partId, this.quantity);
+        return Objects.hash(
+                this.costCentsOverride,
+                this.id,
+                this.maintenanceSiteId,
+                this.partId,
+                this.quantity,
+                this.requestedQuantity);
     }
 
     @java.lang.Override
@@ -113,16 +145,9 @@ public final class PartInstanceInputObjectRequestBody {
         /**
          * <p>ID of the part definition.</p>
          */
-        QuantityStage partId(@NotNull String partId);
+        _FinalStage partId(@NotNull String partId);
 
         Builder from(PartInstanceInputObjectRequestBody other);
-    }
-
-    public interface QuantityStage {
-        /**
-         * <p>The quantity of the part in the parts pre defined unit of measure.</p>
-         */
-        _FinalStage quantity(double quantity);
     }
 
     public interface _FinalStage {
@@ -141,13 +166,38 @@ public final class PartInstanceInputObjectRequestBody {
         _FinalStage id(Optional<String> id);
 
         _FinalStage id(String id);
+
+        /**
+         * <p>ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Accepted only when total part quantity is enabled for the organization.</p>
+         */
+        _FinalStage maintenanceSiteId(Optional<String> maintenanceSiteId);
+
+        _FinalStage maintenanceSiteId(String maintenanceSiteId);
+
+        /**
+         * <p>The stock quantity of the part in the part's predefined unit of measure. When requestedQuantity is also sent, quantity is the stock amount and requestedQuantity is the total demand. Required when requestedQuantity is omitted.</p>
+         */
+        _FinalStage quantity(Optional<Double> quantity);
+
+        _FinalStage quantity(Double quantity);
+
+        /**
+         * <p>Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. When both fields are sent, this field is the total demand and quantity is the stock amount. Send 0 for zero demand. A shortage request is reconciled asynchronously after the work order is saved. Accepted only when total part quantity is enabled for the organization.</p>
+         */
+        _FinalStage requestedQuantity(Optional<Double> requestedQuantity);
+
+        _FinalStage requestedQuantity(Double requestedQuantity);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements PartIdStage, QuantityStage, _FinalStage {
+    public static final class Builder implements PartIdStage, _FinalStage {
         private String partId;
 
-        private double quantity;
+        private Optional<Double> requestedQuantity = Optional.empty();
+
+        private Optional<Double> quantity = Optional.empty();
+
+        private Optional<String> maintenanceSiteId = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -162,8 +212,10 @@ public final class PartInstanceInputObjectRequestBody {
         public Builder from(PartInstanceInputObjectRequestBody other) {
             costCentsOverride(other.getCostCentsOverride());
             id(other.getId());
+            maintenanceSiteId(other.getMaintenanceSiteId());
             partId(other.getPartId());
             quantity(other.getQuantity());
+            requestedQuantity(other.getRequestedQuantity());
             return this;
         }
 
@@ -174,20 +226,68 @@ public final class PartInstanceInputObjectRequestBody {
          */
         @java.lang.Override
         @JsonSetter("partId")
-        public QuantityStage partId(@NotNull String partId) {
+        public _FinalStage partId(@NotNull String partId) {
             this.partId = Objects.requireNonNull(partId, "partId must not be null");
             return this;
         }
 
         /**
-         * <p>The quantity of the part in the parts pre defined unit of measure.</p>
-         * <p>The quantity of the part in the parts pre defined unit of measure.</p>
+         * <p>Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. When both fields are sent, this field is the total demand and quantity is the stock amount. Send 0 for zero demand. A shortage request is reconciled asynchronously after the work order is saved. Accepted only when total part quantity is enabled for the organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        @JsonSetter("quantity")
-        public _FinalStage quantity(double quantity) {
+        public _FinalStage requestedQuantity(Double requestedQuantity) {
+            this.requestedQuantity = Optional.ofNullable(requestedQuantity);
+            return this;
+        }
+
+        /**
+         * <p>Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. When both fields are sent, this field is the total demand and quantity is the stock amount. Send 0 for zero demand. A shortage request is reconciled asynchronously after the work order is saved. Accepted only when total part quantity is enabled for the organization.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "requestedQuantity", nulls = Nulls.SKIP)
+        public _FinalStage requestedQuantity(Optional<Double> requestedQuantity) {
+            this.requestedQuantity = requestedQuantity;
+            return this;
+        }
+
+        /**
+         * <p>The stock quantity of the part in the part's predefined unit of measure. When requestedQuantity is also sent, quantity is the stock amount and requestedQuantity is the total demand. Required when requestedQuantity is omitted.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage quantity(Double quantity) {
+            this.quantity = Optional.ofNullable(quantity);
+            return this;
+        }
+
+        /**
+         * <p>The stock quantity of the part in the part's predefined unit of measure. When requestedQuantity is also sent, quantity is the stock amount and requestedQuantity is the total demand. Required when requestedQuantity is omitted.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "quantity", nulls = Nulls.SKIP)
+        public _FinalStage quantity(Optional<Double> quantity) {
             this.quantity = quantity;
+            return this;
+        }
+
+        /**
+         * <p>ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Accepted only when total part quantity is enabled for the organization.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage maintenanceSiteId(String maintenanceSiteId) {
+            this.maintenanceSiteId = Optional.ofNullable(maintenanceSiteId);
+            return this;
+        }
+
+        /**
+         * <p>ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Accepted only when total part quantity is enabled for the organization.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "maintenanceSiteId", nulls = Nulls.SKIP)
+        public _FinalStage maintenanceSiteId(Optional<String> maintenanceSiteId) {
+            this.maintenanceSiteId = maintenanceSiteId;
             return this;
         }
 
@@ -234,7 +334,13 @@ public final class PartInstanceInputObjectRequestBody {
         @java.lang.Override
         public PartInstanceInputObjectRequestBody build() {
             return new PartInstanceInputObjectRequestBody(
-                    costCentsOverride, id, partId, quantity, additionalProperties);
+                    costCentsOverride,
+                    id,
+                    maintenanceSiteId,
+                    partId,
+                    quantity,
+                    requestedQuantity,
+                    additionalProperties);
         }
     }
 }

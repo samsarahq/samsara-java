@@ -3,294 +3,92 @@
     {
       "engineRpm": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 1800
         }
       ],
       "engineSeconds": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 22374000
         }
       ],
       "engineStates": [
         {
-          "time": "time",
-          "value": "Off"
-        },
-        {
-          "time": "time",
+          "time": "2019-05-03T04:30:31Z",
           "value": "Off"
         }
       ],
       "engineTotalIdleTimeMinutes": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 1000
         }
       ],
       "fuelPercents": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 54
         }
       ],
       "gatewayEngineSeconds": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 22374000
         }
       ],
       "gatewayEngineStates": [
         {
-          "time": "time",
-          "value": "Off"
-        },
-        {
-          "time": "time",
+          "time": "2019-05-03T04:30:31Z",
           "value": "Off"
         }
       ],
       "gatewayJ1939EngineSeconds": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 22374000
         }
       ],
       "gps": [
         {
           "address": {
-            "id": "id",
-            "name": "name"
+            "id": "123",
+            "name": "Main Distribution Warehouse"
           },
-          "headingDegrees": 1.1,
-          "latitude": 1.1,
-          "longitude": 1.1,
+          "headingDegrees": 120,
+          "latitude": 122.142,
+          "longitude": -93.343,
           "reverseGeo": {
-            "formattedLocation": "formattedLocation"
+            "formattedLocation": "16 N Fair Oaks Ave, Pasadena, CA 91103"
           },
-          "speedMilesPerHour": 1.1,
-          "time": "time"
-        },
-        {
-          "address": {
-            "id": "id",
-            "name": "name"
-          },
-          "headingDegrees": 1.1,
-          "latitude": 1.1,
-          "longitude": 1.1,
-          "reverseGeo": {
-            "formattedLocation": "formattedLocation"
-          },
-          "speedMilesPerHour": 1.1,
-          "time": "time"
+          "speedMilesPerHour": 48.3,
+          "time": "2020-01-27T07:06:25Z"
         }
       ],
       "gpsOdometerMeters": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 3200
         }
       ],
-      "id": "id",
-      "name": "name",
+      "id": "112",
+      "name": "Crane A7",
       "obdEngineSeconds": [
         {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
+          "time": "2019-05-03T04:30:31Z",
+          "value": 22374000
         }
       ],
       "obdEngineStates": [
         {
-          "time": "time",
-          "value": "Off"
-        },
-        {
-          "time": "time",
-          "value": "Off"
-        }
-      ]
-    },
-    {
-      "engineRpm": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "engineSeconds": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "engineStates": [
-        {
-          "time": "time",
-          "value": "Off"
-        },
-        {
-          "time": "time",
-          "value": "Off"
-        }
-      ],
-      "engineTotalIdleTimeMinutes": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "fuelPercents": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "gatewayEngineSeconds": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "gatewayEngineStates": [
-        {
-          "time": "time",
-          "value": "Off"
-        },
-        {
-          "time": "time",
-          "value": "Off"
-        }
-      ],
-      "gatewayJ1939EngineSeconds": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "gps": [
-        {
-          "address": {
-            "id": "id",
-            "name": "name"
-          },
-          "headingDegrees": 1.1,
-          "latitude": 1.1,
-          "longitude": 1.1,
-          "reverseGeo": {
-            "formattedLocation": "formattedLocation"
-          },
-          "speedMilesPerHour": 1.1,
-          "time": "time"
-        },
-        {
-          "address": {
-            "id": "id",
-            "name": "name"
-          },
-          "headingDegrees": 1.1,
-          "latitude": 1.1,
-          "longitude": 1.1,
-          "reverseGeo": {
-            "formattedLocation": "formattedLocation"
-          },
-          "speedMilesPerHour": 1.1,
-          "time": "time"
-        }
-      ],
-      "gpsOdometerMeters": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "id": "id",
-      "name": "name",
-      "obdEngineSeconds": [
-        {
-          "time": "time",
-          "value": 1000000
-        },
-        {
-          "time": "time",
-          "value": 1000000
-        }
-      ],
-      "obdEngineStates": [
-        {
-          "time": "time",
-          "value": "Off"
-        },
-        {
-          "time": "time",
+          "time": "2019-05-03T04:30:31Z",
           "value": "Off"
         }
       ]
     }
   ],
   "pagination": {
-    "endCursor": "endCursor",
+    "endCursor": "MjkY",
     "hasNextPage": true
   }
 }

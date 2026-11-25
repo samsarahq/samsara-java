@@ -9,6 +9,7 @@ import com.samsara.api.resources.drivertrailerassignments.requests.TrailerAssign
 import com.samsara.api.types.TrailerAssignmentsCreateDriverTrailerAssignmentResponseBody;
 import com.samsara.api.types.TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody;
 import com.samsara.api.types.TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -43,10 +44,11 @@ public class DriverTrailerAssignmentsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"createdAtTime\":\"createdAtTime\",\"driver\":{\"driverId\":\"driverId\",\"externalIds\":{\"externalIds\":\"externalIds\"}},\"endTime\":\"endTime\",\"id\":\"id\",\"startTime\":\"startTime\",\"trailer\":{\"trailerId\":\"trailerId\"},\"updatedAtTime\":\"updatedAtTime\"},{\"createdAtTime\":\"createdAtTime\",\"driver\":{\"driverId\":\"driverId\",\"externalIds\":{\"externalIds\":\"externalIds\"}},\"endTime\":\"endTime\",\"id\":\"id\",\"startTime\":\"startTime\",\"trailer\":{\"trailerId\":\"trailerId\"},\"updatedAtTime\":\"updatedAtTime\"}],\"pagination\":{\"endCursor\":\"endCursor\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"driver\":{\"driverId\":\"0987\"},\"endTime\":\"2019-06-13T20:10:25Z\",\"id\":\"08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d6\",\"startTime\":\"2019-06-13T19:08:25Z\",\"trailer\":{\"trailerId\":\"494123\"},\"updatedAtTime\":\"2019-06-13T19:10:25Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody response = client.driverTrailerAssignments()
-                .getDriverTrailerAssignments(
-                        GetDriverTrailerAssignmentsRequest.builder().build());
+                .getDriverTrailerAssignments(GetDriverTrailerAssignmentsRequest.builder()
+                        .driverIds(Arrays.asList("driverIds"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -58,40 +60,21 @@ public class DriverTrailerAssignmentsWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"createdAtTime\": \"createdAtTime\",\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"driver\": {\n"
-                + "        \"driverId\": \"driverId\",\n"
-                + "        \"externalIds\": {\n"
-                + "          \"externalIds\": \"externalIds\"\n"
-                + "        }\n"
+                + "        \"driverId\": \"0987\"\n"
                 + "      },\n"
-                + "      \"endTime\": \"endTime\",\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"startTime\": \"startTime\",\n"
+                + "      \"endTime\": \"2019-06-13T20:10:25Z\",\n"
+                + "      \"id\": \"08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d6\",\n"
+                + "      \"startTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"trailer\": {\n"
-                + "        \"trailerId\": \"trailerId\"\n"
+                + "        \"trailerId\": \"494123\"\n"
                 + "      },\n"
-                + "      \"updatedAtTime\": \"updatedAtTime\"\n"
-                + "    },\n"
-                + "    {\n"
-                + "      \"createdAtTime\": \"createdAtTime\",\n"
-                + "      \"driver\": {\n"
-                + "        \"driverId\": \"driverId\",\n"
-                + "        \"externalIds\": {\n"
-                + "          \"externalIds\": \"externalIds\"\n"
-                + "        }\n"
-                + "      },\n"
-                + "      \"endTime\": \"endTime\",\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"startTime\": \"startTime\",\n"
-                + "      \"trailer\": {\n"
-                + "        \"trailerId\": \"trailerId\"\n"
-                + "      },\n"
-                + "      \"updatedAtTime\": \"updatedAtTime\"\n"
+                + "      \"updatedAtTime\": \"2019-06-13T19:10:25Z\"\n"
                 + "    }\n"
                 + "  ],\n"
                 + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"endCursor\",\n"
+                + "    \"endCursor\": \"MjkY\",\n"
                 + "    \"hasNextPage\": true\n"
                 + "  }\n"
                 + "}";

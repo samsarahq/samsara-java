@@ -405,11 +405,10 @@ public class AssetsWireTest {
 
     @Test
     public void testV1GetAssetsReefers() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"assetType\":\"Thermo King\",\"id\":1,\"name\":\"Reefer 123\"}],\"pagination\":{\"endCursor\":\"MTU5MTEzNjA2OTU0MzQ3\",\"hasNextPage\":true,\"hasPrevPage\":true,\"startCursor\":\"MTU5MTEzNjA2OTU0MzQ3\"}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(
+                        TestResources.loadResource("/wire-tests/AssetsWireTest_testV1GetAssetsReefers_response.json")));
         InlineResponse2003 response = client.assets()
                 .v1GetAssetsReefers(V1GetAssetsReefersRequest.builder()
                         .startMs(1000000L)
@@ -422,22 +421,8 @@ public class AssetsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"assetType\": \"Thermo King\",\n"
-                + "      \"id\": 1,\n"
-                + "      \"name\": \"Reefer 123\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MTU5MTEzNjA2OTU0MzQ3\",\n"
-                + "    \"hasNextPage\": true,\n"
-                + "    \"hasPrevPage\": true,\n"
-                + "    \"startCursor\": \"MTU5MTEzNjA2OTU0MzQ3\"\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/AssetsWireTest_testV1GetAssetsReefers_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -534,7 +519,7 @@ public class AssetsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"assetType\":\"Thermo King\",\"id\":1,\"name\":\"Reefer 123\",\"reeferStats\":{\"alarms\":[{\"changedAtMs\":1453449599999}],\"engineHours\":[{\"changedAtMs\":1453449599999,\"engineHours\":1200}],\"fuelPercentages\":[{\"changedAtMs\":1453449599999,\"fuelPercentage\":99}],\"powerStatus\":[{\"changedAtMs\":1453449599999,\"status\":\"Active (Continuous)\"}],\"returnAirTemp\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}],\"setPoint\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}]}}"));
+                                "{\"assetType\":\"Thermo King\",\"id\":1,\"name\":\"Reefer 123\",\"reeferStats\":{\"alarms\":[{\"alarms\":[{\"alarmCode\":102,\"description\":\"Check Return Air Sensor\",\"operatorAction\":\"Check and repair at end of trip\",\"severity\":1}],\"changedAtMs\":1453449599999}],\"engineHours\":[{\"changedAtMs\":1453449599999,\"engineHours\":1200}],\"fuelPercentages\":[{\"changedAtMs\":1453449599999,\"fuelPercentage\":99}],\"powerStatus\":[{\"changedAtMs\":1453449599999,\"status\":\"Active (Continuous)\"}],\"returnAirTemp\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}],\"setPoint\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}]}}"));
         AssetsGetAssetReeferResponseBody response = client.assets()
                 .getAssetReefer(
                         1000000L,
@@ -557,6 +542,14 @@ public class AssetsWireTest {
                 + "  \"reeferStats\": {\n"
                 + "    \"alarms\": [\n"
                 + "      {\n"
+                + "        \"alarms\": [\n"
+                + "          {\n"
+                + "            \"alarmCode\": 102,\n"
+                + "            \"description\": \"Check Return Air Sensor\",\n"
+                + "            \"operatorAction\": \"Check and repair at end of trip\",\n"
+                + "            \"severity\": 1\n"
+                + "          }\n"
+                + "        ],\n"
                 + "        \"changedAtMs\": 1453449599999\n"
                 + "      }\n"
                 + "    ],\n"
@@ -691,7 +684,7 @@ public class AssetsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"assetType\":\"Thermo King\",\"id\":1,\"name\":\"Reefer 123\",\"reeferStats\":{\"alarms\":[{\"changedAtMs\":1453449599999}],\"engineHours\":[{\"changedAtMs\":1453449599999,\"engineHours\":1200}],\"fuelPercentage\":[{\"changedAtMs\":1453449599999,\"fuelPercentage\":99}],\"powerStatus\":[{\"changedAtMs\":1453449599999,\"status\":\"Active (Continuous)\"}],\"returnAirTemp\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}],\"setPoint\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}]}}"));
+                                "{\"assetType\":\"Thermo King\",\"id\":1,\"name\":\"Reefer 123\",\"reeferStats\":{\"alarms\":[{\"alarms\":[{\"alarmCode\":102,\"description\":\"Check Return Air Sensor\",\"operatorAction\":\"Check and repair at end of trip\",\"severity\":1}],\"changedAtMs\":1453449599999}],\"engineHours\":[{\"changedAtMs\":1453449599999,\"engineHours\":1200}],\"fuelPercentage\":[{\"changedAtMs\":1453449599999,\"fuelPercentage\":99}],\"powerStatus\":[{\"changedAtMs\":1453449599999,\"status\":\"Active (Continuous)\"}],\"returnAirTemp\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}],\"setPoint\":[{\"changedAtMs\":1453449599999,\"tempInMilliC\":31110}]}}"));
         V1AssetReeferResponse response = client.assets()
                 .v1GetAssetReefer(
                         1000000L,
@@ -714,6 +707,14 @@ public class AssetsWireTest {
                 + "  \"reeferStats\": {\n"
                 + "    \"alarms\": [\n"
                 + "      {\n"
+                + "        \"alarms\": [\n"
+                + "          {\n"
+                + "            \"alarmCode\": 102,\n"
+                + "            \"description\": \"Check Return Air Sensor\",\n"
+                + "            \"operatorAction\": \"Check and repair at end of trip\",\n"
+                + "            \"severity\": 1\n"
+                + "          }\n"
+                + "        ],\n"
                 + "        \"changedAtMs\": 1453449599999\n"
                 + "      }\n"
                 + "    ],\n"

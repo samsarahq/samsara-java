@@ -542,6 +542,9 @@ To use this endpoint, select **Read Agent Studio Voice Sessions** under the Clos
 client.betaApIs().getVoiceSessions(
     GetVoiceSessionsRequest
         .builder()
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -608,6 +611,9 @@ client.betaApIs().getVoiceSessionsStream(
     GetVoiceSessionsStreamRequest
         .builder()
         .startTime("startTime")
+        .agentIds(
+            Arrays.asList("agentIds")
+        )
         .build()
 );
 ```
@@ -828,6 +834,9 @@ client.betaApIs().getAssetsInputs(
         .builder()
         .type(GetAssetsInputsRequestType.AUX_INPUT1)
         .startTime("startTime")
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -2057,6 +2066,154 @@ client.betaApIs().getDevices(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.postElectricPurchase(request) -> FuelPurchasePostElectricPurchaseResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create an electric charging purchase transaction, measured in kilowatt hours.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().postElectricPurchase(
+    FuelPurchasePostElectricPurchaseRequestBody
+        .builder()
+        .energyKilowattHours("42.7")
+        .transactionLocation("350 Rhode Island St, San Francisco, CA 94103")
+        .transactionPrice(
+            PostElectricPurchaseRequestBodyPriceRequestBody
+                .builder()
+                .amount("640.2")
+                .currency(PostElectricPurchaseRequestBodyPriceRequestBodyCurrency.USD)
+                .build()
+        )
+        .transactionReference("CP-88231")
+        .transactionTime("2026-10-12T08:41:05-07:00")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**discount:** `Optional<PostElectricPurchaseRequestBodyDiscountRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**driverId:** `Optional<String>` — Samsara ID of the driver.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**energyKilowattHours:** `String` — The amount of energy delivered in kilowatt hours, as a decimal string greater than 0.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**merchantName:** `Optional<String>` — Name of the charging network or operator. For example: ChargePoint, Electrify America.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**source:** `Optional<String>` — The integration provider. For example: Customer, ChargePoint Integration
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionLocation:** `String` — The full street address of the charger, as it might be recognized by Google Maps (example: 1 De Haro St, San Francisco, CA 94107, United States). Alternatively, exact latitude/longitude can be provided (example: 40.748441, -73.985664).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionPrice:** `PostElectricPurchaseRequestBodyPriceRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionReference:** `String` — The charging transaction reference. This is the transaction identifier, such as the receipt or charging session number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionTime:** `String` — The time of the charging transaction in RFC 3339 format. Timezone must be specified. For example, 2022-07-13T14:20:50.52-07:00 is a time in Pacific Daylight Time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vehicleId:** `Optional<String>` — Samsara ID of the vehicle that was charged.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.listAssetSharingAgreements() -> AssetSharingAgreementsListAssetSharingAgreementsResponseBody</code></summary>
 <dl>
 <dd>
@@ -3127,6 +3284,9 @@ client.betaApIs().listAssociations(
     ListAssociationsRequest
         .builder()
         .startTime("startTime")
+        .peripheralIds(
+            Arrays.asList("peripheralIds")
+        )
         .build()
 );
 ```
@@ -4021,1069 +4181,6 @@ client.betaApIs().postFleetInstallerPhotoUploadComplete(
 <dd>
 
 **id:** `String` — Upload session ID to mark as complete. Accepts exactly one ID.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listVendorCategories() -> MaintenanceVendorsListVendorCategoriesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the list of vendor categories available for maintenance vendors.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listVendorCategories(
-    ListVendorCategoriesRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listVendorGroups() -> EntityVendorProfilesServiceListVendorGroupsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Manage vendor group identity and defaults inherited by vendor locations.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listVendorGroups(
-    ListVendorGroupsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor profile ID values.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createVendorGroup(request) -> EntityVendorProfilesServiceCreateVendorGroupResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Manage vendor group identity and defaults inherited by vendor locations.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createVendorGroup(
-    EntityVendorProfilesServiceCreateVendorGroupRequestBody
-        .builder()
-        .name("12345")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetAttributeSelections:** `Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**defaultLaborRatePerHour:** `Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdInputTypeRequestBody>>` — External identifiers belonging to this vendor group.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isMobile:** `Optional<Boolean>` — Whether vendor locations inherit mobile service as their default.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isPreferred:** `Optional<Boolean>` — Default preferred status inherited by vendor locations.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Name of the vendor profile.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**primaryCorporateContact:** `Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `Optional<EntityVendorProfilesServiceCreateVendorGroupRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deleteVendorGroup()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Soft-deletes a vendor group after all vendor locations have been detached, moved, or deleted.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deleteVendorGroup(
-    DeleteVendorGroupRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the VendorProfile record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateVendorGroup(request) -> EntityVendorProfilesServiceUpdateVendorGroupResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Manage vendor group identity and defaults inherited by vendor locations.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateVendorGroup(
-    EntityVendorProfilesServiceUpdateVendorGroupRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the VendorProfile record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetAttributeSelections:** `Optional<List<UpdateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**defaultLaborRatePerHour:** `Optional<UpdateVendorGroupEntityVendorProfileVendorHourlyMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<UpdateVendorGroupEntityVendorProfileVendorGroupExternalIdInputTypeRequestBody>>` — External identifiers belonging to this vendor group.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isMobile:** `Optional<Boolean>` — Whether vendor locations inherit mobile service as their default.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isPreferred:** `Optional<Boolean>` — Default preferred status inherited by vendor locations.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — Name of the vendor profile.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**primaryCorporateContact:** `Optional<UpdateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `Optional<EntityVendorProfilesServiceUpdateVendorGroupRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.listMaintenanceVendors() -> MaintenanceVendorsListMaintenanceVendorsResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of maintenance vendors in the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().listMaintenanceVendors(
-    ListMaintenanceVendorsRequest
-        .builder()
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**ids:** `Optional<String>` — A comma-separated list of up to 100 vendor IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. See [external IDs](https://developers.samsara.com/docs/external-ids).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<String>` — A comma-separated list of up to 100 external IDs in key:value format to filter vendors on. See [external IDs](https://developers.samsara.com/docs/external-ids).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeResolvedSettings:** `Optional<Boolean>` — Include resolved vendor settings and their sources. Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — When true, include externalIds on each vendor in the response. Default false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.createVendor(request) -> EntityVendorsServiceCreateVendorResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a maintenance vendor for the organization. Exactly one of addressId or address must be set.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().createVendor(
-    EntityVendorsServiceCreateVendorRequestBody
-        .builder()
-        .name("12345")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**address:** `Optional<String>` — Address of the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**addressId:** `Optional<String>` — Linked place identifier for the vendor address.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetAttributeSelections:** `Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**contacts:** `Optional<List<CreateVendorEntityVendorVendorContactInputTypeRequestBody>>` — People to contact at the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**defaultLaborRatePerHour:** `Optional<CreateVendorEntityVendorVendorHourlyMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**emailAddresses:** `Optional<List<String>>` — Email addresses for the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<CreateVendorEntityVendorVendorExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isMobile:** `Optional<Boolean>` — Whether this vendor provides mobile service. When unset, the profile or system default applies.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isPreferred:** `Optional<Boolean>` — Whether this vendor location is preferred. When unset, the profile or system default applies.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `String` — Name of the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — Additional notes about the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**payeeId:** `Optional<String>` — Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**phoneNumbers:** `Optional<List<String>>` — Phone numbers for the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**servicesProvided:** `Optional<String>` — Description of services provided by the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `Optional<EntityVendorsServiceCreateVendorRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorGroupId:** `Optional<String>` — Vendor group ID. Null removes membership while preserving explicit overrides.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — User-defined identifier for the vendor.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.deleteVendor()</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Soft-deletes a vendor location without deleting its linked Place or work orders.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().deleteVendor(
-    DeleteVendorRequest
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the Vendor record.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.betaApIs.updateVendor(request) -> EntityVendorsServiceUpdateVendorResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing maintenance vendor for the organization. Migrating a vendor between a linked Place (addressId) and a self-contained address (address) is not supported.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```java
-client.betaApIs().updateVendor(
-    EntityVendorsServiceUpdateVendorRequestBody
-        .builder()
-        .id("id")
-        .build()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**id:** `String` — Unique identifier for the Vendor record.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**address:** `Optional<String>` — Address of the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**addressId:** `Optional<String>` — Linked place identifier for the vendor address.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**assetAttributeSelections:** `Optional<List<UpdateVendorEntityVendorVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**contacts:** `Optional<List<UpdateVendorEntityVendorVendorContactInputTypeRequestBody>>` — People to contact at the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**defaultLaborRatePerHour:** `Optional<UpdateVendorEntityVendorVendorHourlyMoneyInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**emailAddresses:** `Optional<List<String>>` — Email addresses for the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**externalIds:** `Optional<List<UpdateVendorEntityVendorVendorExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isMobile:** `Optional<Boolean>` — Whether this vendor provides mobile service. When unset, the profile or system default applies.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**isPreferred:** `Optional<Boolean>` — Whether this vendor location is preferred. When unset, the profile or system default applies.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**name:** `Optional<String>` — Name of the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**notes:** `Optional<String>` — Additional notes about the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**payeeId:** `Optional<String>` — Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**phoneNumbers:** `Optional<List<String>>` — Phone numbers for the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**servicesProvided:** `Optional<String>` — Description of services provided by the vendor.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**status:** `Optional<EntityVendorsServiceUpdateVendorRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorGroupId:** `Optional<String>` — Vendor group ID. Null removes membership while preserving explicit overrides.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — User-defined identifier for the vendor.
     
 </dd>
 </dl>
@@ -7489,6 +6586,251 @@ client.betaApIs().updateHubRouteTemplate(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.listAssetStatusChangeEvents() -> EntityAssetStatusChangeEventsServiceListAssetStatusChangeEventsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the status history of one asset, newest first. Exactly one asset ID must be given in assetIds.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listAssetStatusChangeEvents(
+    ListAssetStatusChangeEventsRequest
+        .builder()
+        .assetIds("assetIds")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetIds:** `String` — A filter on the data based on this comma-separated list of Asset ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.listAssetStatuses() -> EntityAssetStatusesServiceListAssetStatusesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the current maintenance status of the organization's assets, optionally narrowed to specific assets.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().listAssetStatuses(
+    ListAssetStatusesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Asset ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.updateAssetStatus(request) -> EntityAssetStatusesServiceUpdateAssetStatusResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Moves an asset into another status. A comment is required when the status being entered requires one on entry, or the status being left requires one on exit.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().updateAssetStatus(
+    EntityAssetStatusesServiceUpdateAssetStatusRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the AssetStatus record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**comment:** `Optional<String>` — Note on the most recent status change. On update, required when the status being entered requires a comment on entry, or the status being left requires a comment on exit.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statusUuid:** `Optional<String>` — Stable ID of the status the asset is in. On update, the status to move the asset into.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.getCampaigns() -> CampaignsGetCampaignsResponseBody</code></summary>
 <dl>
 <dd>
@@ -7991,7 +7333,7 @@ client.betaApIs().listMaintenanceEstimates(
 <dl>
 <dd>
 
-**vendorIds:** `Optional<String>` — Up to 10 comma-separated vendor-location identifiers; narrows the primary selection.
+**vendorIds:** `Optional<String>` — Up to 10 comma-separated vendor-location identifiers; narrows the primary selection. Resolve locations via GET /fleet/maintenance/vendor-locations.
     
 </dd>
 </dl>
@@ -8176,7 +7518,7 @@ client.betaApIs().createMaintenanceEstimate(
 <dl>
 <dd>
 
-**vendorId:** `String` — Same-org vendor location UUID or external ID.
+**vendorId:** `String` — Same-org vendor location UUID or external ID. Resolve the location via GET /fleet/maintenance/vendor-locations.
     
 </dd>
 </dl>
@@ -8627,6 +7969,95 @@ client.betaApIs().createMaintenanceEstimatesBatch(
 </dl>
 </details>
 
+<details><summary><code>client.betaApIs.getPartsRequests() -> PartsRequestsGetPartsRequestsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets parts request lines with their requested, reserved, ordered and received quantities. Optionally filter by parts request IDs, work orders and maintenance sites; returns 404 Not Found when none of the requested parts request IDs resolve.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getPartsRequests(
+    GetPartsRequestsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — Comma-separated list of parts request IDs to filter by. Maximum number of IDs: 1. Returns all lines of the requested parts request on one page, including closed and cancelled lines. Returns 404 Not Found when the parts request does not exist.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**workOrderIds:** `Optional<String>` — Comma-separated list of work order IDs to filter by. Maximum number of IDs: 100. Returns only lines linked to these work orders. Cannot be combined with `ids`; supplying both returns 400 Bad Request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**maintenanceSiteIds:** `Optional<String>` — Comma-separated list of maintenance site IDs, as returned by GET /maintenance/sites. Returns only lines requested by these maintenance sites. When omitted or empty, returns lines from all maintenance sites you have permission to access.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.betaApIs.getPartPhotos() -> PartPhotosGetPartPhotosResponseBody</code></summary>
 <dl>
 <dd>
@@ -8857,7 +8288,7 @@ client.betaApIs().deletePartPhoto(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.listPurchaseOrders() -> EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody</code></summary>
+<details><summary><code>client.betaApIs.getRecalls() -> CampaignsGetRecallsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8869,11 +8300,13 @@ client.betaApIs().deletePartPhoto(
 <dl>
 <dd>
 
-Returns a paginated list of purchase orders ordered by last update time.
+Gets recalls that may affect your organization's assets, newest report first. Includes recalls reported since 12 months before recalls were enabled. Matching uses make, model, and year; confirm affected VINs with the recall source.
+
+Keep filters unchanged when paging. Narrow the report date range if a request exceeds query limits (400). Returns 503 until recall matching is available.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Campaigns** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -8891,14 +8324,9 @@ To use this endpoint, select **Read Purchase Orders** under the Work Orders cate
 <dd>
 
 ```java
-client.betaApIs().listPurchaseOrders(
-    ListPurchaseOrdersRequest
+client.betaApIs().getRecalls(
+    GetRecallsRequest
         .builder()
-        .startTime("2026-07-01T00:00:00Z")
-        .ids("281474976710656")
-        .poNumbers("PO-1001")
-        .vendorIds("281474976710656")
-        .endTime("2026-07-31T00:00:00Z")
         .build()
 );
 ```
@@ -8915,7 +8343,7 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+**ids:** `Optional<String>` — Comma-separated recall IDs. Maximum 100 unique IDs. Unknown IDs are omitted; returns 404 if none are found. Cannot be combined with `after`.
     
 </dd>
 </dl>
@@ -8923,7 +8351,7 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-**poNumbers:** `Optional<String>` — A filter on the data based on this comma-separated list of PO number values.
+**isDismissed:** `Optional<Boolean>` — Return only dismissed recalls (`true`) or only possible matches (`false`). Returns both when omitted.
     
 </dd>
 </dl>
@@ -8931,7 +8359,7 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-**vendorIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor values.
+**manufacturer:** `Optional<String>` — Filter by exact manufacturer name. Maximum 256 characters.
     
 </dd>
 </dl>
@@ -8939,7 +8367,7 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-**endTime:** `Optional<String>` — Optional end of the updated time range, exclusive. Defaults to the server's current time.
+**reportStartTime:** `Optional<OffsetDateTime>` — Include recalls reported at or after this time, in RFC 3339 format.
     
 </dd>
 </dl>
@@ -8947,7 +8375,81 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-**startTime:** `String` — Required start of the updated time range, inclusive.
+**reportEndTime:** `Optional<OffsetDateTime>` — Include recalls reported before this time, in RFC 3339 format. Must be after `reportStartTime`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.getRecallMatchedAssets() -> CampaignsGetRecallMatchedAssetsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets assets matched to a recall by make, model, and year. Returns up to 100 assets per page. Keep `recallId`, `order`, and `includeEnded` unchanged when paging. Returns 404 when the recall is unknown to the organization. Returns 503 when a capped legacy match list is incomplete. Make/model/year ordering requires match-store reads.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Campaigns** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().getRecallMatchedAssets(
+    GetRecallMatchedAssetsRequest
+        .builder()
+        .recallId("recallId")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**recallId:** `String` — Unique ID of the recall. For NHTSA recalls, this is the campaign number. Maximum 64 characters.
     
 </dd>
 </dl>
@@ -8963,7 +8465,15 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+**order:** `Optional<GetRecallMatchedAssetsRequestOrder>` — Sort order for the page. Defaults to `assetId`. `makeModelYearAsc` and `makeModelYearDesc` require match-store reads.  Valid values: `assetId`, `makeModelYearAsc`, `makeModelYearDesc`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeEnded:** `Optional<Boolean>` — When true, include retained ended associations (`matchEnded`). Defaults to true.
     
 </dd>
 </dl>
@@ -8975,7 +8485,7 @@ client.betaApIs().listPurchaseOrders(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.createPurchaseOrder(request) -> EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody</code></summary>
+<details><summary><code>client.betaApIs.getShops() -> ShopsGetShopsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8987,11 +8497,11 @@ client.betaApIs().listPurchaseOrders(
 <dl>
 <dd>
 
-Creates a purchase order for the organization.
+Returns active shops in the organization. Use a shop id from this list as the shop id accepted by the work order API. The page size is 100. Shops are ordered by name, ignoring case. shopIds returns those active shops in request order and fails the request when any id is missing. The endpoint is in beta and requires the Shops read scope. It is available only when shop-concept-enabled is on for the organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Shops** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -9009,11 +8519,9 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 <dd>
 
 ```java
-client.betaApIs().createPurchaseOrder(
-    EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
+client.betaApIs().getShops(
+    GetShopsRequest
         .builder()
-        .orderStatus(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.UNKNOWN)
-        .vendorId("281474976710656")
         .build()
 );
 ```
@@ -9030,7 +8538,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
+**shopIds:** `Optional<String>` — Comma-separated shop UUIDs. At most 100 non-blank values. Duplicates count toward that limit and are then ignored. Mutually exclusive with after. A blank value is rejected. Every id must match an active shop.
     
 </dd>
 </dl>
@@ -9038,7 +8546,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
+**includeTags:** `Optional<Boolean>` — When true, each shop includes tags with id, name, and parentTagId. Defaults to false. Repeat this value with after.
     
 </dd>
 </dl>
@@ -9046,71 +8554,7 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-**notes:** `Optional<String>` — Free-text notes for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**orderStatus:** `EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus` — Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBody>>` — Parts ordered on the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**poNumberPrefix:** `Optional<String>` — Optional prefix included in the purchase order number.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**poNumberSuffix:** `Optional<String>` — Optional suffix included in the purchase order number.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tax:** `Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `String` — ID of the vendor supplying this purchase order.
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     
 </dd>
 </dl>
@@ -9122,7 +8566,7 @@ client.betaApIs().createPurchaseOrder(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.deletePurchaseOrder()</code></summary>
+<details><summary><code>client.betaApIs.postShops(request) -> ShopsPostShopsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9134,11 +8578,11 @@ client.betaApIs().createPurchaseOrder(
 <dl>
 <dd>
 
-Deletes a purchase order for the organization.
+Creates a shop with existing tags, places, and inventory locations. Names are unique ignoring case.
 
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Shops** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -9156,10 +8600,10 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 <dd>
 
 ```java
-client.betaApIs().deletePurchaseOrder(
-    DeletePurchaseOrderRequest
+client.betaApIs().postShops(
+    ShopsPostShopsRequestBody
         .builder()
-        .id("id")
+        .name("Main Shop")
         .build()
 );
 ```
@@ -9176,7 +8620,39 @@ client.betaApIs().deletePurchaseOrder(
 <dl>
 <dd>
 
-**id:** `String` — Unique identifier for the PurchaseOrder record.
+**includeTags:** `Optional<Boolean>` — When true, each shop includes tags with id, name, and parentTagId. Defaults to false. Repeat this value with after.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inventoryLocationIds:** `Optional<List<String>>` — Up to 10 existing inventory location UUIDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Shop display name, unique ignoring case.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placeIds:** `Optional<List<String>>` — Up to 10 existing place ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tagIds:** `Optional<List<String>>` — Up to 10 existing tag ids.
     
 </dd>
 </dl>
@@ -9188,7 +8664,7 @@ client.betaApIs().deletePurchaseOrder(
 </dl>
 </details>
 
-<details><summary><code>client.betaApIs.updatePurchaseOrder(request) -> EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody</code></summary>
+<details><summary><code>client.betaApIs.deleteShops()</code></summary>
 <dl>
 <dd>
 
@@ -9200,11 +8676,11 @@ client.betaApIs().deletePurchaseOrder(
 <dl>
 <dd>
 
-Updates a purchase order for the organization.
+Soft deletes a shop and removes its links. Repeating a delete for the same shop succeeds.
 
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Shops** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -9222,8 +8698,8 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 <dd>
 
 ```java
-client.betaApIs().updatePurchaseOrder(
-    EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody
+client.betaApIs().deleteShops(
+    DeleteShopsRequest
         .builder()
         .id("id")
         .build()
@@ -9242,7 +8718,73 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**id:** `String` — Unique identifier for the PurchaseOrder record.
+**id:** `String` — Shop UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.betaApIs.patchShops(request) -> ShopsPatchShopsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an active shop. Omitted fields remain unchanged; supplied lists replace stored links.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Shops** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.betaApIs().patchShops(
+    ShopsPatchShopsRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Shop UUID.
     
 </dd>
 </dl>
@@ -9250,7 +8792,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
+**includeTags:** `Optional<Boolean>` — When true, each shop includes tags with id, name, and parentTagId. Defaults to false. Repeat this value with after.
     
 </dd>
 </dl>
@@ -9258,7 +8800,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
+**inventoryLocationIds:** `Optional<List<String>>` — Replaces all inventory location ids. Empty clears the list.
     
 </dd>
 </dl>
@@ -9266,7 +8808,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**notes:** `Optional<String>` — Free-text notes for the purchase order.
+**name:** `Optional<String>` — New shop display name.
     
 </dd>
 </dl>
@@ -9274,7 +8816,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**orderStatus:** `Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus>` — Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
+**placeIds:** `Optional<List<String>>` — Replaces all place ids. Empty clears the list.
     
 </dd>
 </dl>
@@ -9282,39 +8824,7 @@ client.betaApIs().updatePurchaseOrder(
 <dl>
 <dd>
 
-**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant5E7C0Da15F4CTypeRequestBody>>` — Parts ordered on the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tax:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody>` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**vendorId:** `Optional<String>` — ID of the vendor supplying this purchase order.
+**tagIds:** `Optional<List<String>>` — Replaces all tag ids. Empty clears the list.
     
 </dd>
 </dl>
@@ -10872,6 +10382,9 @@ To use this endpoint, select **Read Qualification Records** under the Qualificat
 client.betaApIs().getQualificationRecords(
     GetQualificationRecordsRequest
         .builder()
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -12256,7 +11769,7 @@ client.betaApIs().createRidershipPassenger(
 <dl>
 <dd>
 
-**tagIds:** `Optional<List<String>>` — Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send `[]` to create a passenger without tags.
+**tagIds:** `Optional<List<String>>` — Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send `[]` to create a passenger without tags. If your API token is restricted to certain tags, every tag must be within its scope.
     
 </dd>
 </dl>
@@ -12384,7 +11897,7 @@ client.betaApIs().updateRidershipPassenger(
 <dl>
 <dd>
 
-**tagIds:** `Optional<List<String>>` — Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send `[]` to remove all tags.
+**tagIds:** `Optional<List<String>>` — Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send `[]` to remove all tags. If your API token is restricted to certain tags, tags outside its scope are kept and can't be added.
     
 </dd>
 </dl>
@@ -12954,7 +12467,7 @@ client.betaApIs().patchSafetyEventsV2Batch(
     SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
         .builder()
         .safetyEventIds(
-            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
+            Arrays.asList("bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590", "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590")
         )
         .build()
 );
@@ -13533,6 +13046,9 @@ client.alerts().getIncidents(
     GetIncidentsRequest
         .builder()
         .startTime("startTime")
+        .configurationIds(
+            Arrays.asList("configurationIds")
+        )
         .build()
 );
 ```
@@ -17081,6 +16597,1021 @@ client.maintenance().updateDvir(
 </dl>
 </details>
 
+<details><summary><code>client.maintenance.listVendorCategories() -> MaintenanceVendorsListVendorCategoriesResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the list of vendor categories available for maintenance vendors.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listVendorCategories(
+    ListVendorCategoriesRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listVendorLocations() -> MaintenanceVendorsListVendorLocationsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of vendor locations in the organization. Each linked Place owns the location's name, address, and notes. Use the location's addressId as {id} in the public Addresses API: GET /addresses/{id} retrieves data.name, data.formattedAddress, and data.notes; PATCH /addresses/{id} updates name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listVendorLocations(
+    ListVendorLocationsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A comma-separated list of up to 100 vendor location IDs to filter on. Accepts Samsara UUIDs or external IDs in key:value format. See [external IDs](https://developers.samsara.com/docs/external-ids).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<String>` — A comma-separated list of up to 100 external IDs in key:value format to filter vendor locations on. See [external IDs](https://developers.samsara.com/docs/external-ids).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeResolvedSettings:** `Optional<Boolean>` — Include resolved vendor settings and their sources. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — When true, include externalIds on each vendor location in the response. Default false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createVendorLocation(request) -> EntityVendorsServiceCreateVendorLocationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a maintenance vendor location linked to a live Place in this organization. First create or reuse an Address through the public Addresses API and set addressId to its returned data.id (the Place ID). The Place owns the location's name, address, and notes. Use addressId as {id} in GET /addresses/{id} to retrieve data.name, data.formattedAddress, and data.notes, and PATCH /addresses/{id} to update name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively. Mutation responses expose the same Address/Place ID as placeId.id; location lists return it as addressId. This endpoint does not create Places. Legacy vendor-stored notes are separate and are not exposed or copied to the Place. parentVendorId is optional.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createVendorLocation(
+    EntityVendorsServiceCreateVendorLocationRequestBody
+        .builder()
+        .addressId("281474976710656")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressId:** `String` — Linked place identifier for the vendor address.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<CreateVendorEntityVendorVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contacts:** `Optional<List<CreateVendorEntityVendorVendorContactInputTypeRequestBody>>` — People to contact at the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<CreateVendorEntityVendorVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**emailAddresses:** `Optional<List<String>>` — Email addresses for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateVendorEntityVendorVendorExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether this vendor provides mobile service. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Whether this vendor location is preferred. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentVendorId:** `Optional<String>` — Parent vendor UUID. Null removes membership while preserving explicit overrides.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payeeId:** `Optional<String>` — Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phoneNumbers:** `Optional<List<String>>` — Phone numbers for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**servicesProvided:** `Optional<String>` — Description of services provided by the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorsServiceCreateVendorLocationRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — User-defined identifier for the vendor.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.deleteVendorLocation()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a vendor location without deleting its linked Place or work orders.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().deleteVendorLocation(
+    DeleteVendorLocationRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the vendor location record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updateVendorLocation(request) -> EntityVendorsServiceUpdateVendorLocationResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing maintenance vendor location. The linked Place owns the location's name, address, and notes; update them through the public Addresses API, not this resource. Use the location's addressId (or placeId.id from a mutation response) as {id} in GET /addresses/{id} to retrieve data.name, data.formattedAddress, and data.notes, and PATCH /addresses/{id} to update name, formattedAddress, and notes. These calls require Read Addresses and Write Addresses permissions, respectively. addressId is optional when the existing link identifies a live Place in this organization; otherwise supply a valid addressId before updating the location. Any supplied value must be the Address/Place ID returned as data.id by the Addresses API and identify a live Place in this organization. Legacy vendor-stored notes are separate and are not exposed or copied to the Place.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updateVendorLocation(
+    EntityVendorsServiceUpdateVendorLocationRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the vendor location record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**addressId:** `Optional<String>` — Linked place identifier for the vendor address.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<UpdateVendorEntityVendorVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contacts:** `Optional<List<UpdateVendorEntityVendorVendorContactInputTypeRequestBody>>` — People to contact at the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<UpdateVendorEntityVendorVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**emailAddresses:** `Optional<List<String>>` — Email addresses for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateVendorEntityVendorVendorExternalIdInputTypeRequestBody>>` — Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether this vendor provides mobile service. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Whether this vendor location is preferred. When unset, the profile or system default applies.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parentVendorId:** `Optional<String>` — Parent vendor UUID. Null removes membership while preserving explicit overrides.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payeeId:** `Optional<String>` — Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phoneNumbers:** `Optional<List<String>>` — Phone numbers for the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**servicesProvided:** `Optional<String>` — Description of services provided by the vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorsServiceUpdateVendorLocationRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — User-defined identifier for the vendor.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listVendors() -> EntityVendorProfilesServiceListVendorsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage parent vendor identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listVendors(
+    ListVendorsRequest
+        .builder()
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — If true, include externalIds in each response object.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createVendor(request) -> EntityVendorProfilesServiceCreateVendorResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage parent vendor identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createVendor(
+    EntityVendorProfilesServiceCreateVendorRequestBody
+        .builder()
+        .name("12345")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<CreateVendorGroupEntityVendorProfileVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdInputTypeRequestBody>>` — External identifiers belonging to this parent vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether vendor locations inherit mobile service as their default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Default preferred status inherited by vendor locations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name of the vendor profile.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primaryCorporateContact:** `Optional<CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorProfilesServiceCreateVendorRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.deleteVendor()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a parent vendor after all vendor locations have been detached, moved, or deleted.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().deleteVendor(
+    DeleteVendorRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the vendor record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updateVendor(request) -> EntityVendorProfilesServiceUpdateVendorResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage parent vendor identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updateVendor(
+    EntityVendorProfilesServiceUpdateVendorRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeExternalIds:** `Optional<Boolean>` — Include externalIds in the response. Defaults to false.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the vendor record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assetAttributeSelections:** `Optional<List<UpdateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionInputTypeRequestBody>>` — Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**defaultLaborRatePerHour:** `Optional<UpdateVendorGroupEntityVendorProfileVendorHourlyMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**externalIds:** `Optional<List<UpdateVendorGroupEntityVendorProfileVendorGroupExternalIdInputTypeRequestBody>>` — External identifiers belonging to this parent vendor.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isMobile:** `Optional<Boolean>` — Whether vendor locations inherit mobile service as their default.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**isPreferred:** `Optional<Boolean>` — Default preferred status inherited by vendor locations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `Optional<String>` — Name of the vendor profile.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primaryCorporateContact:** `Optional<UpdateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Optional<EntityVendorProfilesServiceUpdateVendorRequestBodyStatus>` — Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.maintenance.listParts() -> EntityPartDefinitionsServiceListPartsResponseBody</code></summary>
 <dl>
 <dd>
@@ -17565,6 +18096,14 @@ client.maintenance().updatePart(
 <dd>
 
 **unitCost:** `Optional<UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**unitOfMeasureType:** `Optional<EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType>` — Unit of measure for the part.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
     
 </dd>
 </dl>
@@ -18246,6 +18785,475 @@ client.maintenance().listPartTransactions(
 <dd>
 
 **limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.listPurchaseOrders() -> EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of purchase orders ordered by last update time.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().listPurchaseOrders(
+    ListPurchaseOrdersRequest
+        .builder()
+        .startTime("2026-07-01T00:00:00Z")
+        .ids("281474976710656")
+        .poNumbers("PO-1001")
+        .vendorIds("281474976710656")
+        .endTime("2026-07-31T00:00:00Z")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ids:** `Optional<String>` — A filter on the data based on this comma-separated list of ID values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**poNumbers:** `Optional<String>` — A filter on the data based on this comma-separated list of PO number values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorIds:** `Optional<String>` — A filter on the data based on this comma-separated list of Vendor values.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTime:** `Optional<String>` — Optional end of the updated time range, exclusive. Defaults to the server's current time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTime:** `String` — Required start of the updated time range, inclusive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**after:** `Optional<String>` —  If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Optional<Long>` — The limit for how many objects will be in the response. Default and max for this value is 200 objects.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.createPurchaseOrder(request) -> EntityPurchaseOrdersServiceCreatePurchaseOrderResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a purchase order for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().createPurchaseOrder(
+    EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
+        .builder()
+        .orderStatus(EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.UNKNOWN)
+        .vendorId("281474976710656")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Free-text notes for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderStatus:** `EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus` — Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantb114C1Ce055ATypeRequestBody>>` — Parts ordered on the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**poNumberPrefix:** `Optional<String>` — Optional prefix included in the purchase order number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**poNumberSuffix:** `Optional<String>` — Optional suffix included in the purchase order number.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax:** `Optional<CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `String` — ID of the vendor supplying this purchase order.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.deletePurchaseOrder()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a purchase order for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().deletePurchaseOrder(
+    DeletePurchaseOrderRequest
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the PurchaseOrder record.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.maintenance.updatePurchaseOrder(request) -> EntityPurchaseOrdersServiceUpdatePurchaseOrderResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a purchase order for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Purchase Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```java
+client.maintenance().updatePurchaseOrder(
+    EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody
+        .builder()
+        .id("id")
+        .build()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Unique identifier for the PurchaseOrder record.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**glCode:** `Optional<String>` — General ledger code associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invoiceNumber:** `Optional<String>` — Vendor invoice number associated with this purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**notes:** `Optional<String>` — Free-text notes for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderStatus:** `Optional<EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBodyOrderStatus>` — Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**otherCost:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**parts:** `Optional<List<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantb86Cbda851C6TypeRequestBody>>` — Parts ordered on the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tax:** `Optional<UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trackingNumber:** `Optional<String>` — Shipment tracking number for the purchase order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**vendorId:** `Optional<String>` — ID of the vendor supplying this purchase order.
     
 </dd>
 </dl>
@@ -20740,6 +21748,9 @@ To use this endpoint, select **Read Assignments** under the Assignments category
 client.driverTrailerAssignments().getDriverTrailerAssignments(
     GetDriverTrailerAssignmentsRequest
         .builder()
+        .driverIds(
+            Arrays.asList("driverIds")
+        )
         .build()
 );
 ```
@@ -20980,6 +21991,9 @@ To use this endpoint, select **Read Drivers** under the Drivers category when cr
 client.driverQrCodes().getDriversQrCodes(
     GetDriversQrCodesRequest
         .builder()
+        .driverIds(
+            Arrays.asList("driverIds")
+        )
         .build()
 );
 ```
@@ -22323,7 +23337,7 @@ client.driverVehicleAssignments().createDriverVehicleAssignment(
 <dl>
 <dd>
 
-Delete driver assignments that were created using the `POST fleet/driver-vehicle-assignments` endpoint for the requested vehicle in the requested time range.
+Delete driver assignments that were created using the `POST fleet/driver-vehicle-assignments` endpoint. Identify the assignments either with vehicleId and an optional time range, or with metadata.sourceName alone.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -22348,7 +23362,6 @@ To use this endpoint, select **Write Assignments** under the Assignments categor
 client.driverVehicleAssignments().deleteDriverVehicleAssignments(
     DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody
         .builder()
-        .vehicleId("281474978683353")
         .build()
 );
 ```
@@ -22389,6 +23402,14 @@ client.driverVehicleAssignments().deleteDriverVehicleAssignments(
 <dl>
 <dd>
 
+**metadata:** `Optional<DeleteDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **startTime:** `Optional<String>` —  A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     
 </dd>
@@ -22397,7 +23418,7 @@ client.driverVehicleAssignments().deleteDriverVehicleAssignments(
 <dl>
 <dd>
 
-**vehicleId:** `String` — ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
+**vehicleId:** `Optional<String>` — ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
     
 </dd>
 </dl>
@@ -24332,6 +25353,9 @@ To use this endpoint, select **Read Equipment Statistics** under the Equipment c
 client.equipment().getEquipmentStats(
     GetEquipmentStatsRequest
         .builder()
+        .types(
+            Arrays.asList(GetEquipmentStatsRequestTypesItem.GATEWAY_ENGINE_STATES)
+        )
         .build()
 );
 ```
@@ -24449,6 +25473,9 @@ To use this endpoint, select **Read Equipment Statistics** under the Equipment c
 client.equipment().getEquipmentStatsFeed(
     GetEquipmentStatsFeedRequest
         .builder()
+        .types(
+            Arrays.asList(GetEquipmentStatsFeedRequestTypesItem.GATEWAY_ENGINE_STATES)
+        )
         .build()
 );
 ```
@@ -24562,6 +25589,9 @@ client.equipment().getEquipmentStatsHistory(
         .builder()
         .startTime("startTime")
         .endTime("endTime")
+        .types(
+            Arrays.asList(GetEquipmentStatsHistoryRequestTypesItem.GATEWAY_ENGINE_STATES)
+        )
         .build()
 );
 ```
@@ -26871,6 +27901,14 @@ client.routes().createRoute(
 <dl>
 <dd>
 
+**equipmentProfile:** `Optional<RouteEquipmentProfileObjectRequestBody>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **externalIds:** `Optional<Map<String, String>>` — A map of external ids
     
 </dd>
@@ -27225,6 +28263,14 @@ client.routes().patchRoute(
 <dd>
 
 **driverId:** `Optional<String>` — ID of the driver. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver. Set to null to unassign the driver from the route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**equipmentProfile:** `Optional<RouteEquipmentProfileObjectRequestBody>` 
     
 </dd>
 </dl>
@@ -29650,6 +30696,9 @@ To use this endpoint, select **Read Vehicle Statistics** under the Vehicles cate
 client.vehicleStats().getVehicleStats(
     GetVehicleStatsRequest
         .builder()
+        .types(
+            Arrays.asList(GetVehicleStatsRequestTypesItem.AMBIENT_AIR_TEMPERATURE_MILLI_C)
+        )
         .build()
 );
 ```
@@ -29818,6 +30867,9 @@ To use this endpoint, select **Read Vehicle Statistics** under the Vehicles cate
 client.vehicleStats().getVehicleStatsFeed(
     GetVehicleStatsFeedRequest
         .builder()
+        .types(
+            Arrays.asList(GetVehicleStatsFeedRequestTypesItem.AMBIENT_AIR_TEMPERATURE_MILLI_C)
+        )
         .build()
 );
 ```
@@ -30038,6 +31090,9 @@ client.vehicleStats().getVehicleStatsHistory(
         .builder()
         .startTime("startTime")
         .endTime("endTime")
+        .types(
+            Arrays.asList(GetVehicleStatsHistoryRequestTypesItem.AMBIENT_AIR_TEMPERATURE_MILLI_C)
+        )
         .build()
 );
 ```
@@ -30274,6 +31329,9 @@ To use this endpoint, select **Read Form Submissions** under the Forms category 
 client.forms().getFormSubmissions(
     GetFormSubmissionsRequest
         .builder()
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -33762,6 +34820,9 @@ To use this endpoint, select **Read Issues** under the Forms category when creat
 client.issues().getIssues(
     GetIssuesRequest
         .builder()
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -34877,7 +35938,15 @@ client.workOrders().postWorkOrders(
 <dl>
 <dd>
 
-**assignedUserId:** `Optional<String>` — The ID of the assigned mechanic.
+**assignedUserId:** `Optional<String>` — The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assignedUserIds:** `Optional<List<String>>` — Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. The first ID is the primary assignee returned in assignedUserId. Send an empty array to create the work order with no assignee. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.
     
 </dd>
 </dl>
@@ -35013,6 +36082,14 @@ client.workOrders().postWorkOrders(
 <dl>
 <dd>
 
+**shopId:** `Optional<String>` — ID of the shop associated with the work order. Omit to create the work order without a shop. This is independent of the maintenance site (`placeId`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **startedAtTime:** `Optional<OffsetDateTime>` — The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status is an in-progress status and this field is not provided.
     
 </dd>
@@ -35037,7 +36114,7 @@ client.workOrders().postWorkOrders(
 <dl>
 <dd>
 
-**vendorUuid:** `Optional<String>` — The vendor UUID for the work order.
+**vendorUuid:** `Optional<String>` — The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.
     
 </dd>
 </dl>
@@ -35177,7 +36254,15 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
-**assignedUserId:** `Optional<String>` — The ID of the assigned mechanic.
+**assignedUserId:** `Optional<String>` — The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**assignedUserIds:** `Optional<List<String>>` — Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. Omit this field to keep the current assignments. Send an empty array to clear them. The first ID is the primary assignee returned in assignedUserId. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.
     
 </dd>
 </dl>
@@ -35321,6 +36406,14 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
+**shopId:** `Optional<String>` — ID of the shop associated with the work order. Omit this field to keep the shop already stored on the work order. Send an empty string to clear it. This is independent of the maintenance site (`placeId`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **startedAtTime:** `Optional<OffsetDateTime>` — The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.
     
 </dd>
@@ -35345,7 +36438,7 @@ client.workOrders().patchWorkOrders(
 <dl>
 <dd>
 
-**vendorUuid:** `Optional<String>` — The vendor UUID for the work order.
+**vendorUuid:** `Optional<String>` — The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.
     
 </dd>
 </dl>
@@ -35452,6 +36545,14 @@ client.workOrders().streamWorkOrders(
 <dd>
 
 **assignedUserIds:** `Optional<String>` — Work Order assigned user id filter. Up to 50 ids.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**shopIds:** `Optional<String>` — Work Order shop id filter. Up to 50 ids.
     
 </dd>
 </dl>
@@ -36381,6 +37482,9 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 client.previewApIs().getOrders(
     GetOrdersRequest
         .builder()
+        .orderIds(
+            Arrays.asList("orderIds")
+        )
         .build()
 );
 ```
@@ -37118,6 +38222,7 @@ Available reading IDs (by category):
 * `evChargingVoltage` (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)
 * `evConsumedEnergy` (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)
 * `evDistanceDriven` (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)
+* `evEstimatedRemainingDistance` (EV Estimated remaining distance): Estimated remaining distance based on existing available HV system capacity. (meter)
 * `evHighCapacityBatteryCurrent` (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)
 * `evHighCapacityBatteryVoltage` (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)
 * `evRegeneratedEnergy` (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)
@@ -37125,6 +38230,7 @@ Available reading IDs (by category):
 * `exhaustGasPressure` (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)
 * `faultCodes` (Fault Codes): Engine fault codes for the asset
 * `fuelConsumptionRate` (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)
+* `fuelDeliveryPressure` (Fuel Delivery Pressure): The pressure of fuel being delivered to the engine (kilopascal)
 * `fuelLevelPerc` (Fuel Level): Percentage of fuel remaining in the tank. (percent)
 * `fuelSource` (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)
 * `geoCoordinates` (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.
@@ -37557,6 +38663,7 @@ Available reading IDs (by category):
 * `evChargingVoltage` (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)
 * `evConsumedEnergy` (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)
 * `evDistanceDriven` (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)
+* `evEstimatedRemainingDistance` (EV Estimated remaining distance): Estimated remaining distance based on existing available HV system capacity. (meter)
 * `evHighCapacityBatteryCurrent` (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)
 * `evHighCapacityBatteryVoltage` (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)
 * `evRegeneratedEnergy` (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)
@@ -37564,6 +38671,7 @@ Available reading IDs (by category):
 * `exhaustGasPressure` (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)
 * `faultCodes` (Fault Codes): Engine fault codes for the asset
 * `fuelConsumptionRate` (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)
+* `fuelDeliveryPressure` (Fuel Delivery Pressure): The pressure of fuel being delivered to the engine (kilopascal)
 * `fuelLevelPerc` (Fuel Level): Percentage of fuel remaining in the tank. (percent)
 * `fuelSource` (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)
 * `geoCoordinates` (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.
@@ -37992,6 +39100,9 @@ To use this endpoint, select **Read Safety Events & Scores** under the Safety & 
 client.safety().getSafetyEventsV2(
     GetSafetyEventsV2Request
         .builder()
+        .safetyEventIds(
+            Arrays.asList("safetyEventIds")
+        )
         .build()
 );
 ```
@@ -38798,6 +39909,9 @@ client.speedingIntervals().getSpeedingIntervals(
     GetSpeedingIntervalsRequest
         .builder()
         .startTime("startTime")
+        .assetIds(
+            Arrays.asList("assetIds")
+        )
         .build()
 );
 ```
@@ -39512,6 +40626,9 @@ client.trainingAssignments().postTrainingAssignments(
         .builder()
         .courseId("courseId")
         .dueAtTime("dueAtTime")
+        .learnerIds(
+            Arrays.asList("learnerIds")
+        )
         .build()
 );
 ```
@@ -39593,6 +40710,9 @@ To use this endpoint, select **Write Training Assignments** under the Training A
 client.trainingAssignments().deleteTrainingAssignments(
     DeleteTrainingAssignmentsRequest
         .builder()
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -39659,6 +40779,9 @@ client.trainingAssignments().patchTrainingAssignments(
     PatchTrainingAssignmentsRequest
         .builder()
         .dueAtTime("dueAtTime")
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```
@@ -39947,6 +41070,9 @@ client.trips().getTrips(
     GetTripsRequest
         .builder()
         .startTime("startTime")
+        .ids(
+            Arrays.asList("ids")
+        )
         .build()
 );
 ```

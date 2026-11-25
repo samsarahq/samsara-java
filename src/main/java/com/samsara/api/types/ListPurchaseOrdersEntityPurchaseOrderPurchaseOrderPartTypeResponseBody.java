@@ -30,6 +30,10 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
 
     private final Optional<EntityListPurchaseOrdersPartDefinitionRefTypeResponseBody> partSamsara;
 
+    private final Optional<EntityListPurchaseOrdersRequisitionRefTypeResponseBody> partsRequest;
+
+    private final Optional<EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody> partsRequestLine;
+
     private final Optional<EntityListPurchaseOrdersPlaceRefTypeResponseBody> place;
 
     private final Optional<Double> quantityOrdered;
@@ -51,6 +55,8 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
             Optional<String> description,
             Optional<String> lineItemId,
             Optional<EntityListPurchaseOrdersPartDefinitionRefTypeResponseBody> partSamsara,
+            Optional<EntityListPurchaseOrdersRequisitionRefTypeResponseBody> partsRequest,
+            Optional<EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody> partsRequestLine,
             Optional<EntityListPurchaseOrdersPlaceRefTypeResponseBody> place,
             Optional<Double> quantityOrdered,
             Optional<Double> quantityReceived,
@@ -64,6 +70,8 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
         this.description = description;
         this.lineItemId = lineItemId;
         this.partSamsara = partSamsara;
+        this.partsRequest = partsRequest;
+        this.partsRequestLine = partsRequestLine;
         this.place = place;
         this.quantityOrdered = quantityOrdered;
         this.quantityReceived = quantityReceived;
@@ -105,6 +113,16 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
     @JsonProperty("partSamsara")
     public Optional<EntityListPurchaseOrdersPartDefinitionRefTypeResponseBody> getPartSamsara() {
         return partSamsara;
+    }
+
+    @JsonProperty("partsRequest")
+    public Optional<EntityListPurchaseOrdersRequisitionRefTypeResponseBody> getPartsRequest() {
+        return partsRequest;
+    }
+
+    @JsonProperty("partsRequestLine")
+    public Optional<EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody> getPartsRequestLine() {
+        return partsRequestLine;
     }
 
     @JsonProperty("place")
@@ -165,6 +183,8 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
                 && description.equals(other.description)
                 && lineItemId.equals(other.lineItemId)
                 && partSamsara.equals(other.partSamsara)
+                && partsRequest.equals(other.partsRequest)
+                && partsRequestLine.equals(other.partsRequestLine)
                 && place.equals(other.place)
                 && quantityOrdered.equals(other.quantityOrdered)
                 && quantityReceived.equals(other.quantityReceived)
@@ -181,6 +201,8 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
                 this.description,
                 this.lineItemId,
                 this.partSamsara,
+                this.partsRequest,
+                this.partsRequestLine,
                 this.place,
                 this.quantityOrdered,
                 this.quantityReceived,
@@ -211,6 +233,11 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
 
         private Optional<EntityListPurchaseOrdersPartDefinitionRefTypeResponseBody> partSamsara = Optional.empty();
 
+        private Optional<EntityListPurchaseOrdersRequisitionRefTypeResponseBody> partsRequest = Optional.empty();
+
+        private Optional<EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody> partsRequestLine =
+                Optional.empty();
+
         private Optional<EntityListPurchaseOrdersPlaceRefTypeResponseBody> place = Optional.empty();
 
         private Optional<Double> quantityOrdered = Optional.empty();
@@ -235,6 +262,8 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
             description(other.getDescription());
             lineItemId(other.getLineItemId());
             partSamsara(other.getPartSamsara());
+            partsRequest(other.getPartsRequest());
+            partsRequestLine(other.getPartsRequestLine());
             place(other.getPlace());
             quantityOrdered(other.getQuantityOrdered());
             quantityReceived(other.getQuantityReceived());
@@ -307,6 +336,29 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
 
         public Builder partSamsara(EntityListPurchaseOrdersPartDefinitionRefTypeResponseBody partSamsara) {
             this.partSamsara = Optional.ofNullable(partSamsara);
+            return this;
+        }
+
+        @JsonSetter(value = "partsRequest", nulls = Nulls.SKIP)
+        public Builder partsRequest(Optional<EntityListPurchaseOrdersRequisitionRefTypeResponseBody> partsRequest) {
+            this.partsRequest = partsRequest;
+            return this;
+        }
+
+        public Builder partsRequest(EntityListPurchaseOrdersRequisitionRefTypeResponseBody partsRequest) {
+            this.partsRequest = Optional.ofNullable(partsRequest);
+            return this;
+        }
+
+        @JsonSetter(value = "partsRequestLine", nulls = Nulls.SKIP)
+        public Builder partsRequestLine(
+                Optional<EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody> partsRequestLine) {
+            this.partsRequestLine = partsRequestLine;
+            return this;
+        }
+
+        public Builder partsRequestLine(EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody partsRequestLine) {
+            this.partsRequestLine = Optional.ofNullable(partsRequestLine);
             return this;
         }
 
@@ -396,6 +448,8 @@ public final class ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeRes
                     description,
                     lineItemId,
                     partSamsara,
+                    partsRequest,
+                    partsRequestLine,
                     place,
                     quantityOrdered,
                     quantityReceived,

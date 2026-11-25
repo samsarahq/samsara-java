@@ -63,11 +63,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testGetIndustrialAssets() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"customMetadata\":{\"manufacturer\":\"Samsara\",\"serialNumber\":\"123ABC\"},\"dataOutputs\":[{\"dataGroup\":\"Control Pressure\",\"deviceId\":\"123\",\"id\":\"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"name\":\"Digital Output 1\"}],\"id\":\"123abcde-4567-8910-1112-fghi1314jklm\",\"isRunning\":true,\"location\":{\"formattedAddress\":\"350 Rhode Island St, San Francisco CA, 94103\",\"latitude\":37.765363,\"longitude\":-122.403098},\"locationDataInput\":{\"id\":\"id\"},\"locationType\":\"point\",\"name\":\"name\",\"parentAsset\":{\"id\":\"123abcde-4567-8910-1112-fghi1314jklm\",\"name\":\"name\"},\"runningStatusDataInput\":{\"id\":\"12345\"},\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testGetIndustrialAssets_response.json")));
         ListIndustrialAssetsResponse response = client.industrial()
                 .getIndustrialAssets(GetIndustrialAssetsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -77,55 +76,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"customMetadata\": {\n"
-                + "        \"manufacturer\": \"Samsara\",\n"
-                + "        \"serialNumber\": \"123ABC\"\n"
-                + "      },\n"
-                + "      \"dataOutputs\": [\n"
-                + "        {\n"
-                + "          \"dataGroup\": \"Control Pressure\",\n"
-                + "          \"deviceId\": \"123\",\n"
-                + "          \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n"
-                + "          \"name\": \"Digital Output 1\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"id\": \"123abcde-4567-8910-1112-fghi1314jklm\",\n"
-                + "      \"isRunning\": true,\n"
-                + "      \"location\": {\n"
-                + "        \"formattedAddress\": \"350 Rhode Island St, San Francisco CA, 94103\",\n"
-                + "        \"latitude\": 37.765363,\n"
-                + "        \"longitude\": -122.403098\n"
-                + "      },\n"
-                + "      \"locationDataInput\": {\n"
-                + "        \"id\": \"id\"\n"
-                + "      },\n"
-                + "      \"locationType\": \"point\",\n"
-                + "      \"name\": \"name\",\n"
-                + "      \"parentAsset\": {\n"
-                + "        \"id\": \"123abcde-4567-8910-1112-fghi1314jklm\",\n"
-                + "        \"name\": \"name\"\n"
-                + "      },\n"
-                + "      \"runningStatusDataInput\": {\n"
-                + "        \"id\": \"12345\"\n"
-                + "      },\n"
-                + "      \"tags\": [\n"
-                + "        {\n"
-                + "          \"id\": \"3914\",\n"
-                + "          \"name\": \"East Coast\",\n"
-                + "          \"parentTagId\": \"4815\"\n"
-                + "        }\n"
-                + "      ]\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/IndustrialWireTest_testGetIndustrialAssets_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -159,11 +111,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testCreateIndustrialAsset() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"customMetadata\":{\"manufacturer\":\"Samsara\",\"serialNumber\":\"123ABC\"},\"dataOutputs\":[{\"dataGroup\":\"Control Pressure\",\"deviceId\":\"123\",\"id\":\"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"name\":\"Digital Output 1\"}],\"id\":\"123abcde-4567-8910-1112-fghi1314jklm\",\"isRunning\":true,\"location\":{\"formattedAddress\":\"350 Rhode Island St, San Francisco CA, 94103\",\"latitude\":37.765363,\"longitude\":-122.403098},\"locationDataInput\":{\"id\":\"id\"},\"locationType\":\"point\",\"name\":\"name\",\"parentAsset\":{\"id\":\"123abcde-4567-8910-1112-fghi1314jklm\",\"name\":\"name\"},\"runningStatusDataInput\":{\"id\":\"12345\"},\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testCreateIndustrialAsset_response.json")));
         InlineResponse200 response = client.industrial()
                 .createIndustrialAsset(AssetCreate.builder().name("name").build());
         RecordedRequest request = server.takeRequest();
@@ -202,49 +153,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"customMetadata\": {\n"
-                + "      \"manufacturer\": \"Samsara\",\n"
-                + "      \"serialNumber\": \"123ABC\"\n"
-                + "    },\n"
-                + "    \"dataOutputs\": [\n"
-                + "      {\n"
-                + "        \"dataGroup\": \"Control Pressure\",\n"
-                + "        \"deviceId\": \"123\",\n"
-                + "        \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n"
-                + "        \"name\": \"Digital Output 1\"\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"id\": \"123abcde-4567-8910-1112-fghi1314jklm\",\n"
-                + "    \"isRunning\": true,\n"
-                + "    \"location\": {\n"
-                + "      \"formattedAddress\": \"350 Rhode Island St, San Francisco CA, 94103\",\n"
-                + "      \"latitude\": 37.765363,\n"
-                + "      \"longitude\": -122.403098\n"
-                + "    },\n"
-                + "    \"locationDataInput\": {\n"
-                + "      \"id\": \"id\"\n"
-                + "    },\n"
-                + "    \"locationType\": \"point\",\n"
-                + "    \"name\": \"name\",\n"
-                + "    \"parentAsset\": {\n"
-                + "      \"id\": \"123abcde-4567-8910-1112-fghi1314jklm\",\n"
-                + "      \"name\": \"name\"\n"
-                + "    },\n"
-                + "    \"runningStatusDataInput\": {\n"
-                + "      \"id\": \"12345\"\n"
-                + "    },\n"
-                + "    \"tags\": [\n"
-                + "      {\n"
-                + "        \"id\": \"3914\",\n"
-                + "        \"name\": \"East Coast\",\n"
-                + "        \"parentTagId\": \"4815\"\n"
-                + "      }\n"
-                + "    ]\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/IndustrialWireTest_testCreateIndustrialAsset_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -278,11 +188,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testPatchIndustrialAsset() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":{\"customMetadata\":{\"manufacturer\":\"Samsara\",\"serialNumber\":\"123ABC\"},\"dataOutputs\":[{\"dataGroup\":\"Control Pressure\",\"deviceId\":\"123\",\"id\":\"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"name\":\"Digital Output 1\"}],\"id\":\"123abcde-4567-8910-1112-fghi1314jklm\",\"isRunning\":true,\"location\":{\"formattedAddress\":\"350 Rhode Island St, San Francisco CA, 94103\",\"latitude\":37.765363,\"longitude\":-122.403098},\"locationDataInput\":{\"id\":\"id\"},\"locationType\":\"point\",\"name\":\"name\",\"parentAsset\":{\"id\":\"123abcde-4567-8910-1112-fghi1314jklm\",\"name\":\"name\"},\"runningStatusDataInput\":{\"id\":\"12345\"},\"tags\":[{\"id\":\"3914\",\"name\":\"East Coast\",\"parentTagId\":\"4815\"}]}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testPatchIndustrialAsset_response.json")));
         InlineResponse200 response = client.industrial()
                 .patchIndustrialAsset("id", AssetPatch.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -321,49 +230,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": {\n"
-                + "    \"customMetadata\": {\n"
-                + "      \"manufacturer\": \"Samsara\",\n"
-                + "      \"serialNumber\": \"123ABC\"\n"
-                + "    },\n"
-                + "    \"dataOutputs\": [\n"
-                + "      {\n"
-                + "        \"dataGroup\": \"Control Pressure\",\n"
-                + "        \"deviceId\": \"123\",\n"
-                + "        \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n"
-                + "        \"name\": \"Digital Output 1\"\n"
-                + "      }\n"
-                + "    ],\n"
-                + "    \"id\": \"123abcde-4567-8910-1112-fghi1314jklm\",\n"
-                + "    \"isRunning\": true,\n"
-                + "    \"location\": {\n"
-                + "      \"formattedAddress\": \"350 Rhode Island St, San Francisco CA, 94103\",\n"
-                + "      \"latitude\": 37.765363,\n"
-                + "      \"longitude\": -122.403098\n"
-                + "    },\n"
-                + "    \"locationDataInput\": {\n"
-                + "      \"id\": \"id\"\n"
-                + "    },\n"
-                + "    \"locationType\": \"point\",\n"
-                + "    \"name\": \"name\",\n"
-                + "    \"parentAsset\": {\n"
-                + "      \"id\": \"123abcde-4567-8910-1112-fghi1314jklm\",\n"
-                + "      \"name\": \"name\"\n"
-                + "    },\n"
-                + "    \"runningStatusDataInput\": {\n"
-                + "      \"id\": \"12345\"\n"
-                + "    },\n"
-                + "    \"tags\": [\n"
-                + "      {\n"
-                + "        \"id\": \"3914\",\n"
-                + "        \"name\": \"East Coast\",\n"
-                + "        \"parentTagId\": \"4815\"\n"
-                + "      }\n"
-                + "    ]\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/IndustrialWireTest_testPatchIndustrialAsset_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -558,7 +426,7 @@ public class IndustrialWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"fftSpectraPoint\":{\"time\":\"2020-01-27T07:06:25Z\"},\"j1939D1StatusPoint\":{\"time\":\"2020-01-27T07:06:25Z\"},\"locationPoint\":{\"time\":\"2020-01-27T07:06:25Z\"},\"numberPoint\":{\"time\":\"2020-01-27T07:06:25Z\",\"value\":1992.0506},\"stringPoint\":{\"time\":\"2020-01-27T07:06:25Z\",\"value\":\"On\"},\"assetId\":\"74771078-5edb-4733-88f2-7242f520d1f1\",\"dataGroup\":\"Flow\",\"id\":\"id\",\"name\":\"Pump Flow\",\"units\":\"Gallons Per Minute\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"fftSpectraPoint\":{\"time\":\"2020-01-27T07:06:25Z\"},\"j1939D1StatusPoint\":{\"time\":\"2020-01-27T07:06:25Z\"},\"locationPoint\":{\"gpsLocation\":{\"formattedAddress\":\"350 Rhode Island St, San Francisco CA, 94103\",\"gpsMetersPerSecond\":35.5,\"headingDegrees\":91.2,\"latitude\":42.44817,\"longitude\":-71.224716,\"place\":{\"city\":\"San Francisco\",\"houseNumber\":\"350\",\"neighborhood\":\"Castro\",\"poi\":\"400\",\"postcode\":\"94103\",\"state\":\"CA\",\"street\":\"Rhode Island\"}},\"time\":\"2020-01-27T07:06:25Z\"},\"numberPoint\":{\"time\":\"2020-01-27T07:06:25Z\",\"value\":1992.0506},\"stringPoint\":{\"time\":\"2020-01-27T07:06:25Z\",\"value\":\"On\"},\"assetId\":\"74771078-5edb-4733-88f2-7242f520d1f1\",\"dataGroup\":\"Flow\",\"id\":\"id\",\"name\":\"Pump Flow\",\"units\":\"Gallons Per Minute\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         DataInputSnapshotResponse response = client.industrial()
                 .getDataInputDataSnapshot(
                         GetDataInputDataSnapshotRequest.builder().build());
@@ -580,6 +448,22 @@ public class IndustrialWireTest {
                 + "        \"time\": \"2020-01-27T07:06:25Z\"\n"
                 + "      },\n"
                 + "      \"locationPoint\": {\n"
+                + "        \"gpsLocation\": {\n"
+                + "          \"formattedAddress\": \"350 Rhode Island St, San Francisco CA, 94103\",\n"
+                + "          \"gpsMetersPerSecond\": 35.5,\n"
+                + "          \"headingDegrees\": 91.2,\n"
+                + "          \"latitude\": 42.44817,\n"
+                + "          \"longitude\": -71.224716,\n"
+                + "          \"place\": {\n"
+                + "            \"city\": \"San Francisco\",\n"
+                + "            \"houseNumber\": \"350\",\n"
+                + "            \"neighborhood\": \"Castro\",\n"
+                + "            \"poi\": \"400\",\n"
+                + "            \"postcode\": \"94103\",\n"
+                + "            \"state\": \"CA\",\n"
+                + "            \"street\": \"Rhode Island\"\n"
+                + "          }\n"
+                + "        },\n"
                 + "        \"time\": \"2020-01-27T07:06:25Z\"\n"
                 + "      },\n"
                 + "      \"numberPoint\": {\n"
@@ -635,11 +519,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testGetDataInputDataFeed() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"fftSpectraPoints\":[{\"time\":\"2020-01-27T07:06:25Z\"}],\"j1939D1StatusPoints\":[{\"time\":\"2020-01-27T07:06:25Z\"}],\"locationPoints\":[{\"time\":\"2020-01-27T07:06:25Z\"}],\"numberPoints\":[{\"time\":\"2020-01-27T07:06:25Z\",\"value\":1992.0506}],\"stringPoints\":[{\"time\":\"2020-01-27T07:06:25Z\",\"value\":\"On\"}],\"assetId\":\"74771078-5edb-4733-88f2-7242f520d1f1\",\"dataGroup\":\"Flow\",\"id\":\"id\",\"name\":\"Pump Flow\",\"units\":\"Gallons Per Minute\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testGetDataInputDataFeed_response.json")));
         DataInputListResponse response = client.industrial()
                 .getDataInputDataFeed(GetDataInputDataFeedRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -649,49 +532,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"fftSpectraPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"j1939D1StatusPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"locationPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"numberPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\",\n"
-                + "          \"value\": 1992.0506\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"stringPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\",\n"
-                + "          \"value\": \"On\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"assetId\": \"74771078-5edb-4733-88f2-7242f520d1f1\",\n"
-                + "      \"dataGroup\": \"Flow\",\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"name\": \"Pump Flow\",\n"
-                + "      \"units\": \"Gallons Per Minute\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/IndustrialWireTest_testGetDataInputDataFeed_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -725,11 +567,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testGetDataInputDataHistory() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"data\":[{\"fftSpectraPoints\":[{\"time\":\"2020-01-27T07:06:25Z\"}],\"j1939D1StatusPoints\":[{\"time\":\"2020-01-27T07:06:25Z\"}],\"locationPoints\":[{\"time\":\"2020-01-27T07:06:25Z\"}],\"numberPoints\":[{\"time\":\"2020-01-27T07:06:25Z\",\"value\":1992.0506}],\"stringPoints\":[{\"time\":\"2020-01-27T07:06:25Z\",\"value\":\"On\"}],\"assetId\":\"74771078-5edb-4733-88f2-7242f520d1f1\",\"dataGroup\":\"Flow\",\"id\":\"id\",\"name\":\"Pump Flow\",\"units\":\"Gallons Per Minute\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testGetDataInputDataHistory_response.json")));
         DataInputListResponse response = client.industrial()
                 .getDataInputDataHistory(GetDataInputDataHistoryRequest.builder()
                         .startTime("startTime")
@@ -742,49 +583,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"data\": [\n"
-                + "    {\n"
-                + "      \"fftSpectraPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"j1939D1StatusPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"locationPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"numberPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\",\n"
-                + "          \"value\": 1992.0506\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"stringPoints\": [\n"
-                + "        {\n"
-                + "          \"time\": \"2020-01-27T07:06:25Z\",\n"
-                + "          \"value\": \"On\"\n"
-                + "        }\n"
-                + "      ],\n"
-                + "      \"assetId\": \"74771078-5edb-4733-88f2-7242f520d1f1\",\n"
-                + "      \"dataGroup\": \"Flow\",\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"name\": \"Pump Flow\",\n"
-                + "      \"units\": \"Gallons Per Minute\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"pagination\": {\n"
-                + "    \"endCursor\": \"MjkY\",\n"
-                + "    \"hasNextPage\": true\n"
-                + "  }\n"
-                + "}";
+        String expectedResponseBody =
+                TestResources.loadResource("/wire-tests/IndustrialWireTest_testGetDataInputDataHistory_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -926,11 +726,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testV1GetVisionLatestRunCamera() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"cameraId\":1234512345123,\"endedAtMs\":0,\"inspectionResults\":[{\"captureAtMs\":1553811994730,\"result\":\"PASS\",\"stepResults\":[{\"name\":\"Chicken Caesar Label\",\"result\":\"PASS\"}]}],\"isOngoing\":true,\"program\":{\"id\":1,\"name\":\"Barcode verification program\"},\"runSummary\":{\"itemsPerMinute\":0.1,\"noReadCount\":0,\"rejectCount\":0,\"successCount\":181},\"startedAtMs\":1553808606097}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testV1GetVisionLatestRunCamera_response.json")));
         V1VisionRunByCameraResponse response = client.industrial()
                 .v1GetVisionLatestRunCamera(
                         1000000L, V1GetVisionLatestRunCameraRequest.builder().build());
@@ -941,35 +740,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"cameraId\": 1234512345123,\n"
-                + "  \"endedAtMs\": 0,\n"
-                + "  \"inspectionResults\": [\n"
-                + "    {\n"
-                + "      \"captureAtMs\": 1553811994730,\n"
-                + "      \"result\": \"PASS\",\n"
-                + "      \"stepResults\": [\n"
-                + "        {\n"
-                + "          \"name\": \"Chicken Caesar Label\",\n"
-                + "          \"result\": \"PASS\"\n"
-                + "        }\n"
-                + "      ]\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"isOngoing\": true,\n"
-                + "  \"program\": {\n"
-                + "    \"id\": 1,\n"
-                + "    \"name\": \"Barcode verification program\"\n"
-                + "  },\n"
-                + "  \"runSummary\": {\n"
-                + "    \"itemsPerMinute\": 0.1,\n"
-                + "    \"noReadCount\": 0,\n"
-                + "    \"rejectCount\": 0,\n"
-                + "    \"successCount\": 181\n"
-                + "  },\n"
-                + "  \"startedAtMs\": 1553808606097\n"
-                + "}";
+        String expectedResponseBody = TestResources.loadResource(
+                "/wire-tests/IndustrialWireTest_testV1GetVisionLatestRunCamera_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -1137,11 +909,10 @@ public class IndustrialWireTest {
 
     @Test
     public void testV1GetVisionRunsByCameraAndProgram() throws Exception {
-        server.enqueue(
-                new MockResponse()
-                        .setResponseCode(200)
-                        .setBody(
-                                "{\"deviceId\":1234512345123,\"endedAtMs\":0,\"programId\":1,\"reportMetadata\":{\"itemsPerMinute\":0.1,\"noReadCount\":0,\"rejectCount\":0,\"successCount\":181},\"results\":[{\"captureAtMs\":1553811994730,\"result\":\"PASS\",\"stepResults\":[{\"name\":\"Chicken Caesar Label\",\"result\":\"PASS\"}]}],\"startedAtMs\":1553808606097}"));
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(TestResources.loadResource(
+                        "/wire-tests/IndustrialWireTest_testV1GetVisionRunsByCameraAndProgram_response.json")));
         V1VisionRunsByCameraAndProgramResponse response = client.industrial()
                 .v1GetVisionRunsByCameraAndProgram(
                         1000000L,
@@ -1155,31 +926,8 @@ public class IndustrialWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = ""
-                + "{\n"
-                + "  \"deviceId\": 1234512345123,\n"
-                + "  \"endedAtMs\": 0,\n"
-                + "  \"programId\": 1,\n"
-                + "  \"reportMetadata\": {\n"
-                + "    \"itemsPerMinute\": 0.1,\n"
-                + "    \"noReadCount\": 0,\n"
-                + "    \"rejectCount\": 0,\n"
-                + "    \"successCount\": 181\n"
-                + "  },\n"
-                + "  \"results\": [\n"
-                + "    {\n"
-                + "      \"captureAtMs\": 1553811994730,\n"
-                + "      \"result\": \"PASS\",\n"
-                + "      \"stepResults\": [\n"
-                + "        {\n"
-                + "          \"name\": \"Chicken Caesar Label\",\n"
-                + "          \"result\": \"PASS\"\n"
-                + "        }\n"
-                + "      ]\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"startedAtMs\": 1553808606097\n"
-                + "}";
+        String expectedResponseBody = TestResources.loadResource(
+                "/wire-tests/IndustrialWireTest_testV1GetVisionRunsByCameraAndProgram_response.json");
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(

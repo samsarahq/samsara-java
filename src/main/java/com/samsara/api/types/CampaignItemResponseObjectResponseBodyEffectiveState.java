@@ -13,6 +13,9 @@ public final class CampaignItemResponseObjectResponseBodyEffectiveState {
     public static final CampaignItemResponseObjectResponseBodyEffectiveState COMPLETE =
             new CampaignItemResponseObjectResponseBodyEffectiveState(Value.COMPLETE, "complete");
 
+    public static final CampaignItemResponseObjectResponseBodyEffectiveState WORK_ORDER_CANCELED =
+            new CampaignItemResponseObjectResponseBodyEffectiveState(Value.WORK_ORDER_CANCELED, "workOrderCanceled");
+
     public static final CampaignItemResponseObjectResponseBodyEffectiveState PENDING =
             new CampaignItemResponseObjectResponseBodyEffectiveState(Value.PENDING, "pending");
 
@@ -71,6 +74,8 @@ public final class CampaignItemResponseObjectResponseBodyEffectiveState {
                 return visitor.visitWorkOrderCreated();
             case COMPLETE:
                 return visitor.visitComplete();
+            case WORK_ORDER_CANCELED:
+                return visitor.visitWorkOrderCanceled();
             case PENDING:
                 return visitor.visitPending();
             case UNKNOWN:
@@ -98,6 +103,8 @@ public final class CampaignItemResponseObjectResponseBodyEffectiveState {
                 return WORK_ORDER_CREATED;
             case "complete":
                 return COMPLETE;
+            case "workOrderCanceled":
+                return WORK_ORDER_CANCELED;
             case "pending":
                 return PENDING;
             case "unknown":
@@ -126,6 +133,8 @@ public final class CampaignItemResponseObjectResponseBodyEffectiveState {
 
         WORK_ORDER_CREATED,
 
+        WORK_ORDER_CANCELED,
+
         COMPLETE,
 
         DISMISSED,
@@ -147,6 +156,8 @@ public final class CampaignItemResponseObjectResponseBodyEffectiveState {
         T visitReady();
 
         T visitWorkOrderCreated();
+
+        T visitWorkOrderCanceled();
 
         T visitComplete();
 

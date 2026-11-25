@@ -29,6 +29,8 @@ public final class BaseRouteResponseObjectResponseBody {
 
     private final Optional<GoaDriverTinyResponseResponseBody> driver;
 
+    private final Optional<RouteEquipmentProfileObjectResponseBody> equipmentProfile;
+
     private final Optional<Map<String, String>> externalIds;
 
     private final String id;
@@ -59,6 +61,7 @@ public final class BaseRouteResponseObjectResponseBody {
             Optional<OffsetDateTime> actualRouteEndTime,
             Optional<OffsetDateTime> actualRouteStartTime,
             Optional<GoaDriverTinyResponseResponseBody> driver,
+            Optional<RouteEquipmentProfileObjectResponseBody> equipmentProfile,
             Optional<Map<String, String>> externalIds,
             String id,
             Optional<String> name,
@@ -75,6 +78,7 @@ public final class BaseRouteResponseObjectResponseBody {
         this.actualRouteEndTime = actualRouteEndTime;
         this.actualRouteStartTime = actualRouteStartTime;
         this.driver = driver;
+        this.equipmentProfile = equipmentProfile;
         this.externalIds = externalIds;
         this.id = id;
         this.name = name;
@@ -109,6 +113,11 @@ public final class BaseRouteResponseObjectResponseBody {
     @JsonProperty("driver")
     public Optional<GoaDriverTinyResponseResponseBody> getDriver() {
         return driver;
+    }
+
+    @JsonProperty("equipmentProfile")
+    public Optional<RouteEquipmentProfileObjectResponseBody> getEquipmentProfile() {
+        return equipmentProfile;
     }
 
     /**
@@ -217,6 +226,7 @@ public final class BaseRouteResponseObjectResponseBody {
         return actualRouteEndTime.equals(other.actualRouteEndTime)
                 && actualRouteStartTime.equals(other.actualRouteStartTime)
                 && driver.equals(other.driver)
+                && equipmentProfile.equals(other.equipmentProfile)
                 && externalIds.equals(other.externalIds)
                 && id.equals(other.id)
                 && name.equals(other.name)
@@ -237,6 +247,7 @@ public final class BaseRouteResponseObjectResponseBody {
                 this.actualRouteEndTime,
                 this.actualRouteStartTime,
                 this.driver,
+                this.equipmentProfile,
                 this.externalIds,
                 this.id,
                 this.name,
@@ -289,6 +300,10 @@ public final class BaseRouteResponseObjectResponseBody {
         _FinalStage driver(Optional<GoaDriverTinyResponseResponseBody> driver);
 
         _FinalStage driver(GoaDriverTinyResponseResponseBody driver);
+
+        _FinalStage equipmentProfile(Optional<RouteEquipmentProfileObjectResponseBody> equipmentProfile);
+
+        _FinalStage equipmentProfile(RouteEquipmentProfileObjectResponseBody equipmentProfile);
 
         /**
          * <p>A map of external ids</p>
@@ -391,6 +406,8 @@ public final class BaseRouteResponseObjectResponseBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<RouteEquipmentProfileObjectResponseBody> equipmentProfile = Optional.empty();
+
         private Optional<GoaDriverTinyResponseResponseBody> driver = Optional.empty();
 
         private Optional<OffsetDateTime> actualRouteStartTime = Optional.empty();
@@ -407,6 +424,7 @@ public final class BaseRouteResponseObjectResponseBody {
             actualRouteEndTime(other.getActualRouteEndTime());
             actualRouteStartTime(other.getActualRouteStartTime());
             driver(other.getDriver());
+            equipmentProfile(other.getEquipmentProfile());
             externalIds(other.getExternalIds());
             id(other.getId());
             name(other.getName());
@@ -643,6 +661,19 @@ public final class BaseRouteResponseObjectResponseBody {
         }
 
         @java.lang.Override
+        public _FinalStage equipmentProfile(RouteEquipmentProfileObjectResponseBody equipmentProfile) {
+            this.equipmentProfile = Optional.ofNullable(equipmentProfile);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "equipmentProfile", nulls = Nulls.SKIP)
+        public _FinalStage equipmentProfile(Optional<RouteEquipmentProfileObjectResponseBody> equipmentProfile) {
+            this.equipmentProfile = equipmentProfile;
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage driver(GoaDriverTinyResponseResponseBody driver) {
             this.driver = Optional.ofNullable(driver);
             return this;
@@ -701,6 +732,7 @@ public final class BaseRouteResponseObjectResponseBody {
                     actualRouteEndTime,
                     actualRouteStartTime,
                     driver,
+                    equipmentProfile,
                     externalIds,
                     id,
                     name,

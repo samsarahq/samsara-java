@@ -8,6 +8,7 @@ import com.samsara.api.resources.driverqrcodes.requests.DriverQrCodesDeleteDrive
 import com.samsara.api.resources.driverqrcodes.requests.GetDriversQrCodesRequest;
 import com.samsara.api.types.DriverQrCodesCreateDriverQrCodeResponseBody;
 import com.samsara.api.types.DriverQrCodesGetDriversQrCodesResponseBody;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -42,9 +43,11 @@ public class DriverQrCodesWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"driverId\":1000000,\"qrCodeLink\":\"qrCodeLink\"},{\"driverId\":1000000,\"qrCodeLink\":\"qrCodeLink\"}]}"));
+                                "{\"data\":[{\"driverId\":494123,\"qrCodeLink\":\"https://cloud.samsara.com/qr_code/18979ef6-663e-446b-8d5a-0ff0781b8bab\"}]}"));
         DriverQrCodesGetDriversQrCodesResponseBody response = client.driverQrCodes()
-                .getDriversQrCodes(GetDriversQrCodesRequest.builder().build());
+                .getDriversQrCodes(GetDriversQrCodesRequest.builder()
+                        .driverIds(Arrays.asList("driverIds"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("GET", request.getMethod());
@@ -56,12 +59,8 @@ public class DriverQrCodesWireTest {
                 + "{\n"
                 + "  \"data\": [\n"
                 + "    {\n"
-                + "      \"driverId\": 1000000,\n"
-                + "      \"qrCodeLink\": \"qrCodeLink\"\n"
-                + "    },\n"
-                + "    {\n"
-                + "      \"driverId\": 1000000,\n"
-                + "      \"qrCodeLink\": \"qrCodeLink\"\n"
+                + "      \"driverId\": 494123,\n"
+                + "      \"qrCodeLink\": \"https://cloud.samsara.com/qr_code/18979ef6-663e-446b-8d5a-0ff0781b8bab\"\n"
                 + "    }\n"
                 + "  ]\n"
                 + "}";

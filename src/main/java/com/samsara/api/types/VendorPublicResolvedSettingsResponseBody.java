@@ -75,7 +75,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
     }
 
     /**
-     * @return system, vendorGroup, vendorLocation, or unknown.
+     * @return system, vendor, vendorLocation, or unknown.
      */
     @JsonProperty("assetAttributeSelectionsSource")
     public String getAssetAttributeSelectionsSource() {
@@ -88,7 +88,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
     }
 
     /**
-     * @return system, vendorGroup, vendorLocation, or unknown.
+     * @return system, vendor, vendorLocation, or unknown.
      */
     @JsonProperty("defaultLaborRatePerHourSource")
     public String getDefaultLaborRatePerHourSource() {
@@ -112,7 +112,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
     }
 
     /**
-     * @return system, vendorGroup, vendorLocation, or unknown.
+     * @return system, vendor, vendorLocation, or unknown.
      */
     @JsonProperty("isMobileSource")
     public String getIsMobileSource() {
@@ -128,7 +128,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
     }
 
     /**
-     * @return system, vendorGroup, vendorLocation, or unknown.
+     * @return system, vendor, vendorLocation, or unknown.
      */
     @JsonProperty("isPreferredSource")
     public String getIsPreferredSource() {
@@ -184,7 +184,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
 
     public interface AssetAttributeSelectionsSourceStage {
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          */
         DefaultLaborRatePerHourSourceStage assetAttributeSelectionsSource(
                 @NotNull String assetAttributeSelectionsSource);
@@ -194,7 +194,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
 
     public interface DefaultLaborRatePerHourSourceStage {
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          */
         IsActiveStage defaultLaborRatePerHourSource(@NotNull String defaultLaborRatePerHourSource);
     }
@@ -215,7 +215,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
 
     public interface IsMobileSourceStage {
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          */
         IsPreferredStage isMobileSource(@NotNull String isMobileSource);
     }
@@ -229,7 +229,7 @@ public final class VendorPublicResolvedSettingsResponseBody {
 
     public interface IsPreferredSourceStage {
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          */
         _FinalStage isPreferredSource(@NotNull String isPreferredSource);
     }
@@ -300,8 +300,8 @@ public final class VendorPublicResolvedSettingsResponseBody {
         }
 
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -314,8 +314,8 @@ public final class VendorPublicResolvedSettingsResponseBody {
         }
 
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -351,8 +351,8 @@ public final class VendorPublicResolvedSettingsResponseBody {
         }
 
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -375,8 +375,8 @@ public final class VendorPublicResolvedSettingsResponseBody {
         }
 
         /**
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
-         * <p>system, vendorGroup, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
+         * <p>system, vendor, vendorLocation, or unknown.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

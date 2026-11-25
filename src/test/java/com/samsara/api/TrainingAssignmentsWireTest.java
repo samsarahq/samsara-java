@@ -10,6 +10,7 @@ import com.samsara.api.resources.trainingassignments.requests.PostTrainingAssign
 import com.samsara.api.types.TrainingAssignmentsGetTrainingAssignmentsStreamResponseBody;
 import com.samsara.api.types.TrainingAssignmentsPatchTrainingAssignmentsResponseBody;
 import com.samsara.api.types.TrainingAssignmentsPostTrainingAssignmentsResponseBody;
+import java.util.Arrays;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -44,11 +45,12 @@ public class TrainingAssignmentsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"course\":{\"id\":\"id\",\"revisionId\":\"revisionId\"},\"createdAtTime\":\"2024-01-15T09:30:00Z\",\"createdById\":\"createdById\",\"dueAtTime\":\"2024-01-15T09:30:00Z\",\"id\":\"id\",\"isExistingAssignment\":true,\"learner\":{\"id\":\"id\",\"type\":\"unknown\"}},{\"course\":{\"id\":\"id\",\"revisionId\":\"revisionId\"},\"createdAtTime\":\"2024-01-15T09:30:00Z\",\"createdById\":\"createdById\",\"dueAtTime\":\"2024-01-15T09:30:00Z\",\"id\":\"id\",\"isExistingAssignment\":true,\"learner\":{\"id\":\"id\",\"type\":\"unknown\"}}]}"));
+                                "{\"data\":[{\"course\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"revisionId\":\"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdById\":\"user-4392\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"isExistingAssignment\":true,\"learner\":{\"id\":\"938172\",\"type\":\"unknown\"}}]}"));
         TrainingAssignmentsPostTrainingAssignmentsResponseBody response = client.trainingAssignments()
                 .postTrainingAssignments(PostTrainingAssignmentsRequest.builder()
                         .courseId("courseId")
                         .dueAtTime("dueAtTime")
+                        .learnerIds(Arrays.asList("learnerIds"))
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -62,31 +64,16 @@ public class TrainingAssignmentsWireTest {
                 + "  \"data\": [\n"
                 + "    {\n"
                 + "      \"course\": {\n"
-                + "        \"id\": \"id\",\n"
-                + "        \"revisionId\": \"revisionId\"\n"
+                + "        \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "        \"revisionId\": \"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"\n"
                 + "      },\n"
-                + "      \"createdAtTime\": \"2024-01-15T09:30:00Z\",\n"
-                + "      \"createdById\": \"createdById\",\n"
-                + "      \"dueAtTime\": \"2024-01-15T09:30:00Z\",\n"
-                + "      \"id\": \"id\",\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"createdById\": \"user-4392\",\n"
+                + "      \"dueAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
                 + "      \"isExistingAssignment\": true,\n"
                 + "      \"learner\": {\n"
-                + "        \"id\": \"id\",\n"
-                + "        \"type\": \"unknown\"\n"
-                + "      }\n"
-                + "    },\n"
-                + "    {\n"
-                + "      \"course\": {\n"
-                + "        \"id\": \"id\",\n"
-                + "        \"revisionId\": \"revisionId\"\n"
-                + "      },\n"
-                + "      \"createdAtTime\": \"2024-01-15T09:30:00Z\",\n"
-                + "      \"createdById\": \"createdById\",\n"
-                + "      \"dueAtTime\": \"2024-01-15T09:30:00Z\",\n"
-                + "      \"id\": \"id\",\n"
-                + "      \"isExistingAssignment\": true,\n"
-                + "      \"learner\": {\n"
-                + "        \"id\": \"id\",\n"
+                + "        \"id\": \"938172\",\n"
                 + "        \"type\": \"unknown\"\n"
                 + "      }\n"
                 + "    }\n"
@@ -127,8 +114,9 @@ public class TrainingAssignmentsWireTest {
     public void testDeleteTrainingAssignments() throws Exception {
         server.enqueue(new MockResponse().setResponseCode(200).setBody("{}"));
         client.trainingAssignments()
-                .deleteTrainingAssignments(
-                        DeleteTrainingAssignmentsRequest.builder().build());
+                .deleteTrainingAssignments(DeleteTrainingAssignmentsRequest.builder()
+                        .ids(Arrays.asList("ids"))
+                        .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
         Assertions.assertEquals("DELETE", request.getMethod());
@@ -136,13 +124,15 @@ public class TrainingAssignmentsWireTest {
 
     @Test
     public void testPatchTrainingAssignments() throws Exception {
-        server.enqueue(new MockResponse()
-                .setResponseCode(200)
-                .setBody(TestResources.loadResource(
-                        "/wire-tests/TrainingAssignmentsWireTest_testPatchTrainingAssignments_response.json")));
+        server.enqueue(
+                new MockResponse()
+                        .setResponseCode(200)
+                        .setBody(
+                                "{\"data\":[{\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"course\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"revisionId\":\"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdById\":\"user-4392\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"durationMinutes\":1590488180977115400,\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"isCompletedLate\":true,\"isOverdue\":true,\"learner\":{\"id\":\"938172\",\"type\":\"unknown\"},\"scorePercent\":0.3127833256817915,\"startedAtTime\":\"2019-06-13T19:08:25Z\",\"status\":\"notStarted\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"updatedById\":\"user-3112\"}]}"));
         TrainingAssignmentsPatchTrainingAssignmentsResponseBody response = client.trainingAssignments()
                 .patchTrainingAssignments(PatchTrainingAssignmentsRequest.builder()
                         .dueAtTime("dueAtTime")
+                        .ids(Arrays.asList("ids"))
                         .build());
         RecordedRequest request = server.takeRequest();
         Assertions.assertNotNull(request);
@@ -151,8 +141,35 @@ public class TrainingAssignmentsWireTest {
         // Validate response body
         Assertions.assertNotNull(response, "Response should not be null");
         String actualResponseJson = objectMapper.writeValueAsString(response);
-        String expectedResponseBody = TestResources.loadResource(
-                "/wire-tests/TrainingAssignmentsWireTest_testPatchTrainingAssignments_response.json");
+        String expectedResponseBody = ""
+                + "{\n"
+                + "  \"data\": [\n"
+                + "    {\n"
+                + "      \"completedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"course\": {\n"
+                + "        \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "        \"revisionId\": \"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"\n"
+                + "      },\n"
+                + "      \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"createdById\": \"user-4392\",\n"
+                + "      \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"dueAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"durationMinutes\": 1590488180977115400,\n"
+                + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
+                + "      \"isCompletedLate\": true,\n"
+                + "      \"isOverdue\": true,\n"
+                + "      \"learner\": {\n"
+                + "        \"id\": \"938172\",\n"
+                + "        \"type\": \"unknown\"\n"
+                + "      },\n"
+                + "      \"scorePercent\": 0.3127833256817915,\n"
+                + "      \"startedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"status\": \"notStarted\",\n"
+                + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "      \"updatedById\": \"user-3112\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "}";
         JsonNode actualResponseNode = objectMapper.readTree(actualResponseJson);
         JsonNode expectedResponseNode = objectMapper.readTree(expectedResponseBody);
         Assertions.assertTrue(
@@ -190,7 +207,7 @@ public class TrainingAssignmentsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"course\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"revisionId\":\"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdById\":\"user-4392\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"durationMinutes\":8499960619502581000,\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"isCompletedLate\":true,\"isOverdue\":true,\"learner\":{\"id\":\"938172\",\"type\":\"unknown\"},\"scorePercent\":0.008239265796686357,\"startedAtTime\":\"2019-06-13T19:08:25Z\",\"status\":\"notStarted\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"updatedById\":\"user-3112\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"course\":{\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"revisionId\":\"1214a1fa-f0c6-408b-bf85-51dc3bc71ac7\"},\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"createdById\":\"user-4392\",\"deletedAtTime\":\"2019-06-13T19:08:25Z\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"durationMinutes\":1590488180977115400,\"id\":\"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\"isCompletedLate\":true,\"isOverdue\":true,\"learner\":{\"id\":\"938172\",\"type\":\"unknown\"},\"scorePercent\":0.3127833256817915,\"startedAtTime\":\"2019-06-13T19:08:25Z\",\"status\":\"notStarted\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\",\"updatedById\":\"user-3112\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         TrainingAssignmentsGetTrainingAssignmentsStreamResponseBody response = client.trainingAssignments()
                 .getTrainingAssignmentsStream(GetTrainingAssignmentsStreamRequest.builder()
                         .startTime("startTime")
@@ -215,7 +232,7 @@ public class TrainingAssignmentsWireTest {
                 + "      \"createdById\": \"user-4392\",\n"
                 + "      \"deletedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"dueAtTime\": \"2019-06-13T19:08:25Z\",\n"
-                + "      \"durationMinutes\": 8499960619502581000,\n"
+                + "      \"durationMinutes\": 1590488180977115400,\n"
                 + "      \"id\": \"9814a1fa-f0c6-408b-bf85-51dc3bc71ac7\",\n"
                 + "      \"isCompletedLate\": true,\n"
                 + "      \"isOverdue\": true,\n"
@@ -223,7 +240,7 @@ public class TrainingAssignmentsWireTest {
                 + "        \"id\": \"938172\",\n"
                 + "        \"type\": \"unknown\"\n"
                 + "      },\n"
-                + "      \"scorePercent\": 0.008239265796686357,\n"
+                + "      \"scorePercent\": 0.3127833256817915,\n"
                 + "      \"startedAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "      \"status\": \"notStarted\",\n"
                 + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\",\n"

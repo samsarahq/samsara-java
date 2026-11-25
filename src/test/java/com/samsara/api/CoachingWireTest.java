@@ -167,7 +167,7 @@ public class CoachingWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"assignedCoachId\":\"45646\",\"behaviors\":[{\"coachableBehaviorType\":\"acceleration\",\"coachableEvents\":[{\"id\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"linkage\":{\"sourceId\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"sourceType\":\"safetyEvent\"}}],\"id\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"lastCoachedTime\":\"2019-06-13T19:08:25Z\",\"note\":\"Need to wear seatbelt even for short trips.\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"coachingType\":\"fullySharedWithManager\",\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"completedCoachId\":\"45646\",\"driver\":{\"driverId\":\"0987\"},\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"sessionNote\":\"Need to wear seatbelt even for short trips.\",\"sessionStatus\":\"unknown\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"assignedCoachId\":\"45646\",\"behaviors\":[{\"coachableBehaviorType\":\"acceleration\",\"coachableEvents\":[{\"id\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"linkage\":{\"sourceId\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"sourceType\":\"safetyEvent\"}}],\"createdAtTime\":\"2019-06-13T19:08:25Z\",\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"lastCoachedTime\":\"2019-06-13T19:08:25Z\",\"note\":\"Need to wear seatbelt even for short trips.\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"coachingType\":\"fullySharedWithManager\",\"completedAtTime\":\"2019-06-13T19:08:25Z\",\"completedCoachId\":\"45646\",\"driver\":{\"driverId\":\"0987\"},\"dueAtTime\":\"2019-06-13T19:08:25Z\",\"id\":\"f5271458-21f9-4a9f-a290-780c6d8840ff\",\"sessionNote\":\"Need to wear seatbelt even for short trips.\",\"sessionStatus\":\"unknown\",\"sessionType\":\"driverSelfOneOff\",\"updatedAtTime\":\"2019-06-13T19:08:25Z\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         CoachingSessionsGetCoachingSessionsResponseBody response = client.coaching()
                 .getCoachingSessions(GetCoachingSessionsRequest.builder()
                         .startTime(OffsetDateTime.parse("2024-01-15T09:30:00Z"))
@@ -196,6 +196,8 @@ public class CoachingWireTest {
                 + "              }\n"
                 + "            }\n"
                 + "          ],\n"
+                + "          \"createdAtTime\": \"2019-06-13T19:08:25Z\",\n"
+                + "          \"dueAtTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "          \"id\": \"f5271458-21f9-4a9f-a290-780c6d8840ff\",\n"
                 + "          \"lastCoachedTime\": \"2019-06-13T19:08:25Z\",\n"
                 + "          \"note\": \"Need to wear seatbelt even for short trips.\",\n"
@@ -212,6 +214,7 @@ public class CoachingWireTest {
                 + "      \"id\": \"f5271458-21f9-4a9f-a290-780c6d8840ff\",\n"
                 + "      \"sessionNote\": \"Need to wear seatbelt even for short trips.\",\n"
                 + "      \"sessionStatus\": \"unknown\",\n"
+                + "      \"sessionType\": \"driverSelfOneOff\",\n"
                 + "      \"updatedAtTime\": \"2019-06-13T19:08:25Z\"\n"
                 + "    }\n"
                 + "  ],\n"

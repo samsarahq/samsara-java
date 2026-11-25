@@ -35,6 +35,8 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
                     List<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
             linkedSchedules;
 
+    private final Optional<String> scheduleType;
+
     private final Optional<String> title;
 
     private final Optional<String> workOrderTemplateId;
@@ -49,6 +51,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
             Optional<String> id,
             Optional<List<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
                     linkedSchedules,
+            Optional<String> scheduleType,
             Optional<String> title,
             Optional<String> workOrderTemplateId,
             Map<String, Object> additionalProperties) {
@@ -58,6 +61,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
         this.engineHourInterval = engineHourInterval;
         this.id = id;
         this.linkedSchedules = linkedSchedules;
+        this.scheduleType = scheduleType;
         this.title = title;
         this.workOrderTemplateId = workOrderTemplateId;
         this.additionalProperties = additionalProperties;
@@ -113,6 +117,14 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
     }
 
     /**
+     * @return Optional PM schedule type. Wire values are A, B, C, or D. Omitted when the schedule is untyped.
+     */
+    @JsonProperty("scheduleType")
+    public Optional<String> getScheduleType() {
+        return scheduleType;
+    }
+
+    /**
      * @return Title of the preventive maintenance schedule.
      */
     @JsonProperty("title")
@@ -147,6 +159,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
                 && engineHourInterval.equals(other.engineHourInterval)
                 && id.equals(other.id)
                 && linkedSchedules.equals(other.linkedSchedules)
+                && scheduleType.equals(other.scheduleType)
                 && title.equals(other.title)
                 && workOrderTemplateId.equals(other.workOrderTemplateId);
     }
@@ -160,6 +173,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
                 this.engineHourInterval,
                 this.id,
                 this.linkedSchedules,
+                this.scheduleType,
                 this.title,
                 this.workOrderTemplateId);
     }
@@ -190,6 +204,8 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
                                 EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>>
                 linkedSchedules = Optional.empty();
 
+        private Optional<String> scheduleType = Optional.empty();
+
         private Optional<String> title = Optional.empty();
 
         private Optional<String> workOrderTemplateId = Optional.empty();
@@ -206,6 +222,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
             engineHourInterval(other.getEngineHourInterval());
             id(other.getId());
             linkedSchedules(other.getLinkedSchedules());
+            scheduleType(other.getScheduleType());
             title(other.getTitle());
             workOrderTemplateId(other.getWorkOrderTemplateId());
             return this;
@@ -302,6 +319,20 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
         }
 
         /**
+         * <p>Optional PM schedule type. Wire values are A, B, C, or D. Omitted when the schedule is untyped.</p>
+         */
+        @JsonSetter(value = "scheduleType", nulls = Nulls.SKIP)
+        public Builder scheduleType(Optional<String> scheduleType) {
+            this.scheduleType = scheduleType;
+            return this;
+        }
+
+        public Builder scheduleType(String scheduleType) {
+            this.scheduleType = Optional.ofNullable(scheduleType);
+            return this;
+        }
+
+        /**
          * <p>Title of the preventive maintenance schedule.</p>
          */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
@@ -337,6 +368,7 @@ public final class EntityListPreventiveMaintenanceSchedulesTypeResponseBody {
                     engineHourInterval,
                     id,
                     linkedSchedules,
+                    scheduleType,
                     title,
                     workOrderTemplateId,
                     additionalProperties);

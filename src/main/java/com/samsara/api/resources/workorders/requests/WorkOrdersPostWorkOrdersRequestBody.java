@@ -36,6 +36,8 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
     private final Optional<String> assignedUserId;
 
+    private final Optional<List<String>> assignedUserIds;
+
     private final Optional<List<GoaAttributeTinyRequestBody>> attributes;
 
     private final Optional<String> category;
@@ -68,6 +70,8 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
     private final Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances;
 
+    private final Optional<String> shopId;
+
     private final Optional<OffsetDateTime> startedAtTime;
 
     private final Optional<WorkOrdersPostWorkOrdersRequestBodyStatus> status;
@@ -82,6 +86,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
             Optional<OffsetDateTime> archivedAtTime,
             String assetId,
             Optional<String> assignedUserId,
+            Optional<List<String>> assignedUserIds,
             Optional<List<GoaAttributeTinyRequestBody>> attributes,
             Optional<String> category,
             Optional<OffsetDateTime> completedAtTime,
@@ -98,6 +103,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
             Optional<String> poNumber,
             Optional<WorkOrdersPostWorkOrdersRequestBodyPriority> priority,
             Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances,
+            Optional<String> shopId,
             Optional<OffsetDateTime> startedAtTime,
             Optional<WorkOrdersPostWorkOrdersRequestBodyStatus> status,
             Optional<WorkOrderTaxCreateObjectRequestBody> tax,
@@ -106,6 +112,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         this.archivedAtTime = archivedAtTime;
         this.assetId = assetId;
         this.assignedUserId = assignedUserId;
+        this.assignedUserIds = assignedUserIds;
         this.attributes = attributes;
         this.category = category;
         this.completedAtTime = completedAtTime;
@@ -122,6 +129,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         this.poNumber = poNumber;
         this.priority = priority;
         this.serviceTaskInstances = serviceTaskInstances;
+        this.shopId = shopId;
         this.startedAtTime = startedAtTime;
         this.status = status;
         this.tax = tax;
@@ -146,11 +154,19 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
-     * @return The ID of the assigned mechanic.
+     * @return The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.
      */
     @JsonProperty("assignedUserId")
     public Optional<String> getAssignedUserId() {
         return assignedUserId;
+    }
+
+    /**
+     * @return Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. The first ID is the primary assignee returned in assignedUserId. Send an empty array to create the work order with no assignee. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.
+     */
+    @JsonProperty("assignedUserIds")
+    public Optional<List<String>> getAssignedUserIds() {
+        return assignedUserIds;
     }
 
     /**
@@ -279,6 +295,14 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
+     * @return ID of the shop associated with the work order. Omit to create the work order without a shop. This is independent of the maintenance site (<code>placeId</code>).
+     */
+    @JsonProperty("shopId")
+    public Optional<String> getShopId() {
+        return shopId;
+    }
+
+    /**
      * @return The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status is an in-progress status and this field is not provided.
      */
     @JsonProperty("startedAtTime")
@@ -300,7 +324,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
     }
 
     /**
-     * @return The vendor UUID for the work order.
+     * @return The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.
      */
     @JsonProperty("vendorUuid")
     public Optional<String> getVendorUuid() {
@@ -323,6 +347,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         return archivedAtTime.equals(other.archivedAtTime)
                 && assetId.equals(other.assetId)
                 && assignedUserId.equals(other.assignedUserId)
+                && assignedUserIds.equals(other.assignedUserIds)
                 && attributes.equals(other.attributes)
                 && category.equals(other.category)
                 && completedAtTime.equals(other.completedAtTime)
@@ -339,6 +364,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                 && poNumber.equals(other.poNumber)
                 && priority.equals(other.priority)
                 && serviceTaskInstances.equals(other.serviceTaskInstances)
+                && shopId.equals(other.shopId)
                 && startedAtTime.equals(other.startedAtTime)
                 && status.equals(other.status)
                 && tax.equals(other.tax)
@@ -351,6 +377,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                 this.archivedAtTime,
                 this.assetId,
                 this.assignedUserId,
+                this.assignedUserIds,
                 this.attributes,
                 this.category,
                 this.completedAtTime,
@@ -367,6 +394,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                 this.poNumber,
                 this.priority,
                 this.serviceTaskInstances,
+                this.shopId,
                 this.startedAtTime,
                 this.status,
                 this.tax,
@@ -402,11 +430,18 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage archivedAtTime(OffsetDateTime archivedAtTime);
 
         /**
-         * <p>The ID of the assigned mechanic.</p>
+         * <p>The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.</p>
          */
         _FinalStage assignedUserId(Optional<String> assignedUserId);
 
         _FinalStage assignedUserId(String assignedUserId);
+
+        /**
+         * <p>Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. The first ID is the primary assignee returned in assignedUserId. Send an empty array to create the work order with no assignee. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.</p>
+         */
+        _FinalStage assignedUserIds(Optional<List<String>> assignedUserIds);
+
+        _FinalStage assignedUserIds(List<String> assignedUserIds);
 
         /**
          * <p>A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute <code>id</code>. Use <code>stringValues</code> for text, single-select, and multi-select attributes, <code>numberValues</code> for number attributes, and <code>dateValues</code> (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.</p>
@@ -519,6 +554,13 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage serviceTaskInstances(List<ServiceTaskInstanceInputObjectRequestBody> serviceTaskInstances);
 
         /**
+         * <p>ID of the shop associated with the work order. Omit to create the work order without a shop. This is independent of the maintenance site (<code>placeId</code>).</p>
+         */
+        _FinalStage shopId(Optional<String> shopId);
+
+        _FinalStage shopId(String shopId);
+
+        /**
          * <p>The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status is an in-progress status and this field is not provided.</p>
          */
         _FinalStage startedAtTime(Optional<OffsetDateTime> startedAtTime);
@@ -537,7 +579,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         _FinalStage tax(WorkOrderTaxCreateObjectRequestBody tax);
 
         /**
-         * <p>The vendor UUID for the work order.</p>
+         * <p>The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          */
         _FinalStage vendorUuid(Optional<String> vendorUuid);
 
@@ -555,6 +597,8 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         private Optional<WorkOrdersPostWorkOrdersRequestBodyStatus> status = Optional.empty();
 
         private Optional<OffsetDateTime> startedAtTime = Optional.empty();
+
+        private Optional<String> shopId = Optional.empty();
 
         private Optional<List<ServiceTaskInstanceInputObjectRequestBody>> serviceTaskInstances = Optional.empty();
 
@@ -588,6 +632,8 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
 
         private Optional<List<GoaAttributeTinyRequestBody>> attributes = Optional.empty();
 
+        private Optional<List<String>> assignedUserIds = Optional.empty();
+
         private Optional<String> assignedUserId = Optional.empty();
 
         private Optional<OffsetDateTime> archivedAtTime = Optional.empty();
@@ -602,6 +648,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
             archivedAtTime(other.getArchivedAtTime());
             assetId(other.getAssetId());
             assignedUserId(other.getAssignedUserId());
+            assignedUserIds(other.getAssignedUserIds());
             attributes(other.getAttributes());
             category(other.getCategory());
             completedAtTime(other.getCompletedAtTime());
@@ -618,6 +665,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
             poNumber(other.getPoNumber());
             priority(other.getPriority());
             serviceTaskInstances(other.getServiceTaskInstances());
+            shopId(other.getShopId());
             startedAtTime(other.getStartedAtTime());
             status(other.getStatus());
             tax(other.getTax());
@@ -638,7 +686,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The vendor UUID for the work order.</p>
+         * <p>The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -648,7 +696,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The vendor UUID for the work order.</p>
+         * <p>The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "vendorUuid", nulls = Nulls.SKIP)
@@ -707,6 +755,26 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         @JsonSetter(value = "startedAtTime", nulls = Nulls.SKIP)
         public _FinalStage startedAtTime(Optional<OffsetDateTime> startedAtTime) {
             this.startedAtTime = startedAtTime;
+            return this;
+        }
+
+        /**
+         * <p>ID of the shop associated with the work order. Omit to create the work order without a shop. This is independent of the maintenance site (<code>placeId</code>).</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage shopId(String shopId) {
+            this.shopId = Optional.ofNullable(shopId);
+            return this;
+        }
+
+        /**
+         * <p>ID of the shop associated with the work order. Omit to create the work order without a shop. This is independent of the maintenance site (<code>placeId</code>).</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "shopId", nulls = Nulls.SKIP)
+        public _FinalStage shopId(Optional<String> shopId) {
+            this.shopId = shopId;
             return this;
         }
 
@@ -1025,7 +1093,27 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The ID of the assigned mechanic.</p>
+         * <p>Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. The first ID is the primary assignee returned in assignedUserId. Send an empty array to create the work order with no assignee. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage assignedUserIds(List<String> assignedUserIds) {
+            this.assignedUserIds = Optional.ofNullable(assignedUserIds);
+            return this;
+        }
+
+        /**
+         * <p>Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. The first ID is the primary assignee returned in assignedUserId. Send an empty array to create the work order with no assignee. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "assignedUserIds", nulls = Nulls.SKIP)
+        public _FinalStage assignedUserIds(Optional<List<String>> assignedUserIds) {
+            this.assignedUserIds = assignedUserIds;
+            return this;
+        }
+
+        /**
+         * <p>The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -1035,7 +1123,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
         }
 
         /**
-         * <p>The ID of the assigned mechanic.</p>
+         * <p>The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "assignedUserId", nulls = Nulls.SKIP)
@@ -1070,6 +1158,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                     archivedAtTime,
                     assetId,
                     assignedUserId,
+                    assignedUserIds,
                     attributes,
                     category,
                     completedAtTime,
@@ -1086,6 +1175,7 @@ public final class WorkOrdersPostWorkOrdersRequestBody {
                     poNumber,
                     priority,
                     serviceTaskInstances,
+                    shopId,
                     startedAtTime,
                     status,
                     tax,

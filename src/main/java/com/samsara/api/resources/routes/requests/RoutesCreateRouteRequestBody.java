@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.samsara.api.core.ObjectMappers;
 import com.samsara.api.types.CreateRouteStopWithOrdersRequestObjectRequestBody;
+import com.samsara.api.types.RouteEquipmentProfileObjectRequestBody;
 import com.samsara.api.types.RouteSettingsRequestBody;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonDeserialize(builder = RoutesCreateRouteRequestBody.Builder.class)
 public final class RoutesCreateRouteRequestBody {
     private final Optional<String> driverId;
+
+    private final Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile;
 
     private final Optional<Map<String, String>> externalIds;
 
@@ -47,6 +50,7 @@ public final class RoutesCreateRouteRequestBody {
 
     private RoutesCreateRouteRequestBody(
             Optional<String> driverId,
+            Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile,
             Optional<Map<String, String>> externalIds,
             String name,
             Optional<String> notes,
@@ -57,6 +61,7 @@ public final class RoutesCreateRouteRequestBody {
             Optional<String> vehicleId,
             Map<String, Object> additionalProperties) {
         this.driverId = driverId;
+        this.equipmentProfile = equipmentProfile;
         this.externalIds = externalIds;
         this.name = name;
         this.notes = notes;
@@ -74,6 +79,11 @@ public final class RoutesCreateRouteRequestBody {
     @JsonProperty("driverId")
     public Optional<String> getDriverId() {
         return driverId;
+    }
+
+    @JsonProperty("equipmentProfile")
+    public Optional<RouteEquipmentProfileObjectRequestBody> getEquipmentProfile() {
+        return equipmentProfile;
     }
 
     /**
@@ -150,6 +160,7 @@ public final class RoutesCreateRouteRequestBody {
 
     private boolean equalTo(RoutesCreateRouteRequestBody other) {
         return driverId.equals(other.driverId)
+                && equipmentProfile.equals(other.equipmentProfile)
                 && externalIds.equals(other.externalIds)
                 && name.equals(other.name)
                 && notes.equals(other.notes)
@@ -164,6 +175,7 @@ public final class RoutesCreateRouteRequestBody {
     public int hashCode() {
         return Objects.hash(
                 this.driverId,
+                this.equipmentProfile,
                 this.externalIds,
                 this.name,
                 this.notes,
@@ -201,6 +213,10 @@ public final class RoutesCreateRouteRequestBody {
         _FinalStage driverId(Optional<String> driverId);
 
         _FinalStage driverId(String driverId);
+
+        _FinalStage equipmentProfile(Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile);
+
+        _FinalStage equipmentProfile(RouteEquipmentProfileObjectRequestBody equipmentProfile);
 
         /**
          * <p>A map of external ids</p>
@@ -269,6 +285,8 @@ public final class RoutesCreateRouteRequestBody {
 
         private Optional<Map<String, String>> externalIds = Optional.empty();
 
+        private Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile = Optional.empty();
+
         private Optional<String> driverId = Optional.empty();
 
         @JsonAnySetter
@@ -279,6 +297,7 @@ public final class RoutesCreateRouteRequestBody {
         @java.lang.Override
         public Builder from(RoutesCreateRouteRequestBody other) {
             driverId(other.getDriverId());
+            equipmentProfile(other.getEquipmentProfile());
             externalIds(other.getExternalIds());
             name(other.getName());
             notes(other.getNotes());
@@ -450,6 +469,19 @@ public final class RoutesCreateRouteRequestBody {
             return this;
         }
 
+        @java.lang.Override
+        public _FinalStage equipmentProfile(RouteEquipmentProfileObjectRequestBody equipmentProfile) {
+            this.equipmentProfile = Optional.ofNullable(equipmentProfile);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "equipmentProfile", nulls = Nulls.SKIP)
+        public _FinalStage equipmentProfile(Optional<RouteEquipmentProfileObjectRequestBody> equipmentProfile) {
+            this.equipmentProfile = equipmentProfile;
+            return this;
+        }
+
         /**
          * <p>ID of the driver. Can be either a unique Samsara ID or an <a href="https://developers.samsara.com/docs/external-ids">external ID</a> for the driver.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
@@ -474,6 +506,7 @@ public final class RoutesCreateRouteRequestBody {
         public RoutesCreateRouteRequestBody build() {
             return new RoutesCreateRouteRequestBody(
                     driverId,
+                    equipmentProfile,
                     externalIds,
                     name,
                     notes,

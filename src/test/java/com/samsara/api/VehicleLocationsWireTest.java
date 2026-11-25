@@ -42,7 +42,7 @@ public class VehicleLocationsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"id\":\"112\",\"location\":{\"heading\":120,\"latitude\":122.142,\"longitude\":-93.343,\"speed\":48.3,\"time\":\"2020-01-27T07:06:25Z\"},\"name\":\"Truck A7\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"id\":\"112\",\"location\":{\"heading\":120,\"latitude\":122.142,\"longitude\":-93.343,\"reverseGeo\":{\"formattedLocation\":\"16 N Fair Oaks Ave, Pasadena, CA 91103\"},\"speed\":48.3,\"time\":\"2020-01-27T07:06:25Z\"},\"name\":\"Truck A7\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         VehicleLocationsResponse response = client.vehicleLocations()
                 .getVehicleLocations(GetVehicleLocationsRequest.builder().build());
         RecordedRequest request = server.takeRequest();
@@ -61,6 +61,9 @@ public class VehicleLocationsWireTest {
                 + "        \"heading\": 120,\n"
                 + "        \"latitude\": 122.142,\n"
                 + "        \"longitude\": -93.343,\n"
+                + "        \"reverseGeo\": {\n"
+                + "          \"formattedLocation\": \"16 N Fair Oaks Ave, Pasadena, CA 91103\"\n"
+                + "        },\n"
                 + "        \"speed\": 48.3,\n"
                 + "        \"time\": \"2020-01-27T07:06:25Z\"\n"
                 + "      },\n"
@@ -109,7 +112,7 @@ public class VehicleLocationsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"id\":\"112\",\"locations\":[{\"heading\":120,\"latitude\":122.142,\"longitude\":-93.343,\"speed\":48.3,\"time\":\"2020-01-27T07:06:25Z\"}],\"name\":\"Truck A7\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"id\":\"112\",\"locations\":[{\"heading\":120,\"latitude\":122.142,\"longitude\":-93.343,\"reverseGeo\":{\"formattedLocation\":\"16 N Fair Oaks Ave, Pasadena, CA 91103\"},\"speed\":48.3,\"time\":\"2020-01-27T07:06:25Z\"}],\"name\":\"Truck A7\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         VehicleLocationsListResponse response = client.vehicleLocations()
                 .getVehicleLocationsFeed(
                         GetVehicleLocationsFeedRequest.builder().build());
@@ -130,6 +133,9 @@ public class VehicleLocationsWireTest {
                 + "          \"heading\": 120,\n"
                 + "          \"latitude\": 122.142,\n"
                 + "          \"longitude\": -93.343,\n"
+                + "          \"reverseGeo\": {\n"
+                + "            \"formattedLocation\": \"16 N Fair Oaks Ave, Pasadena, CA 91103\"\n"
+                + "          },\n"
                 + "          \"speed\": 48.3,\n"
                 + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
                 + "        }\n"
@@ -179,7 +185,7 @@ public class VehicleLocationsWireTest {
                 new MockResponse()
                         .setResponseCode(200)
                         .setBody(
-                                "{\"data\":[{\"id\":\"112\",\"locations\":[{\"heading\":120,\"latitude\":122.142,\"longitude\":-93.343,\"speed\":48.3,\"time\":\"2020-01-27T07:06:25Z\"}],\"name\":\"Truck A7\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
+                                "{\"data\":[{\"id\":\"112\",\"locations\":[{\"heading\":120,\"latitude\":122.142,\"longitude\":-93.343,\"reverseGeo\":{\"formattedLocation\":\"16 N Fair Oaks Ave, Pasadena, CA 91103\"},\"speed\":48.3,\"time\":\"2020-01-27T07:06:25Z\"}],\"name\":\"Truck A7\"}],\"pagination\":{\"endCursor\":\"MjkY\",\"hasNextPage\":true}}"));
         VehicleLocationsListResponse response = client.vehicleLocations()
                 .getVehicleLocationsHistory(GetVehicleLocationsHistoryRequest.builder()
                         .startTime("startTime")
@@ -202,6 +208,9 @@ public class VehicleLocationsWireTest {
                 + "          \"heading\": 120,\n"
                 + "          \"latitude\": 122.142,\n"
                 + "          \"longitude\": -93.343,\n"
+                + "          \"reverseGeo\": {\n"
+                + "            \"formattedLocation\": \"16 N Fair Oaks Ave, Pasadena, CA 91103\"\n"
+                + "          },\n"
                 + "          \"speed\": 48.3,\n"
                 + "          \"time\": \"2020-01-27T07:06:25Z\"\n"
                 + "        }\n"

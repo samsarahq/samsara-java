@@ -106,7 +106,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
     }
 
     /**
-     * @return Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.
+     * @return Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags. If your API token is restricted to certain tags, every tag must be within its scope.
      */
     @JsonProperty("tagIds")
     public Optional<List<String>> getTagIds() {
@@ -203,7 +203,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         _FinalStage specialInstructions(RidershipPassengerSpecialInstructionsInputRequestBody specialInstructions);
 
         /**
-         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.</p>
+         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags. If your API token is restricted to certain tags, every tag must be within its scope.</p>
          */
         _FinalStage tagIds(Optional<List<String>> tagIds);
 
@@ -269,7 +269,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.</p>
+         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags. If your API token is restricted to certain tags, every tag must be within its scope.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -279,7 +279,7 @@ public final class RidershipPassengersCreateRidershipPassengerRequestBody {
         }
 
         /**
-         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags.</p>
+         * <p>Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send <code>[]</code> to create a passenger without tags. If your API token is restricted to certain tags, every tag must be within its scope.</p>
          */
         @java.lang.Override
         @JsonSetter(value = "tagIds", nulls = Nulls.SKIP)

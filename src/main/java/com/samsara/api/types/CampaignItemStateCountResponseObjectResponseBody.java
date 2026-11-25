@@ -43,7 +43,7 @@ public final class CampaignItemStateCountResponseObjectResponseBody {
     }
 
     /**
-     * @return State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code>
+     * @return State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code>
      */
     @JsonProperty("state")
     public CampaignItemStateCountResponseObjectResponseBodyState getState() {
@@ -91,7 +91,7 @@ public final class CampaignItemStateCountResponseObjectResponseBody {
 
     public interface StateStage {
         /**
-         * <p>State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
+         * <p>State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
          */
         _FinalStage state(@NotNull CampaignItemStateCountResponseObjectResponseBodyState state);
     }
@@ -131,8 +131,8 @@ public final class CampaignItemStateCountResponseObjectResponseBody {
         }
 
         /**
-         * <p>State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
-         * <p>State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
+         * <p>State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
+         * <p>State of the counted items.  Valid values: <code>pending</code>, <code>hold</code>, <code>ready</code>, <code>workOrderCreated</code>, <code>workOrderCanceled</code>, <code>complete</code>, <code>dismissed</code>, <code>cancelled</code>, <code>unknown</code></p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

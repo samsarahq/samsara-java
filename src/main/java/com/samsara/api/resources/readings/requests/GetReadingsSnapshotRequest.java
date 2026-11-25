@@ -127,6 +127,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
      * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
      * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
+     * <li><code>evEstimatedRemainingDistance</code> (EV Estimated remaining distance): Estimated remaining distance based on existing available HV system capacity. (meter)</li>
      * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
      * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
      * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
@@ -134,6 +135,7 @@ public final class GetReadingsSnapshotRequest {
      * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
      * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
      * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+     * <li><code>fuelDeliveryPressure</code> (Fuel Delivery Pressure): The pressure of fuel being delivered to the engine (kilopascal)</li>
      * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
      * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
      * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
@@ -524,6 +526,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
          * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
+         * <li><code>evEstimatedRemainingDistance</code> (EV Estimated remaining distance): Estimated remaining distance based on existing available HV system capacity. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
@@ -531,6 +534,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+         * <li><code>fuelDeliveryPressure</code> (Fuel Delivery Pressure): The pressure of fuel being delivered to the engine (kilopascal)</li>
          * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
          * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
          * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
@@ -917,6 +921,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
          * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
+         * <li><code>evEstimatedRemainingDistance</code> (EV Estimated remaining distance): Estimated remaining distance based on existing available HV system capacity. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
@@ -924,6 +929,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+         * <li><code>fuelDeliveryPressure</code> (Fuel Delivery Pressure): The pressure of fuel being delivered to the engine (kilopascal)</li>
          * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
          * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
          * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
@@ -1204,6 +1210,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>evChargingVoltage</code> (EV Charging Voltage): Charging voltage for electric and hybrid vehicles. (volt)</li>
          * <li><code>evConsumedEnergy</code> (EV Consumed Energy): Consumed energy (including regenerated) for electric and hybrid vehicles. (watthour)</li>
          * <li><code>evDistanceDriven</code> (EV Distance Driven): Electric distance driven for electric and hybrid vehicles. (meter)</li>
+         * <li><code>evEstimatedRemainingDistance</code> (EV Estimated remaining distance): Estimated remaining distance based on existing available HV system capacity. (meter)</li>
          * <li><code>evHighCapacityBatteryCurrent</code> (EV High Capacity Battery Current): Current from the high capacity EV battery in amperes. (ampere)</li>
          * <li><code>evHighCapacityBatteryVoltage</code> (High Capacity EV Battery Voltage): Represents the voltage of the high capacity EV battery. (volt)</li>
          * <li><code>evRegeneratedEnergy</code> (EV Regenerated Energy): Regenerated energy for electric and hybrid vehicles. (watthour)</li>
@@ -1211,6 +1218,7 @@ public final class GetReadingsSnapshotRequest {
          * <li><code>exhaustGasPressure</code> (Exhaust Gas Pressure): Represents the exhaust gas pressure. (kilopascal)</li>
          * <li><code>faultCodes</code> (Fault Codes): Engine fault codes for the asset</li>
          * <li><code>fuelConsumptionRate</code> (Fuel Consumption Rate): The rate at which an asset uses fuel (litersperhour)</li>
+         * <li><code>fuelDeliveryPressure</code> (Fuel Delivery Pressure): The pressure of fuel being delivered to the engine (kilopascal)</li>
          * <li><code>fuelLevelPerc</code> (Fuel Level): Percentage of fuel remaining in the tank. (percent)</li>
          * <li><code>fuelSource</code> (Fuel Source): Type of fuel used by the asset. (values: gasoline | diesel)</li>
          * <li><code>geoCoordinates</code> (Geo Coordinates): GPS coordinates (latitude and longitude) of the asset's location.</li>
